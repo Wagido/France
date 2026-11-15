@@ -737,8 +737,8 @@ function drawBilan() {
   ]);
   const ext = yy => { const S = DATA.patrimoine[yy]?.secteurs; return S ? d3.sum(S, s => sum(s.fa) - sum(s.fl)) : null; };
   const yrs = Object.keys(DATA.patrimoine).sort(), saut = yrs.slice(1).map((yy, i) => [yrs[i], yy, ext(yrs[i]), ext(yy)]).filter(([, , a, b]) => a != null && b != null && Math.abs(b - a) > 250);
-  const avert = saut.length ? ` <b>Prudence :</b> dans les données d'Eurostat, cette position passe de ${saut.map(([a, b, va, vb]) => `${md(va)} en ${a} à ${md(vb)} en ${b}`).join(", puis de ")} ; un tel saut traduit une révision des données ou un changement de méthode plutôt qu'un vrai changement. La Banque de France publie une mesure voisine, la position extérieure nette, dans sa balance des paiements.` : "";
-  $("#bs-kpis").insertAdjacentHTML("afterend", `<p class="muted bs-why" style="font-size:.86rem;margin:-2px 0 10px;max-width:100ch">Pourquoi ${md(nfTot + faTot)} d'actifs mais seulement ${md(netTot)} de patrimoine ? Un dépôt bancaire est à la fois un actif (pour le déposant) et une dette (pour la banque) : les ${md(faTot)} d'actifs financiers sont presque entièrement compensés par les ${md(flTot)} de dettes. À l'échelle du pays, le patrimoine net se réduit aux biens réels plus le solde avec l'étranger.${avert}</p>`);
+  const avert = saut.length ? `<br><b>À prendre avec prudence :</b> selon Eurostat, ce solde avec l'étranger passe de ${saut.map(([a, b, va, vb]) => `${md(va)} en ${a} à ${md(vb)} en ${b}`).join(", puis de ")}. Un tel bond en un an vient presque sûrement d'une révision des données, pas d'un vrai changement.` : "";
+  $("#bs-kpis").insertAdjacentHTML("afterend", `<p class="muted bs-why" style="font-size:.86rem;margin:-2px 0 10px;max-width:100ch"><b>Pourquoi ${md(nfTot + faTot)} d'actifs, mais seulement ${md(netTot)} de patrimoine ?</b> Parce que la plupart des actifs financiers sont des dettes d'autres Français : l'argent sur mon compte est à moi, mais c'est aussi une dette de ma banque envers moi. À l'échelle du pays, ces créances et ces dettes s'annulent. Il reste ce qui n'est la dette de personne : les biens réels (logements, terrains, bâtiments, machines : ${md(nfTot)}), ${extNet >= 0 ? "plus ce que le reste du monde doit à la France" : "moins ce que la France doit au reste du monde"} (${md(Math.abs(extNet))}).${avert}</p>`);
 
   // --- graphique : actifs à droite, passifs à gauche
   const el = $("#bs-chart");
@@ -812,7 +812,7 @@ function drawBilan() {
 
   el.innerHTML = `<h4 style="margin:8px 0 4px">France entière : ${md(total.actifs)} d'actifs, ${md(total.passifs)} de passifs</h4>`;
   el.appendChild(chart([total], narrow ? 62 : 52));
-  el.insertAdjacentHTML("beforeend", `<p class="muted" style="font-size:.84rem;margin:2px 0 14px">Les actifs financiers d'un Français sont souvent la dette d'un autre Français (le dépôt d'un ménage est une dette de sa banque) : à l'échelle du pays, ils s'annulent presque. Le patrimoine net (${md(total.net)}) se résume donc aux biens réels (${md(sum(total.nf))}) plus la position face à l'étranger (${extNet >= 0 ? "+" : "−"}${md(Math.abs(extNet))}).</p><h4 style="margin:8px 0 4px">Par secteur (même échelle pour les quatre)</h4>`);
+  el.insertAdjacentHTML("beforeend", `<p class="muted" style="font-size:.84rem;margin:2px 0 14px">À gauche ce que chacun doit, à droite ce qu'il possède. Patrimoine net : ${md(total.net)} = biens réels (${md(sum(total.nf))}) ${extNet >= 0 ? "+" : "−"} solde avec l'étranger (${md(Math.abs(extNet))}).</p><h4 style="margin:8px 0 4px">Par secteur (même échelle pour les quatre)</h4>`);
   el.appendChild(chart(secs, narrow ? 56 : 46, true));
   const sw = (c, hatch) => `<i style="width:14px;height:12px;border:0;opacity:1;background:${hatch ? `repeating-linear-gradient(45deg, ${c} 0 2.5px, color-mix(in srgb, ${c} 35%, transparent) 2.5px 6px)` : c}"></i>`;
   el.insertAdjacentHTML("beforeend", `
