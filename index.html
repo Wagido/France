@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117w">
+<link rel="stylesheet" href="style.css?v=20261117y">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -58,6 +58,7 @@
       <a href="#biodiversite">Biodiversité</a>
       <a href="#foret">Forêt</a>
       <a href="#air">Air</a>
+      <a href="#agriculture">Agriculture</a>
       <a href="#pesticides">Pesticides et engrais</a>
       <a href="#catastrophes">Catastrophes climatiques</a>
       <a href="#transition">Qui paie la transition ?</a>
@@ -760,6 +761,22 @@
   <div class="callout small" id="air-txt"></div>
 </section>
 
+<section id="agriculture" class="panel">
+  <div class="panel-head">
+    <h2>Agriculture : ce qu'on cultive en France, et la part du bio <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="agriculture-kpis"></div>
+  <h3>Les cultures, de la plus grande à la plus petite</h3>
+  <div id="ag-cult"></div>
+  <div class="grid2">
+    <div><h3>Surfaces depuis 2000 (millions d'hectares)</h3><div id="ag-evol" class="chart"></div><div class="legend-row" id="ag-evol-legend"></div></div>
+    <div><h3>Le bio depuis 2012</h3><div id="ag-bio" class="chart"></div><div class="legend-row" id="ag-bio-legend"></div></div>
+  </div>
+  <h3>Prairies et céréales : la France et les autres pays</h3>
+  <div id="ag-pays" style="display:grid;gap:3px;max-width:980px;margin-bottom:8px"></div>
+  <div class="callout small" id="agriculture-txt"></div>
+</section>
+
 <section id="pesticides" class="panel">
   <div class="panel-head">
     <h2>Pesticides, agriculture biologique et engrais <span class="geo-fixed">France</span></h2>
@@ -1065,27 +1082,28 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117w"></script>
-<script src="app.js?v=20261117w"></script>
-<script src="energie.js?v=20261117w"></script>
-<script src="matieres.js?v=20261117w"></script>
-<script src="territoire.js?v=20261117w"></script>
-<script src="themes.js?v=20261117w"></script>
-<script src="societe.js?v=20261117w"></script>
-<script src="eco2.js?v=20261117w"></script>
-<script src="empreinte.js?v=20261117w"></script>
-<script src="argentprive.js?v=20261117w"></script>
-<script src="repartition.js?v=20261117w"></script>
-<script src="patrimoine.js?v=20261117w"></script>
-<script src="prelevements.js?v=20261117w"></script>
-<script src="travailvie.js?v=20261117w"></script>
-<script src="couper.js?v=20261117w"></script>
-<script src="seuilpays.js?v=20261117w"></script>
-<script src="logement.js?v=20261117w"></script>
-<script src="env.js?v=20261117w"></script>
-<script src="histoire.js?v=20261117w"></script>
-<script src="chomage.js?v=20261117w"></script>
-<script src="sources.js?v=20261117w"></script>
-<script src="nav.js?v=20261117w"></script>
+<script src="kpi.js?v=20261117y"></script>
+<script src="app.js?v=20261117y"></script>
+<script src="energie.js?v=20261117y"></script>
+<script src="matieres.js?v=20261117y"></script>
+<script src="territoire.js?v=20261117y"></script>
+<script src="themes.js?v=20261117y"></script>
+<script src="societe.js?v=20261117y"></script>
+<script src="eco2.js?v=20261117y"></script>
+<script src="empreinte.js?v=20261117y"></script>
+<script src="argentprive.js?v=20261117y"></script>
+<script src="repartition.js?v=20261117y"></script>
+<script src="patrimoine.js?v=20261117y"></script>
+<script src="prelevements.js?v=20261117y"></script>
+<script src="travailvie.js?v=20261117y"></script>
+<script src="couper.js?v=20261117y"></script>
+<script src="seuilpays.js?v=20261117y"></script>
+<script src="logement.js?v=20261117y"></script>
+<script src="env.js?v=20261117y"></script>
+<script src="agriculture.js?v=20261117y"></script>
+<script src="histoire.js?v=20261117y"></script>
+<script src="chomage.js?v=20261117y"></script>
+<script src="sources.js?v=20261117y"></script>
+<script src="nav.js?v=20261117y"></script>
 </body>
 </html>

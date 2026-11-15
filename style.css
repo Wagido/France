@@ -300,3 +300,14 @@ main.wrap { position: relative; overflow: hidden; }
 @media (max-width: 640px) { .cp-row { grid-template-columns: 110px 44px 44px 1fr; font-size: .72rem; gap: 5px; } .cp-sl { grid-template-columns: 1fr 120px 40px; font-size: .78rem; } }
 .lg-row { grid-template-columns: 200px 1fr 1.2fr; } .tv-row.ue { font-weight: 650; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); }
 @media (max-width: 640px) { .lg-row { grid-template-columns: 90px 1fr 1fr; } }
+/* agriculture */
+#ag-cult { display: grid; gap: 4px; max-width: 1040px; margin-bottom: 10px; }
+.ag-row { display: grid; grid-template-columns: 330px 1fr 90px; gap: 10px; align-items: center; font-size: .84rem; }
+.ag-head { font-size: .74rem; color: var(--muted); font-weight: 600; }
+.ag-row .lab i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.ag-row .num { text-align: right; font-variant-numeric: tabular-nums; }
+.ag-row .tr { display: flex; align-items: center; gap: 6px; }
+.ag-bar { display: inline-block; height: 14px; border-radius: 2px; position: relative; overflow: hidden; }
+.ag-bar span { position: absolute; left: 0; top: 0; bottom: 0; background: repeating-linear-gradient(45deg, #15803d 0 3px, #22c55e 3px 6px); }
+.ag-bio { color: #15803d; font-weight: 650; white-space: nowrap; } .ag-row b { white-space: nowrap; }
+@media (max-width: 640px) { .ag-row { grid-template-columns: 120px 1fr 50px; font-size: .74rem; } }

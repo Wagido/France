@@ -63,6 +63,7 @@ const S = [
   ["Biodiversité", "eurostat", "env_bio2 / sdg_15_20 / sdg_14_10", "Oiseaux des milieux agricoles par pays, aires protégées", null, "annuel"],
   ["Forêt", "eurostat", "env_air_gge / for_area_efa", "Absorption de CO₂ par les forêts, surface forestière", null, "annuel"],
   ["Air", "eurostat", "sdg_11_52", "Décès prématurés dus aux particules fines (estimations de l'Agence européenne pour l'environnement)", null, "annuel"],
+  ["Agriculture", "eurostat", "apro_cpsh1 / org_cropar", "Surfaces par culture, surfaces en agriculture biologique", null, "annuel"],
   ["Pesticides", "eurostat", "aei_hri / sdg_02_40 / aei_pr_gnb", "Risque pesticides, agriculture biologique, excédent d'azote", null, "annuel"],
   ["Catastrophes", "eurostat", "cli_iad_loss", "Pertes économiques dues aux événements climatiques (base CATDAT de l'AEE)", null, "annuel"],
   ["Transition", "eurostat", "env_ac_tax / gov_10a_exp", "Taxes environnementales, dépense publique de protection de l'environnement", null, "annuel"],

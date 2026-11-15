@@ -1,0 +1,583 @@
+{
+ "annee": 2024,
+ "annee_bio": 2020,
+ "sau": 28614250,
+ "sau_2000": 29719100,
+ "cultures": [
+  {
+   "k": "prairies",
+   "l": "Prairies permanentes (pâturages)",
+   "c": "#65a30d",
+   "ha": 10515580,
+   "ha_2000": 10007500,
+   "bio_pc": 8.4
+  },
+  {
+   "k": "cereales",
+   "l": "Céréales (blé, orge, maïs grain…)",
+   "c": "#eab308",
+   "ha": 8527390,
+   "ha_2000": 9074800,
+   "bio_pc": 4.2
+  },
+  {
+   "k": "fourrages",
+   "l": "Fourrages : prairies semées, maïs fourrage",
+   "c": "#a3e635",
+   "ha": 4248410,
+   "ha_2000": 4481600,
+   "bio_pc": 14.9
+  },
+  {
+   "k": "oleagineux",
+   "l": "Oléagineux (colza, tournesol, soja)",
+   "c": "#f59e0b",
+   "ha": 2275450,
+   "ha_2000": 2009600,
+   "bio_pc": 6.1
+  },
+  {
+   "k": "vignes",
+   "l": "Vignes",
+   "c": "#7c3aed",
+   "ha": 741360,
+   "ha_2000": 857400,
+   "bio_pc": 18.0
+  },
+  {
+   "k": "jacheres",
+   "l": "Jachères",
+   "c": "#d6d3d1",
+   "ha": 520860,
+   "ha_2000": 1225700,
+   "bio_pc": 17.7
+  },
+  {
+   "k": "betteraves",
+   "l": "Betteraves sucrières",
+   "c": "#f472b6",
+   "ha": 411630,
+   "ha_2000": 409700,
+   "bio_pc": 0.3
+  },
+  {
+   "k": "proteagineux",
+   "l": "Légumes secs et protéagineux (pois, féveroles, lentilles)",
+   "c": "#14b8a6",
+   "ha": 320830,
+   "ha_2000": 477700,
+   "bio_pc": 40.3
+  },
+  {
+   "k": "legumes",
+   "l": "Légumes frais",
+   "c": "#22c55e",
+   "ha": 274420,
+   "ha_2000": 297600,
+   "bio_pc": 13.1
+  },
+  {
+   "k": "pdt",
+   "l": "Pommes de terre",
+   "c": "#a16207",
+   "ha": 217680,
+   "ha_2000": 162600,
+   "bio_pc": 2.4
+  },
+  {
+   "k": "fruits",
+   "l": "Fruits, agrumes, olives",
+   "c": "#ef4444",
+   "ha": 197370,
+   "ha_2000": 192330,
+   "bio_pc": 25.3
+  },
+  {
+   "k": "autres",
+   "l": "Autres (semences, fleurs, plantes industrielles…)",
+   "c": "#94a3b8",
+   "ha": 363270,
+   "ha_2000": 522570,
+   "bio_pc": null
+  }
+ ],
+ "evol": [
+  {
+   "annee": 2000,
+   "prairies": 10.01,
+   "cereales": 9.07,
+   "fourrages": 4.48,
+   "oleagineux": 2.01,
+   "proteagineux": 0.48
+  },
+  {
+   "annee": 2001,
+   "prairies": 9.96,
+   "cereales": 8.94,
+   "fourrages": 4.53,
+   "oleagineux": 1.92,
+   "proteagineux": 0.48
+  },
+  {
+   "annee": 2002,
+   "prairies": 9.9,
+   "cereales": 9.33,
+   "fourrages": 4.45,
+   "oleagineux": 1.74,
+   "proteagineux": 0.44
+  },
+  {
+   "annee": 2003,
+   "prairies": 10.09,
+   "cereales": 8.95,
+   "fourrages": 4.65,
+   "oleagineux": 1.86,
+   "proteagineux": 0.47
+  },
+  {
+   "annee": 2004,
+   "prairies": 10.03,
+   "cereales": 9.35,
+   "fourrages": 4.51,
+   "oleagineux": 1.81,
+   "proteagineux": 0.46
+  },
+  {
+   "annee": 2005,
+   "prairies": 9.92,
+   "cereales": 9.18,
+   "fourrages": 4.49,
+   "oleagineux": 1.95,
+   "proteagineux": 0.44
+  },
+  {
+   "annee": 2007,
+   "prairies": 9.94,
+   "cereales": 9.09,
+   "fourrages": null,
+   "oleagineux": 2.19,
+   "proteagineux": 0.22
+  },
+  {
+   "annee": 2008,
+   "prairies": 9.91,
+   "cereales": 9.66,
+   "fourrages": 4.46,
+   "oleagineux": 2.08,
+   "proteagineux": 0.17
+  },
+  {
+   "annee": 2010,
+   "prairies": 10.86,
+   "cereales": 9.24,
+   "fourrages": 3.81,
+   "oleagineux": 2.23,
+   "proteagineux": 0.42
+  },
+  {
+   "annee": 2011,
+   "prairies": 10.86,
+   "cereales": 9.21,
+   "fourrages": 3.85,
+   "oleagineux": 2.36,
+   "proteagineux": 0.3
+  },
+  {
+   "annee": 2012,
+   "prairies": 10.82,
+   "cereales": 9.39,
+   "fourrages": 3.81,
+   "oleagineux": 2.35,
+   "proteagineux": 0.22
+  },
+  {
+   "annee": 2013,
+   "prairies": 10.69,
+   "cereales": 9.49,
+   "fourrages": 3.85,
+   "oleagineux": 2.27,
+   "proteagineux": 0.22
+  },
+  {
+   "annee": 2014,
+   "prairies": 10.57,
+   "cereales": 9.58,
+   "fourrages": 3.79,
+   "oleagineux": 2.26,
+   "proteagineux": 0.25
+  },
+  {
+   "annee": 2015,
+   "prairies": 10.43,
+   "cereales": 9.59,
+   "fourrages": 3.86,
+   "oleagineux": 2.28,
+   "proteagineux": 0.31
+  },
+  {
+   "annee": 2016,
+   "prairies": 10.44,
+   "cereales": 9.54,
+   "fourrages": 3.82,
+   "oleagineux": 2.26,
+   "proteagineux": 0.34
+  },
+  {
+   "annee": 2017,
+   "prairies": 10.47,
+   "cereales": 9.34,
+   "fourrages": 3.88,
+   "oleagineux": 2.17,
+   "proteagineux": 0.37
+  },
+  {
+   "annee": 2018,
+   "prairies": 10.45,
+   "cereales": 9.06,
+   "fourrages": 3.95,
+   "oleagineux": 2.36,
+   "proteagineux": 0.31
+  },
+  {
+   "annee": 2019,
+   "prairies": 10.42,
+   "cereales": 9.39,
+   "fourrages": 4.08,
+   "oleagineux": 1.9,
+   "proteagineux": 0.33
+  },
+  {
+   "annee": 2020,
+   "prairies": 10.53,
+   "cereales": 8.93,
+   "fourrages": 4.15,
+   "oleagineux": 2.12,
+   "proteagineux": 0.39
+  },
+  {
+   "annee": 2021,
+   "prairies": 10.52,
+   "cereales": 9.32,
+   "fourrages": 4.1,
+   "oleagineux": 1.88,
+   "proteagineux": 0.39
+  },
+  {
+   "annee": 2022,
+   "prairies": 10.5,
+   "cereales": 9.01,
+   "fourrages": 4.1,
+   "oleagineux": 2.32,
+   "proteagineux": 0.31
+  },
+  {
+   "annee": 2023,
+   "prairies": 10.51,
+   "cereales": 8.83,
+   "fourrages": 4.1,
+   "oleagineux": 2.37,
+   "proteagineux": 0.35
+  },
+  {
+   "annee": 2024,
+   "prairies": 10.52,
+   "cereales": 8.53,
+   "fourrages": 4.25,
+   "oleagineux": 2.28,
+   "proteagineux": 0.32
+  }
+ ],
+ "bio": [
+  {
+   "annee": 2012,
+   "ha": 1030881,
+   "pc": 3.5
+  },
+  {
+   "annee": 2013,
+   "ha": 1060755,
+   "pc": 3.7
+  },
+  {
+   "annee": 2014,
+   "ha": 1118845,
+   "pc": 3.9
+  },
+  {
+   "annee": 2015,
+   "ha": 1322911,
+   "pc": 4.6
+  },
+  {
+   "annee": 2016,
+   "ha": 1537351,
+   "pc": 5.3
+  },
+  {
+   "annee": 2017,
+   "ha": 1744420,
+   "pc": 6.0
+  },
+  {
+   "annee": 2018,
+   "ha": 2034115,
+   "pc": 7.1
+  },
+  {
+   "annee": 2019,
+   "ha": 2240797,
+   "pc": 7.8
+  },
+  {
+   "annee": 2020,
+   "ha": 2517478,
+   "pc": 8.8
+  },
+  {
+   "annee": 2021,
+   "ha": 2742389,
+   "pc": 9.5
+  },
+  {
+   "annee": 2022,
+   "ha": 2820700,
+   "pc": 9.8
+  },
+  {
+   "annee": 2023,
+   "ha": 2754983,
+   "pc": 9.6
+  },
+  {
+   "annee": 2024,
+   "ha": 2721523,
+   "pc": 9.5
+  }
+ ],
+ "pays": [
+  {
+   "code": "EU27_2020",
+   "nom": "Moyenne de l'Union européenne",
+   "annee": 2024,
+   "prairies": 31.8,
+   "cereales": 31.0,
+   "surface": 160.0
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "annee": 2024,
+   "prairies": 34.5,
+   "cereales": 20.8,
+   "surface": 1.4
+  },
+  {
+   "code": "BG",
+   "nom": "Bulgarie",
+   "annee": 2024,
+   "prairies": 27.6,
+   "cereales": 40.8,
+   "surface": 5.0
+  },
+  {
+   "code": "CZ",
+   "nom": "Tchéquie",
+   "annee": 2024,
+   "prairies": 27.4,
+   "cereales": 37.0,
+   "surface": 3.5
+  },
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "annee": 2024,
+   "prairies": 9.1,
+   "cereales": 47.1,
+   "surface": 2.6
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "annee": 2024,
+   "prairies": 28.5,
+   "cereales": 34.8,
+   "surface": 16.6
+  },
+  {
+   "code": "EE",
+   "nom": "Estonie",
+   "annee": 2024,
+   "prairies": 27.6,
+   "cereales": 35.5,
+   "surface": 1.0
+  },
+  {
+   "code": "IE",
+   "nom": "Irlande",
+   "annee": 2024,
+   "prairies": 90.2,
+   "cereales": 5.8,
+   "surface": 4.5
+  },
+  {
+   "code": "EL",
+   "nom": "Grèce",
+   "annee": 2024,
+   "prairies": 44.8,
+   "cereales": 14.2,
+   "surface": 5.0
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "annee": 2024,
+   "prairies": 33.0,
+   "cereales": 22.0,
+   "surface": 24.7
+  },
+  {
+   "code": "FR",
+   "nom": "France",
+   "annee": 2024,
+   "prairies": 36.7,
+   "cereales": 29.8,
+   "surface": 28.6
+  },
+  {
+   "code": "HR",
+   "nom": "Croatie",
+   "annee": 2024,
+   "prairies": 36.5,
+   "cereales": 34.0,
+   "surface": 1.5
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "annee": 2024,
+   "prairies": 27.5,
+   "cereales": 22.0,
+   "surface": 12.9
+  },
+  {
+   "code": "CY",
+   "nom": "Chypre",
+   "annee": 2024,
+   "prairies": 1.6,
+   "cereales": 16.0,
+   "surface": 0.1
+  },
+  {
+   "code": "LV",
+   "nom": "Lettonie",
+   "annee": 2024,
+   "prairies": 30.7,
+   "cereales": 40.6,
+   "surface": 2.0
+  },
+  {
+   "code": "LT",
+   "nom": "Lituanie",
+   "annee": 2024,
+   "prairies": 18.5,
+   "cereales": 46.0,
+   "surface": 2.9
+  },
+  {
+   "code": "LU",
+   "nom": "Luxembourg",
+   "annee": 2024,
+   "prairies": 52.5,
+   "cereales": 20.3,
+   "surface": 0.1
+  },
+  {
+   "code": "HU",
+   "nom": "Hongrie",
+   "annee": 2024,
+   "prairies": 15.7,
+   "cereales": 46.0,
+   "surface": 5.1
+  },
+  {
+   "code": "MT",
+   "nom": "Malte",
+   "annee": 2024,
+   "prairies": 0.0,
+   "cereales": 0.0,
+   "surface": 0.0
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "annee": 2024,
+   "prairies": 42.3,
+   "cereales": 8.7,
+   "surface": 1.8
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "annee": 2024,
+   "prairies": 46.0,
+   "cereales": 28.2,
+   "surface": 2.6
+  },
+  {
+   "code": "PL",
+   "nom": "Pologne",
+   "annee": 2024,
+   "prairies": 18.4,
+   "cereales": 50.0,
+   "surface": 14.2
+  },
+  {
+   "code": "PT",
+   "nom": "Portugal",
+   "annee": 2024,
+   "prairies": 53.8,
+   "cereales": 5.0,
+   "surface": 3.8
+  },
+  {
+   "code": "RO",
+   "nom": "Roumanie",
+   "annee": 2024,
+   "prairies": 30.8,
+   "cereales": 39.9,
+   "surface": 12.7
+  },
+  {
+   "code": "SI",
+   "nom": "Slovénie",
+   "annee": 2024,
+   "prairies": 57.6,
+   "cereales": 20.6,
+   "surface": 0.5
+  },
+  {
+   "code": "SK",
+   "nom": "Slovaquie",
+   "annee": 2024,
+   "prairies": 27.4,
+   "cereales": 36.6,
+   "surface": 1.8
+  },
+  {
+   "code": "FI",
+   "nom": "Finlande",
+   "annee": 2024,
+   "prairies": 0.5,
+   "cereales": 40.6,
+   "surface": 2.3
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "annee": 2024,
+   "prairies": 15.2,
+   "cereales": 33.0,
+   "surface": 3.0
+  }
+ ]
+}

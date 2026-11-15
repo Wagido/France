@@ -48,6 +48,7 @@ jobs:
           python3 scripts/build_couper.py
           python3 scripts/build_logement.py
           python3 scripts/build_environnement.py
+          python3 scripts/build_agriculture.py
       - name: Enregistrement si les données ont changé
         run: |
           git config user.name "mise-a-jour-auto"
