@@ -89,9 +89,26 @@ def education(geo):
     dip = [{"annee": y, "bas": a(age="Y25-64", isced11="ED0-2", time=y), "moyen": a(age="Y25-64", isced11="ED3_4", time=y),
             "sup": a(age="Y25-64", isced11="ED5-8", time=y), "sup_jeunes": a(age="Y25-34", isced11="ED5-8", time=y)}
            for y in Y("edat_lfse_03.json", geo) if a(age="Y25-64", isced11="ED5-8", time=y) is not None]
-    if not (eff or cout or dip):
+    pi, dc, ne, pt, fe, tr = (G(n, geo) for n in ["educ_outc_pisa.json", "sdg_04_10.json", "edat_lfse_20.json", "educ_uoe_perp04.json",
+                                                 "educ_uoe_fine06.json", "trng_lfse_01.json"])
+    pisa = []
+    for y in Y("educ_outc_pisa.json", geo):
+        rec = {"annee": y, **{f"{lv}_{f}": pi(levels=lv, field=f, time=y) for lv in ["LOW", "HIGH"] for f in ["READ", "EF461", "SCI"]}}
+        if any(v is not None for k, v in rec.items() if k != "annee"):
+            pisa.append(rec)
+    parcours = []
+    for y in sorted(set(Y("sdg_04_10.json", geo)) | set(Y("edat_lfse_20.json", geo)) | set(Y("trng_lfse_01.json", geo))):
+        rec = {"annee": y, "decrochage": dc(time=y), "neet": ne(time=y), "formation_adultes": tr(time=y)}
+        if any(v is not None for k, v in rec.items() if k != "annee"):
+            parcours.append(rec)
+    py = [y for y in Y("educ_uoe_perp04.json", geo) if pt(isced11="ED1", time=y)]
+    ratio = {"annee": py[-1], "primaire": pt(isced11="ED1", time=py[-1]), "college": pt(isced11="ED2", time=py[-1]), "lycee": pt(isced11="ED3", time=py[-1]),
+             "maternelle": pt(isced11="ED02", time=py[-1])} if py else None
+    dep = [{"annee": y, "pib": fe(time=y)} for y in Y("educ_uoe_fine06.json", geo) if fe(time=y) is not None]
+    if not (eff or cout or dip or pisa):
         return None
-    return {"effectifs": eff, "cout": cout, "diplomes": dip, "labels": {"niveaux": NIV, "cout": COUT}}
+    return {"effectifs": eff, "cout": cout, "diplomes": dip, "pisa": pisa, "parcours": parcours, "ratio": ratio, "depense_publique": dep,
+            "labels": {"niveaux": NIV, "cout": COUT}}
 
 
 # ------------------------------------------------------------------ logement
@@ -278,7 +295,10 @@ for p in PAYS:
         s["sante"] = {"esperance": e and e["t"], "annee": e and e["annee"], "dep_pib": dp and dp["pib"], "dep_hab": dp and dp["hab"], "rac_pib": dp and dp["rac"]}
     if d["education"]:
         dp = last(d["education"]["diplomes"], "sup"); c = d["education"]["cout"]
-        s["education"] = {"sup": dp and dp["sup"], "sup_jeunes": dp and dp["sup_jeunes"], "bas": dp and dp["bas"], "cout_sec": c and c["pps"].get("ED3_4"), "cout_sup": c and c["pps"].get("ED5-8")}
+        pz = last(d["education"]["pisa"], "LOW_EF461"); pc = last(d["education"]["parcours"], "decrochage"); dpp = last(d["education"]["depense_publique"], "pib")
+        s["education"] = {"pisa_faibles_maths": pz and pz["LOW_EF461"], "pisa_bons_maths": pz and pz["HIGH_EF461"], "pisa_faibles_lecture": pz and pz["LOW_READ"],
+                          "pisa_annee": pz and pz["annee"], "decrochage": pc and pc["decrochage"], "neet": pc and pc["neet"], "dep_pib": dpp and dpp["pib"],
+                          "sup": dp and dp["sup"], "sup_jeunes": dp and dp["sup_jeunes"], "bas": dp and dp["bas"], "cout_sec": c and c["pps"].get("ED3_4"), "cout_sup": c and c["pps"].get("ED5-8")}
     if d["logement"]:
         st = last(d["logement"]["statut"], "proprio"); pr = d["logement"]["prix"]
         s["logement"] = {"proprio": st and r((st["proprio"] or 0) + (st["proprio_credit"] or 0)), "pieces": st and st["pieces"], "surpeuplement": st and st["surpeuplement"],

@@ -108,12 +108,30 @@ function education() {
   lineChart($("#ed-dip"), E.diplomes, [{ k: "sup", l: "Diplômés du supérieur (25-64 ans)", c: "#16a34a" }, { k: "sup_jeunes", l: "… parmi les 25-34 ans", c: "#16a34a", dash: "5 3" },
     { k: "bas", l: "Sans diplôme du secondaire (25-64 ans)", c: "#dc2626" }], { vfmt: v => pct(v), yfmt: v => v + " %", h: 240 });
   legend("#ed-dip-legend", [["Diplômés du supérieur (25-64 ans)", "#16a34a"], ["… parmi les 25-34 ans", "#16a34a", true], ["Sans diplôme du secondaire", "#dc2626"]]);
+  const PZ = E.pisa || [], pz = PZ.at(-1);
+  if (PZ.length) {
+    lineChart($("#ed-pisa"), PZ, [{ k: "LOW_EF461", l: "En difficulté en mathématiques", c: "#dc2626" }, { k: "LOW_READ", l: "En difficulté en lecture", c: "#f97316" }, { k: "LOW_SCI", l: "En difficulté en sciences", c: "#f59e0b", dash: "4 3" },
+      { k: "HIGH_EF461", l: "Très bons élèves en mathématiques", c: "#16a34a" }, { k: "HIGH_READ", l: "Très bons élèves en lecture", c: "#22c55e", dash: "4 3" }], { vfmt: v => pct(v), yfmt: v => v + " %", h: 260 });
+    legend("#ed-pisa-legend", [["En difficulté : maths", "#dc2626"], ["lecture", "#f97316"], ["sciences", "#f59e0b", true], ["Très bons élèves : maths", "#16a34a"], ["lecture", "#22c55e", true]]);
+    $("#ed-pisa-note").innerHTML = `Enquête PISA de l'OCDE, élèves de 15 ans. « En difficulté » : sous le niveau 2, celui qui permet de comprendre un texte simple ou de résoudre un problème courant. « Très bons » : niveaux 5 et 6. En ${pz.annee}, ${pct(pz.LOW_EF461, 0)} des élèves sont en difficulté en mathématiques et ${pct(pz.HIGH_EF461, 0)} sont très bons.`;
+  } else { empty("#ed-pisa"); $("#ed-pisa-note").innerHTML = ""; }
+  const PC = E.parcours || [];
+  if (PC.length) { lineChart($("#ed-parc"), PC, [{ k: "decrochage", l: "Décrocheurs (18-24 ans sans diplôme ni formation)", c: "#dc2626" }, { k: "neet", l: "Jeunes ni en emploi, ni en études, ni en formation (15-29 ans)", c: "#f59e0b" },
+      { k: "formation_adultes", l: "Adultes (25-64 ans) en formation au cours des 4 dernières semaines", c: "#3b6fd6" }], { vfmt: v => pct(v), yfmt: v => v + " %", h: 240 });
+    legend("#ed-parc-legend", [["Décrocheurs (18-24 ans)", "#dc2626"], ["Ni emploi ni études (15-29 ans)", "#f59e0b"], ["Adultes en formation", "#3b6fd6"]]); }
+  const R = E.ratio, dp2 = (E.depense_publique || []).at(-1);
+  if (R) $("#ed-ratio").innerHTML = `<p style="margin:4px 0 0">Élèves par enseignant (${R.annee}) : maternelle <b>${n1(R.maternelle)}</b>, primaire <b>${n1(R.primaire)}</b>, collège <b>${n1(R.college)}</b>, lycée <b>${n1(R.lycee)}</b>.${dp2 ? ` Dépense publique d'éducation : <b>${pct(dp2.pib)}</b> du PIB (${dp2.annee}).` : ""}</p>`;
   table($("#ed-cmp"), "ed", [
+    { k: "pfm", l: "PISA : en difficulté en maths", f: r => r.education?.pisa_faibles_maths, fmt: v => pct(v, 0), max: 60, c: "#dc2626" },
+    { k: "pbm", l: "PISA : très bons en maths", f: r => r.education?.pisa_bons_maths, fmt: v => pct(v, 0), max: 20, c: "#16a34a" },
+    { k: "dec", l: "Décrochage", f: r => r.education?.decrochage, fmt: v => pct(v, 1), max: 20, c: "#f97316" },
+    { k: "nee", l: "Ni emploi ni études (15-29)", f: r => r.education?.neet, fmt: v => pct(v, 0), max: 25, c: "#f59e0b" },
+    { k: "dpp", l: "Dépense publique (% PIB)", f: r => r.education?.dep_pib, fmt: v => pct(v, 1), max: 8, c: "#64748b" },
     { k: "sup", l: "Diplômés du supérieur (25-64)", f: r => r.education?.sup, fmt: v => pct(v, 0), max: 60, c: "#16a34a" },
     { k: "jeu", l: "… 25-34 ans", f: r => r.education?.sup_jeunes, fmt: v => pct(v, 0), max: 70, c: "#84cc16" },
     { k: "bas", l: "Sans diplôme du secondaire", f: r => r.education?.bas, fmt: v => pct(v, 0), max: 50, c: "#dc2626" },
     { k: "sec", l: "Coût / lycéen (SPA)", f: r => r.education?.cout_sec, fmt: v => n0(v), max: 20000, c: "#64748b" },
-  ], "sup");
+  ], "pfm");
 }
 
 /* ---------------------------------------------------------------- logement */

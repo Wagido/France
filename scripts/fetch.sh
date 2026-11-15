@@ -87,6 +87,12 @@ get societe/hlth_sha11_hchf.json "$E/hlth_sha11_hchf?unit=MIO_EUR&sinceTimePerio
 get societe/hlth_sha11_hf.json "$E/hlth_sha11_hf?unit=MIO_EUR&unit=PC_GDP&unit=EUR_HAB&sinceTimePeriod=2010$GEO"
 get societe/educ_uoe_enra01.json "$E/educ_uoe_enra01?unit=NR&worktime=TOTAL&sex=T&sinceTimePeriod=2013$GEO"
 get societe/educ_uoe_fini04.json "$E/educ_uoe_fini04?unit=EUR&unit=PPS&sector=TOT_SEC&sinceTimePeriod=2013$GEO"
+get societe/educ_outc_pisa.json "$E/educ_outc_pisa?sex=T&unit=PC$GEO"
+get societe/sdg_04_10.json "$E/sdg_04_10?sex=T&unit=PC&sinceTimePeriod=2000$GEO"
+get societe/edat_lfse_20.json "$E/edat_lfse_20?sex=T&age=Y15-29&training=NO_FE_NO_NFE&wstatus=NEMP&unit=PC&sinceTimePeriod=2000$GEO"
+get societe/educ_uoe_perp04.json "$E/educ_uoe_perp04?unit=RT&sinceTimePeriod=2013$GEO"
+get societe/educ_uoe_fine06.json "$E/educ_uoe_fine06?unit=PC_GDP&isced11=ED02-8&sinceTimePeriod=2012$GEO"
+get societe/trng_lfse_01.json "$E/trng_lfse_01?sex=T&age=Y25-64&unit=PC&sinceTimePeriod=2005$GEO"
 get societe/edat_lfse_03.json "$E/edat_lfse_03?sex=T&age=Y25-64&age=Y25-34&unit=PC&sinceTimePeriod=2000$GEO"
 get societe/ilc_lvho02.json   "$E/ilc_lvho02?rskpovth=TOTAL&hhcomp=TOTAL&unit=PC&sinceTimePeriod=2005$GEO"
 get societe/ilc_lvho03.json   "$E/ilc_lvho03?unit=AVG&building=TOTAL&sinceTimePeriod=2005$GEO"
@@ -144,6 +150,33 @@ get themes/crim_pris_ctz.json "$E/crim_pris_ctz?sinceTimePeriod=2008$GEO"
 get themes/crim_pris_age.json "$E/crim_pris_age?sex=T&sinceTimePeriod=2008$GEO"
 get themes/crim_hom_vrel.json "$E/crim_hom_vrel?sinceTimePeriod=2008$GEO"
 get themes/migr_pop1ctz.json  "$E/migr_pop1ctz?age=TOTAL&sex=T&citizen=TOTAL&citizen=NAT&citizen=FOR&sinceTimePeriod=2008$GEO"
+
+# Population par statut, industrie et innovation (Eurostat) ; fonction publique (INSEE)
+mkdir -p eco2
+get eco2/demo_pjanbroad.json "$E/demo_pjanbroad?sex=T&unit=NR&sinceTimePeriod=2005$GEO"
+get eco2/lfsa_pganws.json  "$E/lfsa_pganws?unit=THS_PER&sex=T&citizen=TOTAL&sinceTimePeriod=2005$GEO&age=Y15-64&age=Y_GE15&age=Y_GE65&age=Y15-24&age=Y25-54&age=Y55-64"
+get eco2/lfsa_esgaed.json  "$E/lfsa_esgaed?unit=THS_PER&sex=T&isced11=TOTAL&sinceTimePeriod=2005$GEO&age=Y15-64&age=Y_GE15"
+get eco2/lfsa_igar.json    "$E/lfsa_igar?unit=PC_POP&sex=T&age=Y15-64&sinceTimePeriod=2005$GEO"
+get eco2/rd_e_gerdtot.json "$E/rd_e_gerdtot?unit=PC_GDP&unit=MIO_EUR&sinceTimePeriod=1995$GEO"
+get eco2/rd_p_persocc.json "$E/rd_p_persocc?unit=FTE&sex=T&prof_pos=RSE&sinceTimePeriod=1995$GEO"
+get eco2/nama_10_a10.json  "$E/nama_10_a10?unit=CP_MEUR&na_item=B1G&sinceTimePeriod=1995$GEO&nace_r2=TOTAL&nace_r2=C&nace_r2=B-E&nace_r2=F"
+get eco2/nama_10_a10_e.json "$E/nama_10_a10_e?unit=THS_PER&na_item=EMP_DC&sinceTimePeriod=1995$GEO&nace_r2=TOTAL&nace_r2=C"
+get eco2/sts_inpr_a.json   "$E/sts_inpr_a?indic_bt=PRD&s_adj=CA&unit=I21&sinceTimePeriod=2000$GEO&nace_r2=C&nace_r2=B-D"
+get eco2/htec_emp_nat2.json "$E/htec_emp_nat2?sex=T&unit=PC_EMP&sinceTimePeriod=2008$GEO&nace_r2=HTC&nace_r2=C_HTC&nace_r2=C_HTC_M&nace_r2=KIS"
+get eco2/isoc_eb_ai.json   "$E/isoc_eb_ai?unit=PC_ENT&size_emp=GE10&indic_is=E_AI_TANY$GEO"
+TMPX=$(mktemp)
+get "$TMPX" "https://bdm.insee.fr/series/sdmx/data/TCRED-TRAVAIL-EMPLOI-EFF-FP-RATIO?detail=dataonly"
+python3 - "$TMPX" eco2/insee_fonction_publique.json <<'PY'
+import json, re, sys
+s = open(sys.argv[1], encoding="utf-8").read()
+out = {}
+for a, b in re.findall(r"<Series ([^>]*)>(.*?)</Series>", s, re.S):
+    d = dict(re.findall(r'(\w+)="([^"]*)"', a))
+    if d.get("REF_AREA") == "FE" and d.get("NATURE") == "VALEUR_ABSOLUE" and d.get("SEXE") == "0":
+        out[d["VERSANTS_FP"]] = {t: float(v) for t, v in re.findall(r'TIME_PERIOD="([^"]+)" OBS_VALUE="([^"]+)"', b)}
+json.dump(out, open(sys.argv[2], "w"), indent=0)
+PY
+rm -f "$TMPX"
 
 # Commerce extérieur de la France (Comext) : par partenaire et par chapitre de produits
 C="https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-059341"

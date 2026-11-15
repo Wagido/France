@@ -18,11 +18,14 @@
     <nav class="tabs" aria-label="Sections">
       <span class="tab-group">Économie</span>
       <a href="#pib">Le PIB</a>
+      <a href="#population">Qui fait quoi</a>
       <a href="#argent-public">L'argent public</a>
+      <a href="#cycle-vie">La vie en euros</a>
       <a href="#simulateur">Couper la dépense ?</a>
       <a href="#duree">Dette sur 30 ans</a>
       <a href="#patrimoine">Patrimoine</a>
       <a href="#commerce">Commerce extérieur</a>
+      <a href="#industrie">Industrie et innovation</a>
       <a href="#comparer">Comparer les pays</a>
       <span class="tab-group">Ressources</span>
       <a href="#energie">Énergie</a>
@@ -92,6 +95,15 @@
   <div id="pib-histo" class="chart"></div>
 </section>
 
+<section id="population" class="panel">
+  <div class="panel-head"><h2>Qui fait quoi : salariés, agents publics, indépendants, chômeurs, retraités, enfants <span class="geo-tag"></span></h2></div>
+  <div class="kpis" id="qf-kpis"></div>
+  <p class="lead">Toute la population, répartie selon ce que fait chacun. Pour la France, les agents publics (fonction publique d'État, territoriale et hospitalière, fonctionnaires et contractuels, hors militaires) viennent de l'INSEE ; le reste vient de l'enquête Emploi (Eurostat). Survolez une case pour le détail.</p>
+  <div id="qf-tree" class="chart"></div><div class="legend-row" id="qf-legend"></div>
+  <h3>Évolution</h3><div id="qf-evol" class="chart"></div>
+  <h3>Comparer les pays</h3><div id="qf-cmp" class="chart"></div>
+</section>
+
 <!-- =============================================================== SANKEY -->
 <section id="argent-public" class="panel">
   <div class="panel-head">
@@ -110,6 +122,14 @@
   <div class="sk-scroll"><div id="sankey" class="chart"></div></div>
   <div class="legend-row" id="sk-legend"></div>
   <div class="callout small" id="sk-explain"></div>
+</section>
+
+<section id="cycle-vie" class="panel">
+  <div class="panel-head"><h2>La vie en euros : ce que l'on paie et ce que l'on reçoit à chaque âge <span class="geo-fixed">France</span></h2></div>
+  <div class="kpis" id="cv-kpis"></div>
+  <p class="lead">La traduction par âge du diagramme « L'argent public ». Pour chaque âge, en euros par an : ce que l'on paie (en rouge, sous zéro), ce que l'on reçoit en argent (bleu) et en services publics (vert), et ce que l'on gagne par son travail et son patrimoine (trait noir). La courbe orange cumule le solde depuis la naissance.</p>
+  <div id="cv-chart" class="chart"></div><div class="legend-row" id="cv-legend"></div>
+  <div class="callout small"><p><b>Comment c'est calculé.</b> De 18 ans à la fin de vie : comptes nationaux distribués de l'INSEE (2023), par âge de la personne de référence du ménage et par unité de consommation (le premier adulte compte pour 1, les autres personnes de 14 ans ou plus pour 0,5, les enfants pour 0,3). Avant 18 ans, les enfants sont comptés dans le ménage de leurs parents : on ne montre que le coût de leur scolarité (Eurostat, dépense par élève). Ce n'est pas le parcours d'une personne réelle, mais une photographie de la France d'une année, lue par âge. La courbe cumulée n'est pas actualisée et ignore la croissance future.</p><p><b>Pourquoi reçoit-on plus que l'on paie ?</b> Les dépenses publiques dépassent les prélèvements : l'écart est financé par la dette (le déficit) et par des recettes qui ne sont pas des prélèvements sur les ménages (revenus du patrimoine public, recettes des administrations). Une vie « moyenne » reçoit donc un peu plus qu'elle ne paie, la différence étant reportée sur les générations futures.</p></div>
 </section>
 
 <!-- =============================================================== SIMULATEUR -->
@@ -181,6 +201,17 @@
   </div>
   <h3>Importations, exportations et solde depuis 2002</h3>
   <div id="co-hist" class="chart"></div>
+</section>
+
+<section id="industrie" class="panel">
+  <div class="panel-head"><h2>Industrie et innovation <span class="geo-tag"></span></h2></div>
+  <div class="kpis" id="ind-kpis"></div>
+  <div class="grid2">
+    <div><h3>Le poids de l'industrie depuis 1995</h3><div id="ind-part" class="chart"></div><div class="legend-row" id="ind-part-legend"></div>
+      <h3>Production manufacturière</h3><div id="ind-prod" class="chart"></div></div>
+    <div><h3>Dépenses de recherche et développement (% du PIB)</h3><div id="ind-rd" class="chart"></div><div class="legend-row" id="ind-rd-legend"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="ind-cmp" class="chart"></div>
 </section>
 
 <!-- =============================================================== COMPARER -->
@@ -450,13 +481,18 @@
 
 <section id="education" class="panel">
   <div class="panel-head">
-    <h2>Éducation : élèves, diplômes, coût <span class="geo-tag"></span></h2>
+    <h2>Éducation : élèves, niveau (PISA), diplômes, coût <span class="geo-tag"></span></h2>
   </div>
   <div class="kpis" id="ed-kpis"></div>
   <div class="grid2">
     <div><h3>Élèves et étudiants par niveau</h3><div id="ed-eff" class="chart"></div></div>
     <div><h3>Dépense par élève et par an</h3><div id="ed-cout" class="chart"></div>
       <h3>Niveau de diplôme des adultes</h3><div id="ed-dip" class="chart"></div><div class="legend-row" id="ed-dip-legend"></div></div>
+  </div>
+  <div id="ed-ratio"></div>
+  <div class="grid2">
+    <div><h3>Les élèves de 15 ans (PISA)</h3><div id="ed-pisa" class="chart"></div><div class="legend-row" id="ed-pisa-legend"></div><p class="muted" style="font-size:.85rem" id="ed-pisa-note"></p></div>
+    <div><h3>Décrochage, jeunes sans activité, formation des adultes</h3><div id="ed-parc" class="chart"></div><div class="legend-row" id="ed-parc-legend"></div></div>
   </div>
   <h3>Comparer les pays</h3><div id="ed-cmp" class="chart"></div>
 </section>
@@ -575,6 +611,7 @@
 <script src="territoire.js"></script>
 <script src="themes.js"></script>
 <script src="societe.js"></script>
+<script src="eco2.js"></script>
 <script src="sources.js"></script>
 </body>
 </html>
