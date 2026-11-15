@@ -23,7 +23,7 @@ async function init() {
   document.querySelectorAll("#pn-vue button").forEach(bt => bt.onclick = () => {
     vue = bt.dataset.v; document.querySelectorAll("#pn-vue button").forEach(o => o.setAttribute("aria-pressed", o === bt)); draw();
   });
-  draw();
+  draw(); dette();
   try { etranger((await fetch("data/prelevements_pays.json").then(r => r.json())).pei); } catch (e) { /* facultatif */ }
 }
 /* position extérieure (balance des paiements) : transmise au bilan d'app.js, qui se redessine */
@@ -160,6 +160,32 @@ function drawPublic(el, md) {
       <li><b>Le patrimoine net</b> (trait noir) est de <b>${md(b.net)}</b>, soit ${pc(b.net)}, contre ${md(a.net)} en ${a.annee}. Il a augmenté parce que la valeur des terrains, des bâtiments et des participations a monté plus vite que la dette ; la dette, elle, est passée de ${md(a.L)} à ${md(b.L)}.</li>
       <li><b>À lire avec prudence</b> : une école ou une route ne se vendent pas, et elles sont comptées à leur coût de reconstruction. Les centrales et barrages d'EDF n'y figurent pas directement : seules les actions d'EDF détenues par l'État sont comptées.</li>
     </ul>`;
+}
+
+/* si l'État ne pouvait plus emprunter : où irait-on chercher l'argent ? */
+function dette() {
+  const el = $("#pn-dette"); if (!el || !P) return;
+  const md = v => Math.round(v).toLocaleString("fr-FR") + " Md€";
+  const y = Object.keys(P).sort().at(-1), B = P[y], m = B.secteurs.find(s => s.id === "menages"); if (!m) return;
+  const D = B.dette_maastricht_pct * B.pib / 100, dep = m.fa.depots, av = m.fa.assurance, immo = m.nf.logements + m.nf.terrains;
+  const L = (t, u) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`;
+  el.innerHTML = `<p><b>On entend souvent : « si les marchés ferment le robinet, on ira prendre l'argent sur les comptes des Français ». Que disent les chiffres ?</b></p>
+    <ul>
+      <li><b>On ne rembourse jamais toute la dette d'un coup.</b> Les ${md(D)} de dette publique arrivent à échéance par morceaux, sur environ 8 ans en moyenne. Le vrai problème serait de trouver chaque année l'argent à rembourser, plus le déficit : environ 310 Md€ en 2026 pour l'État ${L("[AFT]", "https://www.aft.gouv.fr/en/node/13516")}.</li>
+      <li><b>Les comptes bancaires n'y suffiraient pas.</b> Les ménages ont ${md(dep)} de dépôts, moins que la dette. Prélever 10 % de tous les comptes rapporterait ${md(dep / 10)}, moins d'une année de besoins.</li>
+      <li><b>L'immobilier ne se vend pas, il se taxe.</b> Personne ne vendrait ${md(immo)} de logements et de terrains, et il n'y aurait pas d'acheteurs. Mais l'immobilier ne peut pas partir à l'étranger : c'est le patrimoine le plus facile à taxer, par exemple par la taxe foncière.</li>
+      <li><b>Le vrai point sensible, c'est l'assurance-vie.</b> Environ la moitié de la dette publique est détenue en France, en grande partie par les assureurs, avec l'argent des ${md(av)} d'assurance-vie et d'épargne retraite des ménages. Si l'État ne remboursait pas tout, la perte tomberait d'abord là. Depuis la loi Sapin 2 (2016), le Haut Conseil de stabilité financière peut limiter les retraits d'assurance-vie pendant six mois au plus ; cela n'a jamais été utilisé ${L("[Moneyvox]", "https://www.moneyvox.fr/assurance-vie/actualites/61084/assurance-vie-et-loi-sapin-2-le-hcsf-se-felicite-de-ses-nouveaux-pouvoirs")}.</li>
+      <li><b>Pour fixer les idées</b> : la dette publique représente ${Math.round(100 * D / m.net)} % du patrimoine net des ménages (${md(m.net)}). Le pays n'est pas pauvre ; la question est de savoir qui paie, et comment.</li>
+    </ul>
+    <p><b>Ce qui s'est vraiment passé ailleurs</b></p>
+    <ul>
+      <li><b>France, 1945</b> : un « impôt de solidarité nationale », payé en plusieurs fois, a taxé une fois pour toutes le patrimoine (jusqu'à 20 %) et l'enrichissement pendant la guerre ; 2,4 millions de foyers ont été concernés ${L("[WID]", "https://wid.world/document/taxing-wealth-enrichment-lessons-from-the-1945-french-national-solidarity-levy/")} ${L("[IFRAP]", "https://www.ifrap.org/budget-et-fiscalite/impot-de-solidarite-nationale-le-decryptage-de-la-proposition-de-thomas-piketty")}.</li>
+      <li><b>Italie, nuit du 9 au 10 juillet 1992</b> : un prélèvement de 0,6 % sur tous les comptes bancaires et postaux, rétroactif, jugé légal ensuite par la Cour constitutionnelle ${L("[Cour constitutionnelle]", "https://www.cortecostituzionale.it/scheda-pronuncia/1996/73")}. Un cas rare, et de petite taille.</li>
+      <li><b>Grèce, 2012</b> : l'État a effacé 53,5 % de sa dette envers les prêteurs privés, environ 107 Md€ ${L("[MES]", "https://www.esm.europa.eu/content/what-was-private-sector-debt-restructuring-march-2012")}. Ce sont les détenteurs de cette dette qui ont perdu, puis les Grecs, par des années de baisse des retraites et des salaires et de hausse des impôts.</li>
+      <li><b>Chypre, 2013</b> : 37,5 % des dépôts au-delà de 100 000 € à la Bank of Cyprus ont été convertis en actions de la banque. C'était pour sauver les banques, pas l'État ; les dépôts jusqu'à 100 000 € ont été protégés ${L("[BRI]", "https://www.bis.org/publ/qtrpdf/r_qt1306y_fr_pdf.pdf")} ${L("[La Libre]", "https://www.lalibre.be/economie/entreprises-startup/2013/03/30/les-gros-depots-a-la-bank-of-cyprus-ponctionnes-jusqua-60-UAVLZBKJZFHXZHM432YPAKMGUY/")}.</li>
+      <li><b>FMI, 2013</b> : un encadré de son rapport budgétaire calculait qu'un prélèvement unique d'environ 10 % sur le patrimoine ramènerait la dette des pays européens à son niveau de 2007. Le FMI a précisé que ce n'était pas une recommandation ${L("[FMI]", "https://www.imf.org/en/Publications/FM/Issues/2016/12/31/Taxing-Times")} ${L("[FMI, communiqué]", "https://www.imf.org/external/np/sec/pr/2013/pr13427.htm")}.</li>
+    </ul>
+    <p><b>Le scénario le plus probable</b> n'est pas une ponction d'un coup, mais celui de la Grèce : des années de hausses d'impôts et de baisses de dépenses (retraites, salaires publics, prestations), souvent avec un prêt européen ou du FMI, sous conditions. La Banque centrale européenne peut aussi acheter de la dette d'un pays de la zone euro, mais en lui imposant des conditions.</p>`;
 }
 
 function sensib() {
