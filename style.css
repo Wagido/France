@@ -215,3 +215,7 @@ table.mat th.mat-h { text-align: center; white-space: normal; max-width: 90px; f
 table.mat th.mat-grp { text-align: center; color: var(--ink); border-bottom: 2px solid var(--line); }
 table.mat tr.mat-sep td { font-weight: 700; background: var(--bg); text-align: left; }
 table.mat td:first-child { white-space: normal; min-width: 220px; }
+
+table.src td { white-space: normal; text-align: left; vertical-align: top; }
+table.src th { text-align: left; }
+table.src td:nth-child(3) { max-width: 320px; }
