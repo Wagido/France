@@ -26,20 +26,11 @@ async function init() {
   draw();
   try { etranger((await fetch("data/prelevements_pays.json").then(r => r.json())).pei); } catch (e) { /* facultatif */ }
 }
-/* le patrimoine à l'étranger : ce qu'il y a dans les barres du bilan */
+/* position extérieure (balance des paiements) : transmise au bilan d'app.js, qui se redessine */
 function etranger(E) {
-  const el = $("#bs-etranger"); if (!el || !E?.length) return;
-  const md = v => (v < 0 ? "−" : "") + Math.round(Math.abs(v)).toLocaleString("fr-FR") + " Md€";
-  const e = E.at(-1), y = String(e.annee), B = P[y] || P[Object.keys(P).sort().at(-1)];
-  const reels = B.secteurs.reduce((a, s) => a + sum(s.nf), 0), ext = B.secteurs.reduce((a, s) => a + sum(s.fa) - sum(s.fl), 0);
-  el.innerHTML = `<p><b>Et le patrimoine à l'étranger ?</b> Il est bien dans ces barres, mais caché dans les actifs financiers :</p>
-    <ul>
-      <li><b>Ce que les Français possèdent à l'étranger : ${md(e.actifs)}</b> fin ${e.annee} (filiales des entreprises françaises, actions et obligations étrangères, dépôts dans des banques étrangères, résidences à l'étranger). Ces avoirs sont mêlés aux actions, dépôts et crédits de la partie droite.</li>
-      <li><b>Ce que les étrangers possèdent en France : ${md(e.passifs)}</b> (actions d'entreprises françaises, dette publique, filiales de groupes étrangers). Ils sont mêlés aux passifs de la partie gauche.</li>
-      <li><b>Le solde, ${md(e.net)}</b> selon la balance des paiements : la France doit un peu plus au reste du monde qu'elle n'y possède.</li>
-      <li><b>Les biens réels</b> (${md(reels)}) ne comptent que ce qui est sur le territoire français, y compris ce qu'y possèdent des étrangers. Une maison qu'un Français possède en Espagne est comptée comme un actif financier « à l'étranger ».</li>
-    </ul>
-    <p class="muted" style="font-size:.8rem">À prendre avec prudence : les comptes de patrimoine utilisés dans le graphique donnent un solde avec l'étranger de ${md(ext)}, la balance des paiements ${md(e.net)}. Les deux sources ne mesurent pas tout de la même façon, surtout les participations non cotées. Avec le chiffre de la balance des paiements, le patrimoine net de la France serait plutôt de ${md(reels + e.net)}. Source : Eurostat et Banque de France, position extérieure (bop_iip6_q).</p>`;
+  if (!E?.length) return;
+  window.PEI = E;
+  document.getElementById("bs-year")?.dispatchEvent(new Event("change"));
 }
 const sum = o => Object.values(o).reduce((a, b) => a + b, 0);
 function annee(y) {

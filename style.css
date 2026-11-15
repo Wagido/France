@@ -275,3 +275,4 @@ main.wrap { position: relative; overflow: hidden; }
 .pp-row .b2 { background: #c4b5fd; height: 8px; }
 .pp-row small, .pp-row .tr b { color: var(--muted); white-space: nowrap; } .pp-row .tr b { color: var(--ink); }
 @media (max-width: 640px) { .pp-row { grid-template-columns: 96px 1fr 1fr; font-size: .74rem; gap: 6px; } }
+.bs-det { margin: 10px 0 20px; } .bs-det summary { cursor: pointer; font-weight: 600; font-size: .9rem; color: var(--accent); padding: 6px 0; }
