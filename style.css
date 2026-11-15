@@ -315,6 +315,8 @@ main.wrap { position: relative; overflow: hidden; }
 .ch-bar span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: .78rem; min-width: 0; border-right: 2px solid var(--surface); }
 .ch-bar span b { white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
 /* séparateurs de thèmes dans les onglets */
-.tabs .tab-sep { font-size: .66rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 0 4px 0 12px; margin-left: 6px; border-left: 1px solid var(--line); white-space: nowrap; align-self: center; }
-.tabs .tab-sep:first-child { border-left: 0; margin-left: 0; padding-left: 4px; }
+.tabs .tab-sep { font-size: .82rem; font-weight: 750; color: var(--ink); background: var(--soft, #ece9e3); border-radius: 6px; padding: 3px 9px; margin: 0 2px 0 14px; white-space: nowrap; align-self: center; }
+.tabs .tab-sep::after { content: " ›"; color: var(--muted); font-weight: 400; }
+.tabs .tab-sep:first-child { margin-left: 0; }
 .ss-pin span { display: block; width: 14px; height: 14px; border-radius: 50%; background: #dc2626; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+.ss-t { table-layout: fixed; width: 100%; } .ss-t th, .ss-t td { text-align: left !important; white-space: normal !important; vertical-align: top; font-size: .84rem; line-height: 1.4; padding: 8px 8px; } .ss-t th:nth-child(1) { width: 13%; } .ss-t th:nth-child(2) { width: 22%; } .ss-t th:nth-child(3) { width: 20%; } .ss-t th:nth-child(4) { width: 22%; } .ss-t th:nth-child(5) { width: 9%; } .ss-t th:nth-child(6) { width: 14%; } .ss-tag { color: #fff; font-size: .72rem; font-weight: 650; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
