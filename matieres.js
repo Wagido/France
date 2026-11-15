@@ -67,7 +67,7 @@ function draw() {
     [mt(K.importations), `importées (${pct(100 * K.importations / intrants, 0)} des entrées)`],
     [mt(K.stock), "ajoutées au stock (bâtiments, routes, objets durables)"],
     [K.circularite != null ? pct(K.circularite) : "–", "taux de recyclage : part des matières utilisées issue de déchets recyclés"],
-  ].map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+  ].map(([v, l]) => kpiHTML(v, l)).join("");
 
   const total = intrants;
   const W = 1220, H = 600, top = 26;

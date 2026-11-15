@@ -143,7 +143,7 @@ function draw() {
 }
 
 function kpis(items) {
-  $("#en-kpis").innerHTML = items.map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+  $("#en-kpis").innerHTML = items.map(([v, l]) => kpiHTML(v, l)).join("");
 }
 
 /* ---------------------------------------------------------------- séries longues (OWID) */

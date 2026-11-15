@@ -19,7 +19,7 @@ function showTip(html, ev) {
   tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
 }
 const hideTip = () => { tip.hidden = true; };
-const kpis = (sel, items) => { $(sel).innerHTML = items.filter(Boolean).map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join(""); };
+const kpis = (sel, items) => { $(sel).innerHTML = items.filter(Boolean).map(([v, l]) => kpiHTML(v, l)).join(""); };
 const legend = (sel, items) => { $(sel).innerHTML = items.map(([l, c, dash]) => `<span><i style="border-top-color:${c};opacity:1;border-top-width:${dash ? 2 : 10}px;${dash ? "border-top-style:dashed;" : ""}width:14px"></i>${esc(l)}</span>`).join(""); };
 const regionName = (() => { try { const d = new Intl.DisplayNames(["fr"], { type: "region" }); return c => { try { return d.of(c === "EL" ? "GR" : c === "UK" ? "GB" : c); } catch (e) { return c; } }; } catch (e) { return c => c; } })();
 

@@ -29,7 +29,7 @@ function fillSelect(sel, years, def) {
   sel.innerHTML = years.map(y => `<option${y === def ? " selected" : ""}>${y}</option>`).join("");
 }
 function kpis(el, items) {
-  el.innerHTML = items.map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+  el.innerHTML = items.map(([v, l]) => kpiHTML(v, l)).join("");
 }
 function barList(el, items, total, opts = {}) {
   const max = opts.max ?? d3.max(items, d => Math.abs(d.v));

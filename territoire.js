@@ -83,7 +83,7 @@ function draw() {
       [nf0.format(d3.sum(Object.values(E.regions), r => r.prod)) + " TWh", `électricité produite en ${y} (France continentale)`],
       [nf0.format(d3.sum(Object.values(E.regions), r => r.conso)) + " TWh", "consommée"],
       [nf0.format(-E.solde_national) + " TWh", "exportées en net vers les pays voisins"],
-    ].map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+    ].map(([v, l]) => kpiHTML(v, l)).join("");
   } else {
     const vals = feats.map(f => value(f.properties.code, y)).filter(v => v != null);
     const col = view === "ratio" ? d3.scaleSequential(d3.extent(vals), d3.interpolateBlues) : d3.scaleSequential(d3.extent(vals), d3.interpolateYlOrBr);
@@ -102,7 +102,7 @@ function draw() {
       const idf = T.regions["11"].serie[y];
       if (idf?.pib_hab && idf?.revenu_hab) k.push([nf0.format(100 * idf.revenu_hab / idf.pib_hab) + " %", "rapport revenu / PIB en Île-de-France (le plus bas)"]);
     }
-    $("#tr-kpis").innerHTML = k.map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+    $("#tr-kpis").innerHTML = k.map(([v, l]) => kpiHTML(v, l)).join("");
   }
 
   svg.append("g").selectAll("path").data(feats).join("path").attr("d", path).attr("fill", d => fill(d.properties.code))

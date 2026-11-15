@@ -81,7 +81,8 @@ button.link { background: none; border: 0; color: var(--accent); font: inherit; 
 @media (max-width: 640px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .kpi { padding: 12px; } .kpi .v { font-size: 1.15rem; } .kpi .l { font-size: .74rem; } header.site { position: static; } }
 .kpi { background: var(--soft); border-radius: 12px; padding: 14px 16px; }
 .kpi .v { font-size: 1.45rem; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.25; }
-.kpi .l { color: var(--muted); font-size: .8rem; line-height: 1.45; margin-top: 4px; }
+.kpi .t { font-size: .84rem; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 4px; }
+.kpi .l { color: var(--muted); font-size: .78rem; line-height: 1.45; margin-top: 4px; }
 
 .chart { width: 100%; }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -251,3 +252,4 @@ main .panel[hidden] { display: block !important; position: absolute; left: -2000
 .surligne b { color: var(--ink); font-weight: 650; }
 .surligne mark { background: none; color: var(--ink); font-weight: 650; padding: 0; }
 main.wrap { position: relative; overflow: hidden; }
+@media (max-width: 640px) { .kpi .v { font-size: 1.15rem; white-space: nowrap; } .kpi .t { font-size: .76rem; } .kpi .l { font-size: .72rem; } }
