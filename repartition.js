@@ -70,6 +70,11 @@ function draw() {
   lab.append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").text(d => `${md(d.value)} · ${pct(100 * d.value / R.pib, 0)} du PIB`);
   lab.filter(d => d.sub).append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").attr("font-size", "0.85em").text(d => d.sub);
   el.replaceChildren(svg.node());
+  const p = v => pct(100 * v / R.pib, 0);
+  document.getElementById("rp-56").innerHTML = `<p><b>« ${p(R.te)} de la richesse est prélevée par l'État » : vrai chiffre, mauvaise lecture.</b></p>
+    <p>Le chiffre souvent cité (${p(R.te)} en ${R.annee}) est celui des <b>dépenses publiques</b> rapportées au PIB, pas des prélèvements. Ce que les administrations prélèvent réellement en impôts et cotisations, ce sont <b>${p(R.po)}</b> du PIB ; le reste de leur dépense est financé par l'emprunt (${p(R.emprunt)}) et par d'autres recettes (${p(R.autres_recettes)}).</p>
+    <p>Surtout, une grande partie de cet argent ne fait que transiter : <b>${p(redis)} du PIB</b> repartent aussitôt vers les ménages et les entreprises, sous forme de pensions de retraite, d'allocations, de subventions et d'intérêts. Les administrations n'utilisent elles-mêmes que <b>${p(fonct)}</b> du PIB pour faire fonctionner les services publics et investir. Au final, <b>${p(prive)}</b> du PIB est entre les mains du privé.</p>
+    <p class="muted" style="font-size:.8rem">C'est pour cela que ce ratio n'est pas une « part » du PIB : la dépense publique contient des transferts (une pension versée puis dépensée par un retraité) qui ne sont pas de la production. Avec la même méthode, un pays qui verse ses retraites par des caisses publiques (la France) affiche une dépense publique bien plus élevée qu'un pays où elles passent par des fonds de pension privés, sans que les retraités y soient plus ou moins riches. Calcul à partir d'Eurostat (gov_10a_main, nama_10_gdp).</p>`;
 
   document.getElementById("rp-txt").innerHTML = `
     <p><b>1. Ce qu'on produit.</b> En ${R.annee}, la France a produit <b>${md(R.pib)}</b> de richesses (le PIB).</p>
