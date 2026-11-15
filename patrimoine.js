@@ -82,6 +82,12 @@ function draw() {
       <li><b>Les ménages possèdent ${pc(b.menages)}</b> du patrimoine net (${md(b.menages)}) : leurs logements et terrains, leur épargne, leurs actions et assurances-vie, moins leurs crédits.</li>
       <li><b>Les entreprises et les banques : ${md(b.entreprises)}</b> (${pc(b.entreprises)}). C'est peu, parce qu'une entreprise appartient à ses actionnaires : ses actions sont comptées comme une dette envers eux, et la valeur se retrouve chez les ménages qui les détiennent.</li>
       ${Ap ? `<li><b>Le public : ${md(b.apu)}</b> (${pc(b.apu)}). Les administrations possèdent ${md(Ap.reel)} de biens réels (routes, écoles, hôpitaux, réseaux, dont ${md(Ap.terrains)} de terrains) et ${md(Ap.fa)} d'actifs financiers, mais doivent ${md(Ap.fl)}, surtout la dette publique. Leur patrimoine net est donc faible, même s'il reste positif (${md(a.apu)} en ${a.annee}).</li>` : ""}
+      <li><b>Où sont les ponts, les routes, les centrales nucléaires ?</b> Tout y est, mais pas toujours là où on l'attend :
+        <ul>
+          <li>les routes, ponts, écoles, hôpitaux publics et le réseau ferré (SNCF Réseau est classée dans les administrations publiques) sont dans la part <b>publique</b> ;</li>
+          <li>les centrales nucléaires, les barrages et les lignes électriques appartiennent à EDF, RTE ou Enedis : ce sont des entreprises, même détenues par l'État. Elles sont donc dans la part <b>entreprises</b>. L'État, lui, possède leurs actions : elles sont comptées dans ses actifs financiers${Ap ? ` (${md(Ap.fa)} au total)` : ""} ;</li>
+          <li>de même, les autoroutes concédées figurent chez les sociétés d'autoroutes, pas chez l'État.</li>
+        </ul></li>
       <li><b>Attention</b> : les biens publics sont comptés à leur coût de remplacement, pas à un prix de vente. Une route ou une école ne se vend pas, alors que la dette, elle, doit être remboursée.</li>
     </ul>`;
     sensib(); return;
