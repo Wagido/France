@@ -27,7 +27,7 @@ function draw() {
   const D = CACHE[geo], sec = $("#empreinte"); if (!sec) return;
   if (!D) { kpis("#ec-kpis", []); $("#ec-kpis").innerHTML = `<p class="empty">Eurostat ne calcule pas l'empreinte carbone de ce pays.</p>`; $("#ec-fr").hidden = true; ["#ec-usage", "#ec-usage-legend", "#ec-usage-note"].forEach(s => $(s).innerHTML = ""); drawCmp(); return; }
   const S = D.serie, l = S.at(-1), F = geo === "FR" ? D.sdes : null;
-  $("#ec-fr").hidden = !F;
+  $("#ec-fr").hidden = !F; document.querySelector("#ec-alerte")?.remove();
   const imp = 100 * (1 - l.origine.domestique / l.total);
   if (F) {
     const s1 = F.serie.at(-1), s0 = F.serie[0], best = F.serie.reduce((a, b) => b.par_hab > a.par_hab ? b : a);
@@ -57,6 +57,9 @@ function draw() {
     const b = document.createElement("div"); el.appendChild(b);
     bars(b, P.map(p => ({ l: POSTE_L[p.k] || p.k, v: p.v, t: `${n1(p.v)} t par personne · ${pct(100 * p.v / totP, 0)}`, c: POSTE_C[p.k] })));
     $("#ec-postes-note").textContent = `SDES et INSEE, année ${F.annee_postes} (dernière année détaillée). Chaque poste compte tout ce qu'il a fallu émettre, en France et ailleurs : le carburant brûlé et la fabrication de la voiture pour les transports, l'élevage et les engrais pour l'alimentation, le chauffage et la construction pour le logement. Les services publics sont répartis à parts égales entre habitants.`;
+    const part = keys => 100 * d3.sum(P.filter(p => keys.includes(p.k)), p => p.v) / totP;
+    const ess = part(["Déplacements", "Alimentation", "Habitat", "Services principalement publics"]), biens = part(["Biens d'équipements"]);
+    $("#ec-postes-note").insertAdjacentHTML("afterend", `<p class="alerte" id="ec-alerte">La majorité de l'empreinte carbone (<span style="white-space:nowrap">${pct(ess, 0)}</span>) est donc consacrée à un confort considéré aujourd'hui comme essentiel : se loger, manger, se déplacer et utiliser les services publics. La consommation de biens ne représente qu'une faible part (<span style="white-space:nowrap">${pct(biens, 0)}</span>). C'est donc un effort dans tous les domaines qui est demandé.</p>`);
     // série
     areaChart($("#ec-serie"), F.serie.map(x => ({ annee: x.annee, direct: x.direct, interieur: x.interieur, importe: x.importe })), ["direct", "interieur", "importe"],
       { direct: "#e07b39", interieur: "#3b6fd6", importe: "#94a3b8" }, { direct: "Émis directement par les ménages", interieur: "Produit en France", importe: "Émis à l'étranger (importations)" },

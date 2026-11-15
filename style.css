@@ -251,3 +251,4 @@ table.src td:nth-child(3) { max-width: 320px; }
 .src-foot span { text-transform: uppercase; letter-spacing: .07em; font-weight: 600; margin-right: 6px; }
 .src-foot b { font-weight: 600; color: var(--muted); }
 .src-foot a { color: var(--muted); }
+.alerte { color: var(--neg); font-weight: 600; font-size: .98rem; line-height: 1.55; max-width: 90ch; margin: 14px 0 6px; }
