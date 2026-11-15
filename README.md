@@ -1,4 +1,4 @@
-# Comptes de la France
+# France Patrimoine
 
 Tableau de bord de la France (et de 29 autres pays européens) à partir des données publiques : Eurostat, INSEE, RTE/ODRÉ, FAOSTAT, Our World in Data.
 Page statique (HTML + d3, sans serveur), organisée en trois familles : **Économie**, **Ressources**, **Société**.

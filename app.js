@@ -1,4 +1,4 @@
-/* Comptes de la France : rendu des graphiques à partir de data/finances.json */
+/* France Patrimoine : rendu des graphiques à partir de data/finances.json */
 (() => {
 "use strict";
 

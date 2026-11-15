@@ -20,7 +20,7 @@ function show(id) {
   const sec = document.getElementById(id), head = sec.querySelector(".panel-head");
   if (head && sec.querySelector(".geo-tag")) { head.appendChild(geoCtl); geoCtl.hidden = false; }
   else { geoCtl.hidden = true; document.body.appendChild(geoCtl); }
-  document.title = `${sec.querySelector("h2")?.childNodes[0]?.textContent.trim() || "Comptes de la France"} · Comptes de la France`;
+  document.title = `${sec.querySelector("h2")?.childNodes[0]?.textContent.trim() || "France Patrimoine"} · France Patrimoine`;
   window.scrollTo({ top: 0 });
   setTimeout(() => window.scrollTo({ top: 0 }), 0);   // après le saut automatique du navigateur vers l'ancre
 }
