@@ -255,3 +255,5 @@ main.wrap { position: relative; overflow: hidden; }
 @media (max-width: 640px) { .kpi .v { font-size: 1.15rem; white-space: nowrap; } .kpi .t { font-size: .76rem; } .kpi .l { font-size: .72rem; } }
 .callout.violet { background: #f3eefc; }
 :root[data-theme="dark"] .callout.violet { background: #241d36; }
+.hist-ev { font-size: .82rem; margin: 10px 0 4px; columns: 2 360px; column-gap: 28px; }
+.hist-ev li { break-inside: avoid; margin: 0 0 6px; }

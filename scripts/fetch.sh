@@ -211,6 +211,9 @@ get empreinte/env_ac_ainah_r2.json "$E/env_ac_ainah_r2?airpol=GHG&unit=THS_T&nac
 
 # Séries longues depuis 1949 pour l'histoire des dévaluations (INSEE, comptes nationaux annuels)
 mkdir -p histoire
+get histoire/jst_macrohistory.xlsx "https://raw.githubusercontent.com/unbalancedparentheses/forex-centuries/main/data/sources/jst/jst_macrohistory.xlsx"
+get histoire/ert_bil_eur_a.json "$E/ert_bil_eur_a?currency=USD&statinfo=AVG&sinceTimePeriod=1999"
+get histoire/prc_hicp_aind_fr.json "$E/prc_hicp_aind?geo=FR&coicop=CP00&unit=RCH_A_AVG&sinceTimePeriod=2015"
 get histoire/bdm_histoire.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011779995+011779991+011779992+011791812+011791813+011792506+011792505"
 
 # Chômage : INSEE (BIT, halo, sous-emploi) et DARES / France Travail (catégories A à E), via la base BDM de l'INSEE ; Eurostat (chômage élargi)

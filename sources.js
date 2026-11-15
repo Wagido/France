@@ -53,6 +53,7 @@ const S = [
   ["Climat", "eurostat", "env_air_gge", "Émissions de gaz à effet de serre par secteur (inventaire national)", null, "annuel (juin)"],
   ["Déchets", "eurostat", "env_wasgen / env_wastrt / env_wasmun", "Production et traitement des déchets", null, "biennal (ménagers : annuel)"],
   ["Transports", "eurostat", "tran_hv_psmod / tran_hv_frmod / rail_pa_total / avia_paoc / road_go_ta_tott", "Parts modales et volumes de voyageurs et de marchandises", null, "annuel"],
+  ["Argent public", "insee", "Comptes nationaux annuels base 2020 depuis 1949 ; Jordà, Schularick et Taylor, Macrohistory Database (1900-2017)", "Graphique « Un siècle de franc » : inflation, solde budgétaire, exportations, cours du dollar", "https://www.macrohistory.net/database/", "annuel"],
   ["Argentine", "argentine", "PIB, inflation, pauvreté (INDEC), budget, change, aides du FMI et des États-Unis", "Encadré « Et l'Argentine ? » : liens vers chaque article de presse dans l'encadré", null, "ponctuel (chiffres arrêtés à mars 2026)"],
   ["Argent public", "marches", "France : taux d'emprunt à 10 ans (OAT)", "Valeur par défaut du simulateur : environ 4,7 % en novembre 2026 (Trading Economics, d'après les marchés)", "https://tradingeconomics.com/france/government-bond-yield", "quotidien"],
   ["Chômage", "insee", "Enquête Emploi : chômage au sens du BIT, halo autour du chômage, sous-emploi (BDM, CHOMAGE-TRIM-NATIONAL, EMPLOI-BIT-TRIM)", "Chômeurs, halo, sous-emploi, chômage de longue durée, France entière", "https://www.insee.fr/fr/statistiques/serie/011818543", "trimestriel"],
