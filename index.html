@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261115r">
+<link rel="stylesheet" href="style.css?v=20261115u">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -172,7 +172,7 @@
   <ul class="prose-list">
     <li><b>Le multiplicateur s'estompe.</b> La baisse d'activité se résorbe en 2 ou 3 ans, alors que l'économie réalisée se répète chaque année. Sur plusieurs années, une baisse de dépenses fait en général baisser le ratio dette/PIB, sauf si la récession laisse des séquelles durables (chômage de longue durée, investissement perdu).</li>
     <li><b>Le multiplicateur dépend de ce qu'on coupe.</b> Il est faible pour des dépenses peu productives ou des transferts vers des ménages qui épargnent, et élevé pour l'investissement public ou les aides aux ménages modestes. Le seuil calculé plus haut est donc franchi ou non selon les choix.</li>
-    <li><b>Il dépend aussi du moment.</b> En récession, ou quand la banque centrale ne baisse pas ses taux, il est élevé. C'est ce qui s'est passé en 2010-2012 en zone euro : le FMI (Blanchard et Leigh, 2013) a reconnu que les multiplicateurs avaient été sous-estimés, plutôt autour de 1 à 1,5. La Grèce a coupé massivement, et sa dette est passée de 127 % à 180 % du PIB.</li>
+    <li><b>Il dépend aussi du moment.</b> En récession, ou quand la banque centrale ne baisse pas ses taux, il est élevé. C'est ce qui s'est passé en 2010-2012 en zone euro : le FMI (Blanchard et Leigh, 2013) a reconnu que les multiplicateurs avaient été sous-estimés, plutôt autour de 1 à 1,5. La Grèce a coupé massivement, et sa dette est passée de 128,5&nbsp;% du PIB en 2009 à 182,7&nbsp;% en 2014 (Eurostat).</li>
     <li><b>La confiance joue dans l'autre sens.</b> Si les marchés doutent, les taux d'intérêt montent et la dette s'alourdit. Une baisse crédible des dépenses peut éviter ça.</li>
   </ul>
 
@@ -187,7 +187,7 @@
       <label><span>Croissance perdue durablement <output id="o10-gl"></output></span><input type="range" id="s10-gl" min="0" max="0.5" step="0.05" value="0"></label>
       <label><span>Croissance réelle <output id="o10-g"></output></span><input type="range" id="s10-g" min="-1" max="3" step="0.1" value="1"></label>
       <label><span>Inflation <output id="o10-pi"></output></span><input type="range" id="s10-pi" min="0" max="5" step="0.1" value="1.7"></label>
-      <label><span>Taux d'emprunt de l'État (10 ans) <output id="o10-r"></output></span><input type="range" id="s10-r" min="0" max="7" step="0.1" value="3.3"></label>
+      <label><span>Taux d'emprunt de l'État (10 ans) <output id="o10-r"></output></span><input type="range" id="s10-r" min="0" max="7" step="0.1" value="4.7"></label>
       <button class="link" id="s10-reset">Valeurs par défaut</button>
     </div>
     <div class="simu-out">
@@ -237,6 +237,33 @@
     <div class="simu-out"><div id="sdf-result" class="result"></div></div>
   </div>
 
+
+  <h3>Et l'Argentine ? « Ils ont tout coupé, et ça repart »</h3>
+  <div class="callout small" id="argentine">
+    <p>Javier Milei, président depuis décembre 2023, a appliqué la « tronçonneuse » à la dépense publique. Ce qui s'est passé, chiffres officiels à l'appui :</p>
+    <ul class="prose-list">
+      <li><b>La coupe :</b> les dépenses de l'État hors intérêts ont baissé de 27&nbsp;% en termes réels en 2024 <a href="https://www.cnnchile.com/mundo/argentina-cierra-2024-superavit-fiscal-03-pib/" target="_blank" rel="noopener">[1]</a>. Le budget a dégagé un excédent de 0,3&nbsp;% du PIB (1,8&nbsp;% hors intérêts), le premier depuis 2010 <a href="https://www.infobae.com/espana/agencias/2025/01/17/argentina-cierra-2024-con-un-superavit-fiscal-del-03-del-pib/" target="_blank" rel="noopener">[2]</a>.</li>
+      <li><b>La dévaluation :</b> le 12 décembre 2023, le peso a perdu 54&nbsp;% de sa valeur (de 366 à 800 pesos pour un dollar) <a href="https://www.bloomberg.com/news/articles/2023-12-12/argentina-s-milei-devalues-peso-by-54-in-first-batch-of-shock-measures" target="_blank" rel="noopener">[3]</a>.</li>
+      <li><b>Le coût immédiat :</b> le PIB a reculé de 1,3&nbsp;% en 2024 <a href="https://www.canal26.com/economia/2026/03/20/el-pbi-aumento-21-en-el-ultimo-trimestre-y-la-economia-argentina-se-incremento-en-un-44-durante-2025/" target="_blank" rel="noopener">[4]</a> et la pauvreté a touché 52,9&nbsp;% de la population au 1er semestre 2024 <a href="https://chequeado.com/el-explicador/la-pobreza-fue-del-316-en-el-primer-semestre-de-2025-el-valor-mas-bajo-desde-fines-de-2018/" target="_blank" rel="noopener">[5]</a>.</li>
+      <li><b>Puis la reprise :</b> +4,4&nbsp;% de croissance en 2025 <a href="https://www.canal26.com/economia/2026/03/20/el-pbi-aumento-21-en-el-ultimo-trimestre-y-la-economia-argentina-se-incremento-en-un-44-durante-2025/" target="_blank" rel="noopener">[4]</a> ; une pauvreté retombée à 38,1&nbsp;% fin 2024 puis 31,6&nbsp;% au 1er semestre 2025 <a href="https://chequeado.com/el-explicador/la-pobreza-fue-del-316-en-el-primer-semestre-de-2025-el-valor-mas-bajo-desde-fines-de-2018/" target="_blank" rel="noopener">[5]</a> ; une inflation passée de 25,5&nbsp;% sur le seul mois de décembre 2023 (211,4&nbsp;% sur l'année) <a href="https://www.bloomberglinea.com/2024/01/11/inflacion-en-argentina-se-disparo-a-255-en-diciembre-y-a-2114-en-2023/" target="_blank" rel="noopener">[6]</a> à 117,8&nbsp;% en 2024 et 31,5&nbsp;% en 2025 <a href="https://www.forbesargentina.com/money/la-inflacion-2025-cerro-315-marco-nivel-mas-ocho-anos-n84710/amp" target="_blank" rel="noopener">[7]</a>.</li>
+    </ul>
+    <p><b>Pourquoi la coupe a été suivie d'une reprise là-bas</b></p>
+    <ol class="prose-list">
+      <li><b>Le problème était l'inflation, pas la dette.</b> L'État finançait son déficit en imprimant de la monnaie. Supprimer le déficit a cassé l'inflation et ramené la confiance : c'est le cas « la confiance joue dans l'autre sens » décrit plus haut, où l'effet de confiance l'emporte sur l'effet récessif.</li>
+      <li><b>Il a dévalué</b> : l'outil que la France n'a plus avec l'euro.</li>
+      <li><b>La reprise vient aussi d'ailleurs</b> : l'agriculture rebondit (récolte record de blé en 2025-2026 <a href="https://eleconomista.com.ar/economia/el-agro-sostiene-actividad-pero-hay-una-fuerte-heterogeneidad-mientras-granos-crecen-buena-parte-economias-regionales-producen-menos-n98916/amp" target="_blank" rel="noopener">[12]</a>) après la sécheresse de 2023, qui avait coupé environ la moitié des récoltes et plus de 3 points de PIB <a href="https://chequeado.com/el-explicador/como-impacto-la-sequia-en-la-cosecha-de-2023-y-en-la-economia-argentina/" target="_blank" rel="noopener">[8]</a> ; la production de pétrole, tirée par le gisement de schiste de Vaca Muerta, a augmenté de 24,7&nbsp;% en 2025 <a href="https://mase.lmneuquen.com/petroleo/record-historico-petroleo-2025-vaca-muerta-impulsa-el-avance-energetico-argentina-n1225628/amp" target="_blank" rel="noopener">[9]</a> ; enfin le FMI a prêté 20 milliards de dollars en avril 2025, et le Trésor américain a ouvert une ligne de 20 milliards en octobre 2025 <a href="https://www.cfr.org/in-brief/will-trumps-20-billion-backing-help-milei-change-argentinas-fortunes" target="_blank" rel="noopener">[10]</a>.</li>
+      <li><b>On repartait de très bas</b> : après une chute, rebondir de 4&nbsp;% est plus facile.</li>
+    </ol>
+    <p><b>Pourquoi ce n'est pas transposable à la France</b></p>
+    <ul class="prose-list">
+      <li>La France n'a ni inflation galopante ni monnaie qui s'effondre : couper ne déclencherait pas le même choc de confiance.</li>
+      <li>Elle emprunte plus cher qu'avant, autour de 4,7&nbsp;% à dix ans en novembre 2026 après un pic vers 5,1&nbsp;% en octobre <a href="https://tradingeconomics.com/france/government-bond-yield/news/599653" target="_blank" rel="noopener">[11]</a>, mais elle trouve toujours des prêteurs : ce n'est pas la crise de financement qu'a connue l'Argentine.</li>
+      <li>Sans dévaluation possible, le freinage de l'activité n'est pas compensé par les exportations.</li>
+      <li>Le cas le plus proche est la Grèce, dans l'euro et sans inflation : elle a coupé massivement sans pouvoir dévaluer, et sa dette est passée de 128,5&nbsp;% du PIB en 2009 à 182,7&nbsp;% en 2014 (Eurostat, gov_10dd_edpt1).</li>
+    </ul>
+    <p style="margin-bottom:0"><b>En résumé :</b> une coupe brutale peut relancer une économie quand elle met fin à une crise d'inflation et de confiance, et quand elle s'accompagne d'une dévaluation et de vents favorables. Ce n'est pas la situation de la France.</p>
+    <p class="muted" style="font-size:.78rem;margin:10px 0 0">Sources : INDEC (institut statistique argentin), ministère de l'Économie argentin, FMI et Trésor américain, cités par [1] CNN Chile, [2] Infobae, [3] Bloomberg, [4] Canal 26, [5] Chequeado, [6] Bloomberg Línea, [7] Forbes Argentina, [8] Chequeado, [9] LM Neuquén, [10] Council on Foreign Relations, [11] Trading Economics, [12] El Economista. Chiffres arrêtés à mars 2026 pour l'Argentine.</p>
+  </div>
 </section>
 
 <!-- =============================================================== SUR LA DUREE -->
@@ -775,17 +802,17 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261115r"></script>
-<script src="app.js?v=20261115r"></script>
-<script src="energie.js?v=20261115r"></script>
-<script src="matieres.js?v=20261115r"></script>
-<script src="territoire.js?v=20261115r"></script>
-<script src="themes.js?v=20261115r"></script>
-<script src="societe.js?v=20261115r"></script>
-<script src="eco2.js?v=20261115r"></script>
-<script src="empreinte.js?v=20261115r"></script>
-<script src="chomage.js?v=20261115r"></script>
-<script src="sources.js?v=20261115r"></script>
-<script src="nav.js?v=20261115r"></script>
+<script src="kpi.js?v=20261115u"></script>
+<script src="app.js?v=20261115u"></script>
+<script src="energie.js?v=20261115u"></script>
+<script src="matieres.js?v=20261115u"></script>
+<script src="territoire.js?v=20261115u"></script>
+<script src="themes.js?v=20261115u"></script>
+<script src="societe.js?v=20261115u"></script>
+<script src="eco2.js?v=20261115u"></script>
+<script src="empreinte.js?v=20261115u"></script>
+<script src="chomage.js?v=20261115u"></script>
+<script src="sources.js?v=20261115u"></script>
+<script src="nav.js?v=20261115u"></script>
 </body>
 </html>

@@ -346,7 +346,7 @@ function base10() {
 function initSimu10() {
   const ids = ["cut", "m", "hl", "h", "gl", "g", "pi", "r"];
   ids.forEach(k => $("#s10-" + k).oninput = drawSimu10);
-  const defs = { cut: 40, m: 0.8, hl: 1.5, h: 0, gl: 0, g: 1, pi: 1.7, r: 3.3 };
+  const defs = { cut: 40, m: 0.8, hl: 1.5, h: 0, gl: 0, g: 1, pi: 1.7, r: 4.7 };   // taux à 10 ans : environ 4,7 % en novembre 2026
   $("#s10-reset").onclick = () => { ids.forEach(k => $("#s10-" + k).value = defs[k]); drawSimu10(); };
   ["s", "ex", "im", "pt"].forEach(k => $("#sdf-" + k).oninput = drawDevFisc);
   drawSimu10(); drawDevFisc(); drawCroissance();

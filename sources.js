@@ -10,6 +10,8 @@ const ORG = {
   fao: { nom: "FAO (FAOSTAT)", desc: "Organisation des Nations unies pour l'alimentation et l'agriculture.", licence: "CC BY 4.0", url: "https://www.fao.org/faostat" },
   owid: { nom: "Our World in Data", desc: "Séries longues compilées par l'université d'Oxford (Energy Institute, Ember…).", licence: "CC BY 4.0", url: "https://github.com/owid/energy-data" },
   sdes: { nom: "SDES (ministère de la Transition écologique)", desc: "Service des données et études statistiques : énergie, climat, environnement, logement, transports.", licence: "Licence Ouverte Etalab 2.0", url: "https://www.statistiques.developpement-durable.gouv.fr" },
+  argentine: { nom: "INDEC, FMI, presse économique", desc: "Chiffres de l'Argentine : institut statistique argentin (INDEC), ministère de l'Économie, FMI et Trésor américain, tels que rapportés par la presse.", licence: "Citations", url: "https://www.indec.gob.ar" },
+  marches: { nom: "Trading Economics", desc: "Taux des emprunts d'État relevés sur les marchés financiers.", licence: "Citation", url: "https://tradingeconomics.com" },
   ign: { nom: "IGN / france-geojson", desc: "Contours simplifiés des régions, d'après les données de l'IGN.", licence: "Licence Ouverte Etalab", url: "https://github.com/gregoiredavid/france-geojson" },
 };
 // [thème, organisme, code ou nom, description, lien (optionnel), rythme de publication]
@@ -51,6 +53,8 @@ const S = [
   ["Climat", "eurostat", "env_air_gge", "Émissions de gaz à effet de serre par secteur (inventaire national)", null, "annuel (juin)"],
   ["Déchets", "eurostat", "env_wasgen / env_wastrt / env_wasmun", "Production et traitement des déchets", null, "biennal (ménagers : annuel)"],
   ["Transports", "eurostat", "tran_hv_psmod / tran_hv_frmod / rail_pa_total / avia_paoc / road_go_ta_tott", "Parts modales et volumes de voyageurs et de marchandises", null, "annuel"],
+  ["Argentine", "argentine", "PIB, inflation, pauvreté (INDEC), budget, change, aides du FMI et des États-Unis", "Encadré « Et l'Argentine ? » : liens vers chaque article de presse dans l'encadré", null, "ponctuel (chiffres arrêtés à mars 2026)"],
+  ["Argent public", "marches", "France : taux d'emprunt à 10 ans (OAT)", "Valeur par défaut du simulateur : environ 4,7 % en novembre 2026 (Trading Economics, d'après les marchés)", "https://tradingeconomics.com/france/government-bond-yield", "quotidien"],
   ["Chômage", "insee", "Enquête Emploi : chômage au sens du BIT, halo autour du chômage, sous-emploi (BDM, CHOMAGE-TRIM-NATIONAL, EMPLOI-BIT-TRIM)", "Chômeurs, halo, sous-emploi, chômage de longue durée, France entière", "https://www.insee.fr/fr/statistiques/serie/011818543", "trimestriel"],
   ["Chômage", "insee", "Demandeurs d'emploi inscrits à France Travail (DARES, via la BDM de l'INSEE)", "Catégories A, B, C, D, E", "https://www.insee.fr/fr/statistiques/serie/010597456", "trimestriel"],
   ["Chômage", "eurostat", "lfsi_sla_a", "Chômage élargi (labour market slack)", null, "annuel"],
@@ -79,7 +83,7 @@ function render() {
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
 // en bas de chaque article, ses sources en petit
-const PAR_ARTICLE = { pib: ["PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB"],
+const PAR_ARTICLE = { pib: ["PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
