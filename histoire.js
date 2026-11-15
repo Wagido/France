@@ -9,15 +9,18 @@ const SRC = {
   bdf: ["Banque de France, Webstat", "https://webstat.banque-france.fr/api/datasets/1.0/tableaux_rapports_preetablis/images/8d39b3ec2cdd5733dd198516131b7df9"],
   time49: ["Time", "https://content.time.com/time/magazine/article/0,9171,809720,00.html"],
   rueff: ["voir l'encadré sur le plan Rueff", "#rueff"],
+  d28: ["voir l'encadré sur 1914-1928", "#deval1928"],
+  d36: ["voir l'encadré sur 1936-1938", "#deval1936"],
+  d48: ["voir l'encadré sur 1945-1949", "#deval1948"],
   d69: ["voir l'encadré sur 1969", "#deval1969"],
   d82: ["voir l'encadré sur 1981-1983", "#deval1982"],
 };
 // [année, étiquette courte, description, source]
 const EV = [
   [1914, "1914", "Première Guerre mondiale : fin de la convertibilité du franc en or, la guerre est financée par l'emprunt et la Banque de France.", "univ"],
-  [1928, "1928", "Franc Poincaré : retour à l'or après l'inflation des années 1920, à un cinquième de la valeur d'avant-guerre (dévaluation des 4/5).", "herodote28"],
-  [1936, "1936", "Front populaire : dévaluation (loi du 1er octobre 1936), suivie de nouvelles baisses en 1937 et 1938.", "larousse"],
-  [1945, "1945", "Libération : nouvelle parité du franc, puis dévaluations de 1948 et 1949 (350 francs pour un dollar).", "bdf"],
+  [1928, "1928", "Franc Poincaré : retour à l'or après l'inflation des années 1920, à un cinquième de la valeur d'avant-guerre (dévaluation des 4/5).", "d28"],
+  [1936, "1936", "Front populaire : dévaluation (loi du 1er octobre 1936), suivie de nouvelles baisses en 1937 et 1938.", "d36"],
+  [1945, "1945", "Libération : nouvelle parité du franc, puis dévaluations de 1948 et 1949 (350 francs pour un dollar).", "d48"],
   [1949, "1949", "Le franc est fixé à 350 francs pour un dollar.", "time49"],
   [1958, "1958", "Plan Rueff : dévaluation, rigueur et nouveau franc.", "rueff"],
   [1969, "1969", "Dévaluation de 11,1 % décidée par Georges Pompidou.", "d69"],
@@ -80,7 +83,7 @@ function draw() {
   el.replaceChildren(svg.node());
   el.insertAdjacentHTML("beforeend", `<div class="legend-row"><span><i style="border-top-color:#dc2626;opacity:1"></i>Inflation (prix à la consommation)</span><span><i style="border-top-color:#16a34a;opacity:1"></i>Exportations (% du PIB)</span><span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:.8"></i>Solde budgétaire (% du PIB)</span><span><i style="border-top-color:var(--ink);opacity:1"></i>Prix d'un dollar en francs</span><span><i style="border-top-color:#7c3aed;border-top-style:dashed;opacity:1"></i>Dévaluations et changements de régime</span></div>
     <ul class="prose-list hist-ev">${EV.map(([yr, lab, txt, s]) => `<li><b>${lab === "81-83" ? "1981-1983" : yr}</b> : ${esc(txt)} <a href="${SRC[s][1]}"${SRC[s][1].startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${esc(SRC[s][0])}</a></li>`).join("")}</ul>
-    <p class="muted" style="font-size:.76rem;margin:4px 0 0">Données : Jordà, Schularick et Taylor, <a href="https://www.macrohistory.net/database/" target="_blank" rel="noopener">Macrohistory Database</a> (1900-2017, licence CC BY-NC-SA, via le dépôt public <a href="https://github.com/unbalancedparentheses/forex-centuries" target="_blank" rel="noopener">forex-centuries</a>) ; INSEE pour les exportations depuis 1949 ; Eurostat pour l'inflation depuis 2018 et le cours euro-dollar depuis 1999 ; comptes publics depuis 1995. Avant 1995, le solde est celui du budget de l'État. Échelle coupée à −30 % et +60 % : les inflations supérieures sont indiquées en haut.</p>`);
+    <p class="muted" style="font-size:.76rem;margin:4px 0 0">Données : Jordà, Schularick et Taylor, <a href="https://www.macrohistory.net/database/" target="_blank" rel="noopener">Macrohistory Database</a> (1900-2017, licence CC BY-NC-SA, via le dépôt public <a href="https://github.com/unbalancedparentheses/forex-centuries" target="_blank" rel="noopener">forex-centuries</a>) ; INSEE pour les exportations depuis 1949 ; Eurostat pour l'inflation depuis 2018 et le cours euro-dollar depuis 1999 ; comptes publics depuis 1995. Avant 1995, le solde est celui du budget de l'État. De 1945 à 1949, le cours du dollar de la base est un cours de marché, plus élevé que les parités officielles (119, puis 214 et 350 anciens francs). Échelle coupée à −30 % et +60 % : les inflations supérieures sont indiquées en haut.</p>`);
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
