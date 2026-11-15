@@ -109,7 +109,7 @@ function render() {
 // en bas de chaque article, ses sources en petit
 const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
-  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
+  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
   justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };
