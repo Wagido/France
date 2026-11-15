@@ -98,6 +98,7 @@ function dollarReel(host) {
   box.innerHTML = `<h4 style="margin:22px 0 4px">Le dollar en francs, corrigé de l'inflation (indice 100 en 1950)</h4>
     <p class="muted" style="font-size:.84rem;margin:0 0 6px">Cours du dollar multiplié par les prix américains et divisé par les prix français. Au-dessus de 100, le franc est « bon marché » : les produits français sont moins chers pour les Américains qu'en 1950.</p>
     <div id="hist-reel" class="chart"></div><div class="legend-row" id="hist-reel-legend"></div>
+    <div id="hist-reel-eff" class="table-scroll" style="margin:8px 0"></div>
     <div class="callout small"><ul>
       <li><b>En apparence, le franc s'est effondré</b> : il fallait ${String(a.dollar).replace(".", ",")} franc (nouveau) pour un dollar en ${a.annee}, et environ ${n1(b.dollar)} en ${b.annee}, soit plus de cent fois plus.</li>
       <li><b>Corrigé de l'inflation, il n'a presque pas bougé sur un siècle</b> : l'indice va de ${Math.round(mn.dollar_reel)} (${mn.annee}) à ${Math.round(mx.dollar_reel)} (${mx.annee}), sans tendance (en laissant de côté 1944-1949, où le cours du dollar de la base est un cours de marché d'après-guerre). La France a eu plus d'inflation que les États-Unis, et les dévaluations n'ont fait, pour l'essentiel, que rattraper cet écart.</li>
@@ -105,8 +106,36 @@ function dollarReel(host) {
       <li><b>Depuis l'euro</b>, le cours varie surtout avec l'euro face au dollar : un dollar fort (2000-2001, 2022-2024) rend les produits français moins chers à l'export ; un dollar faible (2008) les renchérit.</li>
     </ul></div>`;
   host.appendChild(box);
-  lineChart(document.getElementById("hist-reel"), rows, [{ k: "reel", l: "Dollar corrigé de l'inflation", c: "#7c3aed" }], { vfmt: x => n1(x), yfmt: x => x, h: 260, nozero: true });
-  legend("#hist-reel-legend", [["Dollar en francs, corrigé de l'écart d'inflation (indice 100 en 1950)", "#7c3aed"]]);
+  // tracé avec les dévaluations en traits verticaux
+  const { showTip, hideTip, css } = window.TH, el = document.getElementById("hist-reel");
+  const w = Math.max(320, el.clientWidth), h = 300, m = { t: 26, r: 14, b: 26, l: 44 }, narrow = w < 640;
+  const x = d3.scaleLinear(d3.extent(rows, d => d.annee), [m.l, w - m.r]), y = d3.scaleLinear([30, 220], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data([50, 100, 150, 200]).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  svg.append("rect").attr("x", x(1944)).attr("width", x(1949.5) - x(1944)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "#94a3b8").attr("opacity", .15);
+  EV.filter(([yr]) => yr !== 1949 && yr !== 1914).forEach(([yr, lab], i) => {
+    svg.append("line").attr("x1", x(yr)).attr("x2", x(yr)).attr("y1", m.t - 6).attr("y2", h - m.b).attr("stroke", "#7c3aed").attr("stroke-dasharray", "3 3").attr("opacity", .8);
+    svg.append("text").attr("x", x(yr)).attr("y", m.t - 10 - (narrow && i % 2 ? 10 : 0)).attr("text-anchor", "middle").attr("font-size", 10.5).attr("font-weight", 600).style("fill", "#7c3aed").text(lab);
+  });
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", "currentColor").attr("opacity", .35);
+  svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).style("stroke", "var(--ink)").attr("stroke-width", 2.2)
+    .attr("d", d3.line().defined(d => d.reel != null).x(d => x(d.annee)).y(d => y(Math.min(220, d.reel)))(rows));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(narrow ? 6 : 13).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues([50, 100, 150, 200])).call(g => g.select(".domain").remove());
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const yr = Math.round(x.invert(d3.pointer(ev)[0])), d = rows.find(r => r.annee === yr); if (d && d.reel != null) showTip(`<b>${yr}</b><br>Indice : ${n1(d.reel)}<br><span style="opacity:.8">au-dessus de 100 : produits français moins chers qu'en 1950</span>`, ev); })
+    .on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
+  el.nextElementSibling.innerHTML = `<span><i style="border-top-color:var(--ink);opacity:1"></i>Dollar en francs, corrigé de l'écart d'inflation (indice 100 en 1950)</span><span><i style="border-top-color:#7c3aed;border-top-style:dashed;opacity:1"></i>Dévaluations</span><span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:.5"></i>1944-1949 : cours de marché d'après-guerre, peu fiable</span>`;
+  // effet de chaque dévaluation : indice l'année d'avant, le maximum dans les 3 ans, et 5 ans après
+  const at = yy => rows.find(r => r.annee === yy)?.reel;
+  const eff = [[1928, 1926], [1936, 1936], [1958, 1957], [1969, 1969], [1981, 1981]].map(([d, d0]) => {
+    const av = at(d0 - 1), pk = Math.max(...[0, 1, 2, 3].map(k => at(d + k) ?? 0)), ap = at(d + 5);
+    return [d, av, pk, ap];
+  });
+  box.querySelector("#hist-reel-eff").innerHTML = `<table class="cmp-t" style="max-width:640px"><thead><tr><th>Dévaluation</th><th>Indice l'année d'avant</th><th>Au plus haut dans les 3 ans</th><th>5 ans après</th></tr></thead><tbody>` +
+    eff.map(([d, av, pk, ap]) => `<tr><td>${d === 1981 ? "1981-1983" : d === 1928 ? "1926-1928" : d === 1958 ? "1957-1958" : d}</td><td>${Math.round(av)}</td><td><b>${Math.round(pk)}</b> (${pk > av ? "+" : ""}${Math.round(pk - av)})</td><td>${ap != null ? Math.round(ap) : "–"}</td></tr>`).join("") + `</tbody></table>
+    <p style="font-size:.88rem;margin:8px 0 0;max-width:100ch"><b>Alors, est-ce que ça marche ?</b> Oui, mais pour peu de temps. Après 1936, 1969 et 1981-1983, l'indice monte nettement : les produits français deviennent moins chers. Cinq ans plus tard, il est retombé, car la France a gardé plus d'inflation que ses partenaires. Deux cas trompent l'œil : en 1926-1928, le franc s'était déjà effondré avant la stabilisation de Poincaré, et il est ensuite devenu cher quand le Royaume-Uni (1931) puis les États-Unis (1933) ont dévalué à leur tour ; en 1957-1958, deux dévaluations se suivent (la première, déguisée, dès 1957), ce que les données annuelles lissent. Enfin, la hausse de 1981-1985 vient aussi de l'envolée du dollar sous Reagan, pas seulement des dévaluations françaises.</p>`;
 }
 
 /* zoom : les exportations avant et après chaque dévaluation (écart en points de PIB par rapport à l'année de la dévaluation) */
