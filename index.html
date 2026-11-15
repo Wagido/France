@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comptes de la France</title>
+<meta name="description" content="Le PIB français décomposé, le circuit de l'argent public (qui paie, qui reçoit) et le patrimoine de la France, à partir des données Eurostat et INSEE.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="wrap">
+  <h1>Comptes de la France</h1>
+  <p class="sub">Ce que la France produit, ce que l'argent public prélève et redistribue, ce qu'elle possède et ce qu'elle doit. Données officielles Eurostat et INSEE.</p>
+</header>
+<div class="top">
+  <div class="wrap">
+    <div class="navbar">
+    <nav class="tabs" aria-label="Sections">
+      <span class="tab-group">Économie</span>
+      <a href="#pib">Le PIB</a>
+      <a href="#argent-public">L'argent public</a>
+      <a href="#simulateur">Couper la dépense ?</a>
+      <a href="#duree">Dette sur 30 ans</a>
+      <a href="#patrimoine">Patrimoine</a>
+      <a href="#commerce">Commerce extérieur</a>
+      <a href="#comparer">Comparer les pays</a>
+      <span class="tab-group">Ressources</span>
+      <a href="#energie">Énergie</a>
+      <a href="#matieres">Matières</a>
+      <a href="#eau">Eau</a>
+      <a href="#sols">Sols</a>
+      <a href="#alimentation">Alimentation</a>
+      <a href="#climat">Climat</a>
+      <a href="#dechets">Déchets</a>
+      <a href="#territoire">Territoire</a>
+      <a href="#transports">Transports</a>
+      <span class="tab-group">Société</span>
+      <a href="#demographie">Démographie</a>
+      <a href="#immigration">Immigration</a>
+      <a href="#travail">Temps de travail</a>
+      <a href="#emploi">Emploi</a>
+      <a href="#justice">Justice</a>
+      <a href="#sante">Santé</a>
+      <a href="#education">Éducation</a>
+      <a href="#logement">Logement</a>
+      <a href="#inegalites">Inégalités</a>
+      <span class="tab-group">·</span>
+      <a href="#methode">Méthode</a>
+    </nav>
+    <label class="ctl geo-ctl">Pays <select id="geo"></select></label>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+<h2 class="group-title" id="g-economie">Économie</h2>
+<!-- =============================================================== PIB -->
+<section id="pib" class="panel">
+  <div class="panel-head">
+    <h2>Le PIB et ce qu'il contient vraiment <span class="geo-tag"></span></h2>
+    <label class="ctl">Année <select id="pib-year"></select></label>
+  </div>
+  <div class="kpis" id="pib-kpis"></div>
+  <div id="pib-body">
+
+  <h3>Ce qui, dans le PIB, correspond à des ventes à des clients</h3>
+  <p class="lead">Le PIB additionne des choses de nature très différente. Une partie correspond à des biens et services vendus à un prix à des clients qui les ont choisis. Une autre est comptée par <em>convention</em> : services publics évalués à ce qu'ils coûtent, loyers fictifs des propriétaires, impôts inclus dans les prix, remplacement du matériel usé. Cette cascade retire ces conventions une à une.</p>
+  <div id="cascade" class="chart"></div>
+  <ol class="notes" id="cascade-notes"></ol>
+  <div class="callout">
+    <p><strong>Ce que la cascade ne dit pas.</strong> Retirer une ligne ne veut pas dire qu'elle est « inutile » : un enseignant ou une infirmière produisent quelque chose de réel, mais la comptabilité ne peut pas le mesurer autrement que par leur salaire. À l'inverse, une activité marchande peut être sans valeur (être payé 100 € pour creuser un trou puis le reboucher fait 100 € de PIB). Aucune statistique ne sait trier l'utile de l'inutile : elle sait seulement distinguer ce qui passe par un prix librement payé de ce qui est compté par convention.</p>
+  </div>
+
+  <h3>Part de la production marchande payée avec de l'argent public</h3>
+  <p class="lead">Même la valeur ajoutée « vendue » contient des ventes dont le client final est l'État ou la Sécurité sociale. Ces montants sont des dépenses (pas de la valeur ajoutée), on les montre donc à côté, sans les soustraire.</p>
+  <div id="achats" class="chart"></div>
+
+  <h3>Les trois façons de mesurer le même PIB</h3>
+  <div class="grid3">
+    <div><h4>Qui produit ?</h4><div id="pib-production" class="chart"></div></div>
+    <div><h4>Qui dépense ?</h4><div id="pib-demande" class="chart"></div></div>
+    <div><h4>Qui touche les revenus ?</h4><div id="pib-revenus" class="chart"></div></div>
+  </div>
+
+  <h3>Valeur ajoutée par activité</h3>
+  <div id="pib-branches" class="chart"></div>
+
+  </div>
+  <h3>Dépenses, recettes publiques et dette depuis 1995</h3>
+  <div id="pib-histo" class="chart"></div>
+</section>
+
+<!-- =============================================================== SANKEY -->
+<section id="argent-public" class="panel">
+  <div class="panel-head">
+    <h2>Qui paie, comment, à qui, pour quoi, qui reçoit <span class="geo-fixed">France</span></h2>
+    <div class="ctl-row">
+      <label class="ctl">Année <select id="sk-year"></select></label>
+      <div class="seg" id="sk-unit" role="radiogroup" aria-label="Unité">
+        <button data-u="md" aria-pressed="true">Md€</button>
+        <button data-u="pib">% du PIB</button>
+        <button data-u="hab">€ / habitant</button>
+      </div>
+    </div>
+  </div>
+  <div class="kpis" id="sk-kpis"></div>
+  <p class="lead">Chaque bande a l'épaisseur d'un montant. À gauche, les ménages classés en dix tranches de niveau de vie (D1 : les 10 % les plus modestes, D10 : les 10 % les plus aisés). Tous les impôts, y compris ceux payés par les entreprises, finissent par être supportés par des ménages : l'INSEE les leur attribue (via les prix, les salaires, les dividendes). Survolez ou touchez un bloc pour suivre son argent.</p>
+  <div class="sk-scroll"><div id="sankey" class="chart"></div></div>
+  <div class="legend-row" id="sk-legend"></div>
+  <div class="callout small" id="sk-explain"></div>
+</section>
+
+<!-- =============================================================== SIMULATEUR -->
+<section id="simulateur" class="panel">
+  <div class="panel-head">
+    <h2>Couper la dépense fait-il baisser la dette ? <span class="geo-tag"></span></h2>
+  </div>
+  <p class="lead">Quand l'État dépense 1 € de moins, l'activité ralentit d'un montant <em>m</em> (le <strong>multiplicateur</strong>). Moins d'activité, c'est moins d'impôts : la dette baisse donc de moins d'1 €, et le PIB baisse aussi. Le ratio dette/PIB peut finalement monter. Il monte si <strong>m &gt; 1 / (dette/PIB + taux de prélèvements)</strong>.</p>
+  <div class="simu">
+    <div class="simu-ctl">
+      <label><span>Montant de la coupe <output id="o-cut"></output></span><input type="range" id="s-cut" min="5" max="150" step="5" value="40"></label>
+      <label><span>Multiplicateur <em>m</em> <output id="o-m"></output></span><input type="range" id="s-m" min="0" max="2" step="0.05" value="0.8"></label>
+      <label><span>Dette publique (% du PIB) <output id="o-b"></output></span><input type="range" id="s-b" min="20" max="200" step="1"></label>
+      <label><span>Taux de prélèvements (% du PIB) <output id="o-t"></output></span><input type="range" id="s-t" min="20" max="60" step="0.5"></label>
+      <button class="link" id="s-reset">Revenir aux valeurs actuelles du pays</button>
+    </div>
+    <div class="simu-out">
+      <div id="simu-result" class="result"></div>
+      <div id="simu-chart" class="chart"></div>
+    </div>
+  </div>
+  <div class="callout small">
+    <p><strong>Limites.</strong> C'est l'effet de la première année. Le multiplicateur s'estompe ensuite, alors que l'économie réalisée se répète chaque année : à moyen terme une coupe finit généralement par réduire la dette, sauf si la récession laisse des séquelles durables. Les estimations du multiplicateur vont d'environ 0,3 à plus de 1,5. Il est plus élevé en récession, quand la banque centrale ne baisse pas ses taux, et pour l'investissement public. Il est plus faible quand l'économie tourne à plein. Il varie aussi selon la dépense : supprimer un poste de fonctionnaire retire immédiatement sa valeur ajoutée du PIB, alors que baisser une prestation n'agit qu'à travers la consommation de ceux qui la touchent.</p>
+  </div>
+</section>
+
+<!-- =============================================================== SUR LA DUREE -->
+<section id="duree" class="panel">
+  <div class="panel-head">
+    <h2>Sur 30 ans : la charge de la dette et ce que finance l'argent public <span class="geo-tag"></span></h2>
+  </div>
+
+  <h3>La charge d'intérêts de la dette publique</h3>
+  <div class="kpis" id="int-kpis"></div>
+  <p class="lead" id="int-lead"></p>
+  <div id="int-chart" class="chart"></div>
+
+  <h3>Les dépenses publiques par fonction, en % du PIB</h3>
+  <p class="lead">Chaque couche est une fonction (classification COFOG, toutes administrations publiques consolidées). Cliquez sur une fonction de la légende pour l'isoler.</p>
+  <div id="fn-chart" class="chart"></div>
+  <div class="legend-row fn-legend" id="fn-legend"></div>
+  <h4 style="margin-top:18px" id="fn-var-title"></h4>
+  <div id="fn-var" class="chart"></div>
+</section>
+
+<!-- =============================================================== PATRIMOINE -->
+<section id="patrimoine" class="panel">
+  <div class="panel-head">
+    <h2>Ce que la France possède et ce qu'elle doit <span class="geo-fixed">France</span></h2>
+    <label class="ctl">Année <select id="bs-year"></select></label>
+  </div>
+  <div class="kpis" id="bs-kpis"></div>
+  <div id="bs-chart" class="chart"></div>
+  <div class="table-scroll"><table id="bs-table" class="bs"></table></div>
+  <div class="callout small" id="bs-notes"></div>
+</section>
+
+<section id="commerce" class="panel">
+  <div class="panel-head">
+    <h2>Commerce extérieur : ce que la France achète et vend <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="co-kpis"></div>
+  <h3>Les 20 premiers partenaires (milliards d'euros)</h3>
+  <p class="lead">À gauche ce que la France leur achète, à droite ce qu'elle leur vend ; le solde est à droite de chaque ligne. Biens uniquement : les services (tourisme, conseil, finance), où la France est excédentaire, n'y sont pas.</p>
+  <div id="co-partners" class="chart"></div><div class="legend-row" id="co-legend"></div>
+  <div class="grid2">
+    <div><h3>Les plus gros déficits par produit</h3><div id="co-def" class="chart"></div></div>
+    <div><h3>Les plus gros excédents par produit</h3><div id="co-exc" class="chart"></div></div>
+  </div>
+  <h3>Importations, exportations et solde depuis 2002</h3>
+  <div id="co-hist" class="chart"></div>
+</section>
+
+<!-- =============================================================== COMPARER -->
+<section id="comparer" class="panel">
+  <div class="panel-head">
+    <h2>Comparer les pays</h2>
+    <div class="seg" id="cmp-view" role="radiogroup" aria-label="Indicateur">
+      <button data-v="cascade" aria-pressed="true">Que contient le PIB ?</button>
+      <button data-v="fonctions">Dépenses par fonction</button>
+      <button data-v="apu">Dette et intérêts</button>
+      <button data-v="bilan">Actifs et passifs</button>
+    </div>
+  </div>
+  <p class="lead" id="cmp-lead"></p>
+  <div id="cmp-chart" class="chart"></div>
+  <div class="legend-row" id="cmp-legend"></div>
+  <div class="callout small" id="cmp-notes"></div>
+</section>
+
+<h2 class="group-title" id="g-ressources">Ressources</h2>
+<!-- =============================================================== ENERGIE -->
+<section id="energie" class="panel">
+  <div class="panel-head">
+    <h2>L'énergie : d'où elle vient, où elle va <span class="geo-tag"></span></h2>
+    <div class="ctl-row">
+      <label class="ctl">Année <select id="en-year"></select></label>
+      <div class="seg" id="en-unit" role="radiogroup" aria-label="Unité">
+        <button data-u="twh" aria-pressed="true">TWh</button>
+        <button data-u="pct">% du total</button>
+        <button data-u="hab">kWh / habitant</button>
+      </div>
+    </div>
+  </div>
+  <div class="kpis" id="en-kpis"></div>
+  <p class="lead">Toute l'énergie qui entre dans le pays ou y est produite, et ce qu'elle devient : transformée en électricité ou en carburants, consommée par les logements, les transports, l'industrie, ou perdue en chaleur. Le nucléaire est compté comme la chaleur produite dans les réacteurs : environ deux tiers sont perdus (rejetés dans les rivières ou l'air) pour un tiers transformé en électricité. Survolez un bloc pour suivre ses flux.</p>
+  <div class="sk-scroll"><div id="en-sankey" class="chart"></div></div>
+
+  <h3>Depuis 1965 : la consommation d'énergie primaire par source</h3>
+  <div class="ctl-row" style="margin-bottom:6px">
+    <div class="seg" id="en-hist-kind" role="radiogroup" aria-label="Série">
+      <button data-k="primaire" aria-pressed="true">Énergie primaire</button>
+      <button data-k="electricite">Production d'électricité</button>
+    </div>
+  </div>
+  <div id="en-hist" class="chart"></div>
+  <div class="legend-row" id="en-hist-legend"></div>
+
+  <div id="en-live-wrap">
+    <h3>L'électricité française en direct (7 derniers jours, pas de 15 minutes)</h3>
+    <p class="lead">Données RTE éCO2mix, chargées à l'ouverture de la page depuis le portail ODRÉ. Production par filière (empilée), consommation (trait noir) et intensité carbone du kWh produit en France.</p>
+    <div id="en-live" class="chart"><p class="empty">Chargement…</p></div>
+    <div class="legend-row" id="en-live-legend"></div>
+  </div>
+
+  <h3>Comparer les pays (dernière année publiée)</h3>
+  <div id="en-cmp" class="chart"></div>
+  <div class="callout small">
+    <p><b>Lire ces chiffres.</b> « Indépendance » = production nationale ÷ énergie disponible. Elle compte le nucléaire comme national, bien que l'uranium soit importé : c'est la convention internationale. La Norvège dépasse 100 % parce qu'elle exporte son pétrole et son gaz. Les « pertes de conversion » mesurent la chaleur qui n'est pas transformée en électricité dans les centrales thermiques et nucléaires. Elles sont élevées en France à cause du nucléaire, faibles dans les pays où l'électricité vient de l'hydraulique ou de l'éolien, qui n'ont pas de pertes thermiques.</p>
+  </div>
+</section>
+
+<!-- =============================================================== MATIERES -->
+<section id="matieres" class="panel">
+  <div class="panel-head">
+    <h2>Les matières : ce que le pays extrait, importe, accumule et jette <span class="geo-tag"></span></h2>
+    <label class="ctl">Année <select id="mt-year"></select></label>
+  </div>
+  <div class="kpis" id="mt-kpis"></div>
+  <p class="lead">En millions de tonnes (Mt). Tout ce qui entre dans l'économie : récoltes, bois, minerais, sable, pétrole… extraits sur le territoire ou importés, plus les matières recyclées. Puis ce que ces matières deviennent : brûlées pour l'énergie, exportées, ou utilisées comme matériaux. Dans ce dernier cas, elles s'ajoutent au stock (bâtiments, routes, objets durables) ou finissent en déchets.</p>
+  <div class="sk-scroll"><div id="mt-sankey" class="chart"></div></div>
+
+  <h3 id="mt-detail-title">Le détail par matière</h3>
+  <p class="lead">Extraction sur le territoire, importations et exportations, en millions de tonnes. Les importations comptent le poids des produits tels qu'ils passent la frontière : un lingot d'aluminium pèse bien moins que la bauxite qu'il a fallu extraire pour le produire.</p>
+  <div id="mt-detail" class="chart"></div>
+
+  <h3>Consommation de matières par habitant depuis 2000</h3>
+  <p class="lead">Tonnes par habitant et par an. Les aires montrent la consommation apparente (extraction + importations − exportations), par matière. Le trait noir est l'<strong>empreinte matières</strong> : elle compte aussi tout ce qu'il a fallu extraire à l'étranger pour fabriquer nos importations. Le trait bleu (axe de droite) est le taux de recyclage : la part des matières utilisées qui viennent de déchets recyclés.</p>
+  <div id="mt-hist" class="chart"></div>
+  <div class="legend-row" id="mt-hist-legend"></div>
+
+  <h3>Comparer les pays</h3>
+  <div id="mt-cmp" class="chart"></div>
+</section>
+
+<section id="eau" class="panel">
+  <div class="panel-head">
+    <h2>Eau : ce qui est prélevé, et pour quoi <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="eau-kpis"></div>
+  <p class="lead">Eau douce prélevée dans les rivières et les nappes, en milliards de m³ (km³). L'essentiel de l'eau de refroidissement des centrales est rendu aux rivières, réchauffé ; l'irrigation, elle, est en grande partie évaporée.</p>
+  <div id="eau-chart" class="chart"></div><div class="legend-row" id="eau-legend"></div>
+  <h3>Comparer les pays</h3><div id="eau-cmp" class="chart"></div>
+</section>
+
+<section id="sols" class="panel">
+  <div class="panel-head">
+    <h2>Sols : à quoi sert le territoire <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="so-kpis"></div>
+  <h3>Ce qui couvre le sol (enquête LUCAS, par points d'observation)</h3>
+  <div id="so-chart" class="chart"></div><div class="legend-row" id="so-legend"></div>
+  <div class="grid2">
+    <div><h3>À quoi le sol est utilisé (dernière enquête)</h3><div id="so-usage" class="chart"></div></div>
+    <div><h3>Comparer les pays</h3><div id="so-cmp" class="chart"></div></div>
+  </div>
+</section>
+
+<section id="alimentation" class="panel">
+  <div class="panel-head">
+    <h2>Alimentation : d'où vient ce que l'on mange, et où ça va <span class="geo-tag"></span></h2>
+    <label class="ctl">Année <select id="al-year"></select></label>
+  </div>
+  <div class="kpis" id="al-kpis"></div>
+  <p class="lead">Bilans alimentaires de la FAO, en milliers de tonnes. Une partie des produits est comptée deux fois quand elle est transformée (le colza en huile, la betterave en sucre) : la colonne « Transformation » renvoie vers d'autres produits.</p>
+  <div class="sk-scroll"><div id="al-sankey" class="chart sk-fixed"></div></div>
+  <div class="grid2">
+    <div><h3>Calories disponibles par jour et par personne</h3><div id="al-kcal" class="chart"></div></div>
+    <div><h3>Comparer les pays</h3><div id="al-cmp" class="chart"></div></div>
+  </div>
+</section>
+
+<section id="climat" class="panel">
+  <div class="panel-head">
+    <h2>Climat : les émissions de gaz à effet de serre <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="cl-kpis"></div>
+  <p class="lead">En millions de tonnes d'équivalent CO₂ (chaque gaz est converti selon son effet sur le réchauffement). Ce sont les émissions produites sur le territoire. Celles des produits importés (l'« empreinte carbone ») n'y sont pas, et celles des forêts et des sols sont montrées à part, sous zéro quand elles absorbent du CO₂.</p>
+  <div id="cl-chart" class="chart"></div><div class="legend-row" id="cl-legend"></div>
+  <div class="grid2">
+    <div><h3>Par gaz (dernière année)</h3><div id="cl-gaz" class="chart"></div></div>
+    <div><h3>Comparer les pays</h3><div id="cl-cmp" class="chart"></div></div>
+  </div>
+</section>
+
+<section id="dechets" class="panel">
+  <div class="panel-head">
+    <h2>Déchets : qui les produit, ce qu'ils deviennent <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="wa-kpis"></div>
+  <div class="grid2">
+    <div><h3>Qui produit les déchets</h3><div id="wa-sect" class="chart"></div></div>
+    <div><h3>Ce qu'ils deviennent (déchets traités)</h3><div id="wa-trt" class="chart"></div></div>
+  </div>
+  <h3>Déchets ménagers par habitant et leur traitement</h3><div id="wa-men" class="chart"></div><div class="legend-row" id="wa-men-legend"></div>
+  <h3>Comparer les pays</h3><div id="wa-cmp" class="chart"></div>
+</section>
+
+<!-- =============================================================== TERRITOIRE -->
+<section id="territoire" class="panel">
+  <div class="panel-head">
+    <h2>Le territoire : qui produit, qui consomme <span class="geo-fixed">France</span></h2>
+    <div class="ctl-row">
+      <div class="seg" id="tr-view" role="radiogroup" aria-label="Indicateur">
+        <button data-v="elec" aria-pressed="true">Électricité</button>
+        <button data-v="pib_hab">PIB / hab.</button>
+        <button data-v="revenu_hab">Revenu / hab.</button>
+        <button data-v="ratio">Revenu ÷ PIB</button>
+        <button data-v="pop">Population</button>
+      </div>
+      <label class="ctl">Année <select id="tr-year"></select></label>
+    </div>
+  </div>
+  <div class="kpis" id="tr-kpis"></div>
+  <div class="tr-grid">
+    <div><div id="tr-map" class="chart"></div><div class="legend-row" id="tr-legend"></div></div>
+    <div id="tr-side"></div>
+  </div>
+  <div class="callout small">
+    <p><b>Électricité.</b> RTE publie, pour chaque région, sa production, sa consommation et son solde d'échanges, mais pas les flux d'une région à l'autre. Les flèches sont donc une <em>estimation</em> : chaque région excédentaire alimente d'abord les régions déficitaires les plus proches, et ce qui reste part à l'étranger. La Corse a son propre réseau et n'est pas couverte.</p>
+    <p><b>PIB et revenu.</b> Le PIB est produit là où sont les entreprises et les administrations. Le revenu disponible des ménages, lui, est perçu là où ils habitent : salaires des navetteurs, retraites, prestations, après impôts. En Île-de-France, le revenu ne représente qu'environ 45 % du PIB, contre 65 à 70 % dans la plupart des autres régions. C'est la mesure la plus directe de la redistribution entre territoires (sièges sociaux, impôts, retraités qui s'installent ailleurs).</p>
+  </div>
+</section>
+
+<section id="transports" class="panel">
+  <div class="panel-head">
+    <h2>Transports : comment se déplacent les personnes et les marchandises <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="tr2-kpis"></div>
+  <div class="grid2">
+    <div><h3>Voyageurs : part de chaque mode (km parcourus sur le territoire)</h3><div id="tr2-modal" class="chart"></div><div class="legend-row" id="tr2-modal-legend"></div></div>
+    <div><h3>Marchandises : part de chaque mode (tonnes-km)</h3><div id="tr2-fret" class="chart"></div><div class="legend-row" id="tr2-fret-legend"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="tr2-cmp" class="chart"></div>
+</section>
+
+<h2 class="group-title" id="g-societe">Société</h2>
+<section id="demographie" class="panel">
+  <div class="panel-head">
+    <h2>Démographie : la population, son âge, son avenir <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="de-kpis"></div>
+  <div class="grid2">
+    <div><h3>Pyramide des âges</h3><div id="de-pyr" class="chart"></div><div class="legend-row" id="de-pyr-legend"></div></div>
+    <div><h3>Naissances, décès, solde migratoire depuis 1960</h3><div id="de-flux" class="chart"></div>
+      <h3>Projection jusqu'en 2100 (scénario central d'Eurostat)</h3><div id="de-proj" class="chart"></div><div class="legend-row" id="de-proj-legend"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="de-cmp" class="chart"></div>
+</section>
+
+<section id="immigration" class="panel">
+  <div class="panel-head">
+    <h2>Immigration : qui arrive, qui part <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="im-kpis"></div>
+  <p class="lead">« Né à l'étranger » inclut les Français nés hors de France (enfants d'expatriés, rapatriés d'Algérie…). Les flux comptent les personnes qui s'installent ou quittent le pays pour au moins un an.</p>
+  <div class="grid2">
+    <div><h3>Population née à l'étranger</h3><div id="im-stock" class="chart"></div><div class="legend-row" id="im-stock-legend"></div></div>
+    <div><h3>Arrivées et départs par an</h3><div id="im-flux" class="chart"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="im-cmp" class="chart"></div>
+</section>
+
+<section id="travail" class="panel">
+  <div class="panel-head">
+    <h2>Temps de travail : combien d'heures produisent le PIB <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="tt-kpis"></div>
+  <h3>Heures travaillées par an, par secteur</h3>
+  <div id="tt-chart" class="chart"></div><div class="legend-row" id="tt-legend"></div>
+  <h3>Une journée moyenne (enquête emploi du temps)</h3>
+  <div id="tt-jour" class="chart"></div><div class="legend-row" id="tt-jour-legend"></div>
+  <h3>Comparer les pays</h3><div id="tt-cmp" class="chart"></div>
+</section>
+
+<section id="emploi" class="panel">
+  <div class="panel-head">
+    <h2>Emploi : qui travaille, qui cherche, qui est hors du marché <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="em-kpis"></div>
+  <div class="grid2">
+    <div><h3>Les 15-64 ans : en emploi, au chômage, inactifs</h3><div id="em-act" class="chart"></div><div class="legend-row" id="em-act-legend"></div>
+      <h3>Chômage et emploi depuis 1995</h3><div id="em-taux" class="chart"></div><div class="legend-row" id="em-taux-legend"></div></div>
+    <div><h3>Les métiers (personnes en emploi)</h3><div id="em-met" class="chart"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="em-cmp" class="chart"></div>
+</section>
+
+<section id="justice" class="panel">
+  <div class="panel-head">
+    <h2>Justice et sécurité <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="ju-kpis"></div>
+  <div class="grid2">
+    <div><h3 id="ju-off-title">Infractions enregistrées</h3><div id="ju-off" class="chart"></div>
+      <p class="muted" style="font-size:.85rem">Faits enregistrés par la police et la gendarmerie : ils dépendent aussi des plaintes déposées et des définitions nationales, les comparaisons entre pays sont donc fragiles.</p></div>
+    <div><h3>Détenus et places de prison</h3><div id="ju-pris" class="chart"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="ju-cmp" class="chart"></div>
+</section>
+
+<section id="sante" class="panel">
+  <div class="panel-head">
+    <h2>Santé : combien de temps on vit, de quoi on meurt, qui paie les soins <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="sa-kpis"></div>
+  <h3>Qui paie quels soins (dépense courante de santé)</h3>
+  <div class="sk-scroll"><div id="sa-flux" class="chart sk-fixed"></div></div>
+  <div class="grid2">
+    <div><h3>Espérance de vie à la naissance</h3><div id="sa-esp" class="chart"></div><div class="legend-row" id="sa-esp-legend"></div></div>
+    <div><h3 id="sa-causes-title">Causes de décès</h3><div id="sa-causes" class="chart"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="sa-cmp" class="chart"></div>
+</section>
+
+<section id="education" class="panel">
+  <div class="panel-head">
+    <h2>Éducation : élèves, diplômes, coût <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="ed-kpis"></div>
+  <div class="grid2">
+    <div><h3>Élèves et étudiants par niveau</h3><div id="ed-eff" class="chart"></div></div>
+    <div><h3>Dépense par élève et par an</h3><div id="ed-cout" class="chart"></div>
+      <h3>Niveau de diplôme des adultes</h3><div id="ed-dip" class="chart"></div><div class="legend-row" id="ed-dip-legend"></div></div>
+  </div>
+  <h3>Comparer les pays</h3><div id="ed-cmp" class="chart"></div>
+</section>
+
+<section id="logement" class="panel">
+  <div class="panel-head">
+    <h2>Logement : propriétaires, locataires, place, prix <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="lo-kpis"></div>
+  <div class="grid2">
+    <div><h3>Statut d'occupation (part de la population)</h3><div id="lo-statut" class="chart"></div><div class="legend-row" id="lo-statut-legend"></div></div>
+    <div><h3>Prix des logements et inflation (base 100 en 2015)</h3><div id="lo-prix" class="chart"></div><div class="legend-row" id="lo-prix-legend"></div></div>
+  </div>
+  <p class="muted" style="font-size:.85rem">Les logements vacants ne sont pas publiés par Eurostat dans une série annuelle. En France, l'INSEE en compte environ 3 millions (8 % du parc), d'après ses estimations annuelles du parc de logements.</p>
+  <h3>Comparer les pays</h3><div id="lo-cmp" class="chart"></div>
+</section>
+
+<section id="inegalites" class="panel">
+  <div class="panel-head">
+    <h2>Inégalités et pauvreté <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="in-kpis"></div>
+  <div class="grid2">
+    <div><h3 id="in-dec-title">Part du revenu de chaque dixième</h3><div id="in-dec" class="chart"></div>
+      <p class="muted" style="font-size:.85rem">Revenu disponible (après impôts directs et prestations) par unité de consommation, enquête SRCV. Ces chiffres ne comptent pas les services publics gratuits (école, santé) : voir le diagramme « L'argent public » pour une vision élargie.</p></div>
+    <div><h3>Pauvreté et inégalités dans le temps</h3><div id="in-serie" class="chart"></div><div class="legend-row" id="in-serie-legend"></div></div>
+  </div>
+  <p class="muted" style="font-size:.85rem">Le patrimoine des ménages par tranche n'est pas publié par Eurostat. En France, d'après l'INSEE, les 10 % de ménages les mieux dotés détiennent environ la moitié du patrimoine brut.</p>
+  <h3>Comparer les pays</h3><div id="in-cmp" class="chart"></div>
+</section>
+
+<!-- =============================================================== METHODE -->
+<section id="methode" class="panel prose">
+  <h2>Sources et méthode</h2>
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_gdp/default/table" target="_blank" rel="noopener">Eurostat nama_10_gdp</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/nasa_10_nf_tr/default/table" target="_blank" rel="noopener">nasa_10_nf_tr</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_a10/default/table" target="_blank" rel="noopener">nama_10_a10</a> : PIB, valeur ajoutée par secteur et par branche, amortissement.</li>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_co3_p3/default/table" target="_blank" rel="noopener">Eurostat nama_10_co3_p3</a> : loyers imputés des propriétaires occupants.</li>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">Eurostat gov_10a_main</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_taxag/default/table" target="_blank" rel="noopener">gov_10a_taxag</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table" target="_blank" rel="noopener">gov_10a_exp</a> (COFOG), <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10dd_edpt1/default/table" target="_blank" rel="noopener">gov_10dd_edpt1</a> : comptes des administrations publiques par sous-secteur, impôts détaillés, dépenses par fonction, dette.</li>
+    <li><a href="https://www.insee.fr/fr/statistiques/8974371" target="_blank" rel="noopener">INSEE, Insee Analyses n° 118 : comptes nationaux distribués 2023</a> : répartition des prélèvements et des transferts par vingtième de niveau de vie.</li>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_nfa_bs/default/table" target="_blank" rel="noopener">Eurostat nama_10_nfa_bs</a> et <a href="https://ec.europa.eu/eurostat/databrowser/view/nasa_10_f_bs/default/table" target="_blank" rel="noopener">nasa_10_f_bs</a> : patrimoine non financier (dont terrains) et comptes financiers par secteur.</li>
+  </ul>
+  <h3>Énergie</h3>
+  <ul>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/nrg_bal_c/default/table" target="_blank" rel="noopener">Eurostat nrg_bal_c</a> : bilans énergétiques complets (production, échanges, transformation, consommation finale par secteur), en TWh. C'est la source du diagramme de flux d'Eurostat. Les transformations secondaires (hauts fourneaux, injection de biométhane, mélange des biocarburants) sont comptées en net. Pas de bilan publié pour la Suisse.</li>
+    <li><a href="https://github.com/owid/energy-data" target="_blank" rel="noopener">Our World in Data, energy-data</a> (licence CC BY) : consommation d'énergie primaire et production d'électricité par source depuis 1965 (méthode de substitution pour les renouvelables, différente d'Eurostat).</li>
+    <li><a href="https://odre.opendatasoft.com/explore/dataset/eco2mix-national-tr/" target="_blank" rel="noopener">ODRÉ, éCO2mix national temps réel</a> (RTE, Licence Ouverte) : production, consommation, échanges et taux de CO2 au pas de 15 minutes.</li>
+  </ul>
+  <h3>Matières</h3>
+  <ul>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/env_ac_sd/default/table" target="_blank" rel="noopener">Eurostat env_ac_sd</a> : flux de matières pour l'économie circulaire, les données du diagramme d'Eurostat. Les matières recyclées sont déduites : matières mises en œuvre − extraction − importations. La part « brûlée pour l'énergie » est ce qui n'est ni exporté ni utilisé comme matériau.</li>
+    <li><a href="https://ec.europa.eu/eurostat/databrowser/view/env_ac_mfa/default/table" target="_blank" rel="noopener">env_ac_mfa</a> (comptes de flux de matières), <a href="https://ec.europa.eu/eurostat/databrowser/view/env_ac_rme/default/table" target="_blank" rel="noopener">env_ac_rme</a> (empreinte matières) et <a href="https://ec.europa.eu/eurostat/databrowser/view/cei_srm030/default/table" target="_blank" rel="noopener">cei_srm030</a> (taux d'utilisation circulaire).</li>
+  </ul>
+  <h3>Commerce, climat, eau, sols, alimentation, société</h3>
+  <ul>
+    <li>Commerce extérieur : <a href="https://ec.europa.eu/eurostat/web/international-trade-in-goods/database" target="_blank" rel="noopener">Eurostat Comext</a> (DS-059341), biens uniquement, par partenaire et par chapitre du système harmonisé.</li>
+    <li>Climat : <a href="https://ec.europa.eu/eurostat/databrowser/view/env_air_gge/default/table" target="_blank" rel="noopener">env_air_gge</a> (inventaires nationaux transmis à l'ONU). Eau : <a href="https://ec.europa.eu/eurostat/databrowser/view/env_wat_abs/default/table" target="_blank" rel="noopener">env_wat_abs</a>. Sols : enquête LUCAS (<a href="https://ec.europa.eu/eurostat/databrowser/view/lan_lcv_ovw/default/table" target="_blank" rel="noopener">lan_lcv_ovw</a>, lan_use_ovw).</li>
+    <li>Alimentation : <a href="https://www.fao.org/faostat/fr/#data/FBS" target="_blank" rel="noopener">FAOSTAT, bilans alimentaires</a> (CC BY 4.0). Les « calories disponibles » comprennent le gaspillage au niveau des ménages.</li>
+    <li>Démographie et immigration : demo_gind, demo_pjan, proj_23np, migr_pop3ctb, migr_imm1ctz, migr_emi1ctz. Temps de travail : nama_10_a10_e (heures travaillées, comptabilité nationale) et l'enquête emploi du temps 2010 (tus_00age). Justice : crim_off_cat, crim_pris_cap, crim_just_job.</li>
+  </ul>
+  <h3>Santé, éducation, logement, transports, emploi, inégalités, déchets</h3>
+  <ul>
+    <li>Santé : demo_mlexpec (espérance de vie), hlth_cd_aro (causes de décès), hlth_sha11_hchf et hlth_sha11_hf (comptes de la santé, système SHA). Éducation : educ_uoe_enra01, educ_uoe_fini04, edat_lfse_03.</li>
+    <li>Logement : enquête SRCV (ilc_lvho02, 03, 05a, 07a, 50a), indice des prix des logements prc_hpi_a, prix à la consommation prc_hicp_aind. Transports : tran_hv_psmod, tran_hv_frmod, rail_pa_total, avia_paoc, road_go_ta_tott.</li>
+    <li>Emploi : enquête Emploi (lfsa_pganws, lfsa_egais, lfsa_esgaed, une_rt_a, lfsi_emp_a). Inégalités : ilc_di01, ilc_di12, ilc_li02, ilc_li10, ilc_mdsd11. Déchets : env_wasgen, env_wastrt, env_wasmun.</li>
+  </ul>
+  <h3>Autres pays</h3>
+  <ul>
+    <li>Les 27 pays de l'Union européenne, la Norvège, la Suisse et l'Islande, à partir des mêmes séries Eurostat (montants convertis en euros pour les pays hors zone euro). Le diagramme de flux et le bilan détaillé n'existent que pour la France : la répartition par tranche de niveau de vie vient de l'INSEE.</li>
+    <li>Chaque pays est montré à la dernière année publiée, qui peut différer d'un pays à l'autre (indiquée à côté de son nom). Quand Eurostat ne publie pas les loyers imputés d'un pays, ils sont laissés à zéro et signalés.</li>
+    <li>Le PIB de l'Irlande et, dans une moindre mesure, du Luxembourg est gonflé par les bénéfices de multinationales qui y sont domiciliées : tous les ratios en % du PIB y sont tirés vers le bas.</li>
+  </ul>
+  <h3>Séries longues</h3>
+  <ul>
+    <li>Intérêts : intérêts versés par l'ensemble des administrations (D41, comptabilité nationale), un peu supérieurs à la fonction « opérations de la dette publique » de la COFOG (qui exclut certains frais). Dette : dette au sens de Maastricht, en valeur nominale.</li>
+    <li>Fonctions : dépenses consolidées des administrations publiques, regroupées comme dans le diagramme de flux. Les ruptures de classification sont celles d'Eurostat.</li>
+  </ul>
+  <h3>Hypothèses du diagramme de flux</h3>
+  <ul>
+    <li>Les montants par impôt, par administration et par fonction sont ceux d'Eurostat pour l'année choisie. La répartition entre tranches de niveau de vie applique à ces montants les proportions de l'INSEE pour 2023 (dernière année publiée).</li>
+    <li>Les flux entre administrations (dotations de l'État aux collectivités, transferts à la Sécurité sociale) sont présentés en net. Les transferts en capital entre administrations sont répartis au prorata des transferts versés et reçus par chacune, faute de matrice détaillée.</li>
+    <li>Les dépenses par fonction de chaque administration sont rendues cohérentes avec le total consolidé par un ajustement proportionnel (méthode RAS).</li>
+    <li>L'emprunt d'une année est le déficit public. Il est attribué à l'administration qui l'a creusé (État, collectivités ; la Sécurité sociale était proche de l'équilibre).</li>
+    <li>Défense, police, économie, environnement et administration générale sont répartis entre tranches selon la clé « dépenses collectives » de l'INSEE (à peu près égale par personne). Les intérêts de la dette vont à un bloc « Prêteurs » : environ la moitié des titres de dette publique française est détenue à l'étranger.</li>
+    <li>Les recettes non fiscales (ventes de services publics, revenus du patrimoine public, fonds européens…) ne sont pas réparties par tranche.</li>
+  </ul>
+  <h3>Mise à jour</h3>
+  <p>Les fichiers bruts sont dans <code>data/sources/</code>. Pour actualiser : <code>bash scripts/fetch.sh</code> puis <code>python3 scripts/build.py</code>, qui regénère <code>data/finances.json</code>.</p>
+  <p class="muted" id="gen-date"></p>
+</section>
+</main>
+
+<div id="tip" class="tip" role="tooltip" hidden></div>
+
+<script src="lib/d3.min.js"></script>
+<script src="lib/d3-sankey.min.js"></script>
+<script src="app.js"></script>
+<script src="energie.js"></script>
+<script src="matieres.js"></script>
+<script src="territoire.js"></script>
+<script src="themes.js"></script>
+<script src="societe.js"></script>
+</body>
+</html>
