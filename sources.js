@@ -9,6 +9,7 @@ const ORG = {
   odre: { nom: "RTE / ODRÉ", desc: "Open Data Réseaux Énergies : données de RTE (éCO2mix) et des gestionnaires de réseaux.", licence: "Licence Ouverte Etalab 2.0", url: "https://odre.opendatasoft.com" },
   fao: { nom: "FAO (FAOSTAT)", desc: "Organisation des Nations unies pour l'alimentation et l'agriculture.", licence: "CC BY 4.0", url: "https://www.fao.org/faostat" },
   owid: { nom: "Our World in Data", desc: "Séries longues compilées par l'université d'Oxford (Energy Institute, Ember…).", licence: "CC BY 4.0", url: "https://github.com/owid/energy-data" },
+  sdes: { nom: "SDES (ministère de la Transition écologique)", desc: "Service des données et études statistiques : énergie, climat, environnement, logement, transports.", licence: "Licence Ouverte Etalab 2.0", url: "https://www.statistiques.developpement-durable.gouv.fr" },
   ign: { nom: "IGN / france-geojson", desc: "Contours simplifiés des régions, d'après les données de l'IGN.", licence: "Licence Ouverte Etalab", url: "https://github.com/gregoiredavid/france-geojson" },
 };
 // [thème, organisme, code ou nom, description, lien (optionnel), rythme de publication]
@@ -44,6 +45,9 @@ const S = [
   ["Eau", "eurostat", "env_wat_abs", "Prélèvements d'eau douce par usage", null, "annuel ou biennal"],
   ["Sols", "eurostat", "lan_lcv_ovw / lan_use_ovw", "Occupation et usage des sols (enquête LUCAS)", null, "tous les 3 à 4 ans"],
   ["Alimentation", "fao", "Bilans alimentaires (FBS)", "Production, échanges, usages et calories par produit", "https://www.fao.org/faostat/fr/#data/FBS", "annuel"],
+  ["Empreinte carbone", "sdes", "L'empreinte carbone de la France (SDES et INSEE)", "Empreinte par poste de consommation, série depuis 1990, origine des émissions, comparaison internationale", "https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2024", "annuel (octobre)"],
+  ["Empreinte carbone", "eurostat", "env_ac_ghgfp / env_ac_ainah_r2", "Empreinte carbone de tous les pays par usage final et pays d'origine (modèle FIGARO), émissions directes des ménages", null, "annuel"],
+  ["Temps de travail", "eurostat", "lfsa_eppga / lfsa_eppgai / lfsa_ewhan2", "Temps partiel (dont subi), heures hebdomadaires à temps plein et partiel", null, "annuel"],
   ["Climat", "eurostat", "env_air_gge", "Émissions de gaz à effet de serre par secteur (inventaire national)", null, "annuel (juin)"],
   ["Déchets", "eurostat", "env_wasgen / env_wastrt / env_wasmun", "Production et traitement des déchets", null, "biennal (ménagers : annuel)"],
   ["Transports", "eurostat", "tran_hv_psmod / tran_hv_frmod / rail_pa_total / avia_paoc / road_go_ta_tott", "Parts modales et volumes de voyageurs et de marchandises", null, "annuel"],

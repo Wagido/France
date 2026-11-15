@@ -48,18 +48,33 @@ function qui() {
     [M(q.independants), "indépendants"],
     [M(actifs), `personnes en emploi, soit ${pct(100 * actifs / q.total, 0)} de la population, pour ${M(q.total - actifs)} qui ne travaillent pas`],
   ]);
-  // treemap
-  const el = $("#qf-tree"), w = Math.max(320, el.clientWidth), h = w < 600 ? 520 : 420;
-  const root = d3.hierarchy({ children: cats.map(([k, l, c]) => ({ k, l, c, v: q[k] })) }).sum(d => d.v || 0).sort((a, b) => b.value - a.value);
-  d3.treemap().size([w, h]).paddingInner(2)(root);
+  // deux blocs : ceux qui travaillent, ceux qui ne travaillent pas
+  const TRAV = ["salaries_prives", "agents_publics", "salaries", "independants", "seniors_actifs"];
+  const el = $("#qf-tree"), w = Math.max(320, el.clientWidth), narrow = w < 640, h = narrow ? 760 : 440, gap = 14, top = 34;
+  const lum = c => { const x = d3.rgb(c); return (0.299 * x.r + 0.587 * x.g + 0.114 * x.b) / 255; };
+  const blocs = [["Travaillent", cats.filter(([k]) => TRAV.includes(k))], ["Ne travaillent pas", cats.filter(([k]) => !TRAV.includes(k))]]
+    .map(([t, cs]) => ({ t, cs, v: d3.sum(cs, ([k]) => q[k] || 0) }));
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
-  const g = svg.selectAll("g").data(root.leaves()).join("g").attr("transform", d => `translate(${d.x0},${d.y0})`);
-  g.append("rect").attr("width", d => d.x1 - d.x0).attr("height", d => d.y1 - d.y0).attr("fill", d => d.data.c).attr("rx", 3)
-    .on("pointermove", (ev, d) => showTip(`<b>${esc(d.data.l)}</b><br>${M(d.data.v)} · ${pct(100 * d.data.v / q.total)} de la population`, ev)).on("pointerleave", hideTip);
-  g.append("text").attr("x", 6).attr("y", 18).attr("fill", "#fff").attr("font-size", 13).attr("font-weight", 700).attr("pointer-events", "none")
-    .text(d => (d.x1 - d.x0) > 70 && (d.y1 - d.y0) > 24 ? M(d.data.v) : "");
-  g.append("text").attr("x", 6).attr("y", 34).attr("fill", "#fff").attr("font-size", 11).attr("pointer-events", "none")
-    .text(d => { const wd = d.x1 - d.x0; if (wd < 90 || (d.y1 - d.y0) < 44) return ""; const t = d.data.l.split(" (")[0]; return t.length * 6 > wd ? t.slice(0, Math.floor(wd / 6.2)) + "…" : t; });
+  const tot = blocs[0].v + blocs[1].v;
+  let off = 0;
+  blocs.forEach((B, i) => {
+    const share = B.v / tot;
+    const bw = narrow ? w : (w - gap) * share, bh = narrow ? (h - 2 * top - gap) * share : h - top;
+    const x0 = narrow ? 0 : off, y0 = narrow ? off + top : top;
+    svg.append("text").attr("x", x0).attr("y", y0 - 12).attr("font-size", 14).attr("font-weight", 650).attr("fill", "var(--ink)")
+      .text(`${B.t} : ${M(B.v)}`).append("tspan").attr("fill", "var(--muted)").attr("font-weight", 400).text(`  ${pct(100 * B.v / q.total, 0)} de la population`);
+    const root = d3.hierarchy({ children: B.cs.map(([k, l, c]) => ({ k, l, c, v: q[k] })) }).sum(d => d.v || 0).sort((a, b) => b.value - a.value);
+    d3.treemap().size([bw, bh]).paddingInner(2)(root);
+    const g = svg.append("g").attr("transform", `translate(${x0},${y0})`).selectAll("g").data(root.leaves()).join("g").attr("transform", d => `translate(${d.x0},${d.y0})`);
+    g.append("rect").attr("width", d => d.x1 - d.x0).attr("height", d => d.y1 - d.y0).attr("fill", d => d.data.c).attr("rx", 4)
+      .on("pointermove", (ev, d) => showTip(`<b>${esc(d.data.l)}</b><br>${M(d.data.v)} · ${pct(100 * d.data.v / q.total)} de la population`, ev)).on("pointerleave", hideTip);
+    const fg = d => lum(d.data.c) > 0.62 ? "#1d1f24" : "#fff";
+    g.append("text").attr("x", 7).attr("y", 19).style("fill", fg).attr("font-size", 13).attr("font-weight", 650).attr("pointer-events", "none")
+      .text(d => (d.x1 - d.x0) > 50 && (d.y1 - d.y0) > 24 ? M(d.data.v) : "");
+    g.append("text").attr("x", 7).attr("y", 35).style("fill", fg).attr("font-size", 11).attr("pointer-events", "none")
+      .text(d => { const wd = d.x1 - d.x0; if (wd < 80 || (d.y1 - d.y0) < 44) return ""; const t = d.data.l.split(" (")[0]; return t.length * 6 > wd ? t.slice(0, Math.floor(wd / 6.2)) + "…" : t; });
+    off += narrow ? bh + top + gap : bw + gap;
+  });
   el.replaceChildren(svg.node());
   legend("#qf-legend", cats.map(([, l, c]) => [l, c]));
   // évolution
@@ -210,7 +225,7 @@ function origine() {
       R.origine.map(([k, l, v]) => `${esc(l)} : ${n0(v[r.i])} € (${pct(100 * Math.max(0, v[r.i]) / r.tot, 0)})`).join("<br>"), ev)).on("pointerleave", hideTip);
     let acc = 0;
     G3.forEach(([k, l, c]) => { const v = r.sh[k]; g.append("rect").attr("x", x(r.i)).attr("width", x.bandwidth()).attr("y", y(acc + v)).attr("height", y(acc) - y(acc + v)).attr("fill", c); acc += v; });
-    g.append("text").attr("x", x(r.i) + x.bandwidth() / 2).attr("y", y(100 - r.sh.patri / 2)).attr("dy", ".35em").attr("text-anchor", "middle").attr("font-size", 9.5).attr("fill", "#fff").attr("font-weight", 700).text(r.sh.patri >= 8 ? Math.round(r.sh.patri) + "%" : "");
+    g.append("text").attr("x", x(r.i) + x.bandwidth() / 2).attr("y", y(100 - r.sh.patri / 2)).attr("dy", ".35em").attr("text-anchor", "middle").attr("font-size", 9.5).style("fill", "#fff").attr("font-weight", 700).text(r.sh.patri >= 8 ? Math.round(r.sh.patri) + "%" : "");
   });
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(i => (i + 1) * 5 + " %").tickValues(rows.map(r => r.i).filter(i => w > 700 || i % 2 === 1)));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());

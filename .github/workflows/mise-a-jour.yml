@@ -38,6 +38,7 @@ jobs:
           python3 scripts/build_themes.py
           python3 scripts/build_societe.py
           python3 scripts/build_eco2.py
+          python3 scripts/build_empreinte.py
       - name: Enregistrement si les données ont changé
         run: |
           git config user.name "mise-a-jour-auto"

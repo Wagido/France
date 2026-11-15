@@ -190,6 +190,22 @@ json.dump(out, open(sys.argv[2], "w"), indent=0)
 PY
 rm -f "$TMPX"
 
+# Empreinte carbone (Eurostat, modèle FIGARO) : par pays consommateur, usage final et produit ; origine des émissions
+mkdir -p empreinte
+for g in $PAYS; do
+  get empreinte/ghgfp_$g.json "$E/env_ac_ghgfp?c_dest=$g&c_orig=WORLD"
+  get empreinte/ghgfp_orig_$g.json "$E/env_ac_ghgfp?c_dest=$g&na_item=TOTAL&nace_r2=TOTAL"
+done
+# Empreinte carbone de la France par poste de consommation (SDES, ministère de la Transition écologique).
+# L'adresse change à chaque édition annuelle : on cherche le fichier « données et graphiques » sur la page de l'édition la plus récente.
+SDES="https://www.statistiques.developpement-durable.gouv.fr"
+for an in $(seq $(( $(date +%Y) - 1 )) -1 2023); do
+  P=$(curl -fsSL -A "Mozilla/5.0" "$SDES/lempreinte-carbone-de-la-france-de-1990-$an" 2>/dev/null) || continue
+  M=$(echo "$P" | grep -oE 'href="/media/[0-9]+/download[^"]*"[^>]*title="donn[^"]*' | head -1 | grep -oE '/media/[0-9]+/download' || true)
+  [ -n "$M" ] && get empreinte/sdes_empreinte.xlsx "$SDES$M" && break
+done
+get empreinte/env_ac_ainah_r2.json "$E/env_ac_ainah_r2?airpol=GHG&unit=THS_T&nace_r2=HH_TRA&nace_r2=HH_HEAT&nace_r2=HH_OTH&sinceTimePeriod=2010$GEO"
+
 # Commerce extérieur de la France (Comext) : par partenaire et par chapitre de produits
 C="https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-059341"
 YR=$(date +%Y); LAST=$((YR-1))

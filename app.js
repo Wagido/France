@@ -63,13 +63,7 @@ function init() {
   drawInterets(); drawFonctions();
   if (sel.value !== "FR") setGeo(sel.value);
   $("#gen-date").textContent = `Données générées le ${new Date(DATA.genere_le).toLocaleDateString("fr-FR", { dateStyle: "long" })}.`;
-  // onglet actif selon la section visible
-  const links = [...document.querySelectorAll(".tabs a")];
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
-  }), { rootMargin: "-40% 0px -55% 0px" });
-  document.querySelectorAll("section.panel").forEach(s => io.observe(s));
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { drawSankey(); drawSimu(); drawSimu10(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); }, 150); });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { drawSankey(); drawSimu(); drawSimu10(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); drawCroissance(); drawDevFisc(); }, 150); });
   document.querySelectorAll(".geo-tag").forEach(t => t.textContent = "France");
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { drawSankey(); drawSimu(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); });
 }

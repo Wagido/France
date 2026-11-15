@@ -5,18 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Comptes de la France</title>
 <meta name="description" content="Le PIB français décomposé, le circuit de l'argent public (qui paie, qui reçoit) et le patrimoine de la France, à partir des données Eurostat et INSEE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
+<script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
-<header class="wrap">
-  <h1>Comptes de la France</h1>
-  <p class="sub">Ce que la France produit, ce que l'argent public prélève et redistribue, ce qu'elle possède et ce qu'elle doit. Données officielles Eurostat et INSEE.</p>
-</header>
-<div class="top">
+<header class="site">
+  <div class="wrap head-row">
+    <a class="brand" href="#pib"><span class="brand-name">Comptes de la France</span><span class="brand-sub">Ce que le pays produit, prélève, redistribue, possède et doit. Données officielles Eurostat, INSEE, SDES.</span></a>
+    <button id="theme-btn" class="icon-btn" type="button" aria-label="Basculer entre thème clair et sombre" title="Thème clair / sombre"><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+  </div>
   <div class="wrap">
-    <div class="navbar">
-    <nav class="tabs" aria-label="Sections">
-      <span class="tab-group">Économie</span>
+    <nav class="groups" aria-label="Thèmes">
+      <button type="button" data-group="economie">Économie</button>
+      <button type="button" data-group="ressources">Ressources</button>
+      <button type="button" data-group="societe">Société</button>
+      <button type="button" data-group="sources-g">Sources</button>
+    </nav>
+    <nav class="tabs" data-group="economie" aria-label="Économie" hidden>
       <a href="#pib">Le PIB</a>
       <a href="#population">Qui fait quoi</a>
       <a href="#argent-public">L'argent public</a>
@@ -27,17 +35,20 @@
       <a href="#commerce">Commerce extérieur</a>
       <a href="#industrie">Industrie et innovation</a>
       <a href="#comparer">Comparer les pays</a>
-      <span class="tab-group">Ressources</span>
+    </nav>
+    <nav class="tabs" data-group="ressources" aria-label="Ressources" hidden>
       <a href="#energie">Énergie</a>
       <a href="#matieres">Matières</a>
       <a href="#eau">Eau</a>
       <a href="#sols">Sols</a>
       <a href="#alimentation">Alimentation</a>
       <a href="#climat">Climat</a>
+      <a href="#empreinte">Empreinte carbone</a>
       <a href="#dechets">Déchets</a>
       <a href="#territoire">Territoire</a>
       <a href="#transports">Transports</a>
-      <span class="tab-group">Société</span>
+    </nav>
+    <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
       <a href="#immigration">Immigration</a>
       <a href="#travail">Temps de travail</a>
@@ -48,17 +59,16 @@
       <a href="#logement">Logement</a>
       <a href="#inegalites">Inégalités</a>
       <a href="#capital">Capital social et culturel</a>
-      <span class="tab-group">·</span>
+    </nav>
+    <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
       <a href="#sources">Sources</a>
       <a href="#methode">Méthode</a>
     </nav>
-    <label class="ctl geo-ctl">Pays <select id="geo"></select></label>
-    </div>
   </div>
-</div>
+</header>
+<label class="ctl geo-ctl" id="geo-ctl">Pays <select id="geo"></select></label>
 
 <main class="wrap">
-<h2 class="group-title" id="g-economie">Économie</h2>
 <!-- =============================================================== PIB -->
 <section id="pib" class="panel">
   <div class="panel-head">
@@ -296,7 +306,6 @@
   <div class="callout small" id="cmp-notes"></div>
 </section>
 
-<h2 class="group-title" id="g-ressources">Ressources</h2>
 <!-- =============================================================== ENERGIE -->
 <section id="energie" class="panel">
   <div class="panel-head">
@@ -411,6 +420,31 @@
   </div>
 </section>
 
+<section id="empreinte" class="panel">
+  <div class="panel-head">
+    <h2>Empreinte carbone : ce que pèse notre consommation <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="ec-kpis"></div>
+  <p class="lead">L'empreinte compte tous les gaz à effet de serre émis pour satisfaire la consommation des habitants, où qu'ils soient émis : en France, mais aussi en Chine pour un téléphone ou au Brésil pour du soja. À la différence des émissions « du territoire » (onglet Climat), elle ajoute les importations et retire les exportations.</p>
+  <div id="ec-fr">
+    <h3>Les grands postes de consommation (France)</h3>
+    <div id="ec-postes" class="chart"></div>
+    <p class="muted" id="ec-postes-note" style="font-size:.85rem"></p>
+    <div class="grid2">
+      <div><h3>Depuis 1990</h3><div id="ec-serie" class="chart"></div><div class="legend-row" id="ec-serie-legend"></div></div>
+      <div><h3>Où ces gaz sont-ils émis ?</h3><div id="ec-orig" class="chart"></div></div>
+    </div>
+    <div class="callout small" id="ec-txt"></div>
+    <h3>La France dans le monde (tonnes par habitant)</h3>
+    <div id="ec-monde" class="chart"></div>
+  </div>
+  <h3 id="ec-usage-h">Qui consomme : ménages, services publics, investissements</h3>
+  <div id="ec-usage" class="chart"></div><div class="legend-row" id="ec-usage-legend"></div>
+  <p class="muted" id="ec-usage-note" style="font-size:.85rem"></p>
+  <h3>Comparer les pays</h3><div id="ec-cmp" class="chart"></div>
+  <p class="muted" style="font-size:.84rem">Eurostat, modèle entrées-sorties mondial FIGARO (env_ac_ghgfp), émissions directes des ménages comprises. Pour la France, le SDES et l'INSEE publient leur propre calcul, très proche (8,2 t contre 8,1 t par habitant en 2024).</p>
+</section>
+
 <section id="dechets" class="panel">
   <div class="panel-head">
     <h2>Déchets : qui les produit, ce qu'ils deviennent <span class="geo-tag"></span></h2>
@@ -462,7 +496,6 @@
   <h3>Comparer les pays</h3><div id="tr2-cmp" class="chart"></div>
 </section>
 
-<h2 class="group-title" id="g-societe">Société</h2>
 <section id="demographie" class="panel">
   <div class="panel-head">
     <h2>Démographie : la population, son âge, son avenir <span class="geo-tag"></span></h2>
@@ -719,6 +752,8 @@
 <script src="themes.js"></script>
 <script src="societe.js"></script>
 <script src="eco2.js"></script>
+<script src="empreinte.js"></script>
 <script src="sources.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>
