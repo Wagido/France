@@ -257,3 +257,5 @@ main.wrap { position: relative; overflow: hidden; }
 :root[data-theme="dark"] .callout.violet { background: #241d36; }
 .hist-ev { font-size: .82rem; margin: 10px 0 4px; columns: 2 360px; column-gap: 28px; }
 .hist-ev li { break-inside: avoid; margin: 0 0 6px; }
+.pib-somme { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 2px solid var(--ink); font-weight: 650; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.pib-somme small { font-weight: 500; color: var(--muted); }

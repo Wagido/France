@@ -136,6 +136,11 @@ function drawPib() {
   barList($("#pib-production"), P.production.map((d, i) => ({ ...d, color: pal[i] })), P.pib, { max: P.pib * 0.55 });
   barList($("#pib-demande"), P.demande.map((d, i) => ({ ...d, color: pal[i] })), P.pib, { max: P.pib * 0.55 });
   barList($("#pib-revenus"), P.revenus.map((d, i) => ({ ...d, color: pal[i + 3] })), P.pib, { max: P.pib * 0.55 });
+  // la somme de chaque colonne retombe sur le PIB
+  [["#pib-production", P.production], ["#pib-demande", P.demande], ["#pib-revenus", P.revenus]].forEach(([sel, items]) => {
+    const tot = d3.sum(items, d => d.v);
+    $(sel).insertAdjacentHTML("beforeend", `<div class="pib-somme"><span>Total</span><span>${md(tot)} <small>= PIB${Math.abs(tot - P.pib) > 1 ? ` (${md(P.pib)}, écart d'arrondi)` : ""}</small></span></div>`);
+  });
   const vaTot = d3.sum(P.branches, d => d.v);
   barList($("#pib-branches"), [...P.branches].sort((a, b) => b.v - a.v), vaTot);
   $("#pib-branches").insertAdjacentHTML("beforeend", `<p class="muted" style="font-size:.85rem;margin:8px 0 0">Pourcentages de la valeur ajoutée totale (${md(vaTot)}, soit le PIB moins les impôts nets sur les produits).</p>`);
