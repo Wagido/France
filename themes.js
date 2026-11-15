@@ -154,7 +154,7 @@ function drawEau() {
   const top = Object.entries(last.usages).sort((a, b) => b[1] - a[1])[0];
   kpis("#eau-kpis", [
     [n1(last.total) + " km³", `d'eau douce prélevée en ${last.annee} (milliards de m³)`],
-    last.par_hab && [n0(last.par_hab) + " m³", `par habitant, soit ${n0(last.par_hab * 1000 / 365)} litres par jour`],
+    last.par_hab && [n0(last.par_hab) + " m³", `par habitant ; ${n0(last.par_hab * 1000 / 365)} litres par jour`],
     top && [pct(100 * top[1] / last.total, 0), `pour : ${lab[top[0]].toLowerCase()}`],
   ]);
   const data = S.map(s => ({ annee: s.annee, ...s.usages }));
@@ -174,7 +174,7 @@ function drawSols() {
   const a0 = S[0];
   kpis("#so-kpis", [
     [n0(last.total_km2) + " km²", `de territoire (enquête LUCAS ${last.annee})`],
-    [pct(share(last, "A00")), `artificialisé (bâtiments, routes, parkings…), contre ${pct(share(a0, "A00"))} en ${a0.annee}`],
+    [pct(share(last, "A00")), `artificialisé (bâtiments, routes, parkings…) ; ${pct(share(a0, "A00"))} en ${a0.annee}`],
     [pct(share(last, "C00"), 0), "couvert de forêts et de bois"],
     [pct(share(last, "B00") + share(last, "E00"), 0), "de cultures et de prairies"],
   ]);
@@ -328,10 +328,10 @@ function drawImmig() {
   const I = D()?.immigration; if (!I) { kpis("#im-kpis", []); empty("#im-stock"); return; }
   const st = I.stock.at(-1), fl = [...I.flux].reverse().find(f => f.immigration != null);
   kpis("#im-kpis", [
-    st && [n1(st.nes_etranger / 1e6) + " M", `de personnes nées à l'étranger au 1er janvier ${st.annee}, soit ${pct(100 * st.nes_etranger / st.total)} de la population`],
+    st && [n1(st.nes_etranger / 1e6) + " M", `de personnes nées à l'étranger au 1er janvier ${st.annee} ; ${pct(100 * st.nes_etranger / st.total)} de la population`],
     st && st.nes_hors_ue != null && [n1(st.nes_hors_ue / 1e6) + " M", "nées hors de l'Union européenne"],
-    fl && [n0(fl.immigration), `arrivées en ${fl.annee} (dont ${n0(fl.immig_nationaux || 0)} nationaux de retour)`],
-    fl && fl.emigration != null && [n0(fl.emigration), `départs (dont ${n0(fl.emig_nationaux || 0)} nationaux)`],
+    fl && [n0(fl.immigration), `arrivées en ${fl.annee} ; dont ${n0(fl.immig_nationaux || 0)} nationaux de retour`],
+    fl && fl.emigration != null && [n0(fl.emigration), `départs ; dont ${n0(fl.emig_nationaux || 0)} nationaux`],
   ]);
   if (I.stock.length) {
     const data = I.stock.filter(s => s.nes_ue != null && s.nes_hors_ue != null).map(s => ({ annee: s.annee, ue: s.nes_ue, hors_ue: s.nes_hors_ue, part: 100 * s.nes_etranger / s.total }));
@@ -405,10 +405,10 @@ function drawJustice() {
   const det = last("detenus"), jug = last("juges"), pol = last("policiers");
   const lastOff = [...S].reverse().find(s => Object.values(s.taux).some(v => v != null));
   kpis("#ju-kpis", [
-    det && [n0(det.detenus), `personnes détenues en ${det.annee}` + (det.places ? `, pour ${n0(det.places)} places (${pct(100 * det.detenus / det.places, 0)} d'occupation)` : "")],
+    det && [n0(det.detenus), `personnes détenues en ${det.annee}` + (det.places ? ` ; ${n0(det.places)} places ; ${pct(100 * det.detenus / det.places, 0)} d'occupation` : "")],
     det?.detenus_100k && [n0(det.detenus_100k), "détenus pour 100 000 habitants"],
     pol && [n0(pol.policiers), `policiers et gendarmes (${pol.annee})`],
-    jug && [n0(jug.juges), `juges professionnels (${jug.annee}), soit ${n1(jug.juges_100k)} pour 100 000 habitants`],
+    jug && [n0(jug.juges), `juges professionnels (${jug.annee}) ; ${n1(jug.juges_100k)} pour 100 000 habitants`],
   ]);
   if (lastOff) {
     const L = Object.fromEntries(J.categories);

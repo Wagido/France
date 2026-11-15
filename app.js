@@ -515,8 +515,8 @@ function drawInterets() {
   const lowT = I.filter(d => d.taux_apparent != null).reduce((a, b) => (!a || b.taux_apparent < a.taux_apparent) ? b : a, null);
   kpis($("#int-kpis"), [
     [md(last.interets), `intérêts payés en ${last.annee} (${md(first.interets)} en ${first.annee})`],
-    [pct(last.pct_recettes), `des recettes publiques (maximum : ${pct(peak.pct_recettes)} en ${peak.annee})`],
-    [last.taux_apparent != null ? pct(last.taux_apparent, 2) : "–", lowT ? `taux apparent (minimum : ${pct(lowT.taux_apparent, 2)} en ${lowT.annee})` : "taux apparent"],
+    [pct(last.pct_recettes), `des recettes publiques ; maximum : ${pct(peak.pct_recettes)} en ${peak.annee}`],
+    [last.taux_apparent != null ? pct(last.taux_apparent, 2) : "–", lowT ? `taux apparent ; minimum : ${pct(lowT.taux_apparent, 2)} en ${lowT.annee}` : "taux apparent"],
     [last.dette ? md(last.dette) : "–", `dette publique fin ${last.annee}${dFirst ? ` (${md(dFirst.dette)} en ${dFirst.annee})` : ""}`],
   ]);
   const el = $("#int-chart");
@@ -739,9 +739,9 @@ function drawBilan() {
   const extNet = d3.sum(secs, s => sum(s.fa) - sum(s.fl));
   const faTot = d3.sum(secs, s => sum(s.fa)), flTot = d3.sum(secs, s => sum(s.fl));
   kpis($("#bs-kpis"), [
-    [md(nfTot + faTot), `total des actifs (brut) : ${md(nfTot)} de biens réels + ${md(faTot)} d'actifs financiers`],
+    [md(nfTot + faTot), `total des actifs (brut) ; biens réels : ${md(nfTot)} ; actifs financiers : ${md(faTot)}`],
     ["− " + md(flTot), "total des dettes et passifs"],
-    ["= " + md(netTot), `patrimoine net de la France fin ${y}, soit ${eur(netTot * 1e9 / B.population)} par habitant et ${nf1.format(netTot / B.pib)} années de PIB`],
+    ["= " + md(netTot), `patrimoine net de la France fin ${y} ; ${eur(netTot * 1e9 / B.population)} par habitant ; ${nf1.format(netTot / B.pib)} années de PIB`],
     [(extNet >= 0 ? "+" : "−") + md(Math.abs(extNet)), "dont position financière nette face à l'étranger (le reste, ce sont les biens réels)"],
   ]);
   const ext = yy => { const S = DATA.patrimoine[yy]?.secteurs; return S ? d3.sum(S, s => sum(s.fa) - sum(s.fl)) : null; };

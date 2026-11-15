@@ -22,7 +22,7 @@ function draw() {
   const M = k => n1(k / 1000) + " M";
   const tousFT = f.A + f.B + f.C + (f.DE || 0), large = b.chomeurs + b.halo + b.sous_emploi;
   kpis("#ch-kpis", [
-    [M(b.chomeurs), `chômeurs au sens du BIT (INSEE), soit ${pct(b.taux)} des actifs, ${ql(b.t)}`],
+    [M(b.chomeurs), `chômeurs au sens du BIT (INSEE), ${ql(b.t)} ; ${pct(b.taux)} des actifs`],
     [M(f.A), "inscrits à France Travail en catégorie A, le chiffre le plus cité (sans aucune activité)"],
     [M(tousFT), "inscrits toutes catégories (A à E)"],
     [M(large), "sans emploi ou en manque de travail : chômeurs + halo + sous-emploi"],

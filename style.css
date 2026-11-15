@@ -83,6 +83,7 @@ button.link { background: none; border: 0; color: var(--accent); font: inherit; 
 .kpi .v { font-size: 1.45rem; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.25; }
 .kpi .t { font-size: .84rem; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 4px; }
 .kpi .l { color: var(--muted); font-size: .78rem; line-height: 1.45; margin-top: 4px; }
+.kpi ul.l { margin: 6px 0 0; padding-left: 1.05em; } .kpi ul.l li { margin: 1px 0; } .kpi ul.l li::marker { color: var(--muted); }
 
 .chart { width: 100%; }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -96,7 +97,9 @@ button.link { background: none; border: 0; color: var(--accent); font: inherit; 
 .notes { color: var(--muted); font-size: .88rem; padding-left: 20px; max-width: 95ch; }
 .notes li { margin: 4px 0; }
 .notes b { color: var(--ink); }
-.callout { background: var(--callout); border-radius: 12px; padding: 14px 18px; margin: 16px 0; max-width: 100ch; }
+.callout { background: #f3eefc; border-radius: 12px; padding: 14px 18px; margin: 16px 0; max-width: 100ch; font-size: .9rem; }
+:root[data-theme="dark"] .callout { background: #241d36; }
+.callout ul, .callout ol { margin: 6px 0; padding-left: 1.3em; } .callout li { margin: 3px 0; }
 .callout p { margin: 6px 0; }
 .callout.small { font-size: .9rem; }
 
@@ -112,14 +115,14 @@ button.link { background: none; border: 0; color: var(--accent); font: inherit; 
 /* sankey */
 .sk-scroll { overflow-x: auto; margin: 0 -4px; padding: 0 4px; }
 #sankey, #en-sankey, #mt-sankey { min-width: 980px; }
-#sankey .link , #en-sankey .link , #mt-sankey .link { fill: none; stroke-opacity: var(--link-opacity); transition: stroke-opacity .15s; }
+#sankey .link , #en-sankey .link , #mt-sankey .link , #rp-sankey .link { fill: none; stroke-opacity: var(--link-opacity); transition: stroke-opacity .15s; }
 #sankey .link.dim, #en-sankey .link.dim , #mt-sankey .link.dim { stroke-opacity: .06; }
 #sankey .link.hi, #en-sankey .link.hi , #mt-sankey .link.hi { stroke-opacity: .85; }
 #sankey .node rect , #en-sankey .node rect , #mt-sankey .node rect { shape-rendering: crispEdges; cursor: pointer; }
-#sankey .node text , #en-sankey .node text , #mt-sankey .node text { font-size: 11.5px; pointer-events: none; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
-#sankey .node text .amt , #en-sankey .node text .amt , #mt-sankey .node text .amt { fill: var(--muted); font-variant-numeric: tabular-nums; }
+#sankey .node text , #en-sankey .node text , #mt-sankey .node text , #rp-sankey .node text { font-size: 11.5px; pointer-events: none; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+#sankey .node text .amt , #en-sankey .node text .amt , #mt-sankey .node text .amt , #rp-sankey .node text .amt { fill: var(--muted); font-variant-numeric: tabular-nums; }
 #sankey .node.dim , #en-sankey .node.dim , #mt-sankey .node.dim { opacity: .3; }
-#sankey .colhead , #en-sankey .colhead , #mt-sankey .colhead { font-size: 11px; font-weight: 700; letter-spacing: .06em; fill: var(--muted); text-transform: uppercase; }
+#sankey .colhead , #en-sankey .colhead , #mt-sankey .colhead , #rp-sankey .colhead { font-size: 11px; font-weight: 700; letter-spacing: .06em; fill: var(--muted); text-transform: uppercase; }
 .legend-row { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .82rem; color: var(--muted); margin-top: 8px; }
 .legend-row span { display: inline-flex; align-items: center; gap: 6px; }
 .legend-row i { width: 22px; height: 0; border-top: 6px solid var(--muted); display: inline-block; opacity: .7; }
@@ -259,3 +262,4 @@ main.wrap { position: relative; overflow: hidden; }
 .hist-ev li { break-inside: avoid; margin: 0 0 6px; }
 .pib-somme { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 2px solid var(--ink); font-weight: 650; font-size: .9rem; font-variant-numeric: tabular-nums; }
 .pib-somme small { font-weight: 500; color: var(--muted); }
+#rp-sankey .node text { font-size: 12.5px; stroke-width: 3px; }

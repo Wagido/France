@@ -54,5 +54,16 @@ prelev = {"tva": G("D2REC"), "revenus": G("D5REC") + G("D91REC"), "cotisations":
 out = {"annee": an, "pib": md(pib), "prelevements": {k: md(v) for k, v in prelev.items()}, "po": md(po), "autres_recettes": md(autres_rec),
        "emprunt": md(emprunt), "depenses": {k: md(v) for k, v in dep.items()}, "te": md(G("TE")), "tr": md(G("TR")),
        "detail_services": {"agents": md(G("D1PAY")), "achats": md(G("P2")), "nature": md(G("D632PAY"))}}
+# revenus par secteur (comptes de secteur, Eurostat nasa_10_nf_tr) : ce que gardent les ménages et les entreprises
+try:
+    n = getter(jstat("nasa_revenus.json", S))
+    N = lambda s, i, d="RECV": (n(sector=s, na_item=i, direct=d, time=an) or 0) / 1000
+    out["menages"] = {"rdb": round(N("S14_S15", "B6G"), 1), "salaires": round(N("S14_S15", "D1"), 1), "cotisations": round(N("S14_S15", "D61", "PAID"), 1),
+                      "independants": round(N("S14_S15", "B2A3G"), 1), "patrimoine": round(N("S14_S15", "D4") - N("S14_S15", "D4", "PAID"), 1),
+                      "prestations": round(N("S14_S15", "D62"), 1), "impots": round(N("S14_S15", "D5", "PAID"), 1),
+                      "transferts": round(N("S14_S15", "D7") - N("S14_S15", "D7", "PAID"), 1)}
+    out["entreprises"] = {"garde": round(N("S11", "B6G") + N("S12", "B6G"), 1), "profits": round(N("S11", "B2A3G") + N("S12", "B2A3G"), 1)}
+except (OSError, KeyError) as e:
+    print("revenus par secteur : données absentes", e)
 json.dump(out, open(os.path.join(HERE, "..", "data", "repartition.json"), "w"), ensure_ascii=False, indent=1)
 print(json.dumps(out, ensure_ascii=False))

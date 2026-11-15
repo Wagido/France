@@ -32,8 +32,8 @@ function draw() {
   if (F) {
     const s1 = F.serie.at(-1), s0 = F.serie[0], best = F.serie.reduce((a, b) => b.par_hab > a.par_hab ? b : a);
     kpis("#ec-kpis", [
-      [n1(s1.par_hab) + " t", `de gaz à effet de serre par Français en ${s1.annee} (${n0(s1.total)} Mt au total, estimation provisoire)`],
-      [n1(s0.par_hab) + " t", `en ${s0.annee} : les « 12 tonnes » souvent citées datent de cette époque (maximum ${n1(best.par_hab)} t en ${best.annee})`],
+      [n1(s1.par_hab) + " t", `de gaz à effet de serre par Français en ${s1.annee} ; ${n0(s1.total)} Mt au total (estimation provisoire)`],
+      [n1(s0.par_hab) + " t", `en ${s0.annee} : les « 12 tonnes » souvent citées datent de cette époque ; maximum : ${n1(best.par_hab)} t en ${best.annee}`],
       [pct(100 * s1.importe / s1.total, 0), "de l'empreinte est émise à l'étranger, pour fabriquer ce que nous importons"],
       ["2 t", "par personne vers 2050 : l'ordre de grandeur compatible avec l'accord de Paris"],
     ]);

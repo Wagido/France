@@ -11,6 +11,7 @@ get() { echo "→ $1"; curl -fsSL --retry 3 -A "Mozilla/5.0" "$2" -o "$1"; }
 get nama_10_gdp.json    "$E/nama_10_gdp?geo=FR&unit=CP_MEUR&sinceTimePeriod=1995"
 get nama_10_a10.json    "$E/nama_10_a10?geo=FR&unit=CP_MEUR&na_item=B1G&sinceTimePeriod=2015"
 get nasa_10_nf_tr.json  "$E/nasa_10_nf_tr?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015&na_item=B1G&na_item=P51C&na_item=P1&na_item=P2&na_item=B2A3G&na_item=D1&na_item=P3&na_item=P51G"
+get nasa_revenus.json  "$E/nasa_10_nf_tr?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015&na_item=B6G&na_item=D1&na_item=D61&na_item=D62&na_item=D5&na_item=D4&na_item=B2A3G&na_item=D7&sector=S11&sector=S12&sector=S13&sector=S14_S15&sector=S1"
 get nama_10_co3_p3.json "$E/nama_10_co3_p3?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015&coicop=CP041&coicop=CP042&coicop=TOTAL"
 get nama_10_pe.json     "$E/nama_10_pe?geo=FR&unit=THS_PER&na_item=POP_NC&sinceTimePeriod=2015"
 
@@ -212,6 +213,7 @@ get empreinte/env_ac_ainah_r2.json "$E/env_ac_ainah_r2?airpol=GHG&unit=THS_T&nac
 # Séries longues depuis 1949 pour l'histoire des dévaluations (INSEE, comptes nationaux annuels)
 mkdir -p histoire
 get histoire/jst_macrohistory.xlsx "https://raw.githubusercontent.com/unbalancedparentheses/forex-centuries/main/data/sources/jst/jst_macrohistory.xlsx"
+get histoire/harvard/energy_france.xlsx "https://histecon.fas.harvard.edu/energyhistory/data_sets/Energy_Data_FRANCE.xlsx"
 get histoire/ert_bil_eur_a.json "$E/ert_bil_eur_a?currency=USD&statinfo=AVG&sinceTimePeriod=1999"
 get histoire/prc_hicp_aind_fr.json "$E/prc_hicp_aind?geo=FR&coicop=CP00&unit=RCH_A_AVG&sinceTimePeriod=2015"
 get histoire/bdm_menages.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011785411+011793487+011780514+011780516+011780520+011780561+011780579+011780606+011780612+011780650+011780695+011780704+011780764+011780841+011780844+011780853+011779993"

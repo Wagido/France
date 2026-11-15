@@ -43,7 +43,7 @@ function sante() {
   const e = lastOf(S.esperance, "t"), dep = lastOf(S.depenses, "pib");
   const F = S.flux;
   kpis("#sa-kpis", [
-    e && [n1(e.t) + " ans", `d'espérance de vie à la naissance en ${e.annee} (femmes ${n1(e.f)}, hommes ${n1(e.h)})`],
+    e && [n1(e.t) + " ans", `d'espérance de vie à la naissance en ${e.annee} ; femmes : ${n1(e.f)} ans ; hommes : ${n1(e.h)} ans`],
     e?.t65 && [n1(e.t65) + " ans", "restant à vivre en moyenne à 65 ans"],
     dep && [pct(dep.pib), `du PIB consacrés aux soins en ${dep.annee}`],
     F && [n0(F.total / 1000) + " Md€", `de dépense courante de santé en ${F.annee}`],
@@ -96,9 +96,9 @@ function education() {
   const ef = E.effectifs, dp = lastOf(E.diplomes, "sup"), c = E.cout;
   kpis("#ed-kpis", [
     ef && [n1(ef.total / 1e6) + " M", `d'élèves et d'étudiants en ${ef.annee}`],
-    dp && [pct(dp.sup, 0), `des 25-64 ans diplômés du supérieur (${pct(dp.sup_jeunes, 0)} des 25-34 ans) en ${dp.annee}`],
+    dp && [pct(dp.sup, 0), `des 25-64 ans diplômés du supérieur en ${dp.annee} ; ${pct(dp.sup_jeunes, 0)} des 25-34 ans`],
     dp && [pct(dp.bas, 0), "des 25-64 ans sans diplôme du secondaire (brevet au plus)"],
-    c && [n0(c.eur["ED3_4"]) + " €", `de dépense par lycéen et par an (${c.annee}), ${n0(c.eur["ED5-8"])} € par étudiant`],
+    c && [n0(c.eur["ED3_4"]) + " €", `de dépense par lycéen et par an (${c.annee}) ; ${n0(c.eur["ED5-8"])} € par étudiant`],
   ]);
   if (ef) {
     const NV = E.labels.niveaux;
@@ -146,7 +146,7 @@ function logement() {
     s?.surpeuplement != null && [pct(s.surpeuplement), "vivent dans un logement surpeuplé"],
     s?.sous_occupation != null && [pct(s.sous_occupation, 0), "vivent dans un logement sous-occupé (pièces en trop)"],
     s?.surcout != null && [pct(s.surcout), "consacrent plus de 40 % de leur revenu au logement"],
-    p && [(p.logement >= 100 ? "+" : "") + n1(p.logement - 100) + " %", `prix des logements depuis 2015 (inflation : ${p.prix_conso ? "+" + n1(p.prix_conso - 100) + " %" : "–"})`],
+    p && [(p.logement >= 100 ? "+" : "") + n1(p.logement - 100) + " %", `prix des logements depuis 2015 ; inflation : ${p.prix_conso ? "+" + n1(p.prix_conso - 100) + " %" : "–"}`],
   ]);
   if (s) {
     const parts = [["proprio", "Propriétaires sans crédit", "#166534"], ["proprio_credit", "Propriétaires avec crédit", "#22c55e"], ["loc_marche", "Locataires au prix du marché", "#f59e0b"], ["loc_social", "Locataires à loyer réduit (HLM, logé gratuitement…)", "#3b6fd6"]];
@@ -171,8 +171,8 @@ function transports() {
   const R = D()?.transports; if (!R) { kpis("#tr2-kpis", []); empty("#tr2-modal"); return; }
   const m = lastOf(R.modal, "voiture"), f = lastOf(R.fret, "route"), v = lastOf(R.volumes, "train_gpkm"), a = lastOf(R.volumes, "avion_mpas"), c = lastOf(R.volumes, "camion_gtkm");
   kpis("#tr2-kpis", [
-    m && [pct(m.voiture, 0), `des déplacements terrestres de voyageurs en voiture (${m.annee}, en km parcourus), ${pct(m.train, 0)} en train`],
-    f && [pct(f.route, 0), `des marchandises transportées par la route (en tonnes-km), ${pct(f.rail, 0)} par le rail`],
+    m && [pct(m.voiture, 0), `des déplacements terrestres de voyageurs en voiture (${m.annee}, en km parcourus) ; ${pct(m.train, 0)} en train`],
+    f && [pct(f.route, 0), `des marchandises transportées par la route (en tonnes-km) ; ${pct(f.rail, 0)} par le rail`],
     v && [n0(v.train_gpkm) + " Md", `de voyageurs-km en train en ${v.annee}`],
     a && [n0(a.avion_mpas) + " M", `de passagers aériens en ${a.annee}`],
     c && [n0(c.camion_gtkm) + " Md", `de tonnes-km par camion (pavillon national) en ${c.annee}`],
@@ -196,7 +196,7 @@ function emploi() {
   const a = E.activite.at(-1), t = lastOf(E.taux, "chomage"), te = lastOf(E.taux, "emploi_20_64"), st = E.statuts.at(-1);
   kpis("#em-kpis", [
     a && [n1(a.emploi / 1000) + " M", `de personnes en emploi parmi les ${n1(a.pop / 1000)} M de 15-64 ans (${a.annee})`],
-    t && [pct(t.chomage), `taux de chômage, ${pct(t.chomage_jeunes, 0)} chez les moins de 25 ans`],
+    t && [pct(t.chomage), `taux de chômage ; ${pct(t.chomage_jeunes, 0)} chez les moins de 25 ans`],
     te && [pct(te.emploi_20_64, 0), "des 20-64 ans ont un emploi"],
     st && a && [pct(100 * st.SELF / a.emploi, 0), "des emplois sont des indépendants (artisans, commerçants, professions libérales, agriculteurs…)"],
   ]);
@@ -259,7 +259,7 @@ function dechets() {
   const W = D()?.dechets; if (!W) { kpis("#wa-kpis", []); empty("#wa-sect"); return; }
   const P = W.production, Tr = W.traitement, M = lastOf(W.menagers, "kg_hab");
   kpis("#wa-kpis", [
-    P && [n0(P.total / 1e6) + " Mt", `de déchets produits en ${P.annee}, soit ${n1(P.kg_hab / 1000)} t par habitant`],
+    P && [n0(P.total / 1e6) + " Mt", `de déchets produits en ${P.annee} ; ${n1(P.kg_hab / 1000)} t par habitant`],
     P && P.secteurs.F && [pct(100 * P.secteurs.F / P.total, 0), "viennent du BTP (terres, gravats)"],
     M && [n0(M.kg_hab) + " kg", `de déchets ménagers par habitant en ${M.annee}`],
     Tr && [pct(100 * (Tr.modes.RCV_R || 0) / Tr.total, 0), "des déchets traités sont recyclés"],

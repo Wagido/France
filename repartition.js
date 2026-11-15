@@ -17,12 +17,15 @@ function draw() {
   const pp = v => pct(100 * v / R.pib, 0) + " du PIB";
   const D = R.depenses, laisse = R.pib - R.po;
   const redis = D.prestations + D.aides + D.interets + D.transferts, fonct = D.services + D.investissement;
-  const prive = laisse + redis;
+  const M = R.menages, E = R.entreprises;
+  const entG = E ? E.garde : 0, entL = entG - D.aides;            // ce que gardent les entreprises, dont aides publiques
+  const menL = laisse - entL, autres = D.interets + D.transferts;   // ménages : le reste de ce qui est laissé
+  const men = menL + D.prestations, prive = laisse + redis;
   kpis("#rp-kpis", [
-    [md(R.pib), `produits en France en ${R.annee}`, "PIB"],
-    [md(R.po), `prélevés en impôts et cotisations (${pp(R.po)}) ; ${md(laisse)} restent au privé`, "Prélèvements"],
-    [md(R.te), `de dépenses publiques (${pp(R.te)}) : ${md(fonct)} font fonctionner le public, ${md(redis)} sont redistribués`, "Argent public"],
-    [md(prive), `pour les ménages et les entreprises : ${md(laisse)} laissés après prélèvements + ${md(redis)} redistribués`, "Argent privé"],
+    [md(R.pib), [`richesse produite en France en ${R.annee}`], "PIB"],
+    [md(R.po), [`impôts et cotisations : ${pp(R.po)}`, `laissé au privé : ${md(laisse)}`], "Prélèvements"],
+    [md(R.te), [`recettes : ${md(R.tr)} (prélèvements ${md(R.po)} + autres ${md(R.autres_recettes)})`, `emprunt : ${md(R.emprunt)}`, `dépensé : <b style="color:#dc2626">${pp(R.te)}</b>`], "Argent public"],
+    [md(prive), [`ménages : ${md(men)}`, `entreprises : ${md(entG)}`, `prêteurs, associations, Europe : ${md(autres)}`], "Argent privé"],
   ]);
   const det = (...a) => a.map(([l, v]) => `${l} : ${md(v)}`).join("<br>");
   const nodes = [
@@ -36,18 +39,22 @@ function draw() {
       tip: det(["Pensions et allocations", D.prestations], ["Subventions aux entreprises", D.aides], ["Intérêts de la dette", D.interets], ["Autres transferts (associations, Union européenne…)", D.transferts]) },
     { id: "fonct", label: "Fait fonctionner le public", col: 3, c: PUBLIC, sub: "écoles, hôpitaux, police, investissement",
       tip: det(["Salaires des agents publics", R.detail_services.agents], ["Soins et services achetés pour les ménages", R.detail_services.nature], ["Achats courants", R.detail_services.achats], ["Investissement", D.investissement]) },
-    { id: "prive", label: "Argent privé", col: 4, c: PRIVE, sub: "ménages et entreprises", tip: "Revenus laissés après prélèvements + argent redistribué" },
+    { id: "ent", label: "Entreprises", col: 4, c: "#1e40af", sub: "profits gardés pour investir",
+      tip: E ? `Ce que les entreprises gardent après salaires, impôts, intérêts et dividendes (revenu disponible des sociétés)<br>Profits avant tout cela (excédent d'exploitation) : ${md(E.profits)}` : "" },
+    { id: "men", label: "Ménages", col: 4, c: PRIVE, sub: "salaires, retraites, allocations…",
+      tip: M ? `Revenu disponible des ménages (comptes nationaux) : ${md(M.rdb)}<br>${det(["Salaires bruts", M.salaires], ["− cotisations sociales", M.cotisations], ["Revenus des indépendants et loyers", M.independants], ["Revenus du patrimoine (nets)", M.patrimoine], ["Pensions et allocations", M.prestations], ["− impôts sur le revenu et le patrimoine", M.impots])}` : "" },
+    { id: "aut", label: "Prêteurs, associations, Europe", col: 4, c: GRIS, tip: det(["Intérêts de la dette publique (prêteurs français et étrangers)", D.interets], ["Autres transferts (associations, Union européenne…)", D.transferts]) },
   ];
   const links = [
     ["pib", "laisse", laisse], ["pib", "po", R.po],
     ["po", "apu", R.po], ["autres", "apu", R.autres_recettes], ["emp", "apu", R.emprunt],
     ["apu", "redis", redis], ["apu", "fonct", fonct],
-    ["laisse", "prive", laisse], ["redis", "prive", redis],
+    ["laisse", "ent", entL], ["laisse", "men", menL], ["redis", "ent", D.aides], ["redis", "men", D.prestations], ["redis", "aut", autres],
   ].map(([source, target, value]) => ({ source, target, value }));
 
-  const W = 1160, H = 620, top = 24;
-  const G = d3.sankey().nodeId(d => d.id).nodeAlign(n => n.col).nodeSort(null).nodeWidth(14).nodePadding(26)
-    .extent([[1, top], [W - 200, H - 4]])({ nodes: nodes.map(n => ({ ...n })), links: links.map(l => ({ ...l })) });
+  const W = 1160, H = 660, top = 24;
+  const G = d3.sankey().nodeId(d => d.id).nodeAlign(n => n.col).nodeSort(null).linkSort(null).nodeWidth(14).nodePadding(26)
+    .extent([[1, top], [W - 215, H - 4]])({ nodes: nodes.map(n => ({ ...n })), links: links.map(l => ({ ...l })) });
   const svg = d3.create("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img").attr("aria-label", `Répartition du PIB ${R.annee} entre argent public et argent privé`);
   const defs = svg.append("defs");
   const heads = ["Ce qu'on produit", "Prélevé ou laissé", "Dépense publique", "Ce qu'elle devient", "Au final"];
@@ -67,22 +74,44 @@ function draw() {
     .on("pointermove", (ev, d) => tip(ev, esc(d.label), d.value, d.tip)).on("pointerleave", hideTip);
   const lab = node.append("text").attr("x", d => d.x1 + 6).attr("y", d => (d.y0 + d.y1) / 2).attr("dy", d => d.sub ? "-0.7em" : "-0.15em");
   lab.append("tspan").attr("font-weight", 600).text(d => d.label);
-  lab.append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").text(d => `${md(d.value)} · ${pct(100 * d.value / R.pib, 0)} du PIB`);
+  lab.append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").text(d => `${md(d.value)} · `)
+    .append("tspan").style("fill", d => d.id === "apu" ? "#dc2626" : null).attr("font-weight", d => d.id === "apu" ? 700 : null).text(d => `${pct(100 * d.value / R.pib, 0)} du PIB`);
   lab.filter(d => d.sub).append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").attr("font-size", "0.85em").text(d => d.sub);
   el.replaceChildren(svg.node());
   const p = v => pct(100 * v / R.pib, 0);
-  document.getElementById("rp-56").innerHTML = `<p><b>« ${p(R.te)} de la richesse est prélevée par l'État » : vrai chiffre, mauvaise lecture.</b></p>
-    <p>Le chiffre souvent cité (${p(R.te)} en ${R.annee}) est celui des <b>dépenses publiques</b> rapportées au PIB, pas des prélèvements. Ce que les administrations prélèvent réellement en impôts et cotisations, ce sont <b>${p(R.po)}</b> du PIB ; le reste de leur dépense est financé par l'emprunt (${p(R.emprunt)}) et par d'autres recettes (${p(R.autres_recettes)}).</p>
-    <p>Surtout, une grande partie de cet argent ne fait que transiter : <b>${p(redis)} du PIB</b> repartent aussitôt vers les ménages et les entreprises, sous forme de pensions de retraite, d'allocations, de subventions et d'intérêts. Les administrations n'utilisent elles-mêmes que <b>${p(fonct)}</b> du PIB pour faire fonctionner les services publics et investir. Au final, <b>${p(prive)}</b> du PIB est entre les mains du privé.</p>
-    <p class="muted" style="font-size:.8rem">C'est pour cela que ce ratio n'est pas une « part » du PIB : la dépense publique contient des transferts (une pension versée puis dépensée par un retraité) qui ne sont pas de la production. Avec la même méthode, un pays qui verse ses retraites par des caisses publiques (la France) affiche une dépense publique bien plus élevée qu'un pays où elles passent par des fonds de pension privés, sans que les retraités y soient plus ou moins riches. Calcul à partir d'Eurostat (gov_10a_main, nama_10_gdp).</p>`;
+  document.getElementById("rp-56").innerHTML = `<p><b>« L'État prélève <span style="color:#dc2626">${p(R.te)}</span> de la richesse » : un vrai chiffre, mal lu</b></p>
+    <p><b style="color:#dc2626">${p(R.te)}</b>, c'est la <b>dépense publique</b> rapportée au PIB (${R.annee}). Elle ne dit pas ce que l'État garde :</p>
+    <ul>
+      <li><b>Ce qui est prélevé : ${p(R.po)}</b> du PIB en impôts et cotisations. Le reste de la dépense est payé par l'emprunt (${p(R.emprunt)}) et d'autres recettes (${p(R.autres_recettes)}).</li>
+      <li><b>Ce qui est aussitôt redistribué : ${p(redis)}</b> du PIB, rendus aux ménages et aux entreprises en pensions, allocations, subventions et intérêts.</li>
+      <li><b>Ce que le public utilise lui-même : ${p(fonct)}</b> du PIB, pour les écoles, les hôpitaux, la police, l'investissement.</li>
+      <li><b>Au final, ${p(prive)}</b> du PIB est dépensé par le privé.</li>
+    </ul>
+    <p class="muted" style="font-size:.8rem">Ce ratio n'est pas une « part » du PIB : il additionne des transferts (une pension versée puis dépensée par un retraité) à de la production. Un pays qui paie ses retraites par des caisses publiques, comme la France, affiche donc une dépense publique bien plus forte qu'un pays qui passe par des fonds de pension privés. Calcul à partir d'Eurostat (gov_10a_main, nama_10_gdp).</p>`;
 
-  document.getElementById("rp-txt").innerHTML = `
-    <p><b>1. Ce qu'on produit.</b> En ${R.annee}, la France a produit <b>${md(R.pib)}</b> de richesses (le PIB).</p>
-    <p><b>2. Prélevé ou laissé.</b> Les administrations publiques (État, collectivités, Sécurité sociale) en prélèvent <b>${md(R.po)}</b> en impôts et cotisations (${pp(R.po)}). Les <b>${md(laisse)}</b> restants sont laissés aux ménages et aux entreprises.</p>
-    <p><b>3. L'argent public.</b> Avec leurs autres recettes (${md(R.autres_recettes)}) et l'emprunt (${md(R.emprunt)}), les administrations dépensent <b>${md(R.te)}</b>. C'est le sujet de l'onglet <a href="#argent-public">L'argent public</a>.</p>
-    <p><b>4. Ce qu'il devient.</b> Une part fait fonctionner le public : <b>${md(fonct)}</b> pour payer enseignants, soignants, policiers, acheter du matériel, rembourser les soins et investir. L'autre part, <b>${md(redis)}</b>, revient directement au privé sous forme de redistribution : pensions de retraite, allocations, subventions, intérêts versés aux prêteurs.</p>
-    <p><b>5. Au final, l'argent privé.</b> Les ménages et les entreprises disposent de <b>${md(prive)}</b> : ce qui leur a été laissé plus ce qui leur a été redistribué. C'est le sujet de l'onglet <a href="#argent-prive">Argent privé</a>.</p>
-    <p class="muted" style="font-size:.8rem">Le total final dépasse le PIB parce que la dépense publique est aussi financée par l'emprunt et par des recettes qui ne sont pas des impôts. « Public » ne veut pas dire « perdu » : les salaires des agents publics (${md(R.detail_services.agents)}) sont dépensés par des ménages, et les soins remboursés (${md(R.detail_services.nature)}) paient des médecins et des pharmacies privés. Une partie des intérêts va à des prêteurs étrangers, et les autres transferts comprennent la contribution au budget de l'Union européenne. Source : Eurostat, comptes des administrations publiques (gov_10a_main) et PIB (nama_10_gdp), ${R.annee}.</p>`;
+  document.getElementById("rp-txt").innerHTML = `<p><b>Comment lire le diagramme, de gauche à droite</b></p>
+    <ol>
+      <li><b>Ce qu'on produit</b> : ${md(R.pib)} de richesses en ${R.annee}.</li>
+      <li><b>Prélevé ou laissé</b> : ${md(R.po)} d'impôts et cotisations ; ${md(laisse)} restent aux ménages et aux entreprises.</li>
+      <li><b>L'argent public</b> : ces prélèvements, plus ${md(R.autres_recettes)} d'autres recettes et ${md(R.emprunt)} d'emprunt, soit ${md(R.te)} dépensés par l'État, les collectivités et la Sécurité sociale (voir <a href="#argent-public">L'argent public</a>).</li>
+      <li><b>Ce qu'il devient</b> : ${md(fonct)} font fonctionner le public (salaires des agents, soins remboursés, achats, investissement) ; ${md(redis)} reviennent au privé par la redistribution.</li>
+      <li><b>L'argent privé</b> : ${md(prive)}, ce qui a été laissé plus ce qui a été redistribué (voir <a href="#argent-prive">Argent privé</a>) :
+        <ul>
+          <li><b>ménages : ${md(men)}</b> ;</li>
+          <li><b>entreprises : ${md(entG)}</b>, les profits qu'elles gardent pour investir, après salaires, impôts, intérêts et dividendes ;</li>
+          <li><b>prêteurs, associations, Europe : ${md(autres)}</b>, intérêts de la dette et autres transferts.</li>
+        </ul></li>
+    </ol>
+    ${M ? `<p><b>D'où vient l'argent des ménages</b> (revenu disponible, comptes nationaux ${R.annee}) :</p>
+    <ul>
+      <li>salaires : ${md(M.salaires)}, dont ${md(M.cotisations)} repartent en cotisations sociales ;</li>
+      <li>revenus des indépendants et loyers : ${md(M.independants)} (dont les loyers que les propriétaires « se versent » à eux-mêmes) ;</li>
+      <li>revenus du patrimoine (intérêts, dividendes) : ${md(M.patrimoine)} ;</li>
+      <li>pensions de retraite et allocations : ${md(M.prestations)} ;</li>
+      <li>moins les impôts sur le revenu et le patrimoine : −${md(M.impots)} ;</li>
+      <li>soit <b>${md(M.rdb)}</b> à dépenser ou épargner (${pp(M.rdb)}). C'est un peu plus que les ${md(men)} du diagramme, car ce compte inclut aussi les retraites versées par des caisses privées et les dons reçus.</li>
+    </ul>` : ""}
+    <p class="muted" style="font-size:.8rem">Le total final dépasse le PIB à cause de l'emprunt et des recettes qui ne sont pas des impôts. « Public » ne veut pas dire « perdu » : les salaires des agents (${md(R.detail_services.agents)}) sont dépensés par des ménages, les soins remboursés (${md(R.detail_services.nature)}) paient des médecins et pharmacies privés. Une partie des intérêts va à l'étranger ; les autres transferts comprennent la contribution au budget européen. Source : Eurostat, gov_10a_main et nama_10_gdp, ${R.annee}.</p>`;
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

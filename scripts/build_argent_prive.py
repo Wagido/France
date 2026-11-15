@@ -70,6 +70,17 @@ with open(os.path.join(HERE, "..", "data", "sources", "energie", "owid_europe.cs
         if r.get("iso_code") == "FRA" and r.get("energy_per_capita"):
             ener[int(r["year"])] = float(r["energy_per_capita"])
 
+# énergie par habitant depuis 1800 : Gales, Malanima et Warde (Kander et al., Power to the People, 2013), via Harvard Energy History
+# (gigajoules par habitant, nourriture des hommes et des animaux comprise ; électricité primaire comptée pour l'électricité produite)
+ener_h = {}
+try:
+    wbh = openpyxl.load_workbook(os.path.join(D, "harvard", "energy_france.xlsx"), read_only=True, data_only=True)
+    for r in wbh["Totals"].iter_rows(values_only=True):
+        if isinstance(r[0], int) and r[2] is not None:
+            ener_h[r[0]] = r[2] * 1e9 / 3.6e6       # GJ -> kWh
+except (OSError, KeyError) as e:
+    print("énergie historique : données absentes", e)
+
 # budget des ménages par grand poste (parts de la dépense de consommation)
 POSTES = [("alimentation", "Alimentation et boissons", ["011780520", "011780561"], "#16a34a"),
           ("logement", "Logement, eau, énergie", ["011780606"], "#e07b39"),
@@ -89,9 +100,9 @@ for y in sorted(M["011780516"]):
     parts["autres"] = round(100 - sum(parts.values()), 1)
     budget.append({"annee": y, **parts, "loyers_imputes": round(100 * M["011780612"][y] / tot, 1)})
 
-annees = sorted(set(pib) | set(sal) | set(ener))
+annees = sorted(set(pib) | set(sal) | set(ener) | set(ener_h))
 serie = [{"annee": y, "pib_hab": round(pib[y]) if y in pib else None, "salaire": round(sal[y]) if y in sal else None,
-          "energie_hab": round(ener[y]) if y in ener else None} for y in annees if y >= 1900]
+          "energie_hab": round(ener[y]) if y in ener else None, "energie_hist": round(ener_h[y]) if y in ener_h else None} for y in annees if y >= 1900]
 # émissions par habitant : sur le territoire (inventaire) et empreinte (avec les importations), SDES et Eurostat
 co2 = []
 try:

@@ -84,7 +84,7 @@ function draw() {
   const y = $("#en-year").value, B = D.bilan[y], K = B.kpi;
   const P = population();
   kpis([
-    [twh(K.disponible), `énergie disponible en ${y}${P ? ` (${nf0.format(K.disponible * 1e9 / P)} kWh par habitant)` : ""}`],
+    [twh(K.disponible), `énergie disponible en ${y}${P ? ` ; ${nf0.format(K.disponible * 1e9 / P)} kWh par habitant` : ""}`],
     [pct(K.independance, 0), "taux d'indépendance (production nationale ÷ disponible)"],
     [pct(K.part_fossile, 0), "part du pétrole, du gaz et du charbon dans la consommation"],
     [twh(K.conso_finale), "consommation finale (logements, transports, industrie…)"],

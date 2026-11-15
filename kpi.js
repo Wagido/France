@@ -21,7 +21,7 @@ const TITRES = [
     [/^reçus par personne et par an/i, "Ce qu'on reçoit au maximum"],
     [/^payés \/ reçus sur une vie/i, "Sur toute une vie"],
     [/^intérêts payés/i, "Charge d'intérêts"],
-    [/^des recettes publiques \(maximum/i, "Part des recettes"],
+    [/^des recettes publiques/i, "Part des recettes"],
     [/^taux apparent/i, "Taux moyen de la dette"],
     [/^dette publique fin/i, "Dette publique"],
     [/^total des actifs/i, "Actifs"],
@@ -50,7 +50,7 @@ const TITRES = [
     [/^ajoutées au stock/i, "Accumulation"],
     [/^taux de recyclage/i, "Recyclage"],
     [/^d'eau douce prélevée/i, "Prélèvements"],
-    [/^par habitant, soit/i, "Par habitant"],
+    [/^par habitant ; /i, "Par habitant"],
     [/^pour : /i, "Premier usage"],
     [/^de territoire/i, "Superficie"],
     [/^artificialisé/i, "Artificialisation"],
@@ -169,6 +169,10 @@ const TITRES = [
       if (m) { t = m[1]; r = (brut.length < 16 && !/\d/.test(brut)) || brut.toLowerCase() === t.toLowerCase() ? "" : l; }
       else [t, r] = decoupe(l);
     }
-    return `<div class="kpi">${t ? `<div class="t">${t}</div>` : ""}<div class="v">${v}</div>${r ? `<div class="l">${r}</div>` : ""}</div>`;
+    // plusieurs informations sous le chiffre : une liste à puces (tableau, ou texte séparé par « ; »)
+    let items = Array.isArray(r) ? r : (typeof r === "string" && / ; /.test(r) ? r.split(/ ; /) : null);
+    if (items) items = items.map(s => String(s).trim()).filter(Boolean);
+    const det = items ? `<ul class="l">${items.map(s => `<li>${s}</li>`).join("")}</ul>` : (r ? `<div class="l">${r}</div>` : "");
+    return `<div class="kpi">${t ? `<div class="t">${t}</div>` : ""}<div class="v">${v}</div>${det}</div>`;
   };
 })();

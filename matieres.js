@@ -61,7 +61,7 @@ function draw() {
   const B = D.bilan[y], K = B.kpi;
   const intrants = K.extraction + K.importations + K.recyclees;
   $("#mt-kpis").innerHTML = [
-    [nf1.format(K.dmc_hab) + " t", `de matières consommées par habitant en ${y} (${nf0.format(K.dmc_hab * 1000 / 365)} kg par jour)`],
+    [nf1.format(K.dmc_hab) + " t", `de matières consommées par habitant en ${y} ; ${nf0.format(K.dmc_hab * 1000 / 365)} kg par jour`],
     [K.rmc_hab != null ? nf1.format(K.rmc_hab) + " t" : "–", "empreinte par habitant, avec ce qu'il a fallu extraire à l'étranger pour nos importations"],
     [mt(K.extraction), `extraites sur le territoire (${pct(100 * K.extraction / intrants, 0)} des entrées)`],
     [mt(K.importations), `importées (${pct(100 * K.importations / intrants, 0)} des entrées)`],

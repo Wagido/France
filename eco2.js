@@ -43,10 +43,10 @@ function qui() {
   kpis("#qf-kpis", [
     [M(q.total), `d'habitants en ${q.annee}`],
     split && [M(q.salaries_prives), "salariés du privé"],
-    split && [M(q.agents_publics), `agents publics (État ${n1(q.fp_detail.FPE / 1000)} M, territoriale ${n1(q.fp_detail.FPT / 1000)} M, hospitalière ${n1(q.fp_detail.FPH / 1000)} M)`],
+    split && [M(q.agents_publics), `agents publics ; État : ${n1(q.fp_detail.FPE / 1000)} M ; territoriale : ${n1(q.fp_detail.FPT / 1000)} M ; hospitalière : ${n1(q.fp_detail.FPH / 1000)} M`],
     !split && [M(q.salaries), "salariés"],
     [M(q.independants), "indépendants"],
-    [M(actifs), `personnes en emploi, soit ${pct(100 * actifs / q.total, 0)} de la population, pour ${M(q.total - actifs)} qui ne travaillent pas`],
+    [M(actifs), `personnes en emploi, soit ${pct(100 * actifs / q.total, 0)} de la population ; ${M(q.total - actifs)} ne travaillent pas`],
   ]);
   // deux blocs : ceux qui travaillent, ceux qui ne travaillent pas
   const TRAV = ["salaries_prives", "agents_publics", "salaries", "independants", "seniors_actifs"];
@@ -107,7 +107,7 @@ function cycle() {
   const top = tr.reduce((a, b) => b.paye > a.paye ? b : a), vieux = tr.at(-1);
   kpis("#cv-kpis", [
     [n0(top.paye) + " €", `payés par personne et par an entre ${top.l}, le maximum (impôts, cotisations, TVA…)`],
-    [n0(vieux.argent + vieux.services) + " €", `reçus par personne et par an à ${vieux.l} (dont ${n0(C.argent.find(x => x[0] === "retraites")[2][vieux.i])} € de retraite et ${n0(C.services.find(x => x[0] === "sante")[2][vieux.i])} € de soins)`],
+    [n0(vieux.argent + vieux.services) + " €", `reçus par personne et par an à ${vieux.l} ; dont ${n0(C.argent.find(x => x[0] === "retraites")[2][vieux.i])} € de retraite ; dont ${n0(C.services.find(x => x[0] === "sante")[2][vieux.i])} € de soins`],
     [n0(payeVie / 1000) + " k€ / " + n0(recuVie / 1000) + " k€", `payés / reçus sur une vie adulte de 18 à ${n0(E)} ans, en euros de ${C.annee}`],
   ]);
   const w = Math.max(320, el.clientWidth), h = 420, m = { t: 16, r: 54, b: 34, l: 60 };
@@ -158,7 +158,7 @@ function redis() {
     [n0(r0) + " → " + n1(r1), `fois plus de revenu pour les 5 % les plus aisés que pour les 5 % les plus modestes, avant puis après redistribution (${R.annee})`],
     [`${nbBenef} tranches sur ${N}`, `reçoivent plus qu'elles ne paient (${nbBenef * 100 / N} % de la population, du bas de l'échelle)`],
     ["+" + n0(bas.net) + " €", "solde net des 5 % les plus modestes, par an et par unité de consommation"],
-    ["−" + n0(-top.net) + " €", `solde net des 5 % les plus aisés (ils paient ${n0(top.paye)} € et reçoivent ${n0(top.recu)} €)`],
+    ["−" + n0(-top.net) + " €", `solde net des 5 % les plus aisés ; ils paient ${n0(top.paye)} € ; ils reçoivent ${n0(top.recu)} €`],
   ]);
   const w = Math.max(320, el.clientWidth), h = 460, m = { t: 14, r: 12, b: 30, l: 62 };
   const x = d3.scaleBand(dec.map(d => d.l), [m.l, w - m.r]).padding(.18);
@@ -213,7 +213,7 @@ function origine() {
   const top = rows[N - 1], mid = rows[Math.floor(N / 2)], bas = rows[0];
   const capTot = d3.sum(rows, r => r.vals.patri), capTop = top.vals.patri + rows[N - 2].vals.patri;
   kpis("#or-kpis", [
-    [pct(top.sh.patri, 0), `du revenu des 5 % les plus aisés vient du patrimoine (${n0(top.vals.patri)} € par unité de consommation), contre ${pct(mid.sh.patri, 0)} au milieu de l'échelle`],
+    [pct(top.sh.patri, 0), `du revenu des 5 % les plus aisés vient du patrimoine ; ${n0(top.vals.patri)} € par unité de consommation ; ${pct(mid.sh.patri, 0)} au milieu de l'échelle`],
     [pct(100 * capTop / capTot, 0), "des revenus du patrimoine vont aux 10 % les plus aisés"],
     [pct(bas.sh.patri, 0), "chez les 5 % les plus modestes : surtout le loyer « imputé » des quelques propriétaires et de petits revenus d'épargne"],
   ]);
@@ -248,7 +248,7 @@ function heritage() {
   kpis("#pat-kpis", [
     [pct(m("10 %"), 0), `du patrimoine des ménages est détenu par les 10 % les mieux dotés (${pct(m("1 %"), 0)} par les 1 %) ; la moitié la moins dotée en détient ${pct(100 - m("50 %"), 0)}`],
     [keur(med[1]), `patrimoine brut médian d'un ménage (${keur(med[2])} net des emprunts) ; moyenne : ${keur(H.moyen)}`],
-    [pct(ens[1], 0), `des ménages ont déjà hérité, ${pct(ens[2], 0)} ont reçu une donation`],
+    [pct(ens[1], 0), `des ménages ont déjà hérité ; ${pct(ens[2], 0)} ont reçu une donation`],
     [pct(pq.at(-2)[1], 0) + " / " + pct(pq[0][1], 0), "des ménages les plus riches (quart supérieur) ont hérité, contre les plus pauvres (quart inférieur)"],
   ]);
   const short = l => l.replace("Inférieur au 1er décile", "10 % les moins dotés").replace("Supérieur au 9e décile", "10 % les mieux dotés").replace(/^Du (\d+)e?r? au (\d+)e décile$/, (_, a, b) => `de ${a}0 à ${b}0 %`)
@@ -308,7 +308,7 @@ function industrie() {
   const pi = last("part_industrie"), p0 = first("part_industrie"), rd = last("rd_pib"), ch = last("chercheurs"), ia = last("ia"), ht = last("emploi_hightech"), em = last("emploi_industrie");
   kpis("#ind-kpis", [
     pi && [pct(pi.part_industrie), `de la valeur ajoutée vient de l'industrie manufacturière en ${pi.annee} (${pct(p0.part_industrie)} en ${p0.annee})`],
-    em && [n1(em.emploi_industrie / 1000) + " M", `d'emplois dans l'industrie (${pct(em.part_emploi_industrie)} de l'emploi)`],
+    em && [n1(em.emploi_industrie / 1000) + " M", `d'emplois dans l'industrie ; ${pct(em.part_emploi_industrie)} de l'emploi`],
     rd && [pct(rd.rd_pib, 2), `du PIB consacrés à la recherche et développement en ${rd.annee}${rd.rd_entreprises_pib ? ` (dont ${pct(rd.rd_entreprises_pib, 2)} par les entreprises)` : ""}`],
     ch && [n0(ch.chercheurs), `chercheurs en équivalent temps plein (${ch.annee})`],
     ia && [pct(ia.ia, 0), `des entreprises de 10 salariés ou plus utilisent l'intelligence artificielle (${ia.annee})`],
