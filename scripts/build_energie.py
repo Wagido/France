@@ -241,6 +241,28 @@ def owid_series(rows):
     return {"sources": [[k, l, c] for k, l, c in OWID_SRC], "primaire": prim, "electricite": elec}
 
 
+# Énergie primaire depuis 1990, dans la convention d'Eurostat (la même que le bilan) : le nucléaire est compté
+# comme la chaleur produite dans les réacteurs, l'éolien, le solaire et l'hydraulique comme l'électricité produite.
+LONG_SRC = [("coal", "Charbon", "#2f2f2f", ["C0000X0350-0370", "P1000", "S2000"]), ("oil", "Pétrole", "#8c6d46", ["O4000XBIO"]),
+            ("gas", "Gaz", "#4f7cac", ["G3000"]), ("nuclear", "Nucléaire (chaleur des réacteurs)", "#c084fc", ["N900H"]),
+            ("hydro", "Hydraulique", "#2b8cbe", ["RA100"]), ("wind", "Éolien", "#7bccc4", ["RA300"]), ("solar", "Solaire", "#f6c445", ["RA410", "RA420"]),
+            ("bio", "Bois, biocarburants, biogaz", "#6a994e", ["BIOE"]), ("other", "Autres (pompes à chaleur, géothermie, déchets)", "#a8a29e", ["RA200", "RA600", "W6100_6220"])]
+
+
+def primaire_long(geo):
+    path = os.path.join(SRC, "nrg_bal_c_long.json")
+    if not os.path.exists(path):
+        return None
+    d = jstat("nrg_bal_c_long.json", SRC, geo)
+    t = getter(d)
+    out = []
+    for y in sorted({dict(k)["time"] for k in d if k != "__single__"}):
+        r = {k: round(sum(max(0, t(siec=c, time=y) or 0) for c in cs) / 1000, 2) for k, _, _, cs in LONG_SRC}
+        if sum(r.values()) > 0:
+            out.append({"annee": int(y), **r})
+    return out
+
+
 owid = load_owid()
 index = []
 for geo, (nom, iso3) in PAYS.items():
@@ -248,6 +270,10 @@ for geo, (nom, iso3) in PAYS.items():
     if not bil:
         print(geo, "pas de bilan"); continue
     d = {"pays": geo, "nom": nom, "bilan": bil, "owid": owid_series(owid.get(iso3, []))}
+    pl = primaire_long(geo)
+    if pl:
+        d["owid"]["primaire"] = pl
+        d["owid"]["sources_primaire"] = [[k, l, c] for k, l, c, _ in LONG_SRC]
     json.dump(d, open(os.path.join(OUT, geo + ".json"), "w"), ensure_ascii=False, separators=(",", ":"))
     last = sorted(bil)[-1]
     k = bil[last]["kpi"]

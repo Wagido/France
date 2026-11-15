@@ -55,6 +55,9 @@ mkdir -p energie
 NB=$(for n in PPRD RCV_RCY IMP EXP STK_CHG GAE GIC INTMARB INTAVI TI_E TI_EHG_E TI_RPI_E TO TO_EHG TO_RPI NRG_E DL FC_NE FC_IND_E FC_TRA_E FC_OTH_HH_E FC_OTH_CP_E FC_OTH_AF_E FC_OTH_FISH_E FC_OTH_NSP_E STATDIFF FC_E FEC_EED PEC_EED GEP; do printf "&nrg_bal=%s" "$n"; done)
 SI=$(for s in TOTAL C0000X0350-0370 C0350-0370 P1000 S2000 G3000 O4000XBIO O4100_TOT O4200 O4300 O4400X4410 O4500 N900H RA100 RA200 RA300 RA410 RA420 RA500 RA600 BIOE R5210P R5210B R5220P R5220B R5230P R5230B R5290 R5300 W6100_6220 E7000 H8000; do printf "&siec=%s" "$s"; done)
 get energie/nrg_bal_c.json "$E/nrg_bal_c?unit=GWH&sinceTimePeriod=2015$GEO$NB$SI"
+# série longue de l'énergie primaire (énergie disponible brute) depuis 1990, même convention que le bilan
+SIL=$(for s in C0000X0350-0370 P1000 S2000 O4000XBIO G3000 N900H RA100 RA200 RA300 RA410 RA420 RA600 BIOE W6100_6220; do printf "&siec=%s" "$s"; done)
+get energie/nrg_bal_c_long.json "$E/nrg_bal_c?unit=GWH&nrg_bal=GAE&sinceTimePeriod=1990$GEO$SIL"
 TMP=$(mktemp)
 get "$TMP" "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
 python3 "$SCRIPTS/filter_owid.py" "$TMP" energie/owid_europe.csv && rm -f "$TMP"

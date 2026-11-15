@@ -152,7 +152,8 @@ function drawHist() {
   const O = D?.owid;
   const rows = O ? O[histKind] : [];
   if (!rows || !rows.length) { el.innerHTML = `<p class="empty">Pas de série longue pour ce pays.</p>`; $("#en-hist-legend").innerHTML = ""; return; }
-  const keys = O.sources.map(s => s[0]), lab = Object.fromEntries(O.sources.map(s => [s[0], s[1]])), col = Object.fromEntries(O.sources.map(s => [s[0], s[2]]));
+  const SRCS = histKind === "primaire" && O.sources_primaire ? O.sources_primaire : O.sources;
+  const keys = SRCS.map(s => s[0]), lab = Object.fromEntries(SRCS.map(s => [s[0], s[1]])), col = Object.fromEntries(SRCS.map(s => [s[0], s[2]]));
   const data = rows.map(r => { const o = { annee: r.annee }; keys.forEach(k => o[k] = r[k] || 0); return o; });
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 12, r: 12, b: 26, l: 54 };
   const series = d3.stack().keys(keys)(data);
@@ -170,7 +171,11 @@ function drawHist() {
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(w < 560 ? 5 : 10));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d => nf0.format(d) + " TWh")).call(g => g.select(".domain").remove());
   el.replaceChildren(svg.node());
-  $("#en-hist-legend").innerHTML = O.sources.map(([k, l, c]) => `<span><i style="border-top-color:${c};opacity:1;border-top-width:10px;width:14px"></i>${esc(l)}</span>`).join("");
+  const note = $("#en-hist-note");
+  if (note) note.textContent = histKind === "primaire" && O.sources_primaire
+    ? "Bilans d'Eurostat (énergie disponible brute), même convention que le diagramme ci-dessus : le nucléaire est compté comme la chaleur produite dans les réacteurs (environ trois fois l'électricité produite), l'hydraulique, l'éolien et le solaire comme l'électricité produite. Le solde des échanges d'électricité n'est pas inclus. D'autres sources (Our World in Data, BP) comptent le nucléaire, l'éolien et le solaire comme l'énergie fossile qu'il aurait fallu brûler pour produire la même électricité : les chiffres diffèrent."
+    : "Production d'électricité par source (Our World in Data, d'après Ember et l'Energy Institute), en TWh.";
+  $("#en-hist-legend").innerHTML = SRCS.map(([k, l, c]) => `<span><i style="border-top-color:${c};opacity:1;border-top-width:10px;width:14px"></i>${esc(l)}</span>`).join("");
 }
 
 /* ---------------------------------------------------------------- éCO2mix en direct */
