@@ -79,10 +79,10 @@ function draw() {
   lab.filter(d => d.sub).append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").attr("font-size", "0.85em").text(d => d.sub);
   el.replaceChildren(svg.node());
   const p = v => pct(100 * v / R.pib, 0);
-  document.getElementById("rp-56").innerHTML = `<p><b>« L'État prélève <span style="color:#dc2626">${p(R.te)}</span> de la richesse » : un vrai chiffre, mal lu</b></p>
-    <p><b style="color:#dc2626">${p(R.te)}</b>, c'est la <b>dépense publique</b> rapportée au PIB (${R.annee}). Elle ne dit pas ce que l'État garde :</p>
+  document.getElementById("rp-56").innerHTML = `<p><b>Les « <span style="color:#dc2626">${p(R.te)}</span> du PIB » : ce que dépense le public, pas ce qu'il prélève</b></p>
+    <p>On entend souvent que l'État « prélève ${p(R.te)} de la richesse ». En réalité, <b style="color:#dc2626">${p(R.te)}</b> est le montant des <b>dépenses publiques</b> rapporté au PIB (${R.annee}). Les prélèvements, eux, sont plus faibles, et l'argent dépensé ne reste pas entièrement dans le public :</p>
     <ul>
-      <li><b>Ce qui est prélevé : ${p(R.po)}</b> du PIB en impôts et cotisations. Le reste de la dépense est payé par l'emprunt (${p(R.emprunt)}) et d'autres recettes (${p(R.autres_recettes)}).</li>
+      <li><b>Ce qui est prélevé : ${p(R.po)}</b> du PIB en impôts et cotisations (42,8 % selon le taux officiel de l'INSEE, qui retire les crédits d'impôt et les cotisations « imputées » <a href="https://www.insee.fr/fr/statistiques/8540375" target="_blank" rel="noopener">[INSEE]</a>). Le reste de la dépense est payé par l'emprunt (${p(R.emprunt)}) et d'autres recettes (${p(R.autres_recettes)}).</li>
       <li><b>Ce qui est aussitôt redistribué : ${p(redis)}</b> du PIB, rendus aux ménages et aux entreprises en pensions, allocations, subventions et intérêts.</li>
       <li><b>Ce que le public utilise lui-même : ${p(fonct)}</b> du PIB, pour les écoles, les hôpitaux, la police, l'investissement.</li>
       <li><b>Au final, ${p(prive)}</b> du PIB est dépensé par le privé.</li>
