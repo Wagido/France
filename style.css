@@ -311,3 +311,6 @@ main.wrap { position: relative; overflow: hidden; }
 .ag-bar span { position: absolute; left: 0; top: 0; bottom: 0; background: repeating-linear-gradient(45deg, #15803d 0 3px, #22c55e 3px 6px); }
 .ag-bio { color: #15803d; font-weight: 650; white-space: nowrap; } .ag-row b { white-space: nowrap; }
 @media (max-width: 640px) { .ag-row { grid-template-columns: 120px 1fr 50px; font-size: .74rem; } }
+.ch-bar { display: flex; height: 46px; border-radius: 8px; overflow: hidden; margin: 6px 0 8px; max-width: 1040px; }
+.ch-bar span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: .78rem; min-width: 0; border-right: 2px solid var(--surface); }
+.ch-bar span b { white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.35); }

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117y">
+<link rel="stylesheet" href="style.css?v=20261118a">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -59,6 +59,7 @@
       <a href="#foret">Forêt</a>
       <a href="#air">Air</a>
       <a href="#agriculture">Agriculture</a>
+      <a href="#champ">Du champ au caddie</a>
       <a href="#pesticides">Pesticides et engrais</a>
       <a href="#catastrophes">Catastrophes climatiques</a>
       <a href="#transition">Qui paie la transition ?</a>
@@ -777,6 +778,58 @@
   <div class="callout small" id="agriculture-txt"></div>
 </section>
 
+<section id="champ" class="panel">
+  <div class="panel-head">
+    <h2>Du champ au caddie : qui gagne quoi ? <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="champ-kpis"></div>
+  <h3>Sur 100 € dépensés pour se nourrir (courses et restaurants), où va l'argent ?</h3>
+  <div id="ch-euro"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Les agriculteurs français ne touchent que 6,4 €</b> de valeur ajoutée sur 100 € de dépenses alimentaires (2021). Si l'on compte toute la valeur de leur production, y compris ce qu'ils ont dépensé en engrais, carburant ou aliments du bétail, on arrive à 13,2 €.</li>
+      <li><b>L'essentiel de la valeur se crée après la ferme</b> : transformation, transport, emballage, vente, cuisine dans les restaurants. Un pain, un yaourt ou un plat cuisiné vendu en magasin contiennent surtout du travail, de l'énergie et des services, peu de matière agricole.</li>
+      <li><b>Près de 29 € partent à l'étranger</b> : aliments importés tout prêts (11,7 €) et intrants importés le long de la chaîne (17,1 € : engrais, énergie, soja pour le bétail, emballages…).</li>
+      <li><b>Depuis 2021, la part de l'agriculteur a baissé pour la moitié des produits suivis</b> et augmenté pour l'autre moitié. La part des industriels a progressé pour la majorité des produits, celle de la grande distribution a baissé ou est restée stable. Exemple : pour le lait UHT, la part de la matière première dans le prix hors taxe a perdu 6 points entre 2021 et 2025, au profit de l'industrie.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Observatoire de la formation des prix et des marges des produits alimentaires, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport au Parlement 2026</a>, « euro alimentaire » 2021 (dernière année calculée, d'après les comptes nationaux de l'Insee et Eurostat). La ligne « restauration, transports et autres services » est le reste du total.</p>
+  </div>
+
+  <h3>Les supermarchés font-ils fortune sur l'alimentaire ?</h3>
+  <p class="lead">Bénéfice net (après impôt) pour 100 € vendus, par rayon, dans 6 grandes enseignes (Auchan, Carrefour, Cora, E. Leclerc, Intermarché, Coopérative U), en 2024.</p>
+  <div id="ch-rayons"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Sur 100 € vendus, il reste 1,1 € de bénéfice</b> en moyenne aux grandes surfaces dans les rayons frais suivis (43 milliards d'euros de ventes). L'essentiel part en achats de marchandises (70,6 €), en salaires (15,4 €) et en frais de magasin.</li>
+      <li><b>Certains rayons perdent de l'argent</b> : poissonnerie, boucherie et boulangerie, qui demandent beaucoup de personnel. Ce sont des rayons d'appel, qui font venir les clients ; la volaille et la charcuterie compensent.</li>
+      <li><b>Mais la marge brute est importante</b> : 29,4 € sur 100 € (54 € en boulangerie). C'est ce chiffre, avant frais, qui alimente le soupçon. Et les marges des enseignes sur les produits non alimentaires (hygiène, droguerie…) ne sont pas suivies par l'Observatoire.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">OFPM, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport 2026</a>, enquête auprès des enseignes, comptes moyens des rayons alimentaires en 2024 pour 100 € de chiffre d'affaires.</p>
+  </div>
+
+  <h3>Les éleveurs laitiers perdent-ils de l'argent ?</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Pas en moyenne en 2025, qui a été une bonne année</b> : le prix du lait a atteint des records (environ 496 € les 1 000 litres) et le revenu des élevages laitiers spécialisés aurait augmenté de 26 % selon une simulation de l'Observatoire. Le « solde disponible » pour payer l'éleveur a atteint son plus haut niveau depuis 2020.</li>
+      <li><b>Mais derrière la moyenne, de fortes inégalités</b> : en 2024, un élevage sur dix a dégagé moins de 2 000 € de résultat par an et par exploitant, un sur quatre moins de 15 000 €, alors que le quart le mieux placé dépasse 54 000 €. Les écarts se creusent depuis 2021, notamment dans les zones de piémont qui ne peuvent pas produire plus.</li>
+      <li><b>Le juste prix, selon la filière</b> : l'interprofession laitière calcule un coût de production de 621 € pour 1 000 litres en 2025, en comptant pour l'éleveur un salaire de 2 Smic. Une fois déduites les aides et les ventes de veaux et de vaches de réforme, le prix de revient tombe à 482 €. En 2025, le prix payé le couvrait de justesse.</li>
+      <li><b>2026 se dégrade</b> : le prix du lait a baissé de 50 à 60 € les 1 000 litres depuis le printemps, en pleine sécheresse. Pour beaucoup d'éleveurs, il repasse sous le prix de revient : ils travaillent alors pour moins de 2 Smic, parfois pour presque rien.</li>
+      <li><b>Le bio laitier a été le plus touché</b> : depuis 2022, le lait bio s'est moins bien vendu, et des éleveurs bio sont revenus au conventionnel ou ont fait faillite ; l'État a dû verser des aides d'urgence.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">OFPM, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport 2026</a> (comptes des exploitations laitières spécialisées d'après le RICA, solde disponible d'après Inosys – Réseaux d'élevage) ; coût de production et prix de revient du Cniel 2025 et baisse des prix 2026 rapportés par <a href="https://www.reussir.fr/lait%2F/le-prix-de-revient-du-lait-publie-en-2025-par-le-cniel-augmente-de-plus-de-4" target="_blank" rel="noopener">Réussir Lait</a> et <a href="https://www.pleinchamp.com/actualite/secheresse-2026-les-eleveurs-ont-besoin-d-un-prix-du-lait-remunerateur" target="_blank" rel="noopener">Pleinchamp</a>.</p>
+  </div>
+
+  <h3>Et les circuits courts ?</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Près d'une ferme sur quatre</b> vend au moins une partie de sa production en circuit court (vente à la ferme, marchés, Amap, magasins de producteurs, au plus un intermédiaire), soit environ 90 000 exploitations en 2020.</li>
+      <li><b>C'est surtout le fait des petites productions</b> : 87 % des apiculteurs vendent en direct, très peu de céréaliers. Et 52 % des fermes bio vendent en direct, contre 19 % des conventionnelles.</li>
+      <li><b>L'intérêt pour l'agriculteur</b> : il récupère une partie des 18,8 € du commerce et parfois de la transformation. <b>La limite</b> : cela demande beaucoup de temps (préparer, livrer, vendre), et cela reste une petite part de ce que mangent les Français ; aucune statistique officielle récente ne mesure cette part en valeur.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Agreste, recensement agricole 2020 (<a href="https://draaf.centre-val-de-loire.agriculture.gouv.fr/IMG/pdf/ra_etude_circuit_court_no5_.pdf" target="_blank" rel="noopener">Agreste Primeur n° 5, mars 2023, repris par la DRAAF Centre-Val de Loire</a>).</p>
+  </div>
+</section>
+
 <section id="pesticides" class="panel">
   <div class="panel-head">
     <h2>Pesticides, agriculture biologique et engrais <span class="geo-fixed">France</span></h2>
@@ -1082,28 +1135,29 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117y"></script>
-<script src="app.js?v=20261117y"></script>
-<script src="energie.js?v=20261117y"></script>
-<script src="matieres.js?v=20261117y"></script>
-<script src="territoire.js?v=20261117y"></script>
-<script src="themes.js?v=20261117y"></script>
-<script src="societe.js?v=20261117y"></script>
-<script src="eco2.js?v=20261117y"></script>
-<script src="empreinte.js?v=20261117y"></script>
-<script src="argentprive.js?v=20261117y"></script>
-<script src="repartition.js?v=20261117y"></script>
-<script src="patrimoine.js?v=20261117y"></script>
-<script src="prelevements.js?v=20261117y"></script>
-<script src="travailvie.js?v=20261117y"></script>
-<script src="couper.js?v=20261117y"></script>
-<script src="seuilpays.js?v=20261117y"></script>
-<script src="logement.js?v=20261117y"></script>
-<script src="env.js?v=20261117y"></script>
-<script src="agriculture.js?v=20261117y"></script>
-<script src="histoire.js?v=20261117y"></script>
-<script src="chomage.js?v=20261117y"></script>
-<script src="sources.js?v=20261117y"></script>
-<script src="nav.js?v=20261117y"></script>
+<script src="kpi.js?v=20261118a"></script>
+<script src="app.js?v=20261118a"></script>
+<script src="energie.js?v=20261118a"></script>
+<script src="matieres.js?v=20261118a"></script>
+<script src="territoire.js?v=20261118a"></script>
+<script src="themes.js?v=20261118a"></script>
+<script src="societe.js?v=20261118a"></script>
+<script src="eco2.js?v=20261118a"></script>
+<script src="empreinte.js?v=20261118a"></script>
+<script src="argentprive.js?v=20261118a"></script>
+<script src="repartition.js?v=20261118a"></script>
+<script src="patrimoine.js?v=20261118a"></script>
+<script src="prelevements.js?v=20261118a"></script>
+<script src="travailvie.js?v=20261118a"></script>
+<script src="couper.js?v=20261118a"></script>
+<script src="seuilpays.js?v=20261118a"></script>
+<script src="logement.js?v=20261118a"></script>
+<script src="env.js?v=20261118a"></script>
+<script src="agriculture.js?v=20261118a"></script>
+<script src="chaine.js?v=20261118a"></script>
+<script src="histoire.js?v=20261118a"></script>
+<script src="chomage.js?v=20261118a"></script>
+<script src="sources.js?v=20261118a"></script>
+<script src="nav.js?v=20261118a"></script>
 </body>
 </html>
