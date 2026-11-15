@@ -209,6 +209,10 @@ for an in $(seq $(( $(date +%Y) - 1 )) -1 2023); do
 done
 get empreinte/env_ac_ainah_r2.json "$E/env_ac_ainah_r2?airpol=GHG&unit=THS_T&nace_r2=HH_TRA&nace_r2=HH_HEAT&nace_r2=HH_OTH&sinceTimePeriod=2010$GEO"
 
+# Séries longues depuis 1949 pour l'histoire des dévaluations (INSEE, comptes nationaux annuels)
+mkdir -p histoire
+get histoire/bdm_histoire.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011779995+011779991+011779992+011791812+011791813+011792506+011792505"
+
 # Chômage : INSEE (BIT, halo, sous-emploi) et DARES / France Travail (catégories A à E), via la base BDM de l'INSEE ; Eurostat (chômage élargi)
 mkdir -p chomage
 get chomage/bdm_chomage.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011818543+011818555+011818564+011818739+011818577+011818581+010597456+010597571+010598455+010598489+010598404+010598417"
