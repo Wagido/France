@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261115p">
+<link rel="stylesheet" href="style.css?v=20261115q">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -209,14 +209,21 @@
     <li>sortir de l'euro pour dévaluer poserait le problème de la dette : environ la moitié est détenue à l'étranger, en euros. Il faudrait la convertir en francs, ce qui serait vu comme un défaut partiel, ou la rembourser en euros devenus plus chers.</li>
   </ul>
 
-  <h3>Ce qui reste possible dans l'euro</h3>
-  <ul class="prose-list">
-    <li><b>La « dévaluation interne »</b> : baisser les coûts par la modération des salaires. L'Allemagne l'a fait dans les années 2000, l'Espagne et le Portugal après 2010. Ça marche, mais c'est lent et douloureux.</li>
-    <li><b>La « dévaluation fiscale »</b> : alléger les cotisations sur le travail et monter la TVA. Les produits français deviennent moins chers, les importations plus chères, comme une petite dévaluation. L'Allemagne l'a fait en 2007 (+3 points de TVA) ; en France, il y a eu la TVA sociale votée en 2012 puis abandonnée, et le CICE. Simulateur ci-dessous.</li>
-    <li><b>Étaler l'effort et choisir quoi couper</b>, en protégeant l'investissement.</li>
-    <li><b>Jouer sur le dénominateur</b> : ce qui compte, c'est la dette rapportée au PIB. Avec un peu d'inflation et de croissance, et des taux d'intérêt inférieurs à la croissance, le ratio baisse sans couper beaucoup. C'est ce qui a réduit les dettes d'après-guerre. Mais cela suppose de la croissance.</li>
-    <li id="simu-croissance"></li>
-  </ul>
+  <h3>Où en est-on ?</h3>
+  <div class="callout small" id="simu-croissance"></div>
+
+  <h3>Ce qu'on peut faire sans quitter l'euro</h3>
+  <ol class="prose-list">
+    <li><b>Réduire le déficit</b> : dépenser moins ou prélever plus. C'est indispensable, mais cela freine l'activité les premières années (simulateurs plus haut). Mieux vaut donc étaler l'effort et épargner l'investissement.</li>
+    <li><b>Redevenir compétitif sans dévaluer</b>, pour que les exportations compensent ce freinage :
+      <ul>
+        <li>la <b>« dévaluation interne »</b> : modérer les salaires pendant des années, comme l'Allemagne dans les années 2000 ou l'Espagne et le Portugal après 2010. Efficace, mais lent et douloureux ;</li>
+        <li>la <b>« dévaluation fiscale »</b> : baisser les cotisations sur le travail et monter la TVA d'autant. Les produits français deviennent moins chers, les importations plus chères. L'Allemagne l'a fait en 2007 ; la France l'a votée en 2012 avant d'y renoncer. Simulateur juste en dessous.</li>
+      </ul></li>
+    <li><b>Travailler plus nombreux</b> : c'est le principal gisement de croissance de la France (détail dans l'encadré ci-dessus).</li>
+    <li><b>Un peu plus d'inflation</b> : elle fait fondre la dette en proportion du PIB, mais elle dépend de la Banque centrale européenne, pas de Paris.</li>
+  </ol>
+  <p>Aucun de ces leviers ne suffit seul : ils se combinent. C'est ce qui a permis de réduire les dettes après la guerre (croissance forte, inflation, taux bas), et c'est ce qui manque aujourd'hui.</p>
 
   <h3>Simuler une dévaluation fiscale</h3>
   <p class="lead">On baisse les cotisations patronales d'un montant donné et on monte la TVA d'autant (le budget est équilibré au départ). Le coût du travail baisse, donc le prix des produits français à l'export ; la TVA renchérit ce qu'on consomme, y compris les importations, que l'on remplace en partie par des produits français. Modèle simplifié, ordre de grandeur à moyen terme (2 à 3 ans) : les études du Trésor et de la Banque de France sur la TVA sociale trouvaient de +0,1 à +0,5 point de PIB par point de PIB basculé.</p>
@@ -768,17 +775,17 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261115p"></script>
-<script src="app.js?v=20261115p"></script>
-<script src="energie.js?v=20261115p"></script>
-<script src="matieres.js?v=20261115p"></script>
-<script src="territoire.js?v=20261115p"></script>
-<script src="themes.js?v=20261115p"></script>
-<script src="societe.js?v=20261115p"></script>
-<script src="eco2.js?v=20261115p"></script>
-<script src="empreinte.js?v=20261115p"></script>
-<script src="chomage.js?v=20261115p"></script>
-<script src="sources.js?v=20261115p"></script>
-<script src="nav.js?v=20261115p"></script>
+<script src="kpi.js?v=20261115q"></script>
+<script src="app.js?v=20261115q"></script>
+<script src="energie.js?v=20261115q"></script>
+<script src="matieres.js?v=20261115q"></script>
+<script src="territoire.js?v=20261115q"></script>
+<script src="themes.js?v=20261115q"></script>
+<script src="societe.js?v=20261115q"></script>
+<script src="eco2.js?v=20261115q"></script>
+<script src="empreinte.js?v=20261115q"></script>
+<script src="chomage.js?v=20261115q"></script>
+<script src="sources.js?v=20261115q"></script>
+<script src="nav.js?v=20261115q"></script>
 </body>
 </html>
