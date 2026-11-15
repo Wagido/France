@@ -9,17 +9,32 @@ const PARTS = [
   ["equip", "Bâtiments, routes, machines, logiciels", "#f2b544", ["batiments", "machines", "pi"]],
   ["autres", "Stocks, or, objets d'art, autres", "#cdb89a", ["stocks", "valeur", "autres_nf"]],
 ];
+const OWN = [
+  ["menages", "Ménages (logements, épargne, actions…)", "#3b6fd6"],
+  ["entreprises", "Entreprises et banques", "#1e40af"],
+  ["apu", "Administrations publiques (État, collectivités, Sécurité sociale)", "#7c3aed"],
+];
+let vue = "bien";
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
   try { P = (await fetch("data/finances.json").then(r => r.json())).patrimoine; } catch (e) { return; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   $("#pn-immo")?.addEventListener("input", sensib);
+  document.querySelectorAll("#pn-vue button").forEach(bt => bt.onclick = () => {
+    vue = bt.dataset.v; document.querySelectorAll("#pn-vue button").forEach(o => o.setAttribute("aria-pressed", o === bt)); draw();
+  });
   draw();
 }
 const sum = o => Object.values(o).reduce((a, b) => a + b, 0);
 function annee(y) {
   const B = P[y], S = B.secteurs, r = { annee: +y, pib: B.pib, pop: B.population };
   PARTS.forEach(([k, , , ks]) => r[k] = S.reduce((a, s) => a + ks.reduce((b, kk) => b + (s.nf[kk] || 0), 0), 0));
+  const sec = id => S.filter(s => id.includes(s.id));
+  r.menages = sec(["menages"]).reduce((a, s) => a + s.net, 0);
+  r.entreprises = sec(["snf", "sf"]).reduce((a, s) => a + s.net, 0);
+  r.apu = sec(["apu"]).reduce((a, s) => a + s.net, 0);
+  const A = sec(["apu"])[0];
+  r.apuD = A ? { reel: sum(A.nf), fa: sum(A.fa), fl: sum(A.fl), terrains: A.nf.terrains } : null;
   r.ext = S.reduce((a, s) => a + sum(s.fa) - sum(s.fl), 0);
   r.net = S.reduce((a, s) => a + s.net, 0);
   const m = S.find(s => s.id === "menages");
@@ -33,18 +48,19 @@ function draw() {
   const D = Object.keys(P).sort().map(annee);
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 24, r: 10, b: 26, l: 80 };
   const x = d3.scaleBand(D.map(d => d.annee), [m.l, w - m.r]).padding(.25);
-  const top = d3.max(D, d => PARTS.reduce((a, [k]) => a + d[k], 0)), bot = d3.min(D, d => Math.min(0, d.ext));
+  const PP = vue === "bien" ? PARTS : OWN, neg = d => vue === "bien" ? d.ext : 0;
+  const top = d3.max(D, d => PP.reduce((a, [k]) => a + d[k], 0)), bot = d3.min(D, d => Math.min(0, neg(d)));
   const y = d3.scaleLinear([bot * 1.4, top * 1.1], [h - m.b, m.t]).nice();
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
   svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
   D.forEach(d => {
     let acc = 0;
-    PARTS.forEach(([k, l, c]) => {
+    PP.forEach(([k, l, c]) => {
       svg.append("rect").attr("x", x(d.annee)).attr("width", x.bandwidth()).attr("y", y(acc + d[k])).attr("height", y(acc) - y(acc + d[k])).attr("fill", c)
         .on("pointermove", ev => showTip(`<b>${d.annee} · ${l}</b><br>${md(d[k])} (${Math.round(100 * d[k] / d.net)} % du patrimoine net)`, ev)).on("pointerleave", hideTip);
       acc += d[k];
     });
-    svg.append("rect").attr("x", x(d.annee)).attr("width", x.bandwidth()).attr("y", y(Math.max(0, d.ext))).attr("height", Math.abs(y(d.ext) - y(0))).attr("fill", "#94a3b8")
+    if (vue === "bien") svg.append("rect").attr("x", x(d.annee)).attr("width", x.bandwidth()).attr("y", y(Math.max(0, d.ext))).attr("height", Math.abs(y(d.ext) - y(0))).attr("fill", "#94a3b8")
       .on("pointermove", ev => showTip(`<b>${d.annee} · Solde avec l'étranger</b><br>${md(d.ext)} : ce que la France doit au reste du monde, net de ce qu'elle y possède`, ev)).on("pointerleave", hideTip);
     svg.append("text").attr("x", x(d.annee) + x.bandwidth() / 2).attr("y", y(acc) - 6).attr("text-anchor", "middle").attr("font-size", w < 560 ? 9 : 11).attr("font-weight", 600).style("fill", "var(--ink)")
       .text(Math.round(d.net).toLocaleString("fr-FR"));
@@ -53,13 +69,23 @@ function draw() {
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(g => g.select(".domain").remove());
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => v.toLocaleString("fr-FR") + " Md€")).call(g => g.select(".domain").remove());
   el.replaceChildren(svg.node());
-  $("#pn-legend").innerHTML = PARTS.map(([, l, c]) => `<span><i style="border-top-color:${c};border-top-width:10px;width:14px;opacity:1"></i>${l}</span>`).join("") +
-    `<span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:1"></i>Solde avec l'étranger (négatif : la France doit plus qu'elle ne possède dehors)</span>`;
+  $("#pn-legend").innerHTML = PP.map(([, l, c]) => `<span><i style="border-top-color:${c};border-top-width:10px;width:14px;opacity:1"></i>${l}</span>`).join("") +
+    (vue !== "bien" ? "" : `<span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:1"></i>Solde avec l'étranger (négatif : la France doit plus qu'elle ne possède dehors)</span>`);
   draw.D = D;
   const a = D[0], b = D.at(-1), f1 = v => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
   const chutes = D.slice(1).map((d, i) => [D[i], d]).filter(([u, v]) => v.net < u.net).sort((u, v) => (v[0].net - v[1].net) - (u[0].net - u[1].net));
   const [pic, apres] = chutes[0] || [];
   const immo = d => d.terrains + d.logements;
+  const pc = v => Math.round(100 * v / b.net) + " %", Ap = b.apuD;
+  if (vue !== "bien") {
+    $("#pn-txt").innerHTML = `<ul>
+      <li><b>Les ménages possèdent ${pc(b.menages)}</b> du patrimoine net (${md(b.menages)}) : leurs logements et terrains, leur épargne, leurs actions et assurances-vie, moins leurs crédits.</li>
+      <li><b>Les entreprises et les banques : ${md(b.entreprises)}</b> (${pc(b.entreprises)}). C'est peu, parce qu'une entreprise appartient à ses actionnaires : ses actions sont comptées comme une dette envers eux, et la valeur se retrouve chez les ménages qui les détiennent.</li>
+      ${Ap ? `<li><b>Le public : ${md(b.apu)}</b> (${pc(b.apu)}). Les administrations possèdent ${md(Ap.reel)} de biens réels (routes, écoles, hôpitaux, réseaux, dont ${md(Ap.terrains)} de terrains) et ${md(Ap.fa)} d'actifs financiers, mais doivent ${md(Ap.fl)}, surtout la dette publique. Leur patrimoine net est donc faible, même s'il reste positif (${md(a.apu)} en ${a.annee}).</li>` : ""}
+      <li><b>Attention</b> : les biens publics sont comptés à leur coût de remplacement, pas à un prix de vente. Une route ou une école ne se vend pas, alors que la dette, elle, doit être remboursée.</li>
+    </ul>`;
+    sensib(); return;
+  }
   $("#pn-txt").innerHTML = `<ul>
       <li><b>Le patrimoine net</b> est passé de ${md(a.net)} en ${a.annee} à <b>${md(b.net)}</b> en ${b.annee} (chiffre au-dessus de chaque barre, en milliards d'euros), soit ${f1(b.net / b.pib)} années de PIB.</li>
       <li><b>C'est surtout de l'immobilier</b> : terrains et logements font ${Math.round(100 * immo(b) / b.net)} % du patrimoine net. Les terrains à eux seuls en font ${Math.round(100 * b.terrains / b.net)} % : c'est la valeur de l'emplacement, surtout dans les grandes villes.</li>
