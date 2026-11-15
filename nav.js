@@ -22,12 +22,21 @@ function show(id) {
   else { geoCtl.hidden = true; document.body.appendChild(geoCtl); }
   document.title = `${sec.querySelector("h2")?.childNodes[0]?.textContent.trim() || "Comptes de la France"} · Comptes de la France`;
   window.scrollTo({ top: 0 });
-  // les graphiques ont été dessinés pendant que l'article était caché : on les redessine à la bonne largeur
-  requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+  setTimeout(() => window.scrollTo({ top: 0 }), 0);   // après le saut automatique du navigateur vers l'ancre
 }
 
-document.querySelectorAll("nav.groups button").forEach(b => b.onclick = () => { location.hash = first(b.dataset.group); });
+document.querySelectorAll("nav.groups button").forEach(b => b.onclick = () => { const id = first(b.dataset.group); history.pushState(null, "", "#" + id); show(id); });
 addEventListener("hashchange", () => show(location.hash.slice(1)));
+// liens vers un article : on change d'article sans le saut du navigateur vers l'ancre
+document.addEventListener("click", e => {
+  const a = e.target.closest?.('a[href^="#"]'); if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  const id = a.getAttribute("href").slice(1); if (!groupOf[id]) return;
+  e.preventDefault();
+  if (location.hash.slice(1) !== id) history.pushState(null, "", "#" + id);
+  show(id);
+});
+addEventListener("popstate", () => show(location.hash.slice(1)));
+addEventListener("load", () => window.scrollTo({ top: 0 }));
 // liens internes vers un article (« voir la section … »)
 show(location.hash.slice(1));
 
