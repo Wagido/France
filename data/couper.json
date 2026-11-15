@@ -1,0 +1,395 @@
+{
+ "annee": 2024,
+ "pays": {
+  "FR": "France",
+  "EU27_2020": "Moyenne UE",
+  "DE": "Allemagne",
+  "IT": "Italie",
+  "ES": "Espagne",
+  "NL": "Pays-Bas",
+  "SE": "Suède",
+  "BE": "Belgique"
+ },
+ "total": {
+  "FR": 57.3,
+  "EU27_2020": 48.8,
+  "DE": 49.4,
+  "IT": 50.4,
+  "ES": 45.5,
+  "NL": 44.4,
+  "SE": 50.0,
+  "BE": 54.1
+ },
+ "postes": [
+  {
+   "k": "retraites",
+   "l": "Retraites",
+   "cat": "transfert",
+   "groupe": "retraites",
+   "v": {
+    "FR": 13.4,
+    "EU27_2020": 10.6,
+    "DE": 9.9,
+    "IT": 13.9,
+    "ES": 10.4,
+    "NL": 6.1,
+    "SE": 10.9,
+    "BE": 10.2
+   }
+  },
+  {
+   "k": "reversion",
+   "l": "Pensions de réversion (veufs, veuves)",
+   "cat": "transfert",
+   "groupe": "retraites",
+   "v": {
+    "FR": 1.4,
+    "EU27_2020": 1.4,
+    "DE": 1.9,
+    "IT": 2.4,
+    "ES": 2.2,
+    "NL": 0,
+    "SE": 0.1,
+    "BE": 1.4
+   }
+  },
+  {
+   "k": "ville",
+   "l": "Soins de ville et médicaments",
+   "cat": "sante",
+   "groupe": "sante",
+   "v": {
+    "FR": 4.6,
+    "EU27_2020": 3.4,
+    "DE": 4.1,
+    "IT": 3.3,
+    "ES": 3.2,
+    "NL": 2.9,
+    "SE": 4.2,
+    "BE": 3.9
+   }
+  },
+  {
+   "k": "hopital",
+   "l": "Hôpitaux",
+   "cat": "sante",
+   "groupe": "sante",
+   "v": {
+    "FR": 3.7,
+    "EU27_2020": 3.3,
+    "DE": 2.9,
+    "IT": 2.7,
+    "ES": 2.7,
+    "NL": 3.4,
+    "SE": 2.6,
+    "BE": 3.8
+   }
+  },
+  {
+   "k": "maladie",
+   "l": "Indemnités maladie et invalidité",
+   "cat": "transfert",
+   "groupe": "social",
+   "v": {
+    "FR": 2.9,
+    "EU27_2020": 2.8,
+    "DE": 3.3,
+    "IT": 1.7,
+    "ES": 2.8,
+    "NL": 4.3,
+    "SE": 3.5,
+    "BE": 3.9
+   }
+  },
+  {
+   "k": "chomage",
+   "l": "Allocations chômage",
+   "cat": "transfert",
+   "groupe": "social",
+   "v": {
+    "FR": 1.7,
+    "EU27_2020": 1.2,
+    "DE": 1.7,
+    "IT": 0.9,
+    "ES": 1.5,
+    "NL": 0.7,
+    "SE": 1.1,
+    "BE": 1.1
+   }
+  },
+  {
+   "k": "famille",
+   "l": "Famille et enfants",
+   "cat": "transfert",
+   "groupe": "social",
+   "v": {
+    "FR": 2.3,
+    "EU27_2020": 2.0,
+    "DE": 1.9,
+    "IT": 1.5,
+    "ES": 1.0,
+    "NL": 2.4,
+    "SE": 2.3,
+    "BE": 2.2
+   }
+  },
+  {
+   "k": "alloc_log",
+   "l": "Aides au logement",
+   "cat": "transfert",
+   "groupe": "logement",
+   "v": {
+    "FR": 0.7,
+    "EU27_2020": 0.3,
+    "DE": 0.4,
+    "IT": 0,
+    "ES": 0,
+    "NL": 0.4,
+    "SE": 0.3,
+    "BE": 0.2
+   }
+  },
+  {
+   "k": "exclusion",
+   "l": "Minima sociaux, exclusion",
+   "cat": "transfert",
+   "groupe": "social",
+   "v": {
+    "FR": 1.2,
+    "EU27_2020": 0.9,
+    "DE": 0.6,
+    "IT": 0.7,
+    "ES": 0.7,
+    "NL": 2.5,
+    "SE": 0.8,
+    "BE": 1.2
+   }
+  },
+  {
+   "k": "eco",
+   "l": "Aides à l'économie et à l'emploi",
+   "cat": "transfert",
+   "groupe": "eco",
+   "v": {
+    "FR": 1.9,
+    "EU27_2020": 1.2,
+    "DE": 1.0,
+    "IT": 0.9,
+    "ES": 1.6,
+    "NL": 0.9,
+    "SE": 0.9,
+    "BE": 3.1
+   }
+  },
+  {
+   "k": "amenag",
+   "l": "Logement et aménagement urbain",
+   "cat": "fonctionnement",
+   "groupe": "logement",
+   "v": {
+    "FR": 1.5,
+    "EU27_2020": 0.8,
+    "DE": 0.4,
+    "IT": 0.8,
+    "ES": 0.4,
+    "NL": 0.5,
+    "SE": 0.8,
+    "BE": 0.4
+   }
+  },
+  {
+   "k": "admin",
+   "l": "Administration générale (ministères, collectivités)",
+   "cat": "fonctionnement",
+   "groupe": "admin",
+   "v": {
+    "FR": 3.3,
+    "EU27_2020": 3.1,
+    "DE": 3.6,
+    "IT": 2.9,
+    "ES": 2.3,
+    "NL": 2.4,
+    "SE": 2.5,
+    "BE": 3.4
+   }
+  },
+  {
+   "k": "ordre",
+   "l": "Police, justice, pompiers, prisons",
+   "cat": "fonctionnement",
+   "groupe": null,
+   "v": {
+    "FR": 1.8,
+    "EU27_2020": 1.7,
+    "DE": 1.6,
+    "IT": 1.8,
+    "ES": 1.8,
+    "NL": 1.9,
+    "SE": 1.6,
+    "BE": 1.7
+   }
+  },
+  {
+   "k": "defense",
+   "l": "Défense",
+   "cat": "fonctionnement",
+   "groupe": null,
+   "v": {
+    "FR": 1.9,
+    "EU27_2020": 1.5,
+    "DE": 1.4,
+    "IT": 1.3,
+    "ES": 0.9,
+    "NL": 1.6,
+    "SE": 1.9,
+    "BE": 1.3
+   }
+  },
+  {
+   "k": "culture",
+   "l": "Culture, sport, loisirs",
+   "cat": "fonctionnement",
+   "groupe": "admin",
+   "v": {
+    "FR": 1.5,
+    "EU27_2020": 1.2,
+    "DE": 1.1,
+    "IT": 0.9,
+    "ES": 1.2,
+    "NL": 1.2,
+    "SE": 1.4,
+    "BE": 1.2
+   }
+  },
+  {
+   "k": "env",
+   "l": "Environnement (déchets, eau, nature)",
+   "cat": "avenir",
+   "groupe": null,
+   "v": {
+    "FR": 1.0,
+    "EU27_2020": 0.8,
+    "DE": 0.6,
+    "IT": 0.9,
+    "ES": 1.0,
+    "NL": 1.6,
+    "SE": 0.5,
+    "BE": 1.2
+   }
+  },
+  {
+   "k": "primaire",
+   "l": "École maternelle et primaire",
+   "cat": "avenir",
+   "groupe": null,
+   "v": {
+    "FR": 1.4,
+    "EU27_2020": 1.6,
+    "DE": 1.5,
+    "IT": 1.4,
+    "ES": 1.5,
+    "NL": 1.6,
+    "SE": 4.6,
+    "BE": 2.0
+   }
+  },
+  {
+   "k": "secondaire",
+   "l": "Collège et lycée",
+   "cat": "avenir",
+   "groupe": null,
+   "v": {
+    "FR": 2.2,
+    "EU27_2020": 1.7,
+    "DE": 1.6,
+    "IT": 1.8,
+    "ES": 1.6,
+    "NL": 2.0,
+    "SE": 1.1,
+    "BE": 2.4
+   }
+  },
+  {
+   "k": "superieur",
+   "l": "Enseignement supérieur",
+   "cat": "avenir",
+   "groupe": null,
+   "v": {
+    "FR": 0.4,
+    "EU27_2020": 0.8,
+    "DE": 0.8,
+    "IT": 0.4,
+    "ES": 0.6,
+    "NL": 1.3,
+    "SE": 1.1,
+    "BE": 1.0
+   }
+  },
+  {
+   "k": "educ_autre",
+   "l": "Cantines, transport scolaire, autres",
+   "cat": "fonctionnement",
+   "groupe": "admin",
+   "v": {
+    "FR": 1.0,
+    "EU27_2020": 0.5,
+    "DE": 0.6,
+    "IT": 0.3,
+    "ES": 0.3,
+    "NL": 0.2,
+    "SE": 0.3,
+    "BE": 1.0
+   }
+  },
+  {
+   "k": "recherche",
+   "l": "Recherche",
+   "cat": "avenir",
+   "groupe": null,
+   "v": {
+    "FR": 1.4,
+    "EU27_2020": 1.1,
+    "DE": 1.3,
+    "IT": 0.9,
+    "ES": 0.8,
+    "NL": 1.0,
+    "SE": 1.6,
+    "BE": 1.4
+   }
+  },
+  {
+   "k": "transports",
+   "l": "Transports (routes, rail)",
+   "cat": "avenir",
+   "groupe": null,
+   "v": {
+    "FR": 2.1,
+    "EU27_2020": 2.5,
+    "DE": 2.7,
+    "IT": 2.4,
+    "ES": 1.8,
+    "NL": 2.2,
+    "SE": 3.5,
+    "BE": 2.8
+   }
+  },
+  {
+   "k": "interets",
+   "l": "Intérêts de la dette",
+   "cat": "dette",
+   "groupe": null,
+   "v": {
+    "FR": 2.0,
+    "EU27_2020": 1.9,
+    "DE": 1.1,
+    "IT": 4.0,
+    "ES": 2.5,
+    "NL": 0.7,
+    "SE": 0.8,
+    "BE": 2.3
+   }
+  }
+ ],
+ "pib": 2935.24,
+ "deficit": 168.2
+}

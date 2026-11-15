@@ -16,6 +16,7 @@ get gov_10a_taxag_pays.json "$E/gov_10a_taxag?unit=PC_GDP&sector=S13_S212&na_ite
 get gov_10a_main_pays_te.json "$E/gov_10a_main?unit=PC_GDP&sector=S13&na_item=TE&sinceTimePeriod=2015"
 get bop_iip_fr.json "$E/bop_iip6_q?geo=FR&currency=MIO_EUR&partner=WRL_REST&sector10=S1&sectpart=S1&bop_item=FA&stk_flow=A_LE&stk_flow=L_LE&stk_flow=N_LE&sinceTimePeriod=2015"
 get lfsi_dwl_a.json "$E/lfsi_dwl_a?unit=YR&sex=T&sinceTimePeriod=2015"
+get gov_10a_exp_pays_pib.json "$E/gov_10a_exp?unit=PC_GDP&na_item=TE&sector=S13&sinceTimePeriod=2022"
 get nama_10_co3_p3.json "$E/nama_10_co3_p3?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015&coicop=CP041&coicop=CP042&coicop=TOTAL"
 get nama_10_pe.json     "$E/nama_10_pe?geo=FR&unit=THS_PER&na_item=POP_NC&sinceTimePeriod=2015"
 
