@@ -447,5 +447,312 @@
    "surcharge": 2.4,
    "annee_part": 2025
   }
+ ],
+ "long": [
+  {
+   "annee": 1980,
+   "construction": 54.0
+  },
+  {
+   "annee": 1981,
+   "construction": 59.0
+  },
+  {
+   "annee": 1982,
+   "construction": 65.4
+  },
+  {
+   "annee": 1983,
+   "construction": 69.8
+  },
+  {
+   "annee": 1984,
+   "construction": 73.9
+  },
+  {
+   "annee": 1985,
+   "construction": 76.2
+  },
+  {
+   "annee": 1986,
+   "construction": 78.7
+  },
+  {
+   "annee": 1987,
+   "construction": 81.0
+  },
+  {
+   "annee": 1988,
+   "construction": 83.3
+  },
+  {
+   "annee": 1989,
+   "construction": 84.4
+  },
+  {
+   "annee": 1990,
+   "construction": 86.5
+  },
+  {
+   "annee": 1991,
+   "construction": 90.2
+  },
+  {
+   "annee": 1992,
+   "construction": 91.6
+  },
+  {
+   "annee": 1993,
+   "construction": 92.6
+  },
+  {
+   "annee": 1994,
+   "construction": 92.7
+  },
+  {
+   "annee": 1995,
+   "construction": 92.7,
+   "revenu": 88.3
+  },
+  {
+   "annee": 1996,
+   "prix": 84.6,
+   "construction": 94.3,
+   "prix_revenu": 93.6,
+   "estime": true,
+   "revenu": 90.4
+  },
+  {
+   "annee": 1997,
+   "prix": 84.3,
+   "construction": 96.6,
+   "prix_revenu": 93.2,
+   "estime": true,
+   "revenu": 90.4
+  },
+  {
+   "annee": 1998,
+   "prix": 86.0,
+   "construction": 96.7,
+   "prix_revenu": 92.6,
+   "estime": true,
+   "revenu": 92.8
+  },
+  {
+   "annee": 1999,
+   "prix": 92.0,
+   "construction": 97.7,
+   "prix_revenu": 96.7,
+   "estime": true,
+   "revenu": 95.1
+  },
+  {
+   "annee": 2000,
+   "prix": 100.0,
+   "construction": 100.0,
+   "prix_revenu": 100.0,
+   "estime": true,
+   "revenu": 100.0
+  },
+  {
+   "annee": 2001,
+   "prix": 107.9,
+   "construction": 103.6,
+   "prix_revenu": 103.5,
+   "estime": true,
+   "revenu": 104.3
+  },
+  {
+   "annee": 2002,
+   "prix": 117.3,
+   "construction": 106.2,
+   "prix_revenu": 108.8,
+   "estime": true,
+   "revenu": 107.8
+  },
+  {
+   "annee": 2003,
+   "prix": 131.3,
+   "construction": 109.3,
+   "prix_revenu": 119.7,
+   "estime": true,
+   "revenu": 109.7
+  },
+  {
+   "annee": 2004,
+   "prix": 151.0,
+   "construction": 114.6,
+   "prix_revenu": 133.3,
+   "estime": true,
+   "revenu": 113.3
+  },
+  {
+   "annee": 2005,
+   "prix": 174.3,
+   "construction": 117.4,
+   "prix_revenu": 150.2,
+   "estime": true,
+   "revenu": 116.1
+  },
+  {
+   "annee": 2006,
+   "prix": 195.3,
+   "construction": 125.6,
+   "prix_revenu": 161.1,
+   "estime": false,
+   "revenu": 121.2
+  },
+  {
+   "annee": 2007,
+   "prix": 208.2,
+   "construction": 130.6,
+   "prix_revenu": 165.1,
+   "estime": false,
+   "revenu": 126.1
+  },
+  {
+   "annee": 2008,
+   "prix": 209.9,
+   "construction": 140.6,
+   "prix_revenu": 162.7,
+   "estime": false,
+   "revenu": 129.0
+  },
+  {
+   "annee": 2009,
+   "prix": 195.0,
+   "construction": 136.8,
+   "prix_revenu": 152.2,
+   "estime": false,
+   "revenu": 128.1
+  },
+  {
+   "annee": 2010,
+   "prix": 205.0,
+   "construction": 138.4,
+   "prix_revenu": 157.0,
+   "estime": false,
+   "revenu": 130.6
+  },
+  {
+   "annee": 2011,
+   "prix": 217.2,
+   "construction": 145.9,
+   "prix_revenu": 164.2,
+   "estime": false,
+   "revenu": 132.2
+  },
+  {
+   "annee": 2012,
+   "prix": 216.0,
+   "construction": 149.6,
+   "prix_revenu": 162.7,
+   "estime": false,
+   "revenu": 132.8
+  },
+  {
+   "annee": 2013,
+   "prix": 211.4,
+   "construction": 148.2,
+   "prix_revenu": 161.0,
+   "estime": false,
+   "revenu": 131.3
+  },
+  {
+   "annee": 2014,
+   "prix": 207.6,
+   "construction": 148.5,
+   "prix_revenu": 161.1,
+   "estime": false,
+   "revenu": 128.9
+  },
+  {
+   "annee": 2015,
+   "prix": 203.8,
+   "construction": 147.6,
+   "prix_revenu": 157.0,
+   "estime": false,
+   "revenu": 129.8
+  },
+  {
+   "annee": 2016,
+   "prix": 205.7,
+   "construction": 148.6,
+   "prix_revenu": 157.0,
+   "estime": false,
+   "revenu": 131.0
+  },
+  {
+   "annee": 2017,
+   "prix": 211.9,
+   "construction": 151.4,
+   "prix_revenu": 158.2,
+   "estime": false,
+   "revenu": 133.9
+  },
+  {
+   "annee": 2018,
+   "prix": 218.2,
+   "construction": 155.0,
+   "prix_revenu": 161.2,
+   "estime": false,
+   "revenu": 135.3
+  },
+  {
+   "annee": 2019,
+   "prix": 225.3,
+   "construction": 159.1,
+   "prix_revenu": 162.5,
+   "estime": false,
+   "revenu": 138.6
+  },
+  {
+   "annee": 2020,
+   "prix": 238.0,
+   "construction": 161.3,
+   "prix_revenu": 171.3,
+   "estime": false,
+   "revenu": 138.9
+  },
+  {
+   "annee": 2021,
+   "prix": 253.9,
+   "construction": 168.8,
+   "prix_revenu": 178.6,
+   "estime": false,
+   "revenu": 142.2
+  },
+  {
+   "annee": 2022,
+   "prix": 269.8,
+   "construction": 182.2,
+   "prix_revenu": 182.1,
+   "estime": false,
+   "revenu": 148.2
+  },
+  {
+   "annee": 2023,
+   "prix": 268.0,
+   "construction": 192.8,
+   "prix_revenu": 168.0,
+   "estime": false,
+   "revenu": 159.5
+  },
+  {
+   "annee": 2024,
+   "prix": 257.1,
+   "construction": 197.7,
+   "prix_revenu": 156.6,
+   "estime": false,
+   "revenu": 164.1
+  },
+  {
+   "annee": 2025,
+   "prix": 258.6,
+   "construction": 190.0,
+   "prix_revenu": 158.0,
+   "estime": false,
+   "revenu": 163.7
+  }
  ]
 }
