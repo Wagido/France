@@ -247,6 +247,7 @@ table.src td:nth-child(3) { max-width: 320px; }
 /* les articles cachés restent mis en page hors écran, à la bonne largeur : les graphiques n'ont pas à se redessiner à l'affichage */
 main .panel[hidden] { display: block !important; position: absolute; left: -20000px; top: 0; width: min(1168px, calc(100vw - 32px)); visibility: hidden; pointer-events: none; }
 @media (max-width: 640px) { main .panel[hidden] { width: calc(100vw - 32px); } }
-.surligne { font-size: .98rem; line-height: 1.6; max-width: 90ch; margin: 14px 0 6px; }
+.surligne { font-size: .85rem; line-height: 1.6; max-width: none; margin: 10px 0 6px; color: var(--muted); }
+.surligne b { color: var(--ink); font-weight: 650; }
 .surligne mark { background: none; color: var(--ink); font-weight: 650; padding: 0; }
 main.wrap { position: relative; overflow: hidden; }
