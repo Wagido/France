@@ -51,6 +51,9 @@ const S = [
   ["Climat", "eurostat", "env_air_gge", "Émissions de gaz à effet de serre par secteur (inventaire national)", null, "annuel (juin)"],
   ["Déchets", "eurostat", "env_wasgen / env_wastrt / env_wasmun", "Production et traitement des déchets", null, "biennal (ménagers : annuel)"],
   ["Transports", "eurostat", "tran_hv_psmod / tran_hv_frmod / rail_pa_total / avia_paoc / road_go_ta_tott", "Parts modales et volumes de voyageurs et de marchandises", null, "annuel"],
+  ["Chômage", "insee", "Enquête Emploi : chômage au sens du BIT, halo autour du chômage, sous-emploi (BDM, CHOMAGE-TRIM-NATIONAL, EMPLOI-BIT-TRIM)", "Chômeurs, halo, sous-emploi, chômage de longue durée, France entière", "https://www.insee.fr/fr/statistiques/serie/011818543", "trimestriel"],
+  ["Chômage", "insee", "Demandeurs d'emploi inscrits à France Travail (DARES, via la BDM de l'INSEE)", "Catégories A, B, C, D, E", "https://www.insee.fr/fr/statistiques/serie/010597456", "trimestriel"],
+  ["Chômage", "eurostat", "lfsi_sla_a", "Chômage élargi (labour market slack)", null, "annuel"],
   ["Démographie", "eurostat", "demo_gind / demo_pjan / proj_23np", "Population, naissances, décès, pyramide des âges, projections", null, "annuel"],
   ["Immigration", "eurostat", "migr_pop3ctb / migr_imm1ctz / migr_emi1ctz / migr_pop1ctz", "Population par pays de naissance et nationalité, flux migratoires", null, "annuel"],
   ["Temps de travail", "eurostat", "nama_10_a10_e / tus_00age", "Heures travaillées par branche, enquête emploi du temps (2010)", null, "annuel / ponctuel"],
@@ -75,5 +78,24 @@ function render() {
   document.getElementById("src-orgs").innerHTML = Object.values(ORG).map(o =>
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render); else render();
+// en bas de chaque article, ses sources en petit
+const PAR_ARTICLE = { pib: ["PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB"],
+  duree: ["Argent public"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
+  energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
+  territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
+  justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"] };
+function footers() {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  Object.entries(PAR_ARTICLE).forEach(([id, themes]) => {
+    const sec = document.getElementById(id); if (!sec || sec.querySelector(".src-foot")) return;
+    const rows = S.filter(r => themes.includes(r[0]));
+    if (!rows.length) return;
+    const parOrg = {};
+    rows.forEach(([, o, c, , u]) => (parOrg[o] = parOrg[o] || []).push(u ? `<a href="${u}" target="_blank" rel="noopener">${esc(c)}</a>` :
+      c.split(/\s*\/\s*/).map(x => /^[a-z]{2,5}_[\w]+$/.test(x.trim()) ? `<a href="${ES(x.trim())}" target="_blank" rel="noopener">${esc(x.trim())}</a>` : esc(x)).join(", ")));
+    sec.insertAdjacentHTML("beforeend", `<p class="src-foot"><span>Sources</span> ${Object.entries(parOrg).map(([o, l]) => `<b>${esc(ORG[o].nom)}</b> : ${l.join(" ; ")}`).join(" · ")}. <a href="#sources">Toutes les sources</a></p>`);
+  });
+}
+function start() { render(); footers(); }
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

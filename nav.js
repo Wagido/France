@@ -9,7 +9,7 @@ const first = g => document.querySelector(`nav.tabs[data-group="${g}"] a`)?.getA
 const geoCtl = $("#geo-ctl");
 
 function show(id) {
-  if (!groupOf[id] || !document.getElementById(id)) id = "pib";
+  if (!groupOf[id] || !document.getElementById(id)) id = first("economie");
   const g = groupOf[id];
   sections.forEach(s => s.hidden = s.id !== id);
   document.querySelectorAll("nav.groups button").forEach(b => b.setAttribute("aria-pressed", b.dataset.group === g));

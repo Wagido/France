@@ -206,6 +206,11 @@ for an in $(seq $(( $(date +%Y) - 1 )) -1 2023); do
 done
 get empreinte/env_ac_ainah_r2.json "$E/env_ac_ainah_r2?airpol=GHG&unit=THS_T&nace_r2=HH_TRA&nace_r2=HH_HEAT&nace_r2=HH_OTH&sinceTimePeriod=2010$GEO"
 
+# Chômage : INSEE (BIT, halo, sous-emploi) et DARES / France Travail (catégories A à E), via la base BDM de l'INSEE ; Eurostat (chômage élargi)
+mkdir -p chomage
+get chomage/bdm_chomage.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011818543+011818555+011818564+011818739+011818577+011818581+010597456+010597571+010598455+010598489+010598404+010598417"
+get chomage/lfsi_sla_a.json "$E/lfsi_sla_a?sex=T&age=Y15-74&sinceTimePeriod=2009$GEO"
+
 # Commerce extérieur de la France (Comext) : par partenaire et par chapitre de produits
 C="https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-059341"
 YR=$(date +%Y); LAST=$((YR-1))

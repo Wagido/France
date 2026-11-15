@@ -14,7 +14,7 @@
 <body>
 <header class="site">
   <div class="wrap head-row">
-    <a class="brand" href="#pib"><span class="brand-name">Comptes de la France</span><span class="brand-sub">Ce que le pays produit, prélève, redistribue, possède et doit. Données officielles Eurostat, INSEE, SDES.</span></a>
+    <a class="brand" href="#patrimoine"><span class="brand-name">Comptes de la France</span><span class="brand-sub">Ce que le pays produit, prélève, redistribue, possède et doit. Données officielles Eurostat, INSEE, SDES.</span></a>
     <button id="theme-btn" class="icon-btn" type="button" aria-label="Basculer entre thème clair et sombre" title="Thème clair / sombre"><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
   </div>
   <div class="wrap">
@@ -25,13 +25,13 @@
       <button type="button" data-group="sources-g">Sources</button>
     </nav>
     <nav class="tabs" data-group="economie" aria-label="Économie" hidden>
+      <a href="#patrimoine">Patrimoine</a>
       <a href="#pib">Le PIB</a>
-      <a href="#population">Qui fait quoi</a>
       <a href="#argent-public">L'argent public</a>
       <a href="#cycle-vie">La vie en euros</a>
-      <a href="#simulateur">Couper la dépense ?</a>
       <a href="#duree">Dette sur 30 ans</a>
-      <a href="#patrimoine">Patrimoine</a>
+      <a href="#simulateur">Couper la dépense ?</a>
+      <a href="#population">Qui fait quoi</a>
       <a href="#commerce">Commerce extérieur</a>
       <a href="#industrie">Industrie et innovation</a>
       <a href="#comparer">Comparer les pays</a>
@@ -53,6 +53,7 @@
       <a href="#immigration">Immigration</a>
       <a href="#travail">Temps de travail</a>
       <a href="#emploi">Emploi</a>
+      <a href="#chomage">Chômage</a>
       <a href="#justice">Justice</a>
       <a href="#sante">Santé</a>
       <a href="#education">Éducation</a>
@@ -555,6 +556,27 @@
   <h3>Comparer les pays</h3><div id="em-cmp" class="chart"></div>
 </section>
 
+<section id="chomage" class="panel">
+  <div class="panel-head">
+    <h2>Chômage : combien de chômeurs, selon la façon de compter <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="ch-kpis"></div>
+  <p class="lead">Il n'y a pas un chiffre du chômage mais plusieurs. L'INSEE mesure le chômage par une enquête, selon la définition internationale du BIT. France Travail compte les personnes inscrites, réparties en cinq catégories. Et entre l'emploi et le chômage, il y a une zone grise : ceux qui voudraient travailler mais ne cochent pas toutes les cases, ou qui travaillent moins qu'ils le voudraient.</p>
+  <h3>Du chiffre le plus étroit au plus large</h3>
+  <div id="ch-escalier" class="chart"></div><div class="legend-row" id="ch-escalier-legend"></div>
+  <div class="grid2">
+    <div><h3>Les deux compteurs depuis 1996</h3><div id="ch-serie" class="chart"></div><div class="legend-row" id="ch-serie-legend"></div></div>
+    <div><h3>Chômage, halo et sous-emploi depuis 2003</h3><div id="ch-halo" class="chart"></div><div class="legend-row" id="ch-halo-legend"></div></div>
+  </div>
+  <h3>Qui est dans quelle case ?</h3>
+  <div id="ch-defs"></div>
+  <h3>Ce qui fait bouger les chiffres sans que la réalité change</h3>
+  <div class="callout small" id="ch-biais"></div>
+  <h3>Comparer les pays : le chômage élargi</h3>
+  <p class="lead">Eurostat additionne, en % de la population active élargie, les chômeurs au sens du BIT, les personnes à temps partiel qui voudraient travailler plus, celles qui sont disponibles mais ne cherchent pas, et celles qui cherchent mais ne sont pas disponibles tout de suite.</p>
+  <div id="ch-cmp" class="chart"></div>
+</section>
+
 <section id="justice" class="panel">
   <div class="panel-head">
     <h2>Justice et sécurité <span class="geo-tag"></span></h2>
@@ -753,6 +775,7 @@
 <script src="societe.js"></script>
 <script src="eco2.js"></script>
 <script src="empreinte.js"></script>
+<script src="chomage.js"></script>
 <script src="sources.js"></script>
 <script src="nav.js"></script>
 </body>
