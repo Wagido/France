@@ -1,0 +1,750 @@
+{
+ "brevets": [
+  {
+   "code": "EU27_2020",
+   "nom": "Moyenne de l'Union européenne",
+   "annee": 2025,
+   "v": 153
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "annee": 2025,
+   "v": 214
+  },
+  {
+   "code": "BG",
+   "nom": "Bulgarie",
+   "annee": 2025,
+   "v": 11
+  },
+  {
+   "code": "CZ",
+   "nom": "Tchéquie",
+   "annee": 2025,
+   "v": 24
+  },
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "annee": 2025,
+   "v": 446
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "annee": 2025,
+   "v": 293
+  },
+  {
+   "code": "EE",
+   "nom": "Estonie",
+   "annee": 2025,
+   "v": 60
+  },
+  {
+   "code": "IE",
+   "nom": "Irlande",
+   "annee": 2025,
+   "v": 217
+  },
+  {
+   "code": "EL",
+   "nom": "Grèce",
+   "annee": 2025,
+   "v": 12
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "annee": 2025,
+   "v": 46
+  },
+  {
+   "code": "FR",
+   "nom": "France",
+   "annee": 2025,
+   "v": 159
+  },
+  {
+   "code": "HR",
+   "nom": "Croatie",
+   "annee": 2025,
+   "v": 10
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "annee": 2025,
+   "v": 81
+  },
+  {
+   "code": "CY",
+   "nom": "Chypre",
+   "annee": 2025,
+   "v": 58
+  },
+  {
+   "code": "LV",
+   "nom": "Lettonie",
+   "annee": 2025,
+   "v": 20
+  },
+  {
+   "code": "LT",
+   "nom": "Lituanie",
+   "annee": 2025,
+   "v": 32
+  },
+  {
+   "code": "LU",
+   "nom": "Luxembourg",
+   "annee": 2025,
+   "v": 548
+  },
+  {
+   "code": "HU",
+   "nom": "Hongrie",
+   "annee": 2025,
+   "v": 14
+  },
+  {
+   "code": "MT",
+   "nom": "Malte",
+   "annee": 2025,
+   "v": 125
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "annee": 2025,
+   "v": 388
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "annee": 2025,
+   "v": 245
+  },
+  {
+   "code": "PL",
+   "nom": "Pologne",
+   "annee": 2025,
+   "v": 17
+  },
+  {
+   "code": "PT",
+   "nom": "Portugal",
+   "annee": 2025,
+   "v": 34
+  },
+  {
+   "code": "RO",
+   "nom": "Roumanie",
+   "annee": 2025,
+   "v": 2
+  },
+  {
+   "code": "SI",
+   "nom": "Slovénie",
+   "annee": 2025,
+   "v": 80
+  },
+  {
+   "code": "SK",
+   "nom": "Slovaquie",
+   "annee": 2025,
+   "v": 11
+  },
+  {
+   "code": "FI",
+   "nom": "Finlande",
+   "annee": 2025,
+   "v": 613
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "annee": 2025,
+   "v": 446
+  },
+  {
+   "code": "NO",
+   "nom": "Norvège",
+   "annee": 2025,
+   "v": 130
+  },
+  {
+   "code": "CH",
+   "nom": "Suisse",
+   "annee": 2025,
+   "v": 1095
+  },
+  {
+   "code": "IS",
+   "nom": "Islande",
+   "annee": 2025,
+   "v": 195
+  }
+ ],
+ "brevets_fr": [
+  {
+   "annee": 2004,
+   "v": 129
+  },
+  {
+   "annee": 2005,
+   "v": 128
+  },
+  {
+   "annee": 2006,
+   "v": 127
+  },
+  {
+   "annee": 2007,
+   "v": 131
+  },
+  {
+   "annee": 2008,
+   "v": 142
+  },
+  {
+   "annee": 2009,
+   "v": 139
+  },
+  {
+   "annee": 2010,
+   "v": 148
+  },
+  {
+   "annee": 2011,
+   "v": 148
+  },
+  {
+   "annee": 2012,
+   "v": 151
+  },
+  {
+   "annee": 2013,
+   "v": 150
+  },
+  {
+   "annee": 2014,
+   "v": 160
+  },
+  {
+   "annee": 2015,
+   "v": 162
+  },
+  {
+   "annee": 2016,
+   "v": 157
+  },
+  {
+   "annee": 2017,
+   "v": 159
+  },
+  {
+   "annee": 2018,
+   "v": 156
+  },
+  {
+   "annee": 2019,
+   "v": 152
+  },
+  {
+   "annee": 2020,
+   "v": 157
+  },
+  {
+   "annee": 2021,
+   "v": 158
+  },
+  {
+   "annee": 2022,
+   "v": 161
+  },
+  {
+   "annee": 2023,
+   "v": 159
+  },
+  {
+   "annee": 2024,
+   "v": 160
+  },
+  {
+   "annee": 2025,
+   "v": 159
+  }
+ ],
+ "brevets_de": [
+  {
+   "annee": 2004,
+   "v": 279
+  },
+  {
+   "annee": 2005,
+   "v": 288
+  },
+  {
+   "annee": 2006,
+   "v": 301
+  },
+  {
+   "annee": 2007,
+   "v": 306
+  },
+  {
+   "annee": 2008,
+   "v": 325
+  },
+  {
+   "annee": 2009,
+   "v": 307
+  },
+  {
+   "annee": 2010,
+   "v": 334
+  },
+  {
+   "annee": 2011,
+   "v": 326
+  },
+  {
+   "annee": 2012,
+   "v": 339
+  },
+  {
+   "annee": 2013,
+   "v": 329
+  },
+  {
+   "annee": 2014,
+   "v": 317
+  },
+  {
+   "annee": 2015,
+   "v": 304
+  },
+  {
+   "annee": 2016,
+   "v": 303
+  },
+  {
+   "annee": 2017,
+   "v": 309
+  },
+  {
+   "annee": 2018,
+   "v": 322
+  },
+  {
+   "annee": 2019,
+   "v": 322
+  },
+  {
+   "annee": 2020,
+   "v": 311
+  },
+  {
+   "annee": 2021,
+   "v": 311
+  },
+  {
+   "annee": 2022,
+   "v": 294
+  },
+  {
+   "annee": 2023,
+   "v": 297
+  },
+  {
+   "annee": 2024,
+   "v": 300
+  },
+  {
+   "annee": 2025,
+   "v": 293
+  }
+ ],
+ "brevets_ue": [
+  {
+   "annee": 2004,
+   "v": 119
+  },
+  {
+   "annee": 2005,
+   "v": 123
+  },
+  {
+   "annee": 2006,
+   "v": 126
+  },
+  {
+   "annee": 2007,
+   "v": 131
+  },
+  {
+   "annee": 2008,
+   "v": 137
+  },
+  {
+   "annee": 2009,
+   "v": 130
+  },
+  {
+   "annee": 2010,
+   "v": 139
+  },
+  {
+   "annee": 2011,
+   "v": 135
+  },
+  {
+   "annee": 2012,
+   "v": 137
+  },
+  {
+   "annee": 2013,
+   "v": 138
+  },
+  {
+   "annee": 2014,
+   "v": 141
+  },
+  {
+   "annee": 2015,
+   "v": 141
+  },
+  {
+   "annee": 2016,
+   "v": 140
+  },
+  {
+   "annee": 2017,
+   "v": 144
+  },
+  {
+   "annee": 2018,
+   "v": 148
+  },
+  {
+   "annee": 2019,
+   "v": 149
+  },
+  {
+   "annee": 2020,
+   "v": 148
+  },
+  {
+   "annee": 2021,
+   "v": 152
+  },
+  {
+   "annee": 2022,
+   "v": 151
+  },
+  {
+   "annee": 2023,
+   "v": 153
+  },
+  {
+   "annee": 2024,
+   "v": 152
+  },
+  {
+   "annee": 2025,
+   "v": 153
+  }
+ ],
+ "rd": [
+  {
+   "code": "EU27_2020",
+   "nom": "Moyenne de l'Union européenne",
+   "annee": 2024,
+   "total": 2.26,
+   "entreprises": 1.5,
+   "public": 0.77
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "annee": 2024,
+   "total": 3.25,
+   "entreprises": 2.35,
+   "public": 0.91
+  },
+  {
+   "code": "BG",
+   "nom": "Bulgarie",
+   "annee": 2024,
+   "total": 0.77,
+   "entreprises": 0.5,
+   "public": 0.27
+  },
+  {
+   "code": "CZ",
+   "nom": "Tchéquie",
+   "annee": 2024,
+   "total": 1.82,
+   "entreprises": 1.18,
+   "public": 0.64
+  },
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "annee": 2024,
+   "total": 3.15,
+   "entreprises": 1.98,
+   "public": 1.16
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "annee": 2024,
+   "total": 3.12,
+   "entreprises": 2.11,
+   "public": 1.01
+  },
+  {
+   "code": "EE",
+   "nom": "Estonie",
+   "annee": 2024,
+   "total": 1.98,
+   "entreprises": 1.18,
+   "public": 0.8
+  },
+  {
+   "code": "IE",
+   "nom": "Irlande",
+   "annee": 2024,
+   "total": 1.59,
+   "entreprises": 1.38,
+   "public": 0.21
+  },
+  {
+   "code": "EL",
+   "nom": "Grèce",
+   "annee": 2024,
+   "total": 1.53,
+   "entreprises": 0.84,
+   "public": 0.69
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "annee": 2024,
+   "total": 1.5,
+   "entreprises": 0.84,
+   "public": 0.66
+  },
+  {
+   "code": "FR",
+   "nom": "France",
+   "annee": 2024,
+   "total": 2.18,
+   "entreprises": 1.43,
+   "public": 0.75
+  },
+  {
+   "code": "HR",
+   "nom": "Croatie",
+   "annee": 2024,
+   "total": 1.41,
+   "entreprises": 0.8,
+   "public": 0.61
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "annee": 2024,
+   "total": 1.41,
+   "entreprises": 0.8,
+   "public": 0.61
+  },
+  {
+   "code": "CY",
+   "nom": "Chypre",
+   "annee": 2024,
+   "total": 0.64,
+   "entreprises": 0.29,
+   "public": 0.35
+  },
+  {
+   "code": "LV",
+   "nom": "Lettonie",
+   "annee": 2024,
+   "total": 0.94,
+   "entreprises": 0.36,
+   "public": 0.59
+  },
+  {
+   "code": "LT",
+   "nom": "Lituanie",
+   "annee": 2024,
+   "total": 1.12,
+   "entreprises": 0.5,
+   "public": 0.61
+  },
+  {
+   "code": "LU",
+   "nom": "Luxembourg",
+   "annee": 2024,
+   "total": 1.04,
+   "entreprises": 0.48,
+   "public": 0.56
+  },
+  {
+   "code": "HU",
+   "nom": "Hongrie",
+   "annee": 2024,
+   "total": 1.31,
+   "entreprises": 0.99,
+   "public": 0.31
+  },
+  {
+   "code": "MT",
+   "nom": "Malte",
+   "annee": 2024,
+   "total": 0.61,
+   "entreprises": 0.43,
+   "public": 0.18
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "annee": 2024,
+   "total": 2.37,
+   "entreprises": 1.68,
+   "public": 0.7
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "annee": 2024,
+   "total": 3.34,
+   "entreprises": 2.3,
+   "public": 1.04
+  },
+  {
+   "code": "PL",
+   "nom": "Pologne",
+   "annee": 2024,
+   "total": 1.4,
+   "entreprises": 0.89,
+   "public": 0.51
+  },
+  {
+   "code": "PT",
+   "nom": "Portugal",
+   "annee": 2024,
+   "total": 1.73,
+   "entreprises": 1.09,
+   "public": 0.65
+  },
+  {
+   "code": "RO",
+   "nom": "Roumanie",
+   "annee": 2024,
+   "total": 0.46,
+   "entreprises": 0.29,
+   "public": 0.16
+  },
+  {
+   "code": "SI",
+   "nom": "Slovénie",
+   "annee": 2024,
+   "total": 2.14,
+   "entreprises": 1.47,
+   "public": 0.66
+  },
+  {
+   "code": "SK",
+   "nom": "Slovaquie",
+   "annee": 2024,
+   "total": 0.98,
+   "entreprises": 0.59,
+   "public": 0.39
+  },
+  {
+   "code": "FI",
+   "nom": "Finlande",
+   "annee": 2024,
+   "total": 3.22,
+   "entreprises": 2.19,
+   "public": 1.04
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "annee": 2024,
+   "total": 3.53,
+   "entreprises": 2.59,
+   "public": 0.95
+  },
+  {
+   "code": "NO",
+   "nom": "Norvège",
+   "annee": 2024,
+   "total": 1.75,
+   "entreprises": 0.99,
+   "public": 0.77
+  },
+  {
+   "code": "CH",
+   "nom": "Suisse",
+   "annee": 2023,
+   "total": 3.1,
+   "entreprises": 2.15,
+   "public": 0.95
+  },
+  {
+   "code": "IS",
+   "nom": "Islande",
+   "annee": 2024,
+   "total": 2.47,
+   "entreprises": 1.77,
+   "public": 0.7
+  },
+  {
+   "code": "US",
+   "nom": "États-Unis",
+   "annee": 2024,
+   "total": 3.44,
+   "entreprises": 2.67,
+   "public": 0.78
+  },
+  {
+   "code": "JP",
+   "nom": "Japon",
+   "annee": 2024,
+   "total": 3.48,
+   "entreprises": 2.75,
+   "public": 0.73
+  },
+  {
+   "code": "CN_X_HK",
+   "nom": "Chine",
+   "annee": 2024,
+   "total": 2.69,
+   "entreprises": 2.09,
+   "public": 0.6
+  },
+  {
+   "code": "KR",
+   "nom": "Corée du Sud",
+   "annee": 2024,
+   "total": 5.13,
+   "entreprises": 4.17,
+   "public": 0.95
+  },
+  {
+   "code": "UK",
+   "nom": "Royaume-Uni",
+   "annee": 2019,
+   "total": 1.73,
+   "entreprises": 1.18,
+   "public": 0.55
+  }
+ ]
+}

@@ -60,6 +60,7 @@ const S = [
   ["Argent public", "insee", "Comptes nationaux annuels base 2020 depuis 1949 ; Jordà, Schularick et Taylor, Macrohistory Database (1900-2017)", "Graphique « Un siècle de franc » : inflation, solde budgétaire, exportations, cours du dollar", "https://www.macrohistory.net/database/", "annuel"],
   ["Argent privé", "insee", "Comptes nationaux annuels base 2020 : salaires et traitements bruts, emploi salarié EQTP, consommation des ménages par fonction, PIB par habitant", "Salaire moyen depuis 1949, budget des ménages depuis 1959", "https://www.insee.fr/fr/statistiques/serie/011785411", "annuel"],
   ["PIB", "harvard", "Energy_Data_FRANCE.xlsx", "Consommation d'énergie par habitant en France, 1800-2008", "https://histecon.fas.harvard.edu/energyhistory/data_sets/Energy_Data_FRANCE.xlsx", "ponctuel"],
+  ["Industrie et innovation", "eurostat", "sdg_09_40 / rd_e_gerdtot", "Demandes de brevets européens par habitant, dépense de R&D par secteur", null, "annuel"],
   ["Patrimoine historique", "eurostat", "tour_occ_ninat / ilc_scp03 / gov_10a_exp", "Nuitées des touristes étrangers, visites de sites culturels, dépense publique culturelle", null, "annuel"],
   ["Biodiversité", "insee", "Indicateurs de développement durable 15.i6 (d'après le MNHN, programme STOC)", "Oiseaux communs par milieu, France métropolitaine", "https://www.insee.fr/fr/statistiques/2658605", "annuel"],
   ["Biodiversité", "eurostat", "env_bio2 / sdg_15_20 / sdg_14_10", "Oiseaux des milieux agricoles par pays, aires protégées", null, "annuel"],
