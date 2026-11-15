@@ -1,0 +1,27 @@
+{
+ "annee": 2025,
+ "pib": 2991.1,
+ "prelevements": {
+  "tva": 470.4,
+  "revenus": 411.6,
+  "cotisations": 498.7
+ },
+ "po": 1380.7,
+ "autres_recettes": 181.8,
+ "emprunt": 151.6,
+ "depenses": {
+  "prestations": 580.9,
+  "aides": 56.5,
+  "interets": 65.7,
+  "transferts": 135.4,
+  "investissement": 134.8,
+  "services": 740.8
+ },
+ "te": 1714.1,
+ "tr": 1562.5,
+ "detail_services": {
+  "agents": 370.0,
+  "achats": 163.5,
+  "nature": 190.1
+ }
+}

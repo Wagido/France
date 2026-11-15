@@ -42,6 +42,7 @@ jobs:
           python3 scripts/build_chomage.py
           python3 scripts/build_histoire.py
           python3 scripts/build_argent_prive.py
+          python3 scripts/build_repartition.py
       - name: Enregistrement si les données ont changé
         run: |
           git config user.name "mise-a-jour-auto"

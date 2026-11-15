@@ -92,7 +92,20 @@ for y in sorted(M["011780516"]):
 annees = sorted(set(pib) | set(sal) | set(ener))
 serie = [{"annee": y, "pib_hab": round(pib[y]) if y in pib else None, "salaire": round(sal[y]) if y in sal else None,
           "energie_hab": round(ener[y]) if y in ener else None} for y in annees if y >= 1900]
-json.dump({"annee_euros": an, "serie": serie, "budget": budget, "postes": [[k, l, c] for k, l, _, c in POSTES]},
+# émissions par habitant : sur le territoire (inventaire) et empreinte (avec les importations), SDES et Eurostat
+co2 = []
+try:
+    ec = json.load(open(os.path.join(HERE, "..", "data", "empreinte", "FR.json")))["sdes"]["serie"]
+    th = json.load(open(os.path.join(HERE, "..", "data", "themes", "FR.json")))
+    terr = {int(x["annee"]): x["total"] for x in th["climat"]["serie"]}
+    popu = {int(x["annee"]): x["population"] for x in th["demographie"]["serie"] if x.get("population")}
+    for x in ec:
+        y = x["annee"]
+        t = terr.get(y) * 1e6 / popu[y] if y in terr and y in popu else None
+        co2.append({"annee": y, "empreinte": x["par_hab"], "territoire": round(t, 2) if t else None})
+except (OSError, KeyError) as e:
+    print("émissions : données absentes", e)
+json.dump({"annee_euros": an, "serie": serie, "co2": co2, "budget": budget, "postes": [[k, l, c] for k, l, _, c in POSTES]},
           open(OUT, "w"), ensure_ascii=False, separators=(",", ":"))
 for r in serie:
     if r["annee"] in (1900, 1913, 1929, 1938, 1949, 1960, 1975, 2000, an - 1, an):

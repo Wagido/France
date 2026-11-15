@@ -87,7 +87,7 @@ function render() {
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
 // en bas de chaque article, ses sources en petit
-const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
+const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],

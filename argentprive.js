@@ -13,7 +13,7 @@ const eur = v => Math.round(v).toLocaleString("fr-FR") + " €";
 
 function draw() {
   if (!A) return;
-  drawEnergie(); drawSalaire(); drawBudget();
+  drawEnergie(); drawCo2(); drawSalaire(); drawBudget();
 }
 
 /* PIB par habitant (depuis 1900) et énergie par habitant (depuis 1965), deux axes */
@@ -39,8 +39,20 @@ function drawEnergie() {
   const eMax = S.filter(d => d.energie_hab).reduce((a, b) => b.energie_hab > a.energie_hab ? b : a), eL = S.filter(d => d.energie_hab).at(-1);
   const pAtMax = S.find(d => d.annee === eMax.annee);
   $("#en-pib-legend").innerHTML = `<span><i style="border-top-color:#3b6fd6;opacity:1"></i>PIB par habitant, en euros de ${A.annee_euros} (axe de gauche)</span><span><i style="border-top-color:#e07b39;opacity:1"></i>Énergie primaire par habitant (axe de droite)</span>`;
-  $("#en-pib-txt").innerHTML = `<p>En euros constants, la production par habitant a été multipliée par <b>${(pL.pib_hab / p0.pib_hab).toLocaleString("fr-FR", { maximumFractionDigits: 1 })}</b> depuis 1900 (${eur(p0.pib_hab)} contre ${eur(pL.pib_hab)} en ${pL.annee}). La consommation d'énergie par habitant a culminé en ${eMax.annee} (${Math.round(eMax.energie_hab / 1000)} MWh) et a baissé de ${Math.round(100 * (1 - eL.energie_hab / eMax.energie_hab))}&nbsp;% depuis, alors que le PIB par habitant a encore augmenté de ${Math.round(100 * (pL.pib_hab / pAtMax.pib_hab - 1))}&nbsp;% : on produit plus de richesse avec moins d'énergie, en partie parce que l'industrie lourde est partie à l'étranger (voir l'empreinte carbone).</p>
-    <p class="muted" style="font-size:.78rem">PIB par habitant : INSEE (comptes nationaux base 2020) depuis 1949 ; avant, évolution du PIB réel par habitant de la base Jordà-Schularick-Taylor (estimations de Maddison). Pour un seul pays, les euros constants suffisent : les parités de pouvoir d'achat servent à comparer des pays entre eux. Énergie : Our World in Data, disponible depuis 1965 ; elle compte le nucléaire, l'éolien et le solaire comme l'énergie fossile qu'il faudrait brûler pour produire la même électricité, d'où un niveau un peu différent du bilan d'Eurostat ci-dessus. Aucune série fiable de consommation d'énergie par habitant n'est publiée avant 1965 pour la France.</p>`;
+  $("#en-pib-txt").innerHTML = `<p>En euros constants, la production par habitant a été multipliée par <b>${(pL.pib_hab / p0.pib_hab).toLocaleString("fr-FR", { maximumFractionDigits: 1 })}</b> depuis 1900 (${eur(p0.pib_hab)} contre ${eur(pL.pib_hab)} en ${pL.annee}). La consommation d'énergie par habitant a culminé en ${eMax.annee} (${Math.round(eMax.energie_hab / 1000)} MWh) et a baissé de ${Math.round(100 * (1 - eL.energie_hab / eMax.energie_hab))}&nbsp;% depuis, alors que le PIB par habitant a encore augmenté de ${Math.round(100 * (pL.pib_hab / pAtMax.pib_hab - 1))}&nbsp;% : on produit plus de richesse avec moins d'énergie, en partie parce que l'industrie lourde est partie à l'étranger : l'énergie nécessaire à ce que nous importons n'est pas comptée ici (voir le graphique suivant).</p>
+    <p class="muted" style="font-size:.78rem">PIB par habitant : INSEE (comptes nationaux base 2020) depuis 1949 ; avant, évolution du PIB réel par habitant de la base Jordà-Schularick-Taylor (estimations de Maddison). Pour un seul pays, les euros constants suffisent : les parités de pouvoir d'achat servent à comparer des pays entre eux. Énergie : Our World in Data, disponible depuis 1965 ; elle compte le nucléaire, l'éolien et le solaire comme l'énergie fossile qu'il faudrait brûler pour produire la même électricité, d'où un niveau un peu différent du bilan d'Eurostat de l'onglet Énergie. Aucune série fiable de consommation d'énergie par habitant n'est publiée avant 1965 pour la France.</p>`;
+}
+
+
+/* émissions par habitant : territoire et empreinte */
+function drawCo2() {
+  const el = $("#pib-co2"); if (!el || !A.co2?.length) return;
+  const { lineChart, legend, n1 } = window.TH;
+  lineChart(el, A.co2, [{ k: "empreinte", l: "Empreinte (avec les importations)", c: "#7c3aed" }, { k: "territoire", l: "Émis sur le territoire", c: "#64748b" }],
+    { vfmt: v => n1(v) + " t", yfmt: v => v + " t", h: 260 });
+  legend("#pib-co2-legend", [["Empreinte : tout ce qu'il a fallu émettre pour notre consommation, en France et ailleurs", "#7c3aed"], ["Émissions sur le territoire français (hors forêts et sols)", "#64748b"]]);
+  const a = A.co2[0], b = A.co2.filter(d => d.territoire).at(-1);
+  $("#pib-co2-txt").innerHTML = `Tonnes de gaz à effet de serre (équivalent CO₂) par habitant. L'écart entre les deux courbes, c'est ce qui est émis à l'étranger pour fabriquer ce que nous importons : ${n1(a.empreinte - a.territoire)} t par habitant en ${a.annee}, ${n1(b.empreinte - b.territoire)} t en ${b.annee}. Le même raisonnement vaut pour l'énergie, mais aucune statistique officielle de l'« énergie importée » dans nos achats n'est publiée pour la France : le carbone en donne la meilleure mesure. Sources : SDES et INSEE (empreinte), Eurostat (inventaire des émissions), Eurostat (population).`;
 }
 
 /* salaire moyen et PIB par habitant, par mois, depuis 1900 */
