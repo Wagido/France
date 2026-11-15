@@ -314,3 +314,7 @@ main.wrap { position: relative; overflow: hidden; }
 .ch-bar { display: flex; height: 46px; border-radius: 8px; overflow: hidden; margin: 6px 0 8px; max-width: 1040px; }
 .ch-bar span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: .78rem; min-width: 0; border-right: 2px solid var(--surface); }
 .ch-bar span b { white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+/* séparateurs de thèmes dans les onglets */
+.tabs .tab-sep { font-size: .66rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 0 4px 0 12px; margin-left: 6px; border-left: 1px solid var(--line); white-space: nowrap; align-self: center; }
+.tabs .tab-sep:first-child { border-left: 0; margin-left: 0; padding-left: 4px; }
+.ss-pin span { display: block; width: 14px; height: 14px; border-radius: 50%; background: #dc2626; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); }

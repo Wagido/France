@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261118d">
+<link rel="stylesheet" href="style.css?v=20261118f">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -45,24 +45,30 @@
       <a href="#comparer">Comparer les pays</a>
     </nav>
     <nav class="tabs" data-group="ressources" aria-label="Ressources" hidden>
+      <span class="tab-sep">Énergie</span>
       <a href="#energie">Énergie</a>
-      <a href="#matieres">Matières</a>
-      <a href="#eau">Eau</a>
-      <a href="#sols">Sols</a>
-      <a href="#alimentation">Alimentation</a>
-      <a href="#climat">Climat</a>
-      <a href="#empreinte">Empreinte carbone</a>
-      <a href="#dechets">Déchets</a>
       <a href="#territoire">Territoire</a>
       <a href="#transports">Transports</a>
+      <span class="tab-sep">Climat</span>
+      <a href="#climat">Climat</a>
+      <a href="#empreinte">Empreinte carbone</a>
+      <a href="#catastrophes">Catastrophes climatiques</a>
+      <a href="#transition">Qui paie la transition ?</a>
+      <span class="tab-sep">Terres et matières</span>
+      <a href="#sols">Sols</a>
+      <a href="#soussol">Sous-sol</a>
+      <a href="#matieres">Matières</a>
+      <a href="#dechets">Déchets</a>
+      <a href="#eau">Eau</a>
+      <span class="tab-sep">Nature</span>
       <a href="#biodiversite">Biodiversité</a>
       <a href="#foret">Forêt</a>
       <a href="#air">Air</a>
+      <span class="tab-sep">Agriculture</span>
       <a href="#agriculture">Agriculture</a>
+      <a href="#alimentation">Alimentation</a>
       <a href="#champ">Du champ au caddie</a>
       <a href="#pesticides">Pesticides et engrais</a>
-      <a href="#catastrophes">Catastrophes climatiques</a>
-      <a href="#transition">Qui paie la transition ?</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
@@ -636,6 +642,29 @@
   </div>
 </section>
 
+<section id="soussol" class="panel">
+  <div class="panel-head">
+    <h2>Sous-sol : ce que la France a sous les pieds <span class="geo-fixed">France</span></h2>
+  </div>
+  <h3>La carte géologique de la France</h3>
+  <p class="lead">Carte du BRGM : chaque couleur est un type de roche et un âge. Zoomez : la carte au 1/1 000 000 laisse place à la carte au 1/250 000, puis au 1/50 000. Les points marquent quelques sites emblématiques du sous-sol.</p>
+  <div class="ctl-row"><label class="ctl" style="white-space:nowrap">Transparence de la géologie <input type="range" id="ss-op" min="0" max="100" value="75" style="width:180px;vertical-align:middle"></label></div>
+  <div id="ss-map" style="height:560px;border-radius:12px;margin:8px 0 14px;border:1px solid var(--line)"></div>
+  <div class="callout small">
+    <p><b>Ce que contient le sous-sol français</b></p>
+    <ul>
+      <li><b>Une géologie très variée</b> : vieux massifs de granite riches en métaux (Massif central, Bretagne, Vosges), grands bassins sédimentaires (Paris, Aquitaine) avec du sel, du gypse, des argiles, du calcaire, et deux chaînes de montagnes jeunes (Alpes, Pyrénées). D'où une grande diversité de matériaux de construction et de minéraux industriels (kaolin, talc, sable), souvent exploités en carrières.</li>
+      <li><b>Les grandes mines ont fermé</b> : le charbon (dernière mine en 2004), le fer lorrain, l'uranium (dernière mine en 2001), le gaz de Lacq (fin de la production commerciale en 2013). Aujourd'hui, la France importe la quasi-totalité des métaux qu'elle utilise (voir l'onglet <a href="#matieres">Matières</a>).</li>
+      <li><b>Le pétrole et le gaz sont condamnés par la loi</b> : la loi du 30 décembre 2017 interdit tout nouveau permis de recherche d'hydrocarbures et prévoit la fin de leur extraction en France en 2040.</li>
+      <li><b>Le retour des métaux critiques</b> : en février 2025, le BRGM a lancé un nouvel inventaire minier national sur cinq ans, le premier depuis les années 1990, dans cinq régions (ouest du Massif central, Morvan, Vosges, Cévennes, nord de la Guyane), à la recherche de 55 substances critiques (lithium, tungstène, antimoine, germanium…). Premiers résultats attendus vers 2028 <a href="https://www.entreprises.gouv.fr/espace-presse/securisation-de-nos-approvisionnements-en-metaux-critiques-communique-de-presse" target="_blank" rel="noopener">[ministère de l'Économie]</a> <a href="https://www.horbourg-wihr.fr/wp-content/uploads/2025/05/Plaquette-BRGM-inventaire-national-ressources-minerales.pdf" target="_blank" rel="noopener">[BRGM]</a>.</li>
+      <li><b>Le lithium de l'Allier</b> : le projet de mine Emili d'Imerys à Beauvoir vise 34 000 tonnes d'hydroxyde de lithium par an, de quoi équiper environ 700 000 voitures électriques par an, pour environ 1 milliard d'euros d'investissement <a href="https://www.debatpublic.fr/sites/default/files/2023-10/IMERYS-EMILI_Synth%C3%A8se-dossier-saisine.pdf" target="_blank" rel="noopener">[Autorité environnementale]</a>. Du lithium est aussi recherché dans les eaux géothermales d'Alsace.</li>
+      <li><b>L'hydrogène naturel de Lorraine</b> : découvert en 2023 à Folschviller, il pourrait représenter de l'ordre de 34 millions de tonnes selon le programme de recherche Regalor ; un forage à 3 655 mètres a confirmé sa présence en 2025-2026. Les estimations restent très incertaines <a href="https://www.techniques-ingenieur.fr/actualite/articles/hydrogene-natif-en-lorraine-lhypothese-dun-gisement-hors-norme-se-dessine-entre-promesse-et-prudence-155542/amp" target="_blank" rel="noopener">[Techniques de l'ingénieur]</a>.</li>
+      <li><b>Mais une mine est un projet très long</b> : selon le BRGM, une exploration sur 500 à 1 000 seulement aboutit à un gisement exploitable, et un projet minier demande en moyenne 17 ans. Les oppositions locales sont fréquentes, comme à Soufflenheim (Bas-Rhin) en 2025.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Carte : BRGM, cartes géologiques image au 1/1 000 000, 1/250 000 et 1/50 000, diffusées par la Géoplateforme de l'IGN ; fond Plan IGN. Pour explorer en détail (forages, mines anciennes, risques) : <a href="https://infoterre.brgm.fr" target="_blank" rel="noopener">InfoTerre du BRGM</a>.</p>
+  </div>
+</section>
+
 <section id="alimentation" class="panel">
   <div class="panel-head">
     <h2>Alimentation : d'où vient ce que l'on mange, et où ça va <span class="geo-tag"></span></h2>
@@ -1159,31 +1188,34 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261118d"></script>
-<script src="app.js?v=20261118d"></script>
-<script src="energie.js?v=20261118d"></script>
-<script src="matieres.js?v=20261118d"></script>
-<script src="territoire.js?v=20261118d"></script>
-<script src="themes.js?v=20261118d"></script>
-<script src="societe.js?v=20261118d"></script>
-<script src="eco2.js?v=20261118d"></script>
-<script src="empreinte.js?v=20261118d"></script>
-<script src="argentprive.js?v=20261118d"></script>
-<script src="repartition.js?v=20261118d"></script>
-<script src="patrimoine.js?v=20261118d"></script>
-<script src="prelevements.js?v=20261118d"></script>
-<script src="travailvie.js?v=20261118d"></script>
-<script src="couper.js?v=20261118d"></script>
-<script src="seuilpays.js?v=20261118d"></script>
-<script src="logement.js?v=20261118d"></script>
-<script src="env.js?v=20261118d"></script>
-<script src="agriculture.js?v=20261118d"></script>
-<script src="chaine.js?v=20261118d"></script>
-<script src="patrimoinehist.js?v=20261118d"></script>
-<script src="innovation.js?v=20261118d"></script>
-<script src="histoire.js?v=20261118d"></script>
-<script src="chomage.js?v=20261118d"></script>
-<script src="sources.js?v=20261118d"></script>
-<script src="nav.js?v=20261118d"></script>
+<script src="kpi.js?v=20261118f"></script>
+<script src="app.js?v=20261118f"></script>
+<script src="energie.js?v=20261118f"></script>
+<script src="matieres.js?v=20261118f"></script>
+<script src="territoire.js?v=20261118f"></script>
+<script src="themes.js?v=20261118f"></script>
+<script src="societe.js?v=20261118f"></script>
+<script src="eco2.js?v=20261118f"></script>
+<script src="empreinte.js?v=20261118f"></script>
+<script src="argentprive.js?v=20261118f"></script>
+<script src="repartition.js?v=20261118f"></script>
+<script src="patrimoine.js?v=20261118f"></script>
+<script src="prelevements.js?v=20261118f"></script>
+<script src="travailvie.js?v=20261118f"></script>
+<script src="couper.js?v=20261118f"></script>
+<script src="seuilpays.js?v=20261118f"></script>
+<script src="logement.js?v=20261118f"></script>
+<script src="env.js?v=20261118f"></script>
+<script src="agriculture.js?v=20261118f"></script>
+<script src="chaine.js?v=20261118f"></script>
+<script src="patrimoinehist.js?v=20261118f"></script>
+<script src="innovation.js?v=20261118f"></script>
+<link rel="stylesheet" href="lib/leaflet/leaflet.css">
+<script src="lib/leaflet/leaflet.js"></script>
+<script src="soussol.js?v=20261118f"></script>
+<script src="histoire.js?v=20261118f"></script>
+<script src="chomage.js?v=20261118f"></script>
+<script src="sources.js?v=20261118f"></script>
+<script src="nav.js?v=20261118f"></script>
 </body>
 </html>

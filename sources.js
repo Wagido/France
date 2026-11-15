@@ -11,6 +11,7 @@ const ORG = {
   owid: { nom: "Our World in Data", desc: "Séries longues compilées par l'université d'Oxford (Energy Institute, Ember…).", licence: "CC BY 4.0", url: "https://github.com/owid/energy-data" },
   sdes: { nom: "SDES (ministère de la Transition écologique)", desc: "Service des données et études statistiques : énergie, climat, environnement, logement, transports.", licence: "Licence Ouverte Etalab 2.0", url: "https://www.statistiques.developpement-durable.gouv.fr" },
   ofpm: { nom: "Observatoire de la formation des prix et des marges (FranceAgriMer)", desc: "Rapport annuel au Parlement sur la formation des prix et des marges des produits alimentaires.", licence: "Citation", url: "https://observatoire-prixmarges.franceagrimer.fr" },
+  brgm: { nom: "BRGM (Bureau de recherches géologiques et minières)", desc: "Service géologique national : cartes géologiques, ressources minérales, inventaire minier.", licence: "Licence Ouverte Etalab", url: "https://www.brgm.fr" },
   harvard: { nom: "Harvard Energy History", desc: "Séries longues de consommation d'énergie en Europe (Gales, Kander, Malanima, Warde, Power to the People, 2013).", licence: "Citation", url: "https://histecon.fas.harvard.edu/energyhistory/energydata.html" },
   argentine: { nom: "INDEC, FMI, presse économique", desc: "Chiffres de l'Argentine : institut statistique argentin (INDEC), ministère de l'Économie, FMI et Trésor américain, tels que rapportés par la presse.", licence: "Citations", url: "https://www.indec.gob.ar" },
   marches: { nom: "Trading Economics", desc: "Taux des emprunts d'État relevés sur les marchés financiers.", licence: "Citation", url: "https://tradingeconomics.com" },
@@ -67,6 +68,7 @@ const S = [
   ["Forêt", "eurostat", "env_air_gge / for_area_efa", "Absorption de CO₂ par les forêts, surface forestière", null, "annuel"],
   ["Air", "eurostat", "sdg_11_52", "Décès prématurés dus aux particules fines (estimations de l'Agence européenne pour l'environnement)", null, "annuel"],
   ["Du champ au caddie", "ofpm", "Rapport au Parlement 2026", "Euro alimentaire, marges des grandes surfaces par rayon, comptes des exploitations laitières", "https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf", "annuel"],
+  ["Sous-sol", "brgm", "Cartes géologiques au 1/1 000 000, 1/250 000 et 1/50 000", "Carte géologique de la France, diffusée par la Géoplateforme de l'IGN", "https://cartes.gouv.fr/rechercher-une-donnee/dataset/BRGM_CARTES-GEOLOGIQUES", "ponctuel"],
   ["Agriculture", "eurostat", "apro_cpsh1 / org_cropar", "Surfaces par culture, surfaces en agriculture biologique", null, "annuel"],
   ["Pesticides", "eurostat", "aei_hri / sdg_02_40 / aei_pr_gnb", "Risque pesticides, agriculture biologique, excédent d'azote", null, "annuel"],
   ["Catastrophes", "eurostat", "cli_iad_loss", "Pertes économiques dues aux événements climatiques (base CATDAT de l'AEE)", null, "annuel"],
@@ -109,7 +111,7 @@ function render() {
 // en bas de chaque article, ses sources en petit
 const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
-  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
+  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
   justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };
