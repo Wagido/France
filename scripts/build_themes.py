@@ -176,7 +176,16 @@ def travail(geo):
         if hw is None or pop is None:
             continue
         serie.append({"annee": y, "heures": hw * 1000, "emplois": pers * 1000 if pers else None, "population": pop,
-                      "branches": {k: (h(nace_r2=k, unit="THS_HW", time=y) or 0) * 1000 for k, _ in BR}})
+                      "branches": {k: (h(nace_r2=k, unit="THS_HW", time=y) or 0) * 1000 for k, _ in BR},
+                      "personnes": {k: (h(nace_r2=k, unit="THS_PER", time=y) or 0) * 1000 for k, _ in BR}})
+    # temps partiel (enquête Emploi) : part dans l'emploi, part subie, heures hebdomadaires temps plein / partiel
+    pt, pi_, wh = G("lfsa_eppga.json", geo), G("lfsa_eppgai.json", geo), G("lfsa_ewhan2.json", geo)
+    partiel = []
+    for y in sorted(set(years("lfsa_eppga.json", geo)) | set(years("lfsa_ewhan2.json", geo))):
+        rec = {"annee": y, "total": pt(sex="T", time=y), "femmes": pt(sex="F", time=y), "hommes": pt(sex="M", time=y),
+               "subi": pi_(time=y), "h_plein": wh(worktime="FT", time=y), "h_partiel": wh(worktime="PT", time=y), "h_tous": wh(worktime="TOTAL", time=y)}
+        if any(v is not None for k, v in rec.items() if k != "annee"):
+            partiel.append(rec)
     tus = None
     for y in ["2010", "2000"]:
         v = {k: t(acl00=k, time=y) for k, _ in TUS}
@@ -185,7 +194,7 @@ def travail(geo):
             hm = lambda x: None if x is None else int(str(x).split(":")[0]) * 60 + int(str(x).split(":")[1])
             tus = {"annee": y, "minutes": {k: hm(x) for k, x in v.items()}}
             break
-    return {"serie": serie, "branches": [list(x) for x in BR], "emploi_du_temps": tus, "tus_labels": [list(x) for x in TUS]} if serie else None
+    return {"serie": serie, "branches": [list(x) for x in BR], "emploi_du_temps": tus, "partiel": partiel, "tus_labels": [list(x) for x in TUS]} if serie else None
 
 
 # ------------------------------------------------------------------ justice
@@ -328,6 +337,12 @@ for geo, (nom, _) in PAYS.items():
         s = d["immigration"]["stock"][-1]; snap["immig"] = {"annee": s["annee"], "part_nes_etranger": r2(100 * (s["nes_etranger"] or 0) / s["total"], 1)}
     if d["travail"]:
         s = d["travail"]["serie"][-1]; snap["travail"] = {"annee": s["annee"], "heures_hab": r2(s["heures"] / s["population"], 0), "heures_emploi": r2(s["heures"] / s["emplois"], 0) if s["emplois"] else None}
+        pp = [x for x in d["travail"]["partiel"] if x["total"] is not None]
+        if pp: snap["travail"].update({"partiel": pp[-1]["total"], "partiel_femmes": pp[-1]["femmes"]})
+        ps = [x for x in d["travail"]["partiel"] if x["subi"] is not None]
+        if ps: snap["travail"]["partiel_subi"] = ps[-1]["subi"]
+        ph = [x for x in d["travail"]["partiel"] if x["h_plein"] is not None]
+        if ph: snap["travail"]["h_plein"] = ph[-1]["h_plein"]
     if d["justice"]:
         last = lambda k: next((x[k] for x in reversed(d["justice"]["serie"]) if x[k] is not None), None)
         snap["justice"] = {"detenus_100k": last("detenus_100k"), "policiers_100k": last("policiers_100k"), "juges_100k": last("juges_100k"),

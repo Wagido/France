@@ -360,11 +360,26 @@ function drawTravail() {
     [n0(last.heures / last.population) + " h", "par habitant et par an, tous âges confondus"],
     last.emplois && [n0(last.heures / last.emplois) + " h", `par personne en emploi (${n1(last.emplois / 1e6)} M d'emplois)`],
   ]);
-  const B = T.branches, cols = d3.schemeTableau10;
-  const col = Object.fromEntries(B.map((b, i) => [b[0], cols[i % 10]])), lab = Object.fromEntries(B);
-  areaChart($("#tt-chart"), S.map(s => ({ annee: s.annee, ...Object.fromEntries(B.map(([k]) => [k, s.branches[k] / 1e9])) })), B.map(b => b[0]), col, lab,
-    { vfmt: v => n2(v) + " Md h", yfmt: v => n0(v) + " Md h" });
-  legend("#tt-legend", B.map(([k, l]) => [l, col[k]]));
+  // heures par personne en emploi et par secteur (comptes nationaux : heures ÷ personnes)
+  const B = T.branches, ref = [...S].reverse().find(s => s.personnes && Object.values(s.personnes).some(v => v > 0)) || last;
+  const rows = B.filter(([k]) => ref.personnes?.[k] > 0).map(([k, l]) => ({ l, v: ref.branches[k] / ref.personnes[k], t: `${n0(ref.branches[k] / ref.personnes[k])} h · ${n1(ref.personnes[k] / 1e6)} M de personnes` })).sort((a, b) => b.v - a.v);
+  if (rows.length) bars($("#tt-chart"), rows.map(r => ({ ...r, c: "#3b6fd6" }))); else empty("#tt-chart");
+  $("#tt-note").textContent = `${ref.annee}. Heures réellement travaillées dans l'année (congés, jours fériés, arrêts et temps partiel déduits), divisées par le nombre de personnes en emploi, indépendants compris. Les écarts tiennent surtout au temps partiel et au statut : les agriculteurs et artisans du bâtiment, souvent indépendants, travaillent plus d'heures ; l'administration, l'enseignement et la santé comptent beaucoup de temps partiel.`;
+  const ev = S.filter(s => s.emplois).map(s => ({ annee: s.annee, h: s.heures / s.emplois }));
+  if (ev.length) lineChart($("#tt-evol"), ev, [{ k: "h", l: "Heures par personne en emploi", c: "#3b6fd6" }], { vfmt: v => n0(v) + " h", yfmt: v => n0(v) + " h", h: 240, nozero: true }); else empty("#tt-evol");
+  // temps partiel
+  const P = (T.partiel || []).filter(x => x.total != null);
+  if (P.length) {
+    lineChart($("#tt-partiel"), P, [{ k: "total", l: "Ensemble", c: "#475569" }, { k: "femmes", l: "Femmes", c: "#dc2626" }, { k: "hommes", l: "Hommes", c: "#3b6fd6" }, { k: "subi", l: "Part subie du temps partiel", c: "#f59e0b", dash: "5 3" }],
+      { vfmt: v => pct(v), yfmt: v => v + " %", h: 240 });
+    legend("#tt-partiel-legend", [["Part du temps partiel dans l'emploi : ensemble", "#475569"], ["femmes", "#dc2626"], ["hommes", "#3b6fd6"], ["Temps partiel subi (faute de temps plein), en % du temps partiel", "#f59e0b", true]]);
+    $("#tt-partiel-legend").insertAdjacentHTML("beforeend", `<span class="muted" style="font-size:.8rem;flex-basis:100%">L'enquête Emploi a changé de questionnaire en 2021 dans toute l'Union européenne : la baisse du temps partiel « subi » cette année-là en vient en partie.</span>`);
+  } else { empty("#tt-partiel"); $("#tt-partiel-legend").innerHTML = ""; }
+  const H = [...(T.partiel || [])].reverse().find(x => x.h_plein != null), Pl = P.at(-1);
+  if (H) {
+    bars($("#tt-hebdo"), [{ l: "Temps plein", v: H.h_plein, t: n1(H.h_plein) + " h par semaine", c: "#3b6fd6" }, { l: "Temps partiel", v: H.h_partiel, t: n1(H.h_partiel) + " h par semaine", c: "#93c5fd" }, { l: "Ensemble des personnes en emploi", v: H.h_tous, t: n1(H.h_tous) + " h par semaine", c: "#475569" }], { max: 50 });
+    $("#tt-hebdo-note").innerHTML = `Heures réellement travaillées la semaine de l'enquête (${H.annee}, 15-64 ans, emploi principal).` + (Pl ? ` ${pct(Pl.total, 0)} des personnes en emploi travaillent à temps partiel (${pct(Pl.femmes, 0)} des femmes, ${pct(Pl.hommes, 0)} des hommes)` + (Pl.subi != null ? `, et ${pct(Pl.subi, 0)} d'entre elles voudraient travailler davantage.` : ".") : "");
+  } else { empty("#tt-hebdo"); $("#tt-hebdo-note").textContent = ""; }
   const E = T.emploi_du_temps;
   if (E) {
     const L = Object.fromEntries(T.tus_labels), C = ["#64748b", "#f59e0b", "#a8a29e", "#3b6fd6", "#8b5cf6", "#e07b39", "#16a34a", "#0ea5e9", "#d6d3d1"];
@@ -377,6 +392,9 @@ function drawTravail() {
   table($("#tt-cmp"), "tt", [
     { k: "hab", l: "Heures travaillées par habitant", f: r => r.travail?.heures_hab, fmt: v => n0(v) + " h", max: 1000, c: "#3b6fd6", y: r => r.travail?.annee },
     { k: "emp", l: "par personne en emploi", f: r => r.travail?.heures_emploi, fmt: v => n0(v) + " h", max: 2000, c: "#64748b" },
+    { k: "pt", l: "Temps partiel", f: r => r.travail?.partiel, fmt: v => pct(v, 0), max: 50, c: "#93c5fd" },
+    { k: "pts", l: "dont subi", f: r => r.travail?.partiel_subi, fmt: v => pct(v, 0), max: 60, c: "#f59e0b" },
+    { k: "hp", l: "Semaine à temps plein", f: r => r.travail?.h_plein, fmt: v => n1(v) + " h", max: 45, c: "#3b6fd6" },
   ], "hab");
 }
 

@@ -152,7 +152,7 @@
     </div>
   </div>
   <div class="callout small">
-    <p><strong>Limites.</strong> C'est l'effet de la première année. Le simulateur sur 10 ans, plus bas, montre la suite.</p>
+    <p><strong>Limites.</strong> C'est l'effet de la première année. Le simulateur sur 15 ans, plus bas, montre la suite.</p>
   </div>
 
   <h3>Pourquoi ça ne veut pas dire « ça ne marche pas »</h3>
@@ -163,14 +163,15 @@
     <li><b>La confiance joue dans l'autre sens.</b> Si les marchés doutent, les taux d'intérêt montent et la dette s'alourdit. Une baisse crédible des dépenses peut éviter ça.</li>
   </ul>
 
-  <h3>Sur 10 ans : la dette avec et sans la coupe</h3>
-  <p class="lead">La coupe est permanente (elle grandit avec le PIB). Son effet sur l'activité s'efface progressivement, sauf la part de « séquelles » qui reste. La dette se calcule année par année : intérêts, solde primaire (hors intérêts), croissance. Le taux d'intérêt moyen de la dette rejoint peu à peu le taux de marché, car environ un huitième de la dette est refinancé chaque année.</p>
+  <h3>Sur 15 ans : la dette et le PIB, avec et sans la coupe</h3>
+  <p class="lead">La coupe est permanente (elle grandit avec le PIB). Son effet sur l'activité s'efface progressivement, sauf la part de « séquelles » qui reste. Le curseur « croissance perdue durablement » ajoute un effet sur le rythme de croissance lui-même (moins d'investissement, de recherche, d'éducation) : c'est cette hypothèse, propre aux modèles de croissance endogène, qui fait diverger les courbes au fil des ans. La dette se calcule année par année : intérêts, solde primaire (hors intérêts), croissance. Le taux d'intérêt moyen de la dette rejoint peu à peu le taux de marché, car environ un huitième de la dette est refinancé chaque année.</p>
   <div class="simu">
     <div class="simu-ctl">
       <label><span>Coupe permanente <output id="o10-cut"></output></span><input type="range" id="s10-cut" min="0" max="150" step="5" value="40"></label>
       <label><span>Multiplicateur la 1<sup>re</sup> année <output id="o10-m"></output></span><input type="range" id="s10-m" min="0" max="2" step="0.05" value="0.8"></label>
       <label><span>Durée de l'effet (demi-vie) <output id="o10-hl"></output></span><input type="range" id="s10-hl" min="0.5" max="6" step="0.5" value="1.5"></label>
       <label><span>Séquelles durables <output id="o10-h"></output></span><input type="range" id="s10-h" min="0" max="100" step="5" value="0"></label>
+      <label><span>Croissance perdue durablement <output id="o10-gl"></output></span><input type="range" id="s10-gl" min="0" max="0.5" step="0.05" value="0"></label>
       <label><span>Croissance réelle <output id="o10-g"></output></span><input type="range" id="s10-g" min="-1" max="3" step="0.1" value="1"></label>
       <label><span>Inflation <output id="o10-pi"></output></span><input type="range" id="s10-pi" min="0" max="5" step="0.1" value="1.7"></label>
       <label><span>Taux d'emprunt de l'État (10 ans) <output id="o10-r"></output></span><input type="range" id="s10-r" min="0" max="7" step="0.1" value="3.3"></label>
@@ -180,6 +181,10 @@
       <div id="simu10-result" class="result"></div>
       <div id="simu10-chart" class="chart"></div>
       <div class="legend-row" id="simu10-legend"></div>
+      <h4 style="margin:14px 0 4px">PIB réel : on ne fait rien, ou rigueur</h4>
+      <p class="muted" style="font-size:.85rem;margin:0 0 4px">Indice, 100 au départ. « On ne fait rien » : aucune coupe, la croissance suit son cours ; « rigueur » : la coupe ci-dessus.</p>
+      <div id="simu10-pib" class="chart"></div>
+      <p class="muted" id="simu10-pib-txt" style="font-size:.86rem"></p>
     </div>
   </div>
 
@@ -489,8 +494,16 @@
     <h2>Temps de travail : combien d'heures produisent le PIB <span class="geo-tag"></span></h2>
   </div>
   <div class="kpis" id="tt-kpis"></div>
-  <h3>Heures travaillées par an, par secteur</h3>
-  <div id="tt-chart" class="chart"></div><div class="legend-row" id="tt-legend"></div>
+  <div class="grid2">
+    <div><h3>Heures par an et par personne en emploi, selon le secteur</h3><div id="tt-chart" class="chart"></div>
+      <p class="muted" id="tt-note" style="font-size:.84rem"></p></div>
+    <div><h3>Heures par an et par personne en emploi depuis 1995</h3><div id="tt-evol" class="chart"></div></div>
+  </div>
+  <h3>Temps plein, temps partiel</h3>
+  <div class="grid2">
+    <div><div id="tt-partiel" class="chart"></div><div class="legend-row" id="tt-partiel-legend"></div></div>
+    <div><div id="tt-hebdo" class="chart"></div><p class="muted" id="tt-hebdo-note" style="font-size:.84rem"></p></div>
+  </div>
   <h3>Une journée moyenne (enquête emploi du temps)</h3>
   <div id="tt-jour" class="chart"></div><div class="legend-row" id="tt-jour-legend"></div>
   <h3>Comparer les pays</h3><div id="tt-cmp" class="chart"></div>

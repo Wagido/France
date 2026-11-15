@@ -351,9 +351,9 @@ function base10() {
            primaire: solde + intPib, taux: I?.taux_apparent ?? 2 };
 }
 function initSimu10() {
-  const ids = ["cut", "m", "hl", "h", "g", "pi", "r"];
+  const ids = ["cut", "m", "hl", "h", "gl", "g", "pi", "r"];
   ids.forEach(k => $("#s10-" + k).oninput = drawSimu10);
-  const defs = { cut: 40, m: 0.8, hl: 1.5, h: 0, g: 1, pi: 1.7, r: 3.3 };
+  const defs = { cut: 40, m: 0.8, hl: 1.5, h: 0, gl: 0, g: 1, pi: 1.7, r: 3.3 };
   $("#s10-reset").onclick = () => { ids.forEach(k => $("#s10-" + k).value = defs[k]); drawSimu10(); };
   ["s", "ex", "im", "pt"].forEach(k => $("#sdf-" + k).oninput = drawDevFisc);
   drawSimu10(); drawDevFisc(); drawCroissance();
@@ -362,30 +362,30 @@ function drawSimu10() {
   if (!DATA) return;
   const B = base10();
   const v = k => +$("#s10-" + k).value;
-  const cut = v("cut"), m = v("m"), hl = v("hl"), h = v("h") / 100, g = v("g") / 100, pi = v("pi") / 100, rm = v("r") / 100;
+  const cut = v("cut"), m = v("m"), hl = v("hl"), h = v("h") / 100, gl = v("gl"), g = v("g") / 100, pi = v("pi") / 100, rm = v("r") / 100;
   const f2 = x => new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(x);
   $("#o10-cut").textContent = md(cut) + " par an"; $("#o10-m").textContent = f2(m); $("#o10-hl").textContent = nf1.format(hl) + " an" + (hl > 1 ? "s" : "");
-  $("#o10-h").textContent = pct(h * 100, 0) + " de l'effet initial"; $("#o10-g").textContent = pct(g * 100); $("#o10-pi").textContent = pct(pi * 100); $("#o10-r").textContent = pct(rm * 100);
+  $("#o10-h").textContent = pct(h * 100, 0) + " de l'effet initial"; $("#o10-g").textContent = pct(g * 100); $("#o10-gl").textContent = gl ? `−${f2(gl)} pt par an par point de PIB coupé` : "aucune"; $("#o10-pi").textContent = pct(pi * 100); $("#o10-r").textContent = pct(rm * 100);
   const rho = Math.pow(0.5, 1 / hl), c = cut / B.pib, gn = (1 + g) * (1 + pi) - 1, p0 = B.primaire / 100;
   let Ys = B.pib, Db = B.b0 / 100 * B.pib, Ds = Db, i = B.taux / 100;
-  const rows = [{ an: B.annee, base: B.b0, scen: B.b0, ecart: 0 }];
-  for (let t = 1; t <= 10; t++) {
+  const N = 15, rows = [{ an: B.annee, base: B.b0, scen: B.b0, ecart: 0, bau: 100, rig: 100 }];
+  for (let t = 1; t <= N; t++) {
     Ys *= 1 + gn; i += (rm - i) / 8;
     const L = c * m * (h + (1 - h) * Math.pow(rho, t - 1));
-    const Y = Ys * (1 - L);
+    const Y = Ys * (1 - L) * Math.pow(1 - c * gl, t);   // effet de niveau (multiplicateur) et perte de croissance durable
     Db = Db * (1 + i) - p0 * Ys;
     Ds = Ds * (1 + i) - (p0 * Ys + c * Ys - B.tax * (Ys - Y));
-    rows.push({ an: B.annee + t, base: 100 * Db / Ys, scen: 100 * Ds / Y, ecart: -100 * L, taux: i * 100 });
+    rows.push({ an: B.annee + t, base: 100 * Db / Ys, scen: 100 * Ds / Y, ecart: 100 * (Y / Ys - 1), taux: i * 100, bau: 100 * Math.pow(1 + g, t), rig: 100 * Math.pow(1 + g, t) * Y / Ys });
   }
   const at = n => rows.find(r => r.an === B.annee + n);
   const stab = (rows[1].taux / 100 - gn) / (1 + gn) * B.b0;
   $("#simu10-result").innerHTML = `<table>
     <tr><td></td><td>Sans coupe</td><td>Avec coupe</td><td>Écart de PIB</td></tr>
-    ${[1, 2, 3, 5, 10].map(n => { const r = at(n); return `<tr><td>Dette/PIB en ${r.an}</td><td>${pct(r.base)}</td><td><b>${pct(r.scen)}</b></td><td>${pct(r.ecart, 2)}</td></tr>`; }).join("")}
+    ${[1, 2, 3, 5, 10, 15].map(n => { const r = at(n); return `<tr><td>Dette/PIB en ${r.an}</td><td>${pct(r.base)}</td><td><b>${pct(r.scen)}</b></td><td>${pct(r.ecart, 2)}</td></tr>`; }).join("")}
   </table>
   <p style="margin:8px 0 0">Point de départ (${B.annee}) : solde primaire ${B.primaire >= 0 ? "+" : ""}${pct(B.primaire)} du PIB, taux moyen de la dette ${pct(B.taux, 2)}, croissance nominale supposée ${pct(gn * 100)}. Pour stabiliser la dette, il faudrait un solde primaire d'environ ${stab >= 0 ? "+" : ""}${pct(stab)} du PIB : il manque <b>${pct(stab - B.primaire)}</b> du PIB, soit environ <b>${md((stab - B.primaire) / 100 * B.pib)}</b> par an.</p>`;
   const el = $("#simu10-chart"); const w = Math.max(320, el.clientWidth), hh = 260, mg = { t: 12, r: 14, b: 26, l: 48 };
-  const x = d3.scaleLinear([B.annee, B.annee + 10], [mg.l, w - mg.r]);
+  const x = d3.scaleLinear([B.annee, B.annee + N], [mg.l, w - mg.r]);
   const ys = rows.flatMap(r => [r.base, r.scen]);
   const y = d3.scaleLinear([Math.floor(d3.min(ys) - 3), Math.ceil(d3.max(ys) + 3)], [hh - mg.b, mg.t]).nice();
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${hh}`);
@@ -396,6 +396,24 @@ function drawSimu10() {
   svg.append("g").attr("class", "axis").attr("transform", `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d => d + " %")).call(g => g.select(".domain").remove());
   el.replaceChildren(svg.node());
   $("#simu10-legend").innerHTML = `<span><i style="border-top-color:${css("--neg")};opacity:1"></i>Dette/PIB sans la coupe</span><span><i style="border-top-color:${css("--accent")};opacity:1"></i>Dette/PIB avec la coupe</span>`;
+  // PIB réel : scénario « on ne fait rien » contre rigueur
+  const ep = $("#simu10-pib");
+  if (ep) {
+    const w2 = Math.max(320, ep.clientWidth), h2 = 240, m2 = { t: 12, r: 150, b: 26, l: 40 };
+    const x2 = d3.scaleLinear([B.annee, B.annee + N], [m2.l, w2 - m2.r]);
+    const y2 = d3.scaleLinear([Math.min(98, d3.min(rows, r => r.rig) - 1), d3.max(rows, r => r.bau) + 1], [h2 - m2.b, m2.t]).nice();
+    const sv = d3.create("svg").attr("viewBox", `0 0 ${w2} ${h2}`);
+    sv.append("g").attr("class", "grid").selectAll("line").data(y2.ticks(5)).join("line").attr("x1", m2.l).attr("x2", w2 - m2.r).attr("y1", y2).attr("y2", y2);
+    [["bau", "#64748b", "3 3", "ON NE FAIT RIEN"], ["rig", "#ea580c", null, "RIGUEUR"]].forEach(([k, col, da, lab]) => {
+      sv.append("path").attr("fill", "none").attr("stroke", col).attr("stroke-width", k === "rig" ? 2.6 : 2).attr("stroke-dasharray", da).attr("d", d3.line().x(r => x2(r.an)).y(r => y2(r[k]))(rows));
+      const l = rows.at(-1); sv.append("text").attr("x", x2(l.an) + 6).attr("y", y2(l[k])).attr("dy", ".35em").attr("font-size", 11).attr("fill", col).attr("font-weight", 600).text(`${lab} ${nf1.format(l[k])}`);
+    });
+    sv.append("g").attr("class", "axis").attr("transform", `translate(0,${h2 - m2.b})`).call(d3.axisBottom(x2).ticks(5).tickFormat(d3.format("d")));
+    sv.append("g").attr("class", "axis").attr("transform", `translate(${m2.l},0)`).call(d3.axisLeft(y2).ticks(5)).call(g => g.select(".domain").remove());
+    ep.replaceChildren(sv.node());
+    const l = rows.at(-1);
+    $("#simu10-pib-txt").innerHTML = `En ${l.an}, le PIB réel serait <b>${nf1.format(100 * (l.rig / l.bau - 1))} %</b> plus bas avec la rigueur que si l'on ne fait rien. ${gl ? "La perte de croissance durable creuse l'écart chaque année." : h ? "Les séquelles durables laissent un écart permanent." : "Sans séquelles ni perte de croissance durable, l'écart se referme : seul le niveau baisse un temps."}`;
+  }
 }
 function drawCroissance() {
   const el = $("#simu-croissance"); if (!el || !DATA) return;
