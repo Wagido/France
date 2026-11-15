@@ -62,6 +62,7 @@ const S = [
   ["Couper où", "eurostat", "gov_10a_exp", "Dépense publique par fonction (COFOG), en % du PIB, pays européens", null, "annuel (février)"],
   ["Argent public", "eurostat", "gov_10a_taxag / gov_10a_main", "Impôts, cotisations et dépense publique en % du PIB, pays européens", null, "annuel"],
   ["Argent public", "eurostat", "nasa_10_nf_tr", "Revenu disponible des ménages et des entreprises (comptes de secteur)", null, "annuel"],
+  ["Argent privé", "eurostat", "prc_hpi_a / sts_copi_a / ilc_di03 / ilc_mded01", "Prix des logements, coût de construction, revenu médian, part du logement dans le revenu", null, "annuel"],
   ["Argent privé", "insee", "Jordà, Schularick et Taylor, Macrohistory Database", "Salaires réels et PIB par habitant avant 1949", "https://www.macrohistory.net/database/", "ponctuel"],
   ["Énergie", "owid", "owid-energy-data (energy_per_capita)", "Énergie primaire par habitant depuis 1965", "https://github.com/owid/energy-data", "annuel"],
   ["Argentine", "argentine", "PIB, inflation, pauvreté (INDEC), budget, change, aides du FMI et des États-Unis", "Encadré « Et l'Argentine ? » : liens vers chaque article de presse dans l'encadré", null, "ponctuel (chiffres arrêtés à mars 2026)"],

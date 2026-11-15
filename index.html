@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117n">
+<link rel="stylesheet" href="style.css?v=20261117p">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -155,6 +155,12 @@
     <p>En 1959, un tiers du budget servait à se nourrir ; c'est moins d'un sixième aujourd'hui. Le logement a pris la place : sa part a plus que doublé. Elle comprend les loyers « imputés » des propriétaires, c'est-à-dire le loyer qu'ils se paieraient à eux-mêmes ; la comptabilité nationale les compte pour pouvoir comparer locataires et propriétaires (voir l'onglet PIB). Les dépenses de santé et d'éducation ne comptent ici que ce que les ménages paient eux-mêmes : l'essentiel est pris en charge par la Sécurité sociale et l'État (voir l'onglet L'argent public).</p>
   </div>
   <p class="muted" style="font-size:.84rem">INSEE, comptes nationaux annuels base 2020 : dépense de consommation des ménages par fonction, en valeur. Les séries par poste commencent en 1959.</p>
+  <h3>Le logement : richesse ou rente ?</h3>
+  <h4 style="margin:4px 0">En France, depuis 2005 (base 100)</h4>
+  <div id="lg-fr" class="chart"></div><div class="legend-row" id="lg-fr-legend"></div>
+  <h4 style="margin:14px 0 4px">Et ailleurs en Europe ?</h4>
+  <div id="lg-pays" style="display:grid;gap:3px;max-width:980px;margin-bottom:8px"></div>
+  <div class="callout small" id="lg-txt"></div>
 </section>
 
 <section id="argent-public" class="panel">
@@ -974,25 +980,26 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117n"></script>
-<script src="app.js?v=20261117n"></script>
-<script src="energie.js?v=20261117n"></script>
-<script src="matieres.js?v=20261117n"></script>
-<script src="territoire.js?v=20261117n"></script>
-<script src="themes.js?v=20261117n"></script>
-<script src="societe.js?v=20261117n"></script>
-<script src="eco2.js?v=20261117n"></script>
-<script src="empreinte.js?v=20261117n"></script>
-<script src="argentprive.js?v=20261117n"></script>
-<script src="repartition.js?v=20261117n"></script>
-<script src="patrimoine.js?v=20261117n"></script>
-<script src="prelevements.js?v=20261117n"></script>
-<script src="travailvie.js?v=20261117n"></script>
-<script src="couper.js?v=20261117n"></script>
-<script src="seuilpays.js?v=20261117n"></script>
-<script src="histoire.js?v=20261117n"></script>
-<script src="chomage.js?v=20261117n"></script>
-<script src="sources.js?v=20261117n"></script>
-<script src="nav.js?v=20261117n"></script>
+<script src="kpi.js?v=20261117p"></script>
+<script src="app.js?v=20261117p"></script>
+<script src="energie.js?v=20261117p"></script>
+<script src="matieres.js?v=20261117p"></script>
+<script src="territoire.js?v=20261117p"></script>
+<script src="themes.js?v=20261117p"></script>
+<script src="societe.js?v=20261117p"></script>
+<script src="eco2.js?v=20261117p"></script>
+<script src="empreinte.js?v=20261117p"></script>
+<script src="argentprive.js?v=20261117p"></script>
+<script src="repartition.js?v=20261117p"></script>
+<script src="patrimoine.js?v=20261117p"></script>
+<script src="prelevements.js?v=20261117p"></script>
+<script src="travailvie.js?v=20261117p"></script>
+<script src="couper.js?v=20261117p"></script>
+<script src="seuilpays.js?v=20261117p"></script>
+<script src="logement.js?v=20261117p"></script>
+<script src="histoire.js?v=20261117p"></script>
+<script src="chomage.js?v=20261117p"></script>
+<script src="sources.js?v=20261117p"></script>
+<script src="nav.js?v=20261117p"></script>
 </body>
 </html>

@@ -298,3 +298,5 @@ main.wrap { position: relative; overflow: hidden; }
 .cp-sl { display: grid; grid-template-columns: 1fr 220px 46px; gap: 12px; align-items: center; font-size: .86rem; }
 .cp-sl small { display: block; color: var(--muted); font-size: .74rem; } .cp-sl output { font-weight: 700; text-align: right; }
 @media (max-width: 640px) { .cp-row { grid-template-columns: 110px 44px 44px 1fr; font-size: .72rem; gap: 5px; } .cp-sl { grid-template-columns: 1fr 120px 40px; font-size: .78rem; } }
+.lg-row { grid-template-columns: 200px 1fr 1.2fr; } .tv-row.ue { font-weight: 650; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); }
+@media (max-width: 640px) { .lg-row { grid-template-columns: 90px 1fr 1fr; } }

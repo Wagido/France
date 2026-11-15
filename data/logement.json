@@ -1,0 +1,451 @@
+{
+ "france": [
+  {
+   "annee": 2005,
+   "prix": 100.0,
+   "construction": 100.0,
+   "inflation": 100.0,
+   "revenu": 100.0
+  },
+  {
+   "annee": 2006,
+   "prix": 111.6,
+   "construction": 106.9,
+   "inflation": 101.9,
+   "revenu": 101.6
+  },
+  {
+   "annee": 2007,
+   "prix": 118.7,
+   "construction": 111.2,
+   "inflation": 103.5,
+   "revenu": 103.1
+  },
+  {
+   "annee": 2008,
+   "prix": 119.8,
+   "construction": 119.7,
+   "inflation": 106.8,
+   "revenu": 118.5
+  },
+  {
+   "annee": 2009,
+   "prix": 112.5,
+   "construction": 116.5,
+   "inflation": 106.9,
+   "revenu": 123.2
+  },
+  {
+   "annee": 2010,
+   "prix": 117.7,
+   "construction": 117.8,
+   "inflation": 108.8,
+   "revenu": 125.2
+  },
+  {
+   "annee": 2011,
+   "prix": 124.5,
+   "construction": 124.2,
+   "inflation": 111.3,
+   "revenu": 125.4
+  },
+  {
+   "annee": 2012,
+   "prix": 123.8,
+   "construction": 127.4,
+   "inflation": 113.7,
+   "revenu": 129.2
+  },
+  {
+   "annee": 2013,
+   "prix": 121.5,
+   "construction": 126.1,
+   "inflation": 114.8,
+   "revenu": 131.2
+  },
+  {
+   "annee": 2014,
+   "prix": 119.6,
+   "construction": 126.4,
+   "inflation": 115.5,
+   "revenu": 132.9
+  },
+  {
+   "annee": 2015,
+   "prix": 118.0,
+   "construction": 125.6,
+   "inflation": 115.6,
+   "revenu": 134.3
+  },
+  {
+   "annee": 2016,
+   "prix": 119.3,
+   "construction": 126.5,
+   "inflation": 116.0,
+   "revenu": 136.2
+  },
+  {
+   "annee": 2017,
+   "prix": 123.0,
+   "construction": 128.9,
+   "inflation": 117.3,
+   "revenu": 137.7
+  },
+  {
+   "annee": 2018,
+   "prix": 126.6,
+   "construction": 131.9,
+   "inflation": 119.8,
+   "revenu": 139.3
+  },
+  {
+   "annee": 2019,
+   "prix": 130.9,
+   "construction": 135.4,
+   "inflation": 121.4,
+   "revenu": 141.5
+  },
+  {
+   "annee": 2020,
+   "prix": 137.7,
+   "construction": 137.3,
+   "inflation": 122.0,
+   "revenu": 138.9
+  },
+  {
+   "annee": 2021,
+   "prix": 146.5,
+   "construction": 143.7,
+   "inflation": 124.5,
+   "revenu": 142.6
+  },
+  {
+   "annee": 2022,
+   "prix": 155.6,
+   "construction": 155.2,
+   "inflation": 131.9,
+   "revenu": 144.6
+  },
+  {
+   "annee": 2023,
+   "prix": 154.9,
+   "construction": null,
+   "inflation": 139.4,
+   "revenu": 151.6
+  },
+  {
+   "annee": 2024,
+   "prix": 149.2,
+   "construction": null,
+   "inflation": 142.6,
+   "revenu": 160.3
+  },
+  {
+   "annee": 2025,
+   "prix": 150.2,
+   "construction": null,
+   "inflation": 143.9,
+   "revenu": 165.9
+  }
+ ],
+ "base": 2005,
+ "pays": [
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "annee": 2025,
+   "prix": 53,
+   "revenu": 28,
+   "effort": 20,
+   "part": 27.7,
+   "surcharge": 14.7,
+   "annee_part": 2025
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "annee": 2025,
+   "prix": 33,
+   "revenu": 13,
+   "effort": 18,
+   "part": 24.2,
+   "surcharge": 10.8,
+   "annee_part": 2025
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "annee": 2025,
+   "prix": 53,
+   "revenu": 40,
+   "effort": 9,
+   "part": 24.1,
+   "surcharge": 11.2,
+   "annee_part": 2025
+  },
+  {
+   "code": "CZ",
+   "nom": "Tchéquie",
+   "annee": 2025,
+   "prix": 145,
+   "revenu": 105,
+   "effort": 20,
+   "part": 21.4,
+   "surcharge": 8.2,
+   "annee_part": 2025
+  },
+  {
+   "code": "FI",
+   "nom": "Finlande",
+   "annee": 2025,
+   "prix": -1,
+   "revenu": 25,
+   "effort": -21,
+   "part": 21.1,
+   "surcharge": 4.7,
+   "annee_part": 2025
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "annee": 2025,
+   "prix": 115,
+   "revenu": 62,
+   "effort": 33,
+   "part": 19.9,
+   "surcharge": 6.5,
+   "annee_part": 2025
+  },
+  {
+   "code": "LU",
+   "nom": "Luxembourg",
+   "annee": 2025,
+   "prix": 65,
+   "revenu": 42,
+   "effort": 16,
+   "part": 19.0,
+   "surcharge": 8.1,
+   "annee_part": 2025
+  },
+  {
+   "code": "EU27_2020",
+   "nom": "Moyenne de l'Union européenne",
+   "annee": 2025,
+   "prix": 62,
+   "revenu": 49,
+   "effort": 9,
+   "part": 18.9,
+   "surcharge": 7.6,
+   "annee_part": 2025
+  },
+  {
+   "code": "EE",
+   "nom": "Estonie",
+   "annee": 2025,
+   "prix": 121,
+   "revenu": 117,
+   "effort": 2,
+   "part": 18.9,
+   "surcharge": 8.8,
+   "annee_part": 2025
+  },
+  {
+   "code": "FR",
+   "nom": "France",
+   "annee": 2025,
+   "prix": 27,
+   "revenu": 24,
+   "effort": 3,
+   "part": 18.5,
+   "surcharge": 6.4,
+   "annee_part": 2025
+  },
+  {
+   "code": "BG",
+   "nom": "Bulgarie",
+   "annee": 2025,
+   "prix": 149,
+   "revenu": 166,
+   "effort": -6,
+   "part": 18.1,
+   "surcharge": 6.9,
+   "annee_part": 2025
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "annee": 2025,
+   "prix": 45,
+   "revenu": 45,
+   "effort": 0,
+   "part": 17.6,
+   "surcharge": 6.7,
+   "annee_part": 2025
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "annee": 2025,
+   "prix": 67,
+   "revenu": 57,
+   "effort": 6,
+   "part": 17.2,
+   "surcharge": 6.1,
+   "annee_part": 2025
+  },
+  {
+   "code": "PT",
+   "nom": "Portugal",
+   "annee": 2025,
+   "prix": 164,
+   "revenu": 71,
+   "effort": 54,
+   "part": 16.3,
+   "surcharge": 6.3,
+   "annee_part": 2025
+  },
+  {
+   "code": "IE",
+   "nom": "Irlande",
+   "annee": 2025,
+   "prix": 97,
+   "revenu": 62,
+   "effort": 21,
+   "part": 16.2,
+   "surcharge": 5.3,
+   "annee_part": 2025
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "annee": 2025,
+   "prix": 81,
+   "revenu": 53,
+   "effort": 18,
+   "part": 16.0,
+   "surcharge": 7.2,
+   "annee_part": 2025
+  },
+  {
+   "code": "SK",
+   "nom": "Slovaquie",
+   "annee": 2025,
+   "prix": 104,
+   "revenu": 87,
+   "effort": 9,
+   "part": 15.9,
+   "surcharge": 3.5,
+   "annee_part": 2025
+  },
+  {
+   "code": "PL",
+   "nom": "Pologne",
+   "annee": 2025,
+   "prix": 117,
+   "revenu": 159,
+   "effort": -16,
+   "part": 15.8,
+   "surcharge": 4.1,
+   "annee_part": 2025
+  },
+  {
+   "code": "RO",
+   "nom": "Roumanie",
+   "annee": 2025,
+   "prix": 65,
+   "revenu": 254,
+   "effort": -53,
+   "part": 15.6,
+   "surcharge": 5.0,
+   "annee_part": 2025
+  },
+  {
+   "code": "LV",
+   "nom": "Lettonie",
+   "annee": 2025,
+   "prix": 114,
+   "revenu": 140,
+   "effort": -11,
+   "part": 15.5,
+   "surcharge": 5.7,
+   "annee_part": 2025
+  },
+  {
+   "code": "LT",
+   "nom": "Lituanie",
+   "annee": 2025,
+   "prix": 158,
+   "revenu": 170,
+   "effort": -4,
+   "part": 15.3,
+   "surcharge": 5.7,
+   "annee_part": 2025
+  },
+  {
+   "code": "HU",
+   "nom": "Hongrie",
+   "annee": 2025,
+   "prix": 267,
+   "revenu": 93,
+   "effort": 90,
+   "part": 15.0,
+   "surcharge": 5.3,
+   "annee_part": 2025
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "annee": 2025,
+   "prix": 16,
+   "revenu": 39,
+   "effort": -17,
+   "part": 14.1,
+   "surcharge": 5.0,
+   "annee_part": 2025
+  },
+  {
+   "code": "SI",
+   "nom": "Slovénie",
+   "annee": 2025,
+   "prix": 115,
+   "revenu": 66,
+   "effort": 30,
+   "part": 12.8,
+   "surcharge": 3.5,
+   "annee_part": 2025
+  },
+  {
+   "code": "MT",
+   "nom": "Malte",
+   "annee": 2025,
+   "prix": 74,
+   "revenu": 63,
+   "effort": 7,
+   "part": 12.6,
+   "surcharge": 6.0,
+   "annee_part": 2025
+  },
+  {
+   "code": "HR",
+   "nom": "Croatie",
+   "annee": 2025,
+   "prix": 127,
+   "revenu": 172,
+   "effort": -17,
+   "part": 11.5,
+   "surcharge": 3.2,
+   "annee_part": 2025
+  },
+  {
+   "code": "CY",
+   "nom": "Chypre",
+   "annee": 2025,
+   "prix": 51,
+   "revenu": 60,
+   "effort": -6,
+   "part": 10.9,
+   "surcharge": 2.4,
+   "annee_part": 2025
+  }
+ ]
+}
