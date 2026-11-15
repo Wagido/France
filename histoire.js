@@ -120,9 +120,18 @@ function dollarReel(host) {
     const av = at(d0 - 1), pk = Math.max(...[0, 1, 2, 3].map(k => at(d + k) ?? 0)), ap = at(d + 5);
     return [d, av, pk, ap];
   });
-  box.querySelector("#hist-reel-eff").innerHTML = `<table class="cmp-t" style="max-width:640px"><thead><tr><th>Dévaluation</th><th>Indice l'année d'avant</th><th>Au plus haut dans les 3 ans</th><th>5 ans après</th></tr></thead><tbody>` +
-    eff.map(([d, av, pk, ap]) => `<tr><td>${d === 1981 ? "1981-1983" : d === 1928 ? "1926-1928" : d === 1958 ? "1957-1958" : d}</td><td>${Math.round(av)}</td><td><b>${Math.round(pk)}</b> (${pk > av ? "+" : ""}${Math.round(pk - av)})</td><td>${ap != null ? Math.round(ap) : "–"}</td></tr>`).join("") + `</tbody></table>
-    <p style="font-size:.88rem;margin:8px 0 0;max-width:100ch"><b>Alors, est-ce que ça marche ?</b> Oui, mais pour peu de temps. Après 1936, 1969 et 1981-1983, l'indice monte nettement : les produits français deviennent moins chers. Cinq ans plus tard, il est retombé, car la France a gardé plus d'inflation que ses partenaires. Deux cas trompent l'œil : en 1926-1928, le franc s'était déjà effondré avant la stabilisation de Poincaré, et il est ensuite devenu cher quand le Royaume-Uni (1931) puis les États-Unis (1933) ont dévalué à leur tour ; en 1957-1958, deux dévaluations se suivent (la première, déguisée, dès 1957), ce que les données annuelles lissent. Enfin, la hausse de 1981-1985 vient aussi de l'envolée du dollar sous Reagan, pas seulement des dévaluations françaises.</p>`;
+  const VERDICT = {
+    1928: "Pas d'effet visible : le franc s'était déjà effondré en 1926, la stabilisation de Poincaré l'a fixé à ce niveau bas. Il est ensuite devenu cher quand le Royaume-Uni et les États-Unis ont dévalué à leur tour (1931-1933).",
+    1936: "Effet net : les produits français redeviennent bon marché. L'avantage est en partie effacé par l'inflation de 1937-1938.",
+    1958: "Effet faible dans ces chiffres : deux dévaluations se suivent (1957 et 1958), que les moyennes annuelles lissent. La rigueur du plan Rueff a permis d'en garder le bénéfice quelques années.",
+    1969: "Effet modeste et court : l'avantage disparaît en cinq ans, avec l'inflation des années 1970.",
+    1981: "Effet fort, mais surtout grâce à l'envolée du dollar sous Reagan ; il retombe en grande partie quand le dollar baisse après 1985.",
+  };
+  const fl = v => v > 0 ? "▲" : "▼";
+  box.querySelector("#hist-reel-eff").innerHTML = `<p style="font-size:.84rem;margin:0 0 6px">Lecture : un chiffre plus élevé veut dire des produits français <b>moins chers</b> pour les acheteurs étrangers. Une dévaluation « marche » si le chiffre monte après elle.</p>
+    <table class="cmp-t dv-t"><thead><tr><th style="width:13%">Dévaluation</th><th style="width:12%">Avant</th><th style="width:16%">Juste après<br><span style="font-weight:400">(le plus haut sur 3 ans)</span></th><th style="width:12%">5 ans après</th><th>Ce qui s'est passé</th></tr></thead><tbody>` +
+    eff.map(([d, av, pk, ap]) => `<tr><td><b>${d === 1981 ? "1981-1983" : d === 1928 ? "1926-1928" : d === 1958 ? "1957-1958" : d}</b></td><td>${Math.round(av)}</td><td><b style="color:${pk > av ? "#15803d" : "#c2413b"}">${fl(pk - av)} ${Math.round(pk)}</b></td><td>${ap != null ? `<span style="color:${ap > av ? "#15803d" : "#c2413b"}">${fl(ap - av)} ${Math.round(ap)}</span>` : "–"}</td><td>${VERDICT[d]}</td></tr>`).join("") + `</tbody></table>
+    <p style="font-size:.88rem;margin:10px 0 0;max-width:100ch"><b>Alors, est-ce que ça marche ?</b> Oui, mais pour peu de temps : juste après une dévaluation, les produits français deviennent moins chers ; cinq ans plus tard, l'avantage a presque toujours disparu, parce que la France a gardé plus d'inflation que ses partenaires. Une dévaluation ne fait gagner que du temps : elle ne marche durablement que si on maîtrise ensuite les prix et les salaires.</p>`;
 }
 
 /* zoom : les exportations avant et après chaque dévaluation (écart en points de PIB par rapport à l'année de la dévaluation) */
