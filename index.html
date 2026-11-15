@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117b">
+<link rel="stylesheet" href="style.css?v=20261117d">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -30,7 +30,7 @@
       <a href="#patrimoine">Patrimoine</a>
       <a href="#pib">Le PIB</a>
       <a href="#repartition">Répartition du PIB</a>
-      <a href="#argent-public">L'argent public</a>
+      <a href="#argent-public">Argent public</a>
       <a href="#argent-prive">Argent privé</a>
       <a href="#cycle-vie">La vie en euros</a>
       <a href="#duree">Dette sur 30 ans</a>
@@ -143,6 +143,7 @@
     <h2>Argent privé : ce que gagnent les Français et comment ils le dépensent <span class="geo-fixed">France</span></h2>
   </div>
   <div class="kpis" id="ap-kpis"></div>
+  <div class="callout small" id="ap-lien"></div>
   <p class="lead">Tous les montants sont en euros d'aujourd'hui : on a retiré l'effet de la hausse des prix pour comparer ce que l'on peut réellement acheter d'une époque à l'autre.</p>
   <h3>Le salaire moyen depuis 1900</h3>
   <div id="ap-salaire" class="chart"></div><div class="legend-row" id="ap-salaire-legend"></div>
@@ -172,6 +173,9 @@
   <div class="sk-scroll"><div id="sankey" class="chart"></div></div>
   <div class="legend-row" id="sk-legend"></div>
   <div class="callout small" id="sk-explain"></div>
+  <h3>Les prélèvements en France et chez nos voisins</h3>
+  <div id="pp-cmp"></div>
+  <div class="callout small" id="pp-txt"></div>
 </section>
 
 <section id="cycle-vie" class="panel">
@@ -933,21 +937,22 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117b"></script>
-<script src="app.js?v=20261117b"></script>
-<script src="energie.js?v=20261117b"></script>
-<script src="matieres.js?v=20261117b"></script>
-<script src="territoire.js?v=20261117b"></script>
-<script src="themes.js?v=20261117b"></script>
-<script src="societe.js?v=20261117b"></script>
-<script src="eco2.js?v=20261117b"></script>
-<script src="empreinte.js?v=20261117b"></script>
-<script src="argentprive.js?v=20261117b"></script>
-<script src="repartition.js?v=20261117b"></script>
-<script src="patrimoine.js?v=20261117b"></script>
-<script src="histoire.js?v=20261117b"></script>
-<script src="chomage.js?v=20261117b"></script>
-<script src="sources.js?v=20261117b"></script>
-<script src="nav.js?v=20261117b"></script>
+<script src="kpi.js?v=20261117d"></script>
+<script src="app.js?v=20261117d"></script>
+<script src="energie.js?v=20261117d"></script>
+<script src="matieres.js?v=20261117d"></script>
+<script src="territoire.js?v=20261117d"></script>
+<script src="themes.js?v=20261117d"></script>
+<script src="societe.js?v=20261117d"></script>
+<script src="eco2.js?v=20261117d"></script>
+<script src="empreinte.js?v=20261117d"></script>
+<script src="argentprive.js?v=20261117d"></script>
+<script src="repartition.js?v=20261117d"></script>
+<script src="patrimoine.js?v=20261117d"></script>
+<script src="prelevements.js?v=20261117d"></script>
+<script src="histoire.js?v=20261117d"></script>
+<script src="chomage.js?v=20261117d"></script>
+<script src="sources.js?v=20261117d"></script>
+<script src="nav.js?v=20261117d"></script>
 </body>
 </html>

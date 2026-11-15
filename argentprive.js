@@ -6,6 +6,7 @@ let A = null;
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
   try { A = await fetch("data/argent_prive.json").then(r => r.json()); } catch (e) { return; }
+  try { A.rep = await fetch("data/repartition.json").then(r => r.json()); } catch (e) { A.rep = null; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
@@ -13,7 +14,22 @@ const eur = v => Math.round(v).toLocaleString("fr-FR") + " €";
 
 function draw() {
   if (!A) return;
-  drawEnergie(); drawCo2(); drawSalaire(); drawBudget();
+  drawLien(); drawEnergie(); drawCo2(); drawSalaire(); drawBudget();
+}
+
+/* lien avec l'onglet Répartition du PIB : l'argent des ménages, par habitant */
+function drawLien() {
+  const el = $("#ap-lien"), R = A.rep; if (!el || !R?.menages || !R.population) return;
+  const D = R.depenses, laisse = R.pib - R.po, entL = R.entreprises.garde - D.aides, men = laisse - entL + D.prestations;
+  const an = v => v * 1e9 / R.population, mois = v => an(v) / 12, md = v => Math.round(v).toLocaleString("fr-FR") + " Md€";
+  const sL = A.serie.filter(d => d.salaire).at(-1);
+  el.innerHTML = `<p><b>Du PIB au porte-monnaie : combien par Français ?</b></p>
+    <ul>
+      <li>Dans l'onglet <a href="#repartition">Répartition du PIB</a>, les ménages reçoivent <b>${md(men)}</b> en ${R.annee} : ce qui leur reste après impôts et cotisations, plus les pensions et allocations.</li>
+      <li>Divisé par ${(R.population / 1e6).toLocaleString("fr-FR", { maximumFractionDigits: 1 })} millions d'habitants, cela fait <b>${eur(an(men))} par an</b>, soit <b>${eur(mois(men))} par mois et par personne</b>, enfants et retraités compris.</li>
+      <li>Le chiffre officiel du revenu disponible des ménages (${md(R.menages.rdb)}) donne presque la même chose : ${eur(mois(R.menages.rdb))} par mois et par personne. Il compte en plus les retraites versées par des caisses privées et les dons reçus.</li>
+      <li>Pourquoi c'est moins que le salaire moyen (${eur(sL.salaire)} brut par mois) ? Parce que ce salaire est avant cotisations et impôts, et qu'il fait vivre aussi ceux qui ne travaillent pas : enfants, étudiants, chômeurs. Seuls 4 Français sur 10 ont un emploi.</li>
+    </ul>`;
 }
 
 /* PIB par habitant et énergie par habitant depuis 1900, deux axes */

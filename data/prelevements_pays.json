@@ -1,0 +1,248 @@
+{
+ "annee": 2025,
+ "pays": [
+  {
+   "code": "FR",
+   "nom": "France",
+   "prelevements": 46.0,
+   "depense": 57.3
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "prelevements": 44.7,
+   "depense": 54.4
+  },
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "prelevements": 44.3,
+   "depense": 47.2
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "prelevements": 43.9,
+   "depense": 54.6
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "prelevements": 43.0,
+   "depense": 51.1
+  },
+  {
+   "code": "FI",
+   "nom": "Finlande",
+   "prelevements": 42.5,
+   "depense": 57.5
+  },
+  {
+   "code": "LU",
+   "nom": "Luxembourg",
+   "prelevements": 42.2,
+   "depense": 48.7
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "prelevements": 41.4,
+   "depense": 50.1
+  },
+  {
+   "code": "EL",
+   "nom": "Grèce",
+   "prelevements": 41.3,
+   "depense": 47.8
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "prelevements": 41.2,
+   "depense": 49.3
+  },
+  {
+   "code": "EU27_2020",
+   "nom": "Moyenne de l'Union européenne",
+   "prelevements": 40.7,
+   "depense": 49.4
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "prelevements": 39.6,
+   "depense": 45.2
+  },
+  {
+   "code": "SI",
+   "nom": "Slovénie",
+   "prelevements": 39.1,
+   "depense": 48.9
+  },
+  {
+   "code": "HR",
+   "nom": "Croatie",
+   "prelevements": 38.9,
+   "depense": 49.4
+  },
+  {
+   "code": "NO",
+   "nom": "Norvège",
+   "prelevements": 38.9,
+   "depense": 49.4
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "prelevements": 38.1,
+   "depense": 45.3
+  },
+  {
+   "code": "PL",
+   "nom": "Pologne",
+   "prelevements": 37.6,
+   "depense": 50.9
+  },
+  {
+   "code": "PT",
+   "nom": "Portugal",
+   "prelevements": 37.1,
+   "depense": 42.3
+  },
+  {
+   "code": "EE",
+   "nom": "Estonie",
+   "prelevements": 36.6,
+   "depense": 45.6
+  },
+  {
+   "code": "IS",
+   "nom": "Islande",
+   "prelevements": 36.5,
+   "depense": 45.7
+  },
+  {
+   "code": "CY",
+   "nom": "Chypre",
+   "prelevements": 36.3,
+   "depense": 37.9
+  },
+  {
+   "code": "SK",
+   "nom": "Slovaquie",
+   "prelevements": 36.1,
+   "depense": 47.3
+  },
+  {
+   "code": "HU",
+   "nom": "Hongrie",
+   "prelevements": 35.4,
+   "depense": 47.6
+  },
+  {
+   "code": "CZ",
+   "nom": "Tchéquie",
+   "prelevements": 35.2,
+   "depense": 43.3
+  },
+  {
+   "code": "LV",
+   "nom": "Lettonie",
+   "prelevements": 34.2,
+   "depense": 45.3
+  },
+  {
+   "code": "LT",
+   "nom": "Lituanie",
+   "prelevements": 33.8,
+   "depense": 41.1
+  },
+  {
+   "code": "BG",
+   "nom": "Bulgarie",
+   "prelevements": 30.6,
+   "depense": 42.1
+  },
+  {
+   "code": "MT",
+   "nom": "Malte",
+   "prelevements": 30.3,
+   "depense": 37.1
+  },
+  {
+   "code": "RO",
+   "nom": "Roumanie",
+   "prelevements": 29.3,
+   "depense": 43.4
+  },
+  {
+   "code": "CH",
+   "nom": "Suisse",
+   "prelevements": 27.1,
+   "depense": 33.6
+  },
+  {
+   "code": "IE",
+   "nom": "Irlande",
+   "prelevements": 22.7,
+   "depense": 22.3
+  }
+ ],
+ "france": [
+  {
+   "annee": 2015,
+   "prelevements": 47.7,
+   "ue": 40.8
+  },
+  {
+   "annee": 2016,
+   "prelevements": 47.7,
+   "ue": 40.9
+  },
+  {
+   "annee": 2017,
+   "prelevements": 48.5,
+   "ue": 41.0
+  },
+  {
+   "annee": 2018,
+   "prelevements": 48.3,
+   "ue": 41.1
+  },
+  {
+   "annee": 2019,
+   "prelevements": 47.3,
+   "ue": 40.9
+  },
+  {
+   "annee": 2020,
+   "prelevements": 47.4,
+   "ue": 41.0
+  },
+  {
+   "annee": 2021,
+   "prelevements": 46.9,
+   "ue": 41.2
+  },
+  {
+   "annee": 2022,
+   "prelevements": 47.7,
+   "ue": 40.6
+  },
+  {
+   "annee": 2023,
+   "prelevements": 45.5,
+   "ue": 39.9
+  },
+  {
+   "annee": 2024,
+   "prelevements": 45.1,
+   "ue": 40.2
+  },
+  {
+   "annee": 2025,
+   "prelevements": 46.0,
+   "ue": 40.7
+  }
+ ]
+}

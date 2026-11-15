@@ -65,5 +65,9 @@ try:
     out["entreprises"] = {"garde": round(N("S11", "B6G") + N("S12", "B6G"), 1), "profits": round(N("S11", "B2A3G") + N("S12", "B2A3G"), 1)}
 except (OSError, KeyError) as e:
     print("revenus par secteur : données absentes", e)
+try:
+    out["population"] = json.load(open(os.path.join(HERE, "..", "data", "finances.json")))["sankey"][str(an)]["population"]
+except (OSError, KeyError):
+    pass
 json.dump(out, open(os.path.join(HERE, "..", "data", "repartition.json"), "w"), ensure_ascii=False, indent=1)
 print(json.dumps(out, ensure_ascii=False))

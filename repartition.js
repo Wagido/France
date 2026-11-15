@@ -93,7 +93,7 @@ function draw() {
     <ol>
       <li><b>Ce qu'on produit</b> : ${md(R.pib)} de richesses en ${R.annee}.</li>
       <li><b>Prélevé ou laissé</b> : ${md(R.po)} d'impôts et cotisations ; ${md(laisse)} restent aux ménages et aux entreprises.</li>
-      <li><b>L'argent public</b> : ces prélèvements, plus ${md(R.autres_recettes)} d'autres recettes et ${md(R.emprunt)} d'emprunt, soit ${md(R.te)} dépensés par l'État, les collectivités et la Sécurité sociale (voir <a href="#argent-public">L'argent public</a>).</li>
+      <li><b>L'argent public</b> : ces prélèvements, plus ${md(R.autres_recettes)} d'autres recettes et ${md(R.emprunt)} d'emprunt, soit ${md(R.te)} dépensés par l'État, les collectivités et la Sécurité sociale (voir l'onglet <a href="#argent-public">Argent public</a>).</li>
       <li><b>Ce qu'il devient</b> : ${md(fonct)} font fonctionner le public (salaires des agents, soins remboursés, achats, investissement) ; ${md(redis)} reviennent au privé par la redistribution.</li>
       <li><b>L'argent privé</b> : ${md(prive)}, ce qui a été laissé plus ce qui a été redistribué (voir <a href="#argent-prive">Argent privé</a>) :
         <ul>

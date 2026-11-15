@@ -57,6 +57,7 @@ const S = [
   ["Argent public", "insee", "Comptes nationaux annuels base 2020 depuis 1949 ; Jordà, Schularick et Taylor, Macrohistory Database (1900-2017)", "Graphique « Un siècle de franc » : inflation, solde budgétaire, exportations, cours du dollar", "https://www.macrohistory.net/database/", "annuel"],
   ["Argent privé", "insee", "Comptes nationaux annuels base 2020 : salaires et traitements bruts, emploi salarié EQTP, consommation des ménages par fonction, PIB par habitant", "Salaire moyen depuis 1949, budget des ménages depuis 1959", "https://www.insee.fr/fr/statistiques/serie/011785411", "annuel"],
   ["PIB", "harvard", "Energy_Data_FRANCE.xlsx", "Consommation d'énergie par habitant en France, 1800-2008", "https://histecon.fas.harvard.edu/energyhistory/data_sets/Energy_Data_FRANCE.xlsx", "ponctuel"],
+  ["Argent public", "eurostat", "gov_10a_taxag / gov_10a_main", "Impôts, cotisations et dépense publique en % du PIB, pays européens", null, "annuel"],
   ["Argent public", "eurostat", "nasa_10_nf_tr", "Revenu disponible des ménages et des entreprises (comptes de secteur)", null, "annuel"],
   ["Argent privé", "insee", "Jordà, Schularick et Taylor, Macrohistory Database", "Salaires réels et PIB par habitant avant 1949", "https://www.macrohistory.net/database/", "ponctuel"],
   ["Énergie", "owid", "owid-energy-data (energy_per_capita)", "Énergie primaire par habitant depuis 1965", "https://github.com/owid/energy-data", "annuel"],
