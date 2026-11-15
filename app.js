@@ -58,6 +58,7 @@ function init() {
   initPib();
   initSankey();
   initSimu();
+  initSimu10();
   initBilan();
   drawInterets(); drawFonctions();
   if (sel.value !== "FR") setGeo(sel.value);
@@ -68,7 +69,7 @@ function init() {
     if (e.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
   }), { rootMargin: "-40% 0px -55% 0px" });
   document.querySelectorAll("section.panel").forEach(s => io.observe(s));
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { drawSankey(); drawSimu(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); }, 150); });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { drawSankey(); drawSimu(); drawSimu10(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); }, 150); });
   document.querySelectorAll(".geo-tag").forEach(t => t.textContent = "France");
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { drawSankey(); drawSimu(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); });
 }
@@ -83,7 +84,7 @@ async function setGeo(g) {
   $("#geo").value = g;
   document.querySelectorAll(".geo-tag").forEach(t => t.textContent = C().nom);
   fnOnly = null;
-  initPib(); resetSimu(); drawInterets(); drawFonctions(); drawCompare();
+  initPib(); resetSimu(); drawSimu10(); drawCroissance(); drawInterets(); drawFonctions(); drawCompare();
   document.dispatchEvent(new CustomEvent("geochange", { detail: g }));
 }
 
@@ -341,6 +342,97 @@ function resetSimu() {
   $("#s-b").value = Math.round(S.dette_pct ?? 60); $("#s-t").value = S.prelevements_pct ?? 40; $("#s-m").value = 0.8; $("#s-cut").value = 40;
   drawSimu();
 }
+/* ---------------------------------------------------------------- simulation sur 10 ans */
+function base10() {
+  const H = C().historique.at(-1), I = (C().interets || []).at(-1), S = simuOf();
+  const solde = H ? (H.recettes - H.depenses) / H.pib * 100 : -3;
+  const intPib = I?.pct_pib ?? 2;
+  return { pib: H?.pib ?? 1000, annee: +(H?.annee ?? 2025), b0: S.dette_pct ?? 80, tax: (S.prelevements_pct ?? 45) / 100,
+           primaire: solde + intPib, taux: I?.taux_apparent ?? 2 };
+}
+function initSimu10() {
+  const ids = ["cut", "m", "hl", "h", "g", "pi", "r"];
+  ids.forEach(k => $("#s10-" + k).oninput = drawSimu10);
+  const defs = { cut: 40, m: 0.8, hl: 1.5, h: 0, g: 1, pi: 1.7, r: 3.3 };
+  $("#s10-reset").onclick = () => { ids.forEach(k => $("#s10-" + k).value = defs[k]); drawSimu10(); };
+  ["s", "ex", "im", "pt"].forEach(k => $("#sdf-" + k).oninput = drawDevFisc);
+  drawSimu10(); drawDevFisc(); drawCroissance();
+}
+function drawSimu10() {
+  if (!DATA) return;
+  const B = base10();
+  const v = k => +$("#s10-" + k).value;
+  const cut = v("cut"), m = v("m"), hl = v("hl"), h = v("h") / 100, g = v("g") / 100, pi = v("pi") / 100, rm = v("r") / 100;
+  const f2 = x => new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(x);
+  $("#o10-cut").textContent = md(cut) + " par an"; $("#o10-m").textContent = f2(m); $("#o10-hl").textContent = nf1.format(hl) + " an" + (hl > 1 ? "s" : "");
+  $("#o10-h").textContent = pct(h * 100, 0) + " de l'effet initial"; $("#o10-g").textContent = pct(g * 100); $("#o10-pi").textContent = pct(pi * 100); $("#o10-r").textContent = pct(rm * 100);
+  const rho = Math.pow(0.5, 1 / hl), c = cut / B.pib, gn = (1 + g) * (1 + pi) - 1, p0 = B.primaire / 100;
+  let Ys = B.pib, Db = B.b0 / 100 * B.pib, Ds = Db, i = B.taux / 100;
+  const rows = [{ an: B.annee, base: B.b0, scen: B.b0, ecart: 0 }];
+  for (let t = 1; t <= 10; t++) {
+    Ys *= 1 + gn; i += (rm - i) / 8;
+    const L = c * m * (h + (1 - h) * Math.pow(rho, t - 1));
+    const Y = Ys * (1 - L);
+    Db = Db * (1 + i) - p0 * Ys;
+    Ds = Ds * (1 + i) - (p0 * Ys + c * Ys - B.tax * (Ys - Y));
+    rows.push({ an: B.annee + t, base: 100 * Db / Ys, scen: 100 * Ds / Y, ecart: -100 * L, taux: i * 100 });
+  }
+  const at = n => rows.find(r => r.an === B.annee + n);
+  const stab = (rows[1].taux / 100 - gn) / (1 + gn) * B.b0;
+  $("#simu10-result").innerHTML = `<table>
+    <tr><td></td><td>Sans coupe</td><td>Avec coupe</td><td>Écart de PIB</td></tr>
+    ${[1, 2, 3, 5, 10].map(n => { const r = at(n); return `<tr><td>Dette/PIB en ${r.an}</td><td>${pct(r.base)}</td><td><b>${pct(r.scen)}</b></td><td>${pct(r.ecart, 2)}</td></tr>`; }).join("")}
+  </table>
+  <p style="margin:8px 0 0">Point de départ (${B.annee}) : solde primaire ${B.primaire >= 0 ? "+" : ""}${pct(B.primaire)} du PIB, taux moyen de la dette ${pct(B.taux, 2)}, croissance nominale supposée ${pct(gn * 100)}. Pour stabiliser la dette, il faudrait un solde primaire d'environ ${stab >= 0 ? "+" : ""}${pct(stab)} du PIB : il manque <b>${pct(stab - B.primaire)}</b> du PIB, soit environ <b>${md((stab - B.primaire) / 100 * B.pib)}</b> par an.</p>`;
+  const el = $("#simu10-chart"); const w = Math.max(320, el.clientWidth), hh = 260, mg = { t: 12, r: 14, b: 26, l: 48 };
+  const x = d3.scaleLinear([B.annee, B.annee + 10], [mg.l, w - mg.r]);
+  const ys = rows.flatMap(r => [r.base, r.scen]);
+  const y = d3.scaleLinear([Math.floor(d3.min(ys) - 3), Math.ceil(d3.max(ys) + 3)], [hh - mg.b, mg.t]).nice();
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${hh}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line").attr("x1", mg.l).attr("x2", w - mg.r).attr("y1", y).attr("y2", y);
+  svg.append("path").attr("fill", "none").attr("stroke", css("--neg")).attr("stroke-width", 2.2).attr("d", d3.line().x(r => x(r.an)).y(r => y(r.base))(rows));
+  svg.append("path").attr("fill", "none").attr("stroke", css("--accent")).attr("stroke-width", 2.6).attr("d", d3.line().x(r => x(r.an)).y(r => y(r.scen))(rows));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${hh - mg.b})`).call(d3.axisBottom(x).ticks(5).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d => d + " %")).call(g => g.select(".domain").remove());
+  el.replaceChildren(svg.node());
+  $("#simu10-legend").innerHTML = `<span><i style="border-top-color:${css("--neg")};opacity:1"></i>Dette/PIB sans la coupe</span><span><i style="border-top-color:${css("--accent")};opacity:1"></i>Dette/PIB avec la coupe</span>`;
+}
+function drawCroissance() {
+  const el = $("#simu-croissance"); if (!el || !DATA) return;
+  const H = C().historique, I = (C().interets || []).at(-1), last = H.at(-1), prev = H.at(-2);
+  const gn = 100 * (last.pib / prev.pib - 1), B = base10();
+  el.innerHTML = `<p>C'est exactement le problème. En ${last.annee}, la croissance nominale (inflation comprise) n'a été que de <b>${pct(gn)}</b>, à peu près le taux d'intérêt moyen payé sur la dette (<b>${pct(I?.taux_apparent ?? 0, 2)}</b>). Le dénominateur ne fait donc plus le travail : la dette ne peut se stabiliser que si le solde primaire (recettes moins dépenses, hors intérêts) revient vers l'équilibre. Il est aujourd'hui de <b>${pct(B.primaire)}</b> du PIB, d'où une dette qui monte d'environ 3 points par an. Et comme l'État emprunte désormais au-dessus de son taux moyen, la charge d'intérêts va continuer à grimper à mesure que la dette se renouvelle.</p>
+  <p>Faute de croissance, il reste trois leviers, qui se combinent : <b>réduire le déficit primaire</b> (dépenses ou impôts), <b>accepter plus d'inflation</b> (ce qui dépend de la BCE, pas de Paris), ou <b>retrouver de la croissance</b>. Pour ce dernier, le principal gisement français est la quantité de travail : la France travaille 667 heures par habitant et par an, contre 734 en Allemagne et 823 aux Pays-Bas. Le taux d'emploi des 20-64 ans y est de 75 %, contre 81 % en Allemagne et 83 % aux Pays-Bas, surtout à cause des jeunes et des 55-64 ans (voir les sections Emploi et Temps de travail). À productivité égale, rejoindre le niveau allemand ajouterait environ 10 % au PIB, et autant à la base des recettes.</p>`;
+}
+function drawDevFisc() {
+  if (!DATA) return;
+  const v = k => +$("#sdf-" + k).value;
+  const s = v("s"), ex = v("ex"), im = v("im"), pt = v("pt") / 100;
+  $("#odf-s").textContent = nf1.format(s).replace(",0", "") + " pt de PIB"; $("#odf-ex").textContent = nf1.format(ex); $("#odf-im").textContent = nf1.format(im); $("#odf-pt").textContent = pct(pt * 100, 0);
+  const P = DATA.pib[Object.keys(DATA.pib).sort().at(-1)];
+  const Y = P.pib, X = P.exports / Y, Mp = P.imports / Y;
+  const salaires = (P.revenus.find(r => r.id === "salaires")?.v || 0.5 * Y) / Y;
+  const tvaBase = 0.45;                                   // assiette de la TVA, environ 45 % du PIB
+  const dCout = s / 100 / salaires;                       // baisse du coût du travail
+  const dPx = -pt * 0.6 * dCout;                          // prix des exportations (60 % de coûts salariaux en valeur ajoutée)
+  const dTva = s / 100 / tvaBase;                         // hausse du taux effectif de TVA
+  const dPrixConso = dTva - pt * 0.6 * dCout * (1 - Mp);  // prix à la consommation : TVA moins baisse des coûts domestiques
+  const dPrixImpRel = dTva * 0.5;                         // renchérissement relatif des importations
+  const dX = -ex * dPx * X, dM = -im * dPrixImpRel * Mp;  // en part du PIB
+  const dPIB = dX - dM;                                   // effet de demande extérieure nette
+  const dBal = (dX - dM) * Y;
+  $("#sdf-result").innerHTML = `<table>
+    <tr><td>Cotisations patronales en moins, TVA en plus</td><td>${md(s / 100 * Y)}</td></tr>
+    <tr><td>Baisse du coût du travail</td><td>−${pct(dCout * 100)}</td></tr>
+    <tr><td>Prix des exportations</td><td>${pct(dPx * 100)}</td></tr>
+    <tr><td>Hausse des prix à la consommation (une fois)</td><td>+${pct(Math.max(0, dPrixConso) * 100)}</td></tr>
+    <tr><td>Exportations en plus / importations en moins</td><td>+${md(dX * Y)} / −${md(-dM * Y)}</td></tr>
+    <tr><td><b>Effet sur le PIB à moyen terme</b></td><td><b>+${pct(dPIB * 100, 2)}</b> (≈ ${md(dPIB * Y)})</td></tr>
+    <tr><td>Amélioration du solde commercial</td><td>+${md(dBal)}</td></tr>
+  </table>
+  <p style="margin:8px 0 0">Le revers : la hausse des prix réduit le pouvoir d'achat des salariés, des retraités et des allocataires d'environ ${pct(Math.max(0, dPrixConso) * 100)}, sauf si les salaires et pensions sont relevés d'autant (ce qui annulerait une partie du gain). Les entreprises peuvent aussi garder la baisse de coût dans leurs marges plutôt que de baisser leurs prix (curseur « répercutée »). Modèle très simplifié : il ne tient pas compte des réactions de la BCE, des partenaires commerciaux, ni du temps d'ajustement.</p>`;
+}
+
 function initSimu() {
   ["#s-cut", "#s-m", "#s-b", "#s-t"].forEach(s => $(s).oninput = drawSimu);
   $("#s-reset").onclick = resetSimu;

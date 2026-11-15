@@ -152,8 +152,68 @@
     </div>
   </div>
   <div class="callout small">
-    <p><strong>Limites.</strong> C'est l'effet de la première année. Le multiplicateur s'estompe ensuite, alors que l'économie réalisée se répète chaque année : à moyen terme une coupe finit généralement par réduire la dette, sauf si la récession laisse des séquelles durables. Les estimations du multiplicateur vont d'environ 0,3 à plus de 1,5. Il est plus élevé en récession, quand la banque centrale ne baisse pas ses taux, et pour l'investissement public. Il est plus faible quand l'économie tourne à plein. Il varie aussi selon la dépense : supprimer un poste de fonctionnaire retire immédiatement sa valeur ajoutée du PIB, alors que baisser une prestation n'agit qu'à travers la consommation de ceux qui la touchent.</p>
+    <p><strong>Limites.</strong> C'est l'effet de la première année. Le simulateur sur 10 ans, plus bas, montre la suite.</p>
   </div>
+
+  <h3>Pourquoi ça ne veut pas dire « ça ne marche pas »</h3>
+  <ul class="prose-list">
+    <li><b>Le multiplicateur s'estompe.</b> La baisse d'activité se résorbe en 2 ou 3 ans, alors que l'économie réalisée se répète chaque année. Sur plusieurs années, une baisse de dépenses fait en général baisser le ratio dette/PIB, sauf si la récession laisse des séquelles durables (chômage de longue durée, investissement perdu).</li>
+    <li><b>Le multiplicateur dépend de ce qu'on coupe.</b> Il est faible pour des dépenses peu productives ou des transferts vers des ménages qui épargnent, et élevé pour l'investissement public ou les aides aux ménages modestes. Le seuil calculé plus haut est donc franchi ou non selon les choix.</li>
+    <li><b>Il dépend aussi du moment.</b> En récession, ou quand la banque centrale ne baisse pas ses taux, il est élevé. C'est ce qui s'est passé en 2010-2012 en zone euro : le FMI (Blanchard et Leigh, 2013) a reconnu que les multiplicateurs avaient été sous-estimés, plutôt autour de 1 à 1,5. La Grèce a coupé massivement, et sa dette est passée de 127 % à 180 % du PIB.</li>
+    <li><b>La confiance joue dans l'autre sens.</b> Si les marchés doutent, les taux d'intérêt montent et la dette s'alourdit. Une baisse crédible des dépenses peut éviter ça.</li>
+  </ul>
+
+  <h3>Sur 10 ans : la dette avec et sans la coupe</h3>
+  <p class="lead">La coupe est permanente (elle grandit avec le PIB). Son effet sur l'activité s'efface progressivement, sauf la part de « séquelles » qui reste. La dette se calcule année par année : intérêts, solde primaire (hors intérêts), croissance. Le taux d'intérêt moyen de la dette rejoint peu à peu le taux de marché, car environ un huitième de la dette est refinancé chaque année.</p>
+  <div class="simu">
+    <div class="simu-ctl">
+      <label><span>Coupe permanente <output id="o10-cut"></output></span><input type="range" id="s10-cut" min="0" max="150" step="5" value="40"></label>
+      <label><span>Multiplicateur la 1<sup>re</sup> année <output id="o10-m"></output></span><input type="range" id="s10-m" min="0" max="2" step="0.05" value="0.8"></label>
+      <label><span>Durée de l'effet (demi-vie) <output id="o10-hl"></output></span><input type="range" id="s10-hl" min="0.5" max="6" step="0.5" value="1.5"></label>
+      <label><span>Séquelles durables <output id="o10-h"></output></span><input type="range" id="s10-h" min="0" max="100" step="5" value="0"></label>
+      <label><span>Croissance réelle <output id="o10-g"></output></span><input type="range" id="s10-g" min="-1" max="3" step="0.1" value="1"></label>
+      <label><span>Inflation <output id="o10-pi"></output></span><input type="range" id="s10-pi" min="0" max="5" step="0.1" value="1.7"></label>
+      <label><span>Taux d'emprunt de l'État (10 ans) <output id="o10-r"></output></span><input type="range" id="s10-r" min="0" max="7" step="0.1" value="3.3"></label>
+      <button class="link" id="s10-reset">Valeurs par défaut</button>
+    </div>
+    <div class="simu-out">
+      <div id="simu10-result" class="result"></div>
+      <div id="simu10-chart" class="chart"></div>
+      <div class="legend-row" id="simu10-legend"></div>
+    </div>
+  </div>
+
+  <h3>« Mais on n'a plus de croissance ! »</h3>
+  <div class="callout small" id="simu-croissance"></div>
+
+  <h3>La dévaluation : l'outil qu'on n'a plus</h3>
+  <p>Avant l'euro, la France combinait souvent rigueur budgétaire et dévaluation : en 1958, en 1969, puis en 1982-83 (plusieurs dévaluations du franc). Les exportations repartaient et compensaient le freinage budgétaire. Mais ce n'était pas gratuit :</p>
+  <ul class="prose-list">
+    <li>les produits importés, l'énergie surtout, deviennent plus chers, ce qui fait de l'inflation et baisse les salaires réels ;</li>
+    <li>la France importe beaucoup d'énergie : son déficit est de 44 Md€ sur les combustibles, et la facture monterait d'autant ;</li>
+    <li>sortir de l'euro pour dévaluer poserait le problème de la dette : environ la moitié est détenue à l'étranger, en euros. Il faudrait la convertir en francs, ce qui serait vu comme un défaut partiel, ou la rembourser en euros devenus plus chers.</li>
+  </ul>
+
+  <h3>Ce qui reste possible dans l'euro</h3>
+  <ul class="prose-list">
+    <li><b>La « dévaluation interne »</b> : baisser les coûts par la modération des salaires. L'Allemagne l'a fait dans les années 2000, l'Espagne et le Portugal après 2010. Ça marche, mais c'est lent et douloureux.</li>
+    <li><b>La « dévaluation fiscale »</b> : alléger les cotisations sur le travail et monter la TVA. Les produits français deviennent moins chers, les importations plus chères, comme une petite dévaluation. L'Allemagne l'a fait en 2007 (+3 points de TVA) ; en France, il y a eu la TVA sociale votée en 2012 puis abandonnée, et le CICE. Simulateur ci-dessous.</li>
+    <li><b>Étaler l'effort et choisir quoi couper</b>, en protégeant l'investissement.</li>
+    <li><b>Jouer sur le dénominateur</b> : ce qui compte, c'est la dette rapportée au PIB. Avec un peu d'inflation et de croissance, et des taux d'intérêt inférieurs à la croissance, le ratio baisse sans couper beaucoup. C'est ce qui a réduit les dettes d'après-guerre. Mais cela suppose de la croissance (voir l'encadré plus haut).</li>
+  </ul>
+
+  <h3>Simuler une dévaluation fiscale</h3>
+  <p class="lead">On baisse les cotisations patronales d'un montant donné et on monte la TVA d'autant (le budget est équilibré au départ). Le coût du travail baisse, donc le prix des produits français à l'export ; la TVA renchérit ce qu'on consomme, y compris les importations, que l'on remplace en partie par des produits français. Modèle simplifié, ordre de grandeur à moyen terme (2 à 3 ans) : les études du Trésor et de la Banque de France sur la TVA sociale trouvaient de +0,1 à +0,5 point de PIB par point de PIB basculé.</p>
+  <div class="simu">
+    <div class="simu-ctl">
+      <label><span>Cotisations basculées vers la TVA <output id="odf-s"></output></span><input type="range" id="sdf-s" min="0" max="3" step="0.25" value="1"></label>
+      <label><span>Sensibilité des exportations aux prix <output id="odf-ex"></output></span><input type="range" id="sdf-ex" min="0" max="2" step="0.1" value="0.8"></label>
+      <label><span>Sensibilité des importations aux prix <output id="odf-im"></output></span><input type="range" id="sdf-im" min="0" max="2" step="0.1" value="0.5"></label>
+      <label><span>Part de la baisse de coût répercutée dans les prix <output id="odf-pt"></output></span><input type="range" id="sdf-pt" min="0" max="100" step="5" value="60"></label>
+    </div>
+    <div class="simu-out"><div id="sdf-result" class="result"></div></div>
+  </div>
+
 </section>
 
 <!-- =============================================================== SUR LA DUREE -->
