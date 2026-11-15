@@ -213,6 +213,42 @@ def redistribution():
             "succession": succession()}
 
 
+def heritage():
+    """Patrimoine par décile et transmissions (INSEE, enquête Histoire de vie et Patrimoine 2023-2024)."""
+    import openpyxl
+    S = os.path.join(HERE, "..", "data", "sources")
+    def rows(f, sheet=None):
+        wb = openpyxl.load_workbook(os.path.join(S, f), data_only=True)
+        ws = wb[sheet] if sheet else wb.worksheets[0]
+        out = []
+        for r in ws.iter_rows(values_only=True):
+            c = [x for x in r if x is not None]
+            if len(c) >= 2 and isinstance(c[0], str) and all(isinstance(x, (int, float)) for x in c[1:]):
+                out.append([c[0].replace("\xa0", " ").strip()] + [float(x) for x in c[1:]])
+        return out
+    compo = rows("insee_reve-patrim-brut-compo.xlsx")
+    ens = next(r for r in compo if r[0].startswith("Ensemble"))
+    tr = [{"l": r[0], "moyen": r[1], "immo": r[2], "fin": r[3], "pro": r[4], "autre": r[5], "dette": r[6], "part": round(r[1] / ens[1] * 10, 1)}
+          for r in compo if "décile" in r[0]]
+    for r in compo:
+        for k, f in [("Du 90e", 5), ("Du 95e", 4), ("Supérieur au 99e", 1)]:
+            if r[0].startswith(k):
+                tr.append({"l": r[0], "moyen": r[1], "immo": r[2], "fin": r[3], "pro": r[4], "autre": r[5], "dette": r[6], "part": round(r[1] / ens[1] * f, 1), "sous": True})
+    masse = [[r[0], r[-1]] for r in rows("insee_reve-patrim-masse-men-decile.xlsx") if "mieux" in r[0]]
+    seuils = [[r[0], r[1], r[2]] for r in rows("insee_reve-patrim-decile.xlsx")]
+    age = [[r[0], r[1], r[3]] for r in rows("insee_reve-patrim-brut-montants.xlsx")][:7]
+    tri = lambda f, sh: rows(f, sh)
+    return {"source": "INSEE, enquête Histoire de vie et Patrimoine 2023-2024 (début 2024)",
+            "moyen": ens[1], "tranches": tr, "masse": masse, "seuils": seuils, "age_patrimoine": age,
+            "part_age": tri("hvp_cadrage_menages_FR.xlsx", "PARMEN_AGE"),            # [âge, % hérité, % donation reçue, % donation versée]
+            "part_patrimoine": tri("hvp_cadrage_menages_FR.xlsx", "PARMEN_PATBRUT"),
+            "part_niveau_vie": tri("hvp_cadrage_menages_FR.xlsx", "PARMEN_NIVVIE"),
+            "montant_patrimoine": tri("hvp_herit_FR.xlsx", "PATBRUT"),              # [quart, <8k, 8-30k, 30-100k, >=100k, total]
+            "montant_age": tri("hvp_herit_FR.xlsx", "AGE"),
+            "donation_patrimoine": tri("hvp_donat_rec_FR.xlsx", "PATBRUT"),
+            "patrimoine_heritiers": tri("hvp_cadrage_herit_donat_FR.xlsx", "MT_PAT")}
+
+
 index = []
 for p in PAYS:
     geo = p["code"]
@@ -220,6 +256,7 @@ for p in PAYS:
     if geo == "FR":
         d["cycle_de_vie"] = cycle_de_vie()
         d["redistribution"] = redistribution()
+        d["heritage"] = heritage()
     json.dump(d, open(os.path.join(OUT, geo + ".json"), "w"), ensure_ascii=False, separators=(",", ":"))
     s = {"code": geo, "nom": p["nom"]}
     if d["population"]:

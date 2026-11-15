@@ -29,6 +29,8 @@ const S = [
   ["Qui fait quoi", "eurostat", "lfsa_pganws / lfsa_esgaed / demo_pjanbroad", "Population par statut d'activité et par âge", null, "annuel"],
   ["La vie en euros", "insee", "Comptes nationaux distribués, tableau CND.103", "Revenus, prélèvements et transferts détaillés par âge", "https://www.insee.fr/fr/statistiques/8574663", "annuel"],
   ["Inégalités", "insee", "Comptes nationaux distribués 2023 (tableau complémentaire par vingtième)", "Ce que chaque tranche de 5 % paie, reçoit et gagne (travail, patrimoine)", "https://www.insee.fr/fr/statistiques/8974371", "édition ponctuelle"],
+  ["Inégalités", "insee", "Enquête Histoire de vie et Patrimoine 2023-2024 : distribution et composition du patrimoine", "Patrimoine par décile, concentration, montants par âge", "https://www.insee.fr/fr/statistiques/5213910", "tous les 3 ans"],
+  ["Inégalités", "insee", "Transmissions intergénérationnelles en 2024 (Insee Résultats)", "Part des ménages ayant hérité ou reçu une donation, montants des héritages", "https://www.insee.fr/fr/statistiques/8960185", "tous les 3 ans"],
   ["Inégalités", "eurostat", "gov_10a_taxag (D91A)", "Droits de succession et de donation", null, "annuel"],
   ["Industrie et innovation", "eurostat", "rd_e_gerdtot / rd_p_persocc / sts_inpr_a / htec_emp_nat2 / isoc_eb_ai", "Recherche et développement, chercheurs, production industrielle, emploi de haute technologie, intelligence artificielle", null, "annuel"],
   ["Commerce extérieur", "comext", "DS-059341", "Échanges de biens par partenaire et par produit (SH)", "https://ec.europa.eu/eurostat/databrowser/view/DS-059341/default/table", "mensuel"],

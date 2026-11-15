@@ -29,7 +29,7 @@ async function setGeo(g) {
   if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/eco2/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
-function drawAll() { [qui, cycle, industrie, redis, origine].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
+function drawAll() { [qui, cycle, industrie, redis, origine, heritage].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
 
 /* ---------------------------------------------------------------- qui fait quoi */
 function qui() {
@@ -217,8 +217,71 @@ function origine() {
   el.replaceChildren(svg.node());
   legend("#or-legend", G3.map(([, l, c]) => [l, c]));
   const S = R.succession || [], s1 = S.at(-1), s0 = S[0];
-  $("#her-box").innerHTML = `<p>Les comptes nationaux ne comptent pas l'héritage comme un revenu : c'est un transfert de patrimoine, qui ne crée pas de richesse. Il pèse pourtant lourd. Selon le Conseil d'analyse économique (« Repenser l'héritage », note n° 69, 2021), les héritages et donations représentent chaque année de l'ordre de 15 % du revenu disponible des ménages, et la part du patrimoine hérité dans le patrimoine total est passée d'environ un tiers au début des années 1970 à environ 60 % aujourd'hui. Les inégalités de patrimoine, bien plus fortes que celles de revenu, se transmettent ainsi largement d'une génération à l'autre.</p>` +
+  $("#her-box").innerHTML = `<p>Les comptes nationaux ne comptent pas l'héritage comme un revenu : c'est un transfert de patrimoine, qui ne crée pas de richesse. Il pèse pourtant lourd. Selon le Conseil d'analyse économique (« Repenser l'héritage », note n° 69, 2021), la part du patrimoine hérité dans le patrimoine total des ménages est passée de 35 % au début des années 1970 à environ 60 % aujourd'hui, et la moitié des personnes d'une génération héritera de moins de 70 000 € au cours de sa vie. Ce chiffre de 60 % est une estimation macroéconomique (patrimoine accumulé à partir des flux de successions), pas une mesure ménage par ménage : l'enquête de l'INSEE ci-dessous montre, elle, qui hérite et combien. Les inégalités de patrimoine, bien plus fortes que celles de revenu, se transmettent ainsi largement d'une génération à l'autre.</p>` +
     (s1 ? `<p>Les droits de succession et de donation ont rapporté <b>${n1(s1.md)} Md€</b> en ${s1.annee}, soit ${pct(s1.pib, 1)} du PIB (${n1(s0.md)} Md€ en ${s0.annee}). C'est moins de 2 % des prélèvements obligatoires : la grande majorité des transmissions en ligne directe sont exonérées grâce aux abattements (100 000 € par parent et par enfant, renouvelables tous les 15 ans) et aux régimes de l'assurance-vie et des entreprises familiales.</p>` : "");
+}
+
+/* ---------------------------------------------------------------- patrimoine et héritage (enquête HVP) */
+function heritage() {
+  const { kpis, n0, n1, pct, esc, showTip, hideTip, legend, bars, css } = T();
+  const H = (CACHE.FR || D())?.heritage; const el = $("#pat-chart"); if (!el || !H) return;
+  const keur = v => v >= 1e6 ? n1(v / 1e6) + " M€" : n0(v / 1000) + " k€";
+  const dec = H.tranches.filter(t => !t.sous), top = H.tranches.filter(t => t.sous);
+  const m = k => H.masse.find(([l]) => l.includes(k))?.[1];
+  const ens = H.part_age.find(r => r[0] === "Ensemble"), pq = H.part_patrimoine;
+  const med = H.seuils.find(r => r[0].startsWith("Médiane"));
+  kpis("#pat-kpis", [
+    [pct(m("10 %"), 0), `du patrimoine des ménages est détenu par les 10 % les mieux dotés (${pct(m("1 %"), 0)} par les 1 %) ; la moitié la moins dotée en détient ${pct(100 - m("50 %"), 0)}`],
+    [keur(med[1]), `patrimoine brut médian d'un ménage (${keur(med[2])} net des emprunts) ; moyenne : ${keur(H.moyen)}`],
+    [pct(ens[1], 0), `des ménages ont déjà hérité, ${pct(ens[2], 0)} ont reçu une donation`],
+    [pct(pq.at(-2)[1], 0) + " / " + pct(pq[0][1], 0), "des ménages les plus riches (quart supérieur) ont hérité, contre les plus pauvres (quart inférieur)"],
+  ]);
+  const short = l => l.replace("Inférieur au 1er décile", "10 % les moins dotés").replace("Supérieur au 9e décile", "10 % les mieux dotés").replace(/^Du (\d+)e?r? au (\d+)e décile$/, (_, a, b) => `de ${a}0 à ${b}0 %`)
+    .replace("Du 90e au 95e centile", "  dont 90 à 95 %").replace("Du 95e au 99e centile", "  dont 95 à 99 %").replace("Supérieur au 99e centile", "  dont 1 % le mieux doté");
+  bars(el, [...dec, ...top].map(t => ({ l: short(t.l), v: t.moyen, c: t.sous ? "#fbbf24" : "#d97706",
+    t: `${keur(t.moyen)} · ${pct(t.part, t.part < 1 ? 1 : 0)} du total` })));
+  el.querySelectorAll(".bar-row").forEach((row, i) => { const t = [...dec, ...top][i];
+    row.onpointermove = ev => showTip(`<b>${esc(t.l)}</b><br>Patrimoine brut moyen : ${n0(t.moyen)} €<br>Immobilier ${pct(t.immo, 0)} · financier ${pct(t.fin, 0)} · professionnel ${pct(t.pro, 0)} · autre ${pct(t.autre, 0)}<br>Emprunts en cours : ${pct(-t.dette, 0)} du patrimoine brut`, ev);
+    row.onpointerleave = hideTip; });
+
+  // part des ménages ayant hérité / reçu une donation
+  const QL = ["Quart le moins doté", "2e quart", "3e quart", "Quart le mieux doté"];
+  const grp = (sel, rows, labs) => {
+    const e = $(sel); if (!e) return;
+    const w = Math.max(300, e.clientWidth), h = 230, mg = { t: 16, r: 8, b: 40, l: 36 };
+    const x = d3.scaleBand(labs, [mg.l, w - mg.r]).padding(.2), x2 = d3.scaleBand([0, 1], [0, x.bandwidth()]).padding(.08), y = d3.scaleLinear([0, 70], [h - mg.b, mg.t]);
+    const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    rows.forEach((r, i) => [r[1], r[2]].forEach((v, j) => {
+      svg.append("rect").attr("x", x(labs[i]) + x2(j)).attr("width", x2.bandwidth()).attr("y", y(v)).attr("height", y(0) - y(v)).attr("fill", j ? "#fbbf24" : "#b45309")
+        .on("pointermove", ev => showTip(`<b>${esc(r[0])}</b><br>${j ? "Ont reçu une donation" : "Ont hérité"} : ${pct(v)}<br>Ont fait une donation : ${pct(r[3])}`, ev)).on("pointerleave", hideTip);
+      svg.append("text").attr("x", x(labs[i]) + x2(j) + x2.bandwidth() / 2).attr("y", y(v) - 3).attr("text-anchor", "middle").attr("font-size", 10).attr("fill", css("--fg")).text(Math.round(v));
+    }));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - mg.b})`).call(d3.axisBottom(x)).selectAll("text").call(t => t.each(function (d) {
+      const s = d3.select(this), wds = d.split(" "); if (wds.length < 3) return; s.text(null);
+      const half = Math.ceil(wds.length / 2); [wds.slice(0, half).join(" "), wds.slice(half).join(" ")].forEach((l, k) => s.append("tspan").attr("x", 0).attr("dy", k ? "1.1em" : ".71em").text(l)); }));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
+    e.replaceChildren(svg.node());
+  };
+  grp("#her-pat", pq.slice(0, 4), QL);
+  const ag = H.part_age.filter(r => r[0] !== "Ensemble");
+  grp("#her-age", ag, ag.map(r => r[0].replace("De ", "").replace("Moins de ", "< ").replace(" et plus", " +").replace(" ans", "")));
+  legend("#her-legend", [["A déjà hérité", "#b45309"], ["A déjà reçu une donation", "#fbbf24"]]);
+
+  // montants des héritages selon le patrimoine de l'héritier
+  const MB = ["Moins de 8 000 €", "8 000 à 30 000 €", "30 000 à 100 000 €", "100 000 € ou plus"], MC = ["#fde68a", "#fbbf24", "#d97706", "#92400e"];
+  const e = $("#her-mont");
+  if (e) {
+    const rows = H.montant_patrimoine.slice(0, 4).map((r, i) => [QL[i], ...r.slice(1, 5)]).concat([["Ensemble", ...H.montant_patrimoine.at(-1).slice(1, 5)]]);
+    e.innerHTML = `<div class="bars">${rows.map(r => `<div class="bar-row"><span class="lab">${esc(r[0])}</span><span class="val">${pct(r[4], 0)} ≥ 100 k€</span><span class="track" style="display:flex">${
+      r.slice(1).map((v, j) => `<span title="${esc(MB[j])} : ${pct(v)}" style="width:${v}%;background:${MC[j]};height:100%"></span>`).join("")}</span></div>`).join("")}</div>`;
+    legend("#her-mont-legend", MB.map((l, j) => [l, MC[j]]));
+  }
+  const ph = H.patrimoine_heritiers.slice(4), mh = ph.find(r => r[0] === "médian");
+  const R = (CACHE.FR || D())?.redistribution, sh10 = R ? 100 * d3.sum(R.apres.slice(-2).map((v, i) => v * R.uc_millions.at(i - 2))) / d3.sum(R.apres.map((v, i) => v * R.uc_millions[i])) : null;
+  const mp = H.montant_patrimoine;
+  $("#pat-txt").innerHTML = `<p>Le patrimoine est beaucoup plus concentré que le revenu : les 10 % de ménages les mieux dotés possèdent ${pct(m("10 %"), 0)} du total, ${sh10 ? `alors que les 10 % les plus aisés en niveau de vie reçoivent ${pct(sh10, 0)} des revenus après redistribution.` : ""} Pour les ménages du milieu, le patrimoine, c'est surtout le logement ; tout en haut, ce sont les actions et les entreprises (${pct(top.at(-1).pro, 0)} de patrimoine professionnel pour le 1 % le mieux doté).</p>
+    <p>L'héritage n'est donc pas impossible à mesurer : l'enquête Histoire de vie et Patrimoine interroge un large échantillon de ménages sur ce qu'ils ont reçu au cours de leur vie. Le patrimoine net médian des ménages qui ont hérité est de ${keur(mh[1])}, contre ${keur(mh[4])} pour l'ensemble des ménages. Plus un ménage est riche, plus il a de chances d'avoir hérité, et d'avoir hérité gros : ${pct(mp[3][4], 0)} des héritages reçus par le quart le mieux doté dépassent 100 000 €, contre ${pct(mp[0][4], 0)} pour le quart le moins doté, où ${pct(mp[0][1], 0)} des héritages font moins de 8 000 €.</p>
+    <p class="muted">Limites : les montants sont déclarés par les ménages, à leur valeur au moment de la transmission, sans tenir compte de l'inflation ; l'enquête mesure le fait d'avoir hérité, pas la part du patrimoine actuel qui vient de l'héritage. Une corrélation n'est pas une causalité : les ménages âgés ont à la fois plus hérité et plus épargné.</p>`;
 }
 
 /* ---------------------------------------------------------------- industrie et innovation */

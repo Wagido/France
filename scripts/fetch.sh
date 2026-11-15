@@ -29,6 +29,11 @@ get gov_10dd_edpt1.json "$E/gov_10dd_edpt1?geo=FR&unit=PC_GDP&unit=MIO_EUR&na_it
 # INSEE : comptes nationaux distribués 2023 (Insee Analyses n° 118)
 get insee_T_CND_103.xlsx "https://www.insee.fr/fr/statistiques/fichier/8574663/T_CND_103.xlsx"
 get insee_IA118.xlsx    "https://www.insee.fr/fr/statistiques/fichier/8974371/IA118.xlsx"
+# Patrimoine et transmissions (enquête Histoire de vie et Patrimoine)
+for f in 2502915:reve-patrim-masse-men-decile 2388851:reve-patrim-decile 5213910:reve-patrim-brut-compo 8894780:reve-patrim-brut-montants; do
+  get "insee_${f#*:}.xlsx" "https://www.insee.fr/fr/statistiques/fichier/${f%%:*}/${f#*:}.xlsx"; done
+for f in hvp_cadrage_herit_donat_FR hvp_cadrage_menages_FR hvp_herit_FR hvp_donat_rec_FR; do
+  get "$f.xlsx" "https://www.insee.fr/fr/statistiques/fichier/8960185/$f.xlsx"; done
 # Autres pays (sections PIB, simulateur et séries longues) : mêmes séries Eurostat,
 # une requête par série pour tous les pays.
 PAYS="BE BG CZ DK DE EE IE EL ES FR HR IT CY LV LT LU HU MT NL AT PL PT RO SI SK FI SE IS NO CH"
