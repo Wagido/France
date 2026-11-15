@@ -74,59 +74,59 @@ function qui() {
 }
 
 /* ---------------------------------------------------------------- la vie en euros (France) */
+const PAY_C = { tva: "#b91c1c", production: "#ef4444", is: "#f87171", csg: "#dc2626", ir: "#991b1b", patrimoine: "#fca5a5", cot_retraite: "#7f1d1d", cot_autres: "#e11d48" };
+const ARG_C = { retraites: "#1d4ed8", chomage: "#60a5fa", ij: "#3b82f6", famille: "#93c5fd", minima: "#2563eb", complementaires: "#bfdbfe" };
+const SER_C = { sante: "#15803d", ecole: "#22c55e", action_sociale: "#4ade80", logement: "#86efac", culture: "#a3e635", collectif: "#166534" };
 function cycle() {
   const { kpis, n0, n1, pct, css, esc, showTip, hideTip, legend } = T();
   const C = (CACHE.FR || D())?.cycle_de_vie; const el = $("#cv-chart");
-  if (!C) { empty("#cv-chart", "Disponible pour la France uniquement."); return; }
-  const E = C.esperance.ensemble, ec = C.ecole;
-  // tranches d'âge : 0-17 ans (dans le foyer des parents), puis les tranches de l'INSEE jusqu'à l'espérance de vie
-  const tr = [
-    { a: 0, b: 3, l: "0-2 ans", paye: 0, prest: 0, nm: 0, ecole: 0, note: "crèche et santé comptées dans le foyer des parents" },
-    { a: 3, b: 6, l: "3-5 ans", paye: 0, prest: 0, nm: 0, ecole: ec.maternelle },
-    { a: 6, b: 11, l: "6-10 ans", paye: 0, prest: 0, nm: 0, ecole: ec.primaire },
-    { a: 11, b: 15, l: "11-14 ans", paye: 0, prest: 0, nm: 0, ecole: ec.college },
-    { a: 15, b: 18, l: "15-17 ans", paye: 0, prest: 0, nm: 0, ecole: ec.lycee },
-  ];
+  if (!C || !C.paye) { empty("#cv-chart", "Disponible pour la France uniquement."); return; }
+  const E = C.esperance.ensemble;
   const bounds = [[18, 30], [30, 40], [40, 50], [50, 65], [65, Math.round(E)]];
-  C.tranches.forEach((t, i) => tr.push({ a: bounds[i][0], b: bounds[i][1], l: t.replace(" ou plus", "+"), primaire: C.revenu_primaire[i], paye: -C.prelevements[i], prest: C.prestations[i], nm: C.non_monetaires[i], ecole: 0 }));
-  let cum = 0; tr.forEach(t => { const yrs = t.b - t.a; t.net = (t.prest + t.nm + t.ecole) - t.paye; cum += yrs * t.net; t.cum = cum; });
-  const actif = tr.filter(t => t.a >= 18 && t.a < 65), retraite = tr.find(t => t.a === 65);
-  const payeVie = d3.sum(tr, t => (t.b - t.a) * t.paye), recuVie = d3.sum(tr, t => (t.b - t.a) * (t.prest + t.nm + t.ecole));
+  const sum = (grp, i) => d3.sum(C[grp], x => x[2][i]);
+  const tr = C.tranches.map((l, i) => ({ i, l, a: bounds[i][0], b: bounds[i][1], prim: C.revenu_primaire[i], paye: sum("paye", i), argent: sum("argent", i), services: sum("services", i) }));
+  let cum = 0; tr.forEach(t => { t.net = t.argent + t.services - t.paye; cum += (t.b - t.a) * t.net; t.cum = cum; });
+  const payeVie = d3.sum(tr, t => (t.b - t.a) * t.paye), recuVie = d3.sum(tr, t => (t.b - t.a) * (t.argent + t.services));
+  const top = tr.reduce((a, b) => b.paye > a.paye ? b : a), vieux = tr.at(-1);
   kpis("#cv-kpis", [
-    [n0(payeVie / 1000) + " k€", `payés au total sur une vie de ${n0(E)} ans (impôts, cotisations, TVA…), en euros de ${C.annee} par unité de consommation`],
-    [n0(recuVie / 1000) + " k€", "reçus au total (retraites, allocations, soins, école, services publics)"],
-    [n0(d3.max(actif, t => t.paye)) + " €", `payés par an au maximum, entre ${tr.find(t => t.paye === d3.max(actif, x => x.paye)).l}`],
-    retraite && [n0(retraite.prest + retraite.nm) + " €", `reçus par an après 65 ans (dont ${n0(retraite.prest)} € de retraites et prestations en argent)`],
+    [n0(top.paye) + " €", `payés par personne et par an entre ${top.l}, le maximum (impôts, cotisations, TVA…)`],
+    [n0(vieux.argent + vieux.services) + " €", `reçus par personne et par an à ${vieux.l} (dont ${n0(C.argent.find(x => x[0] === "retraites")[2][vieux.i])} € de retraite et ${n0(C.services.find(x => x[0] === "sante")[2][vieux.i])} € de soins)`],
+    [n0(payeVie / 1000) + " k€ / " + n0(recuVie / 1000) + " k€", `payés / reçus sur une vie adulte de 18 à ${n0(E)} ans, en euros de ${C.annee}`],
   ]);
-  const w = Math.max(320, el.clientWidth), h = 380, m = { t: 16, r: 50, b: 34, l: 60 };
-  const x = d3.scaleLinear([0, Math.ceil(E / 5) * 5], [m.l, w - m.r]);
-  const ymax = d3.max(tr, t => Math.max(t.prest + t.nm + t.ecole, t.primaire || 0)), ymin = -d3.max(tr, t => t.paye);
-  const y = d3.scaleLinear([ymin * 1.1, ymax * 1.08], [h - m.b, m.t]).nice();
+  const w = Math.max(320, el.clientWidth), h = 420, m = { t: 16, r: 54, b: 34, l: 60 };
+  const x = d3.scaleLinear([18, Math.ceil(E / 5) * 5], [m.l, w - m.r]);
+  const ymax = d3.max(tr, t => Math.max(t.argent + t.services, t.prim)), ymin = -d3.max(tr, t => t.paye);
+  const y = d3.scaleLinear([ymin * 1.08, ymax * 1.06], [h - m.b, m.t]).nice();
   const y2 = d3.scaleLinear(d3.extent([0, ...tr.map(t => t.cum)]), [h - m.b, m.t]).nice();
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
-  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
-  const tip = t => `<b>${esc(t.l)}</b> (par an, par unité de consommation)` + (t.primaire ? `<br>Revenu gagné (travail, patrimoine) : ${n0(t.primaire)} €` : "") +
-    `<br><span style="color:#dc2626">■</span> Payé : ${n0(t.paye)} €<br><span style="color:#3b6fd6">■</span> Reçu en argent : ${n0(t.prest)} €<br><span style="color:#16a34a">■</span> Reçu en services (soins, école, collectifs) : ${n0(t.nm + t.ecole)} €<br><b>Solde : ${t.net >= 0 ? "+" : "−"}${n0(Math.abs(t.net))} € par an</b>` + (t.note ? `<br><i>${esc(t.note)}</i>` : "");
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(8)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  const tip = t => `<b>${esc(t.l)}</b> · par personne et par an<br>Revenu gagné (travail, patrimoine) : ${n0(t.prim)} €<br><br><b style="color:#dc2626">Payé : ${n0(t.paye)} €</b><br>` +
+    C.paye.map(([k, l, v]) => `${esc(l)} : ${n0(v[t.i])} €`).join("<br>") +
+    `<br><br><b style="color:#2563eb">Reçu en argent : ${n0(t.argent)} €</b><br>` + C.argent.filter(z => z[2][t.i] > 20).map(([k, l, v]) => `${esc(l)} : ${n0(v[t.i])} €`).join("<br>") +
+    `<br><br><b style="color:#16a34a">Reçu en services : ${n0(t.services)} €</b><br>` + C.services.map(([k, l, v]) => `${esc(l)} : ${n0(v[t.i])} €`).join("<br>") +
+    `<br><br><b>Solde : ${t.net >= 0 ? "+" : "−"}${n0(Math.abs(t.net))} € par an</b>`;
   tr.forEach(t => {
     const x0 = x(t.a) + 1, wd = Math.max(1, x(t.b) - x(t.a) - 2);
-    const gg = svg.append("g").on("pointermove", ev => showTip(tip(t), ev)).on("pointerleave", hideTip);
-    gg.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.prest)).attr("height", y(0) - y(t.prest)).attr("fill", "#3b6fd6");
-    gg.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.prest + t.nm + t.ecole)).attr("height", y(t.prest) - y(t.prest + t.nm + t.ecole)).attr("fill", "#16a34a").attr("opacity", .8);
-    gg.append("rect").attr("x", x0).attr("width", wd).attr("y", y(0)).attr("height", y(-t.paye) - y(0)).attr("fill", "#dc2626").attr("opacity", .85);
-    if (t.primaire) gg.append("line").attr("x1", x0).attr("x2", x0 + wd).attr("y1", y(t.primaire)).attr("y2", y(t.primaire)).attr("stroke", css("--ink")).attr("stroke-width", 2.5);
-    gg.append("rect").attr("x", x0).attr("width", wd).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent");
+    const g = svg.append("g").on("pointermove", ev => showTip(tip(t), ev)).on("pointerleave", hideTip);
+    let acc = 0;
+    [...C.argent.map(z => [z, ARG_C]), ...C.services.map(z => [z, SER_C])].forEach(([[k, l, v], col]) => {
+      const val = Math.max(0, v[t.i]); g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(acc + val)).attr("height", y(acc) - y(acc + val)).attr("fill", col[k]); acc += val; });
+    acc = 0;
+    C.paye.forEach(([k, l, v]) => { const val = Math.max(0, v[t.i]); g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(-acc)).attr("height", y(-(acc + val)) - y(-acc)).attr("fill", PAY_C[k]); acc += val; });
+    g.append("line").attr("x1", x0).attr("x2", x0 + wd).attr("y1", y(t.prim)).attr("y2", y(t.prim)).attr("stroke", css("--ink")).attr("stroke-width", 3);
+    g.append("text").attr("x", x0 + wd / 2).attr("y", y(t.prim) - 5).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", css("--ink")).text(n0(t.prim / 1000) + " k€ gagnés");
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent");
   });
   svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--ink"));
   svg.append("path").attr("fill", "none").attr("stroke", "#f59e0b").attr("stroke-width", 2.4).attr("stroke-dasharray", "6 3")
-    .attr("d", d3.line().x(d => x(d[0])).y(d => y2(d[1]))([[0, 0], ...tr.map(t => [t.b, t.cum])]));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(w < 560 ? 6 : 17).tickFormat(d => d + " ans"));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(d => n0(d / 1000) + " k€")).call(g => g.select(".domain").remove());
+    .attr("d", d3.line().x(d => x(d[0])).y(d => y2(d[1]))([[18, 0], ...tr.map(t => [t.b, t.cum])]));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickValues([18, 30, 40, 50, 65, Math.round(E)]).tickFormat(d => d + " ans"));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(8).tickFormat(d => n0(d / 1000) + " k€")).call(g => g.select(".domain").remove());
   svg.append("g").attr("class", "axis").attr("transform", `translate(${w - m.r},0)`).call(d3.axisRight(y2).ticks(6).tickFormat(d => n0(d / 1000) + " k€")).call(g => g.select(".domain").remove());
-  svg.append("line").attr("x1", x(E)).attr("x2", x(E)).attr("y1", m.t).attr("y2", h - m.b).attr("stroke", css("--muted")).attr("stroke-dasharray", "2 3");
-  svg.append("text").attr("x", x(E) - 4).attr("y", m.t + 10).attr("text-anchor", "end").attr("font-size", 11).attr("fill", css("--muted")).text(`espérance de vie : ${n1(E)} ans`);
+  svg.append("text").attr("x", w - m.r - 4).attr("y", m.t + 10).attr("text-anchor", "end").attr("font-size", 11).attr("fill", css("--muted")).text(`espérance de vie : ${n1(E)} ans`);
   el.replaceChildren(svg.node());
-  legend("#cv-legend", [["Payé chaque année (impôts, cotisations, TVA…)", "#dc2626"], ["Reçu en argent (retraites, allocations…)", "#3b6fd6"], ["Reçu en services (soins, école, police, routes…)", "#16a34a"],
-    ["Revenu gagné par le travail et le patrimoine", css("--ink")], ["Solde cumulé depuis la naissance (axe de droite)", "#f59e0b", true]]);
+  legend("#cv-legend", [...C.paye.map(([k, l]) => [l, PAY_C[k]]), ...C.argent.map(([k, l]) => [l, ARG_C[k]]), ...C.services.map(([k, l]) => [l, SER_C[k]]),
+    ["Revenu gagné par le travail et le patrimoine", css("--ink")], ["Solde cumulé depuis 18 ans (axe de droite)", "#f59e0b", true]]);
 }
 
 /* ---------------------------------------------------------------- industrie et innovation */

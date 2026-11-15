@@ -83,26 +83,61 @@ def industrie(geo):
 
 # ------------------------------------------------------------------ la vie en euros (France)
 def cycle_de_vie():
+    """Comptes nationaux distribués par âge (INSEE, tableau CND.103), en euros par personne et par an."""
     import openpyxl
-    wb = openpyxl.load_workbook(os.path.join(HERE, "..", "data", "sources", "insee_IA118.xlsx"), data_only=True)
-    ws = wb["Figure 1e"]
-    rows = {str(r[0]).strip(): r[1:] for r in ws.iter_rows(min_row=1, values_only=True) if r[0]}
-    head = next(v for k, v in rows.items() if k.startswith("Nature"))
-    ages = [str(h).replace("\xa0", " ") for h in head if h and "Ensemble" not in str(h)]
-    def line(prefix):
-        k = next(k for k in rows if k.startswith(prefix)); return [float(x) for x in rows[k][:len(ages)]]
-    data = {"tranches": ages, "revenu_primaire": line("Revenu primaire"), "prelevements": line("Prélèvements"),
-            "prestations": line("Prestations sociales"), "non_monetaires": line("Transferts non monétaires"),
-            "niveau_vie": line("Niveau de vie élargi (après"), "part_individus": line("Part d'individus")}
-    # coût de l'école par élève (France, Eurostat) pour la période 0-17 ans
-    fin = getter(jstat("educ_uoe_fini04.json", os.path.join(HERE, "..", "data", "sources", "societe"), "FR"))
-    fy = max(y for y in range(2013, 2030) if fin(isced11="ED1", unit="EUR", time=y) is not None)
-    data["ecole"] = {"annee": fy, "maternelle": fin(isced11="ED02", unit="EUR", time=fy), "primaire": fin(isced11="ED1", unit="EUR", time=fy),
-                     "college": fin(isced11="ED2", unit="EUR", time=fy), "lycee": fin(isced11="ED3_4", unit="EUR", time=fy),
-                     "superieur": fin(isced11="ED5-8", unit="EUR", time=fy)}
+    wb = openpyxl.load_workbook(os.path.join(HERE, "..", "data", "sources", "insee_T_CND_103.xlsx"), data_only=True)
+    sheet = sorted(n for n in wb.sheetnames if n.startswith("CND_"))[-1]
+    rows = {}
+    head = None
+    for r in wb[sheet].iter_rows(values_only=True):
+        if not r[0]:
+            continue
+        k = str(r[0]).strip()
+        if k.startswith("Nature"):
+            head = [str(x) for x in r[1:6]]
+            continue
+        try:
+            rows[k] = [float(str(x).replace(",", ".")) for x in r[1:6]]
+        except (TypeError, ValueError):
+            pass
+    def L(prefix):
+        k = next(k for k in rows if k.startswith(prefix)); return rows[k]
+    n = L("Nombre d'individus")                    # millions
+    per = lambda v: [round(x * 1e9 / (m * 1e6)) for x, m in zip(v, n)]
+    add = lambda *ls: [sum(x) for x in zip(*ls)]
+    paye = [
+        ("tva", "TVA, carburants et autres taxes sur les produits (nettes des subventions)", add(L("Taxes sur les produits"), L("Subventions sur les produits"))),
+        ("production", "Taxes sur la production (nettes des aides)", add(L("Taxes sur la production"), L("Subventions sur la production"))),
+        ("is", "Impôt sur les sociétés", L("Impôt sur les sociétés")),
+        ("csg", "CSG", L("Contribution sociale généralisée")),
+        ("ir", "Impôt sur le revenu", L("Impôt sur le revenu")),
+        ("patrimoine", "Taxe foncière, IFI, autres", L("Autres impôts sur les revenus")),
+        ("cot_retraite", "Cotisations retraite", L("Cotisations sociales retraite")),
+        ("cot_autres", "Cotisations maladie, chômage, famille", add(L("Cotisations sociales chômage"), L("Cotisations sociales famille"), L("Autres cotisations sociales"))),
+    ]
+    argent = [
+        ("retraites", "Retraites", L("Pensions de retraite")),
+        ("chomage", "Allocations chômage", L("Allocations chômage")),
+        ("ij", "Indemnités maladie, accidents du travail, invalidité", add(L("Autres revenus de remplacement"), L("Invalidité"))),
+        ("famille", "Prestations familiales", L("Famille")),
+        ("minima", "Minima sociaux, aides contre l'exclusion", L("Exclusion sociale")),
+        ("complementaires", "Remboursements des complémentaires collectives", L("Remboursements des contrats collectifs")),
+    ]
+    services = [
+        ("sante", "Santé", L("Santé")),
+        ("ecole", "École et université (enfants comptés avec leurs parents)", L("Enseignement")),
+        ("action_sociale", "Action sociale (dépendance, handicap, petite enfance)", L("Action sociale")),
+        ("logement", "Aides au logement, chèque énergie", L("Aides au logement")),
+        ("culture", "Culture et loisirs", L("Culture et loisirs")),
+        ("collectif", "Services collectifs (défense, police, justice, routes, administration…)", add(L("Dépenses collectives"), L("Frais de fonctionnement"))),
+    ]
+    data = {"annee": int(sheet.split("_")[1]), "tranches": [h.split(". ", 1)[-1].replace("> 65 ans", "65 ans et plus") for h in head],
+            "individus_millions": n, "revenu_primaire": per(L("Revenu primaire élargi")),
+            "paye": [[k, l, per([-x for x in v])] for k, l, v in paye],
+            "argent": [[k, l, per(v)] for k, l, v in argent],
+            "services": [[k, l, per(v)] for k, l, v in services]}
     esp = json.load(open(os.path.join(HERE, "..", "data", "societe", "FR.json")))["sante"]["esperance"][-1]
     data["esperance"] = {"annee": esp["annee"], "ensemble": esp["t"], "femmes": esp["f"], "hommes": esp["h"]}
-    data["annee"] = 2023
     return data
 
 

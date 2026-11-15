@@ -27,7 +27,7 @@ const S = [
   ["Patrimoine", "eurostat", "nasa_10_f_bs", "Comptes financiers : actifs et passifs par secteur", null, "annuel"],
   ["Qui fait quoi", "insee", "TCRED-TRAVAIL-EMPLOI-EFF-FP-RATIO", "Effectifs de la fonction publique (État, territoriale, hospitalière)", "https://www.insee.fr/fr/statistiques/series/102341737", "annuel"],
   ["Qui fait quoi", "eurostat", "lfsa_pganws / lfsa_esgaed / demo_pjanbroad", "Population par statut d'activité et par âge", null, "annuel"],
-  ["La vie en euros", "insee", "Comptes nationaux distribués 2023 (figure 1e)", "Revenus, prélèvements et transferts par âge", "https://www.insee.fr/fr/statistiques/8974371", "édition ponctuelle"],
+  ["La vie en euros", "insee", "Comptes nationaux distribués, tableau CND.103", "Revenus, prélèvements et transferts détaillés par âge", "https://www.insee.fr/fr/statistiques/8574663", "annuel"],
   ["Industrie et innovation", "eurostat", "rd_e_gerdtot / rd_p_persocc / sts_inpr_a / htec_emp_nat2 / isoc_eb_ai", "Recherche et développement, chercheurs, production industrielle, emploi de haute technologie, intelligence artificielle", null, "annuel"],
   ["Commerce extérieur", "comext", "DS-059341", "Échanges de biens par partenaire et par produit (SH)", "https://ec.europa.eu/eurostat/databrowser/view/DS-059341/default/table", "mensuel"],
   ["Énergie", "eurostat", "nrg_bal_c", "Bilans énergétiques complets", null, "annuel"],

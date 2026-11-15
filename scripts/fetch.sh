@@ -27,6 +27,7 @@ get nasa_10_f_bs.json   "$E/nasa_10_f_bs?geo=FR&unit=MIO_EUR&co_nco=NCO&sinceTim
 get gov_10dd_edpt1.json "$E/gov_10dd_edpt1?geo=FR&unit=PC_GDP&unit=MIO_EUR&na_item=GD&sector=S13&sinceTimePeriod=1995"
 
 # INSEE : comptes nationaux distribués 2023 (Insee Analyses n° 118)
+get insee_T_CND_103.xlsx "https://www.insee.fr/fr/statistiques/fichier/8574663/T_CND_103.xlsx"
 get insee_IA118.xlsx    "https://www.insee.fr/fr/statistiques/fichier/8974371/IA118.xlsx"
 # Autres pays (sections PIB, simulateur et séries longues) : mêmes séries Eurostat,
 # une requête par série pour tous les pays.
