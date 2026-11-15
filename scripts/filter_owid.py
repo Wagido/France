@@ -3,7 +3,7 @@
 import csv, sys
 src, dst = sys.argv[1], sys.argv[2]
 keep = set("FRA DEU AUT BEL BGR CYP HRV DNK ESP EST FIN GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT CZE ROU SVK SVN SWE ISL NOR CHE".split())
-cols = ["country", "year", "iso_code", "population"] + [f"{k}_{t}" for k in
+cols = ["country", "year", "iso_code", "population", "energy_per_capita", "primary_energy_consumption"] + [f"{k}_{t}" for k in
         ["coal", "oil", "gas", "nuclear", "hydro", "wind", "solar", "biofuel", "other_renewable"] for t in ["consumption", "electricity"]]
 with open(src, newline="") as f, open(dst, "w", newline="") as o:
     w = csv.DictWriter(o, fieldnames=cols)

@@ -54,6 +54,9 @@ const S = [
   ["Déchets", "eurostat", "env_wasgen / env_wastrt / env_wasmun", "Production et traitement des déchets", null, "biennal (ménagers : annuel)"],
   ["Transports", "eurostat", "tran_hv_psmod / tran_hv_frmod / rail_pa_total / avia_paoc / road_go_ta_tott", "Parts modales et volumes de voyageurs et de marchandises", null, "annuel"],
   ["Argent public", "insee", "Comptes nationaux annuels base 2020 depuis 1949 ; Jordà, Schularick et Taylor, Macrohistory Database (1900-2017)", "Graphique « Un siècle de franc » : inflation, solde budgétaire, exportations, cours du dollar", "https://www.macrohistory.net/database/", "annuel"],
+  ["Argent privé", "insee", "Comptes nationaux annuels base 2020 : salaires et traitements bruts, emploi salarié EQTP, consommation des ménages par fonction, PIB par habitant", "Salaire moyen depuis 1949, budget des ménages depuis 1959", "https://www.insee.fr/fr/statistiques/serie/011785411", "annuel"],
+  ["Argent privé", "insee", "Jordà, Schularick et Taylor, Macrohistory Database", "Salaires réels et PIB par habitant avant 1949", "https://www.macrohistory.net/database/", "ponctuel"],
+  ["Énergie", "owid", "owid-energy-data (energy_per_capita)", "Énergie primaire par habitant depuis 1965", "https://github.com/owid/energy-data", "annuel"],
   ["Argentine", "argentine", "PIB, inflation, pauvreté (INDEC), budget, change, aides du FMI et des États-Unis", "Encadré « Et l'Argentine ? » : liens vers chaque article de presse dans l'encadré", null, "ponctuel (chiffres arrêtés à mars 2026)"],
   ["Argent public", "marches", "France : taux d'emprunt à 10 ans (OAT)", "Valeur par défaut du simulateur : environ 4,7 % en novembre 2026 (Trading Economics, d'après les marchés)", "https://tradingeconomics.com/france/government-bond-yield", "quotidien"],
   ["Chômage", "insee", "Enquête Emploi : chômage au sens du BIT, halo autour du chômage, sous-emploi (BDM, CHOMAGE-TRIM-NATIONAL, EMPLOI-BIT-TRIM)", "Chômeurs, halo, sous-emploi, chômage de longue durée, France entière", "https://www.insee.fr/fr/statistiques/serie/011818543", "trimestriel"],
@@ -84,7 +87,7 @@ function render() {
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
 // en bas de chaque article, ses sources en petit
-const PAR_ARTICLE = { pib: ["PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
+const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],

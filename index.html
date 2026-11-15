@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261116e">
+<link rel="stylesheet" href="style.css?v=20261116g">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -29,6 +29,7 @@
     <nav class="tabs" data-group="economie" aria-label="Économie" hidden>
       <a href="#patrimoine">Patrimoine</a>
       <a href="#pib">Le PIB</a>
+      <a href="#argent-prive">Argent privé</a>
       <a href="#argent-public">L'argent public</a>
       <a href="#cycle-vie">La vie en euros</a>
       <a href="#duree">Dette sur 30 ans</a>
@@ -118,6 +119,23 @@
 </section>
 
 <!-- =============================================================== SANKEY -->
+<section id="argent-prive" class="panel">
+  <div class="panel-head">
+    <h2>Argent privé : ce que gagnent les Français et comment ils le dépensent <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="ap-kpis"></div>
+  <p class="lead">Tous les montants sont en euros d'aujourd'hui : on a retiré l'effet de la hausse des prix pour comparer ce que l'on peut réellement acheter d'une époque à l'autre.</p>
+  <h3>Le salaire moyen depuis 1900</h3>
+  <div id="ap-salaire" class="chart"></div><div class="legend-row" id="ap-salaire-legend"></div>
+  <p class="muted" style="font-size:.84rem">Salaire brut moyen par emploi salarié en équivalent temps plein : masse des salaires bruts divisée par le nombre de salariés (INSEE, comptes nationaux, depuis 1949), corrigée de la hausse des prix à la consommation. Avant 1949 (pointillés), évolution des salaires réels de la base Jordà-Schularick-Taylor, raccordée en 1949 : simple ordre de grandeur. Le raccord est fragile autour de la guerre (la chute de 1938 à 1949 est sans doute exagérée), et cette série mesure plutôt des taux de salaire d'ouvriers que le salaire moyen. Le salaire brut inclut les cotisations payées par le salarié ; le salaire net est environ 22 % plus bas aujourd'hui.</p>
+  <h3>À quoi sert l'argent des ménages depuis 1959</h3>
+  <div id="ap-budget" class="chart"></div><div class="legend-row" id="ap-budget-legend"></div>
+  <div class="callout small">
+    <p>En 1959, un tiers du budget servait à se nourrir ; c'est moins d'un sixième aujourd'hui. Le logement a pris la place : sa part a plus que doublé. Elle comprend les loyers « imputés » des propriétaires, c'est-à-dire le loyer qu'ils se paieraient à eux-mêmes ; la comptabilité nationale les compte pour pouvoir comparer locataires et propriétaires (voir l'onglet PIB). Les dépenses de santé et d'éducation ne comptent ici que ce que les ménages paient eux-mêmes : l'essentiel est pris en charge par la Sécurité sociale et l'État (voir l'onglet L'argent public).</p>
+  </div>
+  <p class="muted" style="font-size:.84rem">INSEE, comptes nationaux annuels base 2020 : dépense de consommation des ménages par fonction, en valeur. Les séries par poste commencent en 1959.</p>
+</section>
+
 <section id="argent-public" class="panel">
   <div class="panel-head">
     <h2>Qui paie, comment, à qui, pour quoi, qui reçoit <span class="geo-fixed">France</span></h2>
@@ -439,6 +457,9 @@
   <div id="en-hist" class="chart"></div>
   <div class="legend-row" id="en-hist-legend"></div>
   <p class="muted" id="en-hist-note" style="font-size:.84rem"></p>
+  <h3>Plus riches, avec moins d'énergie : PIB et énergie par habitant</h3>
+  <div id="en-pib" class="chart"></div><div class="legend-row" id="en-pib-legend"></div>
+  <div id="en-pib-txt"></div>
 
   <div id="en-live-wrap">
     <h3>L'électricité française en direct (7 derniers jours, pas de 15 minutes)</h3>
@@ -873,18 +894,19 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261116e"></script>
-<script src="app.js?v=20261116e"></script>
-<script src="energie.js?v=20261116e"></script>
-<script src="matieres.js?v=20261116e"></script>
-<script src="territoire.js?v=20261116e"></script>
-<script src="themes.js?v=20261116e"></script>
-<script src="societe.js?v=20261116e"></script>
-<script src="eco2.js?v=20261116e"></script>
-<script src="empreinte.js?v=20261116e"></script>
-<script src="histoire.js?v=20261116e"></script>
-<script src="chomage.js?v=20261116e"></script>
-<script src="sources.js?v=20261116e"></script>
-<script src="nav.js?v=20261116e"></script>
+<script src="kpi.js?v=20261116g"></script>
+<script src="app.js?v=20261116g"></script>
+<script src="energie.js?v=20261116g"></script>
+<script src="matieres.js?v=20261116g"></script>
+<script src="territoire.js?v=20261116g"></script>
+<script src="themes.js?v=20261116g"></script>
+<script src="societe.js?v=20261116g"></script>
+<script src="eco2.js?v=20261116g"></script>
+<script src="empreinte.js?v=20261116g"></script>
+<script src="argentprive.js?v=20261116g"></script>
+<script src="histoire.js?v=20261116g"></script>
+<script src="chomage.js?v=20261116g"></script>
+<script src="sources.js?v=20261116g"></script>
+<script src="nav.js?v=20261116g"></script>
 </body>
 </html>
