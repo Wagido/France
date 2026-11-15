@@ -85,8 +85,7 @@ function draw() {
       <li><b>Où sont les ponts, les routes, les centrales nucléaires ?</b> Tout y est, mais pas toujours là où on l'attend :
         <ul>
           <li>les routes, ponts, écoles, hôpitaux publics et le réseau ferré (SNCF Réseau est classée dans les administrations publiques) sont dans la part <b>publique</b> ;</li>
-          <li>les centrales nucléaires, les barrages et les lignes électriques appartiennent à EDF, RTE ou Enedis : ce sont des entreprises, même détenues par l'État. Elles sont donc dans la part <b>entreprises</b>. L'État, lui, possède leurs actions : elles sont comptées dans ses actifs financiers${Ap ? ` (${md(Ap.fa)} au total)` : ""} ;</li>
-          <li>de même, les autoroutes concédées figurent chez les sociétés d'autoroutes, pas chez l'État.</li>
+          <li>les centrales nucléaires, les barrages et les lignes électriques appartiennent à EDF, RTE ou Enedis : ce sont des entreprises, même détenues par l'État. Elles sont donc dans la part <b>entreprises</b>. L'État, lui, possède leurs actions : elles sont comptées dans ses actifs financiers${Ap ? ` (${md(Ap.fa)} au total)` : ""}.</li>
         </ul></li>
       <li><b>Attention</b> : les biens publics sont comptés à leur coût de remplacement, pas à un prix de vente. Une route ou une école ne se vend pas, alors que la dette, elle, doit être remboursée.</li>
     </ul>`;
