@@ -253,3 +253,5 @@ main .panel[hidden] { display: block !important; position: absolute; left: -2000
 .surligne mark { background: none; color: var(--ink); font-weight: 650; padding: 0; }
 main.wrap { position: relative; overflow: hidden; }
 @media (max-width: 640px) { .kpi .v { font-size: 1.15rem; white-space: nowrap; } .kpi .t { font-size: .76rem; } .kpi .l { font-size: .72rem; } }
+.callout.violet { background: #f3eefc; }
+:root[data-theme="dark"] .callout.violet { background: #241d36; }
