@@ -90,10 +90,11 @@ function qui() {
 
 /* ---------------------------------------------------------------- la vie en euros (France) */
 // trois couleurs seulement : le détail est dans l'infobulle
-const PAY_C = new Proxy({}, { get: () => "#dc2626" });
-const ARG_C = new Proxy({}, { get: () => "#3b6fd6" });
-const SER_C = new Proxy({}, { get: () => "#16a34a" });
-const LEG3 = css => [["Payé (impôts, cotisations, TVA…)", "#dc2626"], ["Reçu en argent (retraites, allocations…)", "#3b6fd6"], ["Reçu en services (soins, école, police, routes…)", "#16a34a"]];
+const PAY_C = new Proxy({}, { get: () => C_PAYE });
+const ARG_C = new Proxy({}, { get: () => C_ARG });
+const SER_C = new Proxy({}, { get: () => C_SERV });
+const C_PAYE = "#e5645f", C_ARG = "#4f7fd9", C_SERV = "#34a77a";
+const LEG3 = css => [["Payé (impôts, cotisations, TVA…)", C_PAYE], ["Reçu en argent (retraites, allocations…)", C_ARG], ["Reçu en services (soins, école, police, routes…)", C_SERV]];
 function cycle() {
   const { kpis, n0, n1, pct, css, esc, showTip, hideTip, legend } = T();
   const C = (CACHE.FR || D())?.cycle_de_vie; const el = $("#cv-chart");
@@ -125,9 +126,9 @@ function cycle() {
   tr.forEach(t => {
     const x0 = x(t.a) + 1, wd = Math.max(1, x(t.b) - x(t.a) - 2);
     const g = svg.append("g").on("pointermove", ev => showTip(tip(t), ev)).on("pointerleave", hideTip);
-    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.argent)).attr("height", y(0) - y(t.argent)).attr("fill", "#3b6fd6");
-    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.argent + t.services)).attr("height", y(t.argent) - y(t.argent + t.services)).attr("fill", "#16a34a");
-    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(0)).attr("height", y(-t.paye) - y(0)).attr("fill", "#dc2626");
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.argent)).attr("height", y(0) - y(t.argent)).attr("fill", C_ARG);
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.argent + t.services)).attr("height", y(t.argent) - y(t.argent + t.services)).attr("fill", C_SERV);
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(0)).attr("height", y(-t.paye) - y(0)).attr("fill", C_PAYE);
     g.append("line").attr("x1", x0).attr("x2", x0 + wd).attr("y1", y(t.prim)).attr("y2", y(t.prim)).attr("stroke", css("--ink")).attr("stroke-width", 3);
     g.append("text").attr("x", x0 + wd / 2).attr("y", y(t.prim) - 5).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", css("--ink")).text(n0(t.prim / 1000) + " k€ gagnés");
     g.append("rect").attr("x", x0).attr("width", wd).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent");
@@ -162,24 +163,33 @@ function redis() {
   ]);
   const w = Math.max(320, el.clientWidth), h = 460, m = { t: 14, r: 12, b: 30, l: 62 };
   const x = d3.scaleBand(dec.map(d => d.l), [m.l, w - m.r]).padding(.18);
-  const y = d3.scaleLinear([-d3.max(dec, d => d.paye) * 1.05, d3.max(dec, d => Math.max(d.recu, d.avant, d.apres)) * 1.05], [h - m.b, m.t]).nice();
+  const cap = Math.max(d3.max(dec.slice(0, -1), d => Math.max(d.recu, d.avant, d.apres)), d3.max(dec, d => Math.max(d.recu, d.apres))) * 1.12;
+  const y = d3.scaleLinear([-d3.max(dec, d => d.paye) * 1.08, cap], [h - m.b, m.t]).nice();
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  const cols = [];
   svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(8)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
-  const tip = d => `<b>${N === 20 ? `De ${d.i * 5} à ${(d.i + 1) * 5} %` : d.l}</b> ${d.i === 0 ? "(les plus modestes)" : d.i === N - 1 ? "(les plus aisés)" : ""} · par unité de consommation et par an<br>Revenu avant redistribution : ${n0(d.avant)} €<br>Niveau de vie après : <b>${n0(d.apres)} €</b><br><br><b style="color:#dc2626">Paie : ${n0(d.paye)} €</b><br>` +
-    R.paye.map(([k, l, v]) => `${esc(l)} : ${n0(v[d.i])} €`).join("<br>") + `<br><br><b style="color:#2563eb">Reçoit en argent : ${n0(d3.sum(R.argent, z => z[2][d.i]))} €</b><br>` +
-    R.argent.map(([k, l, v]) => `${esc(l)} : ${n0(v[d.i])} €`).join("<br>") + `<br><br><b style="color:#16a34a">Reçoit en services : ${n0(d3.sum(R.services, z => z[2][d.i]))} €</b><br>` +
-    R.services.map(([k, l, v]) => `${esc(l)} : ${n0(v[d.i])} €`).join("<br>") + `<br><br><b>Solde : ${d.net >= 0 ? "+" : "−"}${n0(Math.abs(d.net))} €</b> · ${pct(d.benef, 0)} des personnes de la tranche sont bénéficiaires nettes`;
+  const row = (l, v, c) => `<tr><td style="padding:1px 10px 1px 0;opacity:.85">${esc(l)}</td><td style="text-align:right;white-space:nowrap${c ? `;color:${c};font-weight:650` : ""}">${n0(v)} €</td></tr>`;
+  const bloc = (t, c, L, i) => `<tr><td colspan="2" style="padding-top:6px;color:${c};font-weight:650">${t} : ${n0(d3.sum(L, z => z[2][i]))} €</td></tr>` + L.filter(z => Math.abs(z[2][i]) >= 1).map(([k, l, v]) => row(l, v[i])).join("");
+  const tip = d => `<b>${N === 20 ? `De ${d.i * 5} à ${(d.i + 1) * 5} %` : d.l}</b> ${d.i === 0 ? "(les plus modestes)" : d.i === N - 1 ? "(les plus aisés)" : ""}<br><span style="opacity:.75;font-size:.76rem">par unité de consommation et par an</span>
+    <table style="border-collapse:collapse;font-size:.76rem;margin-top:4px;width:100%">${row("Revenu avant redistribution", d.avant)}${bloc("Payé", "#f08a85", R.paye, d.i)}${bloc("Reçu en argent", "#8fb0f0", R.argent, d.i)}${bloc("Reçu en services", "#6fd3a6", R.services, d.i)}
+    <tr><td colspan="2" style="padding-top:6px;border-top:1px solid rgba(255,255,255,.2)"><b>Solde : ${d.net >= 0 ? "+" : "−"}${n0(Math.abs(d.net))} €</b> · ${pct(d.benef, 0)} de bénéficiaires nets</td></tr></table>`;
   dec.forEach(d => {
-    const g = svg.append("g").on("pointermove", ev => showTip(tip(d), ev)).on("pointerleave", hideTip);
+    const g = svg.append("g").on("pointermove", ev => { showTip(tip(d), ev); cols.forEach(c => c.attr("opacity", c === g ? 1 : .4)); })
+      .on("pointerleave", () => { hideTip(); cols.forEach(c => c.attr("opacity", 1)); });
+    cols.push(g);
     const x0 = x(d.l), bw = x.bandwidth();
     const ag = d3.sum(R.argent, z => Math.max(0, z[2][d.i])), sv = d3.sum(R.services, z => Math.max(0, z[2][d.i]));
-    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(ag)).attr("height", y(0) - y(ag)).attr("fill", "#3b6fd6");
-    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(ag + sv)).attr("height", y(ag) - y(ag + sv)).attr("fill", "#16a34a");
-    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(0)).attr("height", y(-d.paye) - y(0)).attr("fill", "#dc2626");
-    g.append("path").attr("d", d3.symbol(d3.symbolDiamond, 90)()).attr("transform", `translate(${x0 + bw / 2},${y(d.avant)})`).attr("fill", "#9ca3af").attr("stroke", css("--surface"));
-    g.append("line").attr("x1", x0 - 3).attr("x2", x0 + bw + 3).attr("y1", y(d.apres)).attr("y2", y(d.apres)).attr("stroke", css("--ink")).attr("stroke-width", 3);
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(ag)).attr("height", y(0) - y(ag)).attr("fill", C_ARG);
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(ag + sv)).attr("height", y(ag) - y(ag + sv)).attr("fill", C_SERV).attr("rx", 2);
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(0)).attr("height", y(-d.paye) - y(0)).attr("fill", C_PAYE).attr("rx", 2);
+    if (d.avant <= y.domain()[1]) g.append("path").attr("d", d3.symbol(d3.symbolDiamond, 80)()).attr("transform", `translate(${x0 + bw / 2},${y(d.avant)})`).attr("fill", css("--surface")).attr("stroke", "#6b7280").attr("stroke-width", 1.6);
+    else { // hors échelle : une flèche et la valeur
+      g.append("path").attr("d", d3.symbol(d3.symbolTriangle, 70)()).attr("transform", `translate(${x0 + bw / 2},${m.t + 6})`).attr("fill", "#6b7280");
+      g.append("text").attr("x", x0 + bw / 2).attr("y", m.t + 22).attr("text-anchor", "middle").attr("font-size", 9.5).attr("font-weight", 650).attr("fill", "#6b7280").text(n0(d.avant / 1000) + " k€");
+    }
+    g.append("line").attr("x1", x0 - 3).attr("x2", x0 + bw + 3).attr("y1", y(d.apres)).attr("y2", y(d.apres)).attr("stroke", css("--ink")).attr("stroke-width", 2.5).attr("stroke-linecap", "round");
     g.append("text").attr("x", x0 + bw / 2).attr("y", y(-d.paye) + 14).attr("text-anchor", "middle").attr("font-size", N === 20 ? 9 : 10.5).attr("font-weight", 700)
-      .attr("fill", d.net >= 0 ? "#16a34a" : "#dc2626").text((d.net >= 0 ? "+" : "−") + n0(Math.abs(d.net) / 1000) + " k€");
+      .attr("fill", d.net >= 0 ? "#15803d" : "#c2413b").text((d.net >= 0 ? "+" : "−") + n0(Math.abs(d.net) / 1000) + " k€");
     g.append("rect").attr("x", x0).attr("width", bw).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent");
   });
   svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--ink"));
@@ -187,7 +197,7 @@ function redis() {
   svg.append("text").attr("x", (m.l + w - m.r) / 2).attr("y", h - 2).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", css("--muted")).text("Population classée par niveau de vie, des plus modestes (à gauche) aux plus aisés (à droite), par tranches de 5 %");
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(8).tickFormat(v => n0(v / 1000) + " k€")).call(g => g.select(".domain").remove());
   el.replaceChildren(svg.node());
-  legend("#rd-legend", [...LEG3(css), ["Revenu avant redistribution (losange)", "#9ca3af"], ["Niveau de vie après redistribution", css("--ink")], ["Solde net (en bas de chaque colonne)", "#16a34a"]]);
+  legend("#rd-legend", [...LEG3(css), ["Revenu avant redistribution (losange ; flèche si hors échelle)", "#6b7280"], ["Niveau de vie après redistribution (trait)", css("--ink")], ["Solde net (chiffre sous chaque colonne)", "#15803d"]]);
   // avant / après
   const mx = d3.max(dec, d => d.avant);
   $("#rd-avap").innerHTML = `<div class="bars">${dec.map(d => `<div class="bar-row"><span class="lab">${N === 20 ? `${d.i * 5}-${(d.i + 1) * 5} %` : d.l}</span><span class="val">${n0(d.avant)} € → <b>${n0(d.apres)} €</b></span>
