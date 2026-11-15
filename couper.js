@@ -45,14 +45,14 @@ function chart() {
   ]);
   const rows = [...P].map(p => ({ ...p, e: ecart(p, ref) })).sort((a, b) => b.e - a.e);
   const mx = Math.max(...rows.map(r => Math.abs(r.e)));
-  $("#cp-chart").innerHTML = `<div class="cp-row cp-head"><span>Poste</span><span class="num">France</span><span class="num">${esc(nom)}</span><span class="cp-mid">Écart, en milliards d'euros par an (France − ${esc(nom)})</span></div>` +
+  $("#cp-chart").innerHTML = `<div class="cp-row cp-head"><span>Poste</span><span class="num">France</span><span class="num">${esc(nom)}</span><span class="cp-mid">Écart en points de PIB (France − ${esc(nom)}), et ce que cela fait pour la France, en milliards par an</span></div>` +
     rows.map(r => {
       const w = (50 * Math.abs(r.e) / mx).toFixed(1), c = CAT[r.cat][1], md_ = r.e * pib / 100;
       const bar = r.e >= 0 ? `<span class="cp-bar" style="left:50%;width:${w}%;background:${c}"></span>` : `<span class="cp-bar" style="right:50%;width:${w}%;background:${c};opacity:.55"></span>`;
       return `<div class="cp-row"><span class="lab">${esc(r.l)}</span><span class="num">${p1(r.v.FR)}</span><span class="num muted">${p1(r.v[ref])}</span>
-        <span class="cp-track">${bar}<i class="cp-zero"></i><span class="cp-val" style="${r.e >= 0 ? `left:calc(50% + ${w}% + 4px)` : `right:calc(50% + ${w}% + 4px)`}">${r.e >= 0 ? "+" : "−"}${md(Math.abs(md_))}</span></span></div>`;
+        <span class="cp-track">${bar}<i class="cp-zero"></i><span class="cp-val" style="${r.e >= 0 ? `left:calc(50% + ${w}% + 4px)` : `right:calc(50% + ${w}% + 4px)`}">${r.e >= 0 ? "+" : "−"}${Math.abs(r.e).toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} pt <span class="muted" style="font-weight:400">(${md(Math.abs(md_))})</span></span></span></div>`;
     }).join("");
-  $("#cp-legend").innerHTML = Object.values(CAT).map(([l, c]) => `<span><i style="border-top-color:${c};border-top-width:10px;width:14px;opacity:1"></i>${l}</span>`).join("") + `<span class="muted">À droite : la France dépense plus ; à gauche : moins.</span>`;
+  $("#cp-legend").innerHTML = Object.values(CAT).map(([l, c]) => `<span><i style="border-top-color:${c};border-top-width:10px;width:14px;opacity:1"></i>${l}</span>`).join("") + `<span class="muted">À droite : la France dépense une plus grande part de son PIB ; à gauche : une plus petite. Les milliards = l'écart en points appliqué au PIB français.</span>`;
   const avenirMoins = rows.filter(r => r.cat === "avenir" && r.e < -0.05).map(r => r.l.toLowerCase());
   $("#cp-intro").innerHTML = `<p><b>Où la France dépense-t-elle plus que les autres ?</b></p><ul>
       <li>La France dépense ${p1(C.total.FR)} de son PIB en dépenses publiques, contre ${p1(C.total.EU27_2020)} en moyenne en Europe : <b>${p1(tot).replace(" %", " points")}</b> de plus, soit environ <b>${md(tot * pib / 100)} par an</b>. C'est plus que tout le déficit (${md(C.deficit)}).</li>
