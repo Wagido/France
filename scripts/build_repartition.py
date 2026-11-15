@@ -19,12 +19,25 @@ g = getter(jstat("gov_10a_main.json", S))
 p = getter(jstat("nama_10_gdp.json", S))
 md = lambda v: round((v or 0) / 1000, 1)
 
+# même année que l'onglet « L'argent public » (dernière année des dépenses par fonction), sinon la dernière disponible
+try:
+    an_max = max(int(y) for y in json.load(open(os.path.join(HERE, "..", "data", "finances.json")))["sankey"])
+except (OSError, KeyError, ValueError):
+    an_max = 2030
 an = None
-for y in range(2030, 2000, -1):
+for y in range(an_max, 2000, -1):
     if all(g(sector="S13", na_item=i, time=y) is not None for i in ["TR", "TE", "D2REC", "D5REC", "D61REC", "D62PAY", "D1PAY", "P2", "P5", "D3PAY", "D41PAY", "D632PAY"]):
         an = y
         break
 G = lambda i: g(sector="S13", na_item=i, time=an) or 0
+# totaux repris de l'onglet « L'argent public » pour que les chiffres soient identiques d'un onglet à l'autre
+try:
+    sk = json.load(open(os.path.join(HERE, "..", "data", "finances.json")))["sankey"][str(an)]
+    TOT = {"TE": sk["depenses"] * 1000, "TR": sk["recettes"] * 1000}
+except (OSError, KeyError):
+    TOT = {}
+G0 = G
+G = lambda i: TOT.get(i, G0(i))
 pib = p(na_item="B1GQ", time=an)
 po = G("D2REC") + G("D5REC") + G("D61REC") + G("D91REC")
 autres_rec = G("TR") - po

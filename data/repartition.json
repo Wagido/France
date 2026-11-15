@@ -1,27 +1,27 @@
 {
- "annee": 2025,
- "pib": 2991.1,
+ "annee": 2024,
+ "pib": 2935.2,
  "prelevements": {
-  "tva": 470.4,
-  "revenus": 411.6,
-  "cotisations": 498.7
+  "tva": 456.1,
+  "revenus": 387.2,
+  "cotisations": 483.6
  },
- "po": 1380.7,
- "autres_recettes": 181.8,
- "emprunt": 151.6,
+ "po": 1326.9,
+ "autres_recettes": 176.7,
+ "emprunt": 168.2,
  "depenses": {
-  "prestations": 580.9,
-  "aides": 56.5,
-  "interets": 65.7,
-  "transferts": 135.4,
-  "investissement": 134.8,
-  "services": 740.8
+  "prestations": 563.7,
+  "aides": 57.5,
+  "interets": 60.1,
+  "transferts": 135.7,
+  "investissement": 129.5,
+  "services": 725.3
  },
- "te": 1714.1,
- "tr": 1562.5,
+ "te": 1671.8,
+ "tr": 1503.6,
  "detail_services": {
-  "agents": 370.0,
-  "achats": 163.5,
-  "nature": 190.1
+  "agents": 363.0,
+  "achats": 162.4,
+  "nature": 183.7
  }
 }
