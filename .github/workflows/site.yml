@@ -20,11 +20,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publier:
+  preparer:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploiement.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,5 +35,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+  # mise en ligne dans une étape séparée, une fois le paquet entièrement enregistré par GitHub
+  publier:
+    needs: preparer
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
       - id: deploiement
         uses: actions/deploy-pages@v4
