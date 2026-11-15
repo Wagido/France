@@ -36,13 +36,25 @@ import openpyxl
 D = os.path.join(HERE, "..", "data", "sources")
 wb = openpyxl.load_workbook(os.path.join(D, "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
 it = wb.worksheets[0].iter_rows(values_only=True); h = next(it); ix = {c: i for i, c in enumerate(h)}
-J = {r[ix["year"]]: r for r in it if r[ix["iso"]] == "FRA"}
+ALL = [r for r in it if r[ix["iso"]] in ("FRA", "USA")]
+J = {r[ix["year"]]: r for r in ALL if r[ix["iso"]] == "FRA"}
+CPI_US = {r[ix["year"]]: r[ix["cpi"]] for r in ALL if r[ix["iso"]] == "USA" and r[ix["cpi"]]}
 def es(f):
     d = json.load(open(os.path.join(D, "histoire", f))); t = d["dimension"]["time"]["category"]["index"]; inv = {v: k for k, v in t.items()}
     return {int(inv[int(k) % len(t)]): v for k, v in d["value"].items()}
 usd = es("ert_bil_eur_a.json"); hicp = es("prc_hicp_aind_fr.json")
 fin = {int(x["annee"]): x for x in json.load(open(os.path.join(HERE, "..", "data", "finances.json")))["historique"]}
 ins = {r["annee"]: r for r in rows}
+# prix à la consommation France et États-Unis, prolongés après 2017 par Eurostat (pour le cours du dollar corrigé de l'inflation)
+CPI_FR = {y: r[ix["cpi"]] for y, r in J.items() if r[ix["cpi"]]}
+try:
+    us = es("prc_hicp_aind_us.json")
+    for y in range(2018, max(us) + 1):
+        if y - 1 in CPI_US and y in us and y - 1 in us: CPI_US[y] = CPI_US[y - 1] * us[y] / us[y - 1]
+except (OSError, KeyError):
+    pass
+for y in range(2018, max(hicp) + 1):
+    if y - 1 in CPI_FR and y in hicp: CPI_FR[y] = CPI_FR[y - 1] * (1 + hicp[y] / 100)
 longue = []
 for y in range(1900, max(usd) + 1):
     j, jp = J.get(y), J.get(y - 1)
@@ -58,7 +70,12 @@ for y in range(1900, max(usd) + 1):
     croiss = 100 * (g(j, "rgdpmad") / g(jp, "rgdpmad") - 1) if g(j, "rgdpmad") and g(jp, "rgdpmad") else None
     if y in ins and ins[y]["croissance"] is not None and y >= 1950: croiss = ins[y]["croissance"]
     r1 = lambda v, n=1: None if v is None else round(v, n)
-    longue.append({"annee": y, "inflation": r1(infl), "solde_public": r1(solde), "exportations_pib": r1(expo), "croissance": r1(croiss), "dollar": r1(dollar, 4)})
+    reel = dollar * CPI_US[y] / CPI_FR[y] if dollar and y in CPI_US and y in CPI_FR else None   # cours réel (base fixée plus bas)
+    longue.append({"annee": y, "inflation": r1(infl), "solde_public": r1(solde), "exportations_pib": r1(expo), "croissance": r1(croiss), "dollar": r1(dollar, 4), "_reel": reel})
+b = next((r["_reel"] for r in longue if r["annee"] == 1950), None)
+for r in longue:
+    v = r.pop("_reel")
+    r["dollar_reel"] = round(100 * v / b, 1) if v and b else None   # indice 100 en 1950
 json.dump({"source": "INSEE, comptes nationaux annuels base 2020", "series": rows,
            "longue_source": "Jordà, Schularick et Taylor, Macrohistory Database (1900-2017) ; INSEE (exportations et croissance depuis 1949-1950) ; Eurostat (cours euro-dollar et inflation depuis 1999-2018) ; comptes publics (solde depuis 1995)",
            "longue": longue}, open(OUT, "w"), ensure_ascii=False, separators=(",", ":"))

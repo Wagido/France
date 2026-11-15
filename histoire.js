@@ -84,6 +84,51 @@ function draw() {
   el.insertAdjacentHTML("beforeend", `<div class="legend-row"><span><i style="border-top-color:#dc2626;opacity:1"></i>Inflation (prix à la consommation)</span><span><i style="border-top-color:#16a34a;opacity:1"></i>Exportations (% du PIB)</span><span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:.8"></i>Solde budgétaire (% du PIB)</span><span><i style="border-top-color:var(--ink);opacity:1"></i>Prix d'un dollar en francs</span><span><i style="border-top-color:#7c3aed;border-top-style:dashed;opacity:1"></i>Dévaluations et changements de régime</span></div>
     <ul class="prose-list hist-ev">${EV.map(([yr, lab, txt, s]) => `<li><b>${lab === "81-83" ? "1981-1983" : yr}</b> : ${esc(txt)} <a href="${SRC[s][1]}"${SRC[s][1].startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${esc(SRC[s][0])}</a></li>`).join("")}</ul>
     <p class="muted" style="font-size:.76rem;margin:4px 0 0">Données : Jordà, Schularick et Taylor, <a href="https://www.macrohistory.net/database/" target="_blank" rel="noopener">Macrohistory Database</a> (1900-2017, licence CC BY-NC-SA, via le dépôt public <a href="https://github.com/unbalancedparentheses/forex-centuries" target="_blank" rel="noopener">forex-centuries</a>) ; INSEE pour les exportations depuis 1949 ; Eurostat pour l'inflation depuis 2018 et le cours euro-dollar depuis 1999 ; comptes publics depuis 1995. Avant 1995, le solde est celui du budget de l'État. De 1945 à 1949, le cours du dollar de la base est un cours de marché, plus élevé que les parités officielles (119, puis 214 et 350 anciens francs). Échelle coupée à −30 % et +60 % : les inflations supérieures sont indiquées en haut.</p>`);
+  zoomExport(el);
+  dollarReel(el);
+}
+/* le dollar en francs, corrigé de l'écart d'inflation entre la France et les États-Unis */
+function dollarReel(host) {
+  const { lineChart, legend, n1 } = window.TH;
+  const R = L.filter(r => r.dollar_reel != null);
+  const nom0 = L.find(r => r.annee === 1950).dollar;
+  const rows = R.map(r => ({ annee: r.annee, reel: r.dollar_reel, nominal: r.dollar ? Math.round(1000 * r.dollar / nom0) / 10 : null }));
+  const a = R[0], b = R.at(-1), hors = R.filter(r => r.annee < 1944 || r.annee > 1949), mx = hors.reduce((p, r) => r.dollar_reel > p.dollar_reel ? r : p), mn = hors.reduce((p, r) => r.dollar_reel < p.dollar_reel ? r : p);
+  const box = document.createElement("div");
+  box.innerHTML = `<h4 style="margin:22px 0 4px">Le dollar en francs, corrigé de l'inflation (indice 100 en 1950)</h4>
+    <p class="muted" style="font-size:.84rem;margin:0 0 6px">Cours du dollar multiplié par les prix américains et divisé par les prix français. Au-dessus de 100, le franc est « bon marché » : les produits français sont moins chers pour les Américains qu'en 1950.</p>
+    <div id="hist-reel" class="chart"></div><div class="legend-row" id="hist-reel-legend"></div>
+    <div class="callout small"><ul>
+      <li><b>En apparence, le franc s'est effondré</b> : il fallait ${String(a.dollar).replace(".", ",")} franc (nouveau) pour un dollar en ${a.annee}, et environ ${n1(b.dollar)} en ${b.annee}, soit plus de cent fois plus.</li>
+      <li><b>Corrigé de l'inflation, il n'a presque pas bougé sur un siècle</b> : l'indice va de ${Math.round(mn.dollar_reel)} (${mn.annee}) à ${Math.round(mx.dollar_reel)} (${mx.annee}), sans tendance (en laissant de côté 1944-1949, où le cours du dollar de la base est un cours de marché d'après-guerre). La France a eu plus d'inflation que les États-Unis, et les dévaluations n'ont fait, pour l'essentiel, que rattraper cet écart.</li>
+      <li><b>C'est pour cela que l'effet d'une dévaluation est temporaire</b> : elle fait monter l'indice d'un coup (produits français moins chers), puis l'inflation plus forte en France le fait redescendre en quelques années. Seule une inflation tenue durablement, par la rigueur, permet d'en garder le bénéfice.</li>
+      <li><b>Depuis l'euro</b>, le cours varie surtout avec l'euro face au dollar : un dollar fort (2000-2001, 2022-2024) rend les produits français moins chers à l'export ; un dollar faible (2008) les renchérit.</li>
+    </ul></div>`;
+  host.appendChild(box);
+  lineChart(document.getElementById("hist-reel"), rows, [{ k: "reel", l: "Dollar corrigé de l'inflation", c: "#7c3aed" }], { vfmt: x => n1(x), yfmt: x => x, h: 260, nozero: true });
+  legend("#hist-reel-legend", [["Dollar en francs, corrigé de l'écart d'inflation (indice 100 en 1950)", "#7c3aed"]]);
+}
+
+/* zoom : les exportations avant et après chaque dévaluation (écart en points de PIB par rapport à l'année de la dévaluation) */
+function zoomExport(host) {
+  const { lineChart, legend, n1 } = window.TH;
+  const D = [[1936, "#94a3b8"], [1958, "#7c3aed"], [1969, "#16a34a"], [1982, "#e07b39"]];
+  const v = (y) => L.find(r => r.annee === y)?.exportations_pib;
+  const rows = [-2, -1, 0, 1, 2, 3, 4].map(t => Object.assign({ t }, ...D.map(([d]) => ({ ["d" + d]: v(d + t) != null && v(d) != null ? Math.round((v(d + t) - v(d)) * 10) / 10 : null }))));
+  const box = document.createElement("div");
+  box.innerHTML = `<h4 style="margin:18px 0 4px">Zoom : les exportations avant et après chaque dévaluation</h4>
+    <p class="muted" style="font-size:.84rem;margin:0 0 6px">Écart des exportations (en points de PIB) par rapport à l'année de la dévaluation, notée 0.</p>
+    <div id="hist-zoom" class="chart"></div><div class="legend-row" id="hist-zoom-legend"></div>
+    <div class="callout small"><ul>
+      <li><b>L'effet existe, mais il est modeste et lent</b> : après 1958, 1969 et 1982, les exportations gagnent 2 à 3 points de PIB en deux ans. Sur le grand graphique, dont l'échelle va jusqu'à 60 %, cela ne se voit presque pas.</li>
+      <li><b>Il faut un ou deux ans</b> : les contrats en cours sont signés aux anciens prix, et les acheteurs étrangers mettent du temps à changer de fournisseur. Au début, une dévaluation renchérit même les importations avant d'aider les exportations.</li>
+      <li><b>L'inflation peut tout effacer</b> : en 1936, les prix ont augmenté de 26 % l'année suivante ; l'avantage de prix gagné par la dévaluation a disparu, et les exportations n'ont presque pas bougé. Les dévaluations réussies (1958, 1969) ont été accompagnées d'un plan de rigueur qui a contenu les prix et les salaires.</li>
+      <li><b>Le contexte domine parfois</b> : en 1928-1932, la crise mondiale a fait chuter le commerce partout ; en 1945-1949, la remontée vient de la reconstruction. Ces deux épisodes ne sont pas tracés ici.</li>
+    </ul></div>`;
+  host.appendChild(box);
+  lineChart(document.getElementById("hist-zoom"), rows.map(r => ({ ...r, annee: r.t })), D.map(([d, c]) => ({ k: "d" + d, l: String(d), c })),
+    { vfmt: x => (x > 0 ? "+" : "") + n1(x) + " pt", yfmt: x => (x > 0 ? "+" : "") + x, h: 240, nozero: true, xticks: 6 });
+  legend("#hist-zoom-legend", D.map(([d, c]) => [`Dévaluation de ${d}`, c]));
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

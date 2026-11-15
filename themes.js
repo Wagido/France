@@ -64,7 +64,7 @@ function lineChart(el, data, lines, opts = {}) {
   svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
   lines.forEach(l => svg.append("path").attr("fill", "none").attr("stroke", l.c).attr("stroke-width", 2.2).attr("stroke-dasharray", l.dash || null)
     .attr("d", d3.line().defined(d => d[l.k] != null).x(d => x(+d.annee)).y(d => y(d[l.k]))(data)));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(w < 560 ? 5 : 10));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(opts.xticks || (w < 560 ? 5 : 10)));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(opts.yfmt || (v => n0(v)))).call(g => g.select(".domain").remove());
   const bis = d3.bisector(d => +d.annee).center;
   svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")

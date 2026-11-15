@@ -253,6 +253,7 @@ get histoire/jst_macrohistory.xlsx "https://raw.githubusercontent.com/unbalanced
 get histoire/harvard/energy_france.xlsx "https://histecon.fas.harvard.edu/energyhistory/data_sets/Energy_Data_FRANCE.xlsx"
 get histoire/ert_bil_eur_a.json "$E/ert_bil_eur_a?currency=USD&statinfo=AVG&sinceTimePeriod=1999"
 get histoire/prc_hicp_aind_fr.json "$E/prc_hicp_aind?geo=FR&coicop=CP00&unit=RCH_A_AVG&sinceTimePeriod=2015"
+get histoire/prc_hicp_aind_us.json "$E/prc_hicp_aind?coicop=CP00&unit=INX_A_AVG&geo=US&sinceTimePeriod=2010"
 get histoire/bdm_menages.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011785411+011793487+011780514+011780516+011780520+011780561+011780579+011780606+011780612+011780650+011780695+011780704+011780764+011780841+011780844+011780853+011779993"
 get histoire/bdm_histoire.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011779995+011779991+011779992+011791812+011791813+011792506+011792505"
 
