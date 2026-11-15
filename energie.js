@@ -36,6 +36,7 @@ async function init() {
     INDEX = await fetch("data/energie/index.json").then(r => r.json());
     const cmp = await fetch("data/comparaison.json").then(r => r.json());
     cmp.comparaison.forEach(c => { if (c.pib) POP[c.code] = c.pib.population; });
+    try { (await fetch("data/themes/index.json").then(r => r.json())).pays.forEach(p => { if (!POP[p.code] && p.demo?.population) POP[p.code] = p.demo.population; }); } catch (e) { /* facultatif */ }
   } catch (e) { return; }
   document.querySelectorAll("#en-unit button").forEach(b => b.onclick = () => {
     unit = b.dataset.u; document.querySelectorAll("#en-unit button").forEach(o => o.setAttribute("aria-pressed", o === b)); draw();

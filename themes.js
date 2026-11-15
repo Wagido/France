@@ -135,8 +135,10 @@ function drawClimat() {
   const data = S.map(s => ({ annee: s.annee, ...s.secteurs, lulucf: s.lulucf, total: s.total }));
   areaChart($("#cl-chart"), data, [...keys, "lulucf"], col, lab, { neg: ["lulucf"], lines: [{ k: "total", l: "Total (hors forêts)", c: css("--ink") }], vfmt: v => n1(v) + " Mt", yfmt: v => n0(v) + " Mt" });
   legend("#cl-legend", [...C.secteurs.map(s => [s[1], s[2]]), ["Forêts et sols (sous zéro : absorption)", "#16a34a"], ["Total", css("--ink"), true]]);
-  const g = last.gaz, gl = C.gaz.filter(x => g[x[0]] != null);
-  bars($("#cl-gaz"), gl.map(([k, l, c]) => ({ l, v: g[k], t: `${n0(g[k])} Mt · ${pct(100 * g[k] / last.total, 0)}`, c })), { max: last.total });
+  const g = { ...last.gaz }, gl = C.gaz.filter(x => g[x[0]] != null || x[0].startsWith("HFC"));
+  const fk = gl.find(x => x[0].startsWith("HFC"))?.[0], estime = fk && g[fk] == null;
+  if (estime) g[fk] = Math.max(0, last.total - d3.sum(gl, x => x[0] === fk ? 0 : g[x[0]] || 0));
+  bars($("#cl-gaz"), gl.map(([k, l, c]) => ({ l: k === fk && estime ? l + " (par différence)" : l, v: g[k], t: `${n0(g[k])} Mt · ${pct(100 * g[k] / last.total, 0)}`, c })), { max: last.total });
   table($("#cl-cmp"), "cl", [
     { k: "tot", l: "Émissions", f: r => r.climat?.total, fmt: v => n0(v) + " Mt", y: r => r.climat?.annee },
     { k: "hab", l: "par habitant", f: r => r.climat && r.demo ? r.climat.total * 1e6 / r.demo.population : null, fmt: v => n1(v) + " t", max: 20, c: "#475569" },
@@ -224,7 +226,7 @@ function drawAlim() {
   USES.forEach(([u, l, c]) => { if (links.some(x => x.target === "u_" + u)) nodes.push({ id: "u_" + u, label: l, color: c }); });
   const el = $("#al-sankey"), W = 1100, H = 640;
   try {
-    const Gr = d3.sankey().nodeId(d => d.id).nodeSort(null).nodeWidth(12).nodePadding(7).extent([[1, 20], [W - 230, H - 4]])({ nodes: nodes.map(n => ({ ...n })), links: links.map(l => ({ ...l })) });
+    const Gr = d3.sankey().nodeId(d => d.id).nodeSort(null).nodeWidth(12).nodePadding(7).extent([[1, 20], [W - 290, H - 4]])({ nodes: nodes.map(n => ({ ...n })), links: links.map(l => ({ ...l })) });
     const svg = d3.create("svg").attr("viewBox", `0 0 ${W} ${H}`);
     ["Origine", "Produits", "Usages"].forEach((t, i) => svg.append("text").attr("class", "colhead").attr("x", [1, Gr.nodes.find(n => n.depth === 1)?.x0 || 300, Gr.nodes.find(n => n.depth === 2)?.x0 || 800][i]).attr("y", 12).text(t));
     svg.append("g").selectAll("path").data(Gr.links).join("path").attr("class", "link").attr("d", d3.sankeyLinkHorizontal())
@@ -332,7 +334,8 @@ function drawImmig() {
     fl && fl.emigration != null && [n0(fl.emigration), `départs (dont ${n0(fl.emig_nationaux || 0)} nationaux)`],
   ]);
   if (I.stock.length) {
-    const data = I.stock.map(s => ({ annee: s.annee, ue: s.nes_ue, hors_ue: s.nes_hors_ue, part: 100 * s.nes_etranger / s.total }));
+    const data = I.stock.filter(s => s.nes_ue != null && s.nes_hors_ue != null).map(s => ({ annee: s.annee, ue: s.nes_ue, hors_ue: s.nes_hors_ue, part: 100 * s.nes_etranger / s.total }));
+    if (!data.length) empty("#im-stock"); else
     areaChart($("#im-stock"), data, ["ue", "hors_ue"], { ue: "#3b6fd6", hors_ue: "#f59e0b" }, { ue: "Nés dans un autre pays de l'UE", hors_ue: "Nés hors de l'UE" },
       { vfmt: v => n2(v / 1e6) + " M", yfmt: v => n0(v / 1e6) + " M", h: 260 });
     legend("#im-stock-legend", [["Nés dans un autre pays de l'UE", "#3b6fd6"], ["Nés hors de l'UE", "#f59e0b"]]);

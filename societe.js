@@ -118,7 +118,8 @@ function education() {
   const PC = E.parcours || [];
   if (PC.length) { lineChart($("#ed-parc"), PC, [{ k: "decrochage", l: "Décrocheurs (18-24 ans sans diplôme ni formation)", c: "#dc2626" }, { k: "neet", l: "Jeunes ni en emploi, ni en études, ni en formation (15-29 ans)", c: "#f59e0b" },
       { k: "formation_adultes", l: "Adultes (25-64 ans) en formation au cours des 4 dernières semaines", c: "#3b6fd6" }], { vfmt: v => pct(v), yfmt: v => v + " %", h: 240 });
-    legend("#ed-parc-legend", [["Décrocheurs (18-24 ans)", "#dc2626"], ["Ni emploi ni études (15-29 ans)", "#f59e0b"], ["Adultes en formation", "#3b6fd6"]]); }
+    legend("#ed-parc-legend", [["Décrocheurs (18-24 ans)", "#dc2626"], ["Ni emploi ni études (15-29 ans)", "#f59e0b"], ["Adultes en formation", "#3b6fd6"]]);
+    $("#ed-parc-legend").insertAdjacentHTML("beforeend", `<span class="muted" style="font-size:.8rem;flex-basis:100%">Adultes en formation : part des 25-64 ans ayant suivi une formation dans les 4 dernières semaines. Les sauts brusques (en France en 2013) viennent de changements du questionnaire de l'enquête Emploi, pas d'une vraie évolution.</span>`); }
   const R = E.ratio, dp2 = (E.depense_publique || []).at(-1);
   if (R) $("#ed-ratio").innerHTML = `<p style="margin:4px 0 0">Élèves par enseignant (${R.annee}) : maternelle <b>${n1(R.maternelle)}</b>, primaire <b>${n1(R.primaire)}</b>, collège <b>${n1(R.college)}</b>, lycée <b>${n1(R.lycee)}</b>.${dp2 ? ` Dépense publique d'éducation : <b>${pct(dp2.pib)}</b> du PIB (${dp2.annee}).` : ""}</p>`;
   table($("#ed-cmp"), "ed", [

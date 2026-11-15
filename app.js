@@ -724,7 +724,10 @@ function drawBilan() {
     ["= " + md(netTot), `patrimoine net de la France fin ${y}, soit ${eur(netTot * 1e9 / B.population)} par habitant et ${nf1.format(netTot / B.pib)} années de PIB`],
     [(extNet >= 0 ? "+" : "−") + md(Math.abs(extNet)), "dont position financière nette face à l'étranger (le reste, ce sont les biens réels)"],
   ]);
-  $("#bs-kpis").insertAdjacentHTML("afterend", `<p class="muted bs-why" style="font-size:.86rem;margin:-2px 0 10px;max-width:100ch">Pourquoi ${md(nfTot + faTot)} d'actifs mais seulement ${md(netTot)} de patrimoine ? Un dépôt bancaire est à la fois un actif (pour le déposant) et une dette (pour la banque) : les ${md(faTot)} d'actifs financiers sont presque entièrement compensés par les ${md(flTot)} de dettes. À l'échelle du pays, le patrimoine net se réduit aux biens réels plus le solde avec l'étranger.</p>`);
+  const ext = yy => { const S = DATA.patrimoine[yy]?.secteurs; return S ? d3.sum(S, s => sum(s.fa) - sum(s.fl)) : null; };
+  const yrs = Object.keys(DATA.patrimoine).sort(), saut = yrs.slice(1).map((yy, i) => [yrs[i], yy, ext(yrs[i]), ext(yy)]).filter(([, , a, b]) => a != null && b != null && Math.abs(b - a) > 250);
+  const avert = saut.length ? ` <b>Prudence :</b> dans les données d'Eurostat, cette position passe de ${saut.map(([a, b, va, vb]) => `${md(va)} en ${a} à ${md(vb)} en ${b}`).join(", puis de ")} ; un tel saut traduit une révision des données ou un changement de méthode plutôt qu'un vrai changement. La Banque de France publie une mesure voisine, la position extérieure nette, dans sa balance des paiements.` : "";
+  $("#bs-kpis").insertAdjacentHTML("afterend", `<p class="muted bs-why" style="font-size:.86rem;margin:-2px 0 10px;max-width:100ch">Pourquoi ${md(nfTot + faTot)} d'actifs mais seulement ${md(netTot)} de patrimoine ? Un dépôt bancaire est à la fois un actif (pour le déposant) et une dette (pour la banque) : les ${md(faTot)} d'actifs financiers sont presque entièrement compensés par les ${md(flTot)} de dettes. À l'échelle du pays, le patrimoine net se réduit aux biens réels plus le solde avec l'étranger.${avert}</p>`);
 
   // --- graphique : actifs à droite, passifs à gauche
   const el = $("#bs-chart");

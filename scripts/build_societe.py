@@ -143,8 +143,16 @@ def transports(geo):
                                                  "avia_paoc.json", "road_go_ta_tott.json"])
     modal = [{"annee": y, "voiture": ps(vehicle="CAR", time=y), "bus": ps(vehicle="BUS_TOT", time=y), "train": ps(vehicle="TRN", time=y)}
              for y in Y("tran_hv_psmod.json", geo) if ps(vehicle="CAR", time=y) is not None]
+    def sans_aberrants(rows, k):
+        # Eurostat publie parfois des parts manifestement fausses (France 2010-2012 : train 99 %) : on écarte
+        # les années qui s'éloignent de plus de 30 points de la médiane du pays.
+        v = sorted(x[k] for x in rows if x[k] is not None)
+        med = v[len(v) // 2] if v else None
+        return [x for x in rows if med is None or x[k] is None or abs(x[k] - med) <= 30]
+    modal = sans_aberrants(modal, "voiture")
     fret = [{"annee": y, "route": fr(tra_mode="ROAD", time=y), "rail": fr(tra_mode="RAIL", time=y), "fluvial": fr(tra_mode="IWW", time=y)}
             for y in Y("tran_hv_frmod.json", geo) if fr(tra_mode="ROAD", time=y) is not None]
+    fret = sans_aberrants(fret, "route")
     vol = []
     for y in sorted(set(Y("road_pa_mov.json", geo)) | set(Y("rail_pa_total.json", geo)) | set(Y("avia_paoc.json", geo))):
         vol.append({"annee": y, "voiture_gpkm": r((rd(vehicle="CAR", time=y) or 0) / 1000) or None, "bus_gpkm": r((rd(vehicle="BUS_MCO_TRO", time=y) or 0) / 1000) or None,
