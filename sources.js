@@ -28,6 +28,7 @@ const S = [
   ["Argent public", "eurostat", "gov_10dd_edpt1", "Dette et déficit au sens de Maastricht", null, "semestriel"],
   ["Argent public", "insee", "Comptes nationaux distribués 2023 (Insee Analyses n° 118)", "Prélèvements et transferts par vingtième de niveau de vie", "https://www.insee.fr/fr/statistiques/8974371", "annuel (édition ponctuelle)"],
   ["Patrimoine", "eurostat", "nama_10_nfa_bs", "Actifs non financiers (logements, terrains, équipements) par secteur", null, "annuel"],
+  ["Patrimoine", "eurostat", "bop_iip6_q", "Position extérieure de la France : avoirs à l'étranger et engagements envers l'étranger", null, "trimestriel"],
   ["Patrimoine", "eurostat", "nasa_10_f_bs", "Comptes financiers : actifs et passifs par secteur", null, "annuel"],
   ["Qui fait quoi", "insee", "TCRED-TRAVAIL-EMPLOI-EFF-FP-RATIO", "Effectifs de la fonction publique (État, territoriale, hospitalière)", "https://www.insee.fr/fr/statistiques/series/102341737", "annuel"],
   ["Qui fait quoi", "eurostat", "lfsa_pganws / lfsa_esgaed / demo_pjanbroad", "Population par statut d'activité et par âge", null, "annuel"],

@@ -244,5 +244,73 @@
    "prelevements": 46.0,
    "ue": 40.7
   }
+ ],
+ "pei": [
+  {
+   "annee": 2015,
+   "actifs": 6712.4,
+   "passifs": 7123.1,
+   "net": -410.7
+  },
+  {
+   "annee": 2016,
+   "actifs": 6960.2,
+   "passifs": 7384.9,
+   "net": -424.7
+  },
+  {
+   "annee": 2017,
+   "actifs": 6792.7,
+   "passifs": 7378.5,
+   "net": -585.9
+  },
+  {
+   "annee": 2018,
+   "actifs": 7052.1,
+   "passifs": 7601.8,
+   "net": -549.7
+  },
+  {
+   "annee": 2019,
+   "actifs": 7749.2,
+   "passifs": 8435.4,
+   "net": -686.2
+  },
+  {
+   "annee": 2020,
+   "actifs": 8275.2,
+   "passifs": 9024.3,
+   "net": -749.1
+  },
+  {
+   "annee": 2021,
+   "actifs": 9230.5,
+   "passifs": 10071.9,
+   "net": -841.3
+  },
+  {
+   "annee": 2022,
+   "actifs": 9614.4,
+   "passifs": 10342.5,
+   "net": -728.0
+  },
+  {
+   "annee": 2023,
+   "actifs": 9951.6,
+   "passifs": 10859.9,
+   "net": -908.3
+  },
+  {
+   "annee": 2024,
+   "actifs": 10797.8,
+   "passifs": 11501.8,
+   "net": -704.0
+  },
+  {
+   "annee": 2025,
+   "actifs": 11406.3,
+   "passifs": 12291.7,
+   "net": -885.4
+  }
  ]
 }

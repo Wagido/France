@@ -14,6 +14,7 @@ get nasa_10_nf_tr.json  "$E/nasa_10_nf_tr?geo=FR&unit=CP_MEUR&sinceTimePeriod=20
 get nasa_revenus.json  "$E/nasa_10_nf_tr?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015&na_item=B6G&na_item=D1&na_item=D61&na_item=D62&na_item=D5&na_item=D4&na_item=B2A3G&na_item=D7&sector=S11&sector=S12&sector=S13&sector=S14_S15&sector=S1"
 get gov_10a_taxag_pays.json "$E/gov_10a_taxag?unit=PC_GDP&sector=S13_S212&na_item=D2_D5_D91_D61_M_D995&sinceTimePeriod=2015"
 get gov_10a_main_pays_te.json "$E/gov_10a_main?unit=PC_GDP&sector=S13&na_item=TE&sinceTimePeriod=2015"
+get bop_iip_fr.json "$E/bop_iip6_q?geo=FR&currency=MIO_EUR&partner=WRL_REST&sector10=S1&sectpart=S1&bop_item=FA&stk_flow=A_LE&stk_flow=L_LE&stk_flow=N_LE&sinceTimePeriod=2015"
 get nama_10_co3_p3.json "$E/nama_10_co3_p3?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015&coicop=CP041&coicop=CP042&coicop=TOTAL"
 get nama_10_pe.json     "$E/nama_10_pe?geo=FR&unit=THS_PER&na_item=POP_NC&sinceTimePeriod=2015"
 

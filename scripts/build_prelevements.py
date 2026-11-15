@@ -33,5 +33,20 @@ for g, nom in NOMS.items():
     pays.append({"code": g, "nom": nom, "prelevements": round(p, 1), "depense": round(te.get(g, {}).get(an), 1) if te.get(g, {}).get(an) is not None else None})
 pays.sort(key=lambda r: -r["prelevements"])
 serie_fr = [{"annee": y, "prelevements": round(po["FR"][y], 1), "ue": round(po["EU27_2020"][y], 1) if y in po.get("EU27_2020", {}) else None} for y in sorted(po["FR"])]
-json.dump({"annee": an, "pays": pays, "france": serie_fr}, open(os.path.join(HERE, "..", "data", "prelevements_pays.json"), "w"), ensure_ascii=False, indent=1)
+# position extérieure de la France (balance des paiements) : ce que la France possède à l'étranger et ce que l'étranger possède en France
+pei = {}
+try:
+    d = json.load(open(os.path.join(S, "bop_iip_fr.json")))
+    dims, size = d["id"], d["size"]
+    inv = {k: {i: c for c, i in d["dimension"][k]["category"]["index"].items()} for k in dims}
+    for k, v in d["value"].items():
+        i, co = int(k), {}
+        for dim, s in reversed(list(zip(dims, size))):
+            co[dim] = inv[dim][i % s]; i //= s
+        if len(co["time"]) == 4:   # annuel
+            pei.setdefault(int(co["time"]), {})[co["stk_flow"]] = round(v / 1000, 1)
+except (OSError, KeyError) as e:
+    print("position extérieure : données absentes", e)
+pei = [{"annee": y, "actifs": r.get("A_LE"), "passifs": r.get("L_LE"), "net": r.get("N_LE")} for y, r in sorted(pei.items())]
+json.dump({"annee": an, "pays": pays, "france": serie_fr, "pei": pei}, open(os.path.join(HERE, "..", "data", "prelevements_pays.json"), "w"), ensure_ascii=False, indent=1)
 print(an, [(r["code"], r["prelevements"], r["depense"]) for r in pays[:8]])
