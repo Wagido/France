@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261118a">
+<link rel="stylesheet" href="style.css?v=20261118b">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -73,6 +73,7 @@
       <a href="#logement">Logement</a>
       <a href="#inegalites">Inégalités</a>
       <a href="#capital">Capital social et culturel</a>
+      <a href="#patrimoine-hist">Patrimoine historique</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
       <a href="#sources">Sources</a>
@@ -1064,6 +1065,22 @@
 </section>
 
 <!-- =============================================================== METHODE -->
+<section id="patrimoine-hist" class="panel">
+  <div class="panel-head">
+    <h2>Patrimoine historique : la France et les autres pays <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="patrimoine-hist-kpis"></div>
+  <div class="grid2">
+    <div><h3>Sites inscrits au patrimoine mondial de l'UNESCO : les 5 premiers pays</h3><div id="ph-unesco"></div></div>
+    <div><h3>Nuits passées par les touristes étrangers (hôtels, campings), en millions</h3><div id="ph-nuits"></div></div>
+  </div>
+  <div class="grid2">
+    <div><h3>Part des habitants ayant visité un monument ou un musée dans l'année</h3><div id="ph-visites"></div></div>
+    <div><h3>Dépense publique pour la culture, le sport et les loisirs (% du PIB)</h3><div id="ph-depense"></div></div>
+  </div>
+  <div class="callout small" id="patrimoine-hist-txt"></div>
+</section>
+
 <section id="sources" class="panel">
   <div class="panel-head"><h2>Les sources utilisées</h2></div>
   <p class="lead">Toutes les données viennent d'organismes publics ou de bases ouvertes, en accès libre. Elles sont retéléchargées et recalculées automatiquement chaque mois (le 3) ; les nouvelles années apparaissent dès que les organismes les publient. Les chiffres français d'Eurostat sont ceux que transmettent l'INSEE et les services statistiques des ministères : ils sont cohérents avec les publications nationales, à quelques révisions et différences de définition près.</p>
@@ -1135,29 +1152,30 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261118a"></script>
-<script src="app.js?v=20261118a"></script>
-<script src="energie.js?v=20261118a"></script>
-<script src="matieres.js?v=20261118a"></script>
-<script src="territoire.js?v=20261118a"></script>
-<script src="themes.js?v=20261118a"></script>
-<script src="societe.js?v=20261118a"></script>
-<script src="eco2.js?v=20261118a"></script>
-<script src="empreinte.js?v=20261118a"></script>
-<script src="argentprive.js?v=20261118a"></script>
-<script src="repartition.js?v=20261118a"></script>
-<script src="patrimoine.js?v=20261118a"></script>
-<script src="prelevements.js?v=20261118a"></script>
-<script src="travailvie.js?v=20261118a"></script>
-<script src="couper.js?v=20261118a"></script>
-<script src="seuilpays.js?v=20261118a"></script>
-<script src="logement.js?v=20261118a"></script>
-<script src="env.js?v=20261118a"></script>
-<script src="agriculture.js?v=20261118a"></script>
-<script src="chaine.js?v=20261118a"></script>
-<script src="histoire.js?v=20261118a"></script>
-<script src="chomage.js?v=20261118a"></script>
-<script src="sources.js?v=20261118a"></script>
-<script src="nav.js?v=20261118a"></script>
+<script src="kpi.js?v=20261118b"></script>
+<script src="app.js?v=20261118b"></script>
+<script src="energie.js?v=20261118b"></script>
+<script src="matieres.js?v=20261118b"></script>
+<script src="territoire.js?v=20261118b"></script>
+<script src="themes.js?v=20261118b"></script>
+<script src="societe.js?v=20261118b"></script>
+<script src="eco2.js?v=20261118b"></script>
+<script src="empreinte.js?v=20261118b"></script>
+<script src="argentprive.js?v=20261118b"></script>
+<script src="repartition.js?v=20261118b"></script>
+<script src="patrimoine.js?v=20261118b"></script>
+<script src="prelevements.js?v=20261118b"></script>
+<script src="travailvie.js?v=20261118b"></script>
+<script src="couper.js?v=20261118b"></script>
+<script src="seuilpays.js?v=20261118b"></script>
+<script src="logement.js?v=20261118b"></script>
+<script src="env.js?v=20261118b"></script>
+<script src="agriculture.js?v=20261118b"></script>
+<script src="chaine.js?v=20261118b"></script>
+<script src="patrimoinehist.js?v=20261118b"></script>
+<script src="histoire.js?v=20261118b"></script>
+<script src="chomage.js?v=20261118b"></script>
+<script src="sources.js?v=20261118b"></script>
+<script src="nav.js?v=20261118b"></script>
 </body>
 </html>

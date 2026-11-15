@@ -17,6 +17,9 @@ get gov_10a_main_pays_te.json "$E/gov_10a_main?unit=PC_GDP&sector=S13&na_item=TE
 get bop_iip_fr.json "$E/bop_iip6_q?geo=FR&currency=MIO_EUR&partner=WRL_REST&sector10=S1&sectpart=S1&bop_item=FA&stk_flow=A_LE&stk_flow=L_LE&stk_flow=N_LE&sinceTimePeriod=2015"
 get lfsi_dwl_a.json "$E/lfsi_dwl_a?unit=YR&sex=T&sinceTimePeriod=2015"
 get gov_10a_exp_pays_pib.json "$E/gov_10a_exp?unit=PC_GDP&na_item=TE&sector=S13&sinceTimePeriod=2022"
+mkdir -p patrimoine_hist
+get patrimoine_hist/tour_occ_ninat.json "$E/tour_occ_ninat?unit=NR&c_resid=FOR&nace_r2=I551-I553&sinceTimePeriod=2019"
+get patrimoine_hist/ilc_scp03.json "$E/ilc_scp03?sinceTimePeriod=2015"
 mkdir -p agri
 CR="&crops=UAA&crops=ARA&crops=C0000&crops=P0000&crops=R1000&crops=R2000&crops=I1100&crops=G0000&crops=J0000&crops=V0000_S0000&crops=F0000&crops=T0000&crops=W1000&crops=O1000&crops=Q0000"
 get agri/cultures.json "$E/apro_cpsh1?geo=FR&strucpro=MAR_THS_HA&sinceTimePeriod=2000$CR"

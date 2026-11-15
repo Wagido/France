@@ -60,6 +60,7 @@ const S = [
   ["Argent public", "insee", "Comptes nationaux annuels base 2020 depuis 1949 ; Jordà, Schularick et Taylor, Macrohistory Database (1900-2017)", "Graphique « Un siècle de franc » : inflation, solde budgétaire, exportations, cours du dollar", "https://www.macrohistory.net/database/", "annuel"],
   ["Argent privé", "insee", "Comptes nationaux annuels base 2020 : salaires et traitements bruts, emploi salarié EQTP, consommation des ménages par fonction, PIB par habitant", "Salaire moyen depuis 1949, budget des ménages depuis 1959", "https://www.insee.fr/fr/statistiques/serie/011785411", "annuel"],
   ["PIB", "harvard", "Energy_Data_FRANCE.xlsx", "Consommation d'énergie par habitant en France, 1800-2008", "https://histecon.fas.harvard.edu/energyhistory/data_sets/Energy_Data_FRANCE.xlsx", "ponctuel"],
+  ["Patrimoine historique", "eurostat", "tour_occ_ninat / ilc_scp03 / gov_10a_exp", "Nuitées des touristes étrangers, visites de sites culturels, dépense publique culturelle", null, "annuel"],
   ["Biodiversité", "insee", "Indicateurs de développement durable 15.i6 (d'après le MNHN, programme STOC)", "Oiseaux communs par milieu, France métropolitaine", "https://www.insee.fr/fr/statistiques/2658605", "annuel"],
   ["Biodiversité", "eurostat", "env_bio2 / sdg_15_20 / sdg_14_10", "Oiseaux des milieux agricoles par pays, aires protégées", null, "annuel"],
   ["Forêt", "eurostat", "env_air_gge / for_area_efa", "Absorption de CO₂ par les forêts, surface forestière", null, "annuel"],
@@ -110,7 +111,7 @@ const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], repartiti
   biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
-  justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"] };
+  justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };
 function footers() {
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   Object.entries(PAR_ARTICLE).forEach(([id, themes]) => {
