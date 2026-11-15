@@ -495,6 +495,8 @@ function drawSimu() {
   svg.append("g").attr("class", "axis").attr("transform", `translate(${mg.l},0)`).call(d3.axisLeft(yy).ticks(5));
   svg.append("text").attr("class", "axis").attr("x", (mg.l + w - mg.r) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("fill", css("--muted")).attr("font-size", 11).text("Dette publique (% du PIB)");
   svg.append("text").attr("transform", `translate(12,${(h - mg.b + mg.t) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("fill", css("--muted")).attr("font-size", 11).text("Multiplicateur");
+  svg.append("rect").attr("x", mg.l).attr("width", w - mg.l - mg.r).attr("y", yy(0.9)).attr("height", yy(0.5) - yy(0.9)).attr("fill", "#7c3aed").attr("opacity", .12);
+  svg.append("text").attr("x", mg.l + 6).attr("y", yy(0.9) + 13).attr("font-size", 10.5).attr("font-weight", 600).attr("fill", "#7c3aed").text("estimations pour la France : 0,5 à 0,9");
   svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).attr("stroke-width", 2).attr("d", d3.line().x(d => x(d[0])).y(d => yy(d[1]))(pts));
   svg.append("text").attr("x", x(150)).attr("y", yy(1.65)).attr("text-anchor", "middle").attr("fill", css("--neg")).attr("font-size", 12).attr("font-weight", 600).text("la coupe fait monter le ratio");
   svg.append("text").attr("x", x(60)).attr("y", yy(0.2)).attr("text-anchor", "middle").attr("fill", css("--pos")).attr("font-size", 12).attr("font-weight", 600).text("la coupe fait baisser le ratio");

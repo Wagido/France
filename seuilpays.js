@@ -25,6 +25,8 @@ function draw() {
   const y = d3.scaleLinear([0.4, Math.max(1.6, d3.max(P, d => d.seuil) * 1.05)], [h - mg.b, mg.t]);
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
   svg.append("rect").attr("x", mg.l).attr("width", w - mg.l - mg.r).attr("y", y(Math.min(m, y.domain()[1]))).attr("height", Math.max(0, h - mg.b - y(Math.min(m, y.domain()[1])))).attr("fill", css("--neg")).attr("opacity", .1);
+  svg.append("rect").attr("x", mg.l).attr("width", w - mg.l - mg.r).attr("y", y(0.9)).attr("height", y(0.5) - y(0.9)).attr("fill", "#7c3aed").attr("opacity", .1);
+  svg.append("text").attr("x", mg.l + 6).attr("y", y(0.5) - 5).attr("font-size", 10.5).attr("font-weight", 600).attr("fill", "#7c3aed").text("multiplicateur estimé pour la France : 0,5 à 0,9");
   svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", mg.l).attr("x2", w - mg.r).attr("y1", y).attr("y2", y);
   svg.append("line").attr("x1", mg.l).attr("x2", w - mg.r).attr("y1", y(m)).attr("y2", y(m)).attr("stroke", css("--neg")).attr("stroke-width", 2).attr("stroke-dasharray", "6 4");
   svg.append("text").attr("x", w - mg.r - 4).attr("y", y(m) - 6).attr("text-anchor", "end").attr("font-size", 11.5).attr("font-weight", 650).attr("fill", css("--neg")).text(`multiplicateur choisi : ${f2(m)}`);

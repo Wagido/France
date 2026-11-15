@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117m">
+<link rel="stylesheet" href="style.css?v=20261117n">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -207,7 +207,16 @@
     </div>
   </div>
   <div class="callout small">
-    <p><strong>Limites.</strong> C'est l'effet de la première année. Le simulateur sur 15 ans, plus bas, montre la suite.</p>
+    <p><b>D'où vient le multiplicateur ?</b> Tout ce simulateur en dépend, et ce chiffre ne s'observe pas : il s'estime après coup, en comparant de nombreux pays et de nombreuses années.</p>
+    <ul>
+      <li><b>Ce que c'est</b> : de combien le PIB baisse quand l'État coupe 1 € de dépense. Avec 0,8, une coupe de 40 Md€ fait perdre 32 Md€ de PIB la première année.</li>
+      <li><b>Ordre de grandeur habituel : 0,6 à 1</b> pour une baisse de dépenses, selon la synthèse de dix ans de recherche de Valerie Ramey <a href="https://www.aeaweb.org/doi/10.1257/jep.33.2.89" target="_blank" rel="noopener">[JEP, 2019]</a>. <b>Plus en récession</b>, ou quand la banque centrale ne peut plus baisser ses taux : 1,5 à 2.</li>
+      <li><b>Moins, voire presque zéro, quand la dette est déjà élevée</b> (au-delà de 60 % du PIB) : les ménages anticipent qu'une dette plus basse évitera des impôts plus tard <a href="https://econpapers.repec.org/RePEc:eee:moneco:v:60:y:2013:i:2:p:239-254" target="_blank" rel="noopener">[Ilzetzki, Mendoza et Végh, 2013]</a>.</li>
+      <li><b>Le précédent de 2010-2011</b> : le FMI avait supposé environ 0,5 pour les plans d'austérité européens ; ses économistes ont montré ensuite que les vrais multiplicateurs avaient été nettement plus élevés, autour de 1 ou plus, et la Grèce a beaucoup plus souffert que prévu <a href="https://www.imf.org/en/Publications/WP/Issues/2016/12/31/Growth-Forecast-Errors-and-Fiscal-Multipliers-40200" target="_blank" rel="noopener">[Blanchard et Leigh, FMI, 2013]</a>.</li>
+      <li><b>Pour la France</b> : environ 0,5 au bout d'un an selon l'OFCE <a href="https://www.ofce.sciences-po.fr/blog2024/fr/2024/20240530_JCJK/20240530_JCJK.fr.pdf" target="_blank" rel="noopener">[OFCE, 2024]</a>, environ 0,9 pour l'austérité de 2013. Cette fourchette est tracée sur les graphiques.</li>
+    </ul>
+    <p><b>Ce que ça change</b> : le seuil de la France (environ 0,6) tombe en plein dans cette fourchette. Une coupe peut donc aussi bien faire baisser que monter un peu le ratio dette/PIB la première année ; personne ne peut l'affirmer. Deux nuances : l'effet sur le PIB s'estompe ensuite alors que l'économie reste acquise chaque année, donc une coupe durable finit par réduire la dette (voir le simulateur sur 15 ans) ; et toutes les coupes ne se valent pas, les études trouvant des multiplicateurs plus forts pour l'investissement public que pour les transferts.</p>
+    <p class="muted" style="font-size:.78rem">Limites : c'est l'effet de la première année. Le simulateur sur 15 ans, plus bas, montre la suite.</p>
   </div>
   <h3>Le même seuil, pays par pays</h3>
   <div id="simu-pays" class="chart"></div>
@@ -965,25 +974,25 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117m"></script>
-<script src="app.js?v=20261117m"></script>
-<script src="energie.js?v=20261117m"></script>
-<script src="matieres.js?v=20261117m"></script>
-<script src="territoire.js?v=20261117m"></script>
-<script src="themes.js?v=20261117m"></script>
-<script src="societe.js?v=20261117m"></script>
-<script src="eco2.js?v=20261117m"></script>
-<script src="empreinte.js?v=20261117m"></script>
-<script src="argentprive.js?v=20261117m"></script>
-<script src="repartition.js?v=20261117m"></script>
-<script src="patrimoine.js?v=20261117m"></script>
-<script src="prelevements.js?v=20261117m"></script>
-<script src="travailvie.js?v=20261117m"></script>
-<script src="couper.js?v=20261117m"></script>
-<script src="seuilpays.js?v=20261117m"></script>
-<script src="histoire.js?v=20261117m"></script>
-<script src="chomage.js?v=20261117m"></script>
-<script src="sources.js?v=20261117m"></script>
-<script src="nav.js?v=20261117m"></script>
+<script src="kpi.js?v=20261117n"></script>
+<script src="app.js?v=20261117n"></script>
+<script src="energie.js?v=20261117n"></script>
+<script src="matieres.js?v=20261117n"></script>
+<script src="territoire.js?v=20261117n"></script>
+<script src="themes.js?v=20261117n"></script>
+<script src="societe.js?v=20261117n"></script>
+<script src="eco2.js?v=20261117n"></script>
+<script src="empreinte.js?v=20261117n"></script>
+<script src="argentprive.js?v=20261117n"></script>
+<script src="repartition.js?v=20261117n"></script>
+<script src="patrimoine.js?v=20261117n"></script>
+<script src="prelevements.js?v=20261117n"></script>
+<script src="travailvie.js?v=20261117n"></script>
+<script src="couper.js?v=20261117n"></script>
+<script src="seuilpays.js?v=20261117n"></script>
+<script src="histoire.js?v=20261117n"></script>
+<script src="chomage.js?v=20261117n"></script>
+<script src="sources.js?v=20261117n"></script>
+<script src="nav.js?v=20261117n"></script>
 </body>
 </html>
