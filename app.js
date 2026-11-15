@@ -412,7 +412,7 @@ function drawCroissance() {
   const el = $("#simu-croissance"); if (!el || !DATA) return;
   const H = C().historique, I = (C().interets || []).at(-1), last = H.at(-1), prev = H.at(-2);
   const gn = 100 * (last.pib / prev.pib - 1), B = base10();
-  el.innerHTML = `<p>La dette ne baisse en proportion du PIB que si l'économie grandit plus vite qu'elle. Ce n'est plus le cas :</p>
+  el.innerHTML = `<p><b>Où en est-on ?</b> La dette ne baisse en proportion du PIB que si l'économie grandit plus vite qu'elle. Ce n'est plus le cas :</p>
   <ul class="prose-list" style="margin:6px 0">
     <li>la croissance (inflation comprise) n'a été que de <b>${pct(gn)}</b> en ${last.annee}, à peine le taux d'intérêt moyen de la dette (<b>${pct(I?.taux_apparent ?? 0, 2)}</b>) ;</li>
     <li>hors intérêts, la puissance publique (État, Sécurité sociale, collectivités) dépense chaque année <b>${pct(Math.abs(B.primaire))}</b> du PIB de plus qu'elle ne prélève ;</li>
