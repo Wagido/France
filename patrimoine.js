@@ -46,6 +46,7 @@ function draw() {
   const { showTip, hideTip } = window.TH;
   const md = v => Math.round(v).toLocaleString("fr-FR") + " Md€";
   const D = Object.keys(P).sort().map(annee);
+  if (vue === "public") { drawPublic(el, md); draw.D = D; sensib(); return; }
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 24, r: 10, b: 26, l: 80 };
   const x = d3.scaleBand(D.map(d => d.annee), [m.l, w - m.r]).padding(.25);
   const PP = vue === "bien" ? PARTS : OWN, neg = d => vue === "bien" ? d.ext : 0;
@@ -99,6 +100,61 @@ function draw() {
     </ul>`;
   sensib();
 }
+/* le patrimoine public en détail : ce que possèdent les administrations (au-dessus de zéro) et ce qu'elles doivent (en dessous) */
+const PUB_A = [
+  ["Bâtiments et ouvrages (routes, ponts, écoles, hôpitaux, réseaux)", "#f2b544", s => s.nf.batiments],
+  ["Terrains", "#8c5a2b", s => s.nf.terrains],
+  ["Équipements, logiciels, logements, stocks", "#cdb89a", s => s.nf.machines + s.nf.pi + s.nf.logements + s.nf.stocks + s.nf.valeur + s.nf.autres_nf],
+  ["Actions et participations (EDF, Orange, Airbus…)", "#3949ab", s => s.fa.actions],
+  ["Dépôts, prêts et autres créances", "#8fc3e8", s => s.fa.depots + s.fa.titres + s.fa.credits + s.fa.assurance + s.fa.derives + s.fa.autres_f],
+];
+const PUB_L = [
+  ["Obligations (l'essentiel de la dette publique)", "#a3245e", s => s.fl.titres],
+  ["Emprunts bancaires et dépôts reçus", "#e15759", s => s.fl.credits + s.fl.depots],
+  ["Autres dettes (factures à payer, etc.)", "#f4a6a6", s => s.fl.autres_f + s.fl.actions + s.fl.assurance + s.fl.derives],
+];
+function drawPublic(el, md) {
+  const { showTip, hideTip } = window.TH;
+  const Y = Object.keys(P).sort().map(y => ({ annee: +y, s: P[y].secteurs.find(s => s.id === "apu"), pib: P[y].pib })).filter(d => d.s);
+  Y.forEach(d => { d.a = PUB_A.map(([, , f]) => f(d.s) || 0); d.l = PUB_L.map(([, , f]) => f(d.s) || 0); d.A = d3.sum(d.a); d.L = d3.sum(d.l); d.net = d.s.net; });
+  const w = Math.max(320, el.clientWidth), h = 380, m = { t: 20, r: 10, b: 26, l: 80 };
+  const x = d3.scaleBand(Y.map(d => d.annee), [m.l, w - m.r]).padding(.25);
+  const y = d3.scaleLinear([-d3.max(Y, d => d.L) * 1.05, d3.max(Y, d => d.A) * 1.12], [h - m.b, m.t]).nice();
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(8)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  Y.forEach(d => {
+    let acc = 0;
+    PUB_A.forEach(([l, c], i) => { const v = d.a[i];
+      svg.append("rect").attr("x", x(d.annee)).attr("width", x.bandwidth()).attr("y", y(acc + v)).attr("height", y(acc) - y(acc + v)).attr("fill", c)
+        .on("pointermove", ev => showTip(`<b>${d.annee} · ce que le public possède</b><br>${l} : ${md(v)}`, ev)).on("pointerleave", hideTip);
+      acc += v; });
+    svg.append("text").attr("x", x(d.annee) + x.bandwidth() / 2).attr("y", y(acc) - 5).attr("text-anchor", "middle").attr("font-size", w < 560 ? 8.5 : 10.5).style("fill", "var(--muted)").text(Math.round(acc).toLocaleString("fr-FR"));
+    let accL = 0;
+    PUB_L.forEach(([l, c], i) => { const v = d.l[i];
+      svg.append("rect").attr("x", x(d.annee)).attr("width", x.bandwidth()).attr("y", y(-accL)).attr("height", y(-accL - v) - y(-accL)).attr("fill", c)
+        .on("pointermove", ev => showTip(`<b>${d.annee} · ce que le public doit</b><br>${l} : ${md(v)}`, ev)).on("pointerleave", hideTip);
+      accL += v; });
+    svg.append("text").attr("x", x(d.annee) + x.bandwidth() / 2).attr("y", y(-accL) + 13).attr("text-anchor", "middle").attr("font-size", w < 560 ? 8.5 : 10.5).style("fill", "var(--muted)").text("−" + Math.round(accL).toLocaleString("fr-FR"));
+    // patrimoine net : un trait noir
+    svg.append("line").attr("x1", x(d.annee) - 3).attr("x2", x(d.annee) + x.bandwidth() + 3).attr("y1", y(d.net)).attr("y2", y(d.net)).attr("stroke", "var(--ink)").style("stroke", "var(--ink)").attr("stroke-width", 3)
+      .on("pointermove", ev => showTip(`<b>${d.annee} · patrimoine net du public</b><br>${md(d.net)} = ${md(d.A)} possédés − ${md(d.L)} dus`, ev)).on("pointerleave", hideTip);
+  });
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "currentColor").attr("opacity", .6);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickSizeOuter(0)).call(g => g.select(".domain").remove());
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(8).tickFormat(v => v.toLocaleString("fr-FR") + " Md€")).call(g => g.select(".domain").remove());
+  el.replaceChildren(svg.node());
+  const sw = c => `<i style="border-top-color:${c};border-top-width:10px;width:14px;opacity:1"></i>`;
+  $("#pn-legend").innerHTML = `<b style="color:var(--ink)">Possédé :</b>` + PUB_A.map(([l, c]) => `<span>${sw(c)}${l}</span>`).join("") +
+    `<span style="flex-basis:100%;height:0"></span><b style="color:var(--ink)">Dû :</b>` + PUB_L.map(([l, c]) => `<span>${sw(c)}${l}</span>`).join("") + `<span>${sw("var(--ink)")}Patrimoine net (trait noir)</span>`;
+  const a = Y[0], b = Y.at(-1), pc = v => Math.round(100 * v / b.pib) + " % du PIB";
+  $("#pn-txt").innerHTML = `<ul>
+      <li><b>Ce que le public possède : ${md(b.A)}</b> en ${b.annee}. Surtout des bâtiments et ouvrages (${md(b.a[0])} : routes, ponts, écoles, hôpitaux, réseaux) et les terrains qui vont avec (${md(b.a[1])}). Il détient aussi ${md(b.a[3])} d'actions et de participations dans des entreprises (EDF, Orange, Airbus…).</li>
+      <li><b>Ce qu'il doit : ${md(b.L)}</b>, dont ${md(b.l[0])} d'obligations : c'est l'essentiel de la dette publique, comptée ici à sa valeur de marché.</li>
+      <li><b>Le patrimoine net</b> (trait noir) est de <b>${md(b.net)}</b>, soit ${pc(b.net)}, contre ${md(a.net)} en ${a.annee}. Il a augmenté parce que la valeur des terrains, des bâtiments et des participations a monté plus vite que la dette ; la dette, elle, est passée de ${md(a.L)} à ${md(b.L)}.</li>
+      <li><b>À lire avec prudence</b> : une école ou une route ne se vendent pas, et elles sont comptées à leur coût de reconstruction. Les centrales et barrages d'EDF n'y figurent pas directement : seules les actions d'EDF détenues par l'État sont comptées.</li>
+    </ul>`;
+}
+
 function sensib() {
   const D = draw.D; if (!D) return;
   const { kpis, pct } = window.TH;
