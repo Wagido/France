@@ -79,15 +79,15 @@ function draw() {
   lab.filter(d => d.sub).append("tspan").attr("class", "amt").attr("x", d => d.x1 + 6).attr("dy", "1.2em").attr("font-size", "0.85em").text(d => d.sub);
   el.replaceChildren(svg.node());
   const p = v => pct(100 * v / R.pib, 0);
-  document.getElementById("rp-56").innerHTML = `<p><b>Les « <span style="color:#dc2626">${p(R.te)}</span> du PIB » : ce que dépense le public, pas ce qu'il prélève</b></p>
-    <p>On entend souvent que l'État « prélève ${p(R.te)} de la richesse ». En réalité, <b style="color:#dc2626">${p(R.te)}</b> est le montant des <b>dépenses publiques</b> rapporté au PIB (${R.annee}). Les prélèvements, eux, sont plus faibles, et l'argent dépensé ne reste pas entièrement dans le public :</p>
+  document.getElementById("rp-56").innerHTML = `<p><b><span style="color:#dc2626">${p(R.te)}</span> du PIB passe par les caisses publiques… mais la moitié revient aussitôt au privé</b></p>
+    <p>Ce chiffre de <b style="color:#dc2626">${p(R.te)}</b> (${R.annee}) s'appelle officiellement la « dépense publique ». Le mot est trompeur : une bonne partie de cet argent n'est pas dépensée par le public, il ne fait que transiter par ses caisses avant de revenir aux ménages et aux entreprises. Ce n'est pas non plus ce que l'État prélève :</p>
     <ul>
       <li><b>Ce qui est prélevé : ${p(R.po)}</b> du PIB en impôts et cotisations (42,8 % selon le taux officiel de l'INSEE, qui retire les crédits d'impôt et les cotisations « imputées » <a href="https://www.insee.fr/fr/statistiques/8540375" target="_blank" rel="noopener">[INSEE]</a>). Le reste de la dépense est payé par l'emprunt (${p(R.emprunt)}) et d'autres recettes (${p(R.autres_recettes)}).</li>
       <li><b>Ce qui est aussitôt redistribué : ${p(redis)}</b> du PIB, rendus aux ménages et aux entreprises en pensions, allocations, subventions et intérêts.</li>
       <li><b>Ce que le public utilise lui-même : ${p(fonct)}</b> du PIB, pour les écoles, les hôpitaux, la police, l'investissement.</li>
       <li><b>Au final, ${p(prive)}</b> du PIB est dépensé par le privé.</li>
     </ul>
-    <p class="muted" style="font-size:.8rem">Ce ratio n'est pas une « part » du PIB : il additionne des transferts (une pension versée puis dépensée par un retraité) à de la production. Un pays qui paie ses retraites par des caisses publiques, comme la France, affiche donc une dépense publique bien plus forte qu'un pays qui passe par des fonds de pension privés. Calcul à partir d'Eurostat (gov_10a_main, nama_10_gdp).</p>`;
+    <p class="muted" style="font-size:.8rem">Pourquoi « dépense publique » trompe : le terme additionne ce que le public utilise vraiment (salaires des enseignants, soignants, investissement) et ce qu'il ne fait que reverser (une pension versée, puis dépensée par le retraité). C'est aussi pour cela que ce ratio n'est pas une « part » du PIB et qu'il gonfle quand un pays paie ses retraites par des caisses publiques, comme la France, plutôt que par des fonds de pension privés. Le mot reste celui de la comptabilité nationale, utilisé par l'INSEE et Eurostat. Calcul à partir d'Eurostat (gov_10a_main, nama_10_gdp).</p>`;
 
   document.getElementById("rp-txt").innerHTML = `<p><b>Comment lire le diagramme, de gauche à droite</b></p>
     <ol>
