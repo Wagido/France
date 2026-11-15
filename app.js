@@ -415,10 +415,9 @@ function drawCroissance() {
   el.innerHTML = `<p>La dette ne baisse en proportion du PIB que si l'économie grandit plus vite qu'elle. Ce n'est plus le cas :</p>
   <ul class="prose-list" style="margin:6px 0">
     <li>la croissance (inflation comprise) n'a été que de <b>${pct(gn)}</b> en ${last.annee}, à peine le taux d'intérêt moyen de la dette (<b>${pct(I?.taux_apparent ?? 0, 2)}</b>) ;</li>
-    <li>hors intérêts, la puissance publique (État, Sécurité sociale, collectivités) dépense chaque année <b>${pct(Math.abs(B.primaire))}</b> du PIB de plus qu'il ne prélève ;</li>
+    <li>hors intérêts, la puissance publique (État, Sécurité sociale, collectivités) dépense chaque année <b>${pct(Math.abs(B.primaire))}</b> du PIB de plus qu'elle ne prélève ;</li>
     <li>résultat : la dette augmente d'environ 3 points de PIB par an, et les intérêts vont continuer de monter, car l'État emprunte désormais plus cher que sa dette ancienne.</li>
-  </ul>
-  <p style="margin-bottom:0"><b>Le gisement de croissance : le travail.</b> Les Français travaillent 667 heures par habitant et par an, contre 734 en Allemagne et 823 aux Pays-Bas. Seuls 75&nbsp;% des 20-64 ans ont un emploi, contre 81&nbsp;% en Allemagne et 83&nbsp;% aux Pays-Bas, surtout à cause des jeunes et des 55-64 ans. Rejoindre le niveau allemand ajouterait environ 10&nbsp;% au PIB, et autant aux recettes publiques.</p>`;
+  </ul>`;
 }
 function drawDevFisc() {
   if (!DATA) return;
