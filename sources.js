@@ -28,6 +28,8 @@ const S = [
   ["Qui fait quoi", "insee", "TCRED-TRAVAIL-EMPLOI-EFF-FP-RATIO", "Effectifs de la fonction publique (État, territoriale, hospitalière)", "https://www.insee.fr/fr/statistiques/series/102341737", "annuel"],
   ["Qui fait quoi", "eurostat", "lfsa_pganws / lfsa_esgaed / demo_pjanbroad", "Population par statut d'activité et par âge", null, "annuel"],
   ["La vie en euros", "insee", "Comptes nationaux distribués, tableau CND.103", "Revenus, prélèvements et transferts détaillés par âge", "https://www.insee.fr/fr/statistiques/8574663", "annuel"],
+  ["Inégalités", "insee", "Comptes nationaux distribués 2023 (tableau complémentaire par vingtième)", "Ce que chaque tranche de 5 % paie, reçoit et gagne (travail, patrimoine)", "https://www.insee.fr/fr/statistiques/8974371", "édition ponctuelle"],
+  ["Inégalités", "eurostat", "gov_10a_taxag (D91A)", "Droits de succession et de donation", null, "annuel"],
   ["Industrie et innovation", "eurostat", "rd_e_gerdtot / rd_p_persocc / sts_inpr_a / htec_emp_nat2 / isoc_eb_ai", "Recherche et développement, chercheurs, production industrielle, emploi de haute technologie, intelligence artificielle", null, "annuel"],
   ["Commerce extérieur", "comext", "DS-059341", "Échanges de biens par partenaire et par produit (SH)", "https://ec.europa.eu/eurostat/databrowser/view/DS-059341/default/table", "mensuel"],
   ["Énergie", "eurostat", "nrg_bal_c", "Bilans énergétiques complets", null, "annuel"],
@@ -51,7 +53,7 @@ const S = [
   ["Santé", "eurostat", "demo_mlexpec / hlth_cd_aro / hlth_sha11_hchf / hlth_sha11_hf", "Espérance de vie, causes de décès, comptes de la santé", null, "annuel"],
   ["Éducation", "eurostat", "educ_uoe_enra01 / educ_uoe_fini04 / edat_lfse_03 / educ_outc_pisa / sdg_04_10 / edat_lfse_20 / educ_uoe_perp04 / educ_uoe_fine06 / trng_lfse_01", "Effectifs, dépense par élève, diplômes, résultats PISA (OCDE), décrochage, jeunes sans activité, taux d'encadrement, formation des adultes", null, "annuel"],
   ["Logement", "eurostat", "ilc_lvho02 / 03 / 05a / 07a / 50a, prc_hpi_a, prc_hicp_aind", "Statut d'occupation, surpeuplement, coût, prix des logements", null, "annuel / trimestriel"],
-  ["Inégalités", "eurostat", "ilc_di01 / ilc_di12 / ilc_li02 / ilc_li10 / ilc_mdsd11", "Distribution des revenus, pauvreté, privation (enquête SRCV)", null, "annuel"],
+  ["Inégalités", "eurostat", "ilc_di01 / ilc_di11 / ilc_di11b / ilc_di12 / ilc_di12b / ilc_li02 / ilc_li10 / ilc_mdsd11", "Distribution des revenus, pauvreté, privation (enquête SRCV)", null, "annuel"],
   ["Capital social et culturel", "eurostat", "ilc_scp03 à 28 / ilc_pw01 à 10", "Pratiques culturelles, liens, engagement, confiance, bien-être", null, "module tous les 6 ans ; bien-être annuel"],
 ];
 

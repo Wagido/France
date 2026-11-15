@@ -34,7 +34,7 @@ async function setGeo(g) {
   if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/societe/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
-function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets, capital].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
+function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets, capital, reduction].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
 
 /* ---------------------------------------------------------------- santé */
 function sante() {
@@ -277,6 +277,42 @@ function dechets() {
     { k: "rec", l: "Part recyclée (tous déchets)", f: r => r.dechets?.recyclage, fmt: v => pct(v, 0), max: 100, c: "#16a34a" },
     { k: "dec", l: "Part en décharge", f: r => r.dechets?.decharge, fmt: v => pct(v, 0), max: 100, c: "#dc2626" },
   ], "men");
+}
+
+/* ---------------------------------------------------------------- réduction des inégalités par pays */
+let redK = "s80";
+function reduction() {
+  const { n1, css, esc, showTip, hideTip, legend } = T();
+  const el = $("#red-chart"); if (!el || !IDX) return;
+  document.querySelectorAll("#red-ind button").forEach(b => b.onclick = () => { redK = b.dataset.k; document.querySelectorAll("#red-ind button").forEach(o => o.setAttribute("aria-pressed", o === b)); reduction(); });
+  const k0 = redK === "s80" ? "s80_s20_marche" : "gini_avant", k1 = redK === "s80" ? "s80_s20" : "gini_apres";
+  const rows = IDX.pays.filter(r => r.inegalites?.[k0] != null && r.inegalites?.[k1] != null)
+    .map(r => ({ code: r.code, nom: r.nom, a: r.inegalites[k0], b: r.inegalites[k1], an: r.inegalites.annee, red: 100 * (1 - r.inegalites[k1] / r.inegalites[k0]) }))
+    .sort((p, q) => q.red - p.red);
+  const fr = IDX.pays.find(r => r.code === "FR")?.inegalites;
+  $("#red-d10").textContent = fr?.d10_d1 ? n1(fr.d10_d1) : "–";
+  const rk = rows.findIndex(r => r.code === "FR") + 1, rkA = [...rows].sort((p, q) => q.a - p.a).findIndex(r => r.code === "FR") + 1;
+  const F = rows.find(r => r.code === "FR");
+  $("#red-lead").innerHTML = F ? (redK === "s80"
+    ? `Avant impôts et prestations, les 20 % les plus aisés gagnent en France <b>${n1(F.a)}</b> fois plus que les 20 % les plus modestes (${rkA}<sup>e</sup> écart le plus fort sur ${rows.length} pays). Après, <b>${n1(F.b)}</b> fois plus. La redistribution réduit l'écart de ${Math.round(F.red)} % : ${rk}<sup>e</sup> plus forte réduction.`
+    : `Indice de Gini (0 = égalité parfaite, 100 = une seule personne a tout) : <b>${n1(F.a)}</b> avant impôts et prestations en France (${rkA}<sup>e</sup> plus inégalitaire sur ${rows.length}), <b>${n1(F.b)}</b> après. Réduction de ${Math.round(F.red)} % : ${rk}<sup>e</sup> plus forte.`) : "";
+  const w = Math.max(320, el.clientWidth), rowH = 19, m = { t: 22, r: 60, b: 8, l: 120 };
+  const h = m.t + rows.length * rowH + m.b;
+  const x = d3.scaleLinear([0, d3.max(rows, r => r.a) * 1.05], [m.l, w - m.r]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${m.t - 4})`).call(d3.axisTop(x).ticks(6)).call(g => g.select(".domain").remove());
+  rows.forEach((r, i) => {
+    const yy = m.t + i * rowH + rowH / 2, me = r.code === geo;
+    const g = svg.append("g").on("pointermove", ev => showTip(`<b>${esc(r.nom)}</b> (${r.an})<br>Avant : ${n1(r.a)}<br>Après : ${n1(r.b)}<br>Réduction : ${Math.round(r.red)} %`, ev)).on("pointerleave", hideTip);
+    if (me) g.append("rect").attr("x", 0).attr("y", yy - rowH / 2).attr("width", w).attr("height", rowH).attr("fill", css("--callout"));
+    g.append("text").attr("x", m.l - 8).attr("y", yy).attr("dy", ".35em").attr("text-anchor", "end").attr("font-size", 11.5).attr("font-weight", me ? 700 : 400).text(r.nom);
+    g.append("line").attr("x1", x(r.b)).attr("x2", x(r.a)).attr("y1", yy).attr("y2", yy).attr("stroke", "#9ca3af").attr("stroke-width", 3);
+    g.append("circle").attr("cx", x(r.a)).attr("cy", yy).attr("r", 5).attr("fill", "#dc2626");
+    g.append("circle").attr("cx", x(r.b)).attr("cy", yy).attr("r", 5).attr("fill", "#16a34a");
+    g.append("text").attr("x", x(r.a) + 9).attr("y", yy).attr("dy", ".35em").attr("font-size", 10.5).attr("fill", css("--muted")).text("−" + Math.round(r.red) + " %");
+  });
+  el.replaceChildren(svg.node());
+  legend("#red-legend", [["Avant impôts et prestations", "#dc2626"], ["Après", "#16a34a"], ["Pays classés de la plus forte à la plus faible réduction", "#9ca3af"]]);
 }
 
 /* ---------------------------------------------------------------- capital social et culturel */

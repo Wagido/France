@@ -182,6 +182,7 @@ def emploi(geo):
 # ------------------------------------------------------------------ inégalités
 def inegalites(geo):
     d, g, l, l0, m = (G(n, geo) for n in ["ilc_di01.json", "ilc_di12.json", "ilc_li02.json", "ilc_li10.json", "ilc_mdsd11.json"])
+    s1, s0, g0 = G("ilc_di11.json", geo), G("ilc_di11b.json", geo), G("ilc_di12b.json", geo)
     dy = [y for y in Y("ilc_di01.json", geo) if d(quant_inc="D1", statinfo="SHARE", time=y) is not None]
     dec = None
     if dy:
@@ -192,7 +193,7 @@ def inegalites(geo):
     for y in sorted(set(Y("ilc_di12.json", geo)) | set(Y("ilc_li02.json", geo))):
         rec = {"annee": y, "gini": g(time=y), "pauvrete": l(age="TOTAL", statinfo="MED_EI", time=y), "pauvrete_enfants": l(age="Y_LT18", statinfo="MED_EI", time=y),
                "pauvrete_65": l(age="Y_GE65", statinfo="MED_EI", time=y), "avant_transferts": l0(statinfo="MED_EI", time=y), "privation": m(time=y),
-               "d10_d1": None}
+               "d10_d1": None, "s80_s20": s1(time=y), "s80_s20_marche": s0(time=y), "gini_avant": g0(time=y)}
         p1, p10 = d(quant_inc="D1", statinfo="SHARE", time=y), d(quant_inc="D10", statinfo="SHARE", time=y)
         if p1 and p10:
             rec["d10_d1"] = r(p10 / p1, 2)
@@ -311,7 +312,10 @@ for p in PAYS:
         s["emploi"] = {"chomage": t and t["chomage"], "chomage_jeunes": t and t["chomage_jeunes"], "emploi": e and e["emploi_20_64"]}
     if d["inegalites"]:
         g = last(d["inegalites"]["serie"], "gini"); pv = last(d["inegalites"]["serie"], "pauvrete")
-        s["inegalites"] = {"gini": g and g["gini"], "pauvrete": pv and pv["pauvrete"], "avant": pv and pv["avant_transferts"], "d10_d1": g and g["d10_d1"]}
+        sx = last(d["inegalites"]["serie"], "s80_s20_marche"); ga = last(d["inegalites"]["serie"], "gini_avant")
+        s["inegalites"] = {"gini": g and g["gini"], "pauvrete": pv and pv["pauvrete"], "avant": pv and pv["avant_transferts"], "d10_d1": g and g["d10_d1"],
+                           "s80_s20": sx and sx["s80_s20"], "s80_s20_marche": sx and sx["s80_s20_marche"], "gini_avant": ga and ga["gini_avant"],
+                           "gini_apres": ga and ga["gini"], "annee": g and g["annee"]}
     if d["dechets"]:
         mm = last(d["dechets"]["menagers"], "kg_hab"); pr = d["dechets"]["production"]; tr = d["dechets"]["traitement"]
         s["dechets"] = {"menagers": mm and mm["kg_hab"], "total_hab": pr and pr["kg_hab"],

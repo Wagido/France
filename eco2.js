@@ -29,7 +29,7 @@ async function setGeo(g) {
   if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/eco2/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
-function drawAll() { [qui, cycle, industrie].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
+function drawAll() { [qui, cycle, industrie, redis, origine].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
 
 /* ---------------------------------------------------------------- qui fait quoi */
 function qui() {
@@ -74,9 +74,11 @@ function qui() {
 }
 
 /* ---------------------------------------------------------------- la vie en euros (France) */
-const PAY_C = { tva: "#b91c1c", production: "#ef4444", is: "#f87171", csg: "#dc2626", ir: "#991b1b", patrimoine: "#fca5a5", cot_retraite: "#7f1d1d", cot_autres: "#e11d48" };
-const ARG_C = { retraites: "#1d4ed8", chomage: "#60a5fa", ij: "#3b82f6", famille: "#93c5fd", minima: "#2563eb", complementaires: "#bfdbfe" };
-const SER_C = { sante: "#15803d", ecole: "#22c55e", action_sociale: "#4ade80", logement: "#86efac", culture: "#a3e635", collectif: "#166534" };
+// trois couleurs seulement : le détail est dans l'infobulle
+const PAY_C = new Proxy({}, { get: () => "#dc2626" });
+const ARG_C = new Proxy({}, { get: () => "#3b6fd6" });
+const SER_C = new Proxy({}, { get: () => "#16a34a" });
+const LEG3 = css => [["Payé (impôts, cotisations, TVA…)", "#dc2626"], ["Reçu en argent (retraites, allocations…)", "#3b6fd6"], ["Reçu en services (soins, école, police, routes…)", "#16a34a"]];
 function cycle() {
   const { kpis, n0, n1, pct, css, esc, showTip, hideTip, legend } = T();
   const C = (CACHE.FR || D())?.cycle_de_vie; const el = $("#cv-chart");
@@ -108,11 +110,9 @@ function cycle() {
   tr.forEach(t => {
     const x0 = x(t.a) + 1, wd = Math.max(1, x(t.b) - x(t.a) - 2);
     const g = svg.append("g").on("pointermove", ev => showTip(tip(t), ev)).on("pointerleave", hideTip);
-    let acc = 0;
-    [...C.argent.map(z => [z, ARG_C]), ...C.services.map(z => [z, SER_C])].forEach(([[k, l, v], col]) => {
-      const val = Math.max(0, v[t.i]); g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(acc + val)).attr("height", y(acc) - y(acc + val)).attr("fill", col[k]); acc += val; });
-    acc = 0;
-    C.paye.forEach(([k, l, v]) => { const val = Math.max(0, v[t.i]); g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(-acc)).attr("height", y(-(acc + val)) - y(-acc)).attr("fill", PAY_C[k]); acc += val; });
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.argent)).attr("height", y(0) - y(t.argent)).attr("fill", "#3b6fd6");
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(t.argent + t.services)).attr("height", y(t.argent) - y(t.argent + t.services)).attr("fill", "#16a34a");
+    g.append("rect").attr("x", x0).attr("width", wd).attr("y", y(0)).attr("height", y(-t.paye) - y(0)).attr("fill", "#dc2626");
     g.append("line").attr("x1", x0).attr("x2", x0 + wd).attr("y1", y(t.prim)).attr("y2", y(t.prim)).attr("stroke", css("--ink")).attr("stroke-width", 3);
     g.append("text").attr("x", x0 + wd / 2).attr("y", y(t.prim) - 5).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", css("--ink")).text(n0(t.prim / 1000) + " k€ gagnés");
     g.append("rect").attr("x", x0).attr("width", wd).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent");
@@ -125,8 +125,100 @@ function cycle() {
   svg.append("g").attr("class", "axis").attr("transform", `translate(${w - m.r},0)`).call(d3.axisRight(y2).ticks(6).tickFormat(d => n0(d / 1000) + " k€")).call(g => g.select(".domain").remove());
   svg.append("text").attr("x", w - m.r - 4).attr("y", m.t + 10).attr("text-anchor", "end").attr("font-size", 11).attr("fill", css("--muted")).text(`espérance de vie : ${n1(E)} ans`);
   el.replaceChildren(svg.node());
-  legend("#cv-legend", [...C.paye.map(([k, l]) => [l, PAY_C[k]]), ...C.argent.map(([k, l]) => [l, ARG_C[k]]), ...C.services.map(([k, l]) => [l, SER_C[k]]),
-    ["Revenu gagné par le travail et le patrimoine", css("--ink")], ["Solde cumulé depuis 18 ans (axe de droite)", "#f59e0b", true]]);
+  legend("#cv-legend", [...LEG3(css), ["Revenu gagné par le travail et le patrimoine", css("--ink")], ["Solde cumulé depuis 18 ans (axe de droite)", "#f59e0b", true]]);
+}
+
+/* ---------------------------------------------------------------- redistribution par décile (France) */
+function redis() {
+  const { kpis, n0, n1, pct, css, esc, showTip, hideTip, legend, bars } = T();
+  const R = (CACHE.FR || D())?.redistribution; const el = $("#rd-chart"); if (!el) return;
+  if (!R) { empty("#rd-chart", "Disponible pour la France uniquement."); return; }
+  const N = R.avant.length;
+  const dec = R.avant.map((a, i) => ({ i, l: N === 20 ? (i + 1) * 5 + " %" : "D" + (i + 1), avant: a, apres: R.apres[i], paye: d3.sum(R.paye, x => x[2][i]), recu: d3.sum([...R.argent, ...R.services], x => x[2][i]), benef: R.beneficiaires_nets[i] }));
+  dec.forEach(d => d.net = d.recu - d.paye);
+  const top = dec[N - 1], bas = dec[0];
+  const r0 = top.avant / bas.avant, r1 = top.apres / bas.apres;
+  const nbBenef = dec.filter(d => d.net > 0).length;
+  kpis("#rd-kpis", [
+    [n0(r0) + " → " + n1(r1), `fois plus de revenu pour les 5 % les plus aisés que pour les 5 % les plus modestes, avant puis après redistribution (${R.annee})`],
+    [`${nbBenef} tranches sur ${N}`, `reçoivent plus qu'elles ne paient (${nbBenef * 100 / N} % de la population, du bas de l'échelle)`],
+    ["+" + n0(bas.net) + " €", "solde net des 5 % les plus modestes, par an et par unité de consommation"],
+    ["−" + n0(-top.net) + " €", `solde net des 5 % les plus aisés (ils paient ${n0(top.paye)} € et reçoivent ${n0(top.recu)} €)`],
+  ]);
+  const w = Math.max(320, el.clientWidth), h = 460, m = { t: 14, r: 12, b: 30, l: 62 };
+  const x = d3.scaleBand(dec.map(d => d.l), [m.l, w - m.r]).padding(.18);
+  const y = d3.scaleLinear([-d3.max(dec, d => d.paye) * 1.05, d3.max(dec, d => Math.max(d.recu, d.avant, d.apres)) * 1.05], [h - m.b, m.t]).nice();
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(8)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  const tip = d => `<b>${N === 20 ? `De ${d.i * 5} à ${(d.i + 1) * 5} %` : d.l}</b> ${d.i === 0 ? "(les plus modestes)" : d.i === N - 1 ? "(les plus aisés)" : ""} · par unité de consommation et par an<br>Revenu avant redistribution : ${n0(d.avant)} €<br>Niveau de vie après : <b>${n0(d.apres)} €</b><br><br><b style="color:#dc2626">Paie : ${n0(d.paye)} €</b><br>` +
+    R.paye.map(([k, l, v]) => `${esc(l)} : ${n0(v[d.i])} €`).join("<br>") + `<br><br><b style="color:#2563eb">Reçoit en argent : ${n0(d3.sum(R.argent, z => z[2][d.i]))} €</b><br>` +
+    R.argent.map(([k, l, v]) => `${esc(l)} : ${n0(v[d.i])} €`).join("<br>") + `<br><br><b style="color:#16a34a">Reçoit en services : ${n0(d3.sum(R.services, z => z[2][d.i]))} €</b><br>` +
+    R.services.map(([k, l, v]) => `${esc(l)} : ${n0(v[d.i])} €`).join("<br>") + `<br><br><b>Solde : ${d.net >= 0 ? "+" : "−"}${n0(Math.abs(d.net))} €</b> · ${pct(d.benef, 0)} des personnes de la tranche sont bénéficiaires nettes`;
+  dec.forEach(d => {
+    const g = svg.append("g").on("pointermove", ev => showTip(tip(d), ev)).on("pointerleave", hideTip);
+    const x0 = x(d.l), bw = x.bandwidth();
+    const ag = d3.sum(R.argent, z => Math.max(0, z[2][d.i])), sv = d3.sum(R.services, z => Math.max(0, z[2][d.i]));
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(ag)).attr("height", y(0) - y(ag)).attr("fill", "#3b6fd6");
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(ag + sv)).attr("height", y(ag) - y(ag + sv)).attr("fill", "#16a34a");
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", y(0)).attr("height", y(-d.paye) - y(0)).attr("fill", "#dc2626");
+    g.append("path").attr("d", d3.symbol(d3.symbolDiamond, 90)()).attr("transform", `translate(${x0 + bw / 2},${y(d.avant)})`).attr("fill", "#9ca3af").attr("stroke", css("--surface"));
+    g.append("line").attr("x1", x0 - 3).attr("x2", x0 + bw + 3).attr("y1", y(d.apres)).attr("y2", y(d.apres)).attr("stroke", css("--ink")).attr("stroke-width", 3);
+    g.append("text").attr("x", x0 + bw / 2).attr("y", y(-d.paye) + 14).attr("text-anchor", "middle").attr("font-size", N === 20 ? 9 : 10.5).attr("font-weight", 700)
+      .attr("fill", d.net >= 0 ? "#16a34a" : "#dc2626").text((d.net >= 0 ? "+" : "−") + n0(Math.abs(d.net) / 1000) + " k€");
+    g.append("rect").attr("x", x0).attr("width", bw).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent");
+  });
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--ink"));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickValues(x.domain().filter((_, i) => w > 700 || i % 2 === 1)));
+  svg.append("text").attr("x", (m.l + w - m.r) / 2).attr("y", h - 2).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", css("--muted")).text("Population classée par niveau de vie, des plus modestes (à gauche) aux plus aisés (à droite), par tranches de 5 %");
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(8).tickFormat(v => n0(v / 1000) + " k€")).call(g => g.select(".domain").remove());
+  el.replaceChildren(svg.node());
+  legend("#rd-legend", [...LEG3(css), ["Revenu avant redistribution (losange)", "#9ca3af"], ["Niveau de vie après redistribution", css("--ink")], ["Solde net (en bas de chaque colonne)", "#16a34a"]]);
+  // avant / après
+  const mx = d3.max(dec, d => d.avant);
+  $("#rd-avap").innerHTML = `<div class="bars">${dec.map(d => `<div class="bar-row"><span class="lab">${N === 20 ? `${d.i * 5}-${(d.i + 1) * 5} %` : d.l}</span><span class="val">${n0(d.avant)} € → <b>${n0(d.apres)} €</b></span>
+    <span class="track" style="height:14px"><span class="fill" style="width:${100 * d.avant / mx}%;background:#d1d5db"></span><span class="fill" style="width:${100 * d.apres / mx}%;background:${css("--ink")};height:6px;top:4px"></span></span></div>`).join("")}</div>
+    <p class="muted" style="font-size:.85rem;margin-top:6px">Gris : revenu avant redistribution ; noir : niveau de vie après. Les 5 % les plus aisés ont ${n0(r0)} fois plus de revenu que les 5 % les plus modestes avant redistribution, ${n1(r1)} fois plus après.</p>`;
+  // Gini
+  bars($("#rd-gini"), R.gini.filter(([l]) => !/Revenus|Profits/.test(l)).map(([l, v]) => ({ l, v, t: (v > 0 ? "+" : "") + n1(v) + " pt", c: v > 0 ? "#dc2626" : "#16a34a" })).sort((a, b) => a.v - b.v));
+}
+
+/* ---------------------------------------------------------------- origine du revenu : travail ou patrimoine */
+function origine() {
+  const { kpis, n0, n1, pct, css, esc, showTip, hideTip, legend, lineChart } = T();
+  const R = (CACHE.FR || D())?.redistribution; const el = $("#or-chart"); if (!el || !R?.origine) return;
+  const O = Object.fromEntries(R.origine.map(([k, l, v]) => [k, { l, v }]));
+  const N = R.avant.length;
+  const G3 = [["travail", "Travail salarié", "#3b6fd6", ["salaires"]], ["indep", "Travail indépendant (mêlé de capital)", "#94a3b8", ["independants"]],
+              ["patri", "Patrimoine (intérêts, dividendes, loyers, bénéfices)", "#f59e0b", ["financier", "loyers", "profits"]]];
+  const rows = d3.range(N).map(i => {
+    const vals = Object.fromEntries(G3.map(([k, , , ks]) => [k, d3.sum(ks, kk => Math.max(0, O[kk].v[i]))]));
+    const tot = d3.sum(Object.values(vals));
+    return { i, vals, tot, sh: Object.fromEntries(Object.entries(vals).map(([k, v]) => [k, 100 * v / tot])) };
+  });
+  const top = rows[N - 1], mid = rows[Math.floor(N / 2)], bas = rows[0];
+  const capTot = d3.sum(rows, r => r.vals.patri), capTop = top.vals.patri + rows[N - 2].vals.patri;
+  kpis("#or-kpis", [
+    [pct(top.sh.patri, 0), `du revenu des 5 % les plus aisés vient du patrimoine (${n0(top.vals.patri)} € par unité de consommation), contre ${pct(mid.sh.patri, 0)} au milieu de l'échelle`],
+    [pct(100 * capTop / capTot, 0), "des revenus du patrimoine vont aux 10 % les plus aisés"],
+    [pct(bas.sh.patri, 0), "chez les 5 % les plus modestes : surtout le loyer « imputé » des quelques propriétaires et de petits revenus d'épargne"],
+  ]);
+  const w = Math.max(320, el.clientWidth), h = 300, m = { t: 10, r: 10, b: 30, l: 44 };
+  const x = d3.scaleBand(rows.map(r => r.i), [m.l, w - m.r]).padding(.12), y = d3.scaleLinear([0, 100], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  rows.forEach(r => {
+    const g = svg.append("g").on("pointermove", ev => showTip(`<b>De ${r.i * 5} à ${(r.i + 1) * 5} %</b> · revenu avant redistribution : ${n0(r.tot)} € par unité de consommation<br>` +
+      R.origine.map(([k, l, v]) => `${esc(l)} : ${n0(v[r.i])} € (${pct(100 * Math.max(0, v[r.i]) / r.tot, 0)})`).join("<br>"), ev)).on("pointerleave", hideTip);
+    let acc = 0;
+    G3.forEach(([k, l, c]) => { const v = r.sh[k]; g.append("rect").attr("x", x(r.i)).attr("width", x.bandwidth()).attr("y", y(acc + v)).attr("height", y(acc) - y(acc + v)).attr("fill", c); acc += v; });
+    g.append("text").attr("x", x(r.i) + x.bandwidth() / 2).attr("y", y(100 - r.sh.patri / 2)).attr("dy", ".35em").attr("text-anchor", "middle").attr("font-size", 9.5).attr("fill", "#fff").attr("font-weight", 700).text(r.sh.patri >= 8 ? Math.round(r.sh.patri) + "%" : "");
+  });
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(i => (i + 1) * 5 + " %").tickValues(rows.map(r => r.i).filter(i => w > 700 || i % 2 === 1)));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
+  el.replaceChildren(svg.node());
+  legend("#or-legend", G3.map(([, l, c]) => [l, c]));
+  const S = R.succession || [], s1 = S.at(-1), s0 = S[0];
+  $("#her-box").innerHTML = `<p>Les comptes nationaux ne comptent pas l'héritage comme un revenu : c'est un transfert de patrimoine, qui ne crée pas de richesse. Il pèse pourtant lourd. Selon le Conseil d'analyse économique (« Repenser l'héritage », note n° 69, 2021), les héritages et donations représentent chaque année de l'ordre de 15 % du revenu disponible des ménages, et la part du patrimoine hérité dans le patrimoine total est passée d'environ un tiers au début des années 1970 à environ 60 % aujourd'hui. Les inégalités de patrimoine, bien plus fortes que celles de revenu, se transmettent ainsi largement d'une génération à l'autre.</p>` +
+    (s1 ? `<p>Les droits de succession et de donation ont rapporté <b>${n1(s1.md)} Md€</b> en ${s1.annee}, soit ${pct(s1.pib, 1)} du PIB (${n1(s0.md)} Md€ en ${s0.annee}). C'est moins de 2 % des prélèvements obligatoires : la grande majorité des transmissions en ligne directe sont exonérées grâce aux abattements (100 000 € par parent et par enfant, renouvelables tous les 15 ans) et aux régimes de l'assurance-vie et des entreprises familiales.</p>` : "");
 }
 
 /* ---------------------------------------------------------------- industrie et innovation */

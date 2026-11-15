@@ -127,7 +127,7 @@
 <section id="cycle-vie" class="panel">
   <div class="panel-head"><h2>La vie en euros : ce que l'on paie et ce que l'on reçoit à chaque âge <span class="geo-fixed">France</span></h2></div>
   <div class="kpis" id="cv-kpis"></div>
-  <p class="lead">La traduction par âge du diagramme « L'argent public », en euros par personne et par an. Sous zéro, en rouge, ce que l'on paie, impôt par impôt ; au-dessus, ce que l'on reçoit en argent (bleus) et en services publics (verts) ; le trait noir est ce que l'on gagne par son travail et son patrimoine. La courbe orange cumule le solde. Survolez une tranche pour le détail.</p>
+  <p class="lead">La traduction par âge du diagramme « L'argent public », en euros par personne et par an. Sous zéro, en rouge, ce que l'on paie ; au-dessus, ce que l'on reçoit en argent (bleu) et en services publics (vert) ; le trait noir est ce que l'on gagne par son travail et son patrimoine. La courbe orange cumule le solde. Survolez une tranche pour le détail.</p>
   <div id="cv-chart" class="chart"></div><div class="legend-row" id="cv-legend"></div>
   <div class="callout small"><p><b>Comment c'est calculé.</b> Comptes nationaux distribués de l'INSEE (tableau CND.103, dernière année publiée), par âge de la personne de référence du ménage, divisés par le nombre de personnes du ménage. Les enfants sont donc comptés avec leurs parents : c'est pourquoi l'école apparaît surtout entre 30 et 50 ans, et pourquoi la vie commence ici à 18 ans. L'INSEE ne publie pas ces comptes année d'âge par année d'âge. Ce n'est pas le parcours d'une personne réelle, mais une photographie de la France d'une année, lue par âge. La courbe cumulée n'est pas actualisée et ignore la croissance future.</p><p><b>Pourquoi reçoit-on plus que l'on paie ?</b> Les dépenses publiques dépassent les prélèvements : l'écart est financé par la dette (le déficit) et par des recettes qui ne sont pas des prélèvements sur les ménages (revenus du patrimoine public, recettes des administrations). Une vie « moyenne » reçoit donc un peu plus qu'elle ne paie, la différence étant reportée sur les générations futures.</p></div>
 </section>
@@ -580,6 +580,28 @@
       <p class="muted" style="font-size:.85rem">Revenu disponible (après impôts directs et prestations) par unité de consommation, enquête SRCV. Ces chiffres ne comptent pas les services publics gratuits (école, santé) : voir le diagramme « L'argent public » pour une vision élargie.</p></div>
     <div><h3>Pauvreté et inégalités dans le temps</h3><div id="in-serie" class="chart"></div><div class="legend-row" id="in-serie-legend"></div></div>
   </div>
+  <h3>Ce que chaque tranche de 5 % de la population paie et reçoit <span class="geo-fixed">France</span></h3>
+  <div class="kpis" id="rd-kpis"></div>
+  <p class="lead">La population est classée en vingt tranches de 5 % selon son niveau de vie, des plus modestes (à gauche) aux plus aisés (à droite) : c'est le découpage le plus fin publié par l'INSEE. Pour chaque tranche, en euros par an et par unité de consommation : sous zéro ce qu'elle paie (impôts, cotisations, TVA…), au-dessus ce qu'elle reçoit en argent (bleu) et en services publics (vert). Le losange gris est son revenu avant redistribution, le trait noir son niveau de vie après. Survolez une colonne pour le détail.</p>
+  <div id="rd-chart" class="chart"></div><div class="legend-row" id="rd-legend"></div>
+  <h3>D'où vient le revenu : travail ou patrimoine ? <span class="geo-fixed">France</span></h3>
+  <div class="kpis" id="or-kpis"></div>
+  <p class="lead">Pour chaque tranche de 5 %, la part du revenu avant redistribution qui vient du travail (salaires, cotisations comprises), du travail indépendant (où travail et capital sont mêlés) et du patrimoine (intérêts, dividendes, loyers, bénéfices gardés dans les entreprises détenues). Survolez une colonne pour le détail en euros.</p>
+  <div id="or-chart" class="chart"></div><div class="legend-row" id="or-legend"></div>
+  <h3>Et l'héritage ?</h3>
+  <div class="callout small" id="her-box"></div>
+  <div class="grid2">
+    <div><h3>Avant et après : l'écart entre les tranches</h3><div id="rd-avap" class="chart"></div></div>
+    <div><h3>Qui réduit les inégalités, qui les accroît</h3><div id="rd-gini" class="chart"></div>
+      <p class="muted" style="font-size:.85rem">Contribution de chaque élément à l'indice d'inégalité (pseudo-Gini, en points) selon l'INSEE. Positif : accroît les inégalités ; négatif : les réduit. Les services publics gratuits (santé, école) réduisent plus les inégalités que les prestations en argent ; la TVA et les taxes sur la consommation, qui pèsent plus lourd dans le budget des ménages modestes, les accroissent.</p></div>
+  </div>
+  <p class="muted" style="font-size:.85rem">Source : INSEE, comptes nationaux distribués 2023 (Insee Analyses n° 118). Tous les prélèvements sont attribués aux ménages, y compris ceux payés par les entreprises (impôt sur les sociétés, taxes sur la production), selon qui les supporte en dernier ressort ; toutes les dépenses publiques le sont aussi, y compris les services collectifs. C'est la version « élargie » de la redistribution, plus complète que les statistiques habituelles fondées sur les seuls impôts directs et prestations.</p>
+  <h3>Comparer : combien la redistribution réduit les écarts, pays par pays</h3>
+  <div class="ctl-row" style="margin-bottom:6px"><div class="seg" id="red-ind" role="radiogroup" aria-label="Indicateur">
+    <button data-k="s80" aria-pressed="true">20 % les plus aisés ÷ 20 % les plus modestes</button><button data-k="gini">Indice de Gini</button></div></div>
+  <p class="lead" id="red-lead"></p>
+  <div id="red-chart" class="chart"></div><div class="legend-row" id="red-legend"></div>
+  <p class="muted" style="font-size:.85rem">Eurostat, enquête SRCV : revenu monétaire par unité de consommation, avant impôts et prestations (retraites comptées comme des prestations) puis après. Le rapport de 3,6 des comptes « élargis » de l'INSEE, plus haut, compte en plus les services publics gratuits (santé, école…) : il n'existe pas de calcul harmonisé de ce type pour les autres pays. En revenu monétaire, le rapport entre les 10 % les plus aisés et les 10 % les plus modestes est de <span id="red-d10">–</span> en France.</p>
   <p class="muted" style="font-size:.85rem">Le patrimoine des ménages par tranche n'est pas publié par Eurostat. En France, d'après l'INSEE, les 10 % de ménages les mieux dotés détiennent environ la moitié du patrimoine brut.</p>
   <h3>Comparer les pays</h3><div id="in-cmp" class="chart"></div>
 </section>

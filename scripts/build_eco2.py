@@ -141,12 +141,85 @@ def cycle_de_vie():
     return data
 
 
+def succession():
+    """Droits de succession et de donation perçus (Eurostat, impôts sur les transferts en capital, D91A)."""
+    t = getter(jstat("gov_10a_taxag.json", os.path.join(HERE, "..", "data", "sources")))
+    g = getter(jstat("nama_10_gdp.json", os.path.join(HERE, "..", "data", "sources")))
+    out = []
+    for y in range(2015, 2030):
+        v = t(sector="S13", na_item="D91A", time=y)
+        if v is not None:
+            out.append({"annee": str(y), "md": round(v / 1000, 2), "pib": round(100 * v / g(na_item="B1GQ", time=y), 2) if g(na_item="B1GQ", time=y) else None})
+    return out
+
+
+def redistribution():
+    """Ce que chaque décile paie et reçoit (INSEE, comptes nationaux distribués 2023, tableau complémentaire par vingtième)."""
+    import openpyxl
+    wb = openpyxl.load_workbook(os.path.join(HERE, "..", "data", "sources", "insee_IA118.xlsx"), data_only=True)
+    ws = wb["Tableau complémentaire"]
+    rows = {}
+    for r in ws.iter_rows(min_row=4, values_only=True):
+        if r[0] and isinstance(r[1], (int, float)):
+            rows[str(r[0]).strip()] = [float(x or 0) for x in r[2:22]]   # 20 vingtièmes (tranches de 5 %)
+    def L(prefix):
+        return next(v for k, v in rows.items() if k.startswith(prefix))
+    add = lambda *ls: [sum(x) for x in zip(*ls)]
+    uc = L("Nombre d'unités de consommation")
+    ind = L("Nombre d'individus")
+    per = lambda v: [round(x * 1e9 / (u * 1e6)) for x, u in zip(v, uc)]
+    neg = lambda v: [-x for x in v]
+    paye = [
+        ("tva", "TVA, carburants et autres taxes sur les produits", neg(add(L("Taxes sur les produits"), L("Subventions sur les produits")))),
+        ("production", "Taxes sur la production (nettes des aides)", neg(add(L("Taxes sur la production"), L("Subventions sur la production")))),
+        ("is", "Impôt sur les sociétés", neg(L("Impôt sur les sociétés"))),
+        ("csg", "CSG", neg(L("Contribution sociale généralisée"))),
+        ("ir", "Impôt sur le revenu", neg(L("Impôt sur le revenu"))),
+        ("patrimoine", "Taxe d'habitation, IFI, CRDS, autres", neg(L("Autres impôts sur les revenus"))),
+        ("cot_retraite", "Cotisations retraite", neg(L("Cotisations sociales retraite"))),
+        ("cot_autres", "Cotisations maladie, chômage, famille", neg(add(L("Cotisations sociales chômage"), L("Cotisations sociales famille"), L("Autres cotisations sociales")))),
+    ]
+    argent = [
+        ("retraites", "Retraites", L("Pensions de retraite")), ("chomage", "Allocations chômage", L("Allocations chômage")),
+        ("ij", "Indemnités maladie, accidents du travail, invalidité", add(L("Autres revenus de remplacement"), L("Invalidité"))),
+        ("famille", "Prestations familiales", L("Famille")), ("minima", "Minima sociaux, aides contre l'exclusion", L("Exclusion sociale")),
+        ("complementaires", "Remboursements des complémentaires collectives", L("Remboursements des contrats collectifs")),
+    ]
+    services = [
+        ("sante", "Santé", L("Santé")), ("ecole", "École et université", L("Enseignement")), ("action_sociale", "Action sociale (dépendance, handicap, petite enfance)", L("Action sociale")),
+        ("logement", "Aides au logement, chèque énergie, gestion de la Sécurité sociale", add(L("Aides au logement"), L("Frais de fonctionnement"))),
+        ("culture", "Culture et loisirs", L("Culture et loisirs")),
+        ("collectif", "Services collectifs (défense, police, justice, routes, administration…)", add(L("Dépenses collectives"), L("Autres transferts et soldes"))),
+    ]
+    wb2 = wb["Figure 3b"]
+    gini = []
+    for r in wb2.iter_rows(min_row=3, values_only=True):
+        if r[0] and r[1] is not None:
+            try:
+                gini.append([str(r[0]).strip(), float(str(r[1]).replace(",", "."))])
+            except ValueError:
+                pass
+    return {"annee": 2023, "unite": "euros par unité de consommation et par an", "uc_millions": uc, "individus_millions": ind,
+            "avant": per(L("Revenu primaire élargi")), "apres": per(L("Revenu élargi après transferts publics")),
+            "paye": [[k, l, per(v)] for k, l, v in paye], "argent": [[k, l, per(v)] for k, l, v in argent],
+            "services": [[k, l, per(v)] for k, l, v in services], "beneficiaires_nets": [round(x, 1) for x in L("Part d'individus bénéficiaires")],
+            "gini": gini,
+            "origine": [[k, l, per(v)] for k, l, v in [
+                ("salaires", "Salaires (y compris cotisations)", add(L("Revenus salariaux nets"), L("Cotisations sociales (salariés"))),
+                ("independants", "Revenus des indépendants (travail et capital mêlés)", L("Revenus mixtes des indépendants")),
+                ("financier", "Intérêts, dividendes, assurance-vie", L("Revenus financiers nets")),
+                ("loyers", "Loyers reçus et loyers « imputés » des propriétaires", L("Loyers réels et imputés")),
+                ("profits", "Bénéfices gardés dans les entreprises détenues", L("Profits des entreprises non distribués"))]],
+            "succession": succession()}
+
+
 index = []
 for p in PAYS:
     geo = p["code"]
     d = {"pays": geo, "nom": p["nom"], "population": population(geo), "industrie": industrie(geo)}
     if geo == "FR":
         d["cycle_de_vie"] = cycle_de_vie()
+        d["redistribution"] = redistribution()
     json.dump(d, open(os.path.join(OUT, geo + ".json"), "w"), ensure_ascii=False, separators=(",", ":"))
     s = {"code": geo, "nom": p["nom"]}
     if d["population"]:
