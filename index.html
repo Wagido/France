@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117t">
+<link rel="stylesheet" href="style.css?v=20261117w">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -55,6 +55,12 @@
       <a href="#dechets">Déchets</a>
       <a href="#territoire">Territoire</a>
       <a href="#transports">Transports</a>
+      <a href="#biodiversite">Biodiversité</a>
+      <a href="#foret">Forêt</a>
+      <a href="#air">Air</a>
+      <a href="#pesticides">Pesticides et engrais</a>
+      <a href="#catastrophes">Catastrophes climatiques</a>
+      <a href="#transition">Qui paie la transition ?</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
@@ -366,7 +372,7 @@
         <li>la <b>« dévaluation interne »</b> : modérer les salaires pendant des années, comme l'Allemagne dans les années 2000 ou l'Espagne et le Portugal après 2010. Efficace, mais lent et douloureux ;</li>
         <li>la <b>« dévaluation fiscale »</b> : baisser les cotisations sur le travail et monter la TVA d'autant. Les produits français deviennent moins chers, les importations plus chères. L'Allemagne l'a fait en 2007 ; la France l'a votée en 2012 avant d'y renoncer. Simulateur juste en dessous.</li>
       </ul></li>
-    <li><b>Travailler plus nombreux</b> : c'est le principal gisement de croissance de la France. Les Français travaillent 667 heures par habitant et par an, contre 734 en Allemagne et 823 aux Pays-Bas. Seuls 75&nbsp;% des 20-64 ans ont un emploi, contre 81&nbsp;% en Allemagne et 83&nbsp;% aux Pays-Bas, surtout à cause des jeunes et des 55-64 ans. Rejoindre le niveau allemand ajouterait environ 10&nbsp;% au PIB, et autant aux recettes publiques.</li>
+    <li><b>Travailler plus nombreux</b> : c'est le principal gisement de croissance de la France. Ceux qui ont un emploi travaillent <b>1 500 heures par an</b>, plus qu'en Allemagne (1 336) et aux Pays-Bas (1 434), où le temps partiel est très répandu. Le problème n'est donc pas la durée du travail de ceux qui travaillent, mais le nombre de personnes qui travaillent : rapporté à toute la population, cela ne fait que 667 heures par habitant, contre 734 en Allemagne et 823 aux Pays-Bas. Seuls 75&nbsp;% des 20-64 ans ont un emploi, contre 81&nbsp;% en Allemagne et 83&nbsp;% aux Pays-Bas, surtout à cause des jeunes et des 55-64 ans. Rejoindre le niveau allemand ajouterait environ 10&nbsp;% au PIB, et autant aux recettes publiques.</li>
     <li><b>Un peu plus d'inflation</b> : elle fait fondre la dette en proportion du PIB, mais elle dépend de la Banque centrale européenne, pas de Paris.</li>
   </ol>
   <p>Aucun de ces leviers ne suffit seul : ils se combinent. C'est ce qui a permis de réduire les dettes après la guerre (croissance forte, inflation, taux bas), et c'est ce qui manque aujourd'hui.</p>
@@ -723,6 +729,69 @@
   <h3>Comparer les pays</h3><div id="tr2-cmp" class="chart"></div>
 </section>
 
+<section id="biodiversite" class="panel">
+  <div class="panel-head">
+    <h2>Biodiversité : les oiseaux, sentinelles de nos campagnes <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="biodiversite-kpis"></div>
+  <h3>Oiseaux communs en France, par milieu (indice 100 en 1989, suivi annuel publié depuis 2010)</h3><div id="bd-fr" class="chart"></div><div class="legend-row" id="bd-fr-legend"></div>
+  <h3>Oiseaux des champs depuis 2000 : la France et les autres pays</h3><div id="bd-pays"></div>
+  <h3>Part du territoire en aire protégée</h3><div id="bd-aires"></div>
+  <div class="callout small" id="biodiversite-txt"></div>
+</section>
+
+<section id="foret" class="panel">
+  <div class="panel-head">
+    <h2>Forêt : un puits de carbone qui s'essouffle <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="foret-kpis"></div>
+  <h3>CO₂ absorbé chaque année par la forêt française (millions de tonnes)</h3><div id="fo-fr" class="chart"></div><div class="legend-row" id="fo-fr-legend"></div>
+  <h3>CO₂ absorbé par hectare de forêt : la France et les autres pays</h3><div id="fo-pays"></div>
+  <div class="callout small" id="foret-txt"></div>
+</section>
+
+<section id="air" class="panel">
+  <div class="panel-head">
+    <h2>Air : la pollution qui tue <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="air-kpis"></div>
+  <h3>Décès prématurés dus aux particules fines (PM2,5) en France</h3><div id="air-fr" class="chart"></div><div class="legend-row" id="air-fr-legend"></div>
+  <h3>Décès prématurés pour 100 000 habitants : la France et les autres pays</h3><div id="air-pays"></div>
+  <div class="callout small" id="air-txt"></div>
+</section>
+
+<section id="pesticides" class="panel">
+  <div class="panel-head">
+    <h2>Pesticides, agriculture biologique et engrais <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="pesticides-kpis"></div>
+  <h3>Risque lié aux pesticides (indice 100 en 2011-2013)</h3><div id="pe-fr" class="chart"></div><div class="legend-row" id="pe-fr-legend"></div>
+  <h3>Part des terres agricoles en bio</h3><div id="pe-bio"></div>
+  <h3>Excédent d'azote par hectare agricole (kg)</h3><div id="pe-azote"></div>
+  <div class="callout small" id="pesticides-txt"></div>
+</section>
+
+<section id="catastrophes" class="panel">
+  <div class="panel-head">
+    <h2>Catastrophes climatiques : ce qu'elles coûtent déjà <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="catastrophes-kpis"></div>
+  <h3>Pertes économiques dues aux tempêtes, inondations, sécheresses et canicules en France (millions d'euros de 2024)</h3><div id="ca-fr" class="chart"></div><div class="legend-row" id="ca-fr-legend"></div>
+  <h3>Pertes moyennes par habitant et par an, sur 30 ans : la France et les autres pays</h3><div id="ca-pays"></div>
+  <div class="callout small" id="catastrophes-txt"></div>
+</section>
+
+<section id="transition" class="panel">
+  <div class="panel-head">
+    <h2>Qui paie la transition ? <span class="geo-fixed">France</span></h2>
+  </div>
+  <div class="kpis" id="transition-kpis"></div>
+  <h3>Taxes environnementales en France (% du PIB)</h3><div id="tr-fr" class="chart"></div><div class="legend-row" id="tr-fr-legend"></div>
+  <h3>Taxes environnementales en % du PIB : la France et les autres pays</h3><div id="tr-pays"></div>
+  <h3>Dépense publique de protection de l'environnement (% du PIB)</h3><div id="tr-dep"></div>
+  <div class="callout small" id="transition-txt"></div>
+</section>
+
 <section id="demographie" class="panel">
   <div class="panel-head">
     <h2>Démographie : la population, son âge, son avenir <span class="geo-tag"></span></h2>
@@ -996,26 +1065,27 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117t"></script>
-<script src="app.js?v=20261117t"></script>
-<script src="energie.js?v=20261117t"></script>
-<script src="matieres.js?v=20261117t"></script>
-<script src="territoire.js?v=20261117t"></script>
-<script src="themes.js?v=20261117t"></script>
-<script src="societe.js?v=20261117t"></script>
-<script src="eco2.js?v=20261117t"></script>
-<script src="empreinte.js?v=20261117t"></script>
-<script src="argentprive.js?v=20261117t"></script>
-<script src="repartition.js?v=20261117t"></script>
-<script src="patrimoine.js?v=20261117t"></script>
-<script src="prelevements.js?v=20261117t"></script>
-<script src="travailvie.js?v=20261117t"></script>
-<script src="couper.js?v=20261117t"></script>
-<script src="seuilpays.js?v=20261117t"></script>
-<script src="logement.js?v=20261117t"></script>
-<script src="histoire.js?v=20261117t"></script>
-<script src="chomage.js?v=20261117t"></script>
-<script src="sources.js?v=20261117t"></script>
-<script src="nav.js?v=20261117t"></script>
+<script src="kpi.js?v=20261117w"></script>
+<script src="app.js?v=20261117w"></script>
+<script src="energie.js?v=20261117w"></script>
+<script src="matieres.js?v=20261117w"></script>
+<script src="territoire.js?v=20261117w"></script>
+<script src="themes.js?v=20261117w"></script>
+<script src="societe.js?v=20261117w"></script>
+<script src="eco2.js?v=20261117w"></script>
+<script src="empreinte.js?v=20261117w"></script>
+<script src="argentprive.js?v=20261117w"></script>
+<script src="repartition.js?v=20261117w"></script>
+<script src="patrimoine.js?v=20261117w"></script>
+<script src="prelevements.js?v=20261117w"></script>
+<script src="travailvie.js?v=20261117w"></script>
+<script src="couper.js?v=20261117w"></script>
+<script src="seuilpays.js?v=20261117w"></script>
+<script src="logement.js?v=20261117w"></script>
+<script src="env.js?v=20261117w"></script>
+<script src="histoire.js?v=20261117w"></script>
+<script src="chomage.js?v=20261117w"></script>
+<script src="sources.js?v=20261117w"></script>
+<script src="nav.js?v=20261117w"></script>
 </body>
 </html>

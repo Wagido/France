@@ -1,0 +1,3254 @@
+{
+ "oiseaux": {
+  "fr": [
+   {
+    "annee": 1989,
+    "specialistes": 100,
+    "agricoles": 100,
+    "forestiers": 100,
+    "batis": 100,
+    "generalistes": 100
+   },
+   {
+    "annee": 2010,
+    "agricoles": 61.0,
+    "specialistes": 84.0,
+    "batis": 76.0,
+    "generalistes": 117.0,
+    "forestiers": 94.0
+   },
+   {
+    "annee": 2011,
+    "specialistes": 83.0,
+    "agricoles": 61.0,
+    "batis": 76.0,
+    "generalistes": 119.0,
+    "forestiers": 91.0
+   },
+   {
+    "annee": 2012,
+    "agricoles": 61.0,
+    "specialistes": 82.0,
+    "generalistes": 114.0,
+    "forestiers": 94.0,
+    "batis": 72.0
+   },
+   {
+    "annee": 2013,
+    "batis": 61.0,
+    "specialistes": 77.0,
+    "forestiers": 86.0,
+    "generalistes": 111.0,
+    "agricoles": 59.0
+   },
+   {
+    "annee": 2014,
+    "forestiers": 84.0,
+    "generalistes": 106.0,
+    "batis": 60.0,
+    "specialistes": 74.0,
+    "agricoles": 55.0
+   },
+   {
+    "annee": 2015,
+    "generalistes": 112.0,
+    "specialistes": 78.0,
+    "batis": 63.0,
+    "forestiers": 89.0,
+    "agricoles": 58.0
+   },
+   {
+    "annee": 2016,
+    "forestiers": 94.0,
+    "batis": 66.0,
+    "generalistes": 107.0,
+    "agricoles": 49.0,
+    "specialistes": 76.0
+   },
+   {
+    "annee": 2017,
+    "forestiers": 89.0,
+    "specialistes": 74.0,
+    "agricoles": 47.0,
+    "generalistes": 105.0,
+    "batis": 68.0
+   },
+   {
+    "annee": 2018,
+    "generalistes": 107.0,
+    "forestiers": 84.0,
+    "agricoles": 45.0,
+    "specialistes": 70.0,
+    "batis": 58.0
+   },
+   {
+    "annee": 2019,
+    "forestiers": 83.0,
+    "agricoles": 46.0,
+    "generalistes": 108.0,
+    "specialistes": 71.0,
+    "batis": 61.0
+   },
+   {
+    "annee": 2020,
+    "specialistes": 71.0,
+    "forestiers": 83.0,
+    "agricoles": 48.0,
+    "generalistes": 107.0,
+    "batis": 57.0
+   },
+   {
+    "annee": 2021,
+    "generalistes": 107.0,
+    "forestiers": 83.0,
+    "specialistes": 71.0,
+    "batis": 54.0,
+    "agricoles": 51.0
+   },
+   {
+    "annee": 2022,
+    "specialistes": 67.0,
+    "forestiers": 78.0,
+    "batis": 50.0,
+    "agricoles": 46.0,
+    "generalistes": 108.0
+   },
+   {
+    "annee": 2023,
+    "specialistes": 65.0,
+    "forestiers": 79.0,
+    "batis": 53.0,
+    "generalistes": 106.0,
+    "agricoles": 39.0
+   },
+   {
+    "annee": 2024,
+    "specialistes": 63.0,
+    "generalistes": 106.0,
+    "forestiers": 77.0,
+    "agricoles": 37.0,
+    "batis": 51.0
+   }
+  ],
+  "pays": [
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -52
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "debut": 2000,
+    "annee": 2022,
+    "v": -48
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "debut": 2000,
+    "annee": 2021,
+    "v": -46
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "debut": 2000,
+    "annee": 2019,
+    "v": -45
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "debut": 2000,
+    "annee": 2020,
+    "v": -43
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -40
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "debut": 2000,
+    "annee": 2022,
+    "v": -40
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "debut": 2000,
+    "annee": 2021,
+    "v": -39
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -33
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "debut": 2000,
+    "annee": 2020,
+    "v": -31
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "debut": 2000,
+    "annee": 2022,
+    "v": -31
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -30
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -28
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -27
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -23
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "debut": 2000,
+    "annee": 2023,
+    "v": -18
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "debut": 2000,
+    "annee": 2024,
+    "v": -16
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "debut": 2000,
+    "annee": 2016,
+    "v": 7
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "debut": 2000,
+    "annee": 2023,
+    "v": 16
+   }
+  ]
+ },
+ "aires": {
+  "terre": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2023,
+    "v": 26.4
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2023,
+    "v": 15.5
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2023,
+    "v": 44.2
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2023,
+    "v": 21.9
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2023,
+    "v": 15.4
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2023,
+    "v": 39.1
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2023,
+    "v": 21.3
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2023,
+    "v": 13.9
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2023,
+    "v": 34.6
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2023,
+    "v": 28.1
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2023,
+    "v": 28.3
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2023,
+    "v": 38.2
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2023,
+    "v": 21.4
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2023,
+    "v": 37.5
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2023,
+    "v": 18.4
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2023,
+    "v": 17.9
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2023,
+    "v": 38.6
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2023,
+    "v": 22.2
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2023,
+    "v": 28.7
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2023,
+    "v": 26.5
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2023,
+    "v": 29.3
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2023,
+    "v": 39.6
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2023,
+    "v": 22.6
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2023,
+    "v": 23.5
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2023,
+    "v": 40.5
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2023,
+    "v": 37.4
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2023,
+    "v": 13.4
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2023,
+    "v": 15.3
+   }
+  ],
+  "mer": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2023,
+    "v": 13.7
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2023,
+    "v": 38.1
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2023,
+    "v": 8.1
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2023,
+    "v": 23.9
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2023,
+    "v": 45.5
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2023,
+    "v": 19.5
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2023,
+    "v": 2.3
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2023,
+    "v": 20.1
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2023,
+    "v": 18.4
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2023,
+    "v": 45.4
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2023,
+    "v": 9.8
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2023,
+    "v": 10
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2023,
+    "v": 8.7
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2023,
+    "v": 15.9
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2023,
+    "v": 23
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2023,
+    "v": 5.5
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2023,
+    "v": 31.6
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2023,
+    "v": 22
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2023,
+    "v": 4.5
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2023,
+    "v": 21.5
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2023,
+    "v": 5.4
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2023,
+    "v": 11.5
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2023,
+    "v": 16.3
+   }
+  ]
+ },
+ "foret": {
+  "fr": [
+   {
+    "annee": 1990,
+    "foret": 51.8,
+    "utcatf": 26.0
+   },
+   {
+    "annee": 1991,
+    "foret": 54.0,
+    "utcatf": 27.5
+   },
+   {
+    "annee": 1992,
+    "foret": 54.3,
+    "utcatf": 27.6
+   },
+   {
+    "annee": 1993,
+    "foret": 58.4,
+    "utcatf": 31.1
+   },
+   {
+    "annee": 1994,
+    "foret": 58.6,
+    "utcatf": 29.1
+   },
+   {
+    "annee": 1995,
+    "foret": 60.2,
+    "utcatf": 32.3
+   },
+   {
+    "annee": 1996,
+    "foret": 65.4,
+    "utcatf": 38.7
+   },
+   {
+    "annee": 1997,
+    "foret": 64.8,
+    "utcatf": 40.5
+   },
+   {
+    "annee": 1998,
+    "foret": 66.0,
+    "utcatf": 43.6
+   },
+   {
+    "annee": 1999,
+    "foret": 68.7,
+    "utcatf": 48.0
+   },
+   {
+    "annee": 2000,
+    "foret": 52.0,
+    "utcatf": 34.1
+   },
+   {
+    "annee": 2001,
+    "foret": 61.3,
+    "utcatf": 46.2
+   },
+   {
+    "annee": 2002,
+    "foret": 68.9,
+    "utcatf": 54.4
+   },
+   {
+    "annee": 2003,
+    "foret": 71.9,
+    "utcatf": 58.6
+   },
+   {
+    "annee": 2004,
+    "foret": 74.4,
+    "utcatf": 61.0
+   },
+   {
+    "annee": 2005,
+    "foret": 75.1,
+    "utcatf": 60.5
+   },
+   {
+    "annee": 2006,
+    "foret": 77.3,
+    "utcatf": 60.4
+   },
+   {
+    "annee": 2007,
+    "foret": 78.1,
+    "utcatf": 55.8
+   },
+   {
+    "annee": 2008,
+    "foret": 80.0,
+    "utcatf": 54.3
+   },
+   {
+    "annee": 2009,
+    "foret": 73.0,
+    "utcatf": 43.7
+   },
+   {
+    "annee": 2010,
+    "foret": 72.7,
+    "utcatf": 46.0
+   },
+   {
+    "annee": 2011,
+    "foret": 72.6,
+    "utcatf": 46.6
+   },
+   {
+    "annee": 2012,
+    "foret": 75.4,
+    "utcatf": 50.0
+   },
+   {
+    "annee": 2013,
+    "foret": 79.2,
+    "utcatf": 55.6
+   },
+   {
+    "annee": 2014,
+    "foret": 70.8,
+    "utcatf": 47.8
+   },
+   {
+    "annee": 2015,
+    "foret": 68.2,
+    "utcatf": 45.0
+   },
+   {
+    "annee": 2016,
+    "foret": 61.0,
+    "utcatf": 39.0
+   },
+   {
+    "annee": 2017,
+    "foret": 56.0,
+    "utcatf": 33.9
+   },
+   {
+    "annee": 2018,
+    "foret": 59.2,
+    "utcatf": 47.7
+   },
+   {
+    "annee": 2019,
+    "foret": 65.1,
+    "utcatf": 44.0
+   },
+   {
+    "annee": 2020,
+    "foret": 68.3,
+    "utcatf": 47.6
+   },
+   {
+    "annee": 2021,
+    "foret": 60.5,
+    "utcatf": 40.0
+   },
+   {
+    "annee": 2022,
+    "foret": 59.0,
+    "utcatf": 37.8
+   },
+   {
+    "annee": 2023,
+    "foret": 62.9,
+    "utcatf": 39.2
+   },
+   {
+    "annee": 2024,
+    "foret": 64.2,
+    "utcatf": 41.2
+   }
+  ],
+  "pays": [
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2024,
+    "v": -0.69,
+    "mt": -2.7
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 2.9,
+    "mt": 2.0
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 2.06,
+    "mt": 8.1
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2024,
+    "v": 0.88,
+    "mt": 1.1
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 1.12,
+    "mt": 0.2
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 0.99,
+    "mt": 2.9
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": -0.19,
+    "mt": -2.1
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 5.22,
+    "mt": 3.5
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 0.26,
+    "mt": 0.6
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2024,
+    "v": 0.35,
+    "mt": 1.7
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 2.5,
+    "mt": 47.7
+   },
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2024,
+    "v": 2.04,
+    "mt": 330.0
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 0.01,
+    "mt": 0.1
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 3.63,
+    "mt": 64.2
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 2.41,
+    "mt": 4.7
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 3.06,
+    "mt": 6.4
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 3.11,
+    "mt": 2.6
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 6.15,
+    "mt": 57.8
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 3.09,
+    "mt": 6.9
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2024,
+    "v": 6.24,
+    "mt": 0.6
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 0.02,
+    "mt": 0.1
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 0.12,
+    "mt": 0.0
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 6.65,
+    "mt": 2.4
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2024,
+    "v": 1.57,
+    "mt": 19.1
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 3.75,
+    "mt": 35.3
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": -0.13,
+    "mt": -0.4
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 3.51,
+    "mt": 24.6
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 1.96,
+    "mt": 54.6
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 3.64,
+    "mt": 4.3
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 2.12,
+    "mt": 4.2
+   }
+  ],
+  "surface_fr": 17717,
+  "annee_surface": 2023
+ },
+ "air": {
+  "fr": [
+   {
+    "annee": 2005,
+    "deces": 38447,
+    "taux": 61
+   },
+   {
+    "annee": 2007,
+    "deces": 32677,
+    "taux": 51
+   },
+   {
+    "annee": 2008,
+    "deces": 34629,
+    "taux": 54
+   },
+   {
+    "annee": 2009,
+    "deces": 39285,
+    "taux": 61
+   },
+   {
+    "annee": 2010,
+    "deces": 40206,
+    "taux": 62
+   },
+   {
+    "annee": 2011,
+    "deces": 39606,
+    "taux": 61
+   },
+   {
+    "annee": 2012,
+    "deces": 36236,
+    "taux": 55
+   },
+   {
+    "annee": 2013,
+    "deces": 35171,
+    "taux": 53
+   },
+   {
+    "annee": 2014,
+    "deces": 22279,
+    "taux": 34
+   },
+   {
+    "annee": 2015,
+    "deces": 27834,
+    "taux": 42
+   },
+   {
+    "annee": 2016,
+    "deces": 23966,
+    "taux": 36
+   },
+   {
+    "annee": 2017,
+    "deces": 22582,
+    "taux": 34
+   },
+   {
+    "annee": 2018,
+    "deces": 22560,
+    "taux": 34
+   },
+   {
+    "annee": 2019,
+    "deces": 18421,
+    "taux": 27
+   },
+   {
+    "annee": 2020,
+    "deces": 16190,
+    "taux": 24
+   },
+   {
+    "annee": 2021,
+    "deces": 19472,
+    "taux": 29
+   },
+   {
+    "annee": 2022,
+    "deces": 20286,
+    "taux": 30
+   },
+   {
+    "annee": 2023,
+    "deces": 14741,
+    "taux": 22
+   }
+  ],
+  "ue": [
+   {
+    "annee": 2005,
+    "v": 97
+   },
+   {
+    "annee": 2007,
+    "v": 78
+   },
+   {
+    "annee": 2008,
+    "v": 79
+   },
+   {
+    "annee": 2009,
+    "v": 81
+   },
+   {
+    "annee": 2010,
+    "v": 82
+   },
+   {
+    "annee": 2011,
+    "v": 87
+   },
+   {
+    "annee": 2012,
+    "v": 76
+   },
+   {
+    "annee": 2013,
+    "v": 73
+   },
+   {
+    "annee": 2014,
+    "v": 64
+   },
+   {
+    "annee": 2015,
+    "v": 71
+   },
+   {
+    "annee": 2016,
+    "v": 62
+   },
+   {
+    "annee": 2017,
+    "v": 67
+   },
+   {
+    "annee": 2018,
+    "v": 64
+   },
+   {
+    "annee": 2019,
+    "v": 51
+   },
+   {
+    "annee": 2020,
+    "v": 52
+   },
+   {
+    "annee": 2021,
+    "v": 56
+   },
+   {
+    "annee": 2022,
+    "v": 53
+   },
+   {
+    "annee": 2023,
+    "v": 41
+   }
+  ],
+  "pays": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2023,
+    "v": 41
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2023,
+    "v": 25
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2023,
+    "v": 104
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2023,
+    "v": 43
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2023,
+    "v": 12
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2023,
+    "v": 26
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2023,
+    "v": 3
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2023,
+    "v": 6
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2023,
+    "v": 98
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2023,
+    "v": 28
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2023,
+    "v": 22
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2023,
+    "v": 75
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2023,
+    "v": 73
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2023,
+    "v": 64
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2023,
+    "v": 31
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2023,
+    "v": 28
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2023,
+    "v": 10
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2023,
+    "v": 71
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2023,
+    "v": 31
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2023,
+    "v": 22
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2023,
+    "v": 29
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2023,
+    "v": 69
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2023,
+    "v": 21
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2023,
+    "v": 74
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2023,
+    "v": 49
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2023,
+    "v": 50
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2023,
+    "v": 1
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2023,
+    "v": 2
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2023,
+    "v": 4
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2023,
+    "v": 15
+   },
+   {
+    "code": "IS",
+    "nom": "Islande",
+    "annee": 2023,
+    "v": 0
+   }
+  ]
+ },
+ "pesticides": {
+  "fr": [
+   {
+    "annee": 2011,
+    "v": 99
+   },
+   {
+    "annee": 2012,
+    "v": 99
+   },
+   {
+    "annee": 2013,
+    "v": 101
+   },
+   {
+    "annee": 2014,
+    "v": 118
+   },
+   {
+    "annee": 2015,
+    "v": 95
+   },
+   {
+    "annee": 2016,
+    "v": 99
+   },
+   {
+    "annee": 2017,
+    "v": 89
+   },
+   {
+    "annee": 2018,
+    "v": 111
+   },
+   {
+    "annee": 2019,
+    "v": 59
+   },
+   {
+    "annee": 2020,
+    "v": 60
+   },
+   {
+    "annee": 2021,
+    "v": 60
+   },
+   {
+    "annee": 2022,
+    "v": 54
+   },
+   {
+    "annee": 2023,
+    "v": 50
+   },
+   {
+    "annee": 2024,
+    "v": 53
+   }
+  ],
+  "ue": [
+   {
+    "annee": 2011,
+    "v": 108
+   },
+   {
+    "annee": 2012,
+    "v": 98
+   },
+   {
+    "annee": 2013,
+    "v": 94
+   },
+   {
+    "annee": 2014,
+    "v": 100
+   },
+   {
+    "annee": 2015,
+    "v": 98
+   },
+   {
+    "annee": 2016,
+    "v": 95
+   },
+   {
+    "annee": 2017,
+    "v": 88
+   },
+   {
+    "annee": 2018,
+    "v": 90
+   },
+   {
+    "annee": 2019,
+    "v": 80
+   },
+   {
+    "annee": 2020,
+    "v": 73
+   },
+   {
+    "annee": 2021,
+    "v": 63
+   },
+   {
+    "annee": 2022,
+    "v": 45
+   },
+   {
+    "annee": 2023,
+    "v": 39
+   },
+   {
+    "annee": 2024,
+    "v": 41
+   }
+  ],
+  "pays": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2024,
+    "v": 41
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 29
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 46
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 25
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 39
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": 55
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 106
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 32
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2024,
+    "v": 29
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 35
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 53
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 38
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 36
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 43
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 96
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 102
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2024,
+    "v": 31
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 46
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 56
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 24
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2024,
+    "v": 86
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 46
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": 39
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 25
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 36
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 37
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 81
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 55
+   }
+  ],
+  "bio": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2020,
+    "v": 9.1
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 7.4
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 4.0
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 16.0
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 11.1
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": 11.1
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 22.6
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 5.0
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2021,
+    "v": 12.2
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 11.9
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 9.5
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 9.0
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 19.5
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 8.8
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 15.6
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 8.8
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2024,
+    "v": 7.2
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 6.1
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 0.8
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 5.1
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2020,
+    "v": 25.7
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 4.9
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": 21.2
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 6.2
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 11.9
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 14.8
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 13.5
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 16.7
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2024,
+    "v": 4.6
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2024,
+    "v": 18.3
+   },
+   {
+    "code": "IS",
+    "nom": "Islande",
+    "annee": 2021,
+    "v": 0.4
+   }
+  ],
+  "bio_fr": [
+   {
+    "annee": 2012,
+    "v": 3.5
+   },
+   {
+    "annee": 2013,
+    "v": 3.7
+   },
+   {
+    "annee": 2014,
+    "v": 3.9
+   },
+   {
+    "annee": 2015,
+    "v": 4.6
+   },
+   {
+    "annee": 2016,
+    "v": 5.3
+   },
+   {
+    "annee": 2017,
+    "v": 6.0
+   },
+   {
+    "annee": 2018,
+    "v": 7.1
+   },
+   {
+    "annee": 2019,
+    "v": 7.8
+   },
+   {
+    "annee": 2020,
+    "v": 8.8
+   },
+   {
+    "annee": 2021,
+    "v": 9.5
+   },
+   {
+    "annee": 2022,
+    "v": 9.8
+   },
+   {
+    "annee": 2023,
+    "v": 9.6
+   },
+   {
+    "annee": 2024,
+    "v": 9.5
+   }
+  ],
+  "azote": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2014,
+    "v": 41.0
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2015,
+    "v": 132
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2023,
+    "v": 44.0
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2023,
+    "v": 44.0
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2015,
+    "v": 80
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2023,
+    "v": 26.0
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2012,
+    "v": 28.0
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2023,
+    "v": 31.0
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2015,
+    "v": 59
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2023,
+    "v": 38.0
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2023,
+    "v": 18.0
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2023,
+    "v": 49.0
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2023,
+    "v": 58.0
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2015,
+    "v": 194
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2023,
+    "v": 24.0
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2023,
+    "v": 23.0
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2015,
+    "v": 129
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2023,
+    "v": 45.0
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2015,
+    "v": 147
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2023,
+    "v": 137.0
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2023,
+    "v": 34.0
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2023,
+    "v": 37.0
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2023,
+    "v": 35.0
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2023,
+    "v": -2.0
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2021,
+    "v": 50.0
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2023,
+    "v": 31.0
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2023,
+    "v": 53.0
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2023,
+    "v": 41.0
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2023,
+    "v": 94.0
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2021,
+    "v": 64.0
+   }
+  ]
+ },
+ "catastrophes": {
+  "fr": [
+   {
+    "annee": 1980,
+    "pertes": 165
+   },
+   {
+    "annee": 1981,
+    "pertes": 57
+   },
+   {
+    "annee": 1982,
+    "pertes": 523
+   },
+   {
+    "annee": 1983,
+    "pertes": 3567
+   },
+   {
+    "annee": 1984,
+    "pertes": 0
+   },
+   {
+    "annee": 1985,
+    "pertes": 407
+   },
+   {
+    "annee": 1986,
+    "pertes": 88
+   },
+   {
+    "annee": 1987,
+    "pertes": 2788
+   },
+   {
+    "annee": 1988,
+    "pertes": 1163
+   },
+   {
+    "annee": 1989,
+    "pertes": 2667
+   },
+   {
+    "annee": 1990,
+    "pertes": 5575
+   },
+   {
+    "annee": 1991,
+    "pertes": 1466
+   },
+   {
+    "annee": 1992,
+    "pertes": 1438
+   },
+   {
+    "annee": 1993,
+    "pertes": 2950
+   },
+   {
+    "annee": 1994,
+    "pertes": 12383
+   },
+   {
+    "annee": 1995,
+    "pertes": 2742
+   },
+   {
+    "annee": 1996,
+    "pertes": 897
+   },
+   {
+    "annee": 1997,
+    "pertes": 616
+   },
+   {
+    "annee": 1998,
+    "pertes": 949
+   },
+   {
+    "annee": 1999,
+    "pertes": 19205
+   },
+   {
+    "annee": 2000,
+    "pertes": 1192
+   },
+   {
+    "annee": 2001,
+    "pertes": 927
+   },
+   {
+    "annee": 2002,
+    "pertes": 2254
+   },
+   {
+    "annee": 2003,
+    "pertes": 6820
+   },
+   {
+    "annee": 2004,
+    "pertes": 51
+   },
+   {
+    "annee": 2005,
+    "pertes": 3594
+   },
+   {
+    "annee": 2006,
+    "pertes": 255
+   },
+   {
+    "annee": 2007,
+    "pertes": 571
+   },
+   {
+    "annee": 2008,
+    "pertes": 538
+   },
+   {
+    "annee": 2009,
+    "pertes": 3205
+   },
+   {
+    "annee": 2010,
+    "pertes": 5377
+   },
+   {
+    "annee": 2011,
+    "pertes": 2345
+   },
+   {
+    "annee": 2012,
+    "pertes": 1709
+   },
+   {
+    "annee": 2013,
+    "pertes": 1919
+   },
+   {
+    "annee": 2014,
+    "pertes": 2937
+   },
+   {
+    "annee": 2015,
+    "pertes": 829
+   },
+   {
+    "annee": 2016,
+    "pertes": 3061
+   },
+   {
+    "annee": 2017,
+    "pertes": 6433
+   },
+   {
+    "annee": 2018,
+    "pertes": 3468
+   },
+   {
+    "annee": 2019,
+    "pertes": 5807
+   },
+   {
+    "annee": 2020,
+    "pertes": 4848
+   },
+   {
+    "annee": 2021,
+    "pertes": 6203
+   },
+   {
+    "annee": 2022,
+    "pertes": 8915
+   },
+   {
+    "annee": 2023,
+    "pertes": 3258
+   },
+   {
+    "annee": 2024,
+    "pertes": 1942
+   }
+  ],
+  "pays": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2024,
+    "v": 49.0
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 47.0
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 29.0
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 63.0
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 39.0
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": 67.0
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 9.0
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 25.0
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2024,
+    "v": 40.0
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 50.0
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 50.0
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 41.0
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 68.0
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 15.0
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 22.0
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 24.0
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2024,
+    "v": 27.0
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 28.0
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 5.0
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 18.0
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2024,
+    "v": 67.0
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 19.0
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": 51.0
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 41.0
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 240.0
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 15.0
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 4.0
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 12.0
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2024,
+    "v": 17.0
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2024,
+    "v": 58.0
+   },
+   {
+    "code": "IS",
+    "nom": "Islande",
+    "annee": 2024,
+    "v": 2.0
+   }
+  ]
+ },
+ "transition": {
+  "fr": [
+   {
+    "annee": 1995,
+    "pib": 2.51,
+    "part": 5.7
+   },
+   {
+    "annee": 1996,
+    "pib": 2.56,
+    "part": 5.7
+   },
+   {
+    "annee": 1997,
+    "pib": 2.45,
+    "part": 5.4
+   },
+   {
+    "annee": 1998,
+    "pib": 2.45,
+    "part": 5.4
+   },
+   {
+    "annee": 1999,
+    "pib": 2.37,
+    "part": 5.2
+   },
+   {
+    "annee": 2000,
+    "pib": 2.17,
+    "part": 4.8
+   },
+   {
+    "annee": 2001,
+    "pib": 1.96,
+    "part": 4.3
+   },
+   {
+    "annee": 2002,
+    "pib": 2.06,
+    "part": 4.6
+   },
+   {
+    "annee": 2003,
+    "pib": 1.98,
+    "part": 4.5
+   },
+   {
+    "annee": 2004,
+    "pib": 2.08,
+    "part": 4.7
+   },
+   {
+    "annee": 2005,
+    "pib": 2,
+    "part": 4.5
+   },
+   {
+    "annee": 2006,
+    "pib": 1.95,
+    "part": 4.3
+   },
+   {
+    "annee": 2007,
+    "pib": 1.87,
+    "part": 4.2
+   },
+   {
+    "annee": 2008,
+    "pib": 1.83,
+    "part": 4.1
+   },
+   {
+    "annee": 2009,
+    "pib": 1.85,
+    "part": 4.2
+   },
+   {
+    "annee": 2010,
+    "pib": 1.87,
+    "part": 4.2
+   },
+   {
+    "annee": 2011,
+    "pib": 1.9,
+    "part": 4.2
+   },
+   {
+    "annee": 2012,
+    "pib": 1.94,
+    "part": 4.2
+   },
+   {
+    "annee": 2013,
+    "pib": 2,
+    "part": 4.2
+   },
+   {
+    "annee": 2014,
+    "pib": 2.01,
+    "part": 4.2
+   },
+   {
+    "annee": 2015,
+    "pib": 2.14,
+    "part": 4.5
+   },
+   {
+    "annee": 2016,
+    "pib": 2.23,
+    "part": 4.7
+   },
+   {
+    "annee": 2017,
+    "pib": 2.3,
+    "part": 4.8
+   },
+   {
+    "annee": 2018,
+    "pib": 2.37,
+    "part": 4.9
+   },
+   {
+    "annee": 2019,
+    "pib": 2.31,
+    "part": 4.9
+   },
+   {
+    "annee": 2020,
+    "pib": 2.13,
+    "part": 4.5
+   },
+   {
+    "annee": 2021,
+    "pib": 2.16,
+    "part": 4.6
+   },
+   {
+    "annee": 2022,
+    "pib": 2.03,
+    "part": 4.2
+   },
+   {
+    "annee": 2023,
+    "pib": 1.81,
+    "part": 4.0
+   },
+   {
+    "annee": 2024,
+    "pib": 1.86,
+    "part": 4.1
+   }
+  ],
+  "ue": [
+   {
+    "annee": 1995,
+    "v": 2.58
+   },
+   {
+    "annee": 1996,
+    "v": 2.64
+   },
+   {
+    "annee": 1997,
+    "v": 2.61
+   },
+   {
+    "annee": 1998,
+    "v": 2.62
+   },
+   {
+    "annee": 1999,
+    "v": 2.68
+   },
+   {
+    "annee": 2000,
+    "v": 2.58
+   },
+   {
+    "annee": 2001,
+    "v": 2.57
+   },
+   {
+    "annee": 2002,
+    "v": 2.59
+   },
+   {
+    "annee": 2003,
+    "v": 2.63
+   },
+   {
+    "annee": 2004,
+    "v": 2.62
+   },
+   {
+    "annee": 2005,
+    "v": 2.59
+   },
+   {
+    "annee": 2006,
+    "v": 2.54
+   },
+   {
+    "annee": 2007,
+    "v": 2.45
+   },
+   {
+    "annee": 2008,
+    "v": 2.4
+   },
+   {
+    "annee": 2009,
+    "v": 2.5
+   },
+   {
+    "annee": 2010,
+    "v": 2.47
+   },
+   {
+    "annee": 2011,
+    "v": 2.55
+   },
+   {
+    "annee": 2012,
+    "v": 2.6
+   },
+   {
+    "annee": 2013,
+    "v": 2.68
+   },
+   {
+    "annee": 2014,
+    "v": 2.72
+   },
+   {
+    "annee": 2015,
+    "v": 2.68
+   },
+   {
+    "annee": 2016,
+    "v": 2.7
+   },
+   {
+    "annee": 2017,
+    "v": 2.65
+   },
+   {
+    "annee": 2018,
+    "v": 2.61
+   },
+   {
+    "annee": 2019,
+    "v": 2.57
+   },
+   {
+    "annee": 2020,
+    "v": 2.47
+   },
+   {
+    "annee": 2021,
+    "v": 2.39
+   },
+   {
+    "annee": 2022,
+    "v": 2.11
+   },
+   {
+    "annee": 2023,
+    "v": 2.06
+   },
+   {
+    "annee": 2024,
+    "v": 2.08
+   }
+  ],
+  "pays": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2024,
+    "v": 2.08
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 2.21
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 2.96
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 1.45
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 2.09
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": 1.75
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 2.6
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 0.98
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2024,
+    "v": 3.76
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 1.61
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 1.86
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 3.36
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 2.75
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 2.06
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 2.5
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 1.78
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2024,
+    "v": 1.18
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 1.97
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 1.35
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 2.98
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2024,
+    "v": 1.94
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 2.99
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": 2.02
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 2.42
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 2.83
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 1.9
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 2.18
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 1.6
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2024,
+    "v": 1.44
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2024,
+    "v": 1.39
+   },
+   {
+    "code": "IS",
+    "nom": "Islande",
+    "annee": 2024,
+    "v": 1.76
+   }
+  ],
+  "pays_part": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2024,
+    "v": 5.2
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 4.9
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 9.7
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 4.1
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 4.6
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": 4.3
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 7.3
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 4.4
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2024,
+    "v": 9.0
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 4.3
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 4.1
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 8.7
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 6.4
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 5.5
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 7.0
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 5.3
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2024,
+    "v": 2.8
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 5.6
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 4.6
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 7.6
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2024,
+    "v": 4.4
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 8.0
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": 5.5
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 8.4
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 7.3
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 5.3
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 5.1
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 3.8
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2024,
+    "v": 3.5
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2024,
+    "v": 5.2
+   },
+   {
+    "code": "IS",
+    "nom": "Islande",
+    "annee": 2024,
+    "v": 4.8
+   }
+  ],
+  "depense": [
+   {
+    "code": "EU27_2020",
+    "nom": "Moyenne de l'Union européenne",
+    "annee": 2024,
+    "v": 0.8
+   },
+   {
+    "code": "BE",
+    "nom": "Belgique",
+    "annee": 2024,
+    "v": 1.2
+   },
+   {
+    "code": "BG",
+    "nom": "Bulgarie",
+    "annee": 2024,
+    "v": 0.6
+   },
+   {
+    "code": "CZ",
+    "nom": "Tchéquie",
+    "annee": 2024,
+    "v": 0.9
+   },
+   {
+    "code": "DK",
+    "nom": "Danemark",
+    "annee": 2024,
+    "v": 0.4
+   },
+   {
+    "code": "DE",
+    "nom": "Allemagne",
+    "annee": 2024,
+    "v": 0.6
+   },
+   {
+    "code": "EE",
+    "nom": "Estonie",
+    "annee": 2024,
+    "v": 0.7
+   },
+   {
+    "code": "IE",
+    "nom": "Irlande",
+    "annee": 2024,
+    "v": 0.4
+   },
+   {
+    "code": "EL",
+    "nom": "Grèce",
+    "annee": 2024,
+    "v": 0.9
+   },
+   {
+    "code": "ES",
+    "nom": "Espagne",
+    "annee": 2024,
+    "v": 1.0
+   },
+   {
+    "code": "FR",
+    "nom": "France",
+    "annee": 2024,
+    "v": 1.0
+   },
+   {
+    "code": "HR",
+    "nom": "Croatie",
+    "annee": 2024,
+    "v": 1.2
+   },
+   {
+    "code": "IT",
+    "nom": "Italie",
+    "annee": 2024,
+    "v": 0.9
+   },
+   {
+    "code": "CY",
+    "nom": "Chypre",
+    "annee": 2024,
+    "v": 0.6
+   },
+   {
+    "code": "LV",
+    "nom": "Lettonie",
+    "annee": 2024,
+    "v": 0.5
+   },
+   {
+    "code": "LT",
+    "nom": "Lituanie",
+    "annee": 2024,
+    "v": 0.5
+   },
+   {
+    "code": "LU",
+    "nom": "Luxembourg",
+    "annee": 2025,
+    "v": 1.2
+   },
+   {
+    "code": "HU",
+    "nom": "Hongrie",
+    "annee": 2024,
+    "v": 0.4
+   },
+   {
+    "code": "MT",
+    "nom": "Malte",
+    "annee": 2024,
+    "v": 1.2
+   },
+   {
+    "code": "NL",
+    "nom": "Pays-Bas",
+    "annee": 2024,
+    "v": 1.6
+   },
+   {
+    "code": "AT",
+    "nom": "Autriche",
+    "annee": 2024,
+    "v": 0.7
+   },
+   {
+    "code": "PL",
+    "nom": "Pologne",
+    "annee": 2024,
+    "v": 0.7
+   },
+   {
+    "code": "PT",
+    "nom": "Portugal",
+    "annee": 2024,
+    "v": 0.7
+   },
+   {
+    "code": "RO",
+    "nom": "Roumanie",
+    "annee": 2024,
+    "v": 0.9
+   },
+   {
+    "code": "SI",
+    "nom": "Slovénie",
+    "annee": 2024,
+    "v": 0.7
+   },
+   {
+    "code": "SK",
+    "nom": "Slovaquie",
+    "annee": 2024,
+    "v": 0.8
+   },
+   {
+    "code": "FI",
+    "nom": "Finlande",
+    "annee": 2024,
+    "v": 0.2
+   },
+   {
+    "code": "SE",
+    "nom": "Suède",
+    "annee": 2024,
+    "v": 0.5
+   },
+   {
+    "code": "NO",
+    "nom": "Norvège",
+    "annee": 2024,
+    "v": 0.8
+   },
+   {
+    "code": "CH",
+    "nom": "Suisse",
+    "annee": 2024,
+    "v": 0.5
+   },
+   {
+    "code": "IS",
+    "nom": "Islande",
+    "annee": 2024,
+    "v": 0.7
+   }
+  ]
+ }
+}

@@ -59,6 +59,13 @@ const S = [
   ["Argent public", "insee", "Comptes nationaux annuels base 2020 depuis 1949 ; Jordà, Schularick et Taylor, Macrohistory Database (1900-2017)", "Graphique « Un siècle de franc » : inflation, solde budgétaire, exportations, cours du dollar", "https://www.macrohistory.net/database/", "annuel"],
   ["Argent privé", "insee", "Comptes nationaux annuels base 2020 : salaires et traitements bruts, emploi salarié EQTP, consommation des ménages par fonction, PIB par habitant", "Salaire moyen depuis 1949, budget des ménages depuis 1959", "https://www.insee.fr/fr/statistiques/serie/011785411", "annuel"],
   ["PIB", "harvard", "Energy_Data_FRANCE.xlsx", "Consommation d'énergie par habitant en France, 1800-2008", "https://histecon.fas.harvard.edu/energyhistory/data_sets/Energy_Data_FRANCE.xlsx", "ponctuel"],
+  ["Biodiversité", "insee", "Indicateurs de développement durable 15.i6 (d'après le MNHN, programme STOC)", "Oiseaux communs par milieu, France métropolitaine", "https://www.insee.fr/fr/statistiques/2658605", "annuel"],
+  ["Biodiversité", "eurostat", "env_bio2 / sdg_15_20 / sdg_14_10", "Oiseaux des milieux agricoles par pays, aires protégées", null, "annuel"],
+  ["Forêt", "eurostat", "env_air_gge / for_area_efa", "Absorption de CO₂ par les forêts, surface forestière", null, "annuel"],
+  ["Air", "eurostat", "sdg_11_52", "Décès prématurés dus aux particules fines (estimations de l'Agence européenne pour l'environnement)", null, "annuel"],
+  ["Pesticides", "eurostat", "aei_hri / sdg_02_40 / aei_pr_gnb", "Risque pesticides, agriculture biologique, excédent d'azote", null, "annuel"],
+  ["Catastrophes", "eurostat", "cli_iad_loss", "Pertes économiques dues aux événements climatiques (base CATDAT de l'AEE)", null, "annuel"],
+  ["Transition", "eurostat", "env_ac_tax / gov_10a_exp", "Taxes environnementales, dépense publique de protection de l'environnement", null, "annuel"],
   ["Couper où", "eurostat", "gov_10a_exp", "Dépense publique par fonction (COFOG), en % du PIB, pays européens", null, "annuel (février)"],
   ["Argent public", "eurostat", "gov_10a_taxag / gov_10a_main", "Impôts, cotisations et dépense publique en % du PIB, pays européens", null, "annuel"],
   ["Argent public", "eurostat", "nasa_10_nf_tr", "Revenu disponible des ménages et des entreprises (comptes de secteur)", null, "annuel"],
@@ -97,6 +104,7 @@ function render() {
 // en bas de chaque article, ses sources en petit
 const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
+  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
   justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"] };

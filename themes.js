@@ -357,8 +357,8 @@ function drawTravail() {
   kpis("#tt-kpis", [
     [n1(last.heures / 1e9) + " Md h", `travaillées dans le pays en ${last.annee}`],
     [pct(100 * last.heures / dispo, 1), "du temps total de la population (habitants × 24 h × 365 j)"],
-    [n0(last.heures / last.population) + " h", "par habitant et par an, tous âges confondus"],
-    last.emplois && [n0(last.heures / last.emplois) + " h", `par personne en emploi (${n1(last.emplois / 1e6)} M d'emplois)`],
+    last.emplois && [n0(last.heures / last.emplois) + " h", `par personne en emploi et par an ; ${n1(last.emplois / 1e6)} M d'emplois`, "Par personne en emploi"],
+    [n0(last.heures / last.population) + " h", `par habitant et par an, enfants et retraités compris ; c'est bas parce que peu de personnes travaillent, pas parce qu'elles travaillent peu`, "Par habitant"],
   ]);
   // heures par personne en emploi et par secteur (comptes nationaux : heures ÷ personnes)
   const B = T.branches, ref = [...S].reverse().find(s => s.personnes && Object.values(s.personnes).some(v => v > 0)) || last;
