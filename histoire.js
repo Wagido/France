@@ -37,11 +37,12 @@ function draw() {
   const el = document.getElementById("hist-long"); if (!L || !el) return;
   const { showTip, hideTip, n1, esc } = window.TH;
   const w = Math.max(320, el.clientWidth), narrow = w < 640;
-  const m = { t: 34, r: 14, l: 46, gap: 44 }, h1 = narrow ? 230 : 280, h2 = narrow ? 150 : 170, H = m.t + h1 + m.gap + h2 + 28;
+  const m = { t: 34, r: 14, l: 46, gap: 44 }, h1 = narrow ? 230 : 280, h2 = narrow ? 150 : 170, h3 = narrow ? 140 : 160, B3 = m.t + h1 + m.gap + h2 + m.gap, H = B3 + h3 + 28;
   const x = d3.scaleLinear([1900, L.at(-1).annee], [m.l, w - m.r]);
   const clip = (v, a, b) => v == null ? null : Math.max(a, Math.min(b, v));
   const y1 = d3.scaleLinear([-30, 60], [m.t + h1, m.t]);
   const y2 = d3.scaleLog([0.04, 10], [m.t + h1 + m.gap + h2, m.t + h1 + m.gap]);
+  const y3 = d3.scaleLinear([30, 160], [B3 + h3, B3]);
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${H}`);
   // grilles
   svg.append("g").attr("class", "grid").selectAll("line").data(y1.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y1).attr("y2", y1);
@@ -50,7 +51,7 @@ function draw() {
   const evg = svg.append("g");
   EV.forEach(([yr, lab], i) => {
     const cx = x(yr);
-    evg.append("line").attr("x1", cx).attr("x2", cx).attr("y1", m.t - 8).attr("y2", m.t + h1 + m.gap + h2).attr("stroke", "#7c3aed").attr("stroke-width", 1.2).attr("stroke-dasharray", "3 3").attr("opacity", .8);
+    evg.append("line").attr("x1", cx).attr("x2", cx).attr("y1", m.t - 8).attr("y2", B3 + h3).attr("stroke", "#7c3aed").attr("stroke-width", 1.2).attr("stroke-dasharray", "3 3").attr("opacity", .8);
     evg.append("text").attr("x", cx).attr("y", m.t - 12 - (narrow && i % 2 ? 11 : 0)).attr("text-anchor", "middle").attr("font-size", 10.5).attr("font-weight", 600).style("fill", "#7c3aed").text(lab);
   });
   // solde budgétaire (barres)
@@ -71,17 +72,25 @@ function draw() {
   // axes
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y1).ticks(6).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y2).tickValues([0.05, 0.1, 0.5, 1, 5, 10]).tickFormat(v => String(v).replace(".", ","))).call(g => g.select(".domain").remove());
-  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${m.t + h1 + m.gap + h2})`).call(d3.axisBottom(x).ticks(narrow ? 6 : 13).tickFormat(d3.format("d")));
+  // troisième étage : le dollar corrigé de l'inflation (indice 100 en 1950)
+  svg.append("g").attr("class", "grid").selectAll("line").data([50, 100, 150]).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y3).attr("y2", y3);
+  svg.append("rect").attr("x", x(1944)).attr("width", x(1949.5) - x(1944)).attr("y", B3).attr("height", h3).attr("fill", "#94a3b8").attr("opacity", .15);
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y3(100)).attr("y2", y3(100)).attr("stroke", "currentColor").attr("opacity", .35);
+  svg.append("path").attr("fill", "none").attr("stroke", "#0ea5e9").attr("stroke-width", 2.2)
+    .attr("d", d3.line().defined(d => d.dollar_reel != null).x(d => x(d.annee)).y(d => y3(Math.min(160, d.dollar_reel)))(L));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y3).tickValues([50, 100, 150])).call(g => g.select(".domain").remove());
+  svg.append("text").attr("x", m.l + 4).attr("y", B3 - 12).attr("font-size", 11).attr("font-weight", 600).style("fill", "var(--muted)").text("Dollar en francs corrigé de l'inflation (indice 100 en 1950) : au-dessus de 100, produits français moins chers");
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${B3 + h3})`).call(d3.axisBottom(x).ticks(narrow ? 6 : 13).tickFormat(d3.format("d")));
   svg.append("text").attr("x", m.l + 4).attr("y", m.t + h1 + m.gap - 12).attr("font-size", 11).attr("font-weight", 600).style("fill", "var(--muted)").text("Prix d'un dollar en francs (échelle logarithmique, nouveaux francs)");
   // infobulle
-  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h1 + m.gap + h2).attr("fill", "transparent")
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", B3 + h3 - m.t).attr("fill", "transparent")
     .on("pointermove", ev => {
       const yr = Math.round(x.invert(d3.pointer(ev)[0])), d = L.find(r => r.annee === yr); if (!d) return;
       const e = EV.find(k => k[0] === yr), f = (v, s = " %") => v == null ? "–" : (v > 0 && s === " %" ? "+" : "") + n1(v) + s;
-      showTip(`<b>${yr}</b>${e ? `<br><span style="color:#a78bfa">${esc(e[2])}</span>` : ""}<br>Inflation : ${f(d.inflation)}<br>Solde budgétaire : ${f(d.solde_public)} du PIB<br>Exportations : ${d.exportations_pib == null ? "–" : n1(d.exportations_pib) + " %"} du PIB<br>Un dollar : ${d.dollar == null ? "–" : String(d.dollar.toFixed(d.dollar < 1 ? 3 : 2)).replace(".", ",")} franc${d.dollar >= 2 ? "s" : ""}`, ev);
+      showTip(`<b>${yr}</b>${e ? `<br><span style="color:#a78bfa">${esc(e[2])}</span>` : ""}<br>Inflation : ${f(d.inflation)}<br>Solde budgétaire : ${f(d.solde_public)} du PIB<br>Exportations : ${d.exportations_pib == null ? "–" : n1(d.exportations_pib) + " %"} du PIB<br>Dollar corrigé de l'inflation : ${d.dollar_reel == null ? "–" : n1(d.dollar_reel)}<br>Un dollar : ${d.dollar == null ? "–" : String(d.dollar.toFixed(d.dollar < 1 ? 3 : 2)).replace(".", ",")} franc${d.dollar >= 2 ? "s" : ""}`, ev);
     }).on("pointerleave", hideTip);
   el.replaceChildren(svg.node());
-  el.insertAdjacentHTML("beforeend", `<div class="legend-row"><span><i style="border-top-color:#dc2626;opacity:1"></i>Inflation (prix à la consommation)</span><span><i style="border-top-color:#16a34a;opacity:1"></i>Exportations (% du PIB)</span><span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:.8"></i>Solde budgétaire (% du PIB)</span><span><i style="border-top-color:var(--ink);opacity:1"></i>Prix d'un dollar en francs</span><span><i style="border-top-color:#7c3aed;border-top-style:dashed;opacity:1"></i>Dévaluations et changements de régime</span></div>
+  el.insertAdjacentHTML("beforeend", `<div class="legend-row"><span><i style="border-top-color:#dc2626;opacity:1"></i>Inflation (prix à la consommation)</span><span><i style="border-top-color:#16a34a;opacity:1"></i>Exportations (% du PIB)</span><span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:.8"></i>Solde budgétaire (% du PIB)</span><span><i style="border-top-color:var(--ink);opacity:1"></i>Prix d'un dollar en francs</span><span><i style="border-top-color:#0ea5e9;opacity:1"></i>Dollar corrigé de l'inflation</span><span><i style="border-top-color:#7c3aed;border-top-style:dashed;opacity:1"></i>Dévaluations et changements de régime</span></div>
     <ul class="prose-list hist-ev">${EV.map(([yr, lab, txt, s]) => `<li><b>${lab === "81-83" ? "1981-1983" : yr}</b> : ${esc(txt)} <a href="${SRC[s][1]}"${SRC[s][1].startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${esc(SRC[s][0])}</a></li>`).join("")}</ul>
     <p class="muted" style="font-size:.76rem;margin:4px 0 0">Données : Jordà, Schularick et Taylor, <a href="https://www.macrohistory.net/database/" target="_blank" rel="noopener">Macrohistory Database</a> (1900-2017, licence CC BY-NC-SA, via le dépôt public <a href="https://github.com/unbalancedparentheses/forex-centuries" target="_blank" rel="noopener">forex-centuries</a>) ; INSEE pour les exportations depuis 1949 ; Eurostat pour l'inflation depuis 2018 et le cours euro-dollar depuis 1999 ; comptes publics depuis 1995. Avant 1995, le solde est celui du budget de l'État. De 1945 à 1949, le cours du dollar de la base est un cours de marché, plus élevé que les parités officielles (119, puis 214 et 350 anciens francs). Échelle coupée à −30 % et +60 % : les inflations supérieures sont indiquées en haut.</p>`);
   zoomExport(el);
@@ -95,9 +104,8 @@ function dollarReel(host) {
   const rows = R.map(r => ({ annee: r.annee, reel: r.dollar_reel, nominal: r.dollar ? Math.round(1000 * r.dollar / nom0) / 10 : null }));
   const a = R[0], b = R.at(-1), hors = R.filter(r => r.annee < 1944 || r.annee > 1949), mx = hors.reduce((p, r) => r.dollar_reel > p.dollar_reel ? r : p), mn = hors.reduce((p, r) => r.dollar_reel < p.dollar_reel ? r : p);
   const box = document.createElement("div");
-  box.innerHTML = `<h4 style="margin:22px 0 4px">Le dollar en francs, corrigé de l'inflation (indice 100 en 1950)</h4>
-    <p class="muted" style="font-size:.84rem;margin:0 0 6px">Cours du dollar multiplié par les prix américains et divisé par les prix français. Au-dessus de 100, le franc est « bon marché » : les produits français sont moins chers pour les Américains qu'en 1950.</p>
-    <div id="hist-reel" class="chart"></div><div class="legend-row" id="hist-reel-legend"></div>
+  box.innerHTML = `<h4 style="margin:22px 0 4px">Le dollar corrigé de l'inflation : la dévaluation marche-t-elle ?</h4>
+    <p class="muted" style="font-size:.84rem;margin:0 0 6px">Troisième étage du graphique ci-dessus (en bleu) : cours du dollar multiplié par les prix américains et divisé par les prix français, indice 100 en 1950. Au-dessus de 100, les produits français sont moins chers pour les Américains qu'en 1950.</p>
     <div id="hist-reel-eff" class="table-scroll" style="margin:8px 0"></div>
     <div class="callout small"><ul>
       <li><b>En apparence, le franc s'est effondré</b> : il fallait ${String(a.dollar).replace(".", ",")} franc (nouveau) pour un dollar en ${a.annee}, et environ ${n1(b.dollar)} en ${b.annee}, soit plus de cent fois plus.</li>
@@ -106,27 +114,6 @@ function dollarReel(host) {
       <li><b>Depuis l'euro</b>, le cours varie surtout avec l'euro face au dollar : un dollar fort (2000-2001, 2022-2024) rend les produits français moins chers à l'export ; un dollar faible (2008) les renchérit.</li>
     </ul></div>`;
   host.appendChild(box);
-  // tracé avec les dévaluations en traits verticaux
-  const { showTip, hideTip, css } = window.TH, el = document.getElementById("hist-reel");
-  const w = Math.max(320, el.clientWidth), h = 300, m = { t: 26, r: 14, b: 26, l: 44 }, narrow = w < 640;
-  const x = d3.scaleLinear(d3.extent(rows, d => d.annee), [m.l, w - m.r]), y = d3.scaleLinear([30, 220], [h - m.b, m.t]);
-  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
-  svg.append("g").attr("class", "grid").selectAll("line").data([50, 100, 150, 200]).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
-  svg.append("rect").attr("x", x(1944)).attr("width", x(1949.5) - x(1944)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "#94a3b8").attr("opacity", .15);
-  EV.filter(([yr]) => yr !== 1949 && yr !== 1914).forEach(([yr, lab], i) => {
-    svg.append("line").attr("x1", x(yr)).attr("x2", x(yr)).attr("y1", m.t - 6).attr("y2", h - m.b).attr("stroke", "#7c3aed").attr("stroke-dasharray", "3 3").attr("opacity", .8);
-    svg.append("text").attr("x", x(yr)).attr("y", m.t - 10 - (narrow && i % 2 ? 10 : 0)).attr("text-anchor", "middle").attr("font-size", 10.5).attr("font-weight", 600).style("fill", "#7c3aed").text(lab);
-  });
-  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", "currentColor").attr("opacity", .35);
-  svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).style("stroke", "var(--ink)").attr("stroke-width", 2.2)
-    .attr("d", d3.line().defined(d => d.reel != null).x(d => x(d.annee)).y(d => y(Math.min(220, d.reel)))(rows));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(narrow ? 6 : 13).tickFormat(d3.format("d")));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues([50, 100, 150, 200])).call(g => g.select(".domain").remove());
-  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
-    .on("pointermove", ev => { const yr = Math.round(x.invert(d3.pointer(ev)[0])), d = rows.find(r => r.annee === yr); if (d && d.reel != null) showTip(`<b>${yr}</b><br>Indice : ${n1(d.reel)}<br><span style="opacity:.8">au-dessus de 100 : produits français moins chers qu'en 1950</span>`, ev); })
-    .on("pointerleave", hideTip);
-  el.replaceChildren(svg.node());
-  el.nextElementSibling.innerHTML = `<span><i style="border-top-color:var(--ink);opacity:1"></i>Dollar en francs, corrigé de l'écart d'inflation (indice 100 en 1950)</span><span><i style="border-top-color:#7c3aed;border-top-style:dashed;opacity:1"></i>Dévaluations</span><span><i style="border-top-color:#94a3b8;border-top-width:10px;width:14px;opacity:.5"></i>1944-1949 : cours de marché d'après-guerre, peu fiable</span>`;
   // effet de chaque dévaluation : indice l'année d'avant, le maximum dans les 3 ans, et 5 ans après
   const at = yy => rows.find(r => r.annee === yy)?.reel;
   const eff = [[1928, 1926], [1936, 1936], [1958, 1957], [1969, 1969], [1981, 1981]].map(([d, d0]) => {
