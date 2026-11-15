@@ -820,8 +820,12 @@ function drawBilan() {
   }
 
   el.innerHTML = `<h4 style="margin:8px 0 4px">France entière : ${md(total.actifs)} d'actifs, ${md(total.passifs)} de passifs</h4>`;
-  el.appendChild(chart([total], narrow ? 62 : 52));
-  el.insertAdjacentHTML("beforeend", `<p class="muted" style="font-size:.84rem;margin:2px 0 14px">À gauche ce que chacun doit, à droite ce qu'il possède. Patrimoine net : ${md(total.net)} = biens réels (${md(sum(total.nf))}) ${extNet >= 0 ? "+" : "−"} solde avec l'étranger (${md(Math.abs(extNet))}).</p><h4 style="margin:8px 0 4px">Par secteur (même échelle pour les quatre)</h4>`);
+  // ligne « patrimoine net », même échelle : ce qui reste une fois les dettes déduites
+  const netRow = { id: "net", label: "Ce qu'il reste : patrimoine net", net: total.net, nf: { ...total.nf }, fa: {}, fl: {}, actifs: sum(total.nf), passifs: Math.max(0, -extNet) };
+  L.f.forEach(([k]) => { netRow.fa[k] = 0; netRow.fl[k] = 0; });
+  if (extNet >= 0) netRow.fa.autres_f = extNet; else netRow.fl.autres_f = -extNet;
+  el.appendChild(chart([total, netRow], narrow ? 62 : 52));
+  el.insertAdjacentHTML("beforeend", `<p class="muted" style="font-size:.84rem;margin:2px 0 14px">À gauche ce que chacun doit, à droite ce qu'il possède. Ligne du bas, à la même échelle : ce qu'il reste une fois les dettes déduites. Les actifs financiers et les dettes s'annulent presque, car la dette de l'un est presque toujours la créance d'un autre Français ; il reste les biens réels. Patrimoine net : ${md(total.net)} = biens réels (${md(sum(total.nf))}) ${extNet >= 0 ? "+" : "−"} solde avec l'étranger (${md(Math.abs(extNet))}).</p><h4 style="margin:8px 0 4px">Par secteur (même échelle pour les quatre)</h4>`);
   el.appendChild(chart(secs, narrow ? 56 : 46, true));
   const sw = (c, hatch) => `<i style="width:14px;height:12px;border:0;opacity:1;background:${hatch ? `repeating-linear-gradient(45deg, ${c} 0 2.5px, color-mix(in srgb, ${c} 35%, transparent) 2.5px 6px)` : c}"></i>`;
   el.insertAdjacentHTML("beforeend", `
