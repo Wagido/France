@@ -115,6 +115,36 @@ get societe/env_wasgen.json   "$E/env_wasgen?unit=T&unit=KG_HAB&hazard=HAZ_NHAZ&
 get societe/env_wastrt.json   "$E/env_wastrt?unit=T&hazard=HAZ_NHAZ&waste=TOTAL&sinceTimePeriod=2004$GEO"
 get societe/env_wasmun.json   "$E/env_wasmun?unit=KG_HAB&unit=THS_T&sinceTimePeriod=1995$GEO"
 
+# Capital social et culturel (enquête SRCV, modules 2015 et 2022, et bien-être)
+mkdir -p capital
+A="age=Y_GE16&sex=T"
+get capital/ilc_scp03.json "$E/ilc_scp03?$A&unit=PC&isced11=TOTAL&isced11=ED0-2&isced11=ED3_4&isced11=ED5-8&frequenc=GE1$GEO"
+get capital/ilc_scp04.json "$E/ilc_scp04?unit=PC&deg_urb=TOTAL&hhcomp=TOTAL&frequenc=GE1$GEO"
+get capital/ilc_scp07.json "$E/ilc_scp07?$A&unit=PC&frequenc=GE1Y$GEO"
+get capital/ilc_scp08.json "$E/ilc_scp08?unit=PC&deg_urb=TOTAL&hhcomp=TOTAL&frequenc=GE1Y$GEO"
+get capital/ilc_scp09.json "$E/ilc_scp09?$A&unit=PC&frequenc=DAY&frequenc=WEEK$GEO"
+get capital/ilc_scp10.json "$E/ilc_scp10?unit=PC&deg_urb=TOTAL&hhcomp=TOTAL&frequenc=DAY&frequenc=WEEK$GEO"
+get capital/ilc_scp19.json "$E/ilc_scp19?$A&unit=PC$GEO"
+get capital/ilc_scp20.json "$E/ilc_scp20?unit=PC&deg_urb=TOTAL&hhcomp=TOTAL$GEO"
+get capital/ilc_scp27.json "$E/ilc_scp27?$A&unit=PC&n_book=0$GEO"
+get capital/ilc_scp28.json "$E/ilc_scp28?unit=PC&deg_urb=TOTAL&hhcomp=TOTAL&n_book=0$GEO"
+get capital/ilc_pw01.json  "$E/ilc_pw01?$A&sinceTimePeriod=2013$GEO"
+get capital/ilc_pw02.json  "$E/ilc_pw02?deg_urb=TOTAL&hhcomp=TOTAL&sinceTimePeriod=2013$GEO"
+get capital/ilc_pw03.json  "$E/ilc_pw03?$A&sinceTimePeriod=2013$GEO"
+get capital/ilc_pw04.json  "$E/ilc_pw04?deg_urb=TOTAL&hhcomp=TOTAL&sinceTimePeriod=2013$GEO"
+get capital/ilc_pw06.json  "$E/ilc_pw06?$A&sinceTimePeriod=2013$GEO"
+get capital/ilc_pw07.json  "$E/ilc_pw07?deg_urb=TOTAL&hhcomp=TOTAL&sinceTimePeriod=2013$GEO"
+get capital/ilc_pw10.json  "$E/ilc_pw10?$A$GEO"
+
+# Justice : chaîne pénale, détenus, homicides ; population par nationalité
+get themes/crim_just_ctz.json "$E/crim_just_ctz?sinceTimePeriod=2008$GEO"
+get themes/crim_just_age.json "$E/crim_just_age?sinceTimePeriod=2008$GEO"
+get themes/crim_just_sex.json "$E/crim_just_sex?sinceTimePeriod=2008$GEO"
+get themes/crim_pris_ctz.json "$E/crim_pris_ctz?sinceTimePeriod=2008$GEO"
+get themes/crim_pris_age.json "$E/crim_pris_age?sex=T&sinceTimePeriod=2008$GEO"
+get themes/crim_hom_vrel.json "$E/crim_hom_vrel?sinceTimePeriod=2008$GEO"
+get themes/migr_pop1ctz.json  "$E/migr_pop1ctz?age=TOTAL&sex=T&citizen=TOTAL&citizen=NAT&citizen=FOR&sinceTimePeriod=2008$GEO"
+
 # Commerce extérieur de la France (Comext) : par partenaire et par chapitre de produits
 C="https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-059341"
 YR=$(date +%Y); LAST=$((YR-1))

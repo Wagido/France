@@ -208,11 +208,69 @@ def dechets(geo):
     return {"production": prod, "traitement": trait, "menagers": mun, "labels": {"secteurs": NACE, "modes": TRT}} if prod or trait or mun else None
 
 
+# ------------------------------------------------------------------ capital social et culturel
+CAPSRC = os.path.join(HERE, "..", "data", "sources", "capital")
+EDU = [("TOTAL", "Ensemble"), ("ED0-2", "Brevet ou moins"), ("ED3_4", "Bac, CAP, BEP"), ("ED5-8", "Diplôme du supérieur")]
+INC = [("QU1", "20 % les plus modestes"), ("QU2", "2e cinquième"), ("QU3", "3e cinquième"), ("QU4", "4e cinquième"), ("QU5", "20 % les plus aisés")]
+# (id, libellé, unité, groupe, (fichier diplôme, filtres), (fichier revenu, filtres), transformation)
+CAP = [
+    ("sorties", "Sortie culturelle (cinéma, spectacle, musée…) dans l'année", "%", "Culture",
+     ("ilc_scp03.json", {"acl00": "AC52A"}), ("ilc_scp04.json", {"acl00": "AC52A"}), None),
+    ("cinema", "Cinéma au moins une fois dans l'année", "%", "Culture", ("ilc_scp03.json", {"acl00": "AC521"}), ("ilc_scp04.json", {"acl00": "AC521"}), None),
+    ("spectacle", "Spectacle vivant (théâtre, concert, danse)", "%", "Culture", ("ilc_scp03.json", {"acl00": "AC522A"}), ("ilc_scp04.json", {"acl00": "AC522A"}), None),
+    ("patrimoine", "Visite d'un musée, monument, site culturel", "%", "Culture", ("ilc_scp03.json", {"acl00": "AC523H"}), ("ilc_scp04.json", {"acl00": "AC523H"}), None),
+    ("sport", "Assister à un événement sportif", "%", "Culture", ("ilc_scp03.json", {"acl00": "AC525"}), ("ilc_scp04.json", {"acl00": "AC525"}), None),
+    ("lecture", "A lu au moins un livre dans l'année", "%", "Culture", ("ilc_scp27.json", {"n_book": "0"}), None, "complement"),
+    ("art", "Pratique artistique en amateur (musique, peinture…)", "%", "Culture", ("ilc_scp07.json", {}), ("ilc_scp08.json", {}), None),
+    ("amis", "Voit des amis au moins chaque semaine", "%", "Liens", ("ilc_scp09.json", {"pers_cat": "FRD"}), ("ilc_scp10.json", {"pers_cat": "FRD"}), "jour+semaine"),
+    ("famille", "Voit sa famille au moins chaque semaine", "%", "Liens", ("ilc_scp09.json", {"pers_cat": "FAM_REL"}), ("ilc_scp10.json", {"pers_cat": "FAM_REL"}), "jour+semaine"),
+    ("aide", "Peut compter sur quelqu'un en cas de besoin", "%", "Liens", ("ilc_pw06.json", {}), ("ilc_pw07.json", {}), None),
+    ("benevolat", "Bénévole dans une association", "%", "Engagement", ("ilc_scp19.json", {"acl00": "AC41A"}), ("ilc_scp20.json", {"acl00": "AC41A"}), None),
+    ("entraide", "Aide bénévole informelle (voisins, proches)", "%", "Engagement", ("ilc_scp19.json", {"acl00": "AC42A"}), ("ilc_scp20.json", {"acl00": "AC42A"}), None),
+    ("citoyen", "Engagement citoyen (parti, syndicat, pétition, manifestation…)", "%", "Engagement", ("ilc_scp19.json", {"acl00": "AC43A"}), ("ilc_scp20.json", {"acl00": "AC43A"}), None),
+    ("confiance", "Confiance dans les autres (note sur 10)", "/10", "Bien-être", ("ilc_pw03.json", {}), ("ilc_pw04.json", {}), None),
+    ("satisfaction", "Satisfaction dans la vie (note sur 10)", "/10", "Bien-être", ("ilc_pw01.json", {}), ("ilc_pw02.json", {}), None),
+    ("exclu", "Se sent exclu de la société", "%", "Bien-être", ("ilc_pw10.json", {}), None, None),
+]
+
+
+def capital(geo):
+    rows = []
+    for cid, lab, unit, grp, edu, inc, tr in CAP:
+        def pick(file, filt, dim, code):
+            tab = jstat(file, CAPSRC, geo); g = getter(tab)
+            ys = sorted({dict(k)["time"] for k in tab if k != "__single__"}, reverse=True)
+            for y in ys:
+                if tr == "jour+semaine":
+                    a, b = g(time=y, frequenc="DAY", **{dim: code}, **filt), g(time=y, frequenc="WEEK", **{dim: code}, **filt)
+                    v = None if a is None and b is None else (a or 0) + (b or 0)
+                else:
+                    v = g(time=y, **{dim: code}, **filt)
+                if v is not None:
+                    return (100 - v if tr == "complement" else v), y
+            return None, None
+        rec = {"id": cid, "label": lab, "unite": unit, "groupe": grp, "valeurs": {}, "annee": None}
+        for code, _ in EDU:
+            v, y = pick(edu[0], edu[1], "isced11", code)
+            if code == "ED5-8" and v is None:
+                v, y = pick(edu[0], edu[1], "isced11", "ED5_6")
+            rec["valeurs"][code] = r(v)
+            if code == "TOTAL":
+                rec["annee"] = y
+        if inc:
+            for code, _ in INC:
+                v, _ = pick(inc[0], inc[1], "quant_inc", code)
+                rec["valeurs"][code] = r(v)
+        if rec["valeurs"].get("TOTAL") is not None:
+            rows.append(rec)
+    return {"lignes": rows, "colonnes": {"diplome": EDU, "revenu": INC}} if rows else None
+
+
 index = []
 for p in PAYS:
     geo = p["code"]
     d = {"pays": geo, "nom": p["nom"], "sante": sante(geo), "education": education(geo), "logement": logement(geo),
-         "transports": transports(geo), "emploi": emploi(geo), "inegalites": inegalites(geo), "dechets": dechets(geo)}
+         "transports": transports(geo), "emploi": emploi(geo), "inegalites": inegalites(geo), "dechets": dechets(geo), "capital": capital(geo)}
     json.dump(d, open(os.path.join(OUT, geo + ".json"), "w"), ensure_ascii=False, separators=(",", ":"))
     s = {"code": geo, "nom": p["nom"]}
     if d["sante"]:
@@ -239,6 +297,8 @@ for p in PAYS:
         s["dechets"] = {"menagers": mm and mm["kg_hab"], "total_hab": pr and pr["kg_hab"],
                         "recyclage": tr and tr["total"] and r(100 * (tr["modes"].get("RCV_R") or 0) / tr["total"]),
                         "decharge": tr and tr["total"] and r(100 * (tr["modes"].get("DSP_L") or 0) / tr["total"])}
+    if d["capital"]:
+        s["capital"] = {x["id"]: x["valeurs"].get("TOTAL") for x in d["capital"]["lignes"]}
     index.append(s)
-    print(geo, " ".join(k for k in ["sante", "education", "logement", "transports", "emploi", "inegalites", "dechets"] if d[k]))
+    print(geo, " ".join(k for k in ["sante", "education", "logement", "transports", "emploi", "inegalites", "dechets", "capital"] if d[k]))
 json.dump({"pays": index}, open(os.path.join(OUT, "index.json"), "w"), ensure_ascii=False, separators=(",", ":"))

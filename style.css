@@ -208,3 +208,10 @@ table.cmp-t tr.me td { font-weight: 700; background: var(--callout); }
 #sa-flux .node text { font-size: 11.5px; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
 #sa-flux .node text .amt { fill: var(--muted); }
 #sa-flux .colhead { font-size: 11px; font-weight: 700; letter-spacing: .06em; fill: var(--muted); text-transform: uppercase; }
+
+table.mat td.mat-c { text-align: center; font-variant-numeric: tabular-nums; min-width: 70px; }
+table.mat td.mat-c.tot { font-weight: 700; outline: 1px solid var(--line); }
+table.mat th.mat-h { text-align: center; white-space: normal; max-width: 90px; font-size: .74rem; }
+table.mat th.mat-grp { text-align: center; color: var(--ink); border-bottom: 2px solid var(--line); }
+table.mat tr.mat-sep td { font-weight: 700; background: var(--bg); text-align: left; }
+table.mat td:first-child { white-space: normal; min-width: 220px; }

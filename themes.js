@@ -396,6 +396,25 @@ function drawJustice() {
     $("#ju-off-title").textContent = `Infractions enregistrées par la police et la gendarmerie en ${lastOff.annee}`;
   } else empty("#ju-off");
   lineChart($("#ju-pris"), S, [{ k: "detenus", l: "Détenus", c: "#dc2626" }, { k: "places", l: "Places de prison", c: css("--ink"), dash: "5 3" }], { yfmt: v => n0(v / 1000) + " k" });
+  legend("#ju-pris-legend", [["Détenus", "#dc2626"], ["Places de prison", css("--ink"), true]]);
+  // chaîne pénale
+  const ch = [...(J.chaine || [])].reverse().find(c => c.PER_SUSP_TOTAL != null);
+  if (ch) {
+    const offTot = lastOff ? d3.sum(Object.values(lastOff.infractions).filter(v => v != null)) : null;
+    const pr = [...J.chaine].reverse().find(c => c.PRIS_TOTAL != null);
+    const steps = [
+      ["Personnes mises en cause par la police", ch.PER_SUSP_TOTAL, ch.PER_SUSP_FOR, ch.PER_SUSP_MIN],
+      ["Personnes poursuivies devant la justice", ch.PER_PRSC_TOTAL, ch.PER_PRSC_FOR, ch.PER_PRSC_MIN],
+      ["Personnes condamnées", ch.PER_CNV_TOTAL, ch.PER_CNV_FOR, ch.PER_CNV_MIN],
+      ...(pr ? [["Personnes détenues (au 1er janvier, " + pr.annee + ")", pr.PRIS_TOTAL, pr.PRIS_FOR, pr.PRIS_MIN]] : []),
+    ];
+    const mx = steps[0][1];
+    $("#ju-chaine").innerHTML = `<div class="bars">${steps.map(([l, t, f, m]) => `<div class="bar-row"><span class="lab">${esc(l)}</span>
+      <span class="val">${n0(t)}${f != null ? ` · étrangers ${pct(100 * f / t, 0)}` : ""}${m != null ? ` · mineurs ${pct(100 * m / t, 0)}` : ""}</span>
+      <span class="track"><span class="fill" style="width:${100 * t / mx}%;background:#475569"></span><span class="fill" style="width:${100 * (f || 0) / mx}%;background:#f59e0b"></span></span></div>`).join("")}</div>`;
+    const popFor = pr && pr.POP_TOTAL && pr.POP_NAT ? 100 * (pr.POP_TOTAL - pr.POP_NAT) / pr.POP_TOTAL : null;
+    $("#ju-chaine-note").innerHTML = `Année ${ch.annee}. En orange, la part des personnes de nationalité étrangère${popFor ? ` (elles représentent ${pct(popFor, 1)} de la population)` : ""}. Cette surreprésentation s'explique en partie par l'âge et le sexe (les étrangers sont plus souvent des hommes jeunes, comme les auteurs d'infractions en général), par des infractions propres au séjour irrégulier, et par une détention provisoire plus fréquente faute de garanties de domicile. Un homicide sur ${ch.hom_conjoint && ch.hom_famille ? n0(1 / ((ch.hom_conjoint + ch.hom_famille) / ((lastOff?.infractions.ICCS0101) || 1))) : "–"} environ est commis par un conjoint ou un membre de la famille (${n0(ch.hom_conjoint || 0)} victimes de leur conjoint ou ex-conjoint, dont ${n0(ch.hom_conjoint_f || 0)} femmes).`;
+  } else { empty("#ju-chaine"); $("#ju-chaine-note").innerHTML = ""; }
   table($("#ju-cmp"), "ju", [
     { k: "det", l: "Détenus / 100 000 hab.", f: r => r.justice?.detenus_100k, fmt: v => n0(v), max: 250, c: "#dc2626" },
     { k: "pol", l: "Policiers / 100 000", f: r => r.justice?.policiers_100k, fmt: v => n0(v), max: 600, c: "#3b6fd6" },

@@ -44,6 +44,7 @@
       <a href="#education">Éducation</a>
       <a href="#logement">Logement</a>
       <a href="#inegalites">Inégalités</a>
+      <a href="#capital">Capital social et culturel</a>
       <span class="tab-group">·</span>
       <a href="#methode">Méthode</a>
     </nav>
@@ -424,8 +425,11 @@
   <div class="grid2">
     <div><h3 id="ju-off-title">Infractions enregistrées</h3><div id="ju-off" class="chart"></div>
       <p class="muted" style="font-size:.85rem">Faits enregistrés par la police et la gendarmerie : ils dépendent aussi des plaintes déposées et des définitions nationales, les comparaisons entre pays sont donc fragiles.</p></div>
-    <div><h3>Détenus et places de prison</h3><div id="ju-pris" class="chart"></div></div>
+    <div><h3>Détenus et places de prison</h3><div id="ju-pris" class="chart"></div><div class="legend-row" id="ju-pris-legend"></div></div>
   </div>
+  <h3>La chaîne pénale : des mises en cause aux condamnations</h3>
+  <div id="ju-chaine" class="chart"></div>
+  <p class="muted" style="font-size:.86rem" id="ju-chaine-note"></p>
   <h3>Comparer les pays</h3><div id="ju-cmp" class="chart"></div>
 </section>
 
@@ -481,6 +485,15 @@
   </div>
   <p class="muted" style="font-size:.85rem">Le patrimoine des ménages par tranche n'est pas publié par Eurostat. En France, d'après l'INSEE, les 10 % de ménages les mieux dotés détiennent environ la moitié du patrimoine brut.</p>
   <h3>Comparer les pays</h3><div id="in-cmp" class="chart"></div>
+</section>
+
+<section id="capital" class="panel">
+  <div class="panel-head">
+    <h2>Capital social et culturel : qui sort, lit, s'engage, fait confiance <span class="geo-tag"></span></h2>
+  </div>
+  <div class="kpis" id="ca-kpis"></div>
+  <p class="lead">Part des personnes de 16 ans et plus (ou note moyenne sur 10), selon le diplôme et le revenu. Dans chaque ligne, la couleur va du plus faible (clair) au plus élevé (foncé). Enquête européenne SRCV, modules « participation sociale et culturelle » (2022) et « bien-être » (annuel).</p>
+  <div id="ca-mat" class="chart"></div>
 </section>
 
 <!-- =============================================================== METHODE -->

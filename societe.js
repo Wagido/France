@@ -34,7 +34,7 @@ async function setGeo(g) {
   if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/societe/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
-function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
+function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets, capital].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
 
 /* ---------------------------------------------------------------- santé */
 function sante() {
@@ -259,6 +259,42 @@ function dechets() {
     { k: "rec", l: "Part recyclée (tous déchets)", f: r => r.dechets?.recyclage, fmt: v => pct(v, 0), max: 100, c: "#16a34a" },
     { k: "dec", l: "Part en décharge", f: r => r.dechets?.decharge, fmt: v => pct(v, 0), max: 100, c: "#dc2626" },
   ], "men");
+}
+
+/* ---------------------------------------------------------------- capital social et culturel */
+function capital() {
+  const { kpis, n1, esc, showTip, hideTip } = T();
+  const C = D()?.capital; if (!C) { kpis("#ca-kpis", []); empty("#ca-mat"); return; }
+  const L = Object.fromEntries(C.lignes.map(l => [l.id, l]));
+  const v = (id, c) => L[id]?.valeurs?.[c];
+  const gap = (id, a, b) => v(id, a) != null && v(id, b) != null ? v(id, b) - v(id, a) : null;
+  kpis("#ca-kpis", [
+    L.sorties && [`${Math.round(v("sorties", "ED0-2"))} % → ${Math.round(v("sorties", "ED5-8"))} %`, "sortie culturelle dans l'année : peu diplômés → diplômés du supérieur"],
+    L.citoyen && [`${n1(v("citoyen", "QU1"))} % → ${n1(v("citoyen", "QU5"))} %`, "engagement citoyen : 20 % les plus modestes → 20 % les plus aisés"],
+    L.confiance && [`${n1(v("confiance", "TOTAL"))} / 10`, "confiance moyenne dans les autres"],
+    L.famille && [`${Math.round(v("famille", "ED0-2"))} % / ${Math.round(v("famille", "ED5-8"))} %`, "voient leur famille chaque semaine (peu diplômés / diplômés du supérieur) : le seul lien plus fort en bas"],
+  ]);
+  const cols = [...C.colonnes.diplome, ...C.colonnes.revenu];
+  let grp = "";
+  const color = (row, x) => {
+    if (x == null) return "transparent";
+    const vals = cols.map(([c]) => row.valeurs[c]).filter(y => y != null);
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const t = hi > lo ? (x - lo) / (hi - lo) : .5;
+    return d3.interpolateRgb("#f8d9c4", "#2b59c3")(t);
+  };
+  $("#ca-mat").innerHTML = `<div class="table-scroll"><table class="cmp-t mat"><thead><tr><th></th>
+    <th colspan="4" class="mat-grp">Selon le diplôme</th><th colspan="5" class="mat-grp">Selon le revenu (cinquièmes)</th></tr>
+    <tr><th>Pratique</th>${cols.map(([c, l]) => `<th class="mat-h">${esc(l)}</th>`).join("")}</tr></thead><tbody>` +
+    C.lignes.map(row => {
+      const head = row.groupe !== grp ? `<tr class="mat-sep"><td colspan="${cols.length + 1}">${esc(row.groupe)}</td></tr>` : "";
+      grp = row.groupe;
+      return head + `<tr><td>${esc(row.label)} <small class="muted">${row.annee}</small></td>` + cols.map(([c]) => {
+        const x = row.valeurs[c]; const bg = color(row, x);
+        const dark = x != null && d3.hsl(d3.color(bg)).l < .55;
+        return `<td class="mat-c${c === "TOTAL" ? " tot" : ""}" style="background:${bg};color:${dark ? "#fff" : "inherit"}">${x == null ? "–" : row.unite === "%" ? Math.round(x) + " %" : n1(x)}</td>`;
+      }).join("") + `</tr>`;
+    }).join("") + `</tbody></table></div>`;
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();

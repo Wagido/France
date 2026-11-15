@@ -207,7 +207,26 @@ def justice(geo):
                "policiers_100k": j(isco08="OC5412", unit="P_HTHAB", time=y), "juges_100k": j(isco08="OC2612A", unit="P_HTHAB", time=y)}
         if any(v is not None for v in rec["infractions"].values()) or rec["detenus"] is not None:
             serie.append(rec)
-    return {"serie": serie, "categories": [list(x) for x in ICCS]} if serie else None
+    # chaîne pénale, nationalité, âge, homicides
+    ct, ag, pc, pa, hv, pop = (G(n, geo) for n in ["crim_just_ctz.json", "crim_just_age.json", "crim_pris_ctz.json", "crim_pris_age.json",
+                                                   "crim_hom_vrel.json", "migr_pop1ctz.json"])
+    chaine = []
+    for y in sorted(set(years("crim_just_ctz.json", geo)) | set(years("crim_pris_ctz.json", geo))):
+        rec = {"annee": y}
+        for st in ["PER_SUSP", "PER_PRSC", "PER_CNV"]:
+            for cz in ["TOTAL", "NAT", "FOR"]:
+                rec[f"{st}_{cz}"] = ct(leg_stat=st, citizen=cz, unit="NR", time=y)
+            rec[f"{st}_MIN"] = ag(leg_stat=st, age="JUVENILE", unit="NR", time=y)
+        for cz in ["TOTAL", "NAT", "FOR"]:
+            rec[f"PRIS_{cz}"] = pc(citizen=cz, unit="NR", time=y)
+            rec[f"POP_{cz}"] = pop(citizen=cz, time=y)
+        rec["PRIS_MIN"] = pa(age="JUVENILE", unit="NR", time=y)
+        rec["hom_famille"] = hv(pers_cat="FAM", sex="T", unit="NR", time=y)
+        rec["hom_conjoint"] = hv(pers_cat="IPTN", sex="T", unit="NR", time=y)
+        rec["hom_conjoint_f"] = hv(pers_cat="IPTN", sex="F", unit="NR", time=y)
+        if any(v is not None for k, v in rec.items() if k != "annee"):
+            chaine.append(rec)
+    return {"serie": serie, "categories": [list(x) for x in ICCS], "chaine": chaine} if serie or chaine else None
 
 
 # ------------------------------------------------------------------ alimentation (FAOSTAT)
