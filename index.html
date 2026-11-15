@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261115c">
+<link rel="stylesheet" href="style.css?v=20261115d">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -199,9 +199,6 @@
     </div>
   </div>
 
-  <h3>« Mais on n'a plus de croissance ! »</h3>
-  <div class="callout small" id="simu-croissance"></div>
-
   <h3>La dévaluation : l'outil qu'on n'a plus</h3>
   <p>Avant l'euro, la France combinait souvent rigueur budgétaire et dévaluation : en 1958, en 1969, puis en 1982-83 (plusieurs dévaluations du franc). Les exportations repartaient et compensaient le freinage budgétaire. Mais ce n'était pas gratuit :</p>
   <ul class="prose-list">
@@ -215,7 +212,8 @@
     <li><b>La « dévaluation interne »</b> : baisser les coûts par la modération des salaires. L'Allemagne l'a fait dans les années 2000, l'Espagne et le Portugal après 2010. Ça marche, mais c'est lent et douloureux.</li>
     <li><b>La « dévaluation fiscale »</b> : alléger les cotisations sur le travail et monter la TVA. Les produits français deviennent moins chers, les importations plus chères, comme une petite dévaluation. L'Allemagne l'a fait en 2007 (+3 points de TVA) ; en France, il y a eu la TVA sociale votée en 2012 puis abandonnée, et le CICE. Simulateur ci-dessous.</li>
     <li><b>Étaler l'effort et choisir quoi couper</b>, en protégeant l'investissement.</li>
-    <li><b>Jouer sur le dénominateur</b> : ce qui compte, c'est la dette rapportée au PIB. Avec un peu d'inflation et de croissance, et des taux d'intérêt inférieurs à la croissance, le ratio baisse sans couper beaucoup. C'est ce qui a réduit les dettes d'après-guerre. Mais cela suppose de la croissance (voir l'encadré plus haut).</li>
+    <li><b>Jouer sur le dénominateur</b> : ce qui compte, c'est la dette rapportée au PIB. Avec un peu d'inflation et de croissance, et des taux d'intérêt inférieurs à la croissance, le ratio baisse sans couper beaucoup. C'est ce qui a réduit les dettes d'après-guerre. Mais cela suppose de la croissance.</li>
+    <li id="simu-croissance"></li>
   </ul>
 
   <h3>Simuler une dévaluation fiscale</h3>
@@ -768,16 +766,16 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="app.js?v=20261115c"></script>
-<script src="energie.js?v=20261115c"></script>
-<script src="matieres.js?v=20261115c"></script>
-<script src="territoire.js?v=20261115c"></script>
-<script src="themes.js?v=20261115c"></script>
-<script src="societe.js?v=20261115c"></script>
-<script src="eco2.js?v=20261115c"></script>
-<script src="empreinte.js?v=20261115c"></script>
-<script src="chomage.js?v=20261115c"></script>
-<script src="sources.js?v=20261115c"></script>
-<script src="nav.js?v=20261115c"></script>
+<script src="app.js?v=20261115d"></script>
+<script src="energie.js?v=20261115d"></script>
+<script src="matieres.js?v=20261115d"></script>
+<script src="territoire.js?v=20261115d"></script>
+<script src="themes.js?v=20261115d"></script>
+<script src="societe.js?v=20261115d"></script>
+<script src="eco2.js?v=20261115d"></script>
+<script src="empreinte.js?v=20261115d"></script>
+<script src="chomage.js?v=20261115d"></script>
+<script src="sources.js?v=20261115d"></script>
+<script src="nav.js?v=20261115d"></script>
 </body>
 </html>
