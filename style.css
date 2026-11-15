@@ -18,13 +18,7 @@
   --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f1115; --surface: #161920; --soft: #1d2129; --ink: #e9eaee; --muted: #9ca2ae; --faint: #747b88; --line: #262a33;
-    --accent: #84a6ff; --pos: #5cc493; --neg: #f27d74; --total: #c4c8d2; --callout: #1a2131;
-    --tip-bg: #e9eaee; --tip-ink: #0f1115; --link-opacity: .5; --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark;
-  }
-}
+
 :root[data-theme="dark"] {
   --bg: #0f1115; --surface: #161920; --soft: #1d2129; --ink: #e9eaee; --muted: #9ca2ae; --faint: #747b88; --line: #262a33;
   --accent: #84a6ff; --pos: #5cc493; --neg: #f27d74; --total: #c4c8d2; --callout: #1a2131;
@@ -57,10 +51,7 @@ header.site { position: sticky; top: 0; z-index: 10; background: color-mix(in sr
 .icon-btn .i-sun { display: none; }
 :root[data-theme="dark"] .icon-btn .i-sun { display: block; }
 :root[data-theme="dark"] .icon-btn .i-moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .icon-btn .i-sun { display: block; }
-  :root:not([data-theme="light"]) .icon-btn .i-moon { display: none; }
-}
+
 .groups { display: inline-flex; gap: 2px; padding: 3px; background: var(--soft); border-radius: 11px; margin-bottom: 8px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .groups button { font: inherit; font-size: .88rem; font-weight: 500; border: 0; background: transparent; color: var(--muted); padding: 6px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
 .groups button:hover { color: var(--ink); }

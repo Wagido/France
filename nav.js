@@ -42,7 +42,7 @@ show(location.hash.slice(1));
 
 // thème clair / sombre (le choix est retenu sur cet appareil)
 const root = document.documentElement;
-const dark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+const dark = () => root.dataset.theme === "dark";
 $("#theme-btn").onclick = () => {
   const t = dark() ? "light" : "dark";
   root.dataset.theme = t;

@@ -65,7 +65,6 @@ function init() {
   $("#gen-date").textContent = `Données générées le ${new Date(DATA.genere_le).toLocaleDateString("fr-FR", { dateStyle: "long" })}.`;
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { drawSankey(); drawSimu(); drawSimu10(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); drawCroissance(); drawDevFisc(); }, 150); });
   document.querySelectorAll(".geo-tag").forEach(t => t.textContent = "France");
-  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { drawSankey(); drawSimu(); drawHisto(); drawBilan(); drawInterets(); drawFonctions(); });
 }
 
 async function setGeo(g) {
