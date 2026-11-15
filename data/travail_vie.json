@@ -1,0 +1,275 @@
+{
+ "pays": [
+  {
+   "code": "PT",
+   "nom": "Portugal",
+   "heures_an": 1912,
+   "annee_h": "2025",
+   "vie_active": 39.7,
+   "annee_v": 2025,
+   "heures_vie": 75900.0
+  },
+  {
+   "code": "CY",
+   "nom": "Chypre",
+   "heures_an": 1854,
+   "annee_h": "2025",
+   "vie_active": 39.5,
+   "annee_v": 2025,
+   "heures_vie": 73200.0
+  },
+  {
+   "code": "LT",
+   "nom": "Lituanie",
+   "heures_an": 1894,
+   "annee_h": "2025",
+   "vie_active": 38.6,
+   "annee_v": 2025,
+   "heures_vie": 73100.0
+  },
+  {
+   "code": "MT",
+   "nom": "Malte",
+   "heures_an": 1850,
+   "annee_h": "2025",
+   "vie_active": 39.2,
+   "annee_v": 2025,
+   "heures_vie": 72500.0
+  },
+  {
+   "code": "PL",
+   "nom": "Pologne",
+   "heures_an": 1989,
+   "annee_h": "2025",
+   "vie_active": 35.9,
+   "annee_v": 2025,
+   "heures_vie": 71400.0
+  },
+  {
+   "code": "LV",
+   "nom": "Lettonie",
+   "heures_an": 1846,
+   "annee_h": "2025",
+   "vie_active": 38.1,
+   "annee_v": 2025,
+   "heures_vie": 70300.0
+  },
+  {
+   "code": "EE",
+   "nom": "Estonie",
+   "heures_an": 1690,
+   "annee_h": "2025",
+   "vie_active": 41.5,
+   "annee_v": 2025,
+   "heures_vie": 70100.0
+  },
+  {
+   "code": "EL",
+   "nom": "Grèce",
+   "heures_an": 1981,
+   "annee_h": "2025",
+   "vie_active": 35.3,
+   "annee_v": 2025,
+   "heures_vie": 69900.0
+  },
+  {
+   "code": "HR",
+   "nom": "Croatie",
+   "heures_an": 1952,
+   "annee_h": "2025",
+   "vie_active": 35.1,
+   "annee_v": 2025,
+   "heures_vie": 68500.0
+  },
+  {
+   "code": "CZ",
+   "nom": "Tchéquie",
+   "heures_an": 1793,
+   "annee_h": "2025",
+   "vie_active": 38.1,
+   "annee_v": 2025,
+   "heures_vie": 68300.0
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "heures_an": 1566,
+   "annee_h": "2025",
+   "vie_active": 43.4,
+   "annee_v": 2025,
+   "heures_vie": 68000.0
+  },
+  {
+   "code": "IS",
+   "nom": "Islande",
+   "heures_an": 1437,
+   "annee_h": "2025",
+   "vie_active": 46.5,
+   "annee_v": 2024,
+   "heures_vie": 66800.0
+  },
+  {
+   "code": "IE",
+   "nom": "Irlande",
+   "heures_an": 1639,
+   "annee_h": "2025",
+   "vie_active": 40.7,
+   "annee_v": 2025,
+   "heures_vie": 66700.0
+  },
+  {
+   "code": "CH",
+   "nom": "Suisse",
+   "heures_an": 1508,
+   "annee_h": "2025",
+   "vie_active": 42.8,
+   "annee_v": 2025,
+   "heures_vie": 64500.0
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "heures_an": 1434,
+   "annee_h": "2025",
+   "vie_active": 44.0,
+   "annee_v": 2025,
+   "heures_vie": 63100.0
+  },
+  {
+   "code": "HU",
+   "nom": "Hongrie",
+   "heures_an": 1678,
+   "annee_h": "2025",
+   "vie_active": 37.5,
+   "annee_v": 2025,
+   "heures_vie": 62900.0
+  },
+  {
+   "code": "FI",
+   "nom": "Finlande",
+   "heures_an": 1546,
+   "annee_h": "2025",
+   "vie_active": 40.1,
+   "annee_v": 2025,
+   "heures_vie": 62000.0
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "heures_an": 1633,
+   "annee_h": "2025",
+   "vie_active": 36.8,
+   "annee_v": 2025,
+   "heures_vie": 60100.0
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "heures_an": 1534,
+   "annee_h": "2025",
+   "vie_active": 39.1,
+   "annee_v": 2025,
+   "heures_vie": 60000.0
+  },
+  {
+   "code": "RO",
+   "nom": "Roumanie",
+   "heures_an": 1836,
+   "annee_h": "2025",
+   "vie_active": 32.7,
+   "annee_v": 2025,
+   "heures_vie": 60000.0
+  },
+  {
+   "code": "SI",
+   "nom": "Slovénie",
+   "heures_an": 1603,
+   "annee_h": "2025",
+   "vie_active": 37.2,
+   "annee_v": 2025,
+   "heures_vie": 59600.0
+  },
+  {
+   "code": "SK",
+   "nom": "Slovaquie",
+   "heures_an": 1612,
+   "annee_h": "2025",
+   "vie_active": 36.1,
+   "annee_v": 2025,
+   "heures_vie": 58200.0
+  },
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "heures_an": 1361,
+   "annee_h": "2025",
+   "vie_active": 42.6,
+   "annee_v": 2025,
+   "heures_vie": 58000.0
+  },
+  {
+   "code": "NO",
+   "nom": "Norvège",
+   "heures_an": 1385,
+   "annee_h": "2025",
+   "vie_active": 41.4,
+   "annee_v": 2025,
+   "heures_vie": 57300.0
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "heures_an": 1589,
+   "annee_h": "2025",
+   "vie_active": 35.7,
+   "annee_v": 2025,
+   "heures_vie": 56700.0
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "heures_an": 1717,
+   "annee_h": "2025",
+   "vie_active": 33.0,
+   "annee_v": 2025,
+   "heures_vie": 56700.0
+  },
+  {
+   "code": "FR",
+   "nom": "France",
+   "heures_an": 1500,
+   "annee_h": "2025",
+   "vie_active": 37.5,
+   "annee_v": 2025,
+   "heures_vie": 56200.0
+  },
+  {
+   "code": "BG",
+   "nom": "Bulgarie",
+   "heures_an": 1609,
+   "annee_h": "2025",
+   "vie_active": 34.6,
+   "annee_v": 2025,
+   "heures_vie": 55700.0
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "heures_an": 1336,
+   "annee_h": "2025",
+   "vie_active": 40.2,
+   "annee_v": 2025,
+   "heures_vie": 53700.0
+  },
+  {
+   "code": "LU",
+   "nom": "Luxembourg",
+   "heures_an": 1459,
+   "annee_h": "2025",
+   "vie_active": 35.6,
+   "annee_v": 2025,
+   "heures_vie": 51900.0
+  }
+ ],
+ "ue_vie_active": 37.5
+}

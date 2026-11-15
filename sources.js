@@ -51,6 +51,7 @@ const S = [
   ["Alimentation", "fao", "Bilans alimentaires (FBS)", "Production, échanges, usages et calories par produit", "https://www.fao.org/faostat/fr/#data/FBS", "annuel"],
   ["Empreinte carbone", "sdes", "L'empreinte carbone de la France (SDES et INSEE)", "Empreinte par poste de consommation, série depuis 1990, origine des émissions, comparaison internationale", "https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2024", "annuel (octobre)"],
   ["Empreinte carbone", "eurostat", "env_ac_ghgfp / env_ac_ainah_r2", "Empreinte carbone de tous les pays par usage final et pays d'origine (modèle FIGARO), émissions directes des ménages", null, "annuel"],
+  ["Temps de travail", "eurostat", "lfsi_dwl_a", "Durée de la vie active, par pays", null, "annuel"],
   ["Temps de travail", "eurostat", "lfsa_eppga / lfsa_eppgai / lfsa_ewhan2", "Temps partiel (dont subi), heures hebdomadaires à temps plein et partiel", null, "annuel"],
   ["Climat", "eurostat", "env_air_gge", "Émissions de gaz à effet de serre par secteur (inventaire national)", null, "annuel (juin)"],
   ["Déchets", "eurostat", "env_wasgen / env_wastrt / env_wasmun", "Production et traitement des déchets", null, "biennal (ménagers : annuel)"],

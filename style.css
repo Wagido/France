@@ -276,3 +276,11 @@ main.wrap { position: relative; overflow: hidden; }
 .pp-row small, .pp-row .tr b { color: var(--muted); white-space: nowrap; } .pp-row .tr b { color: var(--ink); }
 @media (max-width: 640px) { .pp-row { grid-template-columns: 96px 1fr 1fr; font-size: .74rem; gap: 6px; } }
 .bs-det { margin: 10px 0 20px; } .bs-det summary { cursor: pointer; font-weight: 600; font-size: .9rem; color: var(--accent); padding: 6px 0; }
+/* heures sur un an et sur une vie */
+#tt-vie { display: grid; gap: 3px; max-width: 980px; margin-bottom: 8px; }
+.tv-row { display: grid; grid-template-columns: 170px 1fr 90px 1.3fr; gap: 10px; align-items: center; font-size: .84rem; padding: 2px 6px; border-radius: 6px; }
+.tv-head { font-size: .74rem; color: var(--muted); font-weight: 600; }
+.tv-row.me { background: #fde8e8; font-weight: 650; } :root[data-theme="dark"] .tv-row.me { background: #3a1d1d; }
+.tv-row .tr { display: flex; align-items: center; gap: 6px; } .tv-row .bar { display: inline-block; height: 11px; border-radius: 2px; }
+.tv-row .num { text-align: center; font-variant-numeric: tabular-nums; } .tv-row small { color: var(--muted); white-space: nowrap; } .tv-row b { white-space: nowrap; }
+@media (max-width: 640px) { .tv-row { grid-template-columns: 80px 1fr 44px 1fr; font-size: .72rem; gap: 5px; } }

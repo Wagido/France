@@ -44,6 +44,7 @@ jobs:
           python3 scripts/build_argent_prive.py
           python3 scripts/build_repartition.py
           python3 scripts/build_prelevements.py
+          python3 scripts/build_travail_vie.py
       - name: Enregistrement si les données ont changé
         run: |
           git config user.name "mise-a-jour-auto"

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117h">
+<link rel="stylesheet" href="style.css?v=20261117i">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -36,6 +36,8 @@
       <a href="#duree">Dette sur 30 ans</a>
       <a href="#simulateur">Couper la dépense ?</a>
       <a href="#population">Qui fait quoi</a>
+      <a href="#travail">Temps de travail</a>
+      <a href="#emploi">Emploi</a>
       <a href="#chomage">Chômage</a>
       <a href="#commerce">Commerce extérieur</a>
       <a href="#industrie">Industrie et innovation</a>
@@ -56,8 +58,6 @@
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
       <a href="#immigration">Immigration</a>
-      <a href="#travail">Temps de travail</a>
-      <a href="#emploi">Emploi</a>
       <a href="#justice">Justice</a>
       <a href="#sante">Santé</a>
       <a href="#education">Éducation</a>
@@ -714,6 +714,9 @@
   </div>
   <h3>Une journée moyenne (enquête emploi du temps)</h3>
   <div id="tt-jour" class="chart"></div><div class="legend-row" id="tt-jour-legend"></div>
+  <h3>Sur un an et sur toute une vie : la France et les autres pays</h3>
+  <div id="tt-vie"></div>
+  <div class="callout small" id="tt-vie-txt"></div>
   <h3>Comparer les pays</h3><div id="tt-cmp" class="chart"></div>
 </section>
 
@@ -941,22 +944,23 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117h"></script>
-<script src="app.js?v=20261117h"></script>
-<script src="energie.js?v=20261117h"></script>
-<script src="matieres.js?v=20261117h"></script>
-<script src="territoire.js?v=20261117h"></script>
-<script src="themes.js?v=20261117h"></script>
-<script src="societe.js?v=20261117h"></script>
-<script src="eco2.js?v=20261117h"></script>
-<script src="empreinte.js?v=20261117h"></script>
-<script src="argentprive.js?v=20261117h"></script>
-<script src="repartition.js?v=20261117h"></script>
-<script src="patrimoine.js?v=20261117h"></script>
-<script src="prelevements.js?v=20261117h"></script>
-<script src="histoire.js?v=20261117h"></script>
-<script src="chomage.js?v=20261117h"></script>
-<script src="sources.js?v=20261117h"></script>
-<script src="nav.js?v=20261117h"></script>
+<script src="kpi.js?v=20261117i"></script>
+<script src="app.js?v=20261117i"></script>
+<script src="energie.js?v=20261117i"></script>
+<script src="matieres.js?v=20261117i"></script>
+<script src="territoire.js?v=20261117i"></script>
+<script src="themes.js?v=20261117i"></script>
+<script src="societe.js?v=20261117i"></script>
+<script src="eco2.js?v=20261117i"></script>
+<script src="empreinte.js?v=20261117i"></script>
+<script src="argentprive.js?v=20261117i"></script>
+<script src="repartition.js?v=20261117i"></script>
+<script src="patrimoine.js?v=20261117i"></script>
+<script src="prelevements.js?v=20261117i"></script>
+<script src="travailvie.js?v=20261117i"></script>
+<script src="histoire.js?v=20261117i"></script>
+<script src="chomage.js?v=20261117i"></script>
+<script src="sources.js?v=20261117i"></script>
+<script src="nav.js?v=20261117i"></script>
 </body>
 </html>
