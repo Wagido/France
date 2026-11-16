@@ -573,3 +573,4 @@ table.cmp-t.li-mx { min-width: 980px; }
 .tp-fill-txt { grid-column: 1 / -1; font-size: .88rem; margin: 6px 0 0; }
 .mo-stack { display: flex; height: 26px; border-radius: 6px; overflow: hidden; margin: 6px 0; font-size: .74rem; }
 .mo-stack span { display: flex; align-items: center; justify-content: center; color: #fff; white-space: nowrap; overflow: hidden; }
+.cp-mes td.num, .cp-mes th.num { white-space: nowrap; text-align: right; }

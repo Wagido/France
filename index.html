@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123u">
+<link rel="stylesheet" href="style.css?v=20261123w">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1541,6 +1541,24 @@
   <div id="cp-sim"></div>
   <div class="kpis" id="cp-res"></div>
   <div class="callout small" id="cp-txt"></div>
+  <h3 id="cp-mes" class="ag-part">Quelles économies coûtent le moins de croissance ?</h3>
+  <p class="lead">Toutes les économies ne se valent pas. Couper 1 € de dépense fait perdre un peu d'activité (c'est le <b>multiplicateur</b>, voir <a href="#simulateur">Couper la dépense ?</a>), et cette perte d'activité fait perdre des impôts. Mais l'ampleur dépend beaucoup de <i>qui</i> perd l'argent : un ménage modeste dépense tout ce qu'il reçoit, une entreprise qui touche une aide peu utile ou un ménage aisé en épargne une partie. Le tableau classe des mesures souvent proposées selon leur <b>rendement</b> : combien d'euros de déficit en moins pour 1 € de PIB perdu.</p>
+  <div class="ctl-row" style="margin-bottom:8px">
+    <label class="ctl">Conjoncture <select id="cp-conj"><option value="1">Normale</option><option value="1.6">Récession, ou BCE qui monte ses taux</option><option value="0.6">Confiance retrouvée (les ménages épargnent moins)</option></select></label>
+    <label class="ctl">Trier par <select id="cp-tri"><option value="rdt">Rendement (déficit en moins par € de PIB perdu)</option><option value="eco">Économie nette</option><option value="m">Multiplicateur</option></select></label>
+  </div>
+  <div class="table-scroll"><table class="mo-hist cp-mes" id="cp-mes-t"></table></div>
+  <div class="kpis" id="cp-mes-res"></div>
+  <div class="callout small" id="cp-mes-txt"></div>
+  <div class="callout small">
+    <p><b>Comment lire et calculer</b></p>
+    <ul>
+      <li><b>Perte de PIB</b> = économie × multiplicateur, la première année. <b>Économie nette pour le déficit</b> = économie − 46 % de la perte de PIB (la part des impôts et cotisations perdus avec l'activité). <b>Rendement</b> = économie nette ÷ perte de PIB.</li>
+      <li><b>Les multiplicateurs par type de dépense</b> sont des ordres de grandeur issus des études : environ 1 à 1,5 pour l'investissement public, 0,8 à 1 pour les achats et les salaires publics, 0,7 à 0,9 pour les transferts aux ménages modestes (qui dépensent tout), 0,3 à 0,5 pour les transferts aux ménages aisés et les aides aux entreprises, moins encore quand une partie de l'argent part à l'étranger (médicaments importés) ou n'avait pas d'effet (niches inefficaces). Ils ne sont pas mesurés mesure par mesure : ce sont des estimations de cet article, à prendre comme des fourchettes.</li>
+      <li><b>Les montants</b> sont des ordres de grandeur des débats budgétaires récents (budgets 2025 et 2026, rapports de la Cour des comptes, du Sénat et du rapport Bozio-Wasmer sur les allègements de cotisations). Ils ne s'additionnent pas toujours exactement.</li>
+      <li><b>Le long terme compte autant</b> : couper l'investissement public coûte peu de PIB tout de suite mais beaucoup plus tard ; reculer l'âge de la retraite coûte socialement mais augmente l'emploi et donc le PIB. La colonne « à long terme » le signale.</li>
+    </ul>
+  </div>
 </section>
 
 <section id="duree" class="panel">
@@ -2862,51 +2880,51 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123u"></script>
-<script src="app.js?v=20261123u"></script>
-<script src="energie.js?v=20261123u"></script>
-<script src="matieres.js?v=20261123u"></script>
-<script src="territoire.js?v=20261123u"></script>
-<script src="themes.js?v=20261123u"></script>
-<script src="societe.js?v=20261123u"></script>
-<script src="eco2.js?v=20261123u"></script>
-<script src="empreinte.js?v=20261123u"></script>
-<script src="argentprive.js?v=20261123u"></script>
-<script src="repartition.js?v=20261123u"></script>
-<script src="patrimoine.js?v=20261123u"></script>
-<script src="prelevements.js?v=20261123u"></script>
-<script src="travailvie.js?v=20261123u"></script>
-<script src="niveauvie.js?v=20261123u"></script>
-<script src="prosperite.js?v=20261123u"></script>
-<script src="exterieur.js?v=20261123u"></script>
-<script src="desindus.js?v=20261123u"></script>
-<script src="retraites.js?v=20261123u"></script>
-<script src="energiecout.js?v=20261123u"></script>
-<script src="energieformation.js?v=20261123u"></script>
-<script src="nucleaire.js?v=20261123u"></script>
-<script src="logementeco.js?v=20261123u"></script>
-<script src="competences.js?v=20261123u"></script>
-<script src="justicedroit.js?v=20261123u"></script>
-<script src="fonctionnaires.js?v=20261123u"></script>
-<script src="couper.js?v=20261123u"></script>
-<script src="seuilpays.js?v=20261123u"></script>
-<script src="logement.js?v=20261123u"></script>
-<script src="env.js?v=20261123u"></script>
-<script src="agriculture.js?v=20261123u"></script>
-<script src="rendements.js?v=20261123u"></script>
-<script src="monnaie.js?v=20261123u"></script>
-<script src="limites.js?v=20261123u"></script>
-<script src="sociologie.js?v=20261123u"></script>
-<script src="chaine.js?v=20261123u"></script>
-<script src="patrimoinehist.js?v=20261123u"></script>
-<script src="innovation.js?v=20261123u"></script>
+<script src="kpi.js?v=20261123w"></script>
+<script src="app.js?v=20261123w"></script>
+<script src="energie.js?v=20261123w"></script>
+<script src="matieres.js?v=20261123w"></script>
+<script src="territoire.js?v=20261123w"></script>
+<script src="themes.js?v=20261123w"></script>
+<script src="societe.js?v=20261123w"></script>
+<script src="eco2.js?v=20261123w"></script>
+<script src="empreinte.js?v=20261123w"></script>
+<script src="argentprive.js?v=20261123w"></script>
+<script src="repartition.js?v=20261123w"></script>
+<script src="patrimoine.js?v=20261123w"></script>
+<script src="prelevements.js?v=20261123w"></script>
+<script src="travailvie.js?v=20261123w"></script>
+<script src="niveauvie.js?v=20261123w"></script>
+<script src="prosperite.js?v=20261123w"></script>
+<script src="exterieur.js?v=20261123w"></script>
+<script src="desindus.js?v=20261123w"></script>
+<script src="retraites.js?v=20261123w"></script>
+<script src="energiecout.js?v=20261123w"></script>
+<script src="energieformation.js?v=20261123w"></script>
+<script src="nucleaire.js?v=20261123w"></script>
+<script src="logementeco.js?v=20261123w"></script>
+<script src="competences.js?v=20261123w"></script>
+<script src="justicedroit.js?v=20261123w"></script>
+<script src="fonctionnaires.js?v=20261123w"></script>
+<script src="couper.js?v=20261123w"></script>
+<script src="seuilpays.js?v=20261123w"></script>
+<script src="logement.js?v=20261123w"></script>
+<script src="env.js?v=20261123w"></script>
+<script src="agriculture.js?v=20261123w"></script>
+<script src="rendements.js?v=20261123w"></script>
+<script src="monnaie.js?v=20261123w"></script>
+<script src="limites.js?v=20261123w"></script>
+<script src="sociologie.js?v=20261123w"></script>
+<script src="chaine.js?v=20261123w"></script>
+<script src="patrimoinehist.js?v=20261123w"></script>
+<script src="innovation.js?v=20261123w"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123u"></script>
-<script src="histoire.js?v=20261123u"></script>
-<script src="chomage.js?v=20261123u"></script>
-<script src="tableau.js?v=20261123u"></script>
-<script src="sources.js?v=20261123u"></script>
-<script src="nav.js?v=20261123u"></script>
+<script src="soussol.js?v=20261123w"></script>
+<script src="histoire.js?v=20261123w"></script>
+<script src="chomage.js?v=20261123w"></script>
+<script src="tableau.js?v=20261123w"></script>
+<script src="sources.js?v=20261123w"></script>
+<script src="nav.js?v=20261123w"></script>
 </body>
 </html>
