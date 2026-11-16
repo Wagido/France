@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121u">
+<link rel="stylesheet" href="style.css?v=20261121v">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -683,6 +683,24 @@
     </div>
   </div>
   <div class="callout small" id="li-res-txt"></div>
+  <h3>Et dans 50 ans ? Le pétrole qui reste, et qui le garde</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Le monde ne « tombe pas en panne » dans 50 ans</b> : les réserves ne sont pas un stock qui s'épuise d'un coup, mais une production qui décline, gisement par gisement, de plus en plus chère. Ce qui change, c'est la quantité disponible chaque année, et son prix.</li>
+      <li><b>Le déclin pour l'Europe pourrait venir bien avant</b> : Jean-Marc Jancovici et The Shift Project, qui ont étudié en 2020-2021 les réserves et la production des principaux fournisseurs de pétrole de l'Union européenne (Russie, Norvège, Kazakhstan, Nigeria, Libye, Algérie, Arabie saoudite, Irak…), estiment que les volumes que l'Europe pourra acheter vont baisser dès la décennie 2030, et pourraient être divisés par deux environ d'ici 2050. Plusieurs de ces pays ont déjà passé leur pic de production (Norvège, Royaume-Uni, Algérie, Nigeria), et la Russie est sous sanctions depuis 2022.</li>
+      <li><b>Les pays producteurs garderont d'abord pour eux</b> : c'est ce qu'on appelle l'« effet du pays exportateur ». Leur population et leur consommation augmentent (Arabie saoudite, Iran, Algérie, Nigeria, Égypte, devenue importatrice nette de gaz) : à production égale ou en baisse, il reste moins à exporter. L'Indonésie, ancien membre de l'OPEP, importe du pétrole depuis le début des années 2000. Et entre les acheteurs, l'Asie, en croissance, paie souvent plus cher que l'Europe.</li>
+      <li><b>Ce n'est pas une prévision unanime</b> : l'Agence internationale de l'énergie prévoit plutôt une offre abondante jusqu'en 2030, avec le pétrole de schiste américain, le Brésil et le Guyana. Mais les deux lectures mènent au même endroit : pour tenir ses objectifs climatiques (neutralité carbone en 2050), l'Europe doit de toute façon diviser sa consommation de pétrole par plus de deux d'ici 2050. La seule question est de savoir si elle le choisit, en s'y préparant, ou si elle le subit, par les prix et les pénuries.</li>
+      <li><b>La France est particulièrement exposée</b> : elle importe la quasi-totalité de son pétrole (voir <a href="#soussol">Sous-sol</a>), et les transports en dépendent à plus de 90 %. Son atout est une électricité déjà presque sans carbone (nucléaire et hydraulique) : chaque usage qui passe du pétrole à l'électricité réduit cette dépendance (voir <a href="#energie">Énergie</a>).</li>
+    </ul>
+    <p><b>Alors, que fait-on ?</b> Les leviers sont connus, et se combinent :</p>
+    <ul>
+      <li><b>Électrifier</b> les transports, le chauffage et l'industrie, avec une électricité bas carbone (nucléaire, renouvelables, réseaux et stockage).</li>
+      <li><b>Consommer moins</b> : sobriété (moins de voiture individuelle, logements mieux isolés, moins d'avion) et efficacité. C'est le levier le plus rapide et le moins cher, mais le plus difficile politiquement.</li>
+      <li><b>Recycler les métaux</b> : contrairement au pétrole, qui disparaît quand on le brûle, un métal reste. Le cuivre, l'acier, l'aluminium sont déjà largement recyclés ; les batteries commencent à l'être. Une économie qui tourne en boucle a beaucoup moins besoin de nouvelles mines.</li>
+      <li><b>Remplacer les matériaux rares</b> : batteries au sodium plutôt qu'au lithium, moteurs sans terres rares.</li>
+      <li><b>Garder le pétrole pour ce qui n'a pas de substitut</b> : chimie, plastiques techniques, médicaments, une partie de l'aviation et de l'agriculture (voir <a href="#agriculture">Agriculture</a>).</li>
+    </ul>
+  </div>
   <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <i>Mineral Commodity Summaries</i>, réserves divisées par la production minière annuelle, arrondies. Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
 </section>
 
@@ -2008,50 +2026,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121u"></script>
-<script src="app.js?v=20261121u"></script>
-<script src="energie.js?v=20261121u"></script>
-<script src="matieres.js?v=20261121u"></script>
-<script src="territoire.js?v=20261121u"></script>
-<script src="themes.js?v=20261121u"></script>
-<script src="societe.js?v=20261121u"></script>
-<script src="eco2.js?v=20261121u"></script>
-<script src="empreinte.js?v=20261121u"></script>
-<script src="argentprive.js?v=20261121u"></script>
-<script src="repartition.js?v=20261121u"></script>
-<script src="patrimoine.js?v=20261121u"></script>
-<script src="prelevements.js?v=20261121u"></script>
-<script src="travailvie.js?v=20261121u"></script>
-<script src="niveauvie.js?v=20261121u"></script>
-<script src="prosperite.js?v=20261121u"></script>
-<script src="exterieur.js?v=20261121u"></script>
-<script src="desindus.js?v=20261121u"></script>
-<script src="retraites.js?v=20261121u"></script>
-<script src="energiecout.js?v=20261121u"></script>
-<script src="energieformation.js?v=20261121u"></script>
-<script src="nucleaire.js?v=20261121u"></script>
-<script src="logementeco.js?v=20261121u"></script>
-<script src="competences.js?v=20261121u"></script>
-<script src="justicedroit.js?v=20261121u"></script>
-<script src="fonctionnaires.js?v=20261121u"></script>
-<script src="couper.js?v=20261121u"></script>
-<script src="seuilpays.js?v=20261121u"></script>
-<script src="logement.js?v=20261121u"></script>
-<script src="env.js?v=20261121u"></script>
-<script src="agriculture.js?v=20261121u"></script>
-<script src="rendements.js?v=20261121u"></script>
-<script src="monnaie.js?v=20261121u"></script>
-<script src="limites.js?v=20261121u"></script>
-<script src="sociologie.js?v=20261121u"></script>
-<script src="chaine.js?v=20261121u"></script>
-<script src="patrimoinehist.js?v=20261121u"></script>
-<script src="innovation.js?v=20261121u"></script>
+<script src="kpi.js?v=20261121v"></script>
+<script src="app.js?v=20261121v"></script>
+<script src="energie.js?v=20261121v"></script>
+<script src="matieres.js?v=20261121v"></script>
+<script src="territoire.js?v=20261121v"></script>
+<script src="themes.js?v=20261121v"></script>
+<script src="societe.js?v=20261121v"></script>
+<script src="eco2.js?v=20261121v"></script>
+<script src="empreinte.js?v=20261121v"></script>
+<script src="argentprive.js?v=20261121v"></script>
+<script src="repartition.js?v=20261121v"></script>
+<script src="patrimoine.js?v=20261121v"></script>
+<script src="prelevements.js?v=20261121v"></script>
+<script src="travailvie.js?v=20261121v"></script>
+<script src="niveauvie.js?v=20261121v"></script>
+<script src="prosperite.js?v=20261121v"></script>
+<script src="exterieur.js?v=20261121v"></script>
+<script src="desindus.js?v=20261121v"></script>
+<script src="retraites.js?v=20261121v"></script>
+<script src="energiecout.js?v=20261121v"></script>
+<script src="energieformation.js?v=20261121v"></script>
+<script src="nucleaire.js?v=20261121v"></script>
+<script src="logementeco.js?v=20261121v"></script>
+<script src="competences.js?v=20261121v"></script>
+<script src="justicedroit.js?v=20261121v"></script>
+<script src="fonctionnaires.js?v=20261121v"></script>
+<script src="couper.js?v=20261121v"></script>
+<script src="seuilpays.js?v=20261121v"></script>
+<script src="logement.js?v=20261121v"></script>
+<script src="env.js?v=20261121v"></script>
+<script src="agriculture.js?v=20261121v"></script>
+<script src="rendements.js?v=20261121v"></script>
+<script src="monnaie.js?v=20261121v"></script>
+<script src="limites.js?v=20261121v"></script>
+<script src="sociologie.js?v=20261121v"></script>
+<script src="chaine.js?v=20261121v"></script>
+<script src="patrimoinehist.js?v=20261121v"></script>
+<script src="innovation.js?v=20261121v"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121u"></script>
-<script src="histoire.js?v=20261121u"></script>
-<script src="chomage.js?v=20261121u"></script>
-<script src="sources.js?v=20261121u"></script>
-<script src="nav.js?v=20261121u"></script>
+<script src="soussol.js?v=20261121v"></script>
+<script src="histoire.js?v=20261121v"></script>
+<script src="chomage.js?v=20261121v"></script>
+<script src="sources.js?v=20261121v"></script>
+<script src="nav.js?v=20261121v"></script>
 </body>
 </html>
