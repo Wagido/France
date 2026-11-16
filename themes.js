@@ -356,11 +356,20 @@ function drawTravail() {
   const T = D()?.travail; if (!T) { kpis("#tt-kpis", []); empty("#tt-chart"); return; }
   const S = T.serie, last = S.at(-1);
   const dispo = last.population * 8760;
+  // sur un an / sur une vie (data/travail_vie.json, chargé par travailvie.js)
+  const TV = window.TRAVAIL_VIE?.pays || [], tv = TV.find(r => r.code === geo), N = TV.length;
+  const rgAn = tv ? [...TV].sort((a, b) => b.heures_an - a.heures_an).findIndex(r => r.code === geo) + 1 : 0;
+  const rgVie = tv ? TV.findIndex(r => r.code === geo) + 1 : 0;
+  const de = TV.find(r => r.code === "DE"), nl = TV.find(r => r.code === "NL");
+  const VOIS = { DE: "l'Allemagne", NL: "les Pays-Bas", DK: "le Danemark", SE: "la Suède", BE: "la Belgique" };
+  const moins = tv ? TV.filter(r => VOIS[r.code] && r.code !== geo && r.heures_an < tv.heures_an) : [];
+  const plusVie = tv ? TV.filter(r => VOIS[r.code] && r.code !== geo && r.heures_vie > tv.heures_vie) : [];
   kpis("#tt-kpis", [
-    [n1(last.heures / 1e9) + " Md h", `travaillées dans le pays en ${last.annee}`],
-    [pct(100 * last.heures / dispo, 1), "du temps total de la population (habitants × 24 h × 365 j)"],
-    last.emplois && [n0(last.heures / last.emplois) + " h", `par personne en emploi et par an ; ${n1(last.emplois / 1e6)} M d'emplois`, "Par personne en emploi"],
-    [n0(last.heures / last.population) + " h", `par habitant et par an, enfants et retraités compris ; c'est bas parce que peu de personnes travaillent, pas parce qu'elles travaillent peu`, "Par habitant"],
+    tv ? [n0(tv.heures_an) + " h", [`par personne en emploi`, moins.length ? `plus que ${moins.map(r => `${VOIS[r.code]} (${n0(r.heures_an)} h)`).join(", ")}` : `${rgAn}e sur ${N} pays européens`], geo === "FR" ? "Sur un an : autant ou plus" : "Sur un an"]
+       : last.emplois && [n0(last.heures / last.emplois) + " h", `par personne en emploi et par an`, "Sur un an"],
+    tv && [n0(tv.heures_vie) + " h", [`sur toute une vie`, `${rgVie}e sur ${N} pays européens`, ...(plusVie.length ? [`moins que ${plusVie.map(r => VOIS[r.code]).join(", ")}`] : [])], geo === "FR" ? "Sur une vie : moins" : "Sur une vie"],
+    tv && [n1(tv.vie_active) + " ans", [geo === "FR" ? `de vie active : on commence tard, on s'arrête tôt` : `de vie active`, ...(geo !== "DE" && de ? [`Allemagne : ${n1(de.vie_active)} ans`] : []), ...(geo !== "NL" && nl ? [`Pays-Bas : ${n1(nl.vie_active)} ans`] : [])], "Durée de la carrière"],
+    [n1(last.heures / 1e9) + " Md h", [`travaillées dans le pays en ${last.annee}`, ...(last.emplois ? [`par ${n1(last.emplois / 1e6)} M de personnes en emploi`] : [])], "Au total"],
   ]);
   // heures par personne en emploi et par secteur (comptes nationaux : heures ÷ personnes)
   const B = T.branches, ref = [...S].reverse().find(s => s.personnes && Object.values(s.personnes).some(v => v > 0)) || last;
@@ -446,6 +455,6 @@ function drawJustice() {
   ], "det");
 }
 
-window.TH = { areaChart, lineChart, bars, kpis, legend, showTip, hideTip, table: null, esc, n0, n1, n2, pct, css };
+window.TH = { drawTravail, areaChart, lineChart, bars, kpis, legend, showTip, hideTip, table: null, esc, n0, n1, n2, pct, css };
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

@@ -6,6 +6,7 @@ const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
   try { V = await fetch("data/travail_vie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  window.TRAVAIL_VIE = V; try { window.TH.drawTravail?.(); } catch (e) { /* données du pays pas encore chargées */ }
   draw();
 }
 function draw() {
