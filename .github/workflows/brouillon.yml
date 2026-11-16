@@ -1,0 +1,18 @@
+name: Version personnelle
+
+# À chaque modification de la branche brouillon, relance la publication du site (qui part toujours de main
+# et ajoute la version personnelle dans un sous-dossier non listé).
+on:
+  push:
+    branches: [brouillon]
+
+permissions:
+  actions: write
+
+jobs:
+  relancer:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh workflow run site.yml --ref main --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}

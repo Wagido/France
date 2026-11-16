@@ -1,6 +1,7 @@
 name: Publication du site
 
 # Publie la page sur GitHub Pages à chaque modification de la branche main
+# (et, dans un sous-dossier non listé, la version personnelle complète de la branche brouillon)
 # et après chaque mise à jour mensuelle des données.
 on:
   push:
@@ -32,6 +33,21 @@ jobs:
           cp -r index.html style.css *.js lib data _site/
           rm -rf _site/data/sources
           python3 scripts/publier.py _site/index.html   # retire les rubriques non publiées (Société)
+      # version personnelle, complète (brouillons et rubriques non publiées), à une adresse non listée
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: brouillon
+          path: _brouillon
+      - name: Version personnelle (branche brouillon)
+        run: |
+          if [ -f _brouillon/index.html ]; then
+            D=_site/brouillon-c87bd65cba6d
+            mkdir -p "$D"
+            (cd _brouillon && cp -r index.html style.css *.js lib data "../$D/")
+            rm -rf "$D/data/sources"
+            sed -i 's|<head>|<head>\n<meta name="robots" content="noindex, nofollow">|' "$D/index.html"
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
