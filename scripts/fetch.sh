@@ -45,6 +45,10 @@ done
 # Sociologie électorale : rapports Ipsos (PDF converti en texte ; les valeurs sont retranscrites dans scripts/build_sociologie.py)
 mkdir -p sociologie
 get sociologie/ipsos_legislatives_2024.pdf "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-06/ipsos-talan-sociologie-electorats-legislatives-30-juin-rapport-complet.pdf" && pdftotext -layout sociologie/ipsos_legislatives_2024.pdf sociologie/ipsos_legislatives_2024.txt && rm -f sociologie/ipsos_legislatives_2024.pdf || true
+DG="https://static.data.gouv.fr/resources/elections-legislatives-des-30-juin-et-7-juillet-2024-resultats-definitifs"
+get sociologie/legislatives2024_t1_departements.csv "$DG-du-1er-tour/20240710-171330/resultats-definitifs-par-departements.csv"
+get sociologie/legislatives2024_t1_circonscriptions.csv "$DG-du-1er-tour/20240710-171413/resultats-definitifs-par-circonscriptions-legislatives.csv"
+get sociologie/legislatives2024_t2_circonscriptions.csv "$DG-du-2nd-tour/20240710-170728/resultats-definitifs-par-circonscription.csv"
 # Sans intrants ? rendements, engrais et pesticides de la France (FAOSTAT, fichiers complets filtrés)
 FB="https://bulks-faostat.fao.org/production"
 for z in "Production_Crops_Livestock_E_Europe:fao_rendements:rendements" "Inputs_FertilizersNutrient_E_Europe:fao_engrais_fr:france" "Inputs_Pesticides_Use_E_All_Data:fao_pesticides_fr:france"; do

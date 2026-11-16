@@ -426,3 +426,14 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 .el-v { grid-template-columns: minmax(110px, 170px) 1fr 50px; }
 @media (max-width: 640px) { .el-row { grid-template-columns: 1fr; gap: 2px; } }
 #limites table.cmp-t.rt-cmp { min-width: 560px; }
+.el-db { display: grid; gap: 2px; max-width: 900px; margin: 6px 0; }
+.el-db-row { display: grid; grid-template-columns: 140px 1fr 110px; gap: 10px; align-items: center; font-size: .84rem; }
+.el-db-row.me { font-weight: 650; background: var(--callout); border-radius: 4px; }
+.el-db-tr { position: relative; height: 16px; }
+.el-db-tr .z { position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed var(--muted); }
+.el-db-tr .ln { position: absolute; top: 7px; height: 2px; background: var(--line); }
+.el-db-tr b { position: absolute; top: 3px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; }
+.el-db-tr b.d0 { background: #a8a29e; } .el-db-tr b.d1 { background: #db2777; }
+.el-db-axe small { position: absolute; transform: translateX(-50%); color: var(--muted); font-size: .7rem; }
+.el-db-row .num { text-align: right; color: var(--muted); }
+@media (max-width: 640px) { .el-db-row { grid-template-columns: 90px 1fr 80px; } }

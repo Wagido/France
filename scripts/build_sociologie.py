@@ -95,6 +95,86 @@ out = {
                            "source": "Ipsos-Sopra Steria, 4 000 inscrits interrogés par internet du 6 au 9 avril 2022"},
     "insee_age": insee,
 }
+# ---------------------------------------------------------------- reports de voix, moment du choix, satisfaction (Ipsos 2024)
+out["legislatives2024"]["tables_plus"] = {
+    "pres2022": [{"l": l, "v": v} for l, *v in [["Mélenchon", 77, 3, 3, 9, 8], ["Roussel", 66, 7, 9, 6, 12], ["Jadot", 61, 19, 7, 2, 11], ["Hidalgo", 75, 10, 4, 3, 8],
+                 ["Macron", 14, 56, 15, 8, 7], ["Pécresse", 2, 24, 48, 21, 5], ["Le Pen", 2, 2, 4, 89, 3], ["Zemmour", 0, 4, 9, 79, 8], ["Dupont-Aignan", 4, 5, 15, 61, 15], ["Lassalle", 12, 21, 14, 37, 16]]],
+    "moment": [{"l": l, "v": v} for l, *v in [["Décidé depuis plusieurs semaines", 30, 18, 6, 41, 5], ["Décidé ces derniers jours", 27, 26, 18, 18, 11], ["Au dernier moment", 18, 23, 20, 21, 18]]],
+    "macron": [{"l": l, "v": v} for l, *v in [["Très satisfait d'Emmanuel Macron", 10, 50, 17, 11, 12], ["Plutôt satisfait", 13, 56, 15, 9, 7], ["Plutôt pas satisfait", 36, 18, 12, 27, 7], ["Pas du tout satisfait", 32, 2, 6, 53, 7]]],
+}
+LIB.update({"pres2022": "Vote à la présidentielle 2022 (reports de voix)", "moment": "Moment du choix", "macron": "Satisfaction à l'égard d'Emmanuel Macron"})
+
+# ---------------------------------------------------------------- résultats officiels 2024 (ministère de l'Intérieur, data.gouv.fr)
+import csv
+BLOC = {**{k: "gauche" for k in ("EXG", "COM", "FI", "SOC", "RDG", "VEC", "DVG", "UG")}, **{k: "centre" for k in ("ENS", "HOR", "DVC", "UDI")},
+        **{k: "droite" for k in ("LR", "DVD", "DSV")}, **{k: "extd" for k in ("RN", "UXD", "REC", "EXD")}, **{k: "autres" for k in ("ECO", "REG", "DIV")}}
+BLOCS_OFF = [["gauche", "Gauche (Nouveau Front populaire et divers gauche)", "#e11d48"], ["centre", "Centre (Ensemble et divers centre)", "#f59e0b"],
+             ["droite", "Droite (LR et divers droite)", "#2563eb"], ["extd", "Extrême droite (RN, alliés, Reconquête)", "#1e3a8a"], ["autres", "Autres", "#cbd5e1"]]
+num = lambda x: float(x.replace(",", ".").replace("%", "") or 0)
+def lire(f):
+    r = list(csv.reader(open(os.path.join(R, "data", "sources", "sociologie", f), encoding="utf-8"), delimiter=";"))
+    return r[0], r[1:]
+def candidats(h, row):
+    out = []
+    for i, c in enumerate(h):
+        if c.startswith("Nuance candidat") and row[i]:
+            n = c.split()[-1]; g = lambda nom: row[h.index(f"{nom} {n}")] if f"{nom} {n}" in h else ""
+            out.append({"nu": row[i], "bloc": BLOC.get(row[i], "autres"), "voix": num(g("Voix")), "sexe": g("Sexe candidat"), "elu": g("Elu").lower().startswith("élu") or g("Elu").lower() == "oui" or g("Elu").upper() == "ELU"})
+    return out
+# départements, 1er tour
+h, rows_ = lire("legislatives2024_t1_departements.csv")
+deps = []
+for row in rows_:
+    code = row[0].zfill(2) if row[0].isdigit() else row[0]
+    voix = {b[0]: 0 for b in BLOCS_OFF}
+    for i, c in enumerate(h):
+        if c.startswith("Nuance candidat") and row[i]:
+            voix[BLOC.get(row[i], "autres")] += num(row[i + 1])
+    ex = sum(voix.values())
+    deps.append({"code": code, "nom": row[1], "participation": num(row[4]), **{k: round(100 * v / ex, 1) for k, v in voix.items()}})
+# sièges et sexe des élus : élus au 1er tour + élus au 2nd tour
+h1, c1 = lire("legislatives2024_t1_circonscriptions.csv"); h2, c2 = lire("legislatives2024_t2_circonscriptions.csv")
+elus, cand_t1, config = [], [], {}
+for row in c1:
+    cs = candidats(h1, row); cand_t1 += cs; elus += [c for c in cs if c["elu"]]
+for row in c2:
+    cs = candidats(h2, row); elus += [c for c in cs if c["elu"]]
+    config[len(cs)] = config.get(len(cs), 0) + 1
+voix_t1 = {b[0]: sum(c["voix"] for c in cand_t1 if c["bloc"] == b[0]) for b in BLOCS_OFF}
+tv = sum(voix_t1.values())
+sieges = [{"k": b[0], "l": b[1], "c": b[2], "voix_t1": round(100 * voix_t1[b[0]] / tv, 1), "sieges": sum(1 for e in elus if e["bloc"] == b[0]),
+           "femmes_elues": round(100 * sum(1 for e in elus if e["bloc"] == b[0] and e["sexe"] == "FEMININ") / max(1, sum(1 for e in elus if e["bloc"] == b[0]))),
+           "femmes_cand": round(100 * sum(1 for e in cand_t1 if e["bloc"] == b[0] and e["sexe"] == "FEMININ") / max(1, sum(1 for e in cand_t1 if e["bloc"] == b[0])))} for b in BLOCS_OFF]
+out["officiel2024"] = {"blocs": BLOCS_OFF, "departements": deps, "sieges": sieges, "nb_elus": len(elus), "elus_t1": sum(1 for row in c1 for c in candidats(h1, row) if c["elu"]),
+                       "config_t2": config, "femmes_elues": round(100 * sum(1 for e in elus if e["sexe"] == "FEMININ") / len(elus), 1)}
+
+# ---------------------------------------------------------------- séries longues : vote de gauche selon le sexe, le diplôme, le revenu (World Political Cleavages and Inequality Database)
+W = {}
+for r in csv.DictReader(open(os.path.join(R, "data", "sources", "sociologie", "wpid_gauche_droite.csv"), encoding="utf-8")):
+    if r["party"] == "left" and r["mean"]:
+        W.setdefault((r["isoname"], int(r["year"])), {})[(r["var"], r["sub"])] = float(r["mean"])
+def ecarts(d):
+    g = lambda v, s: d.get((v, s))
+    o = {}
+    if g("sex", "Woman") is not None and g("sex", "Man") is not None: o["femmes"] = round(100 * (g("sex", "Woman") - g("sex", "Man")), 1)
+    for v, k in (("geduc", "diplome"), ("ginc", "revenu")):
+        if None not in (g(v, "Top 10%"), g(v, "Bottom 50%"), g(v, "Middle 40%")):
+            o[k] = round(100 * (g(v, "Top 10%") - (5 * g(v, "Bottom 50%") + 4 * g(v, "Middle 40%")) / 9), 1)
+    return o
+NOMS_FR = {"Australia": "Australie", "Austria": "Autriche", "Belgium": "Belgique", "Canada": "Canada", "Denmark": "Danemark", "Finland": "Finlande", "France": "France",
+           "Germany": "Allemagne", "Iceland": "Islande", "Ireland": "Irlande", "Italy": "Italie", "Luxembourg": "Luxembourg", "Netherlands": "Pays-Bas", "New Zealand": "Nouvelle-Zélande",
+           "Norway": "Norvège", "Portugal": "Portugal", "Spain": "Espagne", "Sweden": "Suède", "Switzerland": "Suisse", "United Kingdom": "Royaume-Uni", "United States": "États-Unis"}
+france_long = [{"annee": y, **ecarts(d)} for (c, y), d in sorted(W.items()) if c == "France"]
+pays = []
+for c, nom in NOMS_FR.items():
+    ser = [(y, ecarts(d)) for (cc, y), d in sorted(W.items()) if cc == c]
+    def moy(a, b, k):
+        v = [e[k] for y, e in ser if a <= y <= b and k in e]
+        return round(sum(v) / len(v), 1) if v else None
+    pays.append({"nom": nom, "debut": {k: moy(1945, 1979, k) for k in ("femmes", "diplome", "revenu")}, "fin": {k: moy(2000, 2025, k) for k in ("femmes", "diplome", "revenu")},
+                 "annees": [ser[0][0], ser[-1][0]] if ser else None})
+out["long"] = {"france": france_long, "pays": pays}
+out["criteres"] = LIB
 json.dump(out, open(os.path.join(R, "data", "sociologie.json"), "w"), ensure_ascii=False, indent=1)
 for k, v in L24.items():
     assert all(abs(sum(x[1:]) - 100) <= 2 for x in v), (k, v)

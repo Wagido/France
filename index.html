@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121v">
+<link rel="stylesheet" href="style.css?v=20261121w">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1887,7 +1887,7 @@
     <h2>Sociologie électorale : qui vote, et pour qui ? <span class="geo-fixed">France</span></h2>
   </div>
   <p class="lead">Le vote est secret : pour savoir comment votent les jeunes, les ouvriers ou les diplômés, il faut interroger des milliers d'électeurs. Ces enquêtes d'Ipsos, faites juste avant ou le jour du vote, sont les plus détaillées dont on dispose. Elles donnent une image fiable des grandes tendances, avec une marge d'erreur de quelques points.</p>
-  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#electorat" data-to="el-p1">1. qui vote ?</a> · <a href="#electorat" data-to="el-p2">2. qui vote pour qui ?</a> · <a href="#electorat" data-to="el-p3">3. la carte des électorats : diplôme et revenu</a> · <a href="#electorat" data-to="el-p4">4. les grands clivages</a> · <a href="#electorat" data-to="el-p5">5. les limites</a></p>
+  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#electorat" data-to="el-p1">1. qui vote ?</a> · <a href="#electorat" data-to="el-p2">2. qui vote pour qui ?</a> · <a href="#electorat" data-to="el-p3">3. diplôme et revenu</a> · <a href="#electorat" data-to="el-p6">4. hommes et femmes</a> · <a href="#electorat" data-to="el-p7">5. le grand renversement depuis 70 ans</a> · <a href="#electorat" data-to="el-p8">6. la carte et le second tour</a> · <a href="#electorat" data-to="el-p4">7. les grands clivages</a> · <a href="#electorat" data-to="el-p5">8. les limites</a></p>
   <div class="kpis" id="el-kpis"></div>
 
   <h3 id="el-p1" class="ag-part">1. Qui vote ?</h3>
@@ -1908,13 +1908,39 @@
   <p class="muted" style="font-size:.78rem" id="el-bars-src"></p>
   <div class="callout small" id="el-bars-txt"></div>
 
-  <h3 id="el-p3" class="ag-part">3. La carte des électorats : capital culturel et capital économique</h3>
+  <h3 id="el-p3" class="ag-part">3. Diplôme et revenu : la carte des électorats</h3>
   <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? L'écart est rapporté au score national du parti : +50 % veut dire qu'il fait 50 % de son score national de plus dans le groupe du haut que dans celui du bas. La taille de la bulle est le score national.</p>
   <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label></div>
   <div id="el-carte" class="chart"></div>
   <div class="callout small" id="el-carte-txt"></div>
 
-  <h3 id="el-p4" class="ag-part">4. Les grands clivages</h3>
+  <h3 id="el-p6" class="ag-part">4. Hommes et femmes</h3>
+  <p class="lead">Les femmes votent-elles plus à gauche que les hommes ? Aujourd'hui, dans beaucoup de démocraties, oui. Mais c'est récent : pendant longtemps, c'était l'inverse.</p>
+  <div class="grid2">
+    <div><h3>En France aujourd'hui : vote selon le sexe (Ipsos)</h3><div id="el-sexe"></div><div class="legend-row" id="el-sexe-legend"></div></div>
+    <div><h3>En France depuis 1956 : vote de gauche des femmes moins celui des hommes (points)</h3><div id="el-sexe-long" class="chart"></div></div>
+  </div>
+  <h3>Dans 21 démocraties : écart de vote de gauche entre femmes et hommes, avant 1980 et depuis 2000 (points)</h3>
+  <div id="el-sexe-pays"></div>
+  <div class="legend-row" id="el-sexe-pays-legend"></div>
+  <div class="callout small" id="el-sexe-txt"></div>
+
+  <h3 id="el-p7" class="ag-part">5. Le grand renversement depuis 70 ans</h3>
+  <p class="lead">Écart de vote pour la gauche entre les 10 % les plus diplômés (ou les plus riches) et les 90 % restants, en points. Au-dessus de zéro, la gauche fait mieux chez les plus diplômés (ou les plus riches) ; en dessous, chez les autres.</p>
+  <div id="el-long" class="chart"></div><div class="legend-row" id="el-long-legend"></div>
+  <h3>Le même renversement dans 21 démocraties : vote de gauche des 10 % les plus diplômés moins celui des autres (points)</h3>
+  <div id="el-dip-pays"></div>
+  <div class="callout small" id="el-long-txt"></div>
+
+  <h3 id="el-p8" class="ag-part">6. La carte et le second tour (législatives 2024, résultats officiels)</h3>
+  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Afficher <select id="el-map-sel"><option value="tete">le bloc arrivé en tête</option><option value="extd">la part de l'extrême droite</option><option value="gauche">la part de la gauche</option><option value="centre">la part du centre</option><option value="droite">la part de la droite</option><option value="participation">la participation</option></select></label></div>
+  <div class="grid2">
+    <div><div id="el-map" class="chart"></div><div class="legend-row" id="el-map-legend"></div></div>
+    <div><h3 style="margin-top:0">Voix au 1<sup>er</sup> tour et sièges obtenus</h3><div id="el-sieges"></div><div class="callout small" id="el-sieges-txt"></div></div>
+  </div>
+  <div class="callout small" id="el-map-txt"></div>
+
+  <h3 id="el-p4" class="ag-part">7. Les grands clivages</h3>
   <div class="in-need">
     <div><b>L'âge</b><span>Le clivage le plus fort aujourd'hui. Les jeunes votent d'abord à gauche, les 35-69 ans d'abord pour le Rassemblement national, les plus de 70 ans d'abord pour le camp présidentiel. Et les plus âgés votent deux fois plus souvent que les jeunes aux législatives.</span></div>
     <div><b>Le diplôme</b><span>Le capital culturel sépare désormais plus les électorats que le revenu : les diplômés du supérieur votent à gauche et au centre, les non-bacheliers d'abord pour le Rassemblement national (49 % aux législatives de 2024).</span></div>
@@ -1928,14 +1954,14 @@
     <p><b>Le capital social</b>, au sens de Bourdieu (le réseau de relations, l'appartenance à des groupes), n'est pas mesuré par ces enquêtes. Les indicateurs les plus proches sont le « milieu social » que chacun déclare et la satisfaction à l'égard de sa vie, disponibles dans le sélecteur de la partie 2. L'onglet <a href="#capital">Capital social et culturel</a> montre les pratiques culturelles et les liens sociaux, mais sans lien avec le vote.</p>
   </div>
 
-  <h3 id="el-p5" class="ag-part">5. Les limites</h3>
+  <h3 id="el-p5" class="ag-part">8. Les limites</h3>
   <div class="callout small">
     <ul>
       <li><b>Ce sont des sondages</b> : 10 286 personnes en 2024, 4 000 en 2022, interrogées par internet selon la méthode des quotas (sexe, âge, profession, région, taille de commune). La marge d'erreur est de 1 à 2 points pour l'ensemble, mais de 3 à 5 points pour un petit groupe (les 18-24 ans, les chômeurs, les personnes d'une autre religion).</li>
       <li><b>Le vote est déclaré</b> : certains ne disent pas la vérité, ou oublient. Les enquêtes sont redressées pour coller aux résultats réels.</li>
       <li><b>Pas de causalité</b> : les catégories se recoupent. Les retraités sont âgés, les ouvriers peu diplômés : chaque tableau montre une association, pas la cause du vote.</li>
     </ul>
-    <p class="muted" style="font-size:.78rem">Sources : Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, <a href="https://www.ipsos.com/fr-fr/legislatives-2024/sociologie-des-electorats-legislatives-2024" target="_blank" rel="noopener">sociologie des électorats, législatives 2024</a> ; Ipsos-Sopra Steria, <a href="https://www.ipsos.com/fr-fr/presidentielle-2022/1er-tour-abstentionnistes-sociologie-electorat" target="_blank" rel="noopener">sociologie des électorats, présidentielle 2022</a> ; Insee, <a href="https://www.insee.fr/fr/statistiques/6658145" target="_blank" rel="noopener">enquête sur la participation électorale 2022</a> (Insee Première n° 1928).</p>
+    <p class="muted" style="font-size:.78rem">Sources : Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, <a href="https://www.ipsos.com/fr-fr/legislatives-2024/sociologie-des-electorats-legislatives-2024" target="_blank" rel="noopener">sociologie des électorats, législatives 2024</a> ; Ipsos-Sopra Steria, <a href="https://www.ipsos.com/fr-fr/presidentielle-2022/1er-tour-abstentionnistes-sociologie-electorat" target="_blank" rel="noopener">sociologie des électorats, présidentielle 2022</a> ; Insee, <a href="https://www.insee.fr/fr/statistiques/6658145" target="_blank" rel="noopener">enquête sur la participation électorale 2022</a> (Insee Première n° 1928) ; ministère de l'Intérieur, <a href="https://www.data.gouv.fr/fr/datasets/elections-legislatives-des-30-juin-et-7-juillet-2024-resultats-definitifs-du-1er-tour/" target="_blank" rel="noopener">résultats officiels des législatives 2024</a> (data.gouv.fr) ; Gethin, Martínez-Toledano et Piketty, <a href="https://wpid.world" target="_blank" rel="noopener">World Political Cleavages and Inequality Database</a> (enquêtes électorales nationales, 1948-2020 ; « gauche » = partis de gauche, sociaux-démocrates et écologistes de chaque pays) ; fond de carte : IGN Admin Express simplifié (G. David).</p>
   </div>
 </section>
 
@@ -2026,50 +2052,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121v"></script>
-<script src="app.js?v=20261121v"></script>
-<script src="energie.js?v=20261121v"></script>
-<script src="matieres.js?v=20261121v"></script>
-<script src="territoire.js?v=20261121v"></script>
-<script src="themes.js?v=20261121v"></script>
-<script src="societe.js?v=20261121v"></script>
-<script src="eco2.js?v=20261121v"></script>
-<script src="empreinte.js?v=20261121v"></script>
-<script src="argentprive.js?v=20261121v"></script>
-<script src="repartition.js?v=20261121v"></script>
-<script src="patrimoine.js?v=20261121v"></script>
-<script src="prelevements.js?v=20261121v"></script>
-<script src="travailvie.js?v=20261121v"></script>
-<script src="niveauvie.js?v=20261121v"></script>
-<script src="prosperite.js?v=20261121v"></script>
-<script src="exterieur.js?v=20261121v"></script>
-<script src="desindus.js?v=20261121v"></script>
-<script src="retraites.js?v=20261121v"></script>
-<script src="energiecout.js?v=20261121v"></script>
-<script src="energieformation.js?v=20261121v"></script>
-<script src="nucleaire.js?v=20261121v"></script>
-<script src="logementeco.js?v=20261121v"></script>
-<script src="competences.js?v=20261121v"></script>
-<script src="justicedroit.js?v=20261121v"></script>
-<script src="fonctionnaires.js?v=20261121v"></script>
-<script src="couper.js?v=20261121v"></script>
-<script src="seuilpays.js?v=20261121v"></script>
-<script src="logement.js?v=20261121v"></script>
-<script src="env.js?v=20261121v"></script>
-<script src="agriculture.js?v=20261121v"></script>
-<script src="rendements.js?v=20261121v"></script>
-<script src="monnaie.js?v=20261121v"></script>
-<script src="limites.js?v=20261121v"></script>
-<script src="sociologie.js?v=20261121v"></script>
-<script src="chaine.js?v=20261121v"></script>
-<script src="patrimoinehist.js?v=20261121v"></script>
-<script src="innovation.js?v=20261121v"></script>
+<script src="kpi.js?v=20261121w"></script>
+<script src="app.js?v=20261121w"></script>
+<script src="energie.js?v=20261121w"></script>
+<script src="matieres.js?v=20261121w"></script>
+<script src="territoire.js?v=20261121w"></script>
+<script src="themes.js?v=20261121w"></script>
+<script src="societe.js?v=20261121w"></script>
+<script src="eco2.js?v=20261121w"></script>
+<script src="empreinte.js?v=20261121w"></script>
+<script src="argentprive.js?v=20261121w"></script>
+<script src="repartition.js?v=20261121w"></script>
+<script src="patrimoine.js?v=20261121w"></script>
+<script src="prelevements.js?v=20261121w"></script>
+<script src="travailvie.js?v=20261121w"></script>
+<script src="niveauvie.js?v=20261121w"></script>
+<script src="prosperite.js?v=20261121w"></script>
+<script src="exterieur.js?v=20261121w"></script>
+<script src="desindus.js?v=20261121w"></script>
+<script src="retraites.js?v=20261121w"></script>
+<script src="energiecout.js?v=20261121w"></script>
+<script src="energieformation.js?v=20261121w"></script>
+<script src="nucleaire.js?v=20261121w"></script>
+<script src="logementeco.js?v=20261121w"></script>
+<script src="competences.js?v=20261121w"></script>
+<script src="justicedroit.js?v=20261121w"></script>
+<script src="fonctionnaires.js?v=20261121w"></script>
+<script src="couper.js?v=20261121w"></script>
+<script src="seuilpays.js?v=20261121w"></script>
+<script src="logement.js?v=20261121w"></script>
+<script src="env.js?v=20261121w"></script>
+<script src="agriculture.js?v=20261121w"></script>
+<script src="rendements.js?v=20261121w"></script>
+<script src="monnaie.js?v=20261121w"></script>
+<script src="limites.js?v=20261121w"></script>
+<script src="sociologie.js?v=20261121w"></script>
+<script src="chaine.js?v=20261121w"></script>
+<script src="patrimoinehist.js?v=20261121w"></script>
+<script src="innovation.js?v=20261121w"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121v"></script>
-<script src="histoire.js?v=20261121v"></script>
-<script src="chomage.js?v=20261121v"></script>
-<script src="sources.js?v=20261121v"></script>
-<script src="nav.js?v=20261121v"></script>
+<script src="soussol.js?v=20261121w"></script>
+<script src="histoire.js?v=20261121w"></script>
+<script src="chomage.js?v=20261121w"></script>
+<script src="sources.js?v=20261121w"></script>
+<script src="nav.js?v=20261121w"></script>
 </body>
 </html>

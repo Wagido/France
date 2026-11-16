@@ -10,7 +10,10 @@
   "finances": "Situation financière",
   "agglo": "Taille de la commune",
   "religion": "Religion",
-  "satisfaction": "Satisfaction à l'égard de sa vie"
+  "satisfaction": "Satisfaction à l'égard de sa vie",
+  "pres2022": "Vote à la présidentielle 2022 (reports de voix)",
+  "moment": "Moment du choix",
+  "macron": "Satisfaction à l'égard d'Emmanuel Macron"
  },
  "legislatives2024": {
   "titre": "Législatives 2024, 1er tour",
@@ -659,7 +662,185 @@
    ]
   },
   "participation": 65.8,
-  "source": "Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, 10 286 inscrits interrogés par internet les 27 et 28 juin 2024"
+  "source": "Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, 10 286 inscrits interrogés par internet les 27 et 28 juin 2024",
+  "tables_plus": {
+   "pres2022": [
+    {
+     "l": "Mélenchon",
+     "v": [
+      77,
+      3,
+      3,
+      9,
+      8
+     ]
+    },
+    {
+     "l": "Roussel",
+     "v": [
+      66,
+      7,
+      9,
+      6,
+      12
+     ]
+    },
+    {
+     "l": "Jadot",
+     "v": [
+      61,
+      19,
+      7,
+      2,
+      11
+     ]
+    },
+    {
+     "l": "Hidalgo",
+     "v": [
+      75,
+      10,
+      4,
+      3,
+      8
+     ]
+    },
+    {
+     "l": "Macron",
+     "v": [
+      14,
+      56,
+      15,
+      8,
+      7
+     ]
+    },
+    {
+     "l": "Pécresse",
+     "v": [
+      2,
+      24,
+      48,
+      21,
+      5
+     ]
+    },
+    {
+     "l": "Le Pen",
+     "v": [
+      2,
+      2,
+      4,
+      89,
+      3
+     ]
+    },
+    {
+     "l": "Zemmour",
+     "v": [
+      0,
+      4,
+      9,
+      79,
+      8
+     ]
+    },
+    {
+     "l": "Dupont-Aignan",
+     "v": [
+      4,
+      5,
+      15,
+      61,
+      15
+     ]
+    },
+    {
+     "l": "Lassalle",
+     "v": [
+      12,
+      21,
+      14,
+      37,
+      16
+     ]
+    }
+   ],
+   "moment": [
+    {
+     "l": "Décidé depuis plusieurs semaines",
+     "v": [
+      30,
+      18,
+      6,
+      41,
+      5
+     ]
+    },
+    {
+     "l": "Décidé ces derniers jours",
+     "v": [
+      27,
+      26,
+      18,
+      18,
+      11
+     ]
+    },
+    {
+     "l": "Au dernier moment",
+     "v": [
+      18,
+      23,
+      20,
+      21,
+      18
+     ]
+    }
+   ],
+   "macron": [
+    {
+     "l": "Très satisfait d'Emmanuel Macron",
+     "v": [
+      10,
+      50,
+      17,
+      11,
+      12
+     ]
+    },
+    {
+     "l": "Plutôt satisfait",
+     "v": [
+      13,
+      56,
+      15,
+      9,
+      7
+     ]
+    },
+    {
+     "l": "Plutôt pas satisfait",
+     "v": [
+      36,
+      18,
+      12,
+      27,
+      7
+     ]
+    },
+    {
+     "l": "Pas du tout satisfait",
+     "v": [
+      32,
+      2,
+      6,
+      53,
+      7
+     ]
+    }
+   ]
+  }
  },
  "presidentielle2022": {
   "titre": "Présidentielle 2022, 1er tour",
@@ -1924,5 +2105,1625 @@
    "intermittent": 23.5,
    "abstention": 55.6
   }
- ]
+ ],
+ "officiel2024": {
+  "blocs": [
+   [
+    "gauche",
+    "Gauche (Nouveau Front populaire et divers gauche)",
+    "#e11d48"
+   ],
+   [
+    "centre",
+    "Centre (Ensemble et divers centre)",
+    "#f59e0b"
+   ],
+   [
+    "droite",
+    "Droite (LR et divers droite)",
+    "#2563eb"
+   ],
+   [
+    "extd",
+    "Extrême droite (RN, alliés, Reconquête)",
+    "#1e3a8a"
+   ],
+   [
+    "autres",
+    "Autres",
+    "#cbd5e1"
+   ]
+  ],
+  "departements": [
+   {
+    "code": "01",
+    "nom": "Ain",
+    "participation": 69.55,
+    "gauche": 24.1,
+    "centre": 20.5,
+    "droite": 14.7,
+    "extd": 40.2,
+    "autres": 0.4
+   },
+   {
+    "code": "02",
+    "nom": "Aisne",
+    "participation": 64.0,
+    "gauche": 23.3,
+    "centre": 13.7,
+    "droite": 8.7,
+    "extd": 54.1,
+    "autres": 0.1
+   },
+   {
+    "code": "03",
+    "nom": "Allier",
+    "participation": 68.78,
+    "gauche": 26.0,
+    "centre": 10.1,
+    "droite": 26.2,
+    "extd": 37.7,
+    "autres": 0.0
+   },
+   {
+    "code": "04",
+    "nom": "Alpes-de-Haute-Provence",
+    "participation": 70.11,
+    "gauche": 31.2,
+    "centre": 21.1,
+    "droite": 4.0,
+    "extd": 43.8,
+    "autres": 0.0
+   },
+   {
+    "code": "05",
+    "nom": "Hautes-Alpes",
+    "participation": 71.78,
+    "gauche": 32.8,
+    "centre": 24.6,
+    "droite": 3.7,
+    "extd": 36.1,
+    "autres": 2.8
+   },
+   {
+    "code": "06",
+    "nom": "Alpes-Maritimes",
+    "participation": 66.42,
+    "gauche": 20.0,
+    "centre": 14.6,
+    "droite": 14.9,
+    "extd": 45.9,
+    "autres": 4.5
+   },
+   {
+    "code": "07",
+    "nom": "Ardèche",
+    "participation": 71.81,
+    "gauche": 31.4,
+    "centre": 13.6,
+    "droite": 16.7,
+    "extd": 36.8,
+    "autres": 1.5
+   },
+   {
+    "code": "08",
+    "nom": "Ardennes",
+    "participation": 65.25,
+    "gauche": 17.2,
+    "centre": 13.2,
+    "droite": 23.8,
+    "extd": 44.2,
+    "autres": 1.6
+   },
+   {
+    "code": "09",
+    "nom": "Ariège",
+    "participation": 70.58,
+    "gauche": 55.3,
+    "centre": 0.0,
+    "droite": 2.6,
+    "extd": 42.2,
+    "autres": 0.0
+   },
+   {
+    "code": "10",
+    "nom": "Aube",
+    "participation": 67.35,
+    "gauche": 19.4,
+    "centre": 14.7,
+    "droite": 18.0,
+    "extd": 47.2,
+    "autres": 0.7
+   },
+   {
+    "code": "11",
+    "nom": "Aude",
+    "participation": 69.94,
+    "gauche": 30.8,
+    "centre": 17.6,
+    "droite": 1.4,
+    "extd": 48.7,
+    "autres": 1.4
+   },
+   {
+    "code": "12",
+    "nom": "Aveyron",
+    "participation": 73.67,
+    "gauche": 28.9,
+    "centre": 35.9,
+    "droite": 1.3,
+    "extd": 33.3,
+    "autres": 0.7
+   },
+   {
+    "code": "13",
+    "nom": "Bouches-du-Rhône",
+    "participation": 66.5,
+    "gauche": 31.5,
+    "centre": 19.7,
+    "droite": 5.3,
+    "extd": 42.4,
+    "autres": 1.2
+   },
+   {
+    "code": "14",
+    "nom": "Calvados",
+    "participation": 70.55,
+    "gauche": 27.3,
+    "centre": 25.2,
+    "droite": 14.8,
+    "extd": 32.7,
+    "autres": 0.0
+   },
+   {
+    "code": "15",
+    "nom": "Cantal",
+    "participation": 71.93,
+    "gauche": 19.4,
+    "centre": 8.0,
+    "droite": 40.3,
+    "extd": 32.3,
+    "autres": 0.0
+   },
+   {
+    "code": "16",
+    "nom": "Charente",
+    "participation": 68.65,
+    "gauche": 27.8,
+    "centre": 28.7,
+    "droite": 4.1,
+    "extd": 39.2,
+    "autres": 0.3
+   },
+   {
+    "code": "17",
+    "nom": "Charente-Maritime",
+    "participation": 69.76,
+    "gauche": 36.0,
+    "centre": 22.5,
+    "droite": 4.2,
+    "extd": 37.3,
+    "autres": 0.0
+   },
+   {
+    "code": "18",
+    "nom": "Cher",
+    "participation": 66.1,
+    "gauche": 24.7,
+    "centre": 28.7,
+    "droite": 4.3,
+    "extd": 42.1,
+    "autres": 0.1
+   },
+   {
+    "code": "19",
+    "nom": "Corrèze",
+    "participation": 73.12,
+    "gauche": 34.2,
+    "centre": 0.0,
+    "droite": 31.8,
+    "extd": 34.0,
+    "autres": 0.0
+   },
+   {
+    "code": "21",
+    "nom": "Côte-d'Or",
+    "participation": 70.98,
+    "gauche": 27.8,
+    "centre": 22.0,
+    "droite": 12.6,
+    "extd": 37.1,
+    "autres": 0.5
+   },
+   {
+    "code": "22",
+    "nom": "Côtes-d'Armor",
+    "participation": 74.15,
+    "gauche": 29.8,
+    "centre": 30.4,
+    "droite": 8.8,
+    "extd": 29.9,
+    "autres": 1.1
+   },
+   {
+    "code": "23",
+    "nom": "Creuse",
+    "participation": 70.63,
+    "gauche": 25.0,
+    "centre": 17.4,
+    "droite": 22.1,
+    "extd": 34.2,
+    "autres": 1.2
+   },
+   {
+    "code": "24",
+    "nom": "Dordogne",
+    "participation": 71.81,
+    "gauche": 31.7,
+    "centre": 21.5,
+    "droite": 6.9,
+    "extd": 39.8,
+    "autres": 0.1
+   },
+   {
+    "code": "25",
+    "nom": "Doubs",
+    "participation": 69.54,
+    "gauche": 28.0,
+    "centre": 24.4,
+    "droite": 10.2,
+    "extd": 36.5,
+    "autres": 0.9
+   },
+   {
+    "code": "26",
+    "nom": "Drôme",
+    "participation": 70.68,
+    "gauche": 31.2,
+    "centre": 15.8,
+    "droite": 15.8,
+    "extd": 37.2,
+    "autres": 0.0
+   },
+   {
+    "code": "27",
+    "nom": "Eure",
+    "participation": 67.4,
+    "gauche": 24.5,
+    "centre": 25.1,
+    "droite": 4.2,
+    "extd": 46.1,
+    "autres": 0.2
+   },
+   {
+    "code": "28",
+    "nom": "Eure-et-Loir",
+    "participation": 66.01,
+    "gauche": 19.4,
+    "centre": 29.0,
+    "droite": 11.3,
+    "extd": 40.3,
+    "autres": 0.0
+   },
+   {
+    "code": "29",
+    "nom": "Finistère",
+    "participation": 73.35,
+    "gauche": 34.1,
+    "centre": 32.0,
+    "droite": 5.5,
+    "extd": 27.2,
+    "autres": 1.2
+   },
+   {
+    "code": "2A",
+    "nom": "Corse-du-Sud",
+    "participation": 63.89,
+    "gauche": 11.2,
+    "centre": 14.2,
+    "droite": 9.1,
+    "extd": 33.3,
+    "autres": 32.3
+   },
+   {
+    "code": "2B",
+    "nom": "Haute-Corse",
+    "participation": 64.39,
+    "gauche": 7.9,
+    "centre": 9.1,
+    "droite": 18.9,
+    "extd": 27.4,
+    "autres": 36.6
+   },
+   {
+    "code": "30",
+    "nom": "Gard",
+    "participation": 68.63,
+    "gauche": 28.6,
+    "centre": 18.0,
+    "droite": 6.8,
+    "extd": 46.0,
+    "autres": 0.5
+   },
+   {
+    "code": "31",
+    "nom": "Haute-Garonne",
+    "participation": 72.8,
+    "gauche": 39.1,
+    "centre": 27.7,
+    "droite": 0.9,
+    "extd": 31.2,
+    "autres": 1.1
+   },
+   {
+    "code": "32",
+    "nom": "Gers",
+    "participation": 73.85,
+    "gauche": 37.3,
+    "centre": 15.3,
+    "droite": 7.1,
+    "extd": 36.8,
+    "autres": 3.5
+   },
+   {
+    "code": "33",
+    "nom": "Gironde",
+    "participation": 70.73,
+    "gauche": 34.2,
+    "centre": 29.2,
+    "droite": 2.6,
+    "extd": 33.6,
+    "autres": 0.4
+   },
+   {
+    "code": "34",
+    "nom": "Hérault",
+    "participation": 69.28,
+    "gauche": 33.2,
+    "centre": 20.3,
+    "droite": 5.2,
+    "extd": 40.3,
+    "autres": 0.9
+   },
+   {
+    "code": "35",
+    "nom": "Ille-et-Vilaine",
+    "participation": 73.57,
+    "gauche": 35.9,
+    "centre": 29.3,
+    "droite": 9.4,
+    "extd": 24.9,
+    "autres": 0.5
+   },
+   {
+    "code": "36",
+    "nom": "Indre",
+    "participation": 68.04,
+    "gauche": 24.2,
+    "centre": 16.0,
+    "droite": 17.3,
+    "extd": 41.7,
+    "autres": 0.8
+   },
+   {
+    "code": "37",
+    "nom": "Indre-et-Loire",
+    "participation": 69.28,
+    "gauche": 30.6,
+    "centre": 29.2,
+    "droite": 6.3,
+    "extd": 32.5,
+    "autres": 1.4
+   },
+   {
+    "code": "38",
+    "nom": "Isère",
+    "participation": 71.03,
+    "gauche": 33.4,
+    "centre": 21.5,
+    "droite": 10.0,
+    "extd": 35.0,
+    "autres": 0.2
+   },
+   {
+    "code": "39",
+    "nom": "Jura",
+    "participation": 70.75,
+    "gauche": 25.5,
+    "centre": 12.4,
+    "droite": 24.3,
+    "extd": 37.8,
+    "autres": 0.0
+   },
+   {
+    "code": "40",
+    "nom": "Landes",
+    "participation": 71.98,
+    "gauche": 31.6,
+    "centre": 26.0,
+    "droite": 5.6,
+    "extd": 36.1,
+    "autres": 0.8
+   },
+   {
+    "code": "41",
+    "nom": "Loir-et-Cher",
+    "participation": 68.4,
+    "gauche": 20.5,
+    "centre": 27.6,
+    "droite": 8.5,
+    "extd": 43.4,
+    "autres": 0.1
+   },
+   {
+    "code": "42",
+    "nom": "Loire",
+    "participation": 69.12,
+    "gauche": 27.7,
+    "centre": 12.7,
+    "droite": 21.3,
+    "extd": 37.7,
+    "autres": 0.6
+   },
+   {
+    "code": "43",
+    "nom": "Haute-Loire",
+    "participation": 72.45,
+    "gauche": 20.2,
+    "centre": 8.9,
+    "droite": 37.6,
+    "extd": 33.3,
+    "autres": 0.0
+   },
+   {
+    "code": "44",
+    "nom": "Loire-Atlantique",
+    "participation": 71.42,
+    "gauche": 38.7,
+    "centre": 22.2,
+    "droite": 12.8,
+    "extd": 25.5,
+    "autres": 0.8
+   },
+   {
+    "code": "45",
+    "nom": "Loiret",
+    "participation": 67.45,
+    "gauche": 26.9,
+    "centre": 22.0,
+    "droite": 10.8,
+    "extd": 39.4,
+    "autres": 0.9
+   },
+   {
+    "code": "46",
+    "nom": "Lot",
+    "participation": 73.89,
+    "gauche": 32.1,
+    "centre": 17.5,
+    "droite": 22.2,
+    "extd": 26.9,
+    "autres": 1.2
+   },
+   {
+    "code": "47",
+    "nom": "Lot-et-Garonne",
+    "participation": 70.05,
+    "gauche": 29.6,
+    "centre": 17.4,
+    "droite": 7.9,
+    "extd": 44.4,
+    "autres": 0.6
+   },
+   {
+    "code": "48",
+    "nom": "Lozère",
+    "participation": 75.04,
+    "gauche": 36.0,
+    "centre": 0.0,
+    "droite": 24.0,
+    "extd": 33.9,
+    "autres": 6.0
+   },
+   {
+    "code": "49",
+    "nom": "Maine-et-Loire",
+    "participation": 69.73,
+    "gauche": 27.2,
+    "centre": 32.9,
+    "droite": 10.4,
+    "extd": 29.5,
+    "autres": 0.0
+   },
+   {
+    "code": "50",
+    "nom": "Manche",
+    "participation": 69.38,
+    "gauche": 23.3,
+    "centre": 25.8,
+    "droite": 14.6,
+    "extd": 33.4,
+    "autres": 2.9
+   },
+   {
+    "code": "51",
+    "nom": "Marne",
+    "participation": 66.04,
+    "gauche": 20.2,
+    "centre": 34.0,
+    "droite": 10.4,
+    "extd": 34.8,
+    "autres": 0.6
+   },
+   {
+    "code": "52",
+    "nom": "Haute-Marne",
+    "participation": 66.03,
+    "gauche": 19.0,
+    "centre": 15.3,
+    "droite": 12.7,
+    "extd": 52.4,
+    "autres": 0.4
+   },
+   {
+    "code": "53",
+    "nom": "Mayenne",
+    "participation": 68.38,
+    "gauche": 30.0,
+    "centre": 34.5,
+    "droite": 4.9,
+    "extd": 30.5,
+    "autres": 0.1
+   },
+   {
+    "code": "54",
+    "nom": "Meurthe-et-Moselle",
+    "participation": 65.27,
+    "gauche": 33.7,
+    "centre": 14.3,
+    "droite": 13.9,
+    "extd": 37.7,
+    "autres": 0.4
+   },
+   {
+    "code": "55",
+    "nom": "Meuse",
+    "participation": 66.73,
+    "gauche": 15.4,
+    "centre": 0.0,
+    "droite": 34.7,
+    "extd": 49.1,
+    "autres": 0.9
+   },
+   {
+    "code": "56",
+    "nom": "Morbihan",
+    "participation": 72.72,
+    "gauche": 25.8,
+    "centre": 30.6,
+    "droite": 5.0,
+    "extd": 30.7,
+    "autres": 7.9
+   },
+   {
+    "code": "57",
+    "nom": "Moselle",
+    "participation": 62.53,
+    "gauche": 23.6,
+    "centre": 20.1,
+    "droite": 11.5,
+    "extd": 43.6,
+    "autres": 1.2
+   },
+   {
+    "code": "58",
+    "nom": "Nièvre",
+    "participation": 66.93,
+    "gauche": 25.7,
+    "centre": 24.6,
+    "droite": 6.8,
+    "extd": 42.9,
+    "autres": 0.0
+   },
+   {
+    "code": "59",
+    "nom": "Nord",
+    "participation": 64.14,
+    "gauche": 30.1,
+    "centre": 16.4,
+    "droite": 11.8,
+    "extd": 40.1,
+    "autres": 1.6
+   },
+   {
+    "code": "60",
+    "nom": "Oise",
+    "participation": 65.73,
+    "gauche": 22.6,
+    "centre": 16.1,
+    "droite": 14.3,
+    "extd": 45.9,
+    "autres": 1.1
+   },
+   {
+    "code": "61",
+    "nom": "Orne",
+    "participation": 68.57,
+    "gauche": 23.1,
+    "centre": 13.3,
+    "droite": 26.8,
+    "extd": 36.8,
+    "autres": 0.0
+   },
+   {
+    "code": "62",
+    "nom": "Pas-de-Calais",
+    "participation": 64.79,
+    "gauche": 22.9,
+    "centre": 18.9,
+    "droite": 7.4,
+    "extd": 50.6,
+    "autres": 0.3
+   },
+   {
+    "code": "63",
+    "nom": "Puy-de-Dôme",
+    "participation": 71.06,
+    "gauche": 35.3,
+    "centre": 21.1,
+    "droite": 11.6,
+    "extd": 32.1,
+    "autres": 0.0
+   },
+   {
+    "code": "64",
+    "nom": "Pyrénées-Atlantiques",
+    "participation": 71.91,
+    "gauche": 36.2,
+    "centre": 18.8,
+    "droite": 12.7,
+    "extd": 28.3,
+    "autres": 3.9
+   },
+   {
+    "code": "65",
+    "nom": "Hautes-Pyrénées",
+    "participation": 70.69,
+    "gauche": 29.8,
+    "centre": 12.6,
+    "droite": 5.2,
+    "extd": 36.7,
+    "autres": 15.7
+   },
+   {
+    "code": "66",
+    "nom": "Pyrénées-Orientales",
+    "participation": 67.84,
+    "gauche": 25.5,
+    "centre": 19.4,
+    "droite": 2.2,
+    "extd": 50.5,
+    "autres": 2.4
+   },
+   {
+    "code": "67",
+    "nom": "Bas-Rhin",
+    "participation": 67.26,
+    "gauche": 23.6,
+    "centre": 25.9,
+    "droite": 12.2,
+    "extd": 34.8,
+    "autres": 3.4
+   },
+   {
+    "code": "68",
+    "nom": "Haut-Rhin",
+    "participation": 65.27,
+    "gauche": 18.8,
+    "centre": 24.8,
+    "droite": 12.6,
+    "extd": 38.8,
+    "autres": 5.1
+   },
+   {
+    "code": "69",
+    "nom": "Rhône",
+    "participation": 71.65,
+    "gauche": 36.4,
+    "centre": 23.8,
+    "droite": 11.9,
+    "extd": 27.0,
+    "autres": 0.8
+   },
+   {
+    "code": "70",
+    "nom": "Haute-Saône",
+    "participation": 70.49,
+    "gauche": 21.4,
+    "centre": 21.9,
+    "droite": 5.5,
+    "extd": 50.5,
+    "autres": 0.7
+   },
+   {
+    "code": "71",
+    "nom": "Saône-et-Loire",
+    "participation": 68.88,
+    "gauche": 24.9,
+    "centre": 17.1,
+    "droite": 18.9,
+    "extd": 39.0,
+    "autres": 0.1
+   },
+   {
+    "code": "72",
+    "nom": "Sarthe",
+    "participation": 66.62,
+    "gauche": 28.6,
+    "centre": 28.1,
+    "droite": 4.9,
+    "extd": 38.3,
+    "autres": 0.1
+   },
+   {
+    "code": "73",
+    "nom": "Savoie",
+    "participation": 71.12,
+    "gauche": 27.0,
+    "centre": 17.2,
+    "droite": 18.6,
+    "extd": 35.0,
+    "autres": 2.1
+   },
+   {
+    "code": "74",
+    "nom": "Haute-Savoie",
+    "participation": 68.77,
+    "gauche": 25.3,
+    "centre": 24.2,
+    "droite": 15.5,
+    "extd": 33.3,
+    "autres": 1.7
+   },
+   {
+    "code": "75",
+    "nom": "Paris",
+    "participation": 73.26,
+    "gauche": 45.6,
+    "centre": 33.2,
+    "droite": 8.1,
+    "extd": 12.0,
+    "autres": 1.1
+   },
+   {
+    "code": "76",
+    "nom": "Seine-Maritime",
+    "participation": 67.67,
+    "gauche": 32.5,
+    "centre": 22.9,
+    "droite": 6.5,
+    "extd": 38.1,
+    "autres": 0.0
+   },
+   {
+    "code": "77",
+    "nom": "Seine-et-Marne",
+    "participation": 65.13,
+    "gauche": 33.5,
+    "centre": 19.5,
+    "droite": 11.8,
+    "extd": 34.3,
+    "autres": 0.9
+   },
+   {
+    "code": "78",
+    "nom": "Yvelines",
+    "participation": 70.54,
+    "gauche": 30.8,
+    "centre": 33.6,
+    "droite": 10.0,
+    "extd": 24.1,
+    "autres": 1.5
+   },
+   {
+    "code": "79",
+    "nom": "Deux-Sèvres",
+    "participation": 69.4,
+    "gauche": 17.9,
+    "centre": 28.8,
+    "droite": 7.4,
+    "extd": 32.1,
+    "autres": 13.8
+   },
+   {
+    "code": "80",
+    "nom": "Somme",
+    "participation": 67.81,
+    "gauche": 22.9,
+    "centre": 20.3,
+    "droite": 11.6,
+    "extd": 45.3,
+    "autres": 0.0
+   },
+   {
+    "code": "81",
+    "nom": "Tarn",
+    "participation": 71.76,
+    "gauche": 29.5,
+    "centre": 26.3,
+    "droite": 2.0,
+    "extd": 41.2,
+    "autres": 1.0
+   },
+   {
+    "code": "82",
+    "nom": "Tarn-et-Garonne",
+    "participation": 70.68,
+    "gauche": 36.7,
+    "centre": 15.9,
+    "droite": 0.0,
+    "extd": 46.6,
+    "autres": 0.8
+   },
+   {
+    "code": "83",
+    "nom": "Var",
+    "participation": 66.92,
+    "gauche": 18.2,
+    "centre": 21.6,
+    "droite": 5.3,
+    "extd": 52.3,
+    "autres": 2.6
+   },
+   {
+    "code": "84",
+    "nom": "Vaucluse",
+    "participation": 67.57,
+    "gauche": 27.2,
+    "centre": 18.8,
+    "droite": 5.5,
+    "extd": 48.1,
+    "autres": 0.4
+   },
+   {
+    "code": "85",
+    "nom": "Vendée",
+    "participation": 70.14,
+    "gauche": 21.3,
+    "centre": 34.0,
+    "droite": 11.2,
+    "extd": 33.5,
+    "autres": 0.0
+   },
+   {
+    "code": "86",
+    "nom": "Vienne",
+    "participation": 69.63,
+    "gauche": 33.7,
+    "centre": 31.7,
+    "droite": 1.2,
+    "extd": 33.2,
+    "autres": 0.2
+   },
+   {
+    "code": "87",
+    "nom": "Haute-Vienne",
+    "participation": 72.32,
+    "gauche": 37.9,
+    "centre": 25.9,
+    "droite": 1.2,
+    "extd": 35.0,
+    "autres": 0.0
+   },
+   {
+    "code": "88",
+    "nom": "Vosges",
+    "participation": 67.97,
+    "gauche": 17.8,
+    "centre": 8.8,
+    "droite": 31.1,
+    "extd": 42.3,
+    "autres": 0.0
+   },
+   {
+    "code": "89",
+    "nom": "Yonne",
+    "participation": 67.25,
+    "gauche": 25.0,
+    "centre": 21.1,
+    "droite": 6.8,
+    "extd": 46.5,
+    "autres": 0.7
+   },
+   {
+    "code": "90",
+    "nom": "Territoire de Belfort",
+    "participation": 69.19,
+    "gauche": 26.7,
+    "centre": 13.2,
+    "droite": 21.2,
+    "extd": 38.8,
+    "autres": 0.0
+   },
+   {
+    "code": "91",
+    "nom": "Essonne",
+    "participation": 67.26,
+    "gauche": 39.0,
+    "centre": 20.5,
+    "droite": 9.1,
+    "extd": 26.4,
+    "autres": 5.1
+   },
+   {
+    "code": "92",
+    "nom": "Hauts-de-Seine",
+    "participation": 72.51,
+    "gauche": 37.1,
+    "centre": 29.1,
+    "droite": 16.4,
+    "extd": 16.5,
+    "autres": 0.9
+   },
+   {
+    "code": "93",
+    "nom": "Seine-Saint-Denis",
+    "participation": 60.62,
+    "gauche": 62.1,
+    "centre": 12.5,
+    "droite": 7.8,
+    "extd": 17.1,
+    "autres": 0.5
+   },
+   {
+    "code": "94",
+    "nom": "Val-de-Marne",
+    "participation": 67.98,
+    "gauche": 45.0,
+    "centre": 21.6,
+    "droite": 12.4,
+    "extd": 20.2,
+    "autres": 0.9
+   },
+   {
+    "code": "95",
+    "nom": "Val-d'Oise",
+    "participation": 64.85,
+    "gauche": 40.7,
+    "centre": 22.4,
+    "droite": 8.0,
+    "extd": 27.3,
+    "autres": 1.7
+   },
+   {
+    "code": "971",
+    "nom": "Guadeloupe",
+    "participation": 33.56,
+    "gauche": 63.9,
+    "centre": 6.0,
+    "droite": 2.5,
+    "extd": 17.3,
+    "autres": 10.3
+   },
+   {
+    "code": "972",
+    "nom": "Martinique",
+    "participation": 31.2,
+    "gauche": 19.9,
+    "centre": 2.6,
+    "droite": 10.6,
+    "extd": 10.0,
+    "autres": 57.0
+   },
+   {
+    "code": "973",
+    "nom": "Guyane",
+    "participation": 32.56,
+    "gauche": 3.3,
+    "centre": 13.5,
+    "droite": 9.6,
+    "extd": 5.6,
+    "autres": 68.0
+   },
+   {
+    "code": "974",
+    "nom": "La Réunion",
+    "participation": 45.54,
+    "gauche": 45.6,
+    "centre": 6.4,
+    "droite": 15.4,
+    "extd": 29.1,
+    "autres": 3.7
+   },
+   {
+    "code": "975",
+    "nom": "Saint-Pierre-et-Miquelon",
+    "participation": 55.38,
+    "gauche": 46.3,
+    "centre": 0.0,
+    "droite": 43.1,
+    "extd": 10.6,
+    "autres": 0.0
+   },
+   {
+    "code": "976",
+    "nom": "Mayotte",
+    "participation": 43.06,
+    "gauche": 3.1,
+    "centre": 17.8,
+    "droite": 57.5,
+    "extd": 21.3,
+    "autres": 0.3
+   },
+   {
+    "code": "986",
+    "nom": "Wallis et Futuna",
+    "participation": 77.11,
+    "gauche": 0.0,
+    "centre": 77.2,
+    "droite": 22.8,
+    "extd": 0.0,
+    "autres": 0.0
+   },
+   {
+    "code": "987",
+    "nom": "Polynésie française",
+    "participation": 43.1,
+    "gauche": 0.0,
+    "centre": 0.0,
+    "droite": 51.9,
+    "extd": 3.8,
+    "autres": 44.3
+   },
+   {
+    "code": "988",
+    "nom": "Nouvelle-Calédonie",
+    "participation": 60.02,
+    "gauche": 8.9,
+    "centre": 7.4,
+    "droite": 37.9,
+    "extd": 2.1,
+    "autres": 43.7
+   },
+   {
+    "code": "ZX",
+    "nom": "Saint-Martin/Saint-Barthélemy",
+    "participation": 28.67,
+    "gauche": 0.0,
+    "centre": 41.4,
+    "droite": 36.8,
+    "extd": 9.8,
+    "autres": 11.9
+   },
+   {
+    "code": "ZZ",
+    "nom": "Français établis hors de France",
+    "participation": 36.55,
+    "gauche": 36.7,
+    "centre": 40.0,
+    "droite": 8.5,
+    "extd": 13.0,
+    "autres": 1.8
+   }
+  ],
+  "sieges": [
+   {
+    "k": "gauche",
+    "l": "Gauche (Nouveau Front populaire et divers gauche)",
+    "c": "#e11d48",
+    "voix_t1": 30.8,
+    "sieges": 192,
+    "femmes_elues": 40,
+    "femmes_cand": 45
+   },
+   {
+    "k": "centre",
+    "l": "Centre (Ensemble et divers centre)",
+    "c": "#f59e0b",
+    "voix_t1": 22.5,
+    "sieges": 165,
+    "femmes_elues": 40,
+    "femmes_cand": 43
+   },
+   {
+    "k": "droite",
+    "l": "Droite (LR et divers droite)",
+    "c": "#2563eb",
+    "voix_t1": 10.5,
+    "sieges": 66,
+    "femmes_elues": 27,
+    "femmes_cand": 31
+   },
+   {
+    "k": "extd",
+    "l": "Extrême droite (RN, alliés, Reconquête)",
+    "c": "#1e3a8a",
+    "voix_t1": 34.1,
+    "sieges": 143,
+    "femmes_elues": 32,
+    "femmes_cand": 44
+   },
+   {
+    "k": "autres",
+    "l": "Autres",
+    "c": "#cbd5e1",
+    "voix_t1": 2.1,
+    "sieges": 11,
+    "femmes_elues": 9,
+    "femmes_cand": 34
+   }
+  ],
+  "nb_elus": 577,
+  "elus_t1": 76,
+  "config_t2": {
+   "2": 409,
+   "3": 89,
+   "4": 2,
+   "1": 1
+  },
+  "femmes_elues": 36.0
+ },
+ "long": {
+  "france": [
+   {
+    "annee": 1956,
+    "femmes": -14.0,
+    "diplome": -11.9
+   },
+   {
+    "annee": 1958,
+    "femmes": -14.3,
+    "diplome": -13.7,
+    "revenu": -7.6
+   },
+   {
+    "annee": 1962,
+    "femmes": -13.5,
+    "diplome": -6.3,
+    "revenu": -13.4
+   },
+   {
+    "annee": 1965,
+    "femmes": -10.4,
+    "diplome": -2.4,
+    "revenu": -9.8
+   },
+   {
+    "annee": 1967,
+    "femmes": -2.4,
+    "diplome": -3.9,
+    "revenu": -13.7
+   },
+   {
+    "annee": 1973,
+    "femmes": -7.3,
+    "diplome": -4.6,
+    "revenu": -14.8
+   },
+   {
+    "annee": 1974,
+    "femmes": -9.6,
+    "diplome": -0.3,
+    "revenu": -10.9
+   },
+   {
+    "annee": 1978,
+    "femmes": -6.3,
+    "diplome": -1.8,
+    "revenu": -15.3
+   },
+   {
+    "annee": 1986,
+    "femmes": 2.1,
+    "diplome": -2.5,
+    "revenu": -12.9
+   },
+   {
+    "annee": 1988,
+    "femmes": 1.2,
+    "diplome": -4.1,
+    "revenu": -14.5
+   },
+   {
+    "annee": 1993,
+    "femmes": -0.6,
+    "diplome": 9.0,
+    "revenu": -6.7
+   },
+   {
+    "annee": 1995,
+    "femmes": -5.7,
+    "diplome": 5.7,
+    "revenu": -11.4
+   },
+   {
+    "annee": 1997,
+    "femmes": -0.7,
+    "diplome": 1.4
+   },
+   {
+    "annee": 2002,
+    "femmes": -0.2,
+    "diplome": 9.3,
+    "revenu": -3.0
+   },
+   {
+    "annee": 2007,
+    "femmes": -0.9,
+    "diplome": 10.1,
+    "revenu": -4.9
+   },
+   {
+    "annee": 2012,
+    "femmes": 1.5,
+    "diplome": 9.3,
+    "revenu": -6.2
+   },
+   {
+    "annee": 2017,
+    "femmes": 0.0,
+    "diplome": 13.1,
+    "revenu": -6.0
+   }
+  ],
+  "pays": [
+   {
+    "nom": "Australie",
+    "debut": {
+     "femmes": -6.6,
+     "diplome": -16.1,
+     "revenu": -26.7
+    },
+    "fin": {
+     "femmes": 5.6,
+     "diplome": 8.4,
+     "revenu": -5.9
+    },
+    "annees": [
+     1963,
+     2019
+    ]
+   },
+   {
+    "nom": "Autriche",
+    "debut": {
+     "femmes": 0.6,
+     "diplome": -12.3,
+     "revenu": -18.4
+    },
+    "fin": {
+     "femmes": 6.2,
+     "diplome": 8.6,
+     "revenu": -6.0
+    },
+    "annees": [
+     1971,
+     2017
+    ]
+   },
+   {
+    "nom": "Belgique",
+    "debut": {
+     "femmes": -2.1,
+     "diplome": -13.7,
+     "revenu": -14.5
+    },
+    "fin": {
+     "femmes": 3.5,
+     "diplome": -0.9,
+     "revenu": -9.3
+    },
+    "annees": [
+     1971,
+     2014
+    ]
+   },
+   {
+    "nom": "Canada",
+    "debut": {
+     "femmes": 1.1,
+     "diplome": 2.7,
+     "revenu": 1.6
+    },
+    "fin": {
+     "femmes": 5.5,
+     "diplome": 7.6,
+     "revenu": -2.7
+    },
+    "annees": [
+     1963,
+     2019
+    ]
+   },
+   {
+    "nom": "Danemark",
+    "debut": {
+     "femmes": -0.6,
+     "diplome": -13.0,
+     "revenu": -16.1
+    },
+    "fin": {
+     "femmes": 10.6,
+     "diplome": 4.8,
+     "revenu": -13.5
+    },
+    "annees": [
+     1960,
+     2015
+    ]
+   },
+   {
+    "nom": "Finlande",
+    "debut": {
+     "femmes": -5.7,
+     "diplome": -19.7,
+     "revenu": -19.7
+    },
+    "fin": {
+     "femmes": 3.0,
+     "diplome": -4.2,
+     "revenu": -7.6
+    },
+    "annees": [
+     1972,
+     2015
+    ]
+   },
+   {
+    "nom": "France",
+    "debut": {
+     "femmes": -9.7,
+     "diplome": -5.6,
+     "revenu": -12.2
+    },
+    "fin": {
+     "femmes": 0.1,
+     "diplome": 10.4,
+     "revenu": -5.0
+    },
+    "annees": [
+     1956,
+     2017
+    ]
+   },
+   {
+    "nom": "Allemagne",
+    "debut": {
+     "femmes": -8.7,
+     "diplome": -16.9,
+     "revenu": -18.6
+    },
+    "fin": {
+     "femmes": 0.0,
+     "diplome": 5.3,
+     "revenu": -9.2
+    },
+    "annees": [
+     1949,
+     2017
+    ]
+   },
+   {
+    "nom": "Islande",
+    "debut": {
+     "femmes": -0.1,
+     "diplome": 13.4,
+     "revenu": null
+    },
+    "fin": {
+     "femmes": 12.8,
+     "diplome": 7.0,
+     "revenu": -6.8
+    },
+    "annees": [
+     1978,
+     2017
+    ]
+   },
+   {
+    "nom": "Irlande",
+    "debut": {
+     "femmes": -3.0,
+     "diplome": -13.9,
+     "revenu": -8.6
+    },
+    "fin": {
+     "femmes": -2.3,
+     "diplome": -5.2,
+     "revenu": -6.4
+    },
+    "annees": [
+     1973,
+     2020
+    ]
+   },
+   {
+    "nom": "Italie",
+    "debut": {
+     "femmes": -25.5,
+     "diplome": -5.5,
+     "revenu": -2.1
+    },
+    "fin": {
+     "femmes": -2.0,
+     "diplome": 6.0,
+     "revenu": -3.3
+    },
+    "annees": [
+     1953,
+     2018
+    ]
+   },
+   {
+    "nom": "Luxembourg",
+    "debut": {
+     "femmes": -7.6,
+     "diplome": -17.6,
+     "revenu": -13.4
+    },
+    "fin": {
+     "femmes": -4.2,
+     "diplome": 7.8,
+     "revenu": -16.2
+    },
+    "annees": [
+     1974,
+     2018
+    ]
+   },
+   {
+    "nom": "Pays-Bas",
+    "debut": {
+     "femmes": -1.0,
+     "diplome": -5.6,
+     "revenu": -20.8
+    },
+    "fin": {
+     "femmes": 5.4,
+     "diplome": 10.3,
+     "revenu": -8.8
+    },
+    "annees": [
+     1967,
+     2017
+    ]
+   },
+   {
+    "nom": "Nouvelle-Zélande",
+    "debut": {
+     "femmes": -5.4,
+     "diplome": -1.1,
+     "revenu": -16.8
+    },
+    "fin": {
+     "femmes": 7.5,
+     "diplome": 9.5,
+     "revenu": -11.7
+    },
+    "annees": [
+     1972,
+     2017
+    ]
+   },
+   {
+    "nom": "Norvège",
+    "debut": {
+     "femmes": -3.2,
+     "diplome": -30.2,
+     "revenu": -27.9
+    },
+    "fin": {
+     "femmes": 10.2,
+     "diplome": 3.4,
+     "revenu": -12.1
+    },
+    "annees": [
+     1957,
+     2017
+    ]
+   },
+   {
+    "nom": "Portugal",
+    "debut": {
+     "femmes": null,
+     "diplome": null,
+     "revenu": null
+    },
+    "fin": {
+     "femmes": -0.0,
+     "diplome": -10.1,
+     "revenu": -12.3
+    },
+    "annees": [
+     1983,
+     2019
+    ]
+   },
+   {
+    "nom": "Espagne",
+    "debut": {
+     "femmes": null,
+     "diplome": null,
+     "revenu": null
+    },
+    "fin": {
+     "femmes": -0.1,
+     "diplome": -2.2,
+     "revenu": -6.2
+    },
+    "annees": [
+     1982,
+     2020
+    ]
+   },
+   {
+    "nom": "Suède",
+    "debut": {
+     "femmes": -1.3,
+     "diplome": -30.1,
+     "revenu": -19.3
+    },
+    "fin": {
+     "femmes": 3.8,
+     "diplome": -8.1,
+     "revenu": -20.2
+    },
+    "annees": [
+     1956,
+     2014
+    ]
+   },
+   {
+    "nom": "Suisse",
+    "debut": {
+     "femmes": -2.8,
+     "diplome": -3.8,
+     "revenu": -7.3
+    },
+    "fin": {
+     "femmes": 6.2,
+     "diplome": 17.5,
+     "revenu": -0.9
+    },
+    "annees": [
+     1967,
+     2019
+    ]
+   },
+   {
+    "nom": "Royaume-Uni",
+    "debut": {
+     "femmes": -4.5,
+     "diplome": -19.8,
+     "revenu": -27.9
+    },
+    "fin": {
+     "femmes": 1.3,
+     "diplome": -1.5,
+     "revenu": -9.5
+    },
+    "annees": [
+     1955,
+     2017
+    ]
+   },
+   {
+    "nom": "États-Unis",
+    "debut": {
+     "femmes": -0.5,
+     "diplome": -16.7,
+     "revenu": -14.8
+    },
+    "fin": {
+     "femmes": 6.5,
+     "diplome": 3.1,
+     "revenu": -10.8
+    },
+    "annees": [
+     1948,
+     2016
+    ]
+   }
+  ]
+ }
 }
