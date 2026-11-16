@@ -370,7 +370,7 @@ h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-l
 /* Sans intrants ? (rendements.js) */
 .in-need { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 10px; margin: 6px 0 12px; }
 .in-need > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: .88rem; }
-.in-need b { display: block; margin-bottom: 4px; }
+.in-need > div > b { display: block; margin-bottom: 4px; }
 .in-need span { color: var(--muted); }
 .in-mini { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 12px; margin: 6px 0 12px; }
 .in-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
@@ -399,3 +399,16 @@ h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-l
 @media (max-width: 640px) { .in-dep-row, #in-bio .in-dep-row { grid-template-columns: 1fr; gap: 2px; } .in-dep-head { display: none; } .in-sbar { grid-template-columns: 1fr auto auto; } .in-sbar small { grid-column: 3; } .in-sbar .tr { grid-column: 1 / -1; grid-row: 2; width: 100%; } .in-dep-row .num { text-align: left; } }
 h3[id] { scroll-margin-top: 150px; }
 .ag-part { font-size: 1.2rem; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+/* Retraites : synthèse */
+.mo-calc { display: grid; gap: 6px; margin: 6px 0 10px; max-width: 980px; }
+.mo-calc-row { display: grid; grid-template-columns: minmax(150px, 280px) 1fr; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: .9rem; }
+.mo-calc-row:last-child { background: var(--soft); }
+.rt-time { display: grid; gap: 0; margin: 6px 0 12px; max-width: 980px; border-left: 2px solid var(--line); }
+.rt-time > div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 6px 0 6px 14px; font-size: .9rem; position: relative; }
+.rt-time > div::before { content: ""; position: absolute; left: -6px; top: 12px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+table.cmp-t.rt-cmp { min-width: 900px; }
+table.cmp-t.rt-cmp th, table.cmp-t.rt-cmp td { text-align: left; white-space: normal; vertical-align: top; cursor: default; }
+table.cmp-t.rt-cmp td { font-size: .82rem; }
+table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
+.rt-cmp tr.me td { background: var(--callout); }
+@media (max-width: 640px) { .mo-calc-row, .rt-time > div { grid-template-columns: 1fr; gap: 2px; } }
