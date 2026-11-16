@@ -452,3 +452,9 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 .li-ch details[open] summary { border-bottom: 1px solid var(--line); }
 .li-ch details > div { padding: 4px 14px 8px; font-size: .88rem; }
 .li-ch details p { margin: 6px 0; }
+.li-toc { background: var(--soft); border-radius: 12px; padding: 12px 18px; margin: 4px 0 14px; max-width: 980px; font-size: .9rem; }
+.li-toc ol { margin: 6px 0 0; padding-left: 1.3em; }
+.li-toc ol > li { margin: 4px 0; font-weight: 600; }
+.li-toc ul { margin: 2px 0 6px; padding-left: 1.1em; columns: 2; column-gap: 24px; font-weight: 400; font-size: .85rem; }
+@media (max-width: 640px) { .li-toc ul { columns: 1; } }
+h3.li-sub { font-size: 1.02rem; margin-top: 22px; }
