@@ -21,7 +21,8 @@ Site : https://wagido.github.io/france/ (une fois GitHub Pages activé : Setting
 5. **Comparer les pays** : 30 pays Eurostat (composition du PIB, dépenses par fonction, dette et intérêts, actifs et passifs).
 6. **Énergie** : diagramme de flux du bilan énergétique (Eurostat), séries depuis 1965 (Our World in Data), électricité française en direct (RTE éCO2mix via ODRÉ), comparaison européenne.
 7. **Matières, territoire, commerce, climat, eau, sols, alimentation, démographie, immigration, temps de travail, justice** : voir `scripts/build_matieres.py`, `build_territoire.py`, `build_themes.py` et les fichiers `matieres.js`, `territoire.js`, `themes.js`.
-8. **Patrimoine** : actifs et passifs de la France par secteur (ménages, entreprises, secteur financier, administrations).
+8. **Peut-on être autonome en agriculture sans intrants ?** : rendements depuis 1815 et par culture, engrais et pesticides, bio, simulateur des céréales (`scripts/build_rendements.py`, `rendements.js`).
+9. **Patrimoine** : actifs et passifs de la France par secteur (ménages, entreprises, secteur financier, administrations).
 
 ## Fichiers
 
@@ -44,6 +45,7 @@ python3 scripts/build_matieres.py
 python3 scripts/fetch_regions.py   # électricité par région (ODRÉ), environ 2 minutes
 python3 scripts/build_territoire.py
 python3 scripts/build_themes.py
+python3 scripts/build_rendements.py
 ```
 
 Pour voir la page en local : `python3 -m http.server` dans ce dossier, puis ouvrir http://localhost:8000.

@@ -9,6 +9,9 @@ const first = g => document.querySelector(`nav.tabs[data-group="${g}"] a`)?.getA
 const geoCtl = $("#geo-ctl");
 
 function show(id) {
+  // ancre à l'intérieur d'un article (ancien onglet fusionné, par exemple #champ) : on ouvre l'article et on y descend
+  const inner = !groupOf[id] && document.getElementById(id)?.closest("section.panel[id]");
+  if (inner && groupOf[inner.id]) { show(inner.id); setTimeout(() => document.getElementById(id)?.scrollIntoView({ block: "start" }), 50); return; }
   if (!groupOf[id] || !document.getElementById(id)) id = first("economie");
   const g = groupOf[id];
   sections.forEach(s => s.hidden = s.id !== id);

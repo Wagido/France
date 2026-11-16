@@ -20,6 +20,7 @@ const ORG = {
   rte: { nom: "RTE", desc: "Réseau de transport d'électricité, gestionnaire du réseau électrique français.", licence: "Réutilisation avec mention de la source", url: "https://www.rte-france.com" },
   bm: { nom: "Banque mondiale", desc: "World Development Indicators.", licence: "CC BY 4.0", url: "https://data.worldbank.org" },
   sdes: { nom: "SDES (ministère de la Transition écologique)", desc: "Service des données et études statistiques : énergie, climat, environnement, logement, transports.", licence: "Licence Ouverte Etalab 2.0", url: "https://www.statistiques.developpement-durable.gouv.fr" },
+  agreste: { nom: "Agreste (ministère de l'Agriculture)", desc: "Service de la statistique et de la prospective du ministère de l'Agriculture.", licence: "Licence Ouverte Etalab 2.0", url: "https://agreste.agriculture.gouv.fr" },
   ofpm: { nom: "Observatoire de la formation des prix et des marges (FranceAgriMer)", desc: "Rapport annuel au Parlement sur la formation des prix et des marges des produits alimentaires.", licence: "Citation", url: "https://observatoire-prixmarges.franceagrimer.fr" },
   brgm: { nom: "BRGM (Bureau de recherches géologiques et minières)", desc: "Service géologique national : cartes géologiques, ressources minérales, inventaire minier.", licence: "Licence Ouverte Etalab", url: "https://www.brgm.fr" },
   harvard: { nom: "Harvard Energy History", desc: "Séries longues de consommation d'énergie en Europe (Gales, Kander, Malanima, Warde, Power to the People, 2013).", licence: "Citation", url: "https://histecon.fas.harvard.edu/energyhistory/energydata.html" },
@@ -109,6 +110,8 @@ const S = [
   ["Du champ au caddie", "ofpm", "Rapport au Parlement 2026", "Euro alimentaire, marges des grandes surfaces par rayon, comptes des exploitations laitières", "https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf", "annuel"],
   ["Sous-sol", "brgm", "Cartes géologiques au 1/1 000 000, 1/250 000 et 1/50 000", "Carte géologique de la France, diffusée par la Géoplateforme de l'IGN", "https://cartes.gouv.fr/rechercher-une-donnee/dataset/BRGM_CARTES-GEOLOGIQUES", "ponctuel"],
   ["Agriculture", "eurostat", "apro_cpsh1 / org_cropar", "Surfaces par culture, surfaces en agriculture biologique", null, "annuel"],
+  ["Sans intrants", "fao", "FAOSTAT : Production (QCL), Engrais par élément nutritif (RFN), Pesticides (RP), Bilans alimentaires (FBS)", "Rendements des cultures depuis 1961, engrais minéraux et pesticides, bilan des céréales", "https://www.fao.org/faostat/fr/", "annuel"],
+  ["Sans intrants", "agreste", "Primeur n° 8, juin 2023 : enquête Terres labourables", "Rendements en agriculture biologique et conventionnelle, 2018-2022", "https://agreste.agriculture.gouv.fr/agreste-web/disaron/Pri2308/detail/", "ponctuel"],
   ["Pesticides", "eurostat", "aei_hri / sdg_02_40 / aei_pr_gnb", "Risque pesticides, agriculture biologique, excédent d'azote", null, "annuel"],
   ["Catastrophes", "eurostat", "cli_iad_loss", "Pertes économiques dues aux événements climatiques (base CATDAT de l'AEE)", null, "annuel"],
   ["Transition", "eurostat", "env_ac_tax / gov_10a_exp", "Taxes environnementales, dépense publique de protection de l'environnement", null, "annuel"],
@@ -155,8 +158,8 @@ function render() {
 // en bas de chaque article, ses sources en petit
 const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé", "Logement (économie)"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], retraites: ["Retraites"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine", "Solde extérieur"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"], prosperite: ["Pays prospère"],
-  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
-  energie: ["Énergie"], nucleaire: ["Nucléaire"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
+  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], intrants: ["Sans intrants"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
+  energie: ["Énergie"], nucleaire: ["Nucléaire"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation", "Du champ au caddie"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
   justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };
 function footers() {

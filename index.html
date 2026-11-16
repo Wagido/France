@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121k">
+<link rel="stylesheet" href="style.css?v=20261121l">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -78,8 +78,8 @@
       <a href="#air">Air</a>
       <span class="tab-sep">Agriculture</span>
       <a href="#agriculture">Agriculture</a>
+      <a href="#intrants">Sans intrants ?</a>
       <a href="#alimentation">Alimentation</a>
-      <a href="#champ">Du champ au caddie</a>
       <a href="#pesticides">Pesticides et engrais</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
@@ -1047,12 +1047,61 @@
     <h2>Alimentation : d'où vient ce que l'on mange, et où ça va <span class="geo-tag"></span></h2>
     <label class="ctl">Année <select id="al-year"></select></label>
   </div>
+  <p class="muted" style="margin:0 0 8px">Deux parties : <a href="#alimentation" data-to="al-sankey">1. d'où vient ce que l'on mange</a> · <a href="#alimentation" data-to="champ">2. du champ au caddie : qui gagne quoi ?</a> · voir aussi <a href="#intrants">Peut-on être autonome sans intrants ?</a></p>
   <div class="kpis" id="al-kpis"></div>
   <p class="lead">Bilans alimentaires de la FAO, en milliers de tonnes. Une partie des produits est comptée deux fois quand elle est transformée (le colza en huile, la betterave en sucre) : la colonne « Transformation » renvoie vers d'autres produits.</p>
   <div class="sk-scroll"><div id="al-sankey" class="chart sk-fixed"></div></div>
   <div class="grid2">
     <div><h3>Calories disponibles par jour et par personne</h3><div id="al-kcal" class="chart"></div></div>
     <div><h3>Comparer les pays</h3><div id="al-cmp" class="chart"></div></div>
+  </div>
+
+  <h3 id="champ" style="font-size:1.25rem;margin-top:28px;border-top:1px solid var(--line);padding-top:20px">Du champ au caddie : qui gagne quoi ? <span class="geo-fixed">France</span></h3>
+  <div class="kpis" id="champ-kpis"></div>
+  <h3>Sur 100 € dépensés pour se nourrir (courses et restaurants), où va l'argent ?</h3>
+  <div id="ch-euro"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Les agriculteurs français ne touchent que 6,4 €</b> de valeur ajoutée sur 100 € de dépenses alimentaires (2021). Si l'on compte toute la valeur de leur production, y compris ce qu'ils ont dépensé en engrais, carburant ou aliments du bétail, on arrive à 13,2 €.</li>
+      <li><b>L'essentiel de la valeur se crée après la ferme</b> : transformation, transport, emballage, vente, cuisine dans les restaurants. Un pain, un yaourt ou un plat cuisiné vendu en magasin contiennent surtout du travail, de l'énergie et des services, peu de matière agricole.</li>
+      <li><b>Près de 29 € partent à l'étranger</b> : aliments importés tout prêts (11,7 €) et intrants importés le long de la chaîne (17,1 € : engrais, énergie, soja pour le bétail, emballages…).</li>
+      <li><b>Depuis 2021, la part de l'agriculteur a baissé pour la moitié des produits suivis</b> et augmenté pour l'autre moitié. La part des industriels a progressé pour la majorité des produits, celle de la grande distribution a baissé ou est restée stable. Exemple : pour le lait UHT, la part de la matière première dans le prix hors taxe a perdu 6 points entre 2021 et 2025, au profit de l'industrie.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Observatoire de la formation des prix et des marges des produits alimentaires, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport au Parlement 2026</a>, « euro alimentaire » 2021 (dernière année calculée, d'après les comptes nationaux de l'Insee et Eurostat). La ligne « restauration, transports et autres services » est le reste du total.</p>
+  </div>
+
+  <h3>Les supermarchés font-ils fortune sur l'alimentaire ?</h3>
+  <p class="lead">Bénéfice net (après impôt) pour 100 € vendus, par rayon, dans 6 grandes enseignes (Auchan, Carrefour, Cora, E. Leclerc, Intermarché, Coopérative U), en 2024.</p>
+  <div id="ch-rayons"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Sur 100 € vendus, il reste 1,1 € de bénéfice</b> en moyenne aux grandes surfaces dans les rayons frais suivis (43 milliards d'euros de ventes). L'essentiel part en achats de marchandises (70,6 €), en salaires (15,4 €) et en frais de magasin.</li>
+      <li><b>Certains rayons perdent de l'argent</b> : poissonnerie, boucherie et boulangerie, qui demandent beaucoup de personnel. Ce sont des rayons d'appel, qui font venir les clients ; la volaille et la charcuterie compensent.</li>
+      <li><b>Mais la marge brute est importante</b> : 29,4 € sur 100 € (54 € en boulangerie). C'est ce chiffre, avant frais, qui alimente le soupçon. Et les marges des enseignes sur les produits non alimentaires (hygiène, droguerie…) ne sont pas suivies par l'Observatoire.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">OFPM, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport 2026</a>, enquête auprès des enseignes, comptes moyens des rayons alimentaires en 2024 pour 100 € de chiffre d'affaires.</p>
+  </div>
+
+  <h3>Les éleveurs laitiers perdent-ils de l'argent ?</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Pas en moyenne en 2025, qui a été une bonne année</b> : le prix du lait a atteint des records (environ 496 € les 1 000 litres) et le revenu des élevages laitiers spécialisés aurait augmenté de 26 % selon une simulation de l'Observatoire. Le « solde disponible » pour payer l'éleveur a atteint son plus haut niveau depuis 2020.</li>
+      <li><b>Mais derrière la moyenne, de fortes inégalités</b> : en 2024, un élevage sur dix a dégagé moins de 2 000 € de résultat par an et par exploitant, un sur quatre moins de 15 000 €, alors que le quart le mieux placé dépasse 54 000 €. Les écarts se creusent depuis 2021, notamment dans les zones de piémont qui ne peuvent pas produire plus.</li>
+      <li><b>Le juste prix, selon la filière</b> : l'interprofession laitière calcule un coût de production de 621 € pour 1 000 litres en 2025, en comptant pour l'éleveur un salaire de 2 Smic. Une fois déduites les aides et les ventes de veaux et de vaches de réforme, le prix de revient tombe à 482 €. En 2025, le prix payé le couvrait de justesse.</li>
+      <li><b>2026 se dégrade</b> : le prix du lait a baissé de 50 à 60 € les 1 000 litres depuis le printemps, en pleine sécheresse. Pour beaucoup d'éleveurs, il repasse sous le prix de revient : ils travaillent alors pour moins de 2 Smic, parfois pour presque rien.</li>
+      <li><b>Le bio laitier a été le plus touché</b> : depuis 2022, le lait bio s'est moins bien vendu, et des éleveurs bio sont revenus au conventionnel ou ont fait faillite ; l'État a dû verser des aides d'urgence.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">OFPM, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport 2026</a> (comptes des exploitations laitières spécialisées d'après le RICA, solde disponible d'après Inosys – Réseaux d'élevage) ; coût de production et prix de revient du Cniel 2025 et baisse des prix 2026 rapportés par <a href="https://www.reussir.fr/lait%2F/le-prix-de-revient-du-lait-publie-en-2025-par-le-cniel-augmente-de-plus-de-4" target="_blank" rel="noopener">Réussir Lait</a> et <a href="https://www.pleinchamp.com/actualite/secheresse-2026-les-eleveurs-ont-besoin-d-un-prix-du-lait-remunerateur" target="_blank" rel="noopener">Pleinchamp</a>.</p>
+  </div>
+
+  <h3>Et les circuits courts ?</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Près d'une ferme sur quatre</b> vend au moins une partie de sa production en circuit court (vente à la ferme, marchés, Amap, magasins de producteurs, au plus un intermédiaire), soit environ 90 000 exploitations en 2020.</li>
+      <li><b>C'est surtout le fait des petites productions</b> : 87 % des apiculteurs vendent en direct, très peu de céréaliers. Et 52 % des fermes bio vendent en direct, contre 19 % des conventionnelles.</li>
+      <li><b>L'intérêt pour l'agriculteur</b> : il récupère une partie des 18,8 € du commerce et parfois de la transformation. <b>La limite</b> : cela demande beaucoup de temps (préparer, livrer, vendre), et cela reste une petite part de ce que mangent les Français ; aucune statistique officielle récente ne mesure cette part en valeur.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Agreste, recensement agricole 2020 (<a href="https://draaf.centre-val-de-loire.agriculture.gouv.fr/IMG/pdf/ra_etude_circuit_court_no5_.pdf" target="_blank" rel="noopener">Agreste Primeur n° 5, mars 2023, repris par la DRAAF Centre-Val de Loire</a>).</p>
   </div>
 </section>
 
@@ -1192,56 +1241,78 @@
   <div class="callout small" id="agriculture-txt"></div>
 </section>
 
-<section id="champ" class="panel">
+<section id="intrants" class="panel">
   <div class="panel-head">
-    <h2>Du champ au caddie : qui gagne quoi ? <span class="geo-fixed">France</span></h2>
+    <h2>Peut-on être autonome en agriculture sans intrants ? <span class="geo-fixed">France</span></h2>
   </div>
-  <div class="kpis" id="champ-kpis"></div>
-  <h3>Sur 100 € dépensés pour se nourrir (courses et restaurants), où va l'argent ?</h3>
-  <div id="ch-euro"></div>
+  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#intrants" data-to="in-p1">1. ce qui fait pousser une plante</a> · <a href="#intrants" data-to="in-p2">2. les rendements depuis 1815</a> · <a href="#intrants" data-to="in-p3">3. les intrants</a> · <a href="#intrants" data-to="in-p4">4. et en bio ?</a> · <a href="#intrants" data-to="in-p5">5. nourrir la France sans intrants ?</a></p>
+  <div class="kpis" id="in-kpis"></div>
+
+  <h3 id="in-p1">1. Ce qui fait pousser une plante</h3>
+  <p class="lead">Une plante fabrique sa matière avec la lumière, l'air et l'eau. Le sol ne fournit qu'une petite partie de sa masse, mais c'est souvent cette petite partie qui limite la récolte.</p>
+  <div class="in-need">
+    <div><b>Lumière et CO₂</b><span>Par la photosynthèse, la plante transforme le gaz carbonique de l'air et l'eau en sucres. Le carbone, l'oxygène et l'hydrogène font environ 95 % de la matière sèche d'une plante : elle vient de l'air et de l'eau, pas du sol.</span></div>
+    <div><b>Eau</b><span>Il faut plusieurs centaines de litres d'eau, évaporés par les feuilles, pour produire un kilo de matière sèche. Une sécheresse au printemps ou une canicule pendant le remplissage des grains suffit à faire chuter le rendement (2016 et 2024 pour le blé).</span></div>
+    <div><b>Azote (N)</b><span>Le moteur de la croissance : il entre dans les protéines et la chlorophylle. Un blé absorbe environ 3 kg d'azote par quintal de grain, soit plus de 200 kg par hectare pour 70 quintaux. C'est le premier facteur limitant de presque toutes les cultures, sauf les légumineuses qui le prennent dans l'air.</span></div>
+    <div><b>Phosphore (P) et potassium (K)</b><span>Le phosphore sert à l'énergie de la cellule et aux racines, le potassium à la circulation de l'eau. Ils ne viennent que des roches : ce que la récolte emporte doit être rendu au sol, sinon le stock s'épuise.</span></div>
+    <div><b>Soufre, calcium, magnésium et oligo-éléments</b><span>En plus petites quantités (fer, zinc, bore…). Un seul manque suffit à bloquer la croissance.</span></div>
+    <div><b>Le sol vivant</b><span>La matière organique (souvent 1 à 3 % de la terre) retient l'eau et les éléments nutritifs. Vers de terre, champignons et bactéries la décomposent et rendent l'azote disponible. Un sol tassé, acide ou érodé rend moins, même bien fertilisé.</span></div>
+  </div>
   <div class="callout small">
-    <ul>
-      <li><b>Les agriculteurs français ne touchent que 6,4 €</b> de valeur ajoutée sur 100 € de dépenses alimentaires (2021). Si l'on compte toute la valeur de leur production, y compris ce qu'ils ont dépensé en engrais, carburant ou aliments du bétail, on arrive à 13,2 €.</li>
-      <li><b>L'essentiel de la valeur se crée après la ferme</b> : transformation, transport, emballage, vente, cuisine dans les restaurants. Un pain, un yaourt ou un plat cuisiné vendu en magasin contiennent surtout du travail, de l'énergie et des services, peu de matière agricole.</li>
-      <li><b>Près de 29 € partent à l'étranger</b> : aliments importés tout prêts (11,7 €) et intrants importés le long de la chaîne (17,1 € : engrais, énergie, soja pour le bétail, emballages…).</li>
-      <li><b>Depuis 2021, la part de l'agriculteur a baissé pour la moitié des produits suivis</b> et augmenté pour l'autre moitié. La part des industriels a progressé pour la majorité des produits, celle de la grande distribution a baissé ou est restée stable. Exemple : pour le lait UHT, la part de la matière première dans le prix hors taxe a perdu 6 points entre 2021 et 2025, au profit de l'industrie.</li>
-    </ul>
-    <p class="muted" style="font-size:.78rem">Observatoire de la formation des prix et des marges des produits alimentaires, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport au Parlement 2026</a>, « euro alimentaire » 2021 (dernière année calculée, d'après les comptes nationaux de l'Insee et Eurostat). La ligne « restauration, transports et autres services » est le reste du total.</p>
+    <p><b>La loi du minimum</b> (Sprengel, puis Liebig, vers 1840) : le rendement est fixé par l'élément le plus rare, comme un tonneau dont la planche la plus courte fixe le niveau de l'eau. Ajouter du potassium à un champ qui manque d'azote ne sert à rien.</p>
+    <p><b>Toute récolte exporte le sol</b> : le grain vendu emporte l'azote, le phosphore et le potassium qu'il contient. Autrefois, ils revenaient en partie au champ par le fumier et les excréments humains. Aujourd'hui, les grains partent vers les villes, les élevages et l'étranger : sans apports extérieurs, la fertilité baisse. C'est tout le sujet de cet onglet.</p>
   </div>
 
-  <h3>Les supermarchés font-ils fortune sur l'alimentaire ?</h3>
-  <p class="lead">Bénéfice net (après impôt) pour 100 € vendus, par rayon, dans 6 grandes enseignes (Auchan, Carrefour, Cora, E. Leclerc, Intermarché, Coopérative U), en 2024.</p>
-  <div id="ch-rayons"></div>
+  <h3 id="in-p2">2. Les rendements depuis 1815 : le blé</h3>
+  <p class="lead">Quintaux de blé par hectare (1 quintal = 100 kg). Avant 1961 : repères historiques publiés (ordres de grandeur, avec leur fourchette) ; depuis 1961 : série annuelle de la FAO.</p>
+  <div id="in-ble" class="chart"></div>
+  <div class="legend-row" id="in-ble-legend"></div>
+  <div class="callout small" id="in-ble-txt"></div>
+
+  <h3>Le rendement par type de culture depuis 1961</h3>
+  <p class="lead">Moyenne des cinq premières années (1961-1965) et des cinq dernières, et meilleure moyenne sur cinq ans. Quintaux par hectare pour les grains, tonnes par hectare pour les pommes de terre et les betteraves.</p>
+  <div id="in-cult" class="in-mini"></div>
+  <div class="callout small" id="in-cult-txt"></div>
+
+  <h3 id="in-p3">3. Les intrants : engrais et pesticides</h3>
+  <p class="lead">Les « intrants » sont ce que l'agriculteur achète hors de sa ferme pour produire : engrais, produits phytosanitaires, semences, carburant, aliments du bétail. Les deux qui comptent le plus pour le rendement sont les engrais et les pesticides.</p>
+  <div class="grid2">
+    <div><h3>Engrais minéraux par hectare cultivé (kg d'éléments nutritifs)</h3><div id="in-engrais" class="chart"></div><div class="legend-row" id="in-engrais-legend"></div></div>
+    <div><h3>Pesticides vendus (tonnes de substances actives)</h3><div id="in-pest" class="chart"></div><div class="legend-row" id="in-pest-legend"></div></div>
+  </div>
+  <h3>Les engrais : la France dépend de l'étranger</h3>
+  <p class="lead">Utilisation par l'agriculture et production en France, en milliers de tonnes d'éléments nutritifs.</p>
+  <div id="in-dep"></div>
+  <div class="callout small" id="in-intrants-txt"></div>
+
+  <h3 id="in-p4">4. Et en bio ?</h3>
+  <p class="lead">L'agriculture biologique n'utilise ni engrais azotés de synthèse ni pesticides de synthèse. Ce n'est pas une agriculture sans intrants : elle apporte du fumier, des composts, des engrais organiques, et emploie des produits autorisés (cuivre, soufre, insecticides naturels).</p>
+  <div id="in-bio"></div>
   <div class="callout small">
     <ul>
-      <li><b>Sur 100 € vendus, il reste 1,1 € de bénéfice</b> en moyenne aux grandes surfaces dans les rayons frais suivis (43 milliards d'euros de ventes). L'essentiel part en achats de marchandises (70,6 €), en salaires (15,4 €) et en frais de magasin.</li>
-      <li><b>Certains rayons perdent de l'argent</b> : poissonnerie, boucherie et boulangerie, qui demandent beaucoup de personnel. Ce sont des rayons d'appel, qui font venir les clients ; la volaille et la charcuterie compensent.</li>
-      <li><b>Mais la marge brute est importante</b> : 29,4 € sur 100 € (54 € en boulangerie). C'est ce chiffre, avant frais, qui alimente le soupçon. Et les marges des enseignes sur les produits non alimentaires (hygiène, droguerie…) ne sont pas suivies par l'Observatoire.</li>
+      <li><b>En France, le blé bio rend environ deux fois moins</b> que le blé conventionnel : −55 % en moyenne sur 2018-2022, −57 % en 2022, selon l'enquête Terres labourables du ministère de l'Agriculture. L'écart est de −47 % pour l'orge d'hiver et de −28 % seulement pour le tournesol, une culture peu gourmande en azote. Il varie selon les régions (−38 % pour le blé en Auvergne-Rhône-Alpes, −58 % dans le Grand Est) et reste stable d'une année à l'autre <a href="https://agreste.agriculture.gouv.fr/agreste-web/disaron/Pri2308/detail/" target="_blank" rel="noopener">[Agreste Primeur n° 8, 2023]</a>.</li>
+      <li><b>À l'échelle mondiale, l'écart moyen est plus faible</b> : de l'ordre de 20 à 25 % selon les grandes synthèses d'études (Seufert et al., <i>Nature</i>, 2012 ; Ponisio et al., <i>Proceedings of the Royal Society B</i>, 2015), avec de grandes différences : −5 % pour les légumineuses et les cultures pérennes, beaucoup plus pour les céréales et les légumes <a href="https://ideas.repec.org/a/nat/nature/v485y2012i7397d10.1038_nature11069.html" target="_blank" rel="noopener">[Seufert et al.]</a>. L'écart est fort en France parce que le conventionnel y est très productif.</li>
+      <li><b>La principale cause est le manque d'azote</b>, au moment où la plante en a besoin (au printemps pour le blé), puis la concurrence des mauvaises herbes et les maladies. Les cultures qui se passent d'azote (pois, féverole, luzerne, soja, tournesol) perdent beaucoup moins.</li>
+      <li><b>Pour fournir l'azote, le bio doit consacrer une partie de ses terres aux légumineuses</b> (luzerne, trèfle, féverole) ou dépendre du fumier des élevages. Une partie de ce fumier vient d'élevages conventionnels, nourris avec des céréales cultivées avec des engrais : à l'échelle d'un pays, l'azote doit bien venir de quelque part.</li>
+      <li><b>Le bio utilise aussi des pesticides</b>, mais d'origine naturelle : le soufre et le cuivre (classés « fongicides minéraux ») représentent près d'un tiers du tonnage de pesticides vendus en France (graphique ci-dessus). Ce tonnage n'est pas comparable à celui des produits de synthèse, actifs à des doses bien plus faibles ; il ne dit rien de leur toxicité.</li>
+      <li><b>En échange</b>, le bio pollue moins les eaux par les nitrates et les pesticides de synthèse et abrite plus de biodiversité par hectare. Mais à production égale, il demande plus de surface. Voir aussi <a href="#agriculture">Agriculture</a> (part du bio par culture) et <a href="#pesticides">Pesticides et engrais</a>.</li>
     </ul>
-    <p class="muted" style="font-size:.78rem">OFPM, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport 2026</a>, enquête auprès des enseignes, comptes moyens des rayons alimentaires en 2024 pour 100 € de chiffre d'affaires.</p>
   </div>
 
-  <h3>Les éleveurs laitiers perdent-ils de l'argent ?</h3>
-  <div class="callout small">
-    <ul>
-      <li><b>Pas en moyenne en 2025, qui a été une bonne année</b> : le prix du lait a atteint des records (environ 496 € les 1 000 litres) et le revenu des élevages laitiers spécialisés aurait augmenté de 26 % selon une simulation de l'Observatoire. Le « solde disponible » pour payer l'éleveur a atteint son plus haut niveau depuis 2020.</li>
-      <li><b>Mais derrière la moyenne, de fortes inégalités</b> : en 2024, un élevage sur dix a dégagé moins de 2 000 € de résultat par an et par exploitant, un sur quatre moins de 15 000 €, alors que le quart le mieux placé dépasse 54 000 €. Les écarts se creusent depuis 2021, notamment dans les zones de piémont qui ne peuvent pas produire plus.</li>
-      <li><b>Le juste prix, selon la filière</b> : l'interprofession laitière calcule un coût de production de 621 € pour 1 000 litres en 2025, en comptant pour l'éleveur un salaire de 2 Smic. Une fois déduites les aides et les ventes de veaux et de vaches de réforme, le prix de revient tombe à 482 €. En 2025, le prix payé le couvrait de justesse.</li>
-      <li><b>2026 se dégrade</b> : le prix du lait a baissé de 50 à 60 € les 1 000 litres depuis le printemps, en pleine sécheresse. Pour beaucoup d'éleveurs, il repasse sous le prix de revient : ils travaillent alors pour moins de 2 Smic, parfois pour presque rien.</li>
-      <li><b>Le bio laitier a été le plus touché</b> : depuis 2022, le lait bio s'est moins bien vendu, et des éleveurs bio sont revenus au conventionnel ou ont fait faillite ; l'État a dû verser des aides d'urgence.</li>
-    </ul>
-    <p class="muted" style="font-size:.78rem">OFPM, <a href="https://www.franceagrimer.fr/sites/default/files/2026-10/2026_rapport_OFPM_v2.pdf" target="_blank" rel="noopener">rapport 2026</a> (comptes des exploitations laitières spécialisées d'après le RICA, solde disponible d'après Inosys – Réseaux d'élevage) ; coût de production et prix de revient du Cniel 2025 et baisse des prix 2026 rapportés par <a href="https://www.reussir.fr/lait%2F/le-prix-de-revient-du-lait-publie-en-2025-par-le-cniel-augmente-de-plus-de-4" target="_blank" rel="noopener">Réussir Lait</a> et <a href="https://www.pleinchamp.com/actualite/secheresse-2026-les-eleveurs-ont-besoin-d-un-prix-du-lait-remunerateur" target="_blank" rel="noopener">Pleinchamp</a>.</p>
+  <h3 id="in-p5">5. Nourrir la France sans intrants ? Le simulateur des céréales</h3>
+  <p class="lead">Les céréales sont la base de tout : pain, pâtes, mais aussi alimentation des animaux. La France en produit environ deux fois ce qu'elle consomme. Que se passe-t-il si on les cultive sans engrais ni pesticides de synthèse ?</p>
+  <div class="ctl-row" id="in-presets" style="margin-bottom:8px"></div>
+  <div class="in-sim">
+    <label class="ctl">Part des céréales cultivées sans intrants de synthèse <input type="range" id="in-s" min="0" max="100" step="5" value="100"><b id="in-s-v"></b></label>
+    <label class="ctl">Perte de rendement <input type="range" id="in-g" min="0" max="90" step="1" value="50"><b id="in-g-v"></b></label>
+    <label class="ctl">Part de ces terres en légumineuses pour fournir l'azote <input type="range" id="in-r" min="0" max="50" step="5" value="25"><b id="in-r-v"></b></label>
+    <label class="ctl">Baisse des céréales données aux animaux (moins de viande, de lait, d'œufs) <input type="range" id="in-m" min="0" max="100" step="5" value="0"><b id="in-m-v"></b></label>
   </div>
+  <div id="in-sim-out"></div>
+  <div class="callout small" id="in-sim-txt"></div>
 
-  <h3>Et les circuits courts ?</h3>
-  <div class="callout small">
-    <ul>
-      <li><b>Près d'une ferme sur quatre</b> vend au moins une partie de sa production en circuit court (vente à la ferme, marchés, Amap, magasins de producteurs, au plus un intermédiaire), soit environ 90 000 exploitations en 2020.</li>
-      <li><b>C'est surtout le fait des petites productions</b> : 87 % des apiculteurs vendent en direct, très peu de céréaliers. Et 52 % des fermes bio vendent en direct, contre 19 % des conventionnelles.</li>
-      <li><b>L'intérêt pour l'agriculteur</b> : il récupère une partie des 18,8 € du commerce et parfois de la transformation. <b>La limite</b> : cela demande beaucoup de temps (préparer, livrer, vendre), et cela reste une petite part de ce que mangent les Français ; aucune statistique officielle récente ne mesure cette part en valeur.</li>
-    </ul>
-    <p class="muted" style="font-size:.78rem">Agreste, recensement agricole 2020 (<a href="https://draaf.centre-val-de-loire.agriculture.gouv.fr/IMG/pdf/ra_etude_circuit_court_no5_.pdf" target="_blank" rel="noopener">Agreste Primeur n° 5, mars 2023, repris par la DRAAF Centre-Val de Loire</a>).</p>
-  </div>
+  <div class="callout small" id="in-concl"></div>
+  <p class="muted" style="font-size:.78rem">Sources : FAOSTAT (rendements des cultures 1961-2024, engrais minéraux par élément nutritif, pesticides par catégorie, bilans alimentaires) ; Agreste, enquête Terres labourables (rendements bio et conventionnels 2018-2022) ; repères historiques du rendement du blé : Académie d'agriculture de France, <a href="https://www.academie-agriculture.fr/publications/encyclopedie/reperes/0102r02-evolution-du-rendement-moyen-annuel-du-ble-france-entiere" target="_blank" rel="noopener">évolution du rendement moyen du blé de 1815 à 2024</a>, statistique agricole décennale de 1892 et presse agricole. Les valeurs agronomiques (besoins en azote, en eau, fixation par les légumineuses) sont des ordres de grandeur usuels. Le simulateur est un calcul simple, pas un modèle : il ne tient compte ni des autres cultures, ni des changements de rotation, ni du climat.</p>
 </section>
 
 <section id="pesticides" class="panel">
@@ -1574,46 +1645,47 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121k"></script>
-<script src="app.js?v=20261121k"></script>
-<script src="energie.js?v=20261121k"></script>
-<script src="matieres.js?v=20261121k"></script>
-<script src="territoire.js?v=20261121k"></script>
-<script src="themes.js?v=20261121k"></script>
-<script src="societe.js?v=20261121k"></script>
-<script src="eco2.js?v=20261121k"></script>
-<script src="empreinte.js?v=20261121k"></script>
-<script src="argentprive.js?v=20261121k"></script>
-<script src="repartition.js?v=20261121k"></script>
-<script src="patrimoine.js?v=20261121k"></script>
-<script src="prelevements.js?v=20261121k"></script>
-<script src="travailvie.js?v=20261121k"></script>
-<script src="niveauvie.js?v=20261121k"></script>
-<script src="prosperite.js?v=20261121k"></script>
-<script src="exterieur.js?v=20261121k"></script>
-<script src="desindus.js?v=20261121k"></script>
-<script src="retraites.js?v=20261121k"></script>
-<script src="energiecout.js?v=20261121k"></script>
-<script src="energieformation.js?v=20261121k"></script>
-<script src="nucleaire.js?v=20261121k"></script>
-<script src="logementeco.js?v=20261121k"></script>
-<script src="competences.js?v=20261121k"></script>
-<script src="justicedroit.js?v=20261121k"></script>
-<script src="fonctionnaires.js?v=20261121k"></script>
-<script src="couper.js?v=20261121k"></script>
-<script src="seuilpays.js?v=20261121k"></script>
-<script src="logement.js?v=20261121k"></script>
-<script src="env.js?v=20261121k"></script>
-<script src="agriculture.js?v=20261121k"></script>
-<script src="chaine.js?v=20261121k"></script>
-<script src="patrimoinehist.js?v=20261121k"></script>
-<script src="innovation.js?v=20261121k"></script>
+<script src="kpi.js?v=20261121l"></script>
+<script src="app.js?v=20261121l"></script>
+<script src="energie.js?v=20261121l"></script>
+<script src="matieres.js?v=20261121l"></script>
+<script src="territoire.js?v=20261121l"></script>
+<script src="themes.js?v=20261121l"></script>
+<script src="societe.js?v=20261121l"></script>
+<script src="eco2.js?v=20261121l"></script>
+<script src="empreinte.js?v=20261121l"></script>
+<script src="argentprive.js?v=20261121l"></script>
+<script src="repartition.js?v=20261121l"></script>
+<script src="patrimoine.js?v=20261121l"></script>
+<script src="prelevements.js?v=20261121l"></script>
+<script src="travailvie.js?v=20261121l"></script>
+<script src="niveauvie.js?v=20261121l"></script>
+<script src="prosperite.js?v=20261121l"></script>
+<script src="exterieur.js?v=20261121l"></script>
+<script src="desindus.js?v=20261121l"></script>
+<script src="retraites.js?v=20261121l"></script>
+<script src="energiecout.js?v=20261121l"></script>
+<script src="energieformation.js?v=20261121l"></script>
+<script src="nucleaire.js?v=20261121l"></script>
+<script src="logementeco.js?v=20261121l"></script>
+<script src="competences.js?v=20261121l"></script>
+<script src="justicedroit.js?v=20261121l"></script>
+<script src="fonctionnaires.js?v=20261121l"></script>
+<script src="couper.js?v=20261121l"></script>
+<script src="seuilpays.js?v=20261121l"></script>
+<script src="logement.js?v=20261121l"></script>
+<script src="env.js?v=20261121l"></script>
+<script src="agriculture.js?v=20261121l"></script>
+<script src="rendements.js?v=20261121l"></script>
+<script src="chaine.js?v=20261121l"></script>
+<script src="patrimoinehist.js?v=20261121l"></script>
+<script src="innovation.js?v=20261121l"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121k"></script>
-<script src="histoire.js?v=20261121k"></script>
-<script src="chomage.js?v=20261121k"></script>
-<script src="sources.js?v=20261121k"></script>
-<script src="nav.js?v=20261121k"></script>
+<script src="soussol.js?v=20261121l"></script>
+<script src="histoire.js?v=20261121l"></script>
+<script src="chomage.js?v=20261121l"></script>
+<script src="sources.js?v=20261121l"></script>
+<script src="nav.js?v=20261121l"></script>
 </body>
 </html>

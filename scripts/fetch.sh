@@ -29,6 +29,13 @@ get agri/cultures.json "$E/apro_cpsh1?geo=FR&strucpro=MAR_THS_HA&sinceTimePeriod
 get agri/cultures_ar.json "$E/apro_cpsh1?geo=FR&strucpro=AR_THS_HA&sinceTimePeriod=2000$CR"
 get agri/bio.json "$E/org_cropar?geo=FR&unit=HA&agprdmet=TOTAL&sinceTimePeriod=2012"
 get agri/cult_pays.json "$E/apro_cpsh1?strucpro=MAR_THS_HA&sinceTimePeriod=2022&crops=UAA&crops=C0000&crops=J0000"
+# Sans intrants ? rendements, engrais et pesticides de la France (FAOSTAT, fichiers complets filtrés)
+FB="https://bulks-faostat.fao.org/production"
+for z in "Production_Crops_Livestock_E_Europe:fao_rendements:rendements" "Inputs_FertilizersNutrient_E_Europe:fao_engrais_fr:france" "Inputs_Pesticides_Use_E_All_Data:fao_pesticides_fr:france"; do
+  IFS=: read -r f out mode <<< "$z"; TMPZ=$(mktemp)
+  get "$TMPZ" "$FB/$f.zip"
+  python3 "$SCRIPTS/filter_fao_agri.py" "$TMPZ" "agri/$out.csv" "$mode" && rm -f "$TMPZ"
+done
 mkdir -p env
 get env/oiseaux_fr.json "https://api.insee.fr/melodi/data/DS_NAT_SDG?INDICATOR_SDG=15.i6a&INDICATOR_SDG=15.i6b&maxResult=1000"
 get env/oiseaux_ue.json "$E/env_bio2"
