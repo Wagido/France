@@ -488,3 +488,28 @@ table.cmp-t.li-mx { min-width: 980px; }
 .mo-pyr > div span { display: block; color: var(--muted); font-size: .8rem; margin-top: 2px; }
 .mo-pyr > i { font-size: .76rem; color: var(--muted); }
 .mo-pyr > i::before { content: "↓ "; }
+.mo-step { background: var(--soft); border-radius: 12px; padding: 10px 12px; margin: 8px 0 12px; }
+.mo-step-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.mo-step-nav button { font: inherit; font-size: .85rem; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.mo-step-nav button:disabled { opacity: .4; cursor: default; }
+#mo-st-dots { display: flex; gap: 6px; }
+#mo-st-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); cursor: pointer; }
+#mo-st-dots i.on { background: #2563eb; }
+.mo-st-txt { font-size: .9rem; margin: 10px 0; min-height: 3.2em; }
+.mo-bil { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 10px; }
+.mo-bil-c { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+.mo-bil-c h4 { margin: 0 0 6px; font-size: .88rem; }
+.mo-bil-g { display: grid; grid-template-columns: 1fr 1fr; gap: 0; font-size: .78rem; }
+.mo-bil-g > div { padding: 0 6px; }
+.mo-bil-g > div:first-child { border-right: 2px solid var(--ink); }
+.mo-bil-g small { display: block; color: var(--muted); font-size: .7rem; border-bottom: 2px solid var(--ink); margin-bottom: 4px; padding-bottom: 2px; min-height: 2.4em; }
+.mo-bil-g > div > div { display: flex; justify-content: space-between; gap: 6px; padding: 2px 3px; border-radius: 4px; }
+.mo-bil-g > div > div b { white-space: nowrap; font-weight: 600; }
+.mo-bil-g > div > div.ch { background: #fde68a; color: #111; }
+.mo-bil-g .vide { color: var(--muted); font-style: italic; }
+.mo-st-m { font-size: .9rem; margin: 10px 0 0; }
+.mo-calc { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; font-size: .88rem; margin: 6px 0; }
+.mo-calc label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.mo-calc select { font: inherit; font-size: .85rem; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); max-width: 100%; }
+.mo-step-nav button { white-space: nowrap; }
+@media (max-width: 480px) { .mo-step-nav button { padding: 6px 8px; font-size: .8rem; } .mo-bil-g { font-size: .74rem; } }

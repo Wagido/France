@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123e">
+<link rel="stylesheet" href="style.css?v=20261123g">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -590,18 +590,97 @@
   <p>La partie suivante détaille comment la monnaie est créée aujourd'hui, qui la détient et combien il y en a.</p>
 
   <h3 id="mo-p1" class="ag-part">2. Comment naît la monnaie aujourd'hui</h3>
-  <div class="in-need">
-    <div><b>① Un prêt</b><span>Vous empruntez 200 000 € pour une maison. La banque n'a pas besoin d'avoir cet argent en caisse : elle inscrit 200 000 € sur votre compte, et 200 000 € de créance à son actif.</span></div>
-    <div><b>② La monnaie circule</b><span>Vous payez le vendeur : l'argent passe sur son compte, dans une autre banque peut-être. Les banques règlent entre elles leurs soldes avec de la monnaie de banque centrale, dont elles ont besoin en petite quantité.</span></div>
-    <div><b>③ Le remboursement la détruit</b><span>Chaque fois que vous remboursez du capital, la monnaie correspondante disparaît des comptes. Les intérêts, eux, ne disparaissent pas : ils deviennent un revenu de la banque.</span></div>
+  <p class="lead">Environ neuf euros sur dix n'existent que sous forme de chiffres sur des comptes bancaires. Ils sont créés par les banques quand elles prêtent, et détruits quand on rembourse. Cette partie montre comment, pas à pas, puis ce qui freine cette création, combien de monnaie existe, et pourquoi un euro sur un compte français n'est pas tout à fait un euro sur un compte allemand.</p>
+  <nav class="li-toc"><b>Dans cette partie</b><ol>
+    <li><a href="#monnaie" data-to="mo-2-1">2.1 Un crédit, pas à pas</a></li>
+    <li><a href="#monnaie" data-to="mo-2-2">2.2 Banque centrale et banques privées</a></li>
+    <li><a href="#monnaie" data-to="mo-2-3">2.3 Tous les robinets : ce qui crée et ce qui détruit la monnaie</a></li>
+    <li><a href="#monnaie" data-to="mo-2-4">2.4 Pourquoi les banques ne créent-elles pas de la monnaie sans limite ?</a></li>
+    <li><a href="#monnaie" data-to="mo-2-5">2.5 Combien de monnaie ? M1, M2, M3</a></li>
+    <li><a href="#monnaie" data-to="mo-2-6">2.6 Un euro français est-il un euro allemand ?</a></li>
+  </ol></nav>
+
+  <h3 id="mo-2-1" class="li-sub">2.1 Un crédit, pas à pas</h3>
+  <p>Suivons un prêt immobilier de 200 000 €, en regardant à chaque étape le <b>bilan</b> de chacun : à gauche ce qu'il possède (l'<i>actif</i>), à droite ce qu'il doit et ce qui lui appartient en propre (le <i>passif</i>). Les deux colonnes sont toujours égales. Les lignes qui changent sont surlignées.</p>
+  <div class="mo-step">
+    <div class="mo-step-nav"><button type="button" id="mo-st-prev">← Précédent</button><span id="mo-st-dots"></span><button type="button" id="mo-st-next">Suivant →</button></div>
+    <p id="mo-st-txt" class="mo-st-txt"></p>
+    <div id="mo-st-bil" class="mo-bil"></div>
+    <p id="mo-st-m" class="mo-st-m"></p>
   </div>
   <div class="callout small">
     <ul>
-      <li><b>Environ neuf euros sur dix sont de la monnaie de banque</b> (les dépôts), créée par le crédit ; le reste, ce sont les billets et pièces. C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
-      <li><b>Le « multiplicateur » des réserves fractionnaires ne décrit plus la réalité.</b> Les manuels racontaient que la banque prête un multiple de ses dépôts, limité par une réserve obligatoire. Dans la zone euro, cette réserve n'est que de 1 % des dépôts depuis 2012. Ce qui freine vraiment le crédit, ce sont les fonds propres que les banques doivent détenir (règles de Bâle), le taux d'intérêt fixé par la banque centrale, et tout simplement la demande d'emprunt des ménages et des entreprises.</li>
-      <li><b>La banque centrale crée aussi de la monnaie</b>, en prêtant aux banques ou en achetant des obligations (de 2015 à 2022, la BCE a ainsi acheté une grande partie de la dette publique française sur les marchés). Mais elle n'a pas le droit de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
+      <li><b>À retenir</b> : la banque n'a prêté l'argent de personne. Elle a créé un dépôt en face d'une créance. La monnaie est née d'une promesse : la vôtre, de rembourser.</li>
+      <li><b>Les réserves ne sont qu'un problème de règlement entre banques</b> : la banque A en a eu besoin seulement parce que l'argent est parti vers la banque B. Dans la réalité, des millions de paiements vont dans les deux sens chaque jour et se compensent en grande partie : une banque n'a besoin d'emprunter que le solde.</li>
+      <li><b>Les intérêts ne sont pas détruits</b> : ils deviennent un revenu de la banque, qui le redépense (salaires, impôts, dividendes) et le remet ainsi en circulation. C'est pourquoi l'argent des intérêts ne « manque » pas forcément (voir la partie 4).</li>
+      <li>C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
     </ul>
   </div>
+
+  <h3 id="mo-2-2" class="li-sub">2.2 Banque centrale et banques privées : comment les deux étages s'emboîtent</h3>
+  <p class="lead">Il y a deux monnaies (voir l'encadré « Un billet, une dette ? » de la partie 1). <b>La monnaie scripturale</b> (« écrite » : des chiffres sur des comptes), environ 90 % de la monnaie, est créée par les banques quand elles prêtent. <b>La monnaie de banque centrale</b> (les billets, et les comptes des banques à la banque centrale, appelés « réserves ») est créée par la seule banque centrale. Le public n'utilise que la première, à part les billets ; les banques, elles, se paient entre elles avec la seconde.</p>
+  <div class="in-need">
+    <div><b>① Chaque banque a un compte à la banque centrale</b><span>Comme vous avez un compte dans votre banque, votre banque a un compte à la Banque de France. L'argent qui y est s'appelle les « réserves ». Seules les banques peuvent en détenir.</span></div>
+    <div><b>② Un virement entre banques déplace des réserves</b><span>Vous payez 1 000 € à quelqu'un qui est dans une autre banque : votre compte baisse de 1 000 €, le sien monte de 1 000 €, et votre banque transfère 1 000 € de réserves à la sienne, sur le système de paiement de l'Eurosystème (T2). Chaque jour, des milliards se compensent ainsi.</span></div>
+    <div><b>③ Une banque à court de réserves emprunte</b><span>Si elle prête beaucoup et voit partir l'argent vers d'autres banques, elle emprunte des réserves à une autre banque ou à la banque centrale, en donnant des garanties (des obligations, des créances). La banque centrale lui en fournit toujours, au prix qu'elle a fixé : son taux directeur.</span></div>
+    <div><b>④ Le taux directeur pilote tous les autres</b><span>Les réserves en trop sont rémunérées par la BCE au taux de la « facilité de dépôt ». Aucune banque ne prêtera à une autre en dessous de ce taux : il devient le plancher des taux du marché, puis des crédits immobiliers, des prêts aux entreprises, des livrets.</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Les banques ne prêtent pas les réserves</b> : les réserves ne sortent jamais du circuit des banques. Une banque ne « prête » pas ses réserves à un client ; elle crée un dépôt, puis s'assure d'avoir assez de réserves pour faire face aux virements et aux retraits. La banque prête d'abord, et cherche les réserves ensuite (voir 2.4).</li>
+      <li><b>Comment la banque centrale freine ou accélère le crédit</b> : en montant son taux, elle rend les réserves plus chères, donc le crédit plus cher. Les ménages et les entreprises empruntent moins, moins de monnaie est créée, la demande et l'inflation ralentissent. En le baissant, elle fait l'inverse. Elle agit sur le prix de la monnaie, pas sur sa quantité.</li>
+      <li><b>Les rachats de titres (2015-2022)</b> ont noyé les banques de réserves : quand la Banque de France rachète une obligation à un assureur, elle crédite le compte de la banque de cet assureur. Les réserves ont atteint plus de 4 000 milliards d'euros dans la zone euro en 2022, bien au-delà des 1 % obligatoires. Depuis, la BCE ne rachète plus et les laisse décroître.</li>
+      <li><b>L'Eurosystème, ce n'est pas seulement la BCE</b> : c'est la BCE à Francfort plus les banques centrales nationales des pays de la zone euro, dont la Banque de France. La BCE décide (son conseil réunit les gouverneurs nationaux et six membres du directoire) ; ce sont les banques centrales nationales qui tiennent les comptes des banques de leur pays, leur prêtent et rachètent les titres.</li>
+    </ul>
+  </div>
+  <h3>Le taux directeur de la BCE depuis 1999 (taux de la facilité de dépôt)</h3>
+  <div id="mo-tbce" class="chart"></div>
+  <div class="callout small" id="mo-tbce-txt"></div>
+
+
+  <h3 id="mo-2-3" class="li-sub">2.3 Tous les robinets : ce qui crée et ce qui détruit la monnaie</h3>
+  <p>Le crédit n'est pas le seul robinet. La règle générale est simple : <b>de la monnaie est créée chaque fois qu'une banque (ou la banque centrale) achète quelque chose ou prête à quelqu'un qui n'est pas une banque</b>, et détruite chaque fois qu'elle est payée par lui.</p>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Ce qui crée de la monnaie</th><th>Ce qui en détruit</th></tr></thead>
+    <tbody>
+      <tr><td><b>Un crédit</b> à un ménage ou à une entreprise : la banque crédite son compte.</td><td><b>Le remboursement du capital</b> : le dépôt et la créance disparaissent ensemble.</td></tr>
+      <tr><td><b>Une banque achète une obligation</b> (de l'État, d'une entreprise) à un épargnant : elle paie en créditant son compte. Quand une banque prête à l'État, elle crée donc de la monnaie, que l'État dépense ensuite.</td><td><b>Un client achète un titre à sa banque</b> (une obligation, une action de la banque) : il paie avec son dépôt, qui disparaît.</td></tr>
+      <tr><td><b>La banque centrale rachète des titres</b> à un assureur ou à un fonds (« assouplissement quantitatif », 2015-2022) : elle crée des réserves pour la banque de l'assureur, qui crédite son compte.</td><td><b>La banque centrale laisse ses titres arriver à échéance</b> sans les remplacer (« resserrement quantitatif », depuis 2023) : l'État rembourse, et la monnaie correspondante disparaît.</td></tr>
+      <tr><td><b>Un exportateur change ses dollars</b> en euros auprès de sa banque.</td><td><b>Un importateur achète des dollars</b> avec ses euros.</td></tr>
+      <tr><td><b>La banque dépense</b> : salaires de ses employés, fournisseurs, dividendes.</td><td><b>On paie la banque</b> : intérêts, frais. La monnaie revient quand elle la redépense.</td></tr>
+      <tr><td><b>L'État dépense</b> l'argent de son compte au Trésor.</td><td><b>On paie ses impôts</b> : l'argent quitte les comptes du public pour le compte du Trésor à la Banque de France, hors de la masse monétaire, jusqu'à ce que l'État le dépense.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Épargner ne détruit pas de monnaie</b> : mettre de l'argent sur un livret A le fait passer de M1 à M2 (voir 2.5), sans le détruire. Mais l'acheter en assurance-vie, qui place en obligations, le fait sortir de la masse monétaire.</li>
+      <li><b>L'État et la monnaie</b> : quand l'État emprunte à des épargnants (assureurs, fonds), il ne crée pas de monnaie, il déplace de l'épargne existante. Quand il emprunte à des banques, ou que la banque centrale rachète sa dette, de la monnaie nouvelle apparaît (voir la partie 3).</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-2-4" class="li-sub">2.4 Pourquoi les banques ne créent-elles pas de la monnaie sans limite ?</h3>
+  <p>Si un prêt se fait par une écriture, qu'est-ce qui empêche une banque de prêter des milliards ? Pas les réserves (1 % des dépôts dans la zone euro, et la banque centrale en fournit toujours). Le « multiplicateur » des manuels, où la banque prête un multiple de ses dépôts, décrit mal la réalité. Les vrais freins sont au nombre de cinq.</p>
+  <div class="in-need">
+    <div><b>① Les fonds propres</b><span>L'argent qui appartient aux actionnaires de la banque, et qui encaisse les pertes. Les règles de Bâle imposent d'en avoir au moins 10,5 % de ses prêts, pondérés selon leur risque (voir le calculateur). C'est le frein principal.</span></div>
+    <div><b>② La liquidité</b><span>Quand l'argent prêté part vers d'autres banques, il faut des réserves pour payer. La banque doit garder assez d'actifs faciles à vendre pour tenir 30 jours de retraits (règle « LCR »). Elle peut emprunter à la banque centrale, mais contre des garanties, et en payant le taux directeur.</span></div>
+    <div><b>③ Le taux de la banque centrale</b><span>Il fixe le coût de l'argent pour les banques, donc le taux des crédits. Plus il est élevé, moins on emprunte (voir 2.2).</span></div>
+    <div><b>④ La demande et le risque</b><span>Il faut des emprunteurs qui veulent et peuvent rembourser. Un prêt non remboursé est une perte pour la banque, prise sur ses fonds propres.</span></div>
+    <div><b>⑤ Les règles de prudence</b><span>En France, le Haut Conseil de stabilité financière limite depuis 2022 les crédits immobiliers : mensualités de 35 % des revenus au plus, durée de 25 ans au plus (avec une petite part de dérogations).</span></div>
+  </div>
+  <h3>Le calculateur des fonds propres : combien une banque peut-elle prêter ?</h3>
+  <div class="mo-calc">
+    <label>Fonds propres exigés <input type="range" id="mo-k" min="8" max="16" step="0.5" value="12"> <b id="mo-k-v"></b></label>
+    <label>Type de prêt <select id="mo-pond">
+      <option value="25">Crédit immobilier (pondération ≈ 25 %)</option>
+      <option value="75">Prêt à une PME (75 %)</option>
+      <option value="100" selected>Prêt à une grande entreprise (100 %)</option>
+      <option value="150">Prêt risqué (150 %)</option>
+      <option value="0">Dette d'un État de la zone euro (0 %)</option>
+    </select></label>
+  </div>
+  <div id="mo-k-out" class="callout small"></div>
+
+  <h3 id="mo-2-5" class="li-sub">2.5 Combien de monnaie ?</h3>
   <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
   <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
   <div class="callout small" id="mo-credit-txt"></div>
@@ -613,27 +692,7 @@
   </div>
   <div class="callout small" id="mo-m-txt"></div>
 
-  <h3>Banque centrale et banques privées : comment les deux étages s'emboîtent</h3>
-  <p class="lead">Il y a deux monnaies (voir l'encadré « Un billet, une dette ? » de la partie 1). <b>La monnaie scripturale</b> (« écrite » : des chiffres sur des comptes), environ 90 % de la monnaie, est créée par les banques quand elles prêtent. <b>La monnaie de banque centrale</b> (les billets, et les comptes des banques à la banque centrale, appelés « réserves ») est créée par la seule banque centrale. Le public n'utilise que la première, à part les billets ; les banques, elles, se paient entre elles avec la seconde.</p>
-  <div class="in-need">
-    <div><b>① Chaque banque a un compte à la banque centrale</b><span>Comme vous avez un compte dans votre banque, votre banque a un compte à la Banque de France. L'argent qui y est s'appelle les « réserves ». Seules les banques peuvent en détenir.</span></div>
-    <div><b>② Un virement entre banques déplace des réserves</b><span>Vous payez 1 000 € à quelqu'un qui est dans une autre banque : votre compte baisse de 1 000 €, le sien monte de 1 000 €, et votre banque transfère 1 000 € de réserves à la sienne, sur le système de paiement de l'Eurosystème (T2). Chaque jour, des milliards se compensent ainsi.</span></div>
-    <div><b>③ Une banque à court de réserves emprunte</b><span>Si elle prête beaucoup et voit partir l'argent vers d'autres banques, elle emprunte des réserves à une autre banque ou à la banque centrale, en donnant des garanties (des obligations, des créances). La banque centrale lui en fournit toujours, au prix qu'elle a fixé : son taux directeur.</span></div>
-    <div><b>④ Le taux directeur pilote tous les autres</b><span>Les réserves en trop sont rémunérées par la BCE au taux de la « facilité de dépôt ». Aucune banque ne prêtera à une autre en dessous de ce taux : il devient le plancher des taux du marché, puis des crédits immobiliers, des prêts aux entreprises, des livrets.</span></div>
-  </div>
-  <div class="callout small">
-    <ul>
-      <li><b>Les banques ne prêtent pas les réserves</b> : les réserves ne sortent jamais du circuit des banques. Une banque ne « prête » pas ses réserves à un client ; elle crée un dépôt, puis s'assure d'avoir assez de réserves pour faire face aux virements et aux retraits. C'est pourquoi le multiplicateur des manuels décrit mal la réalité : la banque prête d'abord, et cherche les réserves ensuite.</li>
-      <li><b>Comment la banque centrale freine ou accélère le crédit</b> : en montant son taux, elle rend les réserves plus chères, donc le crédit plus cher. Les ménages et les entreprises empruntent moins, moins de monnaie est créée, la demande et l'inflation ralentissent. En le baissant, elle fait l'inverse. Elle agit sur le prix de la monnaie, pas sur sa quantité.</li>
-      <li><b>Les rachats de titres (2015-2022)</b> ont noyé les banques de réserves : quand la Banque de France rachète une obligation à un assureur, elle crédite le compte de la banque de cet assureur. Les réserves ont atteint plus de 4 000 milliards d'euros dans la zone euro en 2022, bien au-delà des 1 % obligatoires. Depuis, la BCE ne rachète plus et les laisse décroître.</li>
-      <li><b>L'Eurosystème, ce n'est pas seulement la BCE</b> : c'est la BCE à Francfort plus les banques centrales nationales des pays de la zone euro, dont la Banque de France. La BCE décide (son conseil réunit les gouverneurs nationaux et six membres du directoire) ; ce sont les banques centrales nationales qui tiennent les comptes des banques de leur pays, leur prêtent et rachètent les titres.</li>
-    </ul>
-  </div>
-  <h3>Le taux directeur de la BCE depuis 1999 (taux de la facilité de dépôt)</h3>
-  <div id="mo-tbce" class="chart"></div>
-  <div class="callout small" id="mo-tbce-txt"></div>
-
-  <h3>Un euro français est-il un euro allemand ?</h3>
+  <h3 id="mo-2-6" class="li-sub">2.6 Un euro français est-il un euro allemand ?</h3>
   <p class="lead">En droit, oui : un euro est un euro dans toute la zone. Pour les billets et les réserves, c'est vrai aussi. Mais pour la monnaie scripturale, celle de nos comptes, c'est moins simple : elle reste une dette d'une banque nationale, garantie par un système national, dans un pays dont l'État peut être plus ou moins solide.</p>
   <div class="callout small">
     <ul>
@@ -754,6 +813,7 @@
   <div class="callout small" id="mo-rend-txt"></div>
 
   <h3 id="mo-p4" class="ag-part">7. Un monde physique fini</h3>
+  <p class="lead">Jusqu'ici, on n'a parlé que d'euros : la monnaie naît du crédit, la dette et le capital réclament un rendement, et ce rendement est plus facile à servir quand l'économie grossit. Reste la question de départ : une croissance <i>en euros</i> oblige-t-elle à consommer toujours plus d'énergie et de matières ? C'est là que l'économie rencontre la physique.</p>
   <div class="callout small">
     <ul>
       <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
@@ -2415,50 +2475,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123e"></script>
-<script src="app.js?v=20261123e"></script>
-<script src="energie.js?v=20261123e"></script>
-<script src="matieres.js?v=20261123e"></script>
-<script src="territoire.js?v=20261123e"></script>
-<script src="themes.js?v=20261123e"></script>
-<script src="societe.js?v=20261123e"></script>
-<script src="eco2.js?v=20261123e"></script>
-<script src="empreinte.js?v=20261123e"></script>
-<script src="argentprive.js?v=20261123e"></script>
-<script src="repartition.js?v=20261123e"></script>
-<script src="patrimoine.js?v=20261123e"></script>
-<script src="prelevements.js?v=20261123e"></script>
-<script src="travailvie.js?v=20261123e"></script>
-<script src="niveauvie.js?v=20261123e"></script>
-<script src="prosperite.js?v=20261123e"></script>
-<script src="exterieur.js?v=20261123e"></script>
-<script src="desindus.js?v=20261123e"></script>
-<script src="retraites.js?v=20261123e"></script>
-<script src="energiecout.js?v=20261123e"></script>
-<script src="energieformation.js?v=20261123e"></script>
-<script src="nucleaire.js?v=20261123e"></script>
-<script src="logementeco.js?v=20261123e"></script>
-<script src="competences.js?v=20261123e"></script>
-<script src="justicedroit.js?v=20261123e"></script>
-<script src="fonctionnaires.js?v=20261123e"></script>
-<script src="couper.js?v=20261123e"></script>
-<script src="seuilpays.js?v=20261123e"></script>
-<script src="logement.js?v=20261123e"></script>
-<script src="env.js?v=20261123e"></script>
-<script src="agriculture.js?v=20261123e"></script>
-<script src="rendements.js?v=20261123e"></script>
-<script src="monnaie.js?v=20261123e"></script>
-<script src="limites.js?v=20261123e"></script>
-<script src="sociologie.js?v=20261123e"></script>
-<script src="chaine.js?v=20261123e"></script>
-<script src="patrimoinehist.js?v=20261123e"></script>
-<script src="innovation.js?v=20261123e"></script>
+<script src="kpi.js?v=20261123g"></script>
+<script src="app.js?v=20261123g"></script>
+<script src="energie.js?v=20261123g"></script>
+<script src="matieres.js?v=20261123g"></script>
+<script src="territoire.js?v=20261123g"></script>
+<script src="themes.js?v=20261123g"></script>
+<script src="societe.js?v=20261123g"></script>
+<script src="eco2.js?v=20261123g"></script>
+<script src="empreinte.js?v=20261123g"></script>
+<script src="argentprive.js?v=20261123g"></script>
+<script src="repartition.js?v=20261123g"></script>
+<script src="patrimoine.js?v=20261123g"></script>
+<script src="prelevements.js?v=20261123g"></script>
+<script src="travailvie.js?v=20261123g"></script>
+<script src="niveauvie.js?v=20261123g"></script>
+<script src="prosperite.js?v=20261123g"></script>
+<script src="exterieur.js?v=20261123g"></script>
+<script src="desindus.js?v=20261123g"></script>
+<script src="retraites.js?v=20261123g"></script>
+<script src="energiecout.js?v=20261123g"></script>
+<script src="energieformation.js?v=20261123g"></script>
+<script src="nucleaire.js?v=20261123g"></script>
+<script src="logementeco.js?v=20261123g"></script>
+<script src="competences.js?v=20261123g"></script>
+<script src="justicedroit.js?v=20261123g"></script>
+<script src="fonctionnaires.js?v=20261123g"></script>
+<script src="couper.js?v=20261123g"></script>
+<script src="seuilpays.js?v=20261123g"></script>
+<script src="logement.js?v=20261123g"></script>
+<script src="env.js?v=20261123g"></script>
+<script src="agriculture.js?v=20261123g"></script>
+<script src="rendements.js?v=20261123g"></script>
+<script src="monnaie.js?v=20261123g"></script>
+<script src="limites.js?v=20261123g"></script>
+<script src="sociologie.js?v=20261123g"></script>
+<script src="chaine.js?v=20261123g"></script>
+<script src="patrimoinehist.js?v=20261123g"></script>
+<script src="innovation.js?v=20261123g"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123e"></script>
-<script src="histoire.js?v=20261123e"></script>
-<script src="chomage.js?v=20261123e"></script>
-<script src="sources.js?v=20261123e"></script>
-<script src="nav.js?v=20261123e"></script>
+<script src="soussol.js?v=20261123g"></script>
+<script src="histoire.js?v=20261123g"></script>
+<script src="chomage.js?v=20261123g"></script>
+<script src="sources.js?v=20261123g"></script>
+<script src="nav.js?v=20261123g"></script>
 </body>
 </html>
