@@ -5,7 +5,9 @@
 - position extérieure nette en % du PIB (ce que le pays possède à l'étranger moins ce qu'il doit à l'étranger) :
   Eurostat tipsii10 (data/sources/tipsii10.json) ;
 - solde commercial (biens et services) en % du PIB : INSEE, comptes nationaux (data/histoire.json) ;
-- investissement public (P51G) et solde public (B9) en % du PIB : Eurostat gov_10a_main (data/sources/gov_p51g_b9.json).
+- investissement public (P51G) et solde public (B9) en % du PIB : Eurostat gov_10a_main (data/sources/gov_p51g_b9.json) ;
+- solde extérieur et solde public de 15 pays (encart « deux comptes séparés ») : FMI, World Economic Outlook,
+  BCA_NGDPD et GGXCNL_NGDP (data/sources/prosperite/imf_jumeaux.json, API datamapper).
 Usage (depuis la racine) : python3 scripts/build_exterieur.py
 """
 import json, os, sys
@@ -34,6 +36,13 @@ commercial = [{"annee": r["annee"], "FR": r["solde_commercial"]} for r in H if r
 G = {it: lire("gov_p51g_b9.json", {"na_item": it}, os.path.join(R, "data", "sources")) for it in ("P51G", "B9")}
 public = [{"annee": y, **{f"{k}_{g}": G[it][g].get(y) for k, it in (("inv", "P51G"), ("solde", "B9")) for g in ("FR", "DE", "EU27_2020")}}
           for y in sorted(G["P51G"]["FR"])]
-json.dump({"commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
+JN = {"FRA": "France", "DEU": "Allemagne", "ITA": "Italie", "ESP": "Espagne", "NLD": "Pays-Bas", "SWE": "Suède", "CHE": "Suisse",
+      "NOR": "Norvège", "GBR": "Royaume-Uni", "USA": "États-Unis", "JPN": "Japon", "KOR": "Corée du Sud", "CHN": "Chine",
+      "BRA": "Brésil", "IND": "Inde"}
+J = json.load(open(os.path.join(R, "data", "sources", "prosperite", "imf_jumeaux.json")))
+jumeaux = {"annee": an_fmi, "pays": [{"code": c, "nom": n, "ext": J["BCA_NGDPD"][c].get(str(an_fmi)), "pub": J["GGXCNL_NGDP"][c].get(str(an_fmi)),
+           "ext_pos_10": sum(1 for y in range(an_fmi - 10, an_fmi) if (J["BCA_NGDPD"][c].get(str(y)) or 0) > 0),
+           "pub_neg_10": sum(1 for y in range(an_fmi - 10, an_fmi) if (J["GGXCNL_NGDP"][c].get(str(y)) or 0) < 0)} for c, n in JN.items()]}
+json.dump({"jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
           open(os.path.join(R, "data", "exterieur.json"), "w"), ensure_ascii=False, indent=1)
 print("cumul FR depuis 2005 :", cumul, "| PEEN FR", [(r["annee"], r["FR"]) for r in position if r["annee"] % 5 == 0 or r["annee"] >= 2024])

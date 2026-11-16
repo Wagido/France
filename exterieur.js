@@ -8,6 +8,7 @@ async function init() {
   if (!window.TH || !$("#ext-courant")) { setTimeout(init, 100); return; }
   try { X = await fetch("data/exterieur.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   try { draw(); } catch (e) { console.error("exterieur", e); }
+  try { drawJumeaux(); } catch (e) { console.error("exterieur jumeaux", e); }
 }
 function draw() {
   const { lineChart, legend } = window.TH, f1 = v => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -51,6 +52,25 @@ function draw() {
       <li><b>Qui prête à l'État ?</b> L'État emprunte pour boucher le trou de son budget (dépenses plus grandes que les recettes), pas pour payer les importations. Pour cela, il vend des obligations à des investisseurs :<ul><li><b>l'épargne des Français, surtout via l'assurance vie</b> : l'argent placé sur un fonds en euros est confié à l'assureur, qui l'investit en grande partie en obligations. Fin 2025, les assureurs français détenaient 344 Md€ de dette publique française, dont 297 Md€ pour l'assurance vie (<a href="https://www.franceassureurs.fr/nos-chiffres-cles/financement-de-leconomie/les-placements-de-lassurance-en-2025/" target="_blank" rel="noopener">France Assureurs, Les placements de l'assurance en 2025</a>). Sans le savoir, beaucoup d'épargnants prêtent ainsi à leur propre État ;</li><li><b>des investisseurs étrangers</b>, qui en détiennent plus de la moitié ;</li><li>des banques, des fonds et la Banque de France (rachats de dette de la BCE depuis 2015).</li></ul></li><li><b>Deux sujets distincts</b> : le déficit commercial vient des achats des entreprises et des ménages, le déficit public vient du budget de l'État. Ils ne se croisent que sur un point : une partie de l'argent prêté à l'État vient de l'étranger.</li>
     </ul>
     <p class="muted" style="font-size:.8rem;margin-bottom:0">Nuances : la position extérieure bouge aussi avec le prix des actions détenues par les étrangers ; les États-Unis vivent en déficit depuis quarante ans sans crise, grâce au dollar, monnaie mondiale, un privilège que la France n'a pas.</p>`;
+}
+function drawJumeaux() {
+  const el = $("#ext-jum"); if (!el || !X.jumeaux) return;
+  const J = X.jumeaux, f1 = v => (v > 0 ? "+" : "") + String(v).replace(".", ",");
+  const quad = (e, p) => J.pays.filter(r => (r.ext > 0) === e && (r.pub >= 0) === p).sort((a, b) => b.ext - a.ext);
+  const cell = (rows, titre, coul) => `<td style="vertical-align:top;padding:8px 10px;border:1px solid #e5e7eb;background:${coul}"><b>${titre}</b><br>${rows.length ? rows.map(r => `${r.code === "FRA" ? "<b>" : ""}${r.nom}${r.code === "FRA" ? "</b>" : ""} <span class="muted">(${f1(r.ext)} / ${f1(r.pub)})</span>`).join("<br>") : "<span class='muted'>aucun dans la liste</span>"}</td>`;
+  const d = Object.fromEntries(J.pays.map(r => [r.code, r]));
+  el.innerHTML = `<p style="margin:0 0 4px"><b>Balance commerciale et budget de l'État : deux comptes séparés</b></p>
+  <ul>
+    <li><b>Un pays peut vendre plus qu'il n'achète à l'étranger et avoir quand même un État en déficit.</b> C'est même fréquent : l'Allemagne, l'Italie, l'Espagne, le Japon ou la Chine sont dans ce cas en ${J.annee}.</li>
+    <li><b>Pourquoi ?</b> Tout dépend de l'épargne des ménages et des entreprises. Quand ils épargnent beaucoup, ils peuvent à la fois prêter à leur État et prêter à l'étranger. Le Japon a vendu plus qu'il n'a acheté à l'étranger chaque année depuis dix ans, alors que son État était en déficit chaque année.</li>
+    <li><b>La France est dans la case des deux déficits</b>, avec les États-Unis, le Royaume-Uni, le Brésil et l'Inde : ${f1(d.FRA.ext)} % du PIB avec l'étranger, ${f1(d.FRA.pub)} % pour les administrations publiques en ${J.annee}.</li>
+  </ul>
+  <div class="table-scroll"><table style="border-collapse:collapse;width:100%;font-size:.85rem;margin-top:6px">
+    <tr><td></td><th style="padding:4px 10px">Comptes publics en excédent</th><th style="padding:4px 10px">Comptes publics en déficit</th></tr>
+    <tr><th style="padding:4px 10px;text-align:left">Excédent avec l'étranger</th>${cell(quad(true, true), "Les deux excédents", "#ecfdf5")}${cell(quad(true, false), "Excédent extérieur, État en déficit", "#fefce8")}</tr>
+    <tr><th style="padding:4px 10px;text-align:left">Déficit avec l'étranger</th>${cell(quad(false, true), "Déficit extérieur, État en excédent", "#fefce8")}${cell(quad(false, false), "Les deux déficits", "#fef2f2")}</tr>
+  </table></div>
+  <p class="muted" style="font-size:.8rem;margin:6px 0 0">Entre parenthèses : solde avec l'étranger (balance courante) / solde des administrations publiques, en % du PIB, ${J.annee} (estimations). Source : <a href="https://www.imf.org/external/datamapper/GGXCNL_NGDP@WEO" target="_blank" rel="noopener">FMI, World Economic Outlook</a> (BCA_NGDPD et GGXCNL_NGDP).</p>`;
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
