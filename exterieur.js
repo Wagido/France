@@ -36,7 +36,7 @@ function draw() {
       <li><b>Comment on paie ce déficit</b> : en empruntant à l'étranger, ou en lui vendant des actifs (actions, entreprises, immeubles). Comme un ménage qui dépense plus qu'il ne gagne et pioche dans son épargne.</li>
       <li><b>Le résultat</b> : la France possédait à l'étranger un peu plus qu'elle ne lui devait en 2000 (${sg(p00.FR)} du PIB) ; en ${last.annee}, elle lui doit ${f1(Math.abs(last.FR))} % de son PIB de plus qu'elle n'y possède (graphique de droite). L'Allemagne, en excédent depuis vingt ans, a l'inverse : ${sg(last.DE)}. Oui, un pays en déficit permanent s'appauvrit peu à peu face au reste du monde.</li>
     </ul>
-    <p style="margin-bottom:2px"><b>Mais qui paie ce déficit ? Ce n'est pas l'argent public qui achète le pétrole</b></p>
+    <p style="margin-bottom:2px"><b>Mais qui paie ce déficit ? Prenons l'exemple du pétrole : ce n'est pas l'argent public qui l'achète</b></p>
     <ul>
       <li><b>Ce sont surtout les entreprises et les ménages qui achètent à l'étranger</b>, avec leur propre argent. Le pétrole est acheté par TotalEnergies, des raffineurs ou des négociants, puis revendu aux automobilistes ; l'État n'en achète presque pas, il prélève seulement des taxes à la pompe. Un téléphone fabriqué en Chine est importé par Apple ou Samsung, vendu par la Fnac, payé par vous.</li>
       <li><b>Le fournisseur étranger se retrouve avec des euros</b>, et il n'a que deux choses à en faire : acheter des produits français (Airbus, vins, luxe : ce sont nos exportations), ou placer cet argent en France (obligations de l'État, actions du CAC 40, immeubles, entreprises, dépôts dans une banque).</li>
