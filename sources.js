@@ -158,7 +158,7 @@ function render() {
 // en bas de chaque article, ses sources en petit
 const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé", "Logement (économie)"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], retraites: ["Retraites"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine", "Solde extérieur"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"], prosperite: ["Pays prospère"],
-  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], intrants: ["Sans intrants"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
+  biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture", "Sans intrants", "Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], nucleaire: ["Nucléaire"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation", "Du champ au caddie"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
   justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };

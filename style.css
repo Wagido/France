@@ -398,3 +398,4 @@ h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-l
 .in-chip:hover { border-color: var(--accent); }
 @media (max-width: 640px) { .in-dep-row, #in-bio .in-dep-row { grid-template-columns: 1fr; gap: 2px; } .in-dep-head { display: none; } .in-sbar { grid-template-columns: 1fr auto auto; } .in-sbar small { grid-column: 3; } .in-sbar .tr { grid-column: 1 / -1; grid-row: 2; width: 100%; } .in-dep-row .num { text-align: left; } }
 h3[id] { scroll-margin-top: 150px; }
+.ag-part { font-size: 1.2rem; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }

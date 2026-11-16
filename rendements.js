@@ -1,4 +1,4 @@
-/* Peut-on être autonome en agriculture sans intrants ? Rendements, engrais, pesticides, bio, simulateur des céréales (France) */
+/* Agriculture, parties 2 à 6 : peut-on être autonome sans intrants ? Rendements, engrais, pesticides, bio, simulateur des céréales (France) */
 (() => {
 "use strict";
 let R = null, SAU = null;
@@ -127,7 +127,7 @@ function draw() {
   $("#in-intrants-txt").innerHTML = `<ul>
     <li><b>Les engrais minéraux ont décollé avec les rendements</b> : ${n0(e0.n)} kg d'azote par hectare cultivé en ${e0.annee}, ${n0(pk.n)} au maximum en ${pk.annee}, ${n0(eL.n)} en ${eL.annee}. Le phosphore et la potasse ont été divisés par plus de trois depuis la fin des années 1980 (${n0(pk.p)} → ${n0(eL.p)} kg de P₂O₅, ${n0(pk.k)} → ${n0(eL.k)} kg de K₂O) : les sols avaient été largement enrichis, et les prix ont flambé (2008, 2022).</li>
     <li><b>L'autonomie en engrais n'existe pas</b> : la France produit ${n0(AE["3102"].production / 1000)} 000 tonnes d'azote pour ${n0(AE["3102"].usage / 1000)} 000 tonnes utilisées (${Math.round(100 * AE["3102"].production / AE["3102"].usage)} %), et importe le reste ; ne produit plus de potasse depuis la fermeture des mines d'Alsace (2002) et n'a pas de phosphate. Fabriquer l'azote demande du gaz naturel : les engrais sont une forme d'énergie fossile, et leur prix a flambé en 2021-2022, avec la hausse du gaz puis la guerre en Ukraine.</li>
-    <li><b>Les pesticides ont baissé d'environ un tiers depuis 1990</b> en tonnage (${n0(pe0.total / 1000)} 000 t → ${n0(peL.total / 1000)} 000 t), en partie parce que les produits récents agissent à plus petites doses : le tonnage ne mesure pas la toxicité (voir <a href="#pesticides">Pesticides et engrais</a> pour l'indicateur de risque).</li>
+    <li><b>Les pesticides ont baissé d'environ un tiers depuis 1990</b> en tonnage (${n0(pe0.total / 1000)} 000 t → ${n0(peL.total / 1000)} 000 t), en partie parce que les produits récents agissent à plus petites doses : le tonnage ne mesure pas la toxicité (voir l'indicateur de risque ci-dessous).</li>
     <li><b>Les autres intrants</b> comptent aussi : semences sélectionnées (la France en est le premier exportateur mondial), gazole des tracteurs, aliments importés pour le bétail (tourteaux de soja d'Amérique du Sud), eau d'irrigation.</li>
   </ul>`;
   // bio : rendements comparés pour les cultures où l'écart est publié

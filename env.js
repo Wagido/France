@@ -119,7 +119,6 @@ function draw() {
     ]);
     $("#pesticides-txt").innerHTML = `<ul>
       <li><b>Le risque lié aux pesticides a baissé de ${100 - L.v} % en France</b> depuis 2011-2013 (${100 - U.v} % en Europe). L'indicateur européen pondère les ventes par la dangerosité des produits : la baisse vient surtout de l'interdiction des substances les plus toxiques, pas d'une baisse aussi forte des tonnages.</li>
-      <li><b>Le bio couvre ${f1(bf.v)} % des terres agricoles</b>, contre ${f1(bu?.v)} % en moyenne en Europe. Sa progression a nettement ralenti depuis 2021, avec l'inflation et la baisse des achats.</li>
       <li><b>L'excédent d'azote</b> (engrais et effluents d'élevage non absorbés par les cultures) est de ${n0(az.v)} kg par hectare en moyenne en France, l'un des plus faibles d'Europe (${n0(azu?.v)} kg en moyenne) : les grandes surfaces de céréales et de prairies diluent la moyenne. Mais il est concentré dans les régions d'élevage intensif comme la Bretagne, où les nitrates polluent les nappes et provoquent les algues vertes. Les Pays-Bas, la Belgique et le Danemark font bien pire.</li>
       <li><b>Lien avec la biodiversité</b> : la baisse des insectes, sous l'effet des pesticides et de la disparition des haies, explique une grande partie du déclin des oiseaux des champs (voir <a href="#biodiversite">Biodiversité</a>).</li>
     </ul>

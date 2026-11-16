@@ -1,4 +1,4 @@
-/* Agriculture : ce qu'on cultive en France, part du bio par culture, évolution, comparaison européenne */
+/* Agriculture, partie 1 : ce qu'on cultive en France, part du bio par culture, évolution des surfaces (les parties 2 à 6 sont dans rendements.js) */
 (() => {
 "use strict";
 let A = null;
@@ -32,12 +32,6 @@ function draw() {
   // 3. bio
   lineChart($("#ag-bio"), A.bio, [{ k: "pc", l: "Part de la surface agricole en bio", c: "#16a34a" }], { vfmt: v => f1(v) + " %", yfmt: v => v + " %", h: 240 });
   legend("#ag-bio-legend", [["Part de la surface agricole en bio ou en conversion", "#16a34a"]]);
-  // 4. pays : prairies et céréales
-  const P = [...A.pays].sort((a, b) => b.prairies - a.prairies);
-  $("#ag-pays").innerHTML = `<div class="tv-row tv-head lg-row"><span>Pays</span><span>Part de la surface agricole en prairies permanentes</span><span>en céréales</span></div>` +
-    P.map(p => `<div class="tv-row lg-row${p.code === "FR" ? " me" : ""}${p.code === "EU27_2020" ? " ue" : ""}"><span class="lab">${esc(p.nom)}</span>
-      <span class="tr"><span class="bar" style="width:${p.prairies}%;background:${p.code === "FR" ? "#dc2626" : p.code === "EU27_2020" ? "var(--ink)" : "#65a30d"}"></span><b>${f1(p.prairies)} %</b></span>
-      <span class="tr"><span class="bar" style="width:${p.cereales}%;background:${p.code === "FR" ? "#dc2626" : p.code === "EU27_2020" ? "var(--ink)" : "#eab308"}"></span><b>${f1(p.cereales)} %</b></span></div>`).join("");
   const g = k => C.find(c => c.k === k), fr = A.pays.find(p => p.code === "FR"), ue = A.pays.find(p => p.code === "EU27_2020");
   const ue_s = A.pays.filter(p => p.code !== "EU27_2020"), rgS = [...ue_s].sort((a, b) => b.surface - a.surface).findIndex(p => p.code === "FR") + 1;
   const elev = g("prairies").ha + g("fourrages").ha;
@@ -51,7 +45,7 @@ function draw() {
   $("#agriculture-txt").innerHTML = `<ul>
       <li><b>La France cultive ${mha(sau)}</b>, ${rgS === 1 ? "la plus grande surface agricole d'Europe" : `la ${rgS}<sup>e</sup> surface agricole d'Europe`}. Plus de la moitié sert à nourrir les animaux : prairies permanentes (${Math.round(100 * g("prairies").ha / sau)} %) et fourrages semés (${Math.round(100 * g("fourrages").ha / sau)} %), sans compter une partie des céréales et des tourteaux d'oléagineux. C'est le poids de l'élevage, en particulier bovin.</li>
       <li><b>Les céréales occupent ${Math.round(100 * g("cereales").ha / sau)} % des terres</b> (blé surtout, dont la France est le premier producteur européen et un grand exportateur). Fruits et légumes frais n'occupent que ${f1(100 * (g("legumes").ha + g("fruits").ha) / sau)} % des terres : une grande partie de ce que nous en mangeons est importée (voir l'onglet <a href="#alimentation">Alimentation</a>).</li>
-      <li><b>Le bio couvre ${f1(B.pc)} % de la surface</b>, mais très inégalement : ${top.slice(0, 3).map(c => `${c.l.split(" (")[0].toLowerCase()} ${f1(c.bio_pc)} %`).join(", ")}, contre seulement ${f1(g("cereales").bio_pc)} % des céréales et ${f1(g("betteraves").bio_pc)} % des betteraves. Les grandes cultures, qui dominent la surface, restent très majoritairement conventionnelles : c'est là que se jouent l'usage des pesticides et des engrais (voir <a href="#pesticides">Pesticides et engrais</a>).</li>
+      <li><b>Le bio couvre ${f1(B.pc)} % de la surface</b>, mais très inégalement : ${top.slice(0, 3).map(c => `${c.l.split(" (")[0].toLowerCase()} ${f1(c.bio_pc)} %`).join(", ")}, contre seulement ${f1(g("cereales").bio_pc)} % des céréales et ${f1(g("betteraves").bio_pc)} % des betteraves. Les grandes cultures, qui dominent la surface, restent très majoritairement conventionnelles : c'est là que se jouent l'usage des pesticides et des engrais (voir la partie 4).</li>
       <li><b>Le bio stagne depuis 2021</b> (${f1(A.bio.find(b => b.annee === 2021)?.pc)} % en 2021, ${f1(B.pc)} % en ${B.annee}) : avec l'inflation, les achats de produits bio ont baissé et certaines fermes sont revenues au conventionnel. L'objectif de 18 % de la surface en bio en 2027, fixé par le plan Ambition bio, paraît hors d'atteinte.</li>
       <li><b>Les jachères</b> ont fortement reculé depuis 2000 (${mha(g("jacheres").ha_2000)} → ${mha(g("jacheres").ha)}), avec la fin de la jachère obligatoire de la politique agricole commune en 2008 : ce sont autant de refuges en moins pour les insectes et les oiseaux (voir <a href="#biodiversite">Biodiversité</a>).</li>
     </ul>
