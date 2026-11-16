@@ -34,6 +34,16 @@ function draw() {
   lineChart($("#rt-dep"), DP, Object.keys(COUL).map(g => ({ k: g, l: P[g]?.nom || g, c: COUL[g], dash: g === "EU27_2020" ? "4 4" : null })), { nozero: true, vfmt: v => nf(v, 1), h: 240 });
   legend("#rt-dep-legend", Object.keys(COUL).map(g => [P[g]?.nom || g, COUL[g], g === "EU27_2020"]));
   const d0 = DP.find(r => r.FR != null), dL = DP.at(-1);
+  // générations (COR)
+  const G = (R.generations || []).map(r => ({ annee: r.gen, ...r }));
+  if (G.length) {
+    const g1 = (el, k, c, fmt, nozero) => lineChart($(el), G, [{ k, l: "", c }], { h: 200, nozero, vfmt: fmt, yfmt: fmt, xticks: 6 });
+    g1("#rt-g-cot", "cotisation", "#dc2626", v => nf(v, 0) + " %", true);
+    g1("#rt-g-car", "carriere", "#dc2626", v => nf(v, 0) + " ans", true);
+    g1("#rt-g-rem", "remplacement", "#16a34a", v => nf(v, 0) + " %", true);
+    g1("#rt-g-ret", "retraite", "#16a34a", v => nf(v, 1) + " ans", true);
+    lineChart($("#rt-g-tri"), G, [{ k: "rendement", l: "Rendement", c: "#7c3aed" }], { h: 220, vfmt: v => nf(v, 1) + " % par an", yfmt: v => nf(v, 1) + " %", xticks: 8 });
+  }
   $("#rt-txt").innerHTML = `<p style="margin-top:0"><b>1. Pourquoi la France dépense plus que ses voisins</b></p><ul>
       <li><b>On part tôt</b> : seuls ${nf(fr.emploi6064)} % des 60-64 ans travaillent, contre ${nf(de.emploi6064)} % en Allemagne et ${nf(P.SE.emploi6064)} % en Suède. L'âge moyen de départ était de 62,9 ans en 2023 (Conseil d'orientation des retraites).</li>
       <li><b>On vit longtemps</b> : à 65 ans, il reste en moyenne ${nf(fr.esperance65, 1)} ans à vivre, contre ${nf(de.esperance65, 1)} en Allemagne. Une bonne nouvelle, mais une retraite plus longue à financer.</li>
@@ -44,7 +54,7 @@ function draw() {
       <li><b>On cotise de plus en plus</b> : pour un salarié non-cadre du privé, le taux de cotisation retraite passe de 19 % du salaire pour la génération née en 1940 à 28 % pour celle née en 2000.</li>
       <li><b>La carrière dure à peu près autant</b> : environ 36 ans pour la génération 1942, plus de 39 ans pour celle du milieu des années 1950, puis environ 38 ans pour les générations nées à partir de 1980, qui commencent plus tard et ont des carrières plus hachées.</li>
       <li><b>La retraite dure environ 24 ans</b> pour les générations nées entre la fin des années 1950 et le début des années 1960, soit un peu moins de 28 % de leur vie. Elle baisse un peu pour les générations de la fin des années 1960, avec le recul de l'âge de départ, puis remonte avec l'allongement de la vie.</li>
-      <li><b>Le « rendement » baisse au fil des générations</b> : ce que l'on reçoit en pensions, rapporté à ce que l'on a cotisé, était très favorable pour les générations des années 1940, qui ont cotisé peu pendant les Trente Glorieuses. Il diminue jusqu'aux générations du début des années 1970, puis se stabilise : environ 0,8 % par an pour la génération 2000.</li>
+      <li><b>Le « rendement » baisse au fil des générations</b> : ce que l'on reçoit en pensions, rapporté à ce que l'on a cotisé, était très favorable pour les générations des années 1940 (environ 2 % par an), qui ont cotisé peu pendant les Trente Glorieuses. Il diminue jusqu'aux générations du début des années 1970, puis se stabilise : environ 0,8 % par an pour la génération 2000. Dans le même temps, la pension passe d'environ 77 % du dernier salaire net pour la génération 1940 à 69 % pour la génération 2000.</li>
       <li><b>En clair</b> : les jeunes générations cotisent plus, pour une pension plus faible par rapport à leur salaire, mais sur une retraite au moins aussi longue. Le système reste à peu près équilibré en part du PIB, mais au prix d'un effort qui pèse davantage sur les actifs (voir l'onglet <a href="#niveau-vie">Vit-on mieux qu'avant ?</a>).</li>
     </ul>
     <p style="margin-bottom:2px"><b>3. Répartition ou capitalisation ?</b></p><ul>

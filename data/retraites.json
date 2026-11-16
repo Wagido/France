@@ -430,5 +430,555 @@
    "SE": 33.4,
    "EU27_2020": 34.4
   }
+ ],
+ "generations": [
+  {
+   "gen": 1940,
+   "cotisation": 18.97,
+   "carriere": 35.3,
+   "remplacement": 76.85,
+   "retraite": 24.7,
+   "retraite_part": 28.9,
+   "rendement": 1.98
+  },
+  {
+   "gen": 1941,
+   "cotisation": 19.27,
+   "remplacement": 75.78,
+   "retraite": 24.7,
+   "retraite_part": 28.9,
+   "rendement": 1.97
+  },
+  {
+   "gen": 1942,
+   "cotisation": 19.57,
+   "carriere": 35.8,
+   "remplacement": 74.89,
+   "retraite": 24.9,
+   "retraite_part": 29.02,
+   "rendement": 1.95
+  },
+  {
+   "gen": 1943,
+   "cotisation": 19.87,
+   "carriere": 35.8,
+   "remplacement": 74.07,
+   "retraite": 25.0,
+   "retraite_part": 29.12,
+   "rendement": 1.92
+  },
+  {
+   "gen": 1944,
+   "cotisation": 20.17,
+   "carriere": 35.8,
+   "remplacement": 73.28,
+   "retraite": 24.9,
+   "retraite_part": 29.06,
+   "rendement": 1.9
+  },
+  {
+   "gen": 1945,
+   "cotisation": 20.61,
+   "carriere": 36.3,
+   "remplacement": 72.73,
+   "retraite": 25.0,
+   "retraite_part": 29.15,
+   "rendement": 1.89
+  },
+  {
+   "gen": 1946,
+   "cotisation": 20.77,
+   "carriere": 36.8,
+   "remplacement": 72.17,
+   "retraite": 25.3,
+   "retraite_part": 29.45,
+   "rendement": 1.87
+  },
+  {
+   "gen": 1947,
+   "cotisation": 21.07,
+   "carriere": 37.2,
+   "remplacement": 71.99,
+   "retraite": 25.5,
+   "retraite_part": 29.65,
+   "rendement": 1.86
+  },
+  {
+   "gen": 1948,
+   "cotisation": 21.38,
+   "carriere": 37.3,
+   "remplacement": 71.86,
+   "retraite": 25.6,
+   "retraite_part": 29.77,
+   "rendement": 1.83
+  },
+  {
+   "gen": 1949,
+   "cotisation": 21.68,
+   "carriere": 37.6,
+   "remplacement": 71.99,
+   "retraite": 25.6,
+   "retraite_part": 29.79,
+   "rendement": 1.82
+  },
+  {
+   "gen": 1950,
+   "cotisation": 21.99,
+   "carriere": 38.0,
+   "remplacement": 72.62,
+   "retraite": 25.5,
+   "retraite_part": 29.67,
+   "rendement": 1.77
+  },
+  {
+   "gen": 1951,
+   "cotisation": 22.29,
+   "carriere": 38.4,
+   "remplacement": 73.42,
+   "retraite": 25.4,
+   "retraite_part": 29.49,
+   "rendement": 1.73
+  },
+  {
+   "gen": 1952,
+   "cotisation": 22.69,
+   "carriere": 38.6,
+   "remplacement": 73.99,
+   "retraite": 24.9,
+   "retraite_part": 28.97,
+   "rendement": 1.64
+  },
+  {
+   "gen": 1953,
+   "cotisation": 22.9,
+   "carriere": 38.9,
+   "remplacement": 74.62,
+   "retraite": 24.6,
+   "retraite_part": 28.56,
+   "rendement": 1.48
+  },
+  {
+   "gen": 1954,
+   "cotisation": 23.2,
+   "carriere": 39.2,
+   "remplacement": 75.08,
+   "retraite": 24.3,
+   "retraite_part": 28.24,
+   "rendement": 1.4
+  },
+  {
+   "gen": 1955,
+   "cotisation": 23.6,
+   "carriere": 39.5,
+   "remplacement": 75.07,
+   "retraite": 24.2,
+   "retraite_part": 28.09,
+   "rendement": 1.24
+  },
+  {
+   "gen": 1956,
+   "cotisation": 23.92,
+   "carriere": 39.5,
+   "remplacement": 74.82,
+   "retraite": 24.2,
+   "retraite_part": 28.04,
+   "rendement": 1.23
+  },
+  {
+   "gen": 1957,
+   "cotisation": 24.38,
+   "carriere": 39.5,
+   "remplacement": 74.82,
+   "retraite": 24.2,
+   "retraite_part": 28.02,
+   "rendement": 1.23
+  },
+  {
+   "gen": 1958,
+   "cotisation": 24.65,
+   "carriere": 39.5,
+   "remplacement": 75.11,
+   "retraite": 24.2,
+   "retraite_part": 27.95,
+   "rendement": 1.25
+  },
+  {
+   "gen": 1959,
+   "cotisation": 24.92,
+   "carriere": 39.4,
+   "remplacement": 74.78,
+   "retraite": 24.3,
+   "retraite_part": 28.03,
+   "rendement": 1.21
+  },
+  {
+   "gen": 1960,
+   "cotisation": 25.19,
+   "carriere": 39.3,
+   "remplacement": 74.8,
+   "retraite": 24.2,
+   "retraite_part": 27.95,
+   "rendement": 1.21
+  },
+  {
+   "gen": 1961,
+   "cotisation": 25.43,
+   "carriere": 39.3,
+   "remplacement": 75.19,
+   "retraite": 24.1,
+   "retraite_part": 27.82,
+   "rendement": 1.25
+  },
+  {
+   "gen": 1962,
+   "cotisation": 25.71,
+   "carriere": 39.5,
+   "remplacement": 75.11,
+   "retraite": 24.0,
+   "retraite_part": 27.62,
+   "rendement": 1.26
+  },
+  {
+   "gen": 1963,
+   "cotisation": 25.93,
+   "carriere": 39.4,
+   "remplacement": 74.67,
+   "retraite": 23.9,
+   "retraite_part": 27.52,
+   "rendement": 1.17
+  },
+  {
+   "gen": 1964,
+   "cotisation": 26.15,
+   "carriere": 39.3,
+   "remplacement": 74.72,
+   "retraite": 23.9,
+   "retraite_part": 27.45,
+   "rendement": 1.11
+  },
+  {
+   "gen": 1965,
+   "cotisation": 26.47,
+   "carriere": 39.1,
+   "remplacement": 74.39,
+   "retraite": 23.8,
+   "retraite_part": 27.24,
+   "rendement": 1.11
+  },
+  {
+   "gen": 1966,
+   "cotisation": 26.61,
+   "carriere": 39.2,
+   "remplacement": 73.82,
+   "retraite": 23.7,
+   "retraite_part": 27.08,
+   "rendement": 0.99
+  },
+  {
+   "gen": 1967,
+   "cotisation": 26.74,
+   "carriere": 39.1,
+   "remplacement": 73.32,
+   "retraite": 23.5,
+   "retraite_part": 26.86,
+   "rendement": 0.97
+  },
+  {
+   "gen": 1968,
+   "cotisation": 26.9,
+   "carriere": 39.1,
+   "remplacement": 72.79,
+   "retraite": 23.5,
+   "retraite_part": 26.84,
+   "rendement": 0.96
+  },
+  {
+   "gen": 1969,
+   "cotisation": 27.08,
+   "carriere": 39.0,
+   "remplacement": 72.37,
+   "retraite": 23.5,
+   "retraite_part": 26.83,
+   "rendement": 0.87
+  },
+  {
+   "gen": 1970,
+   "cotisation": 27.18,
+   "carriere": 39.0,
+   "remplacement": 72.03,
+   "retraite": 23.6,
+   "retraite_part": 26.89,
+   "rendement": 0.88
+  },
+  {
+   "gen": 1971,
+   "cotisation": 27.26,
+   "carriere": 38.9,
+   "remplacement": 71.67,
+   "retraite": 23.7,
+   "retraite_part": 26.97,
+   "rendement": 0.88
+  },
+  {
+   "gen": 1972,
+   "cotisation": 27.37,
+   "carriere": 38.8,
+   "remplacement": 71.37,
+   "retraite": 23.8,
+   "retraite_part": 27.01,
+   "rendement": 0.84
+  },
+  {
+   "gen": 1973,
+   "cotisation": 27.49,
+   "carriere": 38.6,
+   "remplacement": 71.12,
+   "retraite": 23.8,
+   "retraite_part": 26.99,
+   "rendement": 0.74
+  },
+  {
+   "gen": 1974,
+   "cotisation": 27.57,
+   "carriere": 38.4,
+   "remplacement": 70.91,
+   "retraite": 23.8,
+   "retraite_part": 26.96,
+   "rendement": 0.77
+  },
+  {
+   "gen": 1975,
+   "cotisation": 27.63,
+   "carriere": 38.3,
+   "remplacement": 70.7,
+   "retraite": 23.8,
+   "retraite_part": 26.96,
+   "rendement": 0.78
+  },
+  {
+   "gen": 1976,
+   "cotisation": 27.69,
+   "carriere": 38.3,
+   "remplacement": 70.53,
+   "retraite": 23.9,
+   "retraite_part": 27.03,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1977,
+   "cotisation": 27.74,
+   "carriere": 38.2,
+   "remplacement": 70.39,
+   "retraite": 24.0,
+   "retraite_part": 27.13,
+   "rendement": 0.81
+  },
+  {
+   "gen": 1978,
+   "cotisation": 27.79,
+   "carriere": 38.2,
+   "remplacement": 70.26,
+   "retraite": 24.1,
+   "retraite_part": 27.22,
+   "rendement": 0.81
+  },
+  {
+   "gen": 1979,
+   "cotisation": 27.84,
+   "carriere": 38.3,
+   "remplacement": 70.14,
+   "retraite": 24.2,
+   "retraite_part": 27.32,
+   "rendement": 0.8
+  },
+  {
+   "gen": 1980,
+   "cotisation": 27.88,
+   "carriere": 38.4,
+   "remplacement": 70.02,
+   "retraite": 24.3,
+   "retraite_part": 27.4,
+   "rendement": 0.8
+  },
+  {
+   "gen": 1981,
+   "cotisation": 27.93,
+   "carriere": 38.3,
+   "remplacement": 69.91,
+   "retraite": 24.5,
+   "retraite_part": 27.52,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1982,
+   "cotisation": 27.97,
+   "carriere": 38.3,
+   "remplacement": 69.81,
+   "retraite": 24.6,
+   "retraite_part": 27.6,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1983,
+   "cotisation": 28.02,
+   "carriere": 38.1,
+   "remplacement": 69.72,
+   "retraite": 24.6,
+   "retraite_part": 27.63,
+   "rendement": 0.78
+  },
+  {
+   "gen": 1984,
+   "cotisation": 28.07,
+   "carriere": 38.1,
+   "remplacement": 69.64,
+   "retraite": 24.7,
+   "retraite_part": 27.67,
+   "rendement": 0.78
+  },
+  {
+   "gen": 1985,
+   "cotisation": 28.11,
+   "carriere": 38.0,
+   "remplacement": 69.58,
+   "retraite": 24.7,
+   "retraite_part": 27.7,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1986,
+   "cotisation": 28.15,
+   "carriere": 38.1,
+   "remplacement": 69.52,
+   "retraite": 24.8,
+   "retraite_part": 27.76,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1987,
+   "cotisation": 28.19,
+   "carriere": 38.0,
+   "remplacement": 69.46,
+   "retraite": 24.9,
+   "retraite_part": 27.84,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1988,
+   "cotisation": 28.23,
+   "carriere": 38.0,
+   "remplacement": 69.41,
+   "retraite": 25.0,
+   "retraite_part": 27.93,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1989,
+   "cotisation": 28.28,
+   "carriere": 37.9,
+   "remplacement": 69.35,
+   "retraite": 25.1,
+   "retraite_part": 27.99,
+   "rendement": 0.79
+  },
+  {
+   "gen": 1990,
+   "cotisation": 28.32,
+   "carriere": 37.8,
+   "remplacement": 69.29,
+   "retraite": 25.2,
+   "retraite_part": 28.03,
+   "rendement": 0.8
+  },
+  {
+   "gen": 1991,
+   "cotisation": 28.36,
+   "carriere": 37.9,
+   "remplacement": 69.22,
+   "retraite": 25.2,
+   "retraite_part": 28.09,
+   "rendement": 0.8
+  },
+  {
+   "gen": 1992,
+   "cotisation": 28.4,
+   "carriere": 37.9,
+   "remplacement": 69.15,
+   "retraite": 25.3,
+   "retraite_part": 28.16,
+   "rendement": 0.8
+  },
+  {
+   "gen": 1993,
+   "cotisation": 28.42,
+   "carriere": 37.9,
+   "remplacement": 69.08,
+   "retraite": 25.4,
+   "retraite_part": 28.23,
+   "rendement": 0.81
+  },
+  {
+   "gen": 1994,
+   "cotisation": 28.44,
+   "carriere": 37.8,
+   "remplacement": 69.02,
+   "retraite": 25.5,
+   "retraite_part": 28.29,
+   "rendement": 0.82
+  },
+  {
+   "gen": 1995,
+   "cotisation": 28.45,
+   "carriere": 37.9,
+   "remplacement": 68.95,
+   "retraite": 25.6,
+   "retraite_part": 28.37,
+   "rendement": 0.82
+  },
+  {
+   "gen": 1996,
+   "cotisation": 28.46,
+   "carriere": 37.8,
+   "remplacement": 68.89,
+   "retraite": 25.7,
+   "retraite_part": 28.42,
+   "rendement": 0.83
+  },
+  {
+   "gen": 1997,
+   "cotisation": 28.48,
+   "carriere": 37.8,
+   "remplacement": 68.84,
+   "retraite": 25.8,
+   "retraite_part": 28.52,
+   "rendement": 0.84
+  },
+  {
+   "gen": 1998,
+   "cotisation": 28.48,
+   "carriere": 37.8,
+   "remplacement": 68.78,
+   "retraite": 25.8,
+   "retraite_part": 28.58,
+   "rendement": 0.83
+  },
+  {
+   "gen": 1999,
+   "cotisation": 28.49,
+   "carriere": 37.9,
+   "remplacement": 68.74,
+   "retraite": 25.9,
+   "retraite_part": 28.65,
+   "rendement": 0.83
+  },
+  {
+   "gen": 2000,
+   "cotisation": 28.49,
+   "carriere": 37.9,
+   "remplacement": 68.69,
+   "retraite": 26.0,
+   "retraite_part": 28.73,
+   "rendement": 0.83
+  }
  ]
 }
