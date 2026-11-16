@@ -51,7 +51,7 @@ function bars() {
 function carte() {
   const { showTip, hideTip, css, esc } = window.TH;
   const el = $("#el-carte"); if (!el || !el.clientWidth) return;
-  const k = $("#el-carte-elec").value, E = S[k], D = E.tables.diplome, R = E.tables.revenus;
+  const k = $("#el-carte-elec").value, E = S[k], D = E.tables.diplome, R = E.tables.revenus, LT = S.legislatives2024.tables;
   const pts = k === "presidentielle2022"
     ? E.candidats.map((n, j) => { const nat = [1.4, 22, 2.3, 4.6, 1.8, 27.8, 4.8, 3.1, 2.1, 23.2, 7.1][j], bloc = E.camps.find((b, i) => [[0, 1, 2, 3, 4], [5], [6, 7, 8], [9], [10]][i].includes(j));
         return { l: n, nat, x: 100 * (R.at(-1).cand[j] - R[0].cand[j]) / nat, y: 100 * (D.at(-1).cand[j] - D[0].cand[j]) / nat, c: bloc[2] }; }).filter(p => p.nat >= 2)
@@ -86,9 +86,11 @@ function carte() {
     <li><b>Marine Le Pen est la candidate des moins diplômés et des modestes</b> : ${sg(by("Le Pen").y)} % sur l'axe du diplôme, ${sg(by("Le Pen").x)} % sur celui du revenu.</li>
     <li><b>Jean-Luc Mélenchon et Yannick Jadot occupent le coin des diplômés aux revenus moyens ou modestes</b> : beaucoup de jeunes, d'étudiants, de professions intellectuelles. C'est le « capital culturel sans capital économique » de Bourdieu.</li>
     <li><b>Le coin « peu diplômés mais aisés »</b> (artisans, commerçants, chefs d'entreprise) est presque vide : Valérie Pécresse et Jean Lassalle sont du côté aisé mais au milieu sur l'axe du diplôme ; Éric Zemmour et Nicolas Dupont-Aignan sont du côté modeste et peu diplômé.</li>
+    <li><b>Attention : la carte montre des écarts, pas des niveaux.</b> Être en bas à gauche veut dire que Marine Le Pen fait <i>mieux</i> chez les modestes que chez les aisés, pas qu'aucun électeur aisé ne vote pour elle. En 2022, ${n0(R.at(-1).cand[9])} % des foyers à plus de 3 000 € par mois ont voté Le Pen (et ${n0(R.at(-1).cand[10])} % Zemmour), contre ${n0(R[0].cand[9])} % des foyers à moins de 1 250 €. Aux législatives de 2024, l'écart a presque disparu : ${n0(S.legislatives2024.tables.revenus.at(-1).v[3])} % des foyers à plus de 3 000 € ont voté RN, contre ${n0(S.legislatives2024.tables.revenus[0].v[3])} % des plus modestes. Le vote RN s'est étendu aux classes moyennes et à une partie des aisés ; ce qui le distingue le plus aujourd'hui, c'est le diplôme, bien plus que le revenu (voir la carte 2024).</li>
     <li><b>Prudence pour les petits candidats</b> : avec 2 à 5 % des voix, un écart d'un ou deux points dans l'enquête suffit à déplacer fortement la bulle. Seules les positions des grands candidats sont solides.</li>
   </ul>` : `<ul>
     <li><b>Les blocs de 2024 se placent comme les candidats de 2022</b> : Ensemble chez les aisés, le Nouveau Front populaire chez les diplômés aux revenus modestes, le RN chez les moins diplômés et les modestes, LR et divers droite près du centre, un peu du côté aisé.</li>
+    <li><b>Le RN est désormais presque au centre sur l'axe du revenu</b> : il fait ${n0(LT.revenus.at(-1).v[3])} % chez les foyers à plus de 3 000 € par mois et ${n0(LT.revenus[0].v[3])} % chez ceux à moins de 1 250 €. En revanche, il reste très bas sur l'axe du diplôme : ${n0(LT.diplome.at(-1).v[3])} % chez les bac +3, ${n0(LT.diplome[0].v[3])} % chez les non-bacheliers.</li>
     <li><b>Le diplôme sépare plus que le revenu</b> : sur l'axe vertical, l'écart entre le NFP (${sg(by("Nouveau Front populaire").y)} %) et le RN (${sg(by("RN et alliés").y)} %) est bien plus grand que sur l'axe horizontal.</li>
   </ul>`;
 }
