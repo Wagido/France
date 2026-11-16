@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261118v">
+<link rel="stylesheet" href="style.css?v=20261118x">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -211,20 +211,9 @@
   </div>
   <div class="kpis" id="nv-kpis"></div>
   <div class="callout" id="nv-resume"></div>
-  <h3>Le pouvoir d'achat depuis 1960 (indice 100 en 1960)</h3>
-  <div class="grid2">
-    <div><div id="nv-pa" class="chart"></div><div class="legend-row" id="nv-pa-legend"></div></div>
-    <div><p class="muted" style="margin-top:0">Hausse moyenne par an du pouvoir d'achat par personne</p><div id="nv-dec"></div>
-      <p class="muted" style="font-size:.82rem">Pouvoir d'achat du revenu disponible brut : salaires, revenus du patrimoine et prestations, moins les impôts et cotisations, corrigé de la hausse des prix. « Par unité de consommation » : divisé par le nombre de personnes des ménages, un enfant comptant moins qu'un adulte. Source : <a href="https://www.insee.fr/fr/statistiques/8612564" target="_blank" rel="noopener">INSEE, comptes nationaux base 2020</a>.</p></div>
-  </div>
-  <h3>La part du revenu « déjà dépensée » : logement, assurances, abonnements</h3>
-  <div id="nv-pre" class="chart"></div><div class="legend-row" id="nv-pre-legend"></div>
-  <p class="muted" style="font-size:.82rem">Dépenses pré-engagées : dépenses fixées par un contrat difficile à renégocier à court terme (loyers et charges, énergie et eau du logement, assurances, services financiers, téléphone, internet, télévision payante, cantine). Les propriétaires sont comptés comme s'ils se versaient un loyer. Source : <a href="https://www.insee.fr/fr/statistiques/8612566" target="_blank" rel="noopener">INSEE, consommation et épargne des ménages</a>.</p>
-  <h3>Face aux autres pays européens, en parité de pouvoir d'achat (UE = 100)</h3>
-  <div id="nv-ppa" class="chart"></div><div class="legend-row" id="nv-ppa-legend"></div>
-  <div id="nv-pays" class="tv-wrap"></div>
-  <div class="callout" id="nv-ppa-txt"></div>
-  <h3>Mon salaire par rapport au SMIC</h3>
+  <div class="callout small" id="nv-deux"></div>
+  <h2 class="nv-part">1. Aujourd'hui : ce que je gagne et ce que mon salaire permet d'acheter</h2>
+  <h3>Mon salaire, et sa place par rapport au SMIC</h3>
   <div class="grid2">
     <div><p class="muted" style="margin-top:0">SMIC et salaire moyen, brut par mois à temps plein, en euros d'aujourd'hui</p><div id="nv-smic" class="chart"></div><div class="legend-row" id="nv-smic-legend"></div></div>
     <div><p class="muted" style="margin-top:0">Combien de SMIC vaut le salaire moyen ?</p><div id="nv-ratio" class="chart"></div></div>
@@ -232,6 +221,28 @@
   <div class="table-scroll" id="nv-metiers"></div>
   <p class="muted" style="font-size:.82rem">SMIC horaire brut : <a href="https://www.insee.fr/fr/statistiques/serie/000822484" target="_blank" rel="noopener">INSEE, série 000822484</a>, converti en mensuel à temps plein selon la durée légale (40 h par semaine jusqu'en 1981, 39 h jusqu'en 2001, 35 h depuis) et corrigé des prix. Salaire moyen : voir l'onglet <a href="#argent-prive">Argent privé</a>. Les chiffres des métiers sont des valeurs publiées, pas une série continue : ils ne mesurent pas tous exactement la même chose (primes comprises ou non, échelon), et n'ont pas pu être vérifiés à la source pour le Sénat et la presse. À lire comme des ordres de grandeur.</p>
   <div class="callout" id="nv-smic-txt"></div>
+  <h3>Le pouvoir d'achat depuis 1960 (indice 100 en 1960)</h3>
+  <div class="grid2">
+    <div><div id="nv-pa" class="chart"></div><div class="legend-row" id="nv-pa-legend"></div></div>
+    <div><p class="muted" style="margin-top:0">Hausse moyenne par an du pouvoir d'achat par personne</p><div id="nv-dec"></div>
+      <p class="muted" style="font-size:.82rem">Pouvoir d'achat du revenu disponible brut : salaires, revenus du patrimoine et prestations, moins les impôts et cotisations, corrigé de la hausse des prix. « Par unité de consommation » : divisé par le nombre de personnes des ménages, un enfant comptant moins qu'un adulte. Source : <a href="https://www.insee.fr/fr/statistiques/8612564" target="_blank" rel="noopener">INSEE, comptes nationaux base 2020</a>.</p></div>
+  </div>
+  <h3>Face aux autres pays européens, en parité de pouvoir d'achat (UE = 100)</h3>
+  <div id="nv-ppa" class="chart"></div><div class="legend-row" id="nv-ppa-legend"></div>
+  <div id="nv-pays" class="tv-wrap"></div>
+  <div class="callout" id="nv-ppa-txt"></div>
+  <h2 class="nv-part">2. Sur toute une vie : que peut-on vraiment s'acheter ? D'abord un logement</h2>
+  <div class="kpis" id="nv-vie-kpis"></div>
+  <h3>La part du revenu « déjà dépensée » : logement, assurances, abonnements</h3>
+  <div id="nv-pre" class="chart"></div><div class="legend-row" id="nv-pre-legend"></div>
+  <p class="muted" style="font-size:.82rem">Dépenses pré-engagées : dépenses fixées par un contrat difficile à renégocier à court terme (loyers et charges, énergie et eau du logement, assurances, services financiers, téléphone, internet, télévision payante, cantine). Les propriétaires sont comptés comme s'ils se versaient un loyer. Source : <a href="https://www.insee.fr/fr/statistiques/8612566" target="_blank" rel="noopener">INSEE, consommation et épargne des ménages</a>.</p>
+  <h3>« Dans les années 1960-1970, un seul salaire suffisait » : vrai ou faux ?</h3>
+  <div class="grid2">
+    <div><p class="muted" style="margin-top:0">Combien d'années pour rembourser son logement, selon l'année d'achat (simulation)</p><div id="nv-simu" class="chart"></div><div class="legend-row" id="nv-simu-legend"></div></div>
+    <div><div class="table-scroll" id="nv-avant"></div></div>
+  </div>
+  <p class="muted" style="font-size:.82rem" id="nv-simu-note"></p>
+  <div class="callout" id="nv-vie-txt"></div>
 </section>
 
 <section id="cycle-vie" class="panel">
@@ -1245,35 +1256,35 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261118v"></script>
-<script src="app.js?v=20261118v"></script>
-<script src="energie.js?v=20261118v"></script>
-<script src="matieres.js?v=20261118v"></script>
-<script src="territoire.js?v=20261118v"></script>
-<script src="themes.js?v=20261118v"></script>
-<script src="societe.js?v=20261118v"></script>
-<script src="eco2.js?v=20261118v"></script>
-<script src="empreinte.js?v=20261118v"></script>
-<script src="argentprive.js?v=20261118v"></script>
-<script src="repartition.js?v=20261118v"></script>
-<script src="patrimoine.js?v=20261118v"></script>
-<script src="prelevements.js?v=20261118v"></script>
-<script src="travailvie.js?v=20261118v"></script>
-<script src="niveauvie.js?v=20261118v"></script>
-<script src="couper.js?v=20261118v"></script>
-<script src="seuilpays.js?v=20261118v"></script>
-<script src="logement.js?v=20261118v"></script>
-<script src="env.js?v=20261118v"></script>
-<script src="agriculture.js?v=20261118v"></script>
-<script src="chaine.js?v=20261118v"></script>
-<script src="patrimoinehist.js?v=20261118v"></script>
-<script src="innovation.js?v=20261118v"></script>
+<script src="kpi.js?v=20261118x"></script>
+<script src="app.js?v=20261118x"></script>
+<script src="energie.js?v=20261118x"></script>
+<script src="matieres.js?v=20261118x"></script>
+<script src="territoire.js?v=20261118x"></script>
+<script src="themes.js?v=20261118x"></script>
+<script src="societe.js?v=20261118x"></script>
+<script src="eco2.js?v=20261118x"></script>
+<script src="empreinte.js?v=20261118x"></script>
+<script src="argentprive.js?v=20261118x"></script>
+<script src="repartition.js?v=20261118x"></script>
+<script src="patrimoine.js?v=20261118x"></script>
+<script src="prelevements.js?v=20261118x"></script>
+<script src="travailvie.js?v=20261118x"></script>
+<script src="niveauvie.js?v=20261118x"></script>
+<script src="couper.js?v=20261118x"></script>
+<script src="seuilpays.js?v=20261118x"></script>
+<script src="logement.js?v=20261118x"></script>
+<script src="env.js?v=20261118x"></script>
+<script src="agriculture.js?v=20261118x"></script>
+<script src="chaine.js?v=20261118x"></script>
+<script src="patrimoinehist.js?v=20261118x"></script>
+<script src="innovation.js?v=20261118x"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261118v"></script>
-<script src="histoire.js?v=20261118v"></script>
-<script src="chomage.js?v=20261118v"></script>
-<script src="sources.js?v=20261118v"></script>
-<script src="nav.js?v=20261118v"></script>
+<script src="soussol.js?v=20261118x"></script>
+<script src="histoire.js?v=20261118x"></script>
+<script src="chomage.js?v=20261118x"></script>
+<script src="sources.js?v=20261118x"></script>
+<script src="nav.js?v=20261118x"></script>
 </body>
 </html>

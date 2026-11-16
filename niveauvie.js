@@ -45,6 +45,7 @@ function draw() {
     <li><b>Une plus grande part du revenu est « déjà dépensée »</b> avant de faire ses courses : logement, assurances, abonnements. ${f1(p0.part)} % du revenu en 1960, ${f1(pL.part)} % en ${pL.annee}, dont ${f1(pL.logement)} % pour le logement. Ce qui reste à choisir librement a moins progressé que le revenu : environ × ${f1(arb / 100)} au lieu de × ${f1(last.idx_uc / 100)} (ordre de grandeur).</li>
     <li><b>Par rapport aux voisins, la France décroche</b> : en parité de pouvoir d'achat (PPA, c'est-à-dire en tenant compte des prix de chaque pays), un Français consommait ${fr95.v - 100} % de plus que la moyenne européenne en 1995, ${fr.aic - 100} % de plus en ${fr.annee}. En 1995, elle était au niveau de la Belgique (${(P.BE.aic_serie.find(d => d.annee === 1995) || {}).v}) et des Pays-Bas (${(P.NL.aic_serie.find(d => d.annee === 1995) || {}).v}) ; elle est aujourd'hui derrière eux (${P.BE.aic} et ${P.NL.aic}).</li>
     <li><b>Et les salaires se sont resserrés vers le SMIC</b> : le SMIC a été multiplié par ${f1(sL.mensuel / s0.mensuel)} depuis ${s0.annee}, plus vite que le salaire moyen. Un professeur débutant gagnait plus de 2 SMIC en 1980, à peine plus de 1 aujourd'hui. Beaucoup de métiers qualifiés se sentent déclassés, même si leur pouvoir d'achat n'a pas forcément baissé.</li>
+    <li><b>Et le logement se rembourse beaucoup plus lentement</b> : environ ${Math.round(N.simu.filter(r => r.annee >= 1965 && r.annee <= 1975).reduce((x, r, _, A) => x + r.annees / A.length, 0))} ans pour un achat entre 1965 et 1975, quand l'inflation effaçait les dettes, contre ${Math.round(N.simu.slice(-3).reduce((x, r) => x + r.annees / 3, 0))} ans aujourd'hui (simulation plus bas).</li>
   </ul>`;
   // 1. pouvoir d'achat
   lineChart($("#nv-pa"), PA, [{ k: "idx_uc", l: "Par unité de consommation (par personne)", c: "#3b6fd6" }, { k: "idx", l: "Ensemble des ménages", c: "#94a3b8", dash: "4 4" }], { yfmt: v => v, vfmt: v => f1(v) });
@@ -88,6 +89,46 @@ function draw() {
     <li><b>Un ingénieur débutant gagne environ 2 SMIC</b>, un ingénieur au milieu de sa carrière environ 3. Il n'existe pas de série longue fiable pour les ingénieurs ; on ne peut pas dire de combien leur écart avec le SMIC a baissé.</li>
     <li><b>Se sentir moins riche que ses parents</b> peut donc venir de sa place par rapport au SMIC, et du prix du logement (voir l'onglet <a href="#patrimoine">Patrimoine</a>), plus que de son pouvoir d'achat réel.</li>
   </ul>`;
+  // 5. « un seul salaire suffisait » : simulation sur la durée du prêt, et comparaison avant / aujourd'hui
+  const SI = N.simu, H = N.simu_hyp, at = y => SI.find(r => r.annee === y);
+  const moy = (a, b) => SI.filter(r => r.annee >= a && r.annee <= b).reduce((x, r, _, A) => x + r.annees / A.length, 0);
+  const dSI = SI.map(r => ({ annee: r.annee, c: r.connu ? r.annees : null, p: r.connu ? null : r.annees }));
+  const lastC = dSI.filter(d => d.c != null).at(-1); if (lastC) lastC.p = lastC.c;
+  lineChart($("#nv-simu"), dSI, [{ k: "c", l: "Années pour rembourser", c: "#dc2626" }, { k: "p", l: "Années pour rembourser (revenus futurs supposés)", c: "#dc2626", dash: "4 4" }], { vfmt: v => v + " ans", yfmt: v => v + " ans", h: 250 });
+  legend("#nv-simu-legend", [["Revenus observés jusqu'à la fin du prêt", "#dc2626"], [`Prêt pas encore fini : revenus supposés en hausse de ${H.croissance_future} % par an après ${H.derniere_annee}`, "#dc2626", true]]);
+  const a7 = moy(1965, 1975), a80 = moy(1980, 1990), aN = moy(SI.at(-1).annee - 2, SI.at(-1).annee);
+  const AV = [
+    ["Femmes dans la population active", "33 % (1962)", "48 % (2008)", ["INSEE, Maruani et Meron", "https://www.insee.fr/fr/statistiques/fichier/2405570/maruani-meron_presentation.pdf"]],
+    ["Durée des prêts immobiliers", "10 ans au plus (1965), 13 ans (1970)", "15 ans (1999), puis +0,7 an par an", ["Friggit, IGEDD", "https://www.igedd.developpement-durable.gouv.fr/IMG/pdf/evolution-prix-immobilier-friggit_cle0c611b.pdf"]],
+    ["Inflation moyenne sur 10 ans", `+${at(1970).inflation_10} % de 1970 à 1980`, `+${at(2014)?.inflation_10 ?? "–"} % de 2014 à 2024`, ["INSEE", "https://www.insee.fr/fr/statistiques/serie/001759970"]],
+    ["Logements sans confort sanitaire (WC intérieur, douche ou baignoire)", "27 % (1978)", "presque aucun (2013)", ["INSEE, Les conditions de logement", "https://www.insee.fr/fr/statistiques/fichier/2586024/LOGFRA17k_FL6_confort.pdf"]],
+    ["Surface par personne", "31 m² (1984)", "40 m² (2013)", ["INSEE", "https://www.insee.fr/fr/statistiques/fichier/2586024/LOGFRA17k_FL6_confort.pdf"]],
+    ["Partent en vacances au moins une fois par an", "43 % (1964)", "65 % (2004)", ["INSEE", "https://www.insee.fr/fr/statistiques/fichier/1374551/fratour08c.PDF"]],
+  ];
+  $("#nv-avant").innerHTML = `<table class="dv-t nv-t"><thead><tr><th></th><th>Avant</th><th>Après</th></tr></thead><tbody>` +
+    AV.map(([l, a, b, [sl, su]]) => `<tr><td>${esc(l)} <small class="muted">(<a href="${su}" target="_blank" rel="noopener">${esc(sl)}</a>)</small></td><td><b>${a}</b></td><td><b>${b}</b></td></tr>`).join("") + `</tbody></table>`;
+  $("#nv-simu-note").innerHTML = `Simulation, pour un ménage qui emprunte ${f1(H.emprunt)} années de son revenu en 2000, et proportionnellement plus ou moins les autres années selon le prix des logements rapporté au revenu par ménage (constant de 1965 à 1995, comme le montre Jacques Friggit ; ${f1(SI.at(-1).emprunt)} années de revenu en ${SI.at(-1).annee}). Prêt à taux fixe, au taux des emprunts d'État à 10 ans de l'année d'achat (les taux des prêts immobiliers en sont très proches), renégocié quand le taux du marché, plus 1 point, devient plus bas. Le ménage rembourse chaque année ${Math.round(100 * H.effort)} % de son revenu, qui suit le salaire moyen observé. Ce n'est pas un cas réel : c'est une façon de comparer les époques à règles égales. Sources : Eurostat (irt_lt_mcby_a), base Jordà-Schularick-Taylor avant 1970, INSEE.`;
+  $("#nv-vie-txt").innerHTML = `<p style="margin-top:0"><b>Le souvenir est en partie vrai, mais pour des raisons qui ne reviendront pas, et on achetait beaucoup moins</b></p><ul>
+    <li><b>Rembourser en quelques années : vrai, grâce à l'inflation</b>. Dans la simulation, un logement acheté entre 1965 et 1975 est remboursé en ${Math.round(a7)} ans environ, contre ${Math.round(aN)} ans aujourd'hui. Les prix montaient de 3 à 14 % par an (+${at(1970).inflation_10} % de 1970 à 1980), les salaires encore plus vite, et la mensualité restait fixe : pour un achat en 1970, au bout de 10 ans, elle ne pesait plus que ${Math.round(100 * at(1970).poids_10)} % de ce qu'elle pesait au départ, contre ${Math.round(100 * at(2014).poids_10)} % pour un achat en 2014. Les taux d'intérêt, une fois l'inflation retirée, ont été très bas, parfois négatifs, de 1974 à 1981. Ce mécanisme a disparu avec l'inflation à 2 %.</li>
+    <li><b>Ce n'était pas vrai pour tout le monde</b> : ceux qui ont acheté entre 1980 et 1990 ont mis ${Math.round(a80)} ans environ, car l'inflation a baissé alors que les taux restaient très hauts, même en renégociant leur prêt.</li>
+    <li><b>« Seul le mari travaillait » : à nuancer</b>. En 1962, un actif sur trois était déjà une femme (6,6 millions), souvent dans l'exploitation agricole ou le commerce familial. Depuis, le travail des femmes a fortement augmenté. Mais le prix des logements, rapporté au revenu des ménages, a augmenté après 2000 : il absorbe une bonne partie du second salaire.</li>
+    <li><b>On n'achetait pas la même chose</b> : à la fin des années 1970, un logement sur quatre n'avait ni douche ni baignoire, un sur quatre pas de WC à l'intérieur. On dispose aujourd'hui d'un tiers de surface en plus par personne. Une bonne part de la hausse du budget logement de 1965 à 2000 a payé ce confort supplémentaire, pas une hausse du prix au mètre carré par rapport aux revenus (Friggit).</li>
+    <li><b>Les vacances étaient plus rares</b> : 43 % des Français partaient en vacances en 1964, 65 % quarante ans plus tard. Pour les résidences secondaires, nous n'avons pas trouvé de série fiable remontant aux années 1960.</li>
+    <li><b>Sur toute une vie, la génération qui a acheté dans les années 1960-1970 a eu un avantage rare</b> : un prêt effacé par l'inflation, puis des logements dont la valeur a fortement monté après 2000, et la retraite à 60 ans à partir de 1983. Un jeune ménage aujourd'hui rembourse plus longtemps, commence à travailler plus tard et partira plus tard à la retraite (voir l'onglet <a href="#travail">Temps de travail</a>). À revenu égal, il lui reste donc moins d'années « libres », avec un logement payé.</li>
+  </ul>`;
+  // cadrage en deux temps, et chiffres clés de la partie « sur toute une vie »
+  const SIm = (a, b) => N.simu.filter(r => r.annee >= a && r.annee <= b).reduce((x, r, _, A) => x + r.annees / A.length, 0);
+  const yN = N.simu.at(-1).annee, nA = SIm(1965, 1975), nN = SIm(yN - 2, yN), eff = N.simu_hyp.effort;
+  $("#nv-deux").innerHTML = `<p style="margin-top:0"><b>Deux façons de répondre à la question</b></p><ul>
+    <li><b>1. À un instant donné</b> : combien je gagne, où je me situe par rapport au SMIC, ce que mon revenu permet d'acheter cette année, en France et comparé aux autres pays en tenant compte des prix (PPA). Sur ce plan, on vit nettement mieux qu'en 1960, mais on ne progresse presque plus.</li>
+    <li><b>2. Sur toute une vie</b> : ce que l'on peut vraiment s'offrir en une carrière, et d'abord un logement, la plus grosse dépense d'une vie. Là, la réponse est moins favorable : un logement coûte plus d'années de travail qu'avant, et l'inflation n'efface plus les dettes.</li>
+  </ul>`;
+  kpis("#nv-vie-kpis", [
+    ["≈ " + Math.round(nA) + " ans", ["pour rembourser un logement acheté entre 1965 et 1975", "simulation, 30 % du revenu chaque année"], "Achat en 1965-1975"],
+    ["≈ " + Math.round(nN) + " ans", [`pour un achat aujourd'hui (${yN - 2}-${yN})`, "même règle de calcul"], "Achat aujourd'hui"],
+    ["≈ " + f1(eff * nA) + " ans", ["de revenu consacrés au logement sur une vie, pour un achat en 1965-1975"], "Coût sur une vie, avant"],
+    ["≈ " + f1(eff * nN) + " ans", ["de revenu consacrés au logement sur une vie, pour un achat aujourd'hui", `soit ${Math.round(100 * (nN / nA - 1))} % de plus`], "Coût sur une vie, aujourd'hui"],
+  ]);
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

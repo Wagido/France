@@ -9,7 +9,13 @@
 - revenu disponible brut ajusté des ménages par habitant en PPA (Eurostat tec00113) ;
 - SMIC horaire brut (INSEE, série 000822484, depuis 1951), converti en mensuel à temps plein (durée légale :
   173,33 h jusqu'en 1981, 169 h de 1982 à 2001, 151,67 h depuis 2002) et en euros d'aujourd'hui, comparé au
-  salaire moyen brut par équivalent temps plein (data/argent_prive.json).
+  salaire moyen brut par équivalent temps plein (data/argent_prive.json) ;
+- simulation « combien d'années pour rembourser son logement » selon l'année d'achat : prêt à taux fixe au taux
+  des emprunts d'État à 10 ans de l'année (Eurostat irt_lt_mcby_a depuis 1970, Jordà-Schularick-Taylor avant),
+  revenus qui suivent le salaire moyen nominal observé (puis +3 % par an après la dernière année connue),
+  montant emprunté proportionnel au prix des logements rapporté au revenu par ménage (data/logement.json depuis 1996 ;
+  constant de 1965 à 1995, d'après le « tunnel » de Friggit), remboursement de 30 % du revenu chaque année ; le prêt est renégocié dès que le taux du marché + 1 point
+  devient plus bas que son taux (comme beaucoup d'emprunteurs l'ont fait à la fin des années 1980 et dans les années 2010).
 Usage (depuis la racine) : python3 scripts/build_niveau_vie.py
 """
 import html, json, os, re, sys
@@ -80,8 +86,37 @@ for y in sorted(mens):
     if y in sal:
         r["salaire_moyen"] = sal[y]; r["ratio"] = round(sal[y] / mo, 2)
     smic.append(r)
+# simulation : années pour rembourser selon l'année d'achat
+import openpyxl
+wb = openpyxl.load_workbook(os.path.join(SRC, "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
+it = wb.worksheets[0].iter_rows(values_only=True); hd = next(it); ix = {c: i for i, c in enumerate(hd)}
+taux = {r[ix["year"]]: r[ix["ltrate"]] for r in it if r[ix["iso"]] == "FRA" and r[ix["ltrate"]] is not None}
+taux.update(lire("irt_lt_mcby_a_fr.json", None, SRC).get("FR", {}))
+nom = {y: sal[y] * prix[y] / prix[an] for y in sal if y in prix}          # salaire nominal
+yl = max(nom)
+LG = {r["annee"]: r["prix_revenu"] for r in json.load(open(os.path.join(R, "data", "logement.json")))["long"] if r.get("prix_revenu")}
+y_lg = min(LG)
+EMPRUNT, EFFORT = 3.0, 0.30                                               # en 2000 : 3 années de revenu empruntées
+def revenu(y):
+    return nom[y] if y in nom else nom[yl] * 1.03 ** (y - yl)
+simu = []
+for y0 in range(1965, max(taux) + 1):
+    if y0 not in taux or y0 not in nom:
+        continue
+    k = (LG.get(y0, LG[y_lg]) if y0 >= y_lg else LG[y_lg]) / 100
+    dette = EMPRUNT * k * revenu(y0); r = max(taux[y0], 0.5) / 100; n = 0
+    rest10 = None
+    while dette > 0 and n < 60:
+        ra = min(r, (taux.get(y0 + n, taux[max(taux)]) + 1) / 100) if n else r   # renégociation si le taux du marché + 1 point est plus bas
+        dette = dette * (1 + ra) - EFFORT * revenu(y0 + n); n += 1
+        if n == 10:
+            rest10 = max(dette, 0) / revenu(y0 + 10)
+    simu.append({"annee": y0, "annees": n, "taux": round(taux[y0], 2), "inflation_10": round(100 * (prix.get(min(y0 + 10, an), 0) / prix[y0] - 1)) if y0 in prix else None,
+                 "emprunt": round(EMPRUNT * k, 2), "poids_10": round(revenu(y0) / revenu(y0 + 10), 2), "connu": y0 + n <= yl})
+out["simu"] = simu; out["simu_hyp"] = {"emprunt": EMPRUNT, "effort": EFFORT, "croissance_future": 3, "derniere_annee": yl}
 out["smic"] = smic; out["annee_euros"] = an
 json.dump(out, open(os.path.join(R, "data", "niveau_vie.json"), "w"), ensure_ascii=False, indent=1)
+print([(r["annee"], r["annees"], r["taux"], r["emprunt"]) for r in simu if r["annee"] % 5 == 0 or r["annee"] > 2020])
 print(smic[0], smic[-1], [ (r["annee"], r.get("ratio")) for r in smic if r["annee"] % 10 == 0])
 print(len(pa), pa[-1], len(pre), pre[-1])
 for r in out["pays"]:

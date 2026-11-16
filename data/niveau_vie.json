@@ -4968,6 +4968,563 @@
    "gdi": 32525
   }
  ],
+ "simu": [
+  {
+   "annee": 1965,
+   "annees": 9,
+   "taux": 6.31,
+   "inflation_10": 91,
+   "emprunt": 2.81,
+   "poids_10": 0.34,
+   "connu": true
+  },
+  {
+   "annee": 1966,
+   "annees": 9,
+   "taux": 6.46,
+   "inflation_10": 102,
+   "emprunt": 2.81,
+   "poids_10": 0.32,
+   "connu": true
+  },
+  {
+   "annee": 1967,
+   "annees": 9,
+   "taux": 6.78,
+   "inflation_10": 115,
+   "emprunt": 2.81,
+   "poids_10": 0.3,
+   "connu": true
+  },
+  {
+   "annee": 1968,
+   "annees": 9,
+   "taux": 7.01,
+   "inflation_10": 123,
+   "emprunt": 2.81,
+   "poids_10": 0.3,
+   "connu": true
+  },
+  {
+   "annee": 1969,
+   "annees": 9,
+   "taux": 7.7,
+   "inflation_10": 130,
+   "emprunt": 2.81,
+   "poids_10": 0.3,
+   "connu": true
+  },
+  {
+   "annee": 1970,
+   "annees": 9,
+   "taux": 8.04,
+   "inflation_10": 148,
+   "emprunt": 2.81,
+   "poids_10": 0.29,
+   "connu": true
+  },
+  {
+   "annee": 1971,
+   "annees": 9,
+   "taux": 7.75,
+   "inflation_10": 166,
+   "emprunt": 2.81,
+   "poids_10": 0.29,
+   "connu": true
+  },
+  {
+   "annee": 1972,
+   "annees": 8,
+   "taux": 7.35,
+   "inflation_10": 181,
+   "emprunt": 2.81,
+   "poids_10": 0.28,
+   "connu": true
+  },
+  {
+   "annee": 1973,
+   "annees": 9,
+   "taux": 8.29,
+   "inflation_10": 186,
+   "emprunt": 2.81,
+   "poids_10": 0.29,
+   "connu": true
+  },
+  {
+   "annee": 1974,
+   "annees": 10,
+   "taux": 10.45,
+   "inflation_10": 172,
+   "emprunt": 2.81,
+   "poids_10": 0.32,
+   "connu": true
+  },
+  {
+   "annee": 1975,
+   "annees": 10,
+   "taux": 9.52,
+   "inflation_10": 158,
+   "emprunt": 2.81,
+   "poids_10": 0.35,
+   "connu": true
+  },
+  {
+   "annee": 1976,
+   "annees": 10,
+   "taux": 9.33,
+   "inflation_10": 142,
+   "emprunt": 2.81,
+   "poids_10": 0.38,
+   "connu": true
+  },
+  {
+   "annee": 1977,
+   "annees": 10,
+   "taux": 9.87,
+   "inflation_10": 128,
+   "emprunt": 2.81,
+   "poids_10": 0.41,
+   "connu": true
+  },
+  {
+   "annee": 1978,
+   "annees": 10,
+   "taux": 9.5,
+   "inflation_10": 116,
+   "emprunt": 2.81,
+   "poids_10": 0.44,
+   "connu": true
+  },
+  {
+   "annee": 1979,
+   "annees": 11,
+   "taux": 9.89,
+   "inflation_10": 102,
+   "emprunt": 2.81,
+   "poids_10": 0.48,
+   "connu": true
+  },
+  {
+   "annee": 1980,
+   "annees": 13,
+   "taux": 13.13,
+   "inflation_10": 84,
+   "emprunt": 2.81,
+   "poids_10": 0.51,
+   "connu": true
+  },
+  {
+   "annee": 1981,
+   "annees": 16,
+   "taux": 15.85,
+   "inflation_10": 67,
+   "emprunt": 2.81,
+   "poids_10": 0.56,
+   "connu": true
+  },
+  {
+   "annee": 1982,
+   "annees": 16,
+   "taux": 15.65,
+   "inflation_10": 53,
+   "emprunt": 2.81,
+   "poids_10": 0.61,
+   "connu": true
+  },
+  {
+   "annee": 1983,
+   "annees": 16,
+   "taux": 13.59,
+   "inflation_10": 42,
+   "emprunt": 2.81,
+   "poids_10": 0.65,
+   "connu": true
+  },
+  {
+   "annee": 1984,
+   "annees": 16,
+   "taux": 12.49,
+   "inflation_10": 33,
+   "emprunt": 2.81,
+   "poids_10": 0.69,
+   "connu": true
+  },
+  {
+   "annee": 1985,
+   "annees": 15,
+   "taux": 11.12,
+   "inflation_10": 26,
+   "emprunt": 2.81,
+   "poids_10": 0.7,
+   "connu": true
+  },
+  {
+   "annee": 1986,
+   "annees": 14,
+   "taux": 8.54,
+   "inflation_10": 25,
+   "emprunt": 2.81,
+   "poids_10": 0.72,
+   "connu": true
+  },
+  {
+   "annee": 1987,
+   "annees": 14,
+   "taux": 9.5,
+   "inflation_10": 22,
+   "emprunt": 2.81,
+   "poids_10": 0.73,
+   "connu": true
+  },
+  {
+   "annee": 1988,
+   "annees": 14,
+   "taux": 9.08,
+   "inflation_10": 19,
+   "emprunt": 2.81,
+   "poids_10": 0.74,
+   "connu": true
+  },
+  {
+   "annee": 1989,
+   "annees": 14,
+   "taux": 8.79,
+   "inflation_10": 14,
+   "emprunt": 2.81,
+   "poids_10": 0.75,
+   "connu": true
+  },
+  {
+   "annee": 1990,
+   "annees": 14,
+   "taux": 9.94,
+   "inflation_10": 13,
+   "emprunt": 2.81,
+   "poids_10": 0.77,
+   "connu": true
+  },
+  {
+   "annee": 1991,
+   "annees": 14,
+   "taux": 9.05,
+   "inflation_10": 12,
+   "emprunt": 2.81,
+   "poids_10": 0.78,
+   "connu": true
+  },
+  {
+   "annee": 1992,
+   "annees": 14,
+   "taux": 8.59,
+   "inflation_10": 11,
+   "emprunt": 2.81,
+   "poids_10": 0.79,
+   "connu": true
+  },
+  {
+   "annee": 1993,
+   "annees": 13,
+   "taux": 6.78,
+   "inflation_10": 11,
+   "emprunt": 2.81,
+   "poids_10": 0.79,
+   "connu": true
+  },
+  {
+   "annee": 1994,
+   "annees": 13,
+   "taux": 7.22,
+   "inflation_10": 12,
+   "emprunt": 2.81,
+   "poids_10": 0.77,
+   "connu": true
+  },
+  {
+   "annee": 1995,
+   "annees": 13,
+   "taux": 7.54,
+   "inflation_10": 13,
+   "emprunt": 2.81,
+   "poids_10": 0.77,
+   "connu": true
+  },
+  {
+   "annee": 1996,
+   "annees": 12,
+   "taux": 6.31,
+   "inflation_10": 13,
+   "emprunt": 2.81,
+   "poids_10": 0.77,
+   "connu": true
+  },
+  {
+   "annee": 1997,
+   "annees": 12,
+   "taux": 5.58,
+   "inflation_10": 15,
+   "emprunt": 2.8,
+   "poids_10": 0.76,
+   "connu": true
+  },
+  {
+   "annee": 1998,
+   "annees": 11,
+   "taux": 4.64,
+   "inflation_10": 18,
+   "emprunt": 2.78,
+   "poids_10": 0.76,
+   "connu": true
+  },
+  {
+   "annee": 1999,
+   "annees": 11,
+   "taux": 4.61,
+   "inflation_10": 16,
+   "emprunt": 2.9,
+   "poids_10": 0.76,
+   "connu": true
+  },
+  {
+   "annee": 2000,
+   "annees": 12,
+   "taux": 5.39,
+   "inflation_10": 15,
+   "emprunt": 3.0,
+   "poids_10": 0.76,
+   "connu": true
+  },
+  {
+   "annee": 2001,
+   "annees": 12,
+   "taux": 4.94,
+   "inflation_10": 16,
+   "emprunt": 3.1,
+   "poids_10": 0.76,
+   "connu": true
+  },
+  {
+   "annee": 2002,
+   "annees": 13,
+   "taux": 4.86,
+   "inflation_10": 16,
+   "emprunt": 3.26,
+   "poids_10": 0.77,
+   "connu": true
+  },
+  {
+   "annee": 2003,
+   "annees": 14,
+   "taux": 4.13,
+   "inflation_10": 15,
+   "emprunt": 3.59,
+   "poids_10": 0.78,
+   "connu": true
+  },
+  {
+   "annee": 2004,
+   "annees": 16,
+   "taux": 4.1,
+   "inflation_10": 13,
+   "emprunt": 4.0,
+   "poids_10": 0.8,
+   "connu": true
+  },
+  {
+   "annee": 2005,
+   "annees": 17,
+   "taux": 3.41,
+   "inflation_10": 11,
+   "emprunt": 4.51,
+   "poids_10": 0.82,
+   "connu": true
+  },
+  {
+   "annee": 2006,
+   "annees": 19,
+   "taux": 3.8,
+   "inflation_10": 9,
+   "emprunt": 4.83,
+   "poids_10": 0.83,
+   "connu": true
+  },
+  {
+   "annee": 2007,
+   "annees": 20,
+   "taux": 4.3,
+   "inflation_10": 8,
+   "emprunt": 4.95,
+   "poids_10": 0.83,
+   "connu": false
+  },
+  {
+   "annee": 2008,
+   "annees": 19,
+   "taux": 4.23,
+   "inflation_10": 7,
+   "emprunt": 4.88,
+   "poids_10": 0.84,
+   "connu": false
+  },
+  {
+   "annee": 2009,
+   "annees": 17,
+   "taux": 3.65,
+   "inflation_10": 9,
+   "emprunt": 4.57,
+   "poids_10": 0.84,
+   "connu": false
+  },
+  {
+   "annee": 2010,
+   "annees": 17,
+   "taux": 3.12,
+   "inflation_10": 9,
+   "emprunt": 4.71,
+   "poids_10": 0.9,
+   "connu": false
+  },
+  {
+   "annee": 2011,
+   "annees": 18,
+   "taux": 3.32,
+   "inflation_10": 8,
+   "emprunt": 4.93,
+   "poids_10": 0.87,
+   "connu": false
+  },
+  {
+   "annee": 2012,
+   "annees": 17,
+   "taux": 2.54,
+   "inflation_10": 12,
+   "emprunt": 4.88,
+   "poids_10": 0.85,
+   "connu": false
+  },
+  {
+   "annee": 2013,
+   "annees": 17,
+   "taux": 2.2,
+   "inflation_10": 20,
+   "emprunt": 4.83,
+   "poids_10": 0.82,
+   "connu": false
+  },
+  {
+   "annee": 2014,
+   "annees": 16,
+   "taux": 1.67,
+   "inflation_10": 22,
+   "emprunt": 4.83,
+   "poids_10": 0.81,
+   "connu": false
+  },
+  {
+   "annee": 2015,
+   "annees": 15,
+   "taux": 0.84,
+   "inflation_10": 23,
+   "emprunt": 4.71,
+   "poids_10": 0.8,
+   "connu": false
+  },
+  {
+   "annee": 2016,
+   "annees": 15,
+   "taux": 0.47,
+   "inflation_10": 22,
+   "emprunt": 4.71,
+   "poids_10": 0.79,
+   "connu": false
+  },
+  {
+   "annee": 2017,
+   "annees": 15,
+   "taux": 0.81,
+   "inflation_10": 21,
+   "emprunt": 4.75,
+   "poids_10": 0.78,
+   "connu": false
+  },
+  {
+   "annee": 2018,
+   "annees": 15,
+   "taux": 0.78,
+   "inflation_10": 19,
+   "emprunt": 4.84,
+   "poids_10": 0.77,
+   "connu": false
+  },
+  {
+   "annee": 2019,
+   "annees": 15,
+   "taux": 0.13,
+   "inflation_10": 18,
+   "emprunt": 4.88,
+   "poids_10": 0.77,
+   "connu": false
+  },
+  {
+   "annee": 2020,
+   "annees": 15,
+   "taux": -0.15,
+   "inflation_10": 17,
+   "emprunt": 5.14,
+   "poids_10": 0.72,
+   "connu": false
+  },
+  {
+   "annee": 2021,
+   "annees": 15,
+   "taux": 0.01,
+   "inflation_10": 16,
+   "emprunt": 5.36,
+   "poids_10": 0.73,
+   "connu": false
+  },
+  {
+   "annee": 2022,
+   "annees": 17,
+   "taux": 1.7,
+   "inflation_10": 10,
+   "emprunt": 5.46,
+   "poids_10": 0.75,
+   "connu": false
+  },
+  {
+   "annee": 2023,
+   "annees": 18,
+   "taux": 2.99,
+   "inflation_10": 3,
+   "emprunt": 5.04,
+   "poids_10": 0.76,
+   "connu": false
+  },
+  {
+   "annee": 2024,
+   "annees": 17,
+   "taux": 2.97,
+   "inflation_10": 1,
+   "emprunt": 4.7,
+   "poids_10": 0.75,
+   "connu": false
+  },
+  {
+   "annee": 2025,
+   "annees": 17,
+   "taux": 3.35,
+   "inflation_10": 0,
+   "emprunt": 4.74,
+   "poids_10": 0.74,
+   "connu": false
+  }
+ ],
+ "simu_hyp": {
+  "emprunt": 3.0,
+  "effort": 0.3,
+  "croissance_future": 3,
+  "derniere_annee": 2025
+ },
  "smic": [
   {
    "annee": 1959,
