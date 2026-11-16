@@ -56,6 +56,8 @@ const S = [
   ["Alimentation", "fao", "Bilans alimentaires (FBS)", "Production, échanges, usages et calories par produit", "https://www.fao.org/faostat/fr/#data/FBS", "annuel"],
   ["Empreinte carbone", "sdes", "L'empreinte carbone de la France (SDES et INSEE)", "Empreinte par poste de consommation, série depuis 1990, origine des émissions, comparaison internationale", "https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2024", "annuel (octobre)"],
   ["Empreinte carbone", "eurostat", "env_ac_ghgfp / env_ac_ainah_r2", "Empreinte carbone de tous les pays par usage final et pays d'origine (modèle FIGARO), émissions directes des ménages", null, "annuel"],
+  ["Solde extérieur", "fmi", "BCA_NGDPD", "Solde de la balance courante en % du PIB, depuis 1980", "https://www.imf.org/external/datamapper/BCA_NGDPD@WEO", "semestriel"],
+  ["Solde extérieur", "eurostat", "tipsii10", "Position extérieure nette en % du PIB", null, "annuel"],
   ["Pays prospère", "fmi", "World Economic Outlook (datamapper)", "PIB par habitant en PPA, chômage, dette et solde publics", "https://www.imf.org/external/datamapper/datasets/WEO", "semestriel"],
   ["Pays prospère", "pnud", "Rapport sur le développement humain 2025, annexe statistique", "IDH, espérance de vie, années d'études, Gini, parts de revenu, IDH corrigé des inégalités", "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Statistical_Annex_Tables_1-7.pdf", "annuel"],
   ["Pays prospère", "bm", "SI.POV.DDAY", "Part de la population vivant avec moins de 3 dollars par jour (PPA 2021)", "https://data.worldbank.org/indicator/SI.POV.DDAY", "annuel"],
@@ -130,7 +132,7 @@ function render() {
 }
 // en bas de chaque article, ses sources en petit
 const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
-  duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"], prosperite: ["Pays prospère"],
+  duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine", "Solde extérieur"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"], prosperite: ["Pays prospère"],
   biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
