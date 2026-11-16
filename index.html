@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261122p">
+<link rel="stylesheet" href="style.css?v=20261122q">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -718,6 +718,23 @@
       <li><b>Certaines utilisations sont « dispersives »</b> : le métal se disperse et ne peut plus être récupéré (pigments, engrais, additifs, usure des pneus et des freins, électronique jetée dans la nature). L'ingénieur Philippe Bihouix (<i>L'Âge des low tech</i>, 2014) en tire une conclusion : sans réduire la consommation, le recyclage ne fait que retarder l'épuisement.</li>
     </ul>
   </div>
+
+  <details class="li-ing" open><summary>Encart technique : quels matériaux dans quelles technologies, et peut-on s'en passer ?</summary><div>
+    <p><b>Une confusion fréquente</b> : les batteries lithium-ion ne contiennent <b>pas de terres rares</b>. Les terres rares (néodyme, praséodyme, dysprosium, terbium) servent surtout aux <b>aimants permanents</b> néodyme-fer-bore des moteurs électriques et des éoliennes à entraînement direct. Les batteries, elles, dépendent du lithium, du nickel, du cobalt, du manganèse, du graphite, du cuivre et de l'aluminium, selon leur chimie.</p>
+    <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Technologie</th><th>Matériaux critiques</th><th>Ordres de grandeur</th><th>Alternatives</th></tr></thead><tbody>
+      <tr><td><b>Batterie NMC</b> (nickel-manganèse-cobalt, cathode)</td><td>Lithium, nickel, cobalt, manganèse ; graphite (anode), cuivre et aluminium (collecteurs)</td><td>Énergie massique élevée (de l'ordre de 250 à 300 Wh/kg par cellule) ; les versions récentes (« NMC 811 ») réduisent le cobalt au profit du nickel</td><td>LFP, sodium-ion ; cathodes sans cobalt</td></tr>
+      <tr><td><b>Batterie LFP</b> (lithium-fer-phosphate)</td><td>Lithium, graphite ; ni nickel ni cobalt</td><td>Moins dense (de l'ordre de 160 à 200 Wh/kg par cellule) mais moins chère, plus sûre et plus durable (plusieurs milliers de cycles) ; près de la moitié des batteries de voitures électriques vendues dans le monde, surtout en Chine</td><td>Sodium-ion ; LMFP (avec du manganèse) pour plus de densité</td></tr>
+      <tr><td><b>Batterie sodium-ion</b></td><td>Ni lithium ni cobalt, souvent ni nickel ; sodium, fer, manganèse, carbone dur (anode), aluminium pour les deux collecteurs</td><td>Encore moins dense (de l'ordre de 140 à 175 Wh/kg) mais résiste mieux au froid ; production industrielle lancée en Chine depuis 2023</td><td>Bien adaptée aux petites voitures, aux deux-roues et au stockage stationnaire</td></tr>
+      <tr><td><b>Stockage stationnaire</b></td><td>Lithium-ion (LFP surtout), vanadium (batteries à flux)</td><td>Pas de contrainte de poids : on peut utiliser des chimies moins denses</td><td>Sodium-ion, batteries fer-air, pompage-turbinage (barrages), stockage thermique</td></tr>
+      <tr><td><b>Moteur électrique de voiture</b></td><td>Aimants néodyme-fer-bore (terres rares) dans la plupart des moteurs synchrones ; cuivre</td><td>Le dysprosium et le terbium (les plus critiques) servent à faire tenir les aimants à chaud</td><td>Moteurs à rotor bobiné sans aimants (choisis par Renault), moteurs asynchrones à induction, aimants en ferrite ; un peu moins compacts ou efficaces</td></tr>
+      <tr><td><b>Éolienne</b></td><td>Aimants à terres rares pour les machines à entraînement direct (surtout en mer) ; cuivre, acier, béton</td><td>Les éoliennes terrestres à multiplicateur en utilisent peu ou pas</td><td>Génératrices à multiplicateur, à rotor bobiné, et à l'avenir supraconductrices</td></tr>
+      <tr><td><b>Panneau solaire</b></td><td>Silicium, argent (contacts), cuivre, aluminium, verre ; ni terres rares ni lithium</td><td>Le solaire est l'un des premiers consommateurs d'argent au monde</td><td>Contacts en cuivre à la place de l'argent ; couches minces au tellure (CdTe) ou à l'indium et au gallium (CIGS), plus rares</td></tr>
+      <tr><td><b>Électrolyseur à hydrogène</b></td><td>Membrane PEM : iridium et platine (très rares) ; alcalin : nickel</td><td>L'iridium est un des métaux les plus rares de la croûte terrestre</td><td>Électrolyseurs alcalins ou à oxyde solide, catalyseurs à moins d'iridium</td></tr>
+      <tr><td><b>Réseaux électriques</b></td><td>Cuivre, aluminium, acier</td><td>Électrifier multiplie les besoins en câbles et transformateurs</td><td>Aluminium à la place du cuivre pour les lignes aériennes et une partie des câbles</td></tr>
+    </tbody></table></div>
+    <p><b>Le recyclage des batteries</b> : le règlement européen sur les batteries (2023) impose de récupérer d'ici 2031 au moins 80 % du lithium et 95 % du cobalt, du nickel et du cuivre contenus dans les batteries usagées, et d'incorporer du métal recyclé dans les batteries neuves (au moins 16 % de cobalt, 6 % de lithium et 6 % de nickel à partir de 2031). Comme une batterie de voiture dure 10 à 20 ans, le gisement à recycler restera faible jusqu'aux années 2030.</p>
+    <p class="muted" style="font-size:.78rem">Ordres de grandeur indicatifs, variables selon les fabricants et les générations de produits. Sources : Agence internationale de l'énergie (<i>Global EV Outlook</i>, rapports sur les minerais critiques), règlement (UE) 2023/1542 relatif aux batteries.</p>
+  </div></details>
 
   <h3 id="li-5-6" class="li-sub">5.6 Qui s'inquiète, et de quoi ?</h3>
   <p class="lead">Presque tous les grands acteurs s'inquiètent des métaux. Mais pas d'une « fin des métaux » : de leur prix, des délais pour ouvrir des mines, des dégâts environnementaux et de la dépendance envers quelques pays.</p>
@@ -2216,50 +2233,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261122p"></script>
-<script src="app.js?v=20261122p"></script>
-<script src="energie.js?v=20261122p"></script>
-<script src="matieres.js?v=20261122p"></script>
-<script src="territoire.js?v=20261122p"></script>
-<script src="themes.js?v=20261122p"></script>
-<script src="societe.js?v=20261122p"></script>
-<script src="eco2.js?v=20261122p"></script>
-<script src="empreinte.js?v=20261122p"></script>
-<script src="argentprive.js?v=20261122p"></script>
-<script src="repartition.js?v=20261122p"></script>
-<script src="patrimoine.js?v=20261122p"></script>
-<script src="prelevements.js?v=20261122p"></script>
-<script src="travailvie.js?v=20261122p"></script>
-<script src="niveauvie.js?v=20261122p"></script>
-<script src="prosperite.js?v=20261122p"></script>
-<script src="exterieur.js?v=20261122p"></script>
-<script src="desindus.js?v=20261122p"></script>
-<script src="retraites.js?v=20261122p"></script>
-<script src="energiecout.js?v=20261122p"></script>
-<script src="energieformation.js?v=20261122p"></script>
-<script src="nucleaire.js?v=20261122p"></script>
-<script src="logementeco.js?v=20261122p"></script>
-<script src="competences.js?v=20261122p"></script>
-<script src="justicedroit.js?v=20261122p"></script>
-<script src="fonctionnaires.js?v=20261122p"></script>
-<script src="couper.js?v=20261122p"></script>
-<script src="seuilpays.js?v=20261122p"></script>
-<script src="logement.js?v=20261122p"></script>
-<script src="env.js?v=20261122p"></script>
-<script src="agriculture.js?v=20261122p"></script>
-<script src="rendements.js?v=20261122p"></script>
-<script src="chaine.js?v=20261122p"></script>
-<script src="patrimoinehist.js?v=20261122p"></script>
-<script src="innovation.js?v=20261122p"></script>
+<script src="kpi.js?v=20261122q"></script>
+<script src="app.js?v=20261122q"></script>
+<script src="energie.js?v=20261122q"></script>
+<script src="matieres.js?v=20261122q"></script>
+<script src="territoire.js?v=20261122q"></script>
+<script src="themes.js?v=20261122q"></script>
+<script src="societe.js?v=20261122q"></script>
+<script src="eco2.js?v=20261122q"></script>
+<script src="empreinte.js?v=20261122q"></script>
+<script src="argentprive.js?v=20261122q"></script>
+<script src="repartition.js?v=20261122q"></script>
+<script src="patrimoine.js?v=20261122q"></script>
+<script src="prelevements.js?v=20261122q"></script>
+<script src="travailvie.js?v=20261122q"></script>
+<script src="niveauvie.js?v=20261122q"></script>
+<script src="prosperite.js?v=20261122q"></script>
+<script src="exterieur.js?v=20261122q"></script>
+<script src="desindus.js?v=20261122q"></script>
+<script src="retraites.js?v=20261122q"></script>
+<script src="energiecout.js?v=20261122q"></script>
+<script src="energieformation.js?v=20261122q"></script>
+<script src="nucleaire.js?v=20261122q"></script>
+<script src="logementeco.js?v=20261122q"></script>
+<script src="competences.js?v=20261122q"></script>
+<script src="justicedroit.js?v=20261122q"></script>
+<script src="fonctionnaires.js?v=20261122q"></script>
+<script src="couper.js?v=20261122q"></script>
+<script src="seuilpays.js?v=20261122q"></script>
+<script src="logement.js?v=20261122q"></script>
+<script src="env.js?v=20261122q"></script>
+<script src="agriculture.js?v=20261122q"></script>
+<script src="rendements.js?v=20261122q"></script>
+<script src="chaine.js?v=20261122q"></script>
+<script src="patrimoinehist.js?v=20261122q"></script>
+<script src="innovation.js?v=20261122q"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261122p"></script>
-<script src="histoire.js?v=20261122p"></script>
-<script src="chomage.js?v=20261122p"></script>
-<script src="sources.js?v=20261122p"></script>
-<script src="monnaie.js?v=20261122p"></script>
-<script src="limites.js?v=20261122p"></script>
-<script src="sociologie.js?v=20261122p"></script>
-<script src="nav.js?v=20261122p"></script>
+<script src="soussol.js?v=20261122q"></script>
+<script src="histoire.js?v=20261122q"></script>
+<script src="chomage.js?v=20261122q"></script>
+<script src="sources.js?v=20261122q"></script>
+<script src="monnaie.js?v=20261122q"></script>
+<script src="limites.js?v=20261122q"></script>
+<script src="sociologie.js?v=20261122q"></script>
+<script src="nav.js?v=20261122q"></script>
 </body>
 </html>

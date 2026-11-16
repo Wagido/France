@@ -459,3 +459,6 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 @media (max-width: 640px) { .li-toc ul { columns: 1; } }
 h3.li-sub { font-size: 1.02rem; margin-top: 22px; }
 .en-constr { font-style: normal; font-weight: 500; font-size: .7em; color: var(--muted); }
+.li-ing { border: 1px solid var(--line); border-left: 4px solid #2563eb; border-radius: 10px; background: var(--surface); margin: 14px 0; max-width: 1060px; }
+.li-ing > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: .95rem; }
+.li-ing > div { padding: 0 14px 10px; font-size: .88rem; }
