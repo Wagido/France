@@ -1,14 +1,90 @@
 {
  "sources": {
   "cpi": "Transparency International, indice de perception de la corruption 2025 (0 = très corrompu, 100 = très intègre), pages pays https://www.transparency.org/en/countries/…, 182 pays",
-  "wjp": "World Justice Project, Rule of Law Index 2025 (0 à 1), https://worldjusticeproject.org/rule-of-law-index/downloads/WJPIndex2025.pdf, 143 pays"
+  "wjp": "World Justice Project, Rule of Law Index 2025 (0 à 1), https://worldjusticeproject.org/rule-of-law-index/downloads/WJPIndex2025.pdf, 143 pays",
+  "fh": "Freedom House, Freedom in the World 2026 (libertés politiques et civiles, 0 à 100), pages pays https://freedomhouse.org/country/…/freedom-world/2026",
+  "heritage": "Heritage Foundation, Index of Economic Freedom 2026 (0 à 100, 176 pays), fiches pays https://static.heritage.org/index/pdf/2026/2026_indexofeconomicfreedom_….pdf"
  },
  "pays": {
-  "FRA": {"cpi": 66, "cpi_rang": 27, "wjp": 0.72, "wjp_rang": 22},
-  "USA": {"cpi": 64, "cpi_rang": 29, "wjp": 0.68, "wjp_rang": 27},
-  "DEU": {"cpi": 77, "cpi_rang": 10, "wjp": 0.83, "wjp_rang": 6},
-  "BRA": {"cpi": 35, "cpi_rang": 107, "wjp": 0.50, "wjp_rang": 78},
-  "IND": {"cpi": 39, "cpi_rang": 91, "wjp": 0.49, "wjp_rang": 86},
-  "NGA": {"cpi": 26, "cpi_rang": 142, "wjp": 0.41, "wjp_rang": 120}
+  "FRA": {
+   "cpi": 66,
+   "cpi_rang": 27,
+   "wjp": 0.72,
+   "wjp_rang": 22,
+   "fh": 89,
+   "fh_statut": "libre",
+   "heritage": 64.6,
+   "heritage_rang": 65
+  },
+  "USA": {
+   "cpi": 64,
+   "cpi_rang": 29,
+   "wjp": 0.68,
+   "wjp_rang": 27,
+   "fh": 81,
+   "fh_statut": "libre",
+   "heritage": 72.8,
+   "heritage_rang": 22
+  },
+  "DEU": {
+   "cpi": 77,
+   "cpi_rang": 10,
+   "wjp": 0.83,
+   "wjp_rang": 6,
+   "fh": 95,
+   "fh_statut": "libre",
+   "heritage": 71.7,
+   "heritage_rang": 24
+  },
+  "BRA": {
+   "cpi": 35,
+   "cpi_rang": 107,
+   "wjp": 0.5,
+   "wjp_rang": 78,
+   "fh": 73,
+   "fh_statut": "libre",
+   "heritage": 52.4,
+   "heritage_rang": 134
+  },
+  "IND": {
+   "cpi": 39,
+   "cpi_rang": 91,
+   "wjp": 0.49,
+   "wjp_rang": 86,
+   "fh": 62,
+   "fh_statut": "partiellement libre",
+   "heritage": 52.5,
+   "heritage_rang": 132
+  },
+  "NGA": {
+   "cpi": 26,
+   "cpi_rang": 142,
+   "wjp": 0.41,
+   "wjp_rang": 120,
+   "fh": 44,
+   "fh_statut": "partiellement libre",
+   "heritage": 54.8,
+   "heritage_rang": 119
+  }
+ },
+ "chine": {
+  "fh": 9,
+  "fh_statut": "non libre",
+  "heritage": 48.3,
+  "heritage_rang": 154
+ },
+ "france_heritage_detail": {
+  "droit_propriete": 91.2,
+  "justice": 84.7,
+  "integrite": 73.4,
+  "impots": 54.6,
+  "depenses_publiques": 0.9,
+  "sante_budgetaire": 34.8,
+  "entreprendre": 78.4,
+  "travail": 59.1,
+  "monnaie": 73.2,
+  "commerce": 79.4,
+  "investissement": 75.0,
+  "finance": 70.0
  }
 }

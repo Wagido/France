@@ -9,7 +9,8 @@ Sources, dans data/sources/prosperite/ :
 - bm_pauvrete.json : Banque mondiale, SI.POV.DDAY (moins de 3 $ par jour en PPA 2021) ;
 - owid_co2.csv : Global Carbon Project via Our World in Data : CO2 par habitant (territoire) ;
 - institutions.json : Transparency International (indice de perception de la corruption 2025) et World Justice Project
-  (indice de l'État de droit 2025), relevés à la main sur les publications officielles ;
+  (indice de l'État de droit 2025), Freedom House (libertés 2026) et Heritage Foundation (liberté économique 2026),
+  relevés à la main sur les publications officielles ;
 - owid_energie.csv : Energy Institute via Our World in Data : production et consommation d'énergie primaire,
   pour le taux d'indépendance énergétique = (charbon + gaz + pétrole produits + nucléaire + renouvelables) ÷ consommation
   (le nucléaire est compté comme production nationale, comme le fait la statistique officielle, bien que l'uranium soit importé).
@@ -23,7 +24,7 @@ PAYS = [("FRA", "France"), ("USA", "États-Unis"), ("DEU", "Allemagne"), ("BRA",
 AN_FMI = "2025"
 imf = json.load(open(os.path.join(S, "imf.json")))
 pnud = json.load(open(os.path.join(S, "pnud_2023.json")))["pays"]
-inst = json.load(open(os.path.join(S, "institutions.json")))["pays"]
+INST = json.load(open(os.path.join(S, "institutions.json"))); inst = INST["pays"]
 pauv = json.load(open(os.path.join(S, "bm_pauvrete.json")))["valeurs"]
 co2 = {}
 for r in csv.DictReader(open(os.path.join(S, "owid_co2.csv"))):
@@ -49,6 +50,6 @@ for c, nom in PAYS:
                 "energie": round(ener[c][max(ener[c])]), "energie_annee": max(ener[c]), "co2": round(co2[c][y], 1), "co2_annee": y,
                 "esperance_vie": p["esperance_vie"], "annees_etudes": p["annees_etudes"], "idh": p["idh"], "rang_idh": p["rang_idh"],
                 "idh_ajuste": p["idh_ajuste"], "perte_inegalites": p["perte_inegalites"], **inst[c]})
-json.dump({"annee_fmi": int(AN_FMI), "annee_pnud": 2023, "pays": out}, open(os.path.join(R, "data", "prosperite.json"), "w"), ensure_ascii=False, indent=1)
+json.dump({"annee_fmi": int(AN_FMI), "annee_pnud": 2023, "pays": out, "chine": {**INST["chine"], "pib_hab": round(f("PPPPC", "CHN"))}, "france_heritage": INST["france_heritage_detail"]}, open(os.path.join(R, "data", "prosperite.json"), "w"), ensure_ascii=False, indent=1)
 for r in out:
     print(r["code"], r["pib_hab"], r["dette"], r["courant"], r["inflation"], r["energie"], r["energie_annee"])

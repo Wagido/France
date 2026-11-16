@@ -33,6 +33,10 @@ const BLOCS = {
     ["Corruption perçue (0 = très corrompu, 100 = intègre)", "cpi", 0, 1, "Transparency International, 2025"],
     ["État de droit (0 à 1) : justice, contrôle du pouvoir, droits", "wjp", 2, 1, "World Justice Project, 2025"],
   ],
+  regime: [
+    ["Libertés politiques et civiles (0 à 100)", "fh", 0, 1, "Freedom House, 2026"],
+    ["Liberté économique, dont liberté d'entreprendre (0 à 100)", "heritage", 1, 1, "Heritage Foundation, 2026"],
+  ],
   vie: [
     ["Espérance de vie à la naissance (ans)", "esperance_vie", 1, 1, "PNUD"],
     ["Années d'études des adultes (moyenne)", "annees_etudes", 1, 1, "PNUD"],
@@ -47,7 +51,7 @@ function table(sel, rows) {
       const vals = P.map(p => p[k]).filter(v => v != null), best = sens > 0 ? Math.max(...vals) : Math.min(...vals), mx = Math.max(...vals.map(Math.abs));
       return `<tr><td class="lab">${esc(l)} <small class="muted">${esc(src)}</small></td>` + P.map(p => {
         const v = p[k], w = v == null ? 0 : 100 * Math.abs(v) / mx;
-        return `<td class="${p.code === "FRA" ? "fr" : ""}${v === best ? " best" : ""}"><b>${k === "rang_idh" ? v + "<sup>e</sup>" : nf(v, d)}</b>${k === "idh" ? ` <small class="muted">(${p.rang_idh}<sup>e</sup>)</small>` : k === "cpi" ? ` <small class="muted">(${p.cpi_rang}<sup>e</sup>)</small>` : k === "wjp" ? ` <small class="muted">(${p.wjp_rang}<sup>e</sup>)</small>` : ""}<span class="pr-bar"><i style="width:${w.toFixed(1)}%"></i></span></td>`;
+        return `<td class="${p.code === "FRA" ? "fr" : ""}${v === best ? " best" : ""}"><b>${k === "rang_idh" ? v + "<sup>e</sup>" : nf(v, d)}</b>${k === "idh" ? ` <small class="muted">(${p.rang_idh}<sup>e</sup>)</small>` : k === "cpi" ? ` <small class="muted">(${p.cpi_rang}<sup>e</sup>)</small>` : k === "wjp" ? ` <small class="muted">(${p.wjp_rang}<sup>e</sup>)</small>` : k === "heritage" ? ` <small class="muted">(${p.heritage_rang}<sup>e</sup>)</small>` : k === "fh" ? ` <small class="muted">${p.fh_statut}</small>` : ""}<span class="pr-bar"><i style="width:${w.toFixed(1)}%"></i></span></td>`;
       }).join("") + `</tr>`;
     }).join("") + `</tbody></table>`;
 }
@@ -60,7 +64,7 @@ function draw() {
     [nf(fr.dette) + " %", ["dette publique en % du PIB", `56 % de la dette de l'État détenue à l'étranger`, `énergie : ${nf(fr.energie)} % produite sur place`], "Résilience"],
     [nf(fr.esperance_vie, 1) + " ans", ["espérance de vie, la plus longue des six", `mais IDH ${fr.rang_idh}e au monde`], "Bien-être"],
   ]);
-  table("#pr-richesse", BLOCS.richesse); table("#pr-partage", BLOCS.partage); table("#pr-durable", BLOCS.durable); table("#pr-vie", BLOCS.vie); table("#pr-inst", BLOCS.institutions);
+  table("#pr-richesse", BLOCS.richesse); table("#pr-partage", BLOCS.partage); table("#pr-durable", BLOCS.durable); table("#pr-vie", BLOCS.vie); table("#pr-inst", BLOCS.institutions); table("#pr-regime", BLOCS.regime);
   $("#pr-richesse-txt").innerHTML = `<ul>
     <li><b>La France est un pays riche</b> : ${nf(fr.pib_hab)} dollars par habitant en parité de pouvoir d'achat, ${Math.round(fr.pib_hab / P.IND.pib_hab)} fois plus qu'en Inde et ${Math.round(fr.pib_hab / P.NGA.pib_hab)} fois plus qu'au Nigeria.</li>
     <li><b>Mais elle est en retrait des pays riches comparables</b> : ${pc(fr.pib_hab, de.pib_hab)} % de moins que l'Allemagne, ${pc(fr.pib_hab, us.pib_hab)} % de moins que les États-Unis. L'écart vient surtout du nombre d'heures travaillées sur une vie et du chômage (${nf(fr.chomage, 1)} %, contre ${nf(de.chomage, 1)} % en Allemagne), pas de la productivité par heure, qui est élevée (voir l'onglet <a href="#travail">Temps de travail</a>).</li>
@@ -85,6 +89,15 @@ function draw() {
     <li><b>Les États-Unis reculent</b> : leur score de corruption est le plus bas depuis la création de l'indice, et leur État de droit a connu l'une des plus fortes baisses du monde en 2025.</li>
     <li><b>Au Brésil, en Inde et au Nigeria</b>, corruption et justice faible freinent l'investissement : c'est l'une des raisons pour lesquelles ces pays, riches en ressources et en population, peinent à rattraper les pays riches.</li>
     <li><b>Ces indices sont des perceptions</b>, construites à partir d'enquêtes auprès d'experts et d'entreprises (corruption) ou d'habitants et de juristes (État de droit) : des ordres de grandeur, pas des mesures exactes.</li>
+  </ul>`;
+  const CN = D.chine, FH = D.france_heritage;
+  $("#pr-regime-txt").innerHTML = `<p style="margin-top:0"><b>Régime politique, richesse, liberté d'entreprendre et partage : quels liens ?</b></p><ul>
+    <li><b>Démocratie et richesse vont ensemble, et la démocratie y contribue</b> : les pays riches sont presque tous des démocraties, à part Singapour et les monarchies pétrolières, et une étude sur 175 pays de 1960 à 2010 montre qu'un pays qui devient démocratique a, 25 ans plus tard, un PIB par habitant environ 20 % plus élevé (Acemoglu, Naidu, Restrepo et Robinson, 2019). Le lien passe par les institutions : un pouvoir contrôlé protège la propriété, les contrats et l'investissement.</li>
+    <li><b>Le contre-exemple chinois</b> : la Chine (libertés : ${CN.fh}/100) a connu quarante ans de croissance très rapide sans démocratie, en rattrapant son retard. Elle reste à ${nf(CN.pib_hab)} dollars par habitant, moins de la moitié de la France. Rattraper son retard est possible sans libertés ; rejoindre les pays les plus riches, aucun grand pays ne l'a fait, hors cas particuliers comme Singapour ou les pays du pétrole.</li>
+    <li><b>La liberté d'entreprendre en France : bonne sur les règles, faible sur le poids de l'État</b>. Avec ${nf(fr.heritage, 1)}/100, la France est ${fr.heritage_rang}<sup>e</sup> sur 176, loin de l'Allemagne (${nf(de.heritage, 1)}) et des États-Unis (${nf(us.heritage, 1)}). Dans le détail : droit de propriété ${nf(FH.droit_propriete)}/100, justice ${nf(FH.justice)}/100, facilité à créer une entreprise ${nf(FH.entreprendre)}/100, mais dépenses publiques ${nf(FH.depenses_publiques, 1)}/100, santé des finances publiques ${nf(FH.sante_budgetaire)}/100, impôts ${nf(FH.impots)}/100 et droit du travail ${nf(FH.travail)}/100. Ce n'est pas l'entrepreneur qui est empêché, c'est le poids des prélèvements et des dépenses qui pèse.</li>
+    <li><b>Et le partage ?</b> Il n'y a pas de lien automatique. Les démocraties redistribuent davantage, car les électeurs le demandent, mais le résultat dépend des choix : les États-Unis sont libres et très inégalitaires, le Brésil démocratique est le plus inégalitaire des six, la France et l'Allemagne combinent libertés et faibles inégalités grâce à une forte redistribution.</li>
+    <li><b>Il y a donc un arbitrage</b> : plus de redistribution veut dire plus d'impôts et de dépenses publiques, donc un score de liberté économique plus bas. La France a choisi le partage ; la question est de savoir si elle en a encore les moyens, avec la dette qu'il entraîne (voir l'onglet <a href="#couper">Couper où ?</a>).</li>
+    <li><b>À lire avec prudence</b> : l'indice de liberté économique est publié par un centre de réflexion conservateur américain, qui note mieux les pays où l'État est petit et les impôts bas ; l'indice de Freedom House repose sur l'avis d'experts.</li>
   </ul>`;
   $("#pr-vie-txt").innerHTML = `<ul>
     <li><b>Les Français vivent le plus longtemps</b> des six pays : ${nf(fr.esperance_vie, 1)} ans, contre ${nf(us.esperance_vie, 1)} aux États-Unis, malgré un revenu plus bas. Un système de santé accessible compte autant que la richesse.</li>
