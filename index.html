@@ -46,6 +46,7 @@
       <a href="#retraites">Retraites</a>
       <a href="#duree">Dette sur 30 ans</a>
       <a href="#monnaie">Monnaie et croissance</a>
+      <a href="#limites">Limites à la croissance</a>
       <a href="#simulateur">Couper la dépense ?</a>
       <a href="#couper">Couper où ?</a>
       <a href="#population">Qui fait quoi</a>
@@ -461,6 +462,50 @@
     <p><b>En résumé</b> : la monnaie créée par le crédit n'oblige pas, à elle seule, à croître sans fin ; l'argent des intérêts revient dans l'économie quand ceux qui les touchent le dépensent. Ce qui rend notre système dépendant de la croissance, c'est la combinaison des dettes à intérêt positif, de l'attente de rendement du capital, du besoin d'emplois et de la fragilité du crédit. Rien de tout cela n'est une loi physique : ce sont des règles, qui peuvent changer, mais qui n'ont jamais été conçues pour une économie stationnaire.</p>
   </div>
   <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; BCE, statistiques monétaires (agrégats M1, M2, M3 de la zone euro) et Eurostat (PIB de la zone euro) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
+</section>
+
+<section id="limites" class="panel">
+  <div class="panel-head">
+    <h2>Les limites à la croissance (1972) : suit-on les prédictions ? <span class="geo-fixed">Monde</span></h2>
+  </div>
+  <p class="lead">En 1972, une équipe du MIT publie <i>The Limits to Growth</i> (« Halte à la croissance ? » en français), commandé par le Club de Rome. Son modèle informatique, World3, simule l'évolution du monde jusqu'en 2100. Dans son scénario de référence, la croissance de la population et de la production s'arrête au XXI<sup>e</sup> siècle, puis décline brutalement. Cinquante ans plus tard, que disent les données ?</p>
+  <p class="muted" style="margin:0 0 8px">Quatre parties : <a href="#limites" data-to="li-p1">1. ce que dit le modèle</a> · <a href="#limites" data-to="li-p2">2. modèle et réalité, indicateur par indicateur</a> · <a href="#limites" data-to="li-p3">3. ce que disent les études récentes</a> · <a href="#limites" data-to="li-p4">4. ce qu'il faut en retenir</a></p>
+  <div class="kpis" id="li-kpis"></div>
+
+  <h3 id="li-p1" class="ag-part">1. Ce que dit le modèle</h3>
+  <div class="in-need">
+    <div><b>Un modèle, pas une prophétie</b><span>World3 relie cinq grands ensembles : population, production industrielle, nourriture, ressources non renouvelables, pollution. Les auteurs (Donella et Dennis Meadows, Jørgen Randers, William Behrens) ont calculé une douzaine de scénarios. Ils les présentaient comme des tendances possibles, « si rien ne change », pas comme des prévisions datées.</span></div>
+    <div><b>Le mécanisme : dépassement puis effondrement</b><span>La production croît, consomme des ressources et pollue. Les réactions arrivent avec retard : quand les ressources deviennent difficiles à extraire, il faut y consacrer de plus en plus de capital, qui manque ailleurs (agriculture, services, santé). La production industrielle baisse, puis la nourriture, puis la population.</span></div>
+    <div><b>Une idée reçue</b><span>On lit souvent que le livre annonçait la fin du pétrole en 2000. C'est faux : un tableau calculait combien d'années dureraient les réserves connues au rythme de consommation de l'époque, pour montrer justement que ce calcul « statique » est trompeur. Ce n'étaient pas des prévisions.</span></div>
+    <div><b>Les mises à jour</b><span>Les auteurs ont publié deux mises à jour : <i>Beyond the Limits</i> (1992) et <i>The 30-Year Update</i> (2004), avec une version révisée du modèle, World3-03. Leurs conclusions n'ont pas changé : sans changement de cap, le monde dépasse ses limites au XXI<sup>e</sup> siècle.</span></div>
+  </div>
+  <h3>Les deux scénarios recalculés ici</h3>
+  <p class="lead">Calculés avec pyworld3, une reproduction libre de World3. <b>Scénario de référence</b> : les hypothèses de 1972. <b>Ressources doublées</b> : deux fois plus de ressources non renouvelables au départ (l'équivalent du scénario « BAU2 » de la mise à jour de 2004).</p>
+  <div class="grid2">
+    <div><h3>Population mondiale (milliards)</h3><div id="li-pop" class="chart"></div></div>
+    <div><h3>Production industrielle par habitant (unités du modèle)</h3><div id="li-io" class="chart"></div></div>
+  </div>
+  <div class="legend-row" id="li-legend"></div>
+
+  <h3 id="li-p2" class="ag-part">2. Modèle et réalité, indicateur par indicateur</h3>
+  <p class="lead">Chaque graphique compare les deux scénarios (lignes de couleur) aux données mondiales observées (en noir). Comme le modèle ne parle pas dans les mêmes unités que les statistiques, tout est en indice, base 100 en 2000 : on compare l'allure des courbes, comme le font les études publiées. L'écart indiqué est l'écart moyen entre la réalité et le scénario depuis 2000.</p>
+  <div id="li-grid" class="in-mini"></div>
+  <div class="legend-row" id="li-legend2"></div>
+  <div class="callout small" id="li-txt"></div>
+
+  <h3 id="li-p3" class="ag-part">3. Ce que disent les études récentes</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Graham Turner (2008, 2014)</b>, chercheur australien (CSIRO, puis université de Melbourne), a comparé les données de 1970 à 2000, puis jusqu'en 2010, aux scénarios de 1972 : elles suivent de près le scénario de référence, plus que les scénarios optimistes.</li>
+      <li><b>Gaya Herrington (2021)</b>, dans le <i>Journal of Industrial Ecology</i>, a comparé dix variables aux quatre scénarios de la mise à jour de 2004 : population, natalité, mortalité, production industrielle, nourriture, services, ressources, pollution, bien-être et empreinte écologique. Les données suivent le mieux deux scénarios : « ressources doublées » (BAU2) et « technologie généralisée » (CT). Les deux montrent un arrêt de la croissance de la production industrielle, de la nourriture et du bien-être dans les années 2030 ou 2040. BAU2 aboutit ensuite à un effondrement ; CT à un déclin plus doux. Le scénario le plus optimiste, le « monde stabilisé » (SW), est celui qui colle le moins aux données <a href="https://econpapers.repec.org/RePEc:bla:inecol:v:25:y:2021:i:3:p:614-626" target="_blank" rel="noopener">[Herrington, 2021]</a>.</li>
+      <li><b>Arjuna Nebel et ses coauteurs (2023)</b> ont recalé les paramètres du modèle World3-03 sur les données récentes. Le modèle recalé montre le même dépassement suivi d'un effondrement que le scénario de référence, avec des pics un peu plus hauts et décalés de quelques années <a href="https://econpapers.repec.org/RePEc:bla:inecol:v:28:y:2024:i:1:p:87-99" target="_blank" rel="noopener">[Nebel et al., 2023]</a>.</li>
+      <li><b>Notre propre comparaison</b>, plus simple (modèle de 1974, deux scénarios, indicateurs approchés), va dans le même sens : sur la plupart des indicateurs, la réalité est plus proche du scénario « ressources doublées » que du scénario de 1972. Le monde a repoussé la limite des ressources, mais il suit encore une trajectoire de croissance que le modèle mène au dépassement.</li>
+    </ul>
+  </div>
+
+  <h3 id="li-p4" class="ag-part">4. Ce qu'il faut en retenir</h3>
+  <div class="callout small" id="li-concl"></div>
+  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; consommation d'énergies fossiles, d'après l'Energy Institute). La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
 </section>
 
 <section id="simulateur" class="panel">
@@ -1761,6 +1806,7 @@
 <script src="agriculture.js?v=20261121n"></script>
 <script src="rendements.js?v=20261121n"></script>
 <script src="monnaie.js?v=20261121n"></script>
+<script src="limites.js?v=20261121n"></script>
 <script src="chaine.js?v=20261121n"></script>
 <script src="patrimoinehist.js?v=20261121n"></script>
 <script src="innovation.js?v=20261121n"></script>

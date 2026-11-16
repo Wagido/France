@@ -18,7 +18,8 @@ Site : https://wagido.github.io/france/ (une fois GitHub Pages activé : Setting
 2. **L'argent public** : diagramme de flux en cinq colonnes (qui paie → comment → quelle administration → pour quoi → qui reçoit), par tranche de niveau de vie.
 3. **Couper la dépense ?** : simulateur du seuil de multiplicateur au-delà duquel une baisse de dépense fait monter le ratio dette/PIB la première année (m* = 1 / (dette/PIB + taux de prélèvements)).
 4. **Monnaie et croissance** : la monnaie créée par le crédit oblige-t-elle à croître ? crédit et monnaie depuis 1900, croissance en valeur contre taux d'intérêt, deux simulateurs (`scripts/build_monnaie.py`, `monnaie.js`).
-5. **Sur 30 ans** : charge d'intérêts de la dette et dépenses par fonction depuis 1995.
+5. **Limites à la croissance** : les scénarios du modèle World3 (1972) recalculés et comparés aux données mondiales (`scripts/run_world3.py`, `scripts/build_limites.py`, `limites.js`).
+6. **Sur 30 ans** : charge d'intérêts de la dette et dépenses par fonction depuis 1995.
 5. **Comparer les pays** : 30 pays Eurostat (composition du PIB, dépenses par fonction, dette et intérêts, actifs et passifs).
 6. **Énergie** : diagramme de flux du bilan énergétique (Eurostat), séries depuis 1965 (Our World in Data), électricité française en direct (RTE éCO2mix via ODRÉ), comparaison européenne.
 7. **Matières, territoire, commerce, climat, eau, sols, alimentation, démographie, immigration, temps de travail, justice** : voir `scripts/build_matieres.py`, `build_territoire.py`, `build_themes.py` et les fichiers `matieres.js`, `territoire.js`, `themes.js`.
@@ -48,6 +49,7 @@ python3 scripts/build_territoire.py
 python3 scripts/build_themes.py
 python3 scripts/build_rendements.py
 python3 scripts/build_monnaie.py
+python3 scripts/build_limites.py   # scénarios World3 : python3 scripts/run_world3.py (une fois, pip install pyworld3)
 ```
 
 Pour voir la page en local : `python3 -m http.server` dans ce dossier, puis ouvrir http://localhost:8000.
