@@ -15,6 +15,7 @@ async function init() {
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
   if ($("#mo-st-prev")) { $("#mo-st-prev").onclick = () => { stI = Math.max(0, stI - 1); stepper(); }; $("#mo-st-next").onclick = () => { stI = Math.min(ST.length - 1, stI + 1); stepper(); }; }
+  ["mo-sg", "mo-ss", "mo-sr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", stag));
   ["mo-k", "mo-pond"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", bale));
   ["mo-rf", "mo-erp", "mo-beta", "mo-obt"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", capm));
   ["mo-d", "mo-r", "mo-g", "mo-p", "mo-s"].forEach(id => $("#" + id).addEventListener("input", snow));
@@ -96,6 +97,22 @@ function drawInfl() {
   svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
     .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b><br>Hausse des prix : ${f1(d.inflation)} %`, ev); }).on("pointerleave", hideTip);
   el.replaceChildren(svg.node());
+}
+
+/* rendement du capital et croissance : patrimoine d'équilibre s/g et part du capital r × s/g */
+function stag() {
+  if (!$("#mo-sg")) return;
+  const g = +$("#mo-sg").value, s = +$("#mo-ss").value, r = +$("#mo-sr").value;
+  $("#mo-sg-v").textContent = f2(g) + " %"; $("#mo-ss-v").textContent = s + " %"; $("#mo-sr-v").textContent = f2(r) + " %";
+  const beta = g > 0 ? s / g : Infinity, alpha = r * beta, bar = (l, v, mx, c, txt) => `<div class="in-sbar"><span class="lab">${l}</span><span class="tr"><span style="width:${Math.min(100, 100 * v / mx)}%;background:${c}"></span></span><b>${txt}</b><small></small></div>`;
+  const rmax = g > 0 ? 100 / beta : 0;
+  $("#mo-stag-out").innerHTML = bar("Patrimoine à long terme (années de revenu)", Math.min(beta, 40), 40, "#f59e0b", isFinite(beta) ? f1(beta) + " ans" : "sans limite") +
+    bar("Part du revenu national qui revient au capital", Math.min(alpha, 100), 100, alpha > 50 ? "#dc2626" : "#2563eb", isFinite(alpha) ? n0(alpha) + " %" : "tout") +
+    `<p class="in-verdict">${!isFinite(beta) ? `<span style="color:var(--neg)">Sans croissance, l'épargne s'accumule sans fin : le patrimoine grossit d'année en année, et un rendement de ${f2(r)} % finirait par absorber tout le revenu. Il faut que le rendement baisse vers zéro, ou que du capital soit détruit.</span>`
+      : alpha > 100 ? `<span style="color:var(--neg)">Impossible : le capital réclamerait ${n0(alpha)} % du revenu, plus que tout ce qui est produit.</span> Avec ${f2(g)} % de croissance, le rendement ne peut pas dépasser ${f2(rmax)} %. Il doit baisser, ou une partie du capital disparaître (krachs, inflation, défauts).`
+      : alpha > 32 && alpha <= 40 ? `Le capital reçoit ${n0(alpha)} % du revenu, plus qu'aujourd'hui en France (environ 25 à 30 %) : sa part grandit au détriment des salaires.`
+      : alpha > 40 ? `<span style="color:var(--neg)">Le capital prendrait ${n0(alpha)} % du revenu, contre environ 25 à 30 % aujourd'hui en France : les salaires devraient reculer d'autant.</span> Une situation socialement explosive : la pression pour baisser le rendement (inflation, impôts, pertes) deviendrait très forte.`
+      : `<span style="color:var(--pos)">Le capital reçoit ${n0(alpha)} % du revenu, un niveau proche de celui d'aujourd'hui en France (environ 25 à 30 %).</span> Baissez la croissance pour voir ce qui se passe.`}</p>`;
 }
 
 /* un crédit pas à pas : bilans de vous, banque A, banque B, banque centrale (milliers d'euros) */
@@ -256,10 +273,10 @@ function draw() {
   const t0 = S.find(s => s.taux != null);
   const per = M.periodes;
   kpis("#mo-kpis", [
-    ["≈ 90 %", ["de la monnaie est créée par les banques,", "quand elles accordent des crédits"], "Monnaie"],
-    [f1(cL.credit).replace(",0", "") + " %", [`du PIB : crédits bancaires au privé (${cL.annee})`, `${f1(c50.credit)} % en 1950`], "Crédit"],
-    [sg(last.nominal) + " %", [`croissance du PIB en valeur en ${last.annee}`, `taux long de l'État : ${f2(last.taux)} %`], "Croissance et taux"],
-    ["non", ["la monnaie-dette n'impose pas à elle seule", "la croissance ; la dette à intérêt, si"], "En bref"],
+    ["≈ 90 %", ["de la monnaie est créée par les banques", "quand elles accordent des crédits"], "Monnaie"],
+    [f1(cL.credit) + " %", [`du PIB : crédits des banques aux ménages et aux entreprises (${cL.annee})`, `contre ${f1(c50.credit)} % en 1950`], "Crédit"],
+    [sg(last.nominal) + " %", [`croissance du PIB en valeur en ${last.annee}`, `contre un taux d'intérêt de ${f2(last.taux)} % pour l'État à 10 ans`], "Croissance et taux"],
+    ["Oui et non", ["la monnaie-dette n'oblige pas à elle seule à croître", "mais intérêts et épargne accumulée y poussent"], "En bref"],
   ]);
   lineChart($("#mo-credit"), C, [{ k: "credit", l: "Crédits des banques aux ménages et entreprises", c: "#2563eb" }, { k: "monnaie", l: "Monnaie au sens large (dépôts, billets…)", c: "#16a34a" },
     { k: "dette_publique", l: "Dette publique", c: "#dc2626", dash: "4 3" }], { vfmt: v => f1(v) + " %", yfmt: v => v + " %", h: 280 });
@@ -297,7 +314,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale(); stag();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
