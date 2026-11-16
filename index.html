@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121m">
+<link rel="stylesheet" href="style.css?v=20261121t">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -342,6 +342,117 @@
     <h2>Les retraites : ce qu'elles coûtent, et ce qu'une génération donne et reçoit <span class="geo-fixed">France et voisins</span></h2>
   </div>
   <div class="kpis" id="rt-kpis"></div>
+  <h3 class="ag-part">La première dépense publique</h3>
+  <p class="lead" id="rt-dep-lead"></p>
+  <div id="rt-depenses"></div>
+  <h3 class="ag-part">Un poids décisif dans les urnes</h3>
+  <p class="lead">Part de chaque âge parmi les adultes, et parmi ceux qui votent vraiment (en tenant compte de la participation par âge aux élections de 2022).</p>
+  <div id="rt-urnes"></div>
+  <div class="legend-row" id="rt-urnes-legend"></div>
+  <div class="grid2">
+    <div><h3>Participation par âge en 2022 (% des inscrits ayant voté au moins une fois)</h3><div id="rt-part" class="chart"></div><div class="legend-row" id="rt-part-legend"></div></div>
+    <div><h3>Les 65 ans et plus parmi les adultes : projection</h3><div id="rt-proj" class="chart"></div></div>
+  </div>
+  <div class="callout small" id="rt-urnes-txt"></div>
+  <h3>Et pour qui votent-ils ? La sociologie électorale par âge</h3>
+  <p class="lead">Le vote est secret : ces chiffres viennent d'enquêtes d'Ipsos auprès de plusieurs milliers d'électeurs le jour du vote ou juste avant, avec une marge d'erreur de quelques points. Part des voix de chaque camp dans chaque tranche d'âge, au premier tour.</p>
+  <div class="table-scroll"><table class="cmp-t rt-cmp rt-vote"><thead><tr><th>Âge</th><th>RN et alliés</th><th>Nouveau Front populaire (gauche)</th><th>Ensemble (camp présidentiel)</th><th>LR et divers droite</th><th>Ont voté</th></tr></thead><tbody>
+    <tr><td><b>18-24 ans</b></td><td>33 %</td><td><b>48 %</b></td><td>9 %</td><td>4 %</td><td>57 %</td></tr>
+    <tr><td><b>25-34 ans</b></td><td>32 %</td><td><b>38 %</b></td><td>13 %</td><td>8 %</td><td>51 %</td></tr>
+    <tr><td><b>35-49 ans</b></td><td><b>36 %</b></td><td>31 %</td><td>17 %</td><td>9 %</td><td>61 %</td></tr>
+    <tr><td><b>50-59 ans</b></td><td><b>40 %</b></td><td>25 %</td><td>18 %</td><td>10 %</td><td>66 %</td></tr>
+    <tr><td><b>60-69 ans</b></td><td><b>35 %</b></td><td>24 %</td><td>21 %</td><td>11 %</td><td>74 %</td></tr>
+    <tr><td><b>70 ans et plus</b></td><td>29 %</td><td>18 %</td><td><b>32 %</b></td><td>14 %</td><td>80 %</td></tr>
+    <tr><td><b>Retraités</b></td><td><b>31 %</b></td><td>20 %</td><td>29 %</td><td>13 %</td><td>79 %</td></tr>
+    <tr><td><b>Ensemble</b></td><td>34 %</td><td>28 %</td><td>20 %</td><td>10 %</td><td>66 %</td></tr>
+  </tbody></table></div>
+  <p class="muted" style="font-size:.78rem;margin-top:2px">Législatives anticipées de 2024, premier tour (30 juin). Enquête Ipsos-Talan auprès de 10 286 inscrits (27-28 juin 2024), en % des suffrages exprimés de chaque groupe ; « Ont voté » : part des inscrits. Le rapport d'Ipsos détaille aussi le vote par profession, diplôme, revenu et taille de commune.</p>
+  <div class="callout small">
+    <ul>
+      <li><b>Les plus âgés votent davantage pour le camp présidentiel et la droite</b> : aux législatives de 2024, Ensemble arrive en tête chez les 70 ans et plus (32 %), alors qu'il ne recueille que 9 % chez les 18-24 ans. À la présidentielle de 2022, Emmanuel Macron obtenait 41 % des voix des plus de 70 ans au premier tour, contre 13 % pour Marine Le Pen ; il devançait Marine Le Pen seulement à partir de 60 ans <a href="https://www.ipsos.com/fr-fr/presidentielle-2022/1er-tour-abstentionnistes-sociologie-electorat" target="_blank" rel="noopener">[Ipsos, 2022]</a>.</li>
+      <li><b>Les jeunes votent d'abord à gauche, quand ils votent</b> : Jean-Luc Mélenchon arrivait en tête chez les moins de 35 ans en 2022 (34 % des 18-24 ans, 36 % des 25-34 ans, selon Ipsos), le Nouveau Front populaire en 2024 (48 % des 18-24 ans). Mais ils votent peu : un tiers seulement des 18-29 ans ont voté aux législatives de 2022, un peu plus en 2024.</li>
+      <li><b>Le Rassemblement national est le plus fort chez les 35-69 ans</b> (36 % des 35-49 ans, 40 % des 50-59 ans, 35 % des 60-69 ans), les ouvriers et les employés. C'est l'électorat qui a le plus à perdre d'un recul de l'âge de départ : ceux qui sont proches de la retraite et ont commencé à travailler tôt.</li>
+      <li><b>Le paradoxe des retraites</b> : le camp qui a porté la réforme de 2023 (64 ans) fait ses meilleurs scores chez les retraités : 37 % pour Emmanuel Macron en 2022 (28 % en moyenne), 29 % pour Ensemble en 2024 (20 % en moyenne), à peine derrière le RN (31 %). C'est logique : la réforme ne touchait pas leur pension, mais les futurs retraités. Elle a été surtout rejetée par les actifs, qui votent davantage pour le Rassemblement national et la gauche, lesquels promettent de revenir dessus. Une réforme qui toucherait les pensions déjà versées se heurterait, elle, à l'électorat le plus fidèle aux urnes et au camp présidentiel.</li>
+    </ul>
+  </div>
+  <h3 id="rt-synthese" class="ag-part">Comprendre les retraites en dix minutes</h3>
+  <p class="muted" style="margin:0 0 8px">Cinq étapes : <a href="#retraites" data-to="rt-s1">1. les mots</a> · <a href="#retraites" data-to="rt-s2">2. comment se calcule une retraite en France</a> · <a href="#retraites" data-to="rt-s3">3. la France et les autres pays</a> · <a href="#retraites" data-to="rt-s4">4. les réformes depuis 1982</a> · <a href="#retraites" data-to="rt-s5">5. ce qui est proposé</a></p>
+
+  <h3 id="rt-s1">1. Les mots à connaître</h3>
+  <div class="in-need">
+    <div><b>Répartition</b><span>Les cotisations des actifs d'aujourd'hui paient les pensions des retraités d'aujourd'hui. Rien n'est mis de côté : c'est un contrat entre générations. C'est le cœur du système français.</span></div>
+    <div><b>Capitalisation</b><span>Chacun épargne pour lui-même ; l'argent est placé (actions, obligations) et sert à payer sa propre retraite. Exemples : les fonds de pension néerlandais, l'épargne retraite (PER) en France.</span></div>
+    <div><b>Annuités</b><span>La pension dépend du nombre d'années (ou de trimestres) travaillées et d'un salaire de référence. C'est le régime de base français.</span></div>
+    <div><b>Points</b><span>Chaque euro cotisé achète des points ; à la retraite, on multiplie ses points par la valeur du point. C'est la retraite complémentaire Agirc-Arrco, et le système allemand.</span></div>
+    <div><b>Comptes notionnels</b><span>Des comptes individuels « virtuels » : les cotisations s'y accumulent comme si elles étaient placées, mais l'argent paie en réalité les retraités actuels. À la retraite, le capital virtuel est converti en pension selon l'espérance de vie de sa génération. Suède, Italie.</span></div>
+    <div><b>Trimestre</b><span>L'unité de durée de cotisation en France. On valide un trimestre en gagnant l'équivalent de 150 heures au SMIC (environ 1 800 € bruts), quatre au maximum par an, quelle que soit la durée réelle du travail. Le chômage, la maladie, la maternité en font aussi valider.</span></div>
+    <div><b>Âge légal et taux plein</b><span>L'âge légal est l'âge minimum de départ. Le « taux plein » est la pension sans pénalité : on l'obtient avec tous ses trimestres, ou automatiquement à 67 ans. Partir sans tous ses trimestres entraîne une <b>décote</b> ; travailler au-delà, une <b>surcote</b>.</span></div>
+    <div><b>Taux de remplacement</b><span>La première pension en pourcentage du dernier salaire. Il mesure la baisse de revenu au moment de la retraite.</span></div>
+  </div>
+
+  <h3 id="rt-s2">2. Comment se calcule une retraite en France (salarié du privé)</h3>
+  <div class="mo-calc">
+    <div class="mo-calc-row"><b>Retraite de base (Assurance retraite)</b><span>50 % × salaire annuel moyen des <b>25 meilleures années</b> (plafonné à environ 48 000 € par an) × trimestres validés ÷ trimestres requis</span></div>
+    <div class="mo-calc-row"><b>+ Retraite complémentaire (Agirc-Arrco)</b><span>nombre de points accumulés × valeur du point (environ 1,4 € par point et par an)</span></div>
+    <div class="mo-calc-row"><b>= Pension</b><span>pour un salarié du privé, la complémentaire représente environ 30 % de la pension pour un non-cadre, plus de la moitié pour un cadre</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Exemple</b> : un salarié dont les 25 meilleures années tournent autour de 30 000 € bruts par an, avec tous ses trimestres, touche 50 % × 30 000 = 15 000 € par an de retraite de base (1 250 € par mois), plus sa complémentaire (de l'ordre de 500 € par mois), soit environ 1 750 € bruts par mois.</li>
+      <li><b>Les fonctionnaires</b> ont une règle différente : 75 % du traitement des <b>6 derniers mois</b>, mais sans les primes, qui pèsent souvent 20 à 30 % de leur rémunération (une petite partie ouvre droit à une retraite additionnelle). Les indépendants, les agriculteurs et les professions libérales ont leurs propres caisses. Au total, il existe une quarantaine de régimes.</li>
+      <li><b>Les cotisations</b> : pour un salarié du privé, environ 28 % du salaire brut (dont environ 11 % payés par le salarié et 17 % par l'employeur) partent chaque mois vers les retraites. S'y ajoutent de la CSG et des impôts affectés : au total, la France consacre environ 15 % de sa richesse aux retraites (tableau plus bas), l'un des niveaux les plus élevés au monde.</li>
+      <li><b>Les règles d'âge aujourd'hui</b> : la réforme de 2023 relève l'âge légal de 62 à 64 ans et la durée requise à 172 trimestres (43 ans), progressivement selon l'année de naissance. Elle est <b>suspendue</b> par la loi de financement de la Sécurité sociale pour 2026 : pour les départs entre le 1<sup>er</sup> septembre 2026 et la fin de 2027, l'âge est gelé à 62 ans et 9 mois et la durée à 170 trimestres. La suite (reprise de la hausse vers 64 ans ou nouvelle réforme) dépendra de la majorité élue en 2027. Les « carrières longues » (début avant 20 ans) peuvent partir plus tôt.</li>
+    </ul>
+  </div>
+
+  <h3 id="rt-s3">3. La France et les autres pays</h3>
+  <p class="lead">Les grandes règles, simplifiées. Les âges sont ceux qui s'appliquent ou sont votés pour les prochaines années ; les cotisations sont celles des régimes publics obligatoires, en % du salaire brut (salarié + employeur), en ordre de grandeur.</p>
+  <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Pays</th><th>Type de système</th><th>Âge de départ</th><th>Condition de durée</th><th>Cotisation</th><th>Ce qui le distingue</th></tr></thead><tbody>
+    <tr class="me"><td><b>France</b></td><td>Répartition : annuités (base) + points (complémentaire)</td><td>62 ans 9 mois (gel 2026-2027) ; 64 ans prévu par la réforme de 2023 ; taux plein automatique à 67 ans</td><td>170 à 172 trimestres (42,5 à 43 ans) pour le taux plein</td><td>≈ 28 %</td><td>Une quarantaine de régimes ; pensions élevées, départ tôt, peu de capitalisation</td></tr>
+    <tr><td><b>Allemagne</b></td><td>Répartition par points</td><td>Passe de 65 à 67 ans d'ici 2031</td><td>45 ans de cotisation pour partir 2 ans plus tôt sans pénalité</td><td>18,6 %</td><td>Pension plus basse (taux garanti autour de 48 % du salaire moyen) ; épargne d'entreprise et privée encouragée</td></tr>
+    <tr><td><b>Italie</b></td><td>Comptes notionnels (depuis 1995)</td><td>67 ans, lié à l'espérance de vie</td><td>Départ anticipé possible avec une très longue carrière (environ 42 ans)</td><td>33 %</td><td>Cotisation la plus élevée d'Europe ; dépenses de retraite parmi les plus fortes (≈ 15 % du PIB)</td></tr>
+    <tr><td><b>Espagne</b></td><td>Répartition par annuités</td><td>Passe à 67 ans en 2027 (65 ans avec une longue carrière)</td><td>Environ 37 ans pour une pension complète</td><td>≈ 29 %</td><td>Pensions généreuses et indexées sur les prix ; cotisation supplémentaire « d'équité entre générations »</td></tr>
+    <tr><td><b>Suède</b></td><td>Comptes notionnels + une part en capitalisation</td><td>Libre à partir de 63-64 ans ; âge de référence lié à l'espérance de vie (environ 67 ans)</td><td>Aucune : chaque année cotisée compte</td><td>18,5 % (dont 2,5 % placés en fonds)</td><td>Équilibre automatique : si le système dérive, les pensions s'ajustent sans nouvelle loi</td></tr>
+    <tr><td><b>Pays-Bas</b></td><td>Pension de base forfaitaire + fonds de pension obligatoires (capitalisation)</td><td>67 ans, lié à l'espérance de vie</td><td>50 ans de résidence pour la pension de base complète (pas de condition de travail)</td><td>≈ 18 % (base) + ≈ 20 % (fonds)</td><td>Fonds de pension parmi les plus gros du monde (plus de 1 500 milliards d'euros)</td></tr>
+    <tr><td><b>Royaume-Uni</b></td><td>Pension publique forfaitaire + épargne d'entreprise obligatoire par défaut</td><td>66 ans, 67 ans entre 2026 et 2028</td><td>35 années de cotisation pour la pension publique complète</td><td>Cotisation sociale générale + 8 % minimum d'épargne d'entreprise</td><td>Pension publique faible (environ 1 100 € par mois au maximum), le reste vient de l'épargne</td></tr>
+    <tr><td><b>Danemark</b></td><td>Pension de base forfaitaire + fonds obligatoires</td><td>67 ans ; 68 en 2030, 69 en 2035, 70 en 2040</td><td>Résidence (base) ; carrière (fonds)</td><td>Pension de base financée par l'impôt + ≈ 12 à 18 % pour les fonds</td><td>Âge de départ le plus élevé d'Europe, lié à l'espérance de vie</td></tr>
+  </tbody></table></div>
+  <div class="callout small">
+    <ul>
+      <li><b>La France fait partie des pays où l'on part le plus tôt</b> et où la retraite remplace le mieux le salaire : le niveau de vie moyen des retraités y est à peu près égal à celui de l'ensemble de la population, un cas rare. En contrepartie, elle y consacre une part de sa richesse parmi les plus fortes d'Europe, et les cotisations pèsent sur le coût du travail.</li>
+      <li><b>Presque tous les pays relèvent l'âge de départ</b>, et de plus en plus le lient automatiquement à l'espérance de vie (Danemark, Pays-Bas, Italie, Suède, Portugal…), pour ne plus avoir à voter une réforme tous les dix ans.</li>
+      <li><b>Les pays du Nord combinent répartition et capitalisation</b> : une pension de base pour tous, financée par l'impôt ou les cotisations, et des fonds de pension obligatoires. La France n'a presque que de la répartition.</li>
+    </ul>
+  </div>
+
+  <h3 id="rt-s4">4. Les réformes françaises depuis 1982</h3>
+  <div class="rt-time">
+    <div><b>1982</b><span>Retraite à 60 ans (Mauroy), avec 37,5 années de cotisation.</span></div>
+    <div><b>1993</b><span>Réforme Balladur (privé) : 40 ans de cotisation au lieu de 37,5 ; salaire de référence calculé sur les 25 meilleures années au lieu des 10 meilleures ; pensions revalorisées selon les prix et non plus les salaires. C'est la réforme qui a le plus réduit les pensions futures.</span></div>
+    <div><b>1995</b><span>Le plan Juppé veut aligner les régimes spéciaux : grandes grèves, il recule.</span></div>
+    <div><b>2003</b><span>Réforme Fillon : les fonctionnaires passent aussi à 40 ans ; la durée est désormais liée à l'espérance de vie ; création de la décote et de la surcote, et des départs anticipés pour carrières longues.</span></div>
+    <div><b>2010</b><span>Réforme Woerth : âge légal de 60 à 62 ans, taux plein automatique de 65 à 67 ans.</span></div>
+    <div><b>2014</b><span>Réforme Touraine : la durée requise monte jusqu'à 172 trimestres (43 ans) pour les personnes nées à partir de 1973 ; compte pénibilité.</span></div>
+    <div><b>2019-2020</b><span>Projet de système universel par points, pour remplacer les 42 régimes : adopté en première lecture avec le 49.3, puis abandonné au début de la crise sanitaire.</span></div>
+    <div><b>2023</b><span>Réforme Borne : âge légal de 62 à 64 ans, 43 ans de cotisation dès la génération 1965 ; fermeture des principaux régimes spéciaux aux nouveaux embauchés. Adoptée avec le 49.3 après de fortes mobilisations.</span></div>
+    <div><b>2025</b><span>Un « conclave » entre syndicats et patronat doit rediscuter la réforme : il se termine sans accord en juin.</span></div>
+    <div><b>2026-2027</b><span>Suspension de la réforme de 2023 votée dans le budget de la Sécurité sociale pour 2026 : âge gelé à 62 ans et 9 mois et 170 trimestres jusqu'à fin 2027. La question est renvoyée à l'élection présidentielle de 2027.</span></div>
+  </div>
+
+  <h3 id="rt-s5">5. Ce qui est proposé aujourd'hui</h3>
+  <div class="in-need">
+    <div><b>Revenir à 62 ans, ou à 60</b><span>Proposé par la gauche (60 ans avec 40 années de cotisation) et en partie par le Rassemblement national (60 ans pour ceux qui ont commencé tôt). Il faudrait alors trouver d'autres recettes : cotisations plus élevées, taxation des revenus du capital, ou pensions moins revalorisées.</span></div>
+    <div><b>Maintenir 64 ans, ou aller plus loin</b><span>Défendu par l'ancienne majorité présidentielle et une partie de la droite, qui propose parfois 65 ans ou plus, ou un âge lié automatiquement à l'espérance de vie comme dans les pays du Nord.</span></div>
+    <div><b>Un système par points ou à la suédoise</b><span>Remplacer les 40 régimes par un seul, où chaque euro cotisé donne les mêmes droits, avec un ajustement automatique. C'était le projet de 2019 ; il revient dans le débat, à droite comme chez certains syndicats.</span></div>
+    <div><b>Ajouter une part de capitalisation</b><span>Proposé par le patronat et une partie de la droite : une petite part des cotisations placée dans des fonds, comme aux Pays-Bas ou en Suède. Critique : il faut payer deux fois pendant la transition (les retraites actuelles et l'épargne des actifs), et les placements dépendent des marchés.</span></div>
+    <div><b>Changer le financement</b><span>Faire contribuer davantage les revenus du capital, les hauts salaires ou les retraités aisés (CSG), ou freiner la revalorisation des pensions. Ce sont les leviers dont on parle à chaque budget.</span></div>
+    <div><b>Mieux prendre en compte la pénibilité et les carrières des femmes</b><span>Départs anticipés pour les métiers pénibles, meilleure prise en compte des enfants et du temps partiel : les femmes touchent en moyenne une pension de droit propre environ 40 % plus faible que les hommes.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>Pourquoi on en reparle sans cesse</b> : en répartition, tout dépend du nombre de cotisants par retraité. En France, il y avait environ 4 actifs pour un retraité dans les années 1960, il y en a environ 1,7 aujourd'hui, et le chiffre continue de baisser avec le vieillissement (graphique plus bas). Il n'y a que trois leviers : travailler plus longtemps, cotiser plus, ou verser des pensions moins élevées par rapport aux salaires. Chaque réforme est un dosage des trois.</p>
+    <p class="muted" style="font-size:.78rem">Sources : Service public (règles de calcul), Agirc-Arrco, Conseil d'orientation des retraites, OCDE (<i>Panorama des pensions</i>), loi n° 2025-1403 du 30 décembre 2025 de financement de la Sécurité sociale pour 2026 (suspension de la réforme de 2023). Les montants et taux étrangers sont des ordres de grandeur simplifiés, à vérifier pour un cas précis.</p>
+  </div>
+  <h3 class="ag-part">Les chiffres</h3>
   <h3>La France comparée à ses voisins</h3>
   <div class="table-scroll" id="rt-table"></div>
   <h3>De plus en plus de retraités : personnes de 65 ans et plus pour 100 personnes de 15 à 64 ans</h3>
@@ -1629,47 +1740,47 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121m"></script>
-<script src="app.js?v=20261121m"></script>
-<script src="energie.js?v=20261121m"></script>
-<script src="matieres.js?v=20261121m"></script>
-<script src="territoire.js?v=20261121m"></script>
-<script src="themes.js?v=20261121m"></script>
-<script src="societe.js?v=20261121m"></script>
-<script src="eco2.js?v=20261121m"></script>
-<script src="empreinte.js?v=20261121m"></script>
-<script src="argentprive.js?v=20261121m"></script>
-<script src="repartition.js?v=20261121m"></script>
-<script src="patrimoine.js?v=20261121m"></script>
-<script src="prelevements.js?v=20261121m"></script>
-<script src="travailvie.js?v=20261121m"></script>
-<script src="niveauvie.js?v=20261121m"></script>
-<script src="prosperite.js?v=20261121m"></script>
-<script src="exterieur.js?v=20261121m"></script>
-<script src="desindus.js?v=20261121m"></script>
-<script src="retraites.js?v=20261121m"></script>
-<script src="energiecout.js?v=20261121m"></script>
-<script src="energieformation.js?v=20261121m"></script>
-<script src="nucleaire.js?v=20261121m"></script>
-<script src="logementeco.js?v=20261121m"></script>
-<script src="competences.js?v=20261121m"></script>
-<script src="justicedroit.js?v=20261121m"></script>
-<script src="fonctionnaires.js?v=20261121m"></script>
-<script src="couper.js?v=20261121m"></script>
-<script src="seuilpays.js?v=20261121m"></script>
-<script src="logement.js?v=20261121m"></script>
-<script src="env.js?v=20261121m"></script>
-<script src="agriculture.js?v=20261121m"></script>
-<script src="rendements.js?v=20261121m"></script>
-<script src="chaine.js?v=20261121m"></script>
-<script src="patrimoinehist.js?v=20261121m"></script>
-<script src="innovation.js?v=20261121m"></script>
+<script src="kpi.js?v=20261121t"></script>
+<script src="app.js?v=20261121t"></script>
+<script src="energie.js?v=20261121t"></script>
+<script src="matieres.js?v=20261121t"></script>
+<script src="territoire.js?v=20261121t"></script>
+<script src="themes.js?v=20261121t"></script>
+<script src="societe.js?v=20261121t"></script>
+<script src="eco2.js?v=20261121t"></script>
+<script src="empreinte.js?v=20261121t"></script>
+<script src="argentprive.js?v=20261121t"></script>
+<script src="repartition.js?v=20261121t"></script>
+<script src="patrimoine.js?v=20261121t"></script>
+<script src="prelevements.js?v=20261121t"></script>
+<script src="travailvie.js?v=20261121t"></script>
+<script src="niveauvie.js?v=20261121t"></script>
+<script src="prosperite.js?v=20261121t"></script>
+<script src="exterieur.js?v=20261121t"></script>
+<script src="desindus.js?v=20261121t"></script>
+<script src="retraites.js?v=20261121t"></script>
+<script src="energiecout.js?v=20261121t"></script>
+<script src="energieformation.js?v=20261121t"></script>
+<script src="nucleaire.js?v=20261121t"></script>
+<script src="logementeco.js?v=20261121t"></script>
+<script src="competences.js?v=20261121t"></script>
+<script src="justicedroit.js?v=20261121t"></script>
+<script src="fonctionnaires.js?v=20261121t"></script>
+<script src="couper.js?v=20261121t"></script>
+<script src="seuilpays.js?v=20261121t"></script>
+<script src="logement.js?v=20261121t"></script>
+<script src="env.js?v=20261121t"></script>
+<script src="agriculture.js?v=20261121t"></script>
+<script src="rendements.js?v=20261121t"></script>
+<script src="chaine.js?v=20261121t"></script>
+<script src="patrimoinehist.js?v=20261121t"></script>
+<script src="innovation.js?v=20261121t"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121m"></script>
-<script src="histoire.js?v=20261121m"></script>
-<script src="chomage.js?v=20261121m"></script>
-<script src="sources.js?v=20261121m"></script>
-<script src="nav.js?v=20261121m"></script>
+<script src="soussol.js?v=20261121t"></script>
+<script src="histoire.js?v=20261121t"></script>
+<script src="chomage.js?v=20261121t"></script>
+<script src="sources.js?v=20261121t"></script>
+<script src="nav.js?v=20261121t"></script>
 </body>
 </html>
