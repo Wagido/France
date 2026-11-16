@@ -442,3 +442,6 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 .el-db-sens { margin-top: 2px; }
 #li-recy .in-sbar { grid-template-columns: 100px 1fr 46px; gap: 0 8px; }
 #li-recy .in-sbar small { grid-column: 1 / -1; grid-row: 2; font-size: .72rem; margin-bottom: 4px; }
+.el-niv td, .el-niv th { white-space: nowrap; }
+.el-lv { display: inline-flex; align-items: center; gap: 4px; }
+.el-lv i { display: inline-block; height: 8px; border-radius: 2px; opacity: .8; }

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261122f">
+<link rel="stylesheet" href="style.css?v=20261122h">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1992,9 +1992,11 @@
   <div class="callout small" id="el-bars-txt"></div>
 
   <h3 id="el-p3" class="ag-part">3. Diplôme et revenu : la carte des électorats</h3>
-  <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? L'écart est rapporté au score national du parti : +50 % veut dire qu'il fait 50 % de son score national de plus dans le groupe du haut que dans celui du bas. La taille de la bulle est le score national.</p>
-  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label></div>
+  <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? Par défaut, l'écart est en points : −12 veut dire que le parti fait 12 points de moins chez les aisés que chez les modestes. La taille de la bulle est le score national. <b>La carte montre des différences, pas des niveaux</b> : le tableau en dessous donne les scores réels.</p>
+  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label><label class="ctl">Mesure <select id="el-carte-mode"><option value="points">écart en points</option><option value="relatif">écart rapporté au score national</option></select></label></div>
   <div id="el-carte" class="chart"></div>
+  <h3>Les scores réels, selon le revenu et le diplôme</h3>
+  <div id="el-niveaux"></div>
   <div class="callout small" id="el-carte-txt"></div>
 
   <h3 id="el-p6" class="ag-part">4. Hommes et femmes</h3>
@@ -2155,50 +2157,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261122f"></script>
-<script src="app.js?v=20261122f"></script>
-<script src="energie.js?v=20261122f"></script>
-<script src="matieres.js?v=20261122f"></script>
-<script src="territoire.js?v=20261122f"></script>
-<script src="themes.js?v=20261122f"></script>
-<script src="societe.js?v=20261122f"></script>
-<script src="eco2.js?v=20261122f"></script>
-<script src="empreinte.js?v=20261122f"></script>
-<script src="argentprive.js?v=20261122f"></script>
-<script src="repartition.js?v=20261122f"></script>
-<script src="patrimoine.js?v=20261122f"></script>
-<script src="prelevements.js?v=20261122f"></script>
-<script src="travailvie.js?v=20261122f"></script>
-<script src="niveauvie.js?v=20261122f"></script>
-<script src="prosperite.js?v=20261122f"></script>
-<script src="exterieur.js?v=20261122f"></script>
-<script src="desindus.js?v=20261122f"></script>
-<script src="retraites.js?v=20261122f"></script>
-<script src="energiecout.js?v=20261122f"></script>
-<script src="energieformation.js?v=20261122f"></script>
-<script src="nucleaire.js?v=20261122f"></script>
-<script src="logementeco.js?v=20261122f"></script>
-<script src="competences.js?v=20261122f"></script>
-<script src="justicedroit.js?v=20261122f"></script>
-<script src="fonctionnaires.js?v=20261122f"></script>
-<script src="couper.js?v=20261122f"></script>
-<script src="seuilpays.js?v=20261122f"></script>
-<script src="logement.js?v=20261122f"></script>
-<script src="env.js?v=20261122f"></script>
-<script src="agriculture.js?v=20261122f"></script>
-<script src="rendements.js?v=20261122f"></script>
-<script src="monnaie.js?v=20261122f"></script>
-<script src="limites.js?v=20261122f"></script>
-<script src="sociologie.js?v=20261122f"></script>
-<script src="chaine.js?v=20261122f"></script>
-<script src="patrimoinehist.js?v=20261122f"></script>
-<script src="innovation.js?v=20261122f"></script>
+<script src="kpi.js?v=20261122h"></script>
+<script src="app.js?v=20261122h"></script>
+<script src="energie.js?v=20261122h"></script>
+<script src="matieres.js?v=20261122h"></script>
+<script src="territoire.js?v=20261122h"></script>
+<script src="themes.js?v=20261122h"></script>
+<script src="societe.js?v=20261122h"></script>
+<script src="eco2.js?v=20261122h"></script>
+<script src="empreinte.js?v=20261122h"></script>
+<script src="argentprive.js?v=20261122h"></script>
+<script src="repartition.js?v=20261122h"></script>
+<script src="patrimoine.js?v=20261122h"></script>
+<script src="prelevements.js?v=20261122h"></script>
+<script src="travailvie.js?v=20261122h"></script>
+<script src="niveauvie.js?v=20261122h"></script>
+<script src="prosperite.js?v=20261122h"></script>
+<script src="exterieur.js?v=20261122h"></script>
+<script src="desindus.js?v=20261122h"></script>
+<script src="retraites.js?v=20261122h"></script>
+<script src="energiecout.js?v=20261122h"></script>
+<script src="energieformation.js?v=20261122h"></script>
+<script src="nucleaire.js?v=20261122h"></script>
+<script src="logementeco.js?v=20261122h"></script>
+<script src="competences.js?v=20261122h"></script>
+<script src="justicedroit.js?v=20261122h"></script>
+<script src="fonctionnaires.js?v=20261122h"></script>
+<script src="couper.js?v=20261122h"></script>
+<script src="seuilpays.js?v=20261122h"></script>
+<script src="logement.js?v=20261122h"></script>
+<script src="env.js?v=20261122h"></script>
+<script src="agriculture.js?v=20261122h"></script>
+<script src="rendements.js?v=20261122h"></script>
+<script src="monnaie.js?v=20261122h"></script>
+<script src="limites.js?v=20261122h"></script>
+<script src="sociologie.js?v=20261122h"></script>
+<script src="chaine.js?v=20261122h"></script>
+<script src="patrimoinehist.js?v=20261122h"></script>
+<script src="innovation.js?v=20261122h"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261122f"></script>
-<script src="histoire.js?v=20261122f"></script>
-<script src="chomage.js?v=20261122f"></script>
-<script src="sources.js?v=20261122f"></script>
-<script src="nav.js?v=20261122f"></script>
+<script src="soussol.js?v=20261122h"></script>
+<script src="histoire.js?v=20261122h"></script>
+<script src="chomage.js?v=20261122h"></script>
+<script src="sources.js?v=20261122h"></script>
+<script src="nav.js?v=20261122h"></script>
 </body>
 </html>

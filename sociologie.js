@@ -14,6 +14,7 @@ async function init() {
   $("#el-elec").onchange = () => { critOptions(); bars(); };
   $("#el-crit").onchange = bars;
   $("#el-carte-elec").onchange = carte;
+  $("#el-carte-mode").onchange = carte;
   $("#el-map-sel").onchange = carteFrance;
   critOptions();
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
@@ -52,13 +53,14 @@ function carte() {
   const { showTip, hideTip, css, esc } = window.TH;
   const el = $("#el-carte"); if (!el || !el.clientWidth) return;
   const k = $("#el-carte-elec").value, E = S[k], D = E.tables.diplome, R = E.tables.revenus, LT = S.legislatives2024.tables;
+  const rel = $("#el-carte-mode").value === "relatif", sc = (d, nat) => rel ? 100 * d / nat : d, u = rel ? " %" : " pts";
   const pts = k === "presidentielle2022"
     ? E.candidats.map((n, j) => { const nat = [1.4, 22, 2.3, 4.6, 1.8, 27.8, 4.8, 3.1, 2.1, 23.2, 7.1][j], bloc = E.camps.find((b, i) => [[0, 1, 2, 3, 4], [5], [6, 7, 8], [9], [10]][i].includes(j));
-        return { l: n, nat, x: 100 * (R.at(-1).cand[j] - R[0].cand[j]) / nat, y: 100 * (D.at(-1).cand[j] - D[0].cand[j]) / nat, c: bloc[2] }; }).filter(p => p.nat >= 2)
+        return { l: n, nat, x: sc(R.at(-1).cand[j] - R[0].cand[j], nat), y: sc(D.at(-1).cand[j] - D[0].cand[j], nat), c: bloc[2], j }; }).filter(p => p.nat >= (rel ? 2 : 4.5))
     : E.camps.filter(c => c[0] !== "aut").map(c => { const i = E.camps.indexOf(c), nat = E.ensemble[i];
-        return { l: c[1], nat, x: 100 * (R.at(-1).v[i] - R[0].v[i]) / nat, y: 100 * (D.at(-1).v[i] - D[0].v[i]) / nat, c: c[2] }; });
+        return { l: c[1], nat, x: sc(R.at(-1).v[i] - R[0].v[i], nat), y: sc(D.at(-1).v[i] - D[0].v[i], nat), c: c[2], i }; });
   const w = Math.max(320, el.clientWidth), h = Math.min(520, Math.max(360, w * .55)), m = { t: 20, r: 20, b: 44, l: 56 };
-  const ext = Math.max(110, ...pts.map(p => Math.abs(p.x)), ...pts.map(p => Math.abs(p.y))) * 1.1;
+  const ext = Math.max(rel ? 110 : 25, ...pts.map(p => Math.abs(p.x)), ...pts.map(p => Math.abs(p.y))) * 1.1;
   const x = d3.scaleLinear([-ext, ext], [m.l, w - m.r]), y = d3.scaleLinear([-ext, ext], [h - m.b, m.t]);
   const r = d3.scaleSqrt([0, 30], [0, w < 560 ? 26 : 38]);
   const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
@@ -69,29 +71,36 @@ function carte() {
   svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
   svg.append("line").attr("x1", x(0)).attr("x2", x(0)).attr("y1", m.t).attr("y2", h - m.b).attr("stroke", css("--muted"));
   svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--muted"));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v => sg(v) + " %"));
-  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => sg(v) + " %")).call(s => s.select(".domain").remove());
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v => sg(v) + u));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => sg(v) + u)).call(s => s.select(".domain").remove());
   svg.append("text").attr("x", (m.l + w - m.r) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", css("--muted")).text("← vote plus chez les modestes · capital économique · vote plus chez les aisés →");
   svg.append("text").attr("transform", `translate(14,${(m.t + h - m.b) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", css("--muted")).text("← non-bacheliers · capital culturel · bac +3 →");
   const g = svg.append("g");
   [...pts].sort((a, b) => b.nat - a.nat).forEach(p => {
     g.append("circle").attr("cx", x(p.x)).attr("cy", y(p.y)).attr("r", r(p.nat)).attr("fill", p.c).attr("opacity", .75).attr("stroke", "#fff")
-      .on("pointermove", ev => showTip(`<b>${esc(p.l)}</b><br>${f1(p.nat)} % au niveau national<br>Bac +3 / non-bacheliers : ${sg(p.y)} %<br>Plus de 3 000 € / moins de 1 250 € : ${sg(p.x)} %`, ev)).on("pointerleave", hideTip);
+      .on("pointermove", ev => showTip(`<b>${esc(p.l)}</b><br>${f1(p.nat)} % au niveau national<br>Bac +3 / non-bacheliers : ${sg(p.y)}${u}<br>Plus de 3 000 € / moins de 1 250 € : ${sg(p.x)}${u}`, ev)).on("pointerleave", hideTip);
     g.append("text").attr("x", x(p.x)).attr("y", y(p.y) - r(p.nat) - 4).attr("text-anchor", "middle").attr("font-size", 11.5).attr("font-weight", 600).attr("fill", css("--ink")).text(p.l);
   });
   el.replaceChildren(svg.node());
+  // scores réels par revenu et par diplôme
+  const lignes = k === "presidentielle2022" ? [["Macron", 5], ["Le Pen", 9], ["Mélenchon", 1], ["Zemmour", 10], ["Pécresse", 6]].map(([n, j]) => ({ l: n, c: pts.find(p => p.l === n)?.c, f: T => T.map(r => r.cand[j]), nat: E.ensemble && [27.8, 23.2, 22, 7.1, 4.8][["Macron", "Le Pen", "Mélenchon", "Zemmour", "Pécresse"].indexOf(n)] }))
+    : E.camps.filter(c => c[0] !== "aut").map(c => { const i = E.camps.indexOf(c); return { l: c[1], c: c[2], f: T => T.map(r => r.v[i]), nat: E.ensemble[i] }; });
+  const cell = (v, c) => `<td><span class="el-lv"><i style="width:${v * 1.6}px;background:${c}"></i>${n0(v)} %</span></td>`;
+  $("#el-niveaux").innerHTML = `<div class="table-scroll"><table class="cmp-t rt-cmp el-niv"><thead><tr><th></th><th>Ensemble</th>${R.map(r => `<th>${esc(r.l.replace(" par mois", ""))}</th>`).join("")}${D.map(r => `<th>${esc(r.l)}</th>`).join("")}</tr></thead><tbody>` +
+    lignes.map(x => `<tr><td><b style="color:${x.c}">${esc(x.l)}</b></td><td>${n0(x.nat)} %</td>${x.f(R).map(v => cell(v, x.c)).join("")}${x.f(D).map(v => cell(v, x.c)).join("")}</tr>`).join("") +
+    `</tbody></table></div><p class="muted" style="font-size:.78rem;margin:2px 0 0">Revenus mensuels nets du foyer, puis dernier diplôme obtenu. Ipsos, ${esc(E.titre)}.</p>`;
   const by = n => pts.find(p => p.l === n);
   $("#el-carte-txt").innerHTML = k === "presidentielle2022" ? `<ul>
-    <li><b>Emmanuel Macron est le candidat des aisés</b> : il fait ${sg(by("Macron").x)} % de son score national de plus chez les foyers à plus de 3 000 € que chez ceux à moins de 1 250 €, et il est aussi au-dessus de sa moyenne chez les diplômés.</li>
-    <li><b>Marine Le Pen est la candidate des moins diplômés et des modestes</b> : ${sg(by("Le Pen").y)} % sur l'axe du diplôme, ${sg(by("Le Pen").x)} % sur celui du revenu.</li>
+    <li><b>Emmanuel Macron est le candidat des aisés</b> : il fait ${n0(R.at(-1).cand[5])} % chez les foyers à plus de 3 000 € par mois, contre ${n0(R[0].cand[5])} % chez ceux à moins de 1 250 €, et il est aussi au-dessus de sa moyenne chez les diplômés.</li>
+    <li><b>Marine Le Pen fait ses meilleurs scores chez les moins diplômés et les modestes</b> : ${n0(D[0].cand[9])} % chez les non-bacheliers contre ${n0(D.at(-1).cand[9])} % chez les bac +3 ; ${n0(R[0].cand[9])} % chez les foyers modestes contre ${n0(R.at(-1).cand[9])} % chez les aisés. Le diplôme la distingue davantage que le revenu.</li>
     <li><b>Jean-Luc Mélenchon et Yannick Jadot occupent le coin des diplômés aux revenus moyens ou modestes</b> : beaucoup de jeunes, d'étudiants, de professions intellectuelles. C'est le « capital culturel sans capital économique » de Bourdieu.</li>
-    <li><b>Le coin « peu diplômés mais aisés »</b> (artisans, commerçants, chefs d'entreprise) est presque vide : Valérie Pécresse et Jean Lassalle sont du côté aisé mais au milieu sur l'axe du diplôme ; Éric Zemmour et Nicolas Dupont-Aignan sont du côté modeste et peu diplômé.</li>
+    ${rel ? `<li><b>Le coin « peu diplômés mais aisés »</b> (artisans, commerçants, chefs d'entreprise) est presque vide : Valérie Pécresse et Jean Lassalle sont du côté aisé mais au milieu sur l'axe du diplôme ; Éric Zemmour et Nicolas Dupont-Aignan sont du côté modeste et peu diplômé.</li>` : ""}
     <li><b>Attention : la carte montre des écarts, pas des niveaux.</b> Être en bas à gauche veut dire que Marine Le Pen fait <i>mieux</i> chez les modestes que chez les aisés, pas qu'aucun électeur aisé ne vote pour elle. En 2022, ${n0(R.at(-1).cand[9])} % des foyers à plus de 3 000 € par mois ont voté Le Pen (et ${n0(R.at(-1).cand[10])} % Zemmour), contre ${n0(R[0].cand[9])} % des foyers à moins de 1 250 €. Aux législatives de 2024, l'écart a presque disparu : ${n0(S.legislatives2024.tables.revenus.at(-1).v[3])} % des foyers à plus de 3 000 € ont voté RN, contre ${n0(S.legislatives2024.tables.revenus[0].v[3])} % des plus modestes. Le vote RN s'est étendu aux classes moyennes et à une partie des aisés ; ce qui le distingue le plus aujourd'hui, c'est le diplôme, bien plus que le revenu (voir la carte 2024).</li>
-    <li><b>Prudence pour les petits candidats</b> : avec 2 à 5 % des voix, un écart d'un ou deux points dans l'enquête suffit à déplacer fortement la bulle. Seules les positions des grands candidats sont solides.</li>
+    ${rel ? `<li><b>Prudence pour les petits candidats</b> : en écart rapporté au score national, avec 2 à 5 % des voix, un ou deux points d'écart dans l'enquête suffisent à déplacer fortement la bulle.</li>` : ""}
   </ul>` : `<ul>
     <li><b>Les blocs de 2024 se placent comme les candidats de 2022</b> : Ensemble chez les aisés, le Nouveau Front populaire chez les diplômés aux revenus modestes, le RN chez les moins diplômés et les modestes, LR et divers droite près du centre, un peu du côté aisé.</li>
     <li><b>Le RN est désormais presque au centre sur l'axe du revenu</b> : il fait ${n0(LT.revenus.at(-1).v[3])} % chez les foyers à plus de 3 000 € par mois et ${n0(LT.revenus[0].v[3])} % chez ceux à moins de 1 250 €. En revanche, il reste très bas sur l'axe du diplôme : ${n0(LT.diplome.at(-1).v[3])} % chez les bac +3, ${n0(LT.diplome[0].v[3])} % chez les non-bacheliers.</li>
-    <li><b>Le diplôme sépare plus que le revenu</b> : sur l'axe vertical, l'écart entre le NFP (${sg(by("Nouveau Front populaire").y)} %) et le RN (${sg(by("RN et alliés").y)} %) est bien plus grand que sur l'axe horizontal.</li>
+    <li><b>Le diplôme sépare plus que le revenu</b> : sur l'axe vertical, l'écart entre le NFP (${sg(by("Nouveau Front populaire").y)}${u}) et le RN (${sg(by("RN et alliés").y)}${u}) est bien plus grand que sur l'axe horizontal.</li>
   </ul>`;
 }
 
