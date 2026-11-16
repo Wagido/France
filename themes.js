@@ -19,8 +19,8 @@ function showTip(html, ev) {
   tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
 }
 const hideTip = () => { tip.hidden = true; };
-const kpis = (sel, items) => { $(sel).innerHTML = items.filter(Boolean).map(([v, l, t]) => kpiHTML(v, l, t)).join(""); };
-const legend = (sel, items) => { $(sel).innerHTML = items.map(([l, c, dash]) => `<span><i style="border-top-color:${c};opacity:1;border-top-width:${dash ? 2 : 10}px;${dash ? "border-top-style:dashed;" : ""}width:14px"></i>${esc(l)}</span>`).join(""); };
+const kpis = (sel, items) => { const el = $(sel); if (!el) return; el.innerHTML = items.filter(Boolean).map(([v, l, t]) => kpiHTML(v, l, t)).join(""); };
+const legend = (sel, items) => { const el = $(sel); if (!el) return; el.innerHTML = items.map(([l, c, dash]) => `<span><i style="border-top-color:${c};opacity:1;border-top-width:${dash ? 2 : 10}px;${dash ? "border-top-style:dashed;" : ""}width:14px"></i>${esc(l)}</span>`).join(""); };
 const regionName = (() => { try { const d = new Intl.DisplayNames(["fr"], { type: "region" }); return c => { try { return d.of(c === "EL" ? "GR" : c === "UK" ? "GB" : c); } catch (e) { return c; } }; } catch (e) { return c => c; } })();
 
 /* ---------------------------------------------------------------- graphiques génériques */
@@ -115,7 +115,9 @@ async function init() {
 }
 async function setGeo(g) { geo = g; await load(g); drawAll(); }
 function drawAll() {
-  [drawClimat, drawEau, drawSols, drawAlim, drawCommerce, drawDemo, drawImmig, drawTravail, drawJustice].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
+  // les sections non publiées (rubrique Société) sont absentes du site en ligne : on ne les dessine pas
+  const SEC = { drawDemo: "demographie", drawImmig: "immigration", drawJustice: "justice" };
+  [drawClimat, drawEau, drawSols, drawAlim, drawCommerce, drawDemo, drawImmig, drawTravail, drawJustice].forEach(f => { if (SEC[f.name] && !document.getElementById(SEC[f.name])) return; try { f(); } catch (e) { console.error(f.name, e); } });
 }
 
 /* ---------------------------------------------------------------- climat */

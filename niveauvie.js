@@ -18,9 +18,13 @@ const METIERS = [
 ];
 async function init() {
   if (!window.TH || !$("#nv-pa")) { setTimeout(init, 100); return; }
-  try { N = await fetch("data/niveau_vie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  try { N = await fetch("data/niveau_vie.json", { cache: "no-cache" }).then(r => r.json()); }
+  catch (e) { const el = $("#nv-resume"); if (el) el.innerHTML = `<p style="color:#b91c1c"><b>Les données n'ont pas pu être chargées</b> (${String(e.message || e)}). Rechargez la page avec Ctrl+F5.</p>`; return; }
   if (!N.simu || !N.smic) { try { N = await fetch("data/niveau_vie.json?t=" + Date.now()).then(r => r.json()); } catch (e) { return; } }
-  try { draw(); } catch (e) { console.error("Vit-on mieux qu'avant ?", e); }
+  try { draw(); } catch (e) {
+    console.error("Vit-on mieux qu'avant ?", e);
+    const el = $("#nv-resume"); if (el) el.insertAdjacentHTML("afterbegin", `<p style="color:#b91c1c"><b>Erreur d'affichage</b> : ${String(e && e.message || e)} (données ${N && N.simu ? "à jour" : "anciennes"}). Rechargez la page avec Ctrl+F5.</p>`);
+  }
 }
 function draw() {
   const { kpis, lineChart, legend, esc } = window.TH;

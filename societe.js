@@ -34,7 +34,7 @@ async function setGeo(g) {
   if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/societe/${g}.json`, { cache: "no-cache" }).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
-function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets, capital, reduction].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }
+function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets, capital, reduction].forEach(f => { if (["sante", "education", "logement", "inegalites", "capital"].includes(f.name) && !document.getElementById(f.name)) return; try { f(); } catch (e) { console.error(f.name, e); } }); }
 
 /* ---------------------------------------------------------------- santé */
 function sante() {
