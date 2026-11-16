@@ -469,3 +469,4 @@ table.cmp-t.li-mx { min-width: 980px; }
 .li-mx td.mx3 { background: rgba(37,99,235,.14); } .li-mx td.mx2 { background: rgba(37,99,235,.07); }
 .li-mx td.mx-note { text-align: left; white-space: normal; font-size: .78rem; color: var(--muted); min-width: 200px; }
 .li-mx td:first-child { white-space: normal; min-width: 170px; text-align: left; }
+.li-elec { max-width: 1060px; font-size: .9rem; }
