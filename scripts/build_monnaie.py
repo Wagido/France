@@ -135,6 +135,14 @@ with open(os.path.join(SRC, "monnaie", "ecb_taux.csv"), encoding="utf-8") as fh:
     for r in csv.DictReader(fh):
         if r["OBS_VALUE"]:
             taux_bce.setdefault("depot" if "DFR" in r["KEY"] else "refi", []).append([r["TIME_PERIOD"], float(r["OBS_VALUE"])])
-out = {"target": target, "target_mois": mois[-1], "taux_bce": taux_bce, "histoire": histoire, "rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
+
+# où va la monnaie ? (JST, France) : monnaie au sens large, production en volume, prix à la consommation, prix des logements
+wb4 = openpyxl.load_workbook(os.path.join(SRC, "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
+rows4 = wb4[wb4.sheetnames[0]].iter_rows(values_only=True)
+h4 = next(rows4)
+K = {k: h4.index(k) for k in ("year", "iso", "money", "rgdpbarro", "cpi", "hpnom")}
+partage = [{"annee": r[K["year"]], "m": r[K["money"]], "y": r[K["rgdpbarro"]], "p": r[K["cpi"]], "h": r[K["hpnom"]]}
+           for r in rows4 if r[K["iso"]] == "FRA" and 1950 <= r[K["year"]] <= 2020 and r[K["money"]]]
+out = {"partage": partage, "target": target, "target_mois": mois[-1], "taux_bce": taux_bce, "histoire": histoire, "rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
 json.dump(out, open(os.path.join(HERE, "..", "data", "monnaie.json"), "w"), ensure_ascii=False, indent=1)
 print(agregats[0], agregats[-1], dern, serie[0], serie[-1], credit[0], credit[-1], periodes, sep="\n")

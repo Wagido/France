@@ -26,6 +26,7 @@ async function init() {
   sel.innerHTML = Object.entries(C.pays).filter(([g]) => g !== "FR").map(([g, n]) => `<option value="${g}">${n}</option>`).join("");
   sel.value = ref; sel.onchange = () => { ref = sel.value; chart(); };
   build(); chart(); calc();
+  if ($("#cp-conj")) { $("#cp-conj").onchange = mesures; $("#cp-tri").onchange = mesures; mesures(); }
 }
 const md = v => Math.round(v).toLocaleString("fr-FR") + " Md€";
 const p1 = v => v == null ? "–" : v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " %";
@@ -100,6 +101,57 @@ function calc() {
     </ul>
     <p class="muted" style="font-size:.78rem">Eurostat, dépenses des administrations publiques par fonction (classification COFOG, gov_10a_exp), en % du PIB, ${C.annee}. Le simulateur applique la part choisie de l'écart positif avec la moyenne européenne ; il ne tient pas compte des effets en retour sur l'activité et les recettes.</p>`;
   }
+}
+
+/* mesures d'économie : économie brute, multiplicateur, perte de PIB, économie nette, rendement, effet sur le ratio de dette */
+const MES = [
+  ["Lutter davantage contre la fraude sociale et fiscale", 3, 0.1, "0", "Rendement très élevé sur le papier, mais montant incertain : la fraude se chiffre mal et se récupère lentement."],
+  ["Recentrer les allègements de cotisations au-delà de 2 SMIC", 4, 0.2, "0", "Les évaluations (rapport Bozio-Wasmer, 2024) trouvent peu d'effet sur l'emploi pour les salaires élevés."],
+  ["Supprimer des niches fiscales peu efficaces", 5, 0.3, "0", "Plus de 400 niches, environ 85 Md€ ; beaucoup n'ont jamais été évaluées (Cour des comptes)."],
+  ["Réduire les aides aux entreprises les moins évaluées", 5, 0.4, "−", "Environ 200 Md€ d'aides selon le Sénat (2025), dont peu sont évaluées ; prudence sur la recherche et l'industrie."],
+  ["Baisser le prix des médicaments, plus de génériques, moins d'actes redondants", 3, 0.3, "0", "Une partie de l'argent part aux laboratoires, souvent étrangers : peu d'effet sur l'activité en France."],
+  ["Sous-indexer les retraites de 1 point pendant un an", 4, 0.5, "0", "Touche 17 millions de retraités ; peut épargner les petites pensions. Les retraités aisés épargnent une partie de leur pension."],
+  ["Reculer l'âge de la retraite de 64 à 65 ans (à terme)", 9, -0.2, "+", "Économie qui monte en charge sur plusieurs années ; plus d'actifs, donc plus de PIB. Coût social élevé, surtout pour les métiers pénibles."],
+  ["Mieux encadrer les arrêts maladie (jour de carence, contrôles)", 1, 0.6, "0", "Petits montants ; effet sur la santé à surveiller."],
+  ["Durcir l'assurance chômage", 3, 0.8, "+", "Les chômeurs dépensent presque tout ; un peu plus de retour à l'emploi à terme, selon les études."],
+  ["Geler le point d'indice des fonctionnaires un an", 2, 0.7, "−", "Pouvoir d'achat des agents ; difficultés de recrutement (enseignants, soignants)."],
+  ["Réduire les achats et frais de fonctionnement des administrations", 5, 0.9, "0", "Revient à moins de commandes pour des entreprises, souvent françaises."],
+  ["Réduire les effectifs publics de 1 %", 3, 1.0, "−", "Effet direct sur l'emploi et les services publics."],
+  ["Baisser l'investissement public", 5, 1.3, "− −", "Le plus coûteux : moins d'activité tout de suite (BTP), et moins de croissance plus tard (infrastructures, transition)."],
+];
+const TAU = 0.46, DETTE = 1.15;
+function mesures() {
+  const t = $("#cp-mes-t"); if (!t) return;
+  const k = +$("#cp-conj").value, tri = $("#cp-tri").value, pib = C.pib;
+  const R = MES.map((x, i) => { const m = x[2] < 0 ? x[2] : x[2] * k, L = m * x[1], N = x[1] - TAU * L; return { i, l: x[0], e: x[1], m, L, N, r: L > 0 ? N / L : Infinity, lt: x[3], c: x[4] }; });
+  R.sort((a, b) => tri === "rdt" ? b.r - a.r : tri === "eco" ? b.N - a.N : a.m - b.m);
+  const on = new Set([...document.querySelectorAll("#cp-mes-t input:checked")].map(i => +i.dataset.i));
+  const f1 = v => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const rd = r => r === Infinity ? `<b style="color:var(--pos)">gagnant</b>` : `<b style="color:${r >= 2 ? "var(--pos)" : r >= 0.6 ? "inherit" : "var(--neg)"}">${f1(r)} €</b>`;
+  t.innerHTML = `<thead><tr><th></th><th>Mesure</th><th class="num">Économie</th><th class="num">Multiplicateur</th><th class="num">PIB perdu</th><th class="num">Déficit en moins</th><th class="num">Rendement</th><th class="num">À long terme</th></tr></thead><tbody>` +
+    R.map(x => `<tr><td><input type="checkbox" data-i="${x.i}" ${on.has(x.i) ? "checked" : ""} aria-label="Retenir"></td><td><b>${x.l}</b><br><small class="muted">${x.c}</small></td><td class="num">${x.e} Md€</td><td class="num">${f1(x.m)}</td><td class="num">${x.L > 0 ? "−" + f1(x.L) : "+" + f1(-x.L)} Md€</td><td class="num">${f1(x.N)} Md€</td><td class="num">${rd(x.r)}</td><td class="num">${x.lt}</td></tr>`).join("") + `</tbody>`;
+  t.querySelectorAll("input").forEach(i => i.onchange = paquet);
+  paquet();
+  $("#cp-mes-txt").innerHTML = `<ul>
+    <li><b>Les mesures les plus « rentables »</b> touchent des dépenses qui soutiennent peu l'activité : aides et niches fiscales peu efficaces, allègements de cotisations sur les hauts salaires, prix des médicaments. Pour 1 € de PIB perdu, elles réduisent le déficit de 3 à 10 €.</li>
+    <li><b>Les moins rentables</b> touchent l'investissement public, les effectifs et les achats publics : moins de 1 € de déficit en moins par € de PIB perdu. Au-delà d'un multiplicateur d'environ 0,62, la coupe fait même <i>monter</i> le ratio dette/PIB la première année (voir <a href="#simulateur">Couper la dépense ?</a>).</li>
+    <li><b>Le recul de l'âge de la retraite</b> est à part : il augmente l'emploi, donc le PIB, en même temps qu'il économise. C'est pour cela que la plupart des économistes le jugent efficace pour les finances publiques, malgré son coût social.</li>
+    <li><b>Ce qui est rentable n'est pas forcément juste</b> : le rendement mesure l'effet sur le déficit et l'activité, pas qui paie. Une sous-indexation des retraites, rentable, réduit le niveau de vie de millions de retraités ; une baisse des aides aux entreprises peut fragiliser certaines filières.</li>
+  </ul>`;
+}
+function paquet() {
+  const { kpis } = window.TH;
+  const k = +$("#cp-conj").value, pib = C.pib, D = DETTE * pib;
+  const sel = [...document.querySelectorAll("#cp-mes-t input:checked")].map(i => MES[+i.dataset.i]);
+  let E = 0, L = 0, N = 0;
+  sel.forEach(x => { const m = x[2] < 0 ? x[2] : x[2] * k; E += x[1]; L += m * x[1]; N += x[1] - TAU * m * x[1]; });
+  const d = 100 * ((D - N) / (pib - L) - D / pib);
+  kpis("#cp-mes-res", sel.length ? [
+    [md(E), [`d'économies retenues (${sel.length} mesure${sel.length > 1 ? "s" : ""})`], "Économies"],
+    [(L > 0 ? "−" : "+") + md(Math.abs(L)), [`de PIB la première année`, `${(100 * L / pib).toLocaleString("fr-FR", { maximumFractionDigits: 2 })} point de croissance en ${L > 0 ? "moins" : "plus"}`], "Activité"],
+    [md(N), [`de déficit en moins`, `${Math.round(100 * N / C.deficit)} % du déficit de ${C.annee}`], "Déficit"],
+    [(d > 0 ? "+" : "−") + Math.abs(d).toLocaleString("fr-FR", { maximumFractionDigits: 2 }) + " pt", [`sur le ratio dette/PIB après un an`, d > 0 ? "il monte : la perte de PIB l'emporte" : "il baisse"], "Dette/PIB"],
+  ] : [["—", ["cochez des mesures dans le tableau", "pour composer votre plan"], "Votre plan"]]);
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

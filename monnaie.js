@@ -108,6 +108,42 @@ function fpresets() {
   el.querySelectorAll("button").forEach(btn => btn.onclick = () => { const q = P[+btn.dataset.k]; ["mo-fe", "mo-fx", "mo-fp", "mo-fr"].forEach((id, j) => $("#" + id).value = q[j + 1]); futur(); });
 }
 
+/* où va la monnaie : monnaie, production en volume, prix à la consommation, prix des logements (1970 = 1) */
+function partage() {
+  const el = $("#mo-part"), P = M.partage; if (!el || !P || !el.clientWidth) return;
+  const { showTip, hideTip, css, legend } = window.TH;
+  const b = P.find(d => d.annee === 1970), K = [["m", "Monnaie", "#16a34a"], ["h", "Prix des logements", "#f59e0b"], ["p", "Prix à la consommation", "#dc2626"], ["y", "Production (en volume)", "#2563eb"]];
+  const D = P.map(d => ({ annee: d.annee, ...Object.fromEntries(K.map(([k]) => [k, d[k] / b[k]])) }));
+  const w = Math.max(320, el.clientWidth), h = 300, m = { t: 12, r: 70, b: 26, l: 44 };
+  const x = d3.scaleLinear([1950, 2020], [m.l, w - m.r]), y = d3.scaleLog([0.05, 80], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data([0.1, 1, 10]).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  K.forEach(([k, l, c]) => {
+    svg.append("path").attr("fill", "none").attr("stroke", c).attr("stroke-width", 2).attr("d", d3.line().defined(d => d[k] > 0).x(d => x(d.annee)).y(d => y(d[k]))(D));
+    const L = D.at(-1); svg.append("text").attr("x", w - m.r + 4).attr("y", y(L[k]) + 4).attr("font-size", 10.5).attr("font-weight", 600).attr("fill", c).text("×" + (L[k] >= 10 ? n0(L[k]) : f1(L[k])));
+  });
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(w < 560 ? 5 : 8).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues([0.1, 1, 10]).tickFormat(v => "×" + v.toLocaleString("fr-FR"))).call(s => s.select(".domain").remove());
+  const bis = d3.bisector(d => d.annee).center;
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b> (1970 = 1)` + K.map(([k, l, c]) => `<br><span style="color:${c}">■</span> ${l} : ×${f2(d[k])}`).join(""), ev); }).on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
+  legend("#mo-part-legend", K.map(k => [k[1], k[2]]));
+  // décomposition par période : croissance de la monnaie = production + prix + monnaie gardée en plus
+  const g = (a, z, k) => { const A = P.find(d => d.annee === a), Z = P.find(d => d.annee === z); return 100 * (Math.pow(Z[k] / A[k], 1 / (z - a)) - 1); };
+  const PER = [[1950, 1973], [1973, 1990], [1990, 2007], [2007, 2020]].map(([a, z]) => { const mm = g(a, z, "m"), yy = g(a, z, "y"), pp = g(a, z, "p"); return { l: `${a}-${z}`, m: mm, y: yy, p: pp, r: mm - yy - pp, h: g(a, z, "h") }; });
+  $("#mo-part-per").innerHTML = `<div class="table-scroll"><table class="mo-hist cp-mes"><thead><tr><th>Période</th><th class="num">Monnaie</th><th class="num">dont production</th><th class="num">dont prix</th><th class="num">dont monnaie gardée en plus</th><th class="num">Pour comparer : logements</th></tr></thead><tbody>` +
+    PER.map(r => `<tr><td><b>${r.l}</b></td><td class="num"><b>+${f1(r.m)} %/an</b></td><td class="num">${sg(Math.round(r.y * 10) / 10)} %</td><td class="num">${sg(Math.round(r.p * 10) / 10)} %</td><td class="num">${sg(Math.round(r.r * 10) / 10)} %</td><td class="num">${sg(Math.round(r.h * 10) / 10)} %/an</td></tr>`).join("") + `</tbody></table></div>`;
+  const [A, B, Cc, Dd] = PER, L = D.at(-1);
+  $("#mo-part-txt").innerHTML = `<ul>
+    <li><b>Depuis 1970, la monnaie a été multipliée par ${n0(L.m)}, la production seulement par ${f1(L.y)}.</b> La différence n'a pas disparu : les prix à la consommation ont été multipliés par ${f1(L.p)}, et les prix des logements par ${n0(L.h)}.</li>
+    <li><b>Jusqu'en 1990, l'excès de monnaie est surtout devenu de l'inflation</b> : de 1973 à 1990, la monnaie croît de ${f1(B.m)} % par an, dont ${f1(B.p)} % de hausse des prix. C'est le cas classique : plus de monnaie pour à peu près autant de biens, donc des prix plus élevés.</li>
+    <li><b>De 1990 à 2007, l'excès de monnaie va vers les logements</b> : les prix à la consommation ne montent que de ${f1(Cc.p)} % par an, mais les logements de ${f1(Cc.h)} % (et de beaucoup plus de 1997 à 2007). L'inflation se déplace des courses vers le patrimoine.</li>
+    <li><b>Depuis 2007, la monnaie dort</b> : elle croît de ${f1(Dd.m)} % par an, mais la production stagne (${sg(Math.round(Dd.y * 10) / 10)} %), les prix à la consommation montent de ${f1(Dd.p)} % et les logements de ${f1(Dd.h)} %. L'essentiel (${f1(Dd.r)} % par an) est de la monnaie « gardée en plus » : de l'épargne qui reste sur les comptes et les livrets, parce qu'avec des taux proches de zéro il n'y avait rien à gagner à la placer ailleurs. Une partie de cette épargne s'est remise à circuler en 2021-2023 : c'est l'une des causes du retour de l'inflation.</li>
+    <li><b>Pourquoi ce n'est pas proportionnel</b> : une même monnaie peut circuler vite (elle sert à beaucoup d'achats dans l'année) ou dormir sur un compte. Les économistes résument cela par l'équation <i>monnaie × vitesse = prix × production</i>. Quand la monnaie dort davantage (la vitesse baisse), on peut en avoir beaucoup plus sans hausse des prix à la consommation.</li>
+  </ul>`;
+}
+
 /* taux d'un crédit : addition des composantes, mensualité, coût total, part des intérêts */
 function credit() {
   if (!$("#mo-c1")) return;
@@ -330,15 +366,17 @@ function draw() {
     [sg(last.nominal) + " %", [`croissance du PIB en valeur en ${last.annee}`, `contre un taux d'intérêt de ${f2(last.taux)} % pour l'État à 10 ans`], "Croissance et taux"],
     ["Oui et non", ["la monnaie-dette n'oblige pas à elle seule à croître", "mais intérêts et épargne accumulée y poussent"], "En bref"],
   ]);
-  lineChart($("#mo-credit"), C, [{ k: "credit", l: "Crédits des banques aux ménages et entreprises", c: "#2563eb" }, { k: "monnaie", l: "Monnaie au sens large (dépôts, billets…)", c: "#16a34a" },
-    { k: "dette_publique", l: "Dette publique", c: "#dc2626", dash: "4 3" }], { vfmt: v => f1(v) + " %", yfmt: v => v + " %", h: 280 });
-  legend("#mo-credit-legend", [["Crédits bancaires aux ménages et aux entreprises", "#2563eb"], ["Monnaie au sens large", "#16a34a"], ["Dette publique", "#dc2626", 1]]);
-  const c70 = C.find(c => c.annee === 1970), c00 = C.find(c => c.annee === 2000), c19 = C.find(c => c.annee === 2019);
+  lineChart($("#mo-credit"), C, [{ k: "credit", l: "Crédits des banques aux ménages et entreprises", c: "#2563eb" }, { k: "monnaie", l: "Monnaie détenue par le public", c: "#16a34a" }], { vfmt: v => f1(v) + " %", yfmt: v => v + " %", h: 280 });
+  legend("#mo-credit-legend", [["Crédits des banques aux ménages et aux entreprises (% du PIB)", "#2563eb"], ["Monnaie détenue par le public : billets, comptes, livrets (% du PIB)", "#16a34a"]]);
+  const c70 = C.find(c => c.annee === 1970), c00 = C.find(c => c.annee === 2000), c44 = C.find(c => c.annee === 1944) || {}, c13 = C.find(c => c.annee === 1913) || {};
   $("#mo-credit-txt").innerHTML = `<ul>
-    <li><b>Le crédit au secteur privé est passé de ${n0(c50.credit)} % du PIB en 1950 à ${n0(c19.credit)} % en 2019</b> (${n0(cL.credit)} % en ${cL.annee}, année où le PIB a chuté avec la crise sanitaire). Il augmente plus vite que l'économie : c'est surtout le crédit immobilier des ménages (${n0(cL.menages)} % du PIB en ${cL.annee}), qui suit la hausse des prix des logements (voir <a href="#logement">Logement</a>).</li>
-    <li><b>La dette totale grossit, mais ce n'est pas une loi</b> : entre les deux guerres, et de 1945 au début des années 1970, la dette publique a fondu (de ${n0(C.find(c => c.annee === 1920).dette_publique)} % du PIB en 1920 à ${n0(c70.dette_publique)} % en 1970), grâce à la croissance et surtout à l'inflation. Le crédit privé, lui, a stagné ou reculé à plusieurs reprises (années 1930, 1990-2000 : ${n0(C.find(c => c.annee === 1990).credit)} % → ${n0(c00.credit)} %).</li>
+    <li><b>Depuis 1950, les deux courbes avancent ensemble</b> : la monnaie naît surtout du crédit aux ménages et aux entreprises. Quand les banques prêtent plus, il y a plus de monnaie (de ${n0(c50.monnaie)} % du PIB en 1950 à ${n0(cL.monnaie)} % en ${cL.annee}). C'est le bilan ci-dessus : ce que les banques ont prêté se retrouve, de l'autre côté, sous forme de dépôts.</li>
+    <li><b>Avant 1945, ce n'était pas le cas</b> : la monnaie (${n0(c13.monnaie)} % du PIB en 1913) dépassait de loin le crédit bancaire, parce qu'elle était faite de pièces d'or et d'argent et de billets prêtés à l'État. Le pic de ${n0(c44.monnaie || 198)} % en 1944 est la monnaie créée pour financer la guerre et l'occupation : ce n'était pas du crédit aux entreprises, mais de la dette de l'État envers la Banque de France.</li>
+    <li><b>L'écart actuel entre les deux courbes</b> vient des autres contreparties : la dette publique détenue par les banques et la banque centrale (les rachats de titres de 2015-2022), moins l'épargne longue et les fonds propres des banques.</li>
+    <li><b>Le crédit privé augmente plus vite que l'économie</b> (de ${n0(c50.credit)} % du PIB en 1950 à ${n0(cL.credit)} % en ${cL.annee}) : c'est surtout le crédit immobilier des ménages (${n0(cL.menages)} % du PIB), qui suit la hausse des prix des logements (voir <a href="#logement">Logement</a>).</li>
   </ul>
-  <p class="muted" style="font-size:.78rem">Jordà, Schularick et Taylor, Macrohistory Database : crédits des banques au secteur privé non financier, monnaie au sens large (M2 ou M3 selon les périodes), dette publique, rapportés au PIB. Série arrêtée en ${cL.annee}. Pas de données pour les années de guerre.</p>`;
+  <p class="muted" style="font-size:.78rem">Jordà, Schularick et Taylor, Macrohistory Database : crédits des banques au secteur privé non financier, monnaie au sens large (M2 ou M3 selon les périodes), rapportés au PIB. Série arrêtée en ${cL.annee}.</p>`;
+  partage();
   // M1, M2, M3 (BCE)
   const AG = M.agregats, aL = AG.at(-1), a99 = AG.find(a => a.annee === 1999), a07 = AG.find(a => a.annee === 2007), a21 = AG.find(a => a.annee === 2021), a23 = AG.find(a => a.annee === 2023);
   const { areaChart } = window.TH;

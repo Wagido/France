@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123v">
+<link rel="stylesheet" href="style.css?v=20261123y">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -600,7 +600,7 @@
     <li><a href="#monnaie" data-to="mo-2-2">2.2 Banque centrale et banques privées</a></li>
     <li><a href="#monnaie" data-to="mo-2-3">2.3 Tous les robinets : ce qui crée et ce qui détruit la monnaie</a></li>
     <li><a href="#monnaie" data-to="mo-2-4">2.4 Pourquoi les banques ne créent-elles pas de la monnaie sans limite ?</a></li>
-    <li><a href="#monnaie" data-to="mo-2-5">2.5 Combien de monnaie ? M1, M2, M3</a></li>
+    <li><a href="#monnaie" data-to="mo-2-5">2.5 Combien de monnaie ? Est-elle toute de la dette ? Suit-elle la production ?</a></li>
     <li><a href="#monnaie" data-to="mo-2-6">2.6 Un euro français est-il un euro allemand ?</a></li>
   </ol></nav>
 
@@ -684,10 +684,34 @@
   </div>
   <div id="mo-k-out" class="callout small"></div>
 
-  <h3 id="mo-2-5" class="li-sub">2.5 Combien de monnaie ?</h3>
-  <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
+  <h3 id="mo-2-5" class="li-sub">2.5 Combien de monnaie ? Est-elle toute de la dette ? Suit-elle la production ?</h3>
+  <div class="callout small">
+    <p><b>En bref</b></p>
+    <ul>
+      <li><b>Oui, presque toute la monnaie est la contrepartie d'une dette.</b> Chaque euro sur un compte est apparu quand une banque a prêté (à un ménage, une entreprise, l'État) ou acheté un titre. Les billets sont la dette de la banque centrale, qui les a émis en prêtant aux banques ou en achetant des titres. Quand les dettes sont remboursées, la monnaie disparaît.</li>
+      <li><b>Non, elle n'est pas proportionnelle aux biens produits.</b> Elle a varié de 30 % à près de 200 % du PIB en un siècle. Ce qui détermine sa quantité, c'est la demande de crédit, pas la quantité de marchandises.</li>
+      <li><b>Quand la monnaie croît plus vite que la production, elle va ailleurs</b> : dans la hausse des prix à la consommation (l'inflation, jusqu'aux années 1980), dans la hausse des prix des logements et des actions (depuis 2000), ou elle reste simplement sur les comptes, épargnée.</li>
+    </ul>
+  </div>
+
+  <h3>La monnaie est l'autre face du crédit</h3>
   <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : les deux courbes sont rapportées au PIB, la richesse produite chaque année. Bleu : ce que les banques ont prêté aux ménages et aux entreprises. Vert : la monnaie détenue par le public (billets, comptes courants, livrets). Les trous correspondent aux années de guerre, sans données.</p>
+  <div class="mo-bilan">
+    <div><b>Ce que possèdent les banques et la banque centrale</b>
+      <span>Crédits aux ménages et aux entreprises</span><span>Titres de dette publique (prêts à l'État)</span><span>Créances sur l'étranger, or</span></div>
+    <div class="eq">=</div>
+    <div><b>Ce qu'elles doivent</b>
+      <span class="m">La monnaie : billets, comptes courants, livrets</span><span>L'épargne longue placée chez elles</span><span>Leurs fonds propres</span></div>
+  </div>
   <div class="callout small" id="mo-credit-txt"></div>
+
+  <h3>Où va la monnaie ? Monnaie, production, prix et logements depuis 1950</h3>
+  <div id="mo-part" class="chart"></div><div class="legend-row" id="mo-part-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : tout part de 1 en 1970, sur une échelle où chaque graduation multiplie par 10. Si la monnaie suivait la production, les deux courbes seraient collées. L'écart montre l'excès de monnaie : il s'est traduit en hausse des prix, puis des logements.</p>
+  <div id="mo-part-per"></div>
+  <div class="callout small" id="mo-part-txt"></div>
+
   <h3>Les masses monétaires M1, M2, M3 de la zone euro (milliards d'euros, fin d'année)</h3>
   <p class="lead">Depuis l'euro, la France n'a plus de masse monétaire propre : ce sont celles de la zone euro, publiées par la BCE. Chaque agrégat englobe le précédent, de la monnaie la plus « liquide » (utilisable tout de suite) à la moins liquide.</p>
   <div class="grid2">
@@ -728,14 +752,14 @@
   <ul class="mo-ul">
     <li><b>Créée à partir de rien, mais dépensée pour quelque chose de bien réel.</b> Reprenons le prêt de la partie 2 : les 200 000 € ont payé une maison au vendeur, qui les garde et les dépense. Vous, vous avez la maison. Le remboursement, c'est vous qui rendez l'équivalent de ce que vous avez obtenu, en travaillant. Si personne ne remboursait, chacun pourrait obtenir des maisons contre de simples écritures, la monnaie s'accumulerait sans que la production suive, et les prix s'envoleraient.</li>
     <li><b>Le remboursement détruit la monnaie</b> : la dette et le dépôt disparaissent ensemble (voir 2.1). La banque ne « récupère » pas l'argent pour elle ; elle ne garde que les intérêts.</li>
-    <li><b>Les intérêts sont le prix d'un service et d'un risque</b> : si vous ne remboursez pas, c'est la banque qui perd, sur ses fonds propres. Les intérêts paient ce risque, ses salariés, ses locaux, et la rémunération de ceux qui lui ont confié leur épargne. Les faillites bancaires de 1930 ou de 2008 rappellent que ce risque est réel.</li>
+    <li><b>Et les intérêts ?</b> Ils paient le service de la banque et le risque qu'elle prend : si vous ne remboursez pas, c'est elle qui perd, sur ses fonds propres (voir 2.4). Le détail du calcul est dans la partie 4.</li>
   </ul>
 
   <h3 id="mo-3-2" class="li-sub">3.2 À qui l'État emprunte-t-il vraiment ?</h3>
   <ul class="mo-ul">
     <li><b>Il vend des obligations</b> : des titres qui promettent de rembourser dans 2, 10 ou 30 ans, avec un intérêt chaque année. Ceux qui les achètent sont surtout des investisseurs étrangers (environ la moitié), des assureurs, des banques et la Banque de France.</li>
     <li><b>« Les marchés financiers », c'est en bonne partie votre épargne</b> : quand vous placez sur une assurance-vie en euros, l'assureur achète des obligations, dont beaucoup de dette française. Une partie des intérêts payés par l'État revient donc aux épargnants français, sous forme de rendement de leur assurance-vie.</li>
-    <li><b>L'État ne crée pas de monnaie en empruntant à des épargnants</b> : il déplace de l'argent qui existe déjà. Il en crée quand ce sont des banques qui achètent sa dette (voir 2.3), ou quand la banque centrale la rachète.</li>
+    <li><b>Emprunter n'est pas créer de la monnaie</b> : en empruntant à des épargnants, l'État déplace de l'argent qui existe déjà. Il n'en crée que si ce sont des banques ou la banque centrale qui achètent sa dette (voir 2.3), et une banque peut en acheter sans limite de fonds propres (voir 2.4).</li>
     <li><b>Les intérêts payés à la Banque de France reviennent à l'État</b> : la Banque de France appartient à l'État et lui reverse l'essentiel de ses bénéfices, en dividendes et en impôts.</li>
   </ul>
 
@@ -1541,6 +1565,24 @@
   <div id="cp-sim"></div>
   <div class="kpis" id="cp-res"></div>
   <div class="callout small" id="cp-txt"></div>
+  <h3 id="cp-mes" class="ag-part">Quelles économies coûtent le moins de croissance ?</h3>
+  <p class="lead">Toutes les économies ne se valent pas. Couper 1 € de dépense fait perdre un peu d'activité (c'est le <b>multiplicateur</b>, voir <a href="#simulateur">Couper la dépense ?</a>), et cette perte d'activité fait perdre des impôts. Mais l'ampleur dépend beaucoup de <i>qui</i> perd l'argent : un ménage modeste dépense tout ce qu'il reçoit, une entreprise qui touche une aide peu utile ou un ménage aisé en épargne une partie. Le tableau classe des mesures souvent proposées selon leur <b>rendement</b> : combien d'euros de déficit en moins pour 1 € de PIB perdu.</p>
+  <div class="ctl-row" style="margin-bottom:8px">
+    <label class="ctl">Conjoncture <select id="cp-conj"><option value="1">Normale</option><option value="1.6">Récession, ou BCE qui monte ses taux</option><option value="0.6">Confiance retrouvée (les ménages épargnent moins)</option></select></label>
+    <label class="ctl">Trier par <select id="cp-tri"><option value="rdt">Rendement (déficit en moins par € de PIB perdu)</option><option value="eco">Économie nette</option><option value="m">Multiplicateur</option></select></label>
+  </div>
+  <div class="table-scroll"><table class="mo-hist cp-mes" id="cp-mes-t"></table></div>
+  <div class="kpis" id="cp-mes-res"></div>
+  <div class="callout small" id="cp-mes-txt"></div>
+  <div class="callout small">
+    <p><b>Comment lire et calculer</b></p>
+    <ul>
+      <li><b>Perte de PIB</b> = économie × multiplicateur, la première année. <b>Économie nette pour le déficit</b> = économie − 46 % de la perte de PIB (la part des impôts et cotisations perdus avec l'activité). <b>Rendement</b> = économie nette ÷ perte de PIB.</li>
+      <li><b>Les multiplicateurs par type de dépense</b> sont des ordres de grandeur issus des études : environ 1 à 1,5 pour l'investissement public, 0,8 à 1 pour les achats et les salaires publics, 0,7 à 0,9 pour les transferts aux ménages modestes (qui dépensent tout), 0,3 à 0,5 pour les transferts aux ménages aisés et les aides aux entreprises, moins encore quand une partie de l'argent part à l'étranger (médicaments importés) ou n'avait pas d'effet (niches inefficaces). Ils ne sont pas mesurés mesure par mesure : ce sont des estimations de cet article, à prendre comme des fourchettes.</li>
+      <li><b>Les montants</b> sont des ordres de grandeur des débats budgétaires récents (budgets 2025 et 2026, rapports de la Cour des comptes, du Sénat et du rapport Bozio-Wasmer sur les allègements de cotisations). Ils ne s'additionnent pas toujours exactement.</li>
+      <li><b>Le long terme compte autant</b> : couper l'investissement public coûte peu de PIB tout de suite mais beaucoup plus tard ; reculer l'âge de la retraite coûte socialement mais augmente l'emploi et donc le PIB. La colonne « à long terme » le signale.</li>
+    </ul>
+  </div>
 </section>
 
 <section id="duree" class="panel">
@@ -2862,51 +2904,51 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123v"></script>
-<script src="app.js?v=20261123v"></script>
-<script src="energie.js?v=20261123v"></script>
-<script src="matieres.js?v=20261123v"></script>
-<script src="territoire.js?v=20261123v"></script>
-<script src="themes.js?v=20261123v"></script>
-<script src="societe.js?v=20261123v"></script>
-<script src="eco2.js?v=20261123v"></script>
-<script src="empreinte.js?v=20261123v"></script>
-<script src="argentprive.js?v=20261123v"></script>
-<script src="repartition.js?v=20261123v"></script>
-<script src="patrimoine.js?v=20261123v"></script>
-<script src="prelevements.js?v=20261123v"></script>
-<script src="travailvie.js?v=20261123v"></script>
-<script src="niveauvie.js?v=20261123v"></script>
-<script src="prosperite.js?v=20261123v"></script>
-<script src="exterieur.js?v=20261123v"></script>
-<script src="desindus.js?v=20261123v"></script>
-<script src="retraites.js?v=20261123v"></script>
-<script src="energiecout.js?v=20261123v"></script>
-<script src="energieformation.js?v=20261123v"></script>
-<script src="nucleaire.js?v=20261123v"></script>
-<script src="logementeco.js?v=20261123v"></script>
-<script src="competences.js?v=20261123v"></script>
-<script src="justicedroit.js?v=20261123v"></script>
-<script src="fonctionnaires.js?v=20261123v"></script>
-<script src="couper.js?v=20261123v"></script>
-<script src="seuilpays.js?v=20261123v"></script>
-<script src="logement.js?v=20261123v"></script>
-<script src="env.js?v=20261123v"></script>
-<script src="agriculture.js?v=20261123v"></script>
-<script src="rendements.js?v=20261123v"></script>
-<script src="monnaie.js?v=20261123v"></script>
-<script src="limites.js?v=20261123v"></script>
-<script src="sociologie.js?v=20261123v"></script>
-<script src="chaine.js?v=20261123v"></script>
-<script src="patrimoinehist.js?v=20261123v"></script>
-<script src="innovation.js?v=20261123v"></script>
+<script src="kpi.js?v=20261123y"></script>
+<script src="app.js?v=20261123y"></script>
+<script src="energie.js?v=20261123y"></script>
+<script src="matieres.js?v=20261123y"></script>
+<script src="territoire.js?v=20261123y"></script>
+<script src="themes.js?v=20261123y"></script>
+<script src="societe.js?v=20261123y"></script>
+<script src="eco2.js?v=20261123y"></script>
+<script src="empreinte.js?v=20261123y"></script>
+<script src="argentprive.js?v=20261123y"></script>
+<script src="repartition.js?v=20261123y"></script>
+<script src="patrimoine.js?v=20261123y"></script>
+<script src="prelevements.js?v=20261123y"></script>
+<script src="travailvie.js?v=20261123y"></script>
+<script src="niveauvie.js?v=20261123y"></script>
+<script src="prosperite.js?v=20261123y"></script>
+<script src="exterieur.js?v=20261123y"></script>
+<script src="desindus.js?v=20261123y"></script>
+<script src="retraites.js?v=20261123y"></script>
+<script src="energiecout.js?v=20261123y"></script>
+<script src="energieformation.js?v=20261123y"></script>
+<script src="nucleaire.js?v=20261123y"></script>
+<script src="logementeco.js?v=20261123y"></script>
+<script src="competences.js?v=20261123y"></script>
+<script src="justicedroit.js?v=20261123y"></script>
+<script src="fonctionnaires.js?v=20261123y"></script>
+<script src="couper.js?v=20261123y"></script>
+<script src="seuilpays.js?v=20261123y"></script>
+<script src="logement.js?v=20261123y"></script>
+<script src="env.js?v=20261123y"></script>
+<script src="agriculture.js?v=20261123y"></script>
+<script src="rendements.js?v=20261123y"></script>
+<script src="monnaie.js?v=20261123y"></script>
+<script src="limites.js?v=20261123y"></script>
+<script src="sociologie.js?v=20261123y"></script>
+<script src="chaine.js?v=20261123y"></script>
+<script src="patrimoinehist.js?v=20261123y"></script>
+<script src="innovation.js?v=20261123y"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123v"></script>
-<script src="histoire.js?v=20261123v"></script>
-<script src="chomage.js?v=20261123v"></script>
-<script src="tableau.js?v=20261123v"></script>
-<script src="sources.js?v=20261123v"></script>
-<script src="nav.js?v=20261123v"></script>
+<script src="soussol.js?v=20261123y"></script>
+<script src="histoire.js?v=20261123y"></script>
+<script src="chomage.js?v=20261123y"></script>
+<script src="tableau.js?v=20261123y"></script>
+<script src="sources.js?v=20261123y"></script>
+<script src="nav.js?v=20261123y"></script>
 </body>
 </html>
