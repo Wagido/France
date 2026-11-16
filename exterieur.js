@@ -19,16 +19,28 @@ function draw() {
   lineChart($("#ext-position"), Pz, PG.map(([g]) => ({ k: g, l: nom[g], c: COUL[g] })), { nozero: true, yfmt: v => v + " %", vfmt: sg, h: 260 });
   legend("#ext-position-legend", PG.map(([g]) => [nom[g], COUL[g]]));
   const last = Pz.at(-1), p00 = Pz.find(r => r.annee === 2000), cL = C.filter(r => r.FR != null).at(-1);
-  const deficits = C.filter(r => r.annee >= 2005 && r.FR < 0).length, n05 = C.filter(r => r.annee >= 2005 && r.FR != null).length;
   const md = window.PEI?.length ? window.PEI.at(-1) : null;
-  $("#ext-txt").innerHTML = `<ul>
-    <li><b>Oui : un pays qui dépense plus qu'il ne gagne avec l'étranger s'appauvrit peu à peu.</b> Le solde courant mesure ce que le pays vend et gagne à l'étranger (exportations, revenus de ses placements) moins ce qu'il achète et verse. Un déficit se paie en empruntant à l'étranger ou en lui vendant des actifs (actions, immeubles, entreprises). Chaque année de déficit augmente donc ce que le pays doit au reste du monde.</li>
-    <li><b>La France est en déficit ${deficits} années sur ${n05} depuis 2005</b>, après un excédent à la fin des années 1990 : en tout, environ ${f1(Math.abs(X.cumul_fr_2005))} points de PIB. Les déficits sont modestes chaque année (${sg(cL.FR)} en ${cL.annee}), mais ils s'accumulent.</li>
-    <li><b>Résultat : la France est passée de créancière à débitrice</b>. Sa position extérieure nette, ce qu'elle possède à l'étranger moins ce qu'elle lui doit, est passée de ${sg(p00.FR)} du PIB en 2000 à <b>${sg(last.FR)}</b> en ${last.annee}. L'Allemagne, en excédent depuis vingt ans, a fait le chemin inverse (${sg(last.DE)}). L'Italie, après dix ans d'excédents, est redevenue créancière (${sg(last.IT)}).</li>
-    <li><b>La position bouge aussi avec les prix</b> : quand les actions françaises détenues par des étrangers montent, la France « doit » davantage, sans avoir rien emprunté. C'est pourquoi elle a plus reculé que les seuls déficits cumulés.</li>
-    <li><b>Concrètement</b> : une partie des intérêts, dividendes et loyers produits en France part chaque année à l'étranger, et le pays dépend de la confiance des investisseurs étrangers, qui détiennent aussi plus de la moitié de la dette de l'État. Les États-Unis vivent en déficit depuis quarante ans sans crise, mais grâce au dollar, monnaie mondiale ; la France n'a pas ce privilège.</li>
-    <li><b>Un déficit n'est pas toujours mauvais</b> : emprunter pour investir (usines, réseaux, recherche) peut enrichir plus tard. Le problème vient quand on emprunte pour consommer : la dette reste, sans revenus futurs pour la rembourser.</li>
-  </ul>`;
+  const CO = X.commercial, cmL = CO.at(-1), defC = CO.filter(r => r.annee >= 2000 && r.FR < 0).length, nC = CO.filter(r => r.annee >= 2000).length;
+  const PU = X.public, puL = PU.at(-1), trop = PU.filter(r => -r.solde_FR > r.inv_FR);
+  lineChart($("#ext-public"), PU.map(r => ({ annee: r.annee, inv: r.inv_FR, def: -r.solde_FR, invDE: r.inv_DE, defDE: -r.solde_DE })),
+    [{ k: "def", l: "France : déficit public", c: "#dc2626" }, { k: "inv", l: "France : investissement public", c: "#16a34a" }, { k: "defDE", l: "Allemagne : déficit public", c: "#dc2626", dash: "4 4" }, { k: "invDE", l: "Allemagne : investissement public", c: "#16a34a", dash: "4 4" }],
+    { yfmt: v => v + " %", vfmt: v => f1(v) + " % du PIB", h: 240, xticks: 8 });
+  legend("#ext-public-legend", [["Déficit public, France", "#dc2626"], ["Investissement public, France", "#16a34a"], ["Allemagne (pointillés)", "#94a3b8", true]]);
+  $("#ext-txt").innerHTML = `<p style="margin-top:0"><b>Deux choses différentes, qu'on mélange souvent</b></p>
+    <p style="margin-bottom:2px"><b>1. D'un côté, le déficit commercial : la France achète plus à l'étranger qu'elle ne lui vend</b></p>
+    <ul>
+      <li><b>Les chiffres</b> : en biens et services, la France est en déficit ${defC} années sur ${nC} depuis 2000 (${sg(cmL.FR)} du PIB en ${cmL.annee}). Ses placements à l'étranger rapportent un peu, mais le solde total reste négatif presque chaque année (graphique de gauche).</li>
+      <li><b>Comment on paie ce déficit</b> : en empruntant à l'étranger, ou en lui vendant des actifs (actions, entreprises, immeubles). Comme un ménage qui dépense plus qu'il ne gagne et pioche dans son épargne.</li>
+      <li><b>Le résultat</b> : la France possédait à l'étranger un peu plus qu'elle ne lui devait en 2000 (${sg(p00.FR)} du PIB) ; en ${last.annee}, elle lui doit ${f1(Math.abs(last.FR))} % de son PIB de plus qu'elle n'y possède (graphique de droite). L'Allemagne, en excédent depuis vingt ans, a l'inverse : ${sg(last.DE)}. Oui, un pays en déficit permanent s'appauvrit peu à peu face au reste du monde.</li>
+    </ul>
+    <p style="margin-bottom:2px"><b>2. De l'autre, la dette : utile si elle finance de l'investissement, nocive si elle paie les dépenses courantes</b></p>
+    <ul>
+      <li><b>Comme pour un ménage</b> : emprunter pour acheter un logement ou une machine, c'est s'enrichir plus tard ; emprunter pour payer ses courses, c'est s'appauvrir. C'est la « règle d'or » : on n'emprunte pas plus que ce qu'on investit.</li>
+      <li><b>L'État français investit beaucoup</b> : ${f1(puL.inv_FR)} % du PIB en ${puL.annee} (écoles, routes, hôpitaux, équipement militaire), plus que l'Allemagne (${f1(puL.inv_DE)} %) et la moyenne européenne (${f1(puL.inv_EU27_2020)} %).</li>
+      <li><b>Mais son déficit est encore plus gros</b> : ${f1(-puL.solde_FR)} % du PIB. ${trop.length === PU.length ? "Chaque année depuis " + PU[0].annee : trop.length + " années sur " + PU.length + " depuis " + PU[0].annee}, il a dépassé l'investissement (graphique ci-dessous) : une partie des retraites, salaires et intérêts est donc payée à crédit. L'Allemagne, elle, emprunte moins que ce qu'elle investit (déficit de ${f1(-puL.solde_DE)} %).</li>
+      <li><b>Les deux se rejoignent</b> : plus de la moitié de la dette de l'État est détenue par des étrangers. Quand le pays dépense plus qu'il ne produit, c'est en partie le reste du monde qui le finance, et il faudra le rembourser.</li>
+    </ul>
+    <p class="muted" style="font-size:.8rem;margin-bottom:0">Nuances : la position extérieure bouge aussi avec le prix des actions détenues par les étrangers ; les États-Unis vivent en déficit depuis quarante ans sans crise, grâce au dollar, monnaie mondiale, un privilège que la France n'a pas.</p>`;
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
