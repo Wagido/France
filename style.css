@@ -328,3 +328,13 @@ main.wrap { position: relative; overflow: hidden; }
 .nv-pt small { color: var(--muted); }
 h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-left: 5px solid #7c3aed; background: #f3eefc; border-radius: 0 8px 8px 0; }
 :root[data-theme="dark"] h2.nv-part { background: #241d36; }
+/* Pays prospère ? */
+.pr-t { width: 100%; border-collapse: collapse; font-size: .86rem; margin: 6px 0 4px; }
+.pr-t th, .pr-t td { padding: 7px 8px; border-bottom: 1px solid var(--line, #e5e7eb); text-align: right; vertical-align: top; }
+.pr-t th:first-child, .pr-t td.lab { text-align: left; }
+.pr-t td.lab { min-width: 220px; } .pr-t td.lab small { display: block; font-size: .72rem; }
+.pr-t .fr { background: #f3eefc; } :root[data-theme="dark"] .pr-t .fr { background: #241d36; }
+.pr-t th.fr { color: #6d28d9; }
+.pr-t td.best b { outline: 2px solid #16a34a; outline-offset: 2px; border-radius: 3px; }
+.pr-bar { display: block; height: 5px; background: #e5e7eb; border-radius: 3px; margin-top: 4px; } .pr-bar i { display: block; height: 100%; background: #94a3b8; border-radius: 3px; }
+.pr-t .fr .pr-bar i { background: #6d28d9; }

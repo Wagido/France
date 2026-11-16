@@ -1,0 +1,29 @@
+{
+ "source": "Banque mondiale, SI.POV.DDAY (moins de 3 dollars par jour, PPA 2021), dernière année disponible",
+ "valeurs": {
+  "FRA": [
+   0.1,
+   "2023"
+  ],
+  "USA": [
+   1.1,
+   "2024"
+  ],
+  "DEU": [
+   0.7,
+   "2022"
+  ],
+  "BRA": [
+   3,
+   "2024"
+  ],
+  "IND": [
+   2.6,
+   "2023"
+  ],
+  "NGA": [
+   41.8,
+   "2022"
+  ]
+ }
+}

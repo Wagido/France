@@ -1,0 +1,90 @@
+{
+ "source": "PNUD, Rapport sur le développement humain 2025, annexe statistique (tableaux 1 et 3), données 2023",
+ "url": "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Statistical_Annex_Tables_1-7.pdf",
+ "pays": {
+  "DEU": {
+   "rang_idh": 5,
+   "idh": 0.959,
+   "esperance_vie": 81.4,
+   "annees_attendues": 17.3,
+   "annees_etudes": 14.3,
+   "rnb_hab_ppa": 64053.0,
+   "idh_ajuste": 0.89,
+   "perte_inegalites": 7.2,
+   "part_40_pauvres": 20.6,
+   "part_10_riches": 25.0,
+   "part_1_riches": 12.8,
+   "gini": 32.4
+  },
+  "USA": {
+   "rang_idh": 17,
+   "idh": 0.938,
+   "esperance_vie": 79.3,
+   "annees_attendues": 15.9,
+   "annees_etudes": 13.9,
+   "rnb_hab_ppa": 73650.0,
+   "idh_ajuste": 0.832,
+   "perte_inegalites": 11.3,
+   "part_40_pauvres": 15.6,
+   "part_10_riches": 30.2,
+   "part_1_riches": 20.7,
+   "gini": 41.3
+  },
+  "FRA": {
+   "rang_idh": 26,
+   "idh": 0.92,
+   "esperance_vie": 83.3,
+   "annees_attendues": 16.1,
+   "annees_etudes": 11.8,
+   "rnb_hab_ppa": 55060.0,
+   "idh_ajuste": 0.836,
+   "perte_inegalites": 9.1,
+   "part_40_pauvres": 20.8,
+   "part_10_riches": 24.9,
+   "part_1_riches": 12.1,
+   "gini": 31.5
+  },
+  "BRA": {
+   "rang_idh": 84,
+   "idh": 0.786,
+   "esperance_vie": 75.8,
+   "annees_attendues": 15.8,
+   "annees_etudes": 8.4,
+   "rnb_hab_ppa": 18011.0,
+   "idh_ajuste": 0.594,
+   "perte_inegalites": 24.4,
+   "part_40_pauvres": 11.3,
+   "part_10_riches": 41.0,
+   "part_1_riches": 21.1,
+   "gini": 52.0
+  },
+  "IND": {
+   "rang_idh": 130,
+   "idh": 0.685,
+   "esperance_vie": 72.0,
+   "annees_attendues": 13.0,
+   "annees_etudes": 6.9,
+   "rnb_hab_ppa": 9047.0,
+   "idh_ajuste": 0.475,
+   "perte_inegalites": 30.7,
+   "part_40_pauvres": 20.2,
+   "part_10_riches": 25.5,
+   "part_1_riches": 23.1,
+   "gini": 32.8
+  },
+  "NGA": {
+   "rang_idh": 164,
+   "idh": 0.56,
+   "esperance_vie": 54.5,
+   "annees_attendues": 10.5,
+   "annees_etudes": 7.6,
+   "rnb_hab_ppa": 5569.0,
+   "idh_ajuste": 0.379,
+   "perte_inegalites": 32.3,
+   "part_40_pauvres": 18.7,
+   "part_10_riches": 26.7,
+   "part_1_riches": 11.6,
+   "gini": 35.1
+  }
+ }
+}
