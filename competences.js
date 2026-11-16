@@ -30,7 +30,7 @@ async function init() {
   const F = C.fonctions, mx = Math.max(...F.map(r => r.etat + r.local + r.secu));
   $("#cmp-fn").innerHTML = `<div class="legend-row" style="margin-bottom:6px">${Object.keys(NOM).map(k => `<span><i style="border-top-color:${COUL[k]};border-top-width:10px;width:14px;opacity:1"></i>${NOM[k]} (${nf(C.totaux[k])} Md€)</span>`).join("")}</div>` +
     F.map(r => { const t = r.etat + r.local + r.secu;
-      return `<div class="cmp-row"><span class="lab">${esc(r.l)}</span><span class="cmp-track">${Object.keys(NOM).map(k => r[k] > 0 ? `<span title="${NOM[k]} : ${nf(r[k])} Md€" style="width:${(100 * r[k] / mx).toFixed(2)}%;background:${COUL[k]}">${r[k] / mx > 0.06 ? nf(r[k]) : ""}</span>` : "").join("")}<b>${nf(t)} Md€</b></span></div>`; }).join("");
+      return `<div class="cmp-row qd-row"><span class="lab">${esc(r.l)}</span><span class="cmp-track">${Object.keys(NOM).map(k => r[k] > 0 ? `<span title="${NOM[k]} : ${nf(r[k])} Md€" style="width:${(100 * r[k] / mx).toFixed(2)}%;background:${COUL[k]}">${r[k] / mx > 0.06 ? nf(r[k]) : ""}</span>` : "").join("")}<b>${nf(t)} Md€</b></span></div>`; }).join("");
   $("#cmp-qui").innerHTML = `<table class="pr-t qui-t"><thead><tr><th>Domaine</th><th>État</th><th>Région</th><th>Département</th><th>Commune et intercommunalité</th><th>Sécurité sociale</th></tr></thead><tbody>` +
     QUI.map(r => `<tr><td class="lab"><b>${esc(r[0])}</b></td>${r.slice(1).map(c => `<td class="${c ? "on" : ""}">${esc(c)}</td>`).join("")}</tr>`).join("") + `</tbody></table>`;
   const ens = F.find(r => r.code === "GF09"), soc = F.find(r => r.code === "GF10"), env = F.find(r => r.code === "GF05"), lg = F.find(r => r.code === "GF06");
