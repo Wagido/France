@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261118z">
+<link rel="stylesheet" href="style.css?v=20261119a">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -236,6 +236,10 @@
   <h3>La part du revenu « déjà dépensée » : logement, assurances, abonnements</h3>
   <div id="nv-pre" class="chart"></div><div class="legend-row" id="nv-pre-legend"></div>
   <p class="muted" style="font-size:.82rem">Dépenses pré-engagées : dépenses fixées par un contrat difficile à renégocier à court terme (loyers et charges, énergie et eau du logement, assurances, services financiers, téléphone, internet, télévision payante, cantine). Les propriétaires sont comptés comme s'ils se versaient un loyer. Source : <a href="https://www.insee.fr/fr/statistiques/8612566" target="_blank" rel="noopener">INSEE, consommation et épargne des ménages</a>.</p>
+  <h3>Un appartement de 50 m² à Paris : combien d'années pour le payer ?</h3>
+  <div id="nv-paris" class="chart"></div><div class="legend-row" id="nv-paris-legend"></div>
+  <p class="muted" style="font-size:.82rem" id="nv-paris-note"></p>
+  <div class="callout" id="nv-paris-txt"></div>
   <h3>« Dans les années 1960-1970, un seul salaire suffisait » : vrai ou faux ?</h3>
   <div class="grid2">
     <div><p class="muted" style="margin-top:0">Combien d'années pour rembourser son logement, selon l'année d'achat (simulation)</p><div id="nv-simu" class="chart"></div><div class="legend-row" id="nv-simu-legend"></div></div>
@@ -1256,35 +1260,35 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261118z"></script>
-<script src="app.js?v=20261118z"></script>
-<script src="energie.js?v=20261118z"></script>
-<script src="matieres.js?v=20261118z"></script>
-<script src="territoire.js?v=20261118z"></script>
-<script src="themes.js?v=20261118z"></script>
-<script src="societe.js?v=20261118z"></script>
-<script src="eco2.js?v=20261118z"></script>
-<script src="empreinte.js?v=20261118z"></script>
-<script src="argentprive.js?v=20261118z"></script>
-<script src="repartition.js?v=20261118z"></script>
-<script src="patrimoine.js?v=20261118z"></script>
-<script src="prelevements.js?v=20261118z"></script>
-<script src="travailvie.js?v=20261118z"></script>
-<script src="niveauvie.js?v=20261118z"></script>
-<script src="couper.js?v=20261118z"></script>
-<script src="seuilpays.js?v=20261118z"></script>
-<script src="logement.js?v=20261118z"></script>
-<script src="env.js?v=20261118z"></script>
-<script src="agriculture.js?v=20261118z"></script>
-<script src="chaine.js?v=20261118z"></script>
-<script src="patrimoinehist.js?v=20261118z"></script>
-<script src="innovation.js?v=20261118z"></script>
+<script src="kpi.js?v=20261119a"></script>
+<script src="app.js?v=20261119a"></script>
+<script src="energie.js?v=20261119a"></script>
+<script src="matieres.js?v=20261119a"></script>
+<script src="territoire.js?v=20261119a"></script>
+<script src="themes.js?v=20261119a"></script>
+<script src="societe.js?v=20261119a"></script>
+<script src="eco2.js?v=20261119a"></script>
+<script src="empreinte.js?v=20261119a"></script>
+<script src="argentprive.js?v=20261119a"></script>
+<script src="repartition.js?v=20261119a"></script>
+<script src="patrimoine.js?v=20261119a"></script>
+<script src="prelevements.js?v=20261119a"></script>
+<script src="travailvie.js?v=20261119a"></script>
+<script src="niveauvie.js?v=20261119a"></script>
+<script src="couper.js?v=20261119a"></script>
+<script src="seuilpays.js?v=20261119a"></script>
+<script src="logement.js?v=20261119a"></script>
+<script src="env.js?v=20261119a"></script>
+<script src="agriculture.js?v=20261119a"></script>
+<script src="chaine.js?v=20261119a"></script>
+<script src="patrimoinehist.js?v=20261119a"></script>
+<script src="innovation.js?v=20261119a"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261118z"></script>
-<script src="histoire.js?v=20261118z"></script>
-<script src="chomage.js?v=20261118z"></script>
-<script src="sources.js?v=20261118z"></script>
-<script src="nav.js?v=20261118z"></script>
+<script src="soussol.js?v=20261119a"></script>
+<script src="histoire.js?v=20261119a"></script>
+<script src="chomage.js?v=20261119a"></script>
+<script src="sources.js?v=20261119a"></script>
+<script src="nav.js?v=20261119a"></script>
 </body>
 </html>

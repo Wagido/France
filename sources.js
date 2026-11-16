@@ -56,6 +56,8 @@ const S = [
   ["Vit-on mieux", "insee", "Pouvoir d'achat du revenu disponible brut", "Pouvoir d'achat total et par unité de consommation, depuis 1960", "https://www.insee.fr/fr/statistiques/8612564", "annuel"],
   ["Vit-on mieux", "insee", "Dépenses pré-engagées", "Part des dépenses pré-engagées dans le revenu disponible, depuis 1960", "https://www.insee.fr/fr/statistiques/8612566", "annuel"],
   ["Vit-on mieux", "insee", "Série 000822484", "SMIC horaire brut depuis 1951", "https://www.insee.fr/fr/statistiques/serie/000822484", "à chaque revalorisation"],
+  ["Vit-on mieux", "insee", "Série 010567012", "Indice Notaires-INSEE des prix des appartements anciens à Paris, depuis 1992", "https://www.insee.fr/fr/statistiques/serie/010567012", "trimestriel"],
+  ["Vit-on mieux", "insee", "Friggit (IGEDD), prix des logements à Paris 1200-2012", "Indice long du prix des logements à Paris, raccordé avant 1992", "https://www.igedd.developpement-durable.gouv.fr/IMG/xls/prix-immo-paris-1200-2012_cle2f2d1a.xls", "ponctuel"],
   ["Vit-on mieux", "eurostat", "prc_ppp_ind", "Consommation individuelle effective par habitant en standards de pouvoir d'achat (UE = 100)", null, "annuel"],
   ["Vit-on mieux", "eurostat", "nama_10_pc", "Consommation individuelle effective par habitant en volume", null, "annuel"],
   ["Vit-on mieux", "eurostat", "tec00113", "Revenu disponible brut ajusté des ménages par habitant en PPA", null, "annuel"],

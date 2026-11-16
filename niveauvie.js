@@ -134,6 +134,21 @@ function draw() {
     ["≈ " + f1(eff * nA) + " ans", ["de revenu consacrés au logement sur une vie, pour un achat en 1965-1975"], "Coût sur une vie, avant"],
     ["≈ " + f1(eff * nN) + " ans", ["de revenu consacrés au logement sur une vie, pour un achat aujourd'hui", `soit ${Math.round(100 * (nN / nA - 1))} % de plus`], "Coût sur une vie, aujourd'hui"],
   ]);
+  // 6. Paris, 50 m²
+  if (N.paris && $("#nv-paris")) {
+    const PR = N.paris, PH = N.paris_hyp, pp = y => PR.find(r => r.annee === y), pl = PR.at(-1);
+    lineChart($("#nv-paris"), PR, [{ k: "annees_salaire", l: "Prix comptant, en années de salaire moyen", c: "#334155" }, { k: "remb_un", l: "Années de remboursement avec un salaire moyen", c: "#dc2626" }, { k: "remb_deux", l: "Années de remboursement avec deux salaires moyens", c: "#3b6fd6" }],
+      { vfmt: v => f1(v).replace(",0", "") + " ans", yfmt: v => v + " ans", h: 300 });
+    legend("#nv-paris-legend", [["Prix de 50 m², en années de salaire moyen (si l'on payait comptant, sans rien dépenser d'autre)", "#334155"], ["Années de remboursement d'un prêt, avec un seul salaire moyen", "#dc2626"], ["Années de remboursement d'un prêt, avec deux salaires moyens (un couple)", "#3b6fd6"]]);
+    const s70 = pp(1970), s00 = pp(2000), a = (r, k) => r[k] == null ? "plus de 60" : r[k];
+    $("#nv-paris-note").innerHTML = `Prix au m² des appartements anciens à Paris : ${n0(PH.m2_2024)} € en 2024 (<a href="https://notairesdugrandparis.fr/sites/default/files/2024-03/Communiqu%C3%A9%20mensuel_2024-03_prix%20fin%20janvier%202024.pdf" target="_blank" rel="noopener">Notaires du Grand Paris</a>), prolongé en arrière avec l'indice Notaires-INSEE de Paris (<a href="https://www.insee.fr/fr/statistiques/serie/010567012" target="_blank" rel="noopener">série 010567012</a>, depuis ${PH.raccord}) puis l'indice de Jacques Friggit (<a href="https://www.igedd.developpement-durable.gouv.fr/IMG/xls/prix-immo-paris-1200-2012_cle2f2d1a.xls" target="_blank" rel="noopener">IGEDD</a>). Salaire : salaire moyen brut à temps plein en France (et non à Paris, où il est plus élevé). Prêt : ${Math.round(100 * PH.apport)} % d'apport, le reste emprunté au taux de l'année et renégocié si les taux baissent ; ${Math.round(100 * N.simu_hyp.effort)} % du revenu consacré au remboursement chaque année. Avant ${PH.raccord}, ordre de grandeur.`;
+    $("#nv-paris-txt").innerHTML = `<ul>
+      <li><b>Payé comptant</b>, 50 m² à Paris valaient ${f1(s70.annees_salaire)} années de salaire moyen en 1970, ${f1(s00.annees_salaire)} en 2000, et <b>${f1(pl.annees_salaire)} en ${pl.annee}</b>, soit presque deux fois plus. Le prix au m² est passé de ${n0(s70.m2)} € (en euros de l'époque) à ${n0(pl.m2)} €.</li>
+      <li><b>Avec un prêt et un seul salaire moyen</b>, en y consacrant ${Math.round(100 * N.simu_hyp.effort)} % de son revenu : ${a(s70, "remb_un")} ans pour un achat en 1970, ${a(s00, "remb_un")} ans en 2000, <b>${a(pl, "remb_un")} ans en ${pl.annee}</b>, presque toute une carrière.</li>
+      <li><b>Avec deux salaires moyens</b> : ${a(s70, "remb_deux")} ans en 1970, ${a(s00, "remb_deux")} ans en 2000, <b>${a(pl, "remb_deux")} ans en ${pl.annee}</b>. Aujourd'hui, un couple met à deux à peu près le temps (${a(pl, "remb_deux")} ans) qu'un seul salaire mettait en 1970 (${a(s70, "remb_un")} ans).</li>
+      <li><b>Le pic de 1990</b> rappelle qu'il y a déjà eu une bulle parisienne : les prix ont ensuite baissé de ${Math.round(100 * (1 - Math.min(...PR.filter(r => r.annee > 1990 && r.annee < 2000).map(r => r.m2)) / pp(1990).m2))} % jusqu'en ${PR.filter(r => r.annee > 1990 && r.annee < 2000).reduce((m, r) => r.m2 < m.m2 ? r : m).annee}. Celle d'aujourd'hui dure depuis plus longtemps, soutenue par des taux longtemps très bas.</li>
+    </ul>`;
+  }
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

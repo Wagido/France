@@ -114,9 +114,49 @@ for y0 in range(1965, max(taux) + 1):
     simu.append({"annee": y0, "annees": n, "taux": round(taux[y0], 2), "inflation_10": round(100 * (prix.get(min(y0 + 10, an), 0) / prix[y0] - 1)) if y0 in prix else None,
                  "emprunt": round(EMPRUNT * k, 2), "poids_10": round(revenu(y0) / revenu(y0 + 10), 2), "connu": y0 + n <= yl})
 out["simu"] = simu; out["simu_hyp"] = {"emprunt": EMPRUNT, "effort": EFFORT, "croissance_future": 3, "derniere_annee": yl}
+# Paris : prix de 50 m² en années de salaire, et années pour rembourser, depuis 1960
+import xlrd
+sh = xlrd.open_workbook(os.path.join(SRC, "friggit_paris_1200_2012.xls")).sheet_by_name("Données - data")
+fr_reel, fr_ipc = {}, {}
+for i in range(4, sh.nrows):
+    row = sh.row_values(i)
+    try:
+        y = int(row[0])
+    except (ValueError, TypeError):
+        continue
+    if row[5] not in ("", None) and row[1] not in ("", None):
+        fr_reel[y] = float(row[5]); fr_ipc[y] = float(row[1])
+t = open(os.path.join(SRC, "insee_prix_paris.xml"), encoding="utf-8").read()
+q = {}
+for y, v in re.findall(r'TIME_PERIOD="(\d{4})-Q\d"[^/]*OBS_VALUE="([^"]+)"', t):
+    q.setdefault(int(y), []).append(float(v))
+ipa = {y: sum(v) / len(v) for y, v in q.items() if len(v) == 4}
+M2_2024 = 9450                                   # €/m², appartements anciens à Paris, 2024 (Notaires du Grand Paris)
+m2 = {y: M2_2024 * v / ipa[2024] for y, v in ipa.items()}
+y1 = min(ipa)
+for y in sorted(fr_reel, reverse=True):          # avant 1992 : indice de Friggit en monnaie courante, raccordé
+    if y < y1:
+        m2[y] = m2[y1] * (fr_reel[y] * fr_ipc[y]) / (fr_reel[y1] * fr_ipc[y1])
+SURF, APPORT = 50, 0.10
+paris = []
+for y in range(1960, max(ipa) + 1):
+    if y not in m2 or y not in nom:
+        continue
+    prixL = SURF * m2[y]
+    r = {"annee": y, "m2": round(m2[y]), "prix": round(prixL), "prix_reel": round(prixL * prix[an] / prix[y]) if y in prix else None,
+         "annees_salaire": round(prixL / (12 * nom[y]), 1)}
+    for k, nb in (("un", 1), ("deux", 2)):
+        dette = (1 - APPORT) * prixL; rt = max(taux.get(y, 3), 0.5) / 100; n = 0
+        while dette > 0 and n < 60:
+            ra = min(rt, (taux.get(y + n, taux[max(taux)]) + 1) / 100) if n else rt
+            dette = dette * (1 + ra) - EFFORT * nb * 12 * revenu(y + n); n += 1
+        r["remb_" + k] = n if dette <= 0 else None
+    paris.append(r)
+out["paris"] = paris; out["paris_hyp"] = {"surface": SURF, "apport": APPORT, "m2_2024": M2_2024, "raccord": y1}
 out["smic"] = smic; out["annee_euros"] = an
 json.dump(out, open(os.path.join(R, "data", "niveau_vie.json"), "w"), ensure_ascii=False, indent=1)
 print([(r["annee"], r["annees"], r["taux"], r["emprunt"]) for r in simu if r["annee"] % 5 == 0 or r["annee"] > 2020])
+print([(r["annee"], r["m2"], r["annees_salaire"], r["remb_un"], r["remb_deux"]) for r in paris if r["annee"] % 5 == 0 or r["annee"] >= 2023])
 print(smic[0], smic[-1], [ (r["annee"], r.get("ratio")) for r in smic if r["annee"] % 10 == 0])
 print(len(pa), pa[-1], len(pre), pre[-1])
 for r in out["pays"]:

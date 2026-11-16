@@ -5525,6 +5525,608 @@
   "croissance_future": 3,
   "derniere_annee": 2025
  },
+ "paris": [
+  {
+   "annee": 1960,
+   "m2": 89,
+   "prix": 4445,
+   "prix_reel": 50620,
+   "annees_salaire": 3.7,
+   "remb_un": 11,
+   "remb_deux": 6
+  },
+  {
+   "annee": 1961,
+   "m2": 110,
+   "prix": 5509,
+   "prix_reel": 60390,
+   "annees_salaire": 4.2,
+   "remb_un": 12,
+   "remb_deux": 7
+  },
+  {
+   "annee": 1962,
+   "m2": 132,
+   "prix": 6588,
+   "prix_reel": 69614,
+   "annees_salaire": 4.5,
+   "remb_un": 13,
+   "remb_deux": 7
+  },
+  {
+   "annee": 1963,
+   "m2": 171,
+   "prix": 8573,
+   "prix_reel": 86690,
+   "annees_salaire": 5.3,
+   "remb_un": 14,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1964,
+   "m2": 202,
+   "prix": 10108,
+   "prix_reel": 98804,
+   "annees_salaire": 5.7,
+   "remb_un": 15,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1965,
+   "m2": 245,
+   "prix": 12260,
+   "prix_reel": 116916,
+   "annees_salaire": 6.5,
+   "remb_un": 16,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1966,
+   "m2": 260,
+   "prix": 12994,
+   "prix_reel": 120019,
+   "annees_salaire": 6.5,
+   "remb_un": 15,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1967,
+   "m2": 250,
+   "prix": 12503,
+   "prix_reel": 111950,
+   "annees_salaire": 5.9,
+   "remb_un": 14,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1968,
+   "m2": 290,
+   "prix": 14507,
+   "prix_reel": 124205,
+   "annees_salaire": 6.1,
+   "remb_un": 14,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1969,
+   "m2": 332,
+   "prix": 16606,
+   "prix_reel": 132511,
+   "annees_salaire": 6.3,
+   "remb_un": 15,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1970,
+   "m2": 345,
+   "prix": 17244,
+   "prix_reel": 131346,
+   "annees_salaire": 5.9,
+   "remb_un": 15,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1971,
+   "m2": 365,
+   "prix": 18273,
+   "prix_reel": 131498,
+   "annees_salaire": 5.6,
+   "remb_un": 14,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1972,
+   "m2": 398,
+   "prix": 19905,
+   "prix_reel": 135747,
+   "annees_salaire": 5.6,
+   "remb_un": 13,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1973,
+   "m2": 439,
+   "prix": 21928,
+   "prix_reel": 139035,
+   "annees_salaire": 5.4,
+   "remb_un": 14,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1974,
+   "m2": 517,
+   "prix": 25867,
+   "prix_reel": 144487,
+   "annees_salaire": 5.5,
+   "remb_un": 17,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1975,
+   "m2": 557,
+   "prix": 27829,
+   "prix_reel": 138907,
+   "annees_salaire": 5.0,
+   "remb_un": 16,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1976,
+   "m2": 642,
+   "prix": 32120,
+   "prix_reel": 146601,
+   "annees_salaire": 5.1,
+   "remb_un": 16,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1977,
+   "m2": 719,
+   "prix": 35937,
+   "prix_reel": 150013,
+   "annees_salaire": 5.1,
+   "remb_un": 18,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1978,
+   "m2": 749,
+   "prix": 37431,
+   "prix_reel": 143957,
+   "annees_salaire": 4.8,
+   "remb_un": 17,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1979,
+   "m2": 859,
+   "prix": 42937,
+   "prix_reel": 149008,
+   "annees_salaire": 4.9,
+   "remb_un": 19,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1980,
+   "m2": 1006,
+   "prix": 50314,
+   "prix_reel": 154498,
+   "annees_salaire": 5.0,
+   "remb_un": 29,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1981,
+   "m2": 1145,
+   "prix": 57270,
+   "prix_reel": 155145,
+   "annees_salaire": 5.0,
+   "remb_un": 35,
+   "remb_deux": 12
+  },
+  {
+   "annee": 1982,
+   "m2": 1171,
+   "prix": 58548,
+   "prix_reel": 142188,
+   "annees_salaire": 4.6,
+   "remb_un": 30,
+   "remb_deux": 11
+  },
+  {
+   "annee": 1983,
+   "m2": 1219,
+   "prix": 60939,
+   "prix_reel": 135126,
+   "annees_salaire": 4.4,
+   "remb_un": 27,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1984,
+   "m2": 1300,
+   "prix": 64989,
+   "prix_reel": 133506,
+   "annees_salaire": 4.3,
+   "remb_un": 26,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1985,
+   "m2": 1438,
+   "prix": 71918,
+   "prix_reel": 139208,
+   "annees_salaire": 4.5,
+   "remb_un": 26,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1986,
+   "m2": 1608,
+   "prix": 80414,
+   "prix_reel": 151405,
+   "annees_salaire": 4.9,
+   "remb_un": 25,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1987,
+   "m2": 1881,
+   "prix": 94066,
+   "prix_reel": 171869,
+   "annees_salaire": 5.5,
+   "remb_un": 32,
+   "remb_deux": 12
+  },
+  {
+   "annee": 1988,
+   "m2": 2330,
+   "prix": 116523,
+   "prix_reel": 207407,
+   "annees_salaire": 6.6,
+   "remb_un": 38,
+   "remb_deux": 15
+  },
+  {
+   "annee": 1989,
+   "m2": 2856,
+   "prix": 142776,
+   "prix_reel": 244849,
+   "annees_salaire": 7.7,
+   "remb_un": 45,
+   "remb_deux": 18
+  },
+  {
+   "annee": 1990,
+   "m2": 3357,
+   "prix": 167847,
+   "prix_reel": 280063,
+   "annees_salaire": 8.6,
+   "remb_un": 54,
+   "remb_deux": 22
+  },
+  {
+   "annee": 1991,
+   "m2": 3411,
+   "prix": 170563,
+   "prix_reel": 277490,
+   "annees_salaire": 8.4,
+   "remb_un": 49,
+   "remb_deux": 20
+  },
+  {
+   "annee": 1992,
+   "m2": 3068,
+   "prix": 153407,
+   "prix_reel": 243170,
+   "annees_salaire": 7.3,
+   "remb_un": 39,
+   "remb_deux": 17
+  },
+  {
+   "annee": 1993,
+   "m2": 2844,
+   "prix": 142215,
+   "prix_reel": 222129,
+   "annees_salaire": 6.6,
+   "remb_un": 32,
+   "remb_deux": 14
+  },
+  {
+   "annee": 1994,
+   "m2": 2807,
+   "prix": 140334,
+   "prix_reel": 217166,
+   "annees_salaire": 6.4,
+   "remb_un": 30,
+   "remb_deux": 13
+  },
+  {
+   "annee": 1995,
+   "m2": 2620,
+   "prix": 131024,
+   "prix_reel": 200904,
+   "annees_salaire": 5.8,
+   "remb_un": 26,
+   "remb_deux": 12
+  },
+  {
+   "annee": 1996,
+   "m2": 2405,
+   "prix": 120230,
+   "prix_reel": 181505,
+   "annees_salaire": 5.2,
+   "remb_un": 22,
+   "remb_deux": 10
+  },
+  {
+   "annee": 1997,
+   "m2": 2268,
+   "prix": 113396,
+   "prix_reel": 169877,
+   "annees_salaire": 4.8,
+   "remb_un": 19,
+   "remb_deux": 9
+  },
+  {
+   "annee": 1998,
+   "m2": 2288,
+   "prix": 114386,
+   "prix_reel": 171142,
+   "annees_salaire": 4.8,
+   "remb_un": 18,
+   "remb_deux": 8
+  },
+  {
+   "annee": 1999,
+   "m2": 2512,
+   "prix": 125577,
+   "prix_reel": 188849,
+   "annees_salaire": 5.1,
+   "remb_un": 19,
+   "remb_deux": 9
+  },
+  {
+   "annee": 2000,
+   "m2": 2856,
+   "prix": 142810,
+   "prix_reel": 210447,
+   "annees_salaire": 5.7,
+   "remb_un": 22,
+   "remb_deux": 10
+  },
+  {
+   "annee": 2001,
+   "m2": 3126,
+   "prix": 156279,
+   "prix_reel": 226315,
+   "annees_salaire": 6.0,
+   "remb_un": 23,
+   "remb_deux": 11
+  },
+  {
+   "annee": 2002,
+   "m2": 3399,
+   "prix": 169946,
+   "prix_reel": 243699,
+   "annees_salaire": 6.4,
+   "remb_un": 24,
+   "remb_deux": 11
+  },
+  {
+   "annee": 2003,
+   "m2": 3827,
+   "prix": 191337,
+   "prix_reel": 270083,
+   "annees_salaire": 7.0,
+   "remb_un": 25,
+   "remb_deux": 12
+  },
+  {
+   "annee": 2004,
+   "m2": 4344,
+   "prix": 217186,
+   "prix_reel": 300423,
+   "annees_salaire": 7.7,
+   "remb_un": 28,
+   "remb_deux": 14
+  },
+  {
+   "annee": 2005,
+   "m2": 4964,
+   "prix": 248184,
+   "prix_reel": 337334,
+   "annees_salaire": 8.5,
+   "remb_un": 29,
+   "remb_deux": 15
+  },
+  {
+   "annee": 2006,
+   "m2": 5530,
+   "prix": 276508,
+   "prix_reel": 368154,
+   "annees_salaire": 9.2,
+   "remb_un": 33,
+   "remb_deux": 16
+  },
+  {
+   "annee": 2007,
+   "m2": 6039,
+   "prix": 301960,
+   "prix_reel": 394431,
+   "annees_salaire": 9.8,
+   "remb_un": 37,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2008,
+   "m2": 6461,
+   "prix": 323055,
+   "prix_reel": 410556,
+   "annees_salaire": 10.2,
+   "remb_un": 38,
+   "remb_deux": 18
+  },
+  {
+   "annee": 2009,
+   "m2": 6136,
+   "prix": 306813,
+   "prix_reel": 396356,
+   "annees_salaire": 9.6,
+   "remb_un": 33,
+   "remb_deux": 16
+  },
+  {
+   "annee": 2010,
+   "m2": 6833,
+   "prix": 341674,
+   "prix_reel": 436108,
+   "annees_salaire": 10.3,
+   "remb_un": 34,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2011,
+   "m2": 8115,
+   "prix": 405750,
+   "prix_reel": 508488,
+   "annees_salaire": 12.0,
+   "remb_un": 40,
+   "remb_deux": 20
+  },
+  {
+   "annee": 2012,
+   "m2": 8299,
+   "prix": 414960,
+   "prix_reel": 513448,
+   "annees_salaire": 12.0,
+   "remb_un": 36,
+   "remb_deux": 19
+  },
+  {
+   "annee": 2013,
+   "m2": 8198,
+   "prix": 409909,
+   "prix_reel": 504537,
+   "annees_salaire": 11.7,
+   "remb_un": 34,
+   "remb_deux": 18
+  },
+  {
+   "annee": 2014,
+   "m2": 8052,
+   "prix": 402581,
+   "prix_reel": 494479,
+   "annees_salaire": 11.4,
+   "remb_un": 31,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2015,
+   "m2": 7925,
+   "prix": 396242,
+   "prix_reel": 485676,
+   "annees_salaire": 11.1,
+   "remb_un": 27,
+   "remb_deux": 16
+  },
+  {
+   "annee": 2016,
+   "m2": 8165,
+   "prix": 408226,
+   "prix_reel": 499321,
+   "annees_salaire": 11.3,
+   "remb_un": 26,
+   "remb_deux": 15
+  },
+  {
+   "annee": 2017,
+   "m2": 8755,
+   "prix": 437738,
+   "prix_reel": 531540,
+   "annees_salaire": 11.8,
+   "remb_un": 28,
+   "remb_deux": 16
+  },
+  {
+   "annee": 2018,
+   "m2": 9335,
+   "prix": 466756,
+   "prix_reel": 555842,
+   "annees_salaire": 12.4,
+   "remb_un": 29,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2019,
+   "m2": 9937,
+   "prix": 496863,
+   "prix_reel": 587520,
+   "annees_salaire": 13.0,
+   "remb_un": 29,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2020,
+   "m2": 10636,
+   "prix": 531822,
+   "prix_reel": 623828,
+   "annees_salaire": 14.4,
+   "remb_un": 30,
+   "remb_deux": 18
+  },
+  {
+   "annee": 2021,
+   "m2": 10636,
+   "prix": 531822,
+   "prix_reel": 615215,
+   "annees_salaire": 13.7,
+   "remb_un": 29,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2022,
+   "m2": 10524,
+   "prix": 526177,
+   "prix_reel": 580081,
+   "annees_salaire": 12.9,
+   "remb_un": 33,
+   "remb_deux": 18
+  },
+  {
+   "annee": 2023,
+   "m2": 10034,
+   "prix": 501716,
+   "prix_reel": 516692,
+   "annees_salaire": 11.8,
+   "remb_un": 37,
+   "remb_deux": 19
+  },
+  {
+   "annee": 2024,
+   "m2": 9450,
+   "prix": 472500,
+   "prix_reel": 476563,
+   "annees_salaire": 10.8,
+   "remb_un": 34,
+   "remb_deux": 17
+  },
+  {
+   "annee": 2025,
+   "m2": 9545,
+   "prix": 477254,
+   "prix_reel": 477254,
+   "annees_salaire": 10.7,
+   "remb_un": 36,
+   "remb_deux": 18
+  }
+ ],
+ "paris_hyp": {
+  "surface": 50,
+  "apport": 0.1,
+  "m2_2024": 9450,
+  "raccord": 1992
+ },
  "smic": [
   {
    "annee": 1959,

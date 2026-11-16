@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Dépendances
-        run: pip install openpyxl==3.1.5
+        run: pip install openpyxl==3.1.5 xlrd==2.0.1
       - name: Téléchargement des sources
         run: |
           bash scripts/fetch.sh
