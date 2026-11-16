@@ -45,11 +45,11 @@ async function init() {
   familles();
   // liens vers les modes depuis le texte
   document.querySelectorAll("#tableau [data-tp-mode]").forEach(a => a.onclick = ev => { ev.preventDefault(); mode = a.dataset.tpMode; grid(); $("#tp-p1").scrollIntoView({ behavior: "smooth" }); });
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawTrend, 150); });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { drawTrend(); vallee(); liaison(); }, 150); });
   draw();
 }
 
-function draw() { grid(); fiche(); fill(); drawTrend(); }
+function draw() { grid(); fiche(); fill(); drawTrend(); vallee(); liaison(); }
 
 function color(d) {
   const M = MODES.find(m => m[0] === mode), v = M[4](d);
@@ -175,6 +175,63 @@ function drawTrend() {
     r: `<ul><li><b>Les pics sont les alcalins</b> : une nouvelle couche commence, avec un seul électron loin du noyau. Le césium est l'un des plus gros atomes.</li><li><b>Le long d'une ligne, l'atome rétrécit</b> : on ajoute des protons qui attirent plus fort des électrons placés sur la même couche.</li><li><b>Les lanthanides rétrécissent aussi</b> (« contraction des lanthanides ») : c'est pour cela que l'hafnium et le zirconium, l'or et l'argent, ont presque la même taille.</li></ul>`,
   };
   $("#tp-trend-txt").innerHTML = TX[trend];
+}
+
+/* vallée de la stabilité : neutrons de l'isotope le plus courant (ou le plus durable) selon le nombre de protons */
+function vallee() {
+  const el = $("#tp-vallee"); if (!el || !el.clientWidth) return;
+  const { showTip, hideTip, css, legend } = window.TH;
+  const D = T.filter(d => d.m).map(d => ({ ...d, N: Math.round(d.m) - d.z, st: d.z <= 83 && d.z !== 43 && d.z !== 61 }));
+  const w = Math.max(320, el.clientWidth), h = Math.min(420, Math.max(300, w * .6)), m = { t: 14, r: 14, b: 34, l: 46 };
+  const x = d3.scaleLinear([0, 120], [m.l, w - m.r]), y = d3.scaleLinear([0, 190], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  svg.append("line").attr("x1", x(0)).attr("y1", y(0)).attr("x2", x(120)).attr("y2", y(120)).attr("stroke", css("--muted")).attr("stroke-dasharray", "4 3");
+  svg.append("text").attr("x", x(105)).attr("y", y(108)).attr("font-size", 10).attr("fill", css("--muted")).attr("text-anchor", "end").text("autant de neutrons que de protons");
+  // îlot de stabilité
+  svg.append("ellipse").attr("cx", x(114)).attr("cy", y(184)).attr("rx", Math.abs(x(6) - x(0))).attr("ry", Math.abs(y(0) - y(8))).attr("fill", "#a78bfa").attr("opacity", .25).attr("stroke", "#7c3aed").attr("stroke-dasharray", "3 2");
+  svg.append("text").attr("x", x(114) - 6).attr("y", y(184) + 3).attr("font-size", 10).attr("text-anchor", "end").attr("fill", "#7c3aed").text("îlot de stabilité ?");
+  svg.append("text").attr("x", x(25)).attr("y", y(60)).attr("font-size", 10.5).attr("fill", "#2563eb").text("trop de neutrons → bêta moins");
+  svg.append("text").attr("x", x(60)).attr("y", y(40)).attr("font-size", 10.5).attr("fill", "#dc2626").text("trop de protons → bêta plus");
+  svg.append("g").selectAll("circle").data(D).join("circle").attr("cx", d => x(d.z)).attr("cy", d => y(d.N)).attr("r", 3.2)
+    .attr("fill", d => d.st ? "#16a34a" : d.z <= 94 ? "#f59e0b" : "#94a3b8");
+  D.filter(d => [6, 8, 26, 50, 82, 92, 118].includes(d.z)).forEach(d => svg.append("text").attr("x", x(d.z) - 5).attr("y", y(d.N) - 6).attr("font-size", 10).attr("font-weight", 600).attr("text-anchor", "end").attr("fill", css("--ink")).text(`${d.s} ${d.z + d.N}`));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(6));
+  svg.append("text").attr("x", w - m.r).attr("y", h - 2).attr("text-anchor", "end").attr("font-size", 10).attr("fill", css("--muted")).text("protons (Z)");
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6)).call(s => s.select(".domain").remove());
+  svg.append("text").attr("x", m.l + 4).attr("y", m.t + 4).attr("font-size", 10).attr("fill", css("--muted")).text("neutrons (N)");
+  const bis = d3.bisector(d => d.z).center;
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.n} ${d.z + d.N}</b><br>${d.z} protons, ${d.N} neutrons<br>${d.st ? "stable" : "radioactif"}`, ev); }).on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
+  legend("#tp-vallee-legend", [["Éléments ayant des isotopes stables", "#16a34a"], ["Radioactifs, présents dans la nature ou en réacteur", "#f59e0b"], ["Radioactifs, fabriqués en laboratoire", "#94a3b8"]]);
+}
+
+/* énergie de liaison par nucléon : formule de Bethe-Weizsäcker le long de la vallée, et valeurs mesurées */
+function liaison() {
+  const el = $("#tp-liaison"); if (!el || !el.clientWidth) return;
+  const { showTip, hideTip, css } = window.TH;
+  const B = A => { const Z = A / (2 + 0.0155 * Math.pow(A, 2 / 3)); return (15.75 * A - 17.8 * Math.pow(A, 2 / 3) - 0.711 * Z * (Z - 1) / Math.pow(A, 1 / 3) - 23.7 * Math.pow(A - 2 * Z, 2) / A) / A; };
+  const C = d3.range(12, 261, 2).map(A => ({ A, b: B(A) }));
+  const P = [["H 2", 2, 1.112], ["He 4", 4, 7.074], ["Li 6", 6, 5.332], ["Be 9", 9, 6.463], ["C 12", 12, 7.680], ["O 16", 16, 7.976], ["Fe 56", 56, 8.790], ["Ni 62", 62, 8.795], ["Sn 120", 120, 8.505], ["Au 197", 197, 7.916], ["Pb 208", 208, 7.868], ["U 235", 235, 7.591], ["U 238", 238, 7.570]];
+  const w = Math.max(320, el.clientWidth), h = 300, m = { t: 14, r: 14, b: 34, l: 46 };
+  const x = d3.scaleLinear([0, 260], [m.l, w - m.r]), y = d3.scaleLinear([0, 9.5], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("rect").attr("x", x(0)).attr("width", x(58) - x(0)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "#16a34a").attr("opacity", .07);
+  svg.append("rect").attr("x", x(58)).attr("width", x(260) - x(58)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "#f59e0b").attr("opacity", .07);
+  svg.append("text").attr("x", x(29)).attr("y", y(1.2)).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", "#16a34a").text("fusion → énergie");
+  svg.append("text").attr("x", x(160)).attr("y", y(1.2)).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", "#b45309").text("← fission → énergie");
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  svg.append("path").attr("fill", "none").attr("stroke", "#2563eb").attr("stroke-width", 1.8).attr("d", d3.line().x(d => x(d.A)).y(d => y(d.b))(C));
+  svg.append("g").selectAll("circle").data(P).join("circle").attr("cx", d => x(d[1])).attr("cy", d => y(d[2])).attr("r", 3.5).attr("fill", "#dc2626");
+  svg.append("g").selectAll("text").data(P.filter(d => w > 560 || ["H 2", "He 4", "Fe 56", "U 238"].includes(d[0]))).join("text").attr("x", d => x(d[1]) + 5).attr("y", d => y(d[2]) + (d[0] === "Ni 62" || d[0] === "U 238" ? 12 : -5)).attr("font-size", 10).attr("fill", css("--ink")).text(d => d[0]);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(w < 560 ? 5 : 10));
+  svg.append("text").attr("x", w - m.r).attr("y", h - 2).attr("text-anchor", "end").attr("font-size", 10).attr("fill", css("--muted")).text("nombre de protons + neutrons");
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5)).call(s => s.select(".domain").remove());
+  svg.append("text").attr("x", m.l + 4).attr("y", m.t + 4).attr("font-size", 10).attr("fill", css("--muted")).text("énergie de liaison par particule (MeV)");
+  svg.append("g").selectAll("rect").data(P).join("rect").attr("x", d => x(d[1]) - 6).attr("y", d => y(d[2]) - 6).attr("width", 12).attr("height", 12).attr("fill", "transparent")
+    .on("pointermove", (ev, d) => showTip(`<b>${d[0]}</b><br>${d[2].toLocaleString("fr-FR")} MeV par particule (mesuré)`, ev)).on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
 }
 
 init();
