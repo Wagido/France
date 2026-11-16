@@ -12,6 +12,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css?v=20261120i">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
+<script>
+  window.goatcounter = { path: function (p) { return location.pathname + (location.hash || "#accueil"); } };
+  window.addEventListener("hashchange", function () {
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: location.pathname + location.hash, title: document.title });
+  });
+</script>
+<script data-goatcounter="https://france-patrimoine.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <header class="site">
