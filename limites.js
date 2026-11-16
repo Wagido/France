@@ -11,6 +11,7 @@ const COURT = { bau: "Scénario de 1972", bau2: "Ressources doublées" };
 async function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { L = await fetch("data/limites.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  $("#li-g") && ($("#li-g").onchange = metaux);
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
@@ -52,7 +53,7 @@ function draw() {
       <div class="in-card-n muted" style="font-size:.78rem">${esc(i.l.includes("(") ? "(" + i.l.split(" (").slice(1).join(" (") : "")}</div>
       <div class="chart" id="li-c-${k}"></div>
       <div class="in-card-bio" style="color:var(--muted)">Écart moyen depuis 2000 : <b style="color:${COL.bau}">${f1(e.bau)} %</b> avec le scénario de 1972, <b style="color:#b45309">${f1(e.bau2)} %</b> avec « ressources doublées » → plus proche : <b>${COURT[best].toLowerCase()}</b></div></div>`; }).join("");
-  drawRes();
+  drawRes(); metaux();
   ordre.forEach(k => { lineChart($("#li-c-" + k), merge(I[k]), lines, { vfmt: v => n0(v), yfmt: v => v, h: 170, xticks: 4 }); today($("#li-c-" + k)); });
   legend("#li-legend2", [[COURT.bau, COL.bau], [COURT.bau2, COL.bau2], ["Données observées", COL.obs]]);
   const nb2 = ordre.filter(k => I[k].ecart.bau2 < I[k].ecart.bau).length;
@@ -78,6 +79,27 @@ function draw() {
     <li><b>Le lien avec la monnaie</b> : une économie dont la stabilité dépend de la croissance (voir <a href="#monnaie">Monnaie et croissance</a>) est mal préparée à un ralentissement imposé par les ressources. C'est la question que posait déjà le livre en 1972 : choisir de ralentir, ou subir le ralentissement.</li>
   </ul>`;
 }
+/* métaux : années de réserves et de ressources, au rythme actuel ou avec une production en hausse */
+function metaux() {
+  const { esc } = window.TH, M = L.metaux; if (!M || !$("#li-metaux")) return;
+  const g = +$("#li-g").value, ans = rp => g ? Math.log(1 + g * rp) / Math.log(1 + g) : rp;
+  const big = v => v >= 1e9 ? f1(v / 1e9) + " Md t" : v >= 1e6 ? f1(v / 1e6) + " Mt" : n0(v / 1e3) + " kt";
+  const coul = a => a < 25 ? "#dc2626" : a < 50 ? "#f59e0b" : "#16a34a";
+  $("#li-metaux").innerHTML = `<div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Métal</th><th>Production 2025</th><th>Réserves</th><th>Années de réserves${g ? ` (+${n0(g * 100)} %/an)` : ""}</th><th>Avec les ressources identifiées</th><th>Premier producteur</th><th>Usage principal</th></tr></thead><tbody>` +
+    M.map(m => { const a = ans(m.res / m.prod), b = m.ress ? ans(m.ress / m.prod) : null;
+      return `<tr><td><b>${esc(m.l)}</b></td><td>${big(m.prod)}</td><td>${big(m.res)}</td><td><b style="color:${coul(a)}">${n0(a)} ans</b></td><td>${b ? n0(b) + " ans" : "–"}</td><td>${esc(m.prod1)}</td><td>${esc(m.usage)}</td></tr>`; }).join("") + `</tbody></table></div>
+    <p class="muted" style="font-size:.78rem;margin:4px 0 0">Années = réserves ÷ production ; avec une production en hausse de g % par an, ln(1 + g × réserves ÷ production) ÷ ln(1 + g). Les « ressources identifiées » sont les quantités connues, y compris celles qui ne sont pas rentables aujourd'hui. U.S. Geological Survey, <i>Mineral Commodity Summaries 2026</i>.</p>`;
+  const cu = M.find(m => m.l === "Cuivre"), cuA = ans(cu.res / cu.prod), cu0 = cu.res / cu.prod;
+  const court = M.filter(m => ans(m.res / m.prod) < 30).map(m => m.l.split(" (")[0].toLowerCase());
+  $("#li-met-txt").innerHTML = `<ul>
+    <li><b>Oui, le calcul « réserves ÷ production » est optimiste</b>, car il suppose une consommation qui n'augmente plus. Or la production de la plupart des métaux augmente de 2 à 5 % par an depuis des décennies. Avec +${n0(g * 100)} % par an, les ${n0(cu0)} ans de réserves de cuivre deviennent <b>${n0(cuA)} ans</b>. ${court.length ? `Avec ce rythme, ${court.length} métaux ont moins de 30 ans de réserves : ${court.join(", ")}.` : ""}</li>
+    <li><b>Mais il est aussi pessimiste</b>, parce que les réserves ne sont pas un stock fixe : ce sont les gisements connus et rentables aujourd'hui. Les « ressources identifiées » sont bien plus grandes (pour le cuivre, ${f1(cu.ress / 1e9)} milliard de tonnes, et l'USGS estime à 3,5 milliards de tonnes le cuivre encore à découvrir), et elles deviennent des réserves quand les prix montent ou que la technique progresse. Depuis 1900, l'humanité a extrait environ 600 millions de tonnes de cuivre ; il en reste beaucoup plus dans le sol.</li>
+    <li><b>La vraie limite est ailleurs : l'énergie, la qualité des gisements et la vitesse.</b> Les meilleurs gisements ont été exploités en premier : la teneur moyenne du cuivre extrait a été divisée par plusieurs depuis un siècle (moins de 1 % aujourd'hui). Il faut donc remuer toujours plus de roche, consommer plus d'énergie et d'eau, produire plus de déchets pour chaque tonne. Une mine met en moyenne 15 à 20 ans à ouvrir. Et la production est très concentrée : 74 % du cobalt vient du Congo-Kinshasa, 67 % du nickel d'Indonésie, 69 % des terres rares de Chine, qui raffine aussi l'essentiel du lithium, du graphite et des terres rares du monde.</li>
+    <li><b>La transition énergétique fait exploser la demande</b> : selon la Banque mondiale (2020), la production de graphite, de lithium et de cobalt devrait augmenter de près de 500 % d'ici 2050 pour les technologies bas carbone. Le géologue Simon Michaux (Service géologique de Finlande, 2021) va plus loin : remplacer tout le système fossile par l'électricité et les batteries demanderait plus de certains métaux que les réserves connues. Ses calculs sont contestés (ils supposent de tout stocker en batteries, sans recyclage ni changement de technologie), mais ils montrent l'ordre de grandeur du défi.</li>
+    <li><b>La grande différence avec le pétrole</b> : un métal ne disparaît pas quand on l'utilise. Le cuivre, l'acier, l'aluminium sont déjà recyclés en grande partie ; plus la quantité de métal en circulation augmente, plus le recyclage peut couvrir une part des besoins. C'est la seule voie pour s'affranchir à terme des mines, mais elle demande du temps et beaucoup d'énergie.</li>
+  </ul>`;
+}
+
 /* ressources : production d'énergies fossiles depuis 1900 */
 function drawRes() {
   const { areaChart, legend } = window.TH, F = L.fossiles; if (!F || !$("#li-fos")) return;

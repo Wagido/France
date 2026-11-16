@@ -69,7 +69,33 @@ for sk, sc in W["scenarios"].items():
 F = {k: owid("owid_energy_monde.csv", k + "_production") for k in ("oil", "gas", "coal")}
 fossiles = [{"annee": y, "petrole": round(F["oil"].get(y, 0)), "gaz": round(F["gas"].get(y, 0)), "charbon": round(F["coal"].get(y, 0))} for y in sorted(F["oil"]) if y >= 1900]
 pic_nrur = {sk: max(sc["serie"], key=lambda r: r["nrur"] or 0)["annee"] for sk, sc in W["scenarios"].items()}
-out = {"fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
+# métaux : U.S. Geological Survey, Mineral Commodity Summaries 2026 (production minière 2025, réserves, ressources) — valeurs relevées dans
+# data/sources/limites/usgs_mcs2026.txt ; même unité pour production et réserves (tonnes de métal contenu, sauf mention)
+METAUX = [  # nom, production 2025, réserves, ressources identifiées (ou None), unité, usage, premier producteur et sa part
+    ["Antimoine", 110e3, 2.0e6, None, "t", "Retardateurs de flamme, munitions, batteries au plomb", "Chine"],
+    ["Zinc", 13e6, 240e6, 1.9e9, "t", "Acier galvanisé", "Chine"],
+    ["Or", 3.3e3, 66e3, None, "t", "Bijoux, réserves des banques centrales, électronique", "Chine"],
+    ["Plomb", 4.5e6, 95e6, 2e9, "t", "Batteries", "Chine"],
+    ["Étain", 290e3, 6e6, None, "t", "Soudures de l'électronique", "Chine"],
+    ["Argent", 26e3, 610e3, None, "t", "Panneaux solaires, électronique", "Mexique"],
+    ["Nickel", 3.9e6, 140e6, 350e6, "t", "Acier inoxydable, batteries", "Indonésie (67 %)"],
+    ["Cobalt", 310e3, 12e6, 25e6, "t", "Batteries", "Congo-Kinshasa (74 %)"],
+    ["Cuivre", 23e6, 980e6, 1.5e9, "t", "Câbles, moteurs, réseaux électriques, éoliennes", "Chili (23 %)"],
+    ["Fer (contenu en fer)", 1.6e9, 87e9, None, "t", "Acier", "Australie (38 %)"],
+    ["Tungstène", 85e3, 4.7e6, None, "t", "Outils de coupe, armement", "Chine"],
+    ["Molybdène", 260e3, 17e6, 25.4e6, "t", "Aciers spéciaux", "Chine"],
+    ["Bauxite (aluminium)", 440e6, 29e9, 65e9, "t", "Aluminium", "Guinée et Australie"],
+    ["Manganèse", 20e6, 1.8e9, None, "t", "Acier, batteries", "Afrique du Sud"],
+    ["Potasse (K₂O)", 49e6, 5.9e9, None, "t", "Engrais", "Canada"],
+    ["Lithium", 290e3, 37e6, 150e6, "t", "Batteries", "Australie (32 %)"],
+    ["Graphite naturel", 1.8e6, 310e6, 800e6, "t", "Batteries (anode)", "Chine"],
+    ["Terres rares (oxydes)", 390e3, 75e6, None, "t", "Aimants des éoliennes et des moteurs électriques", "Chine (69 %)"],
+    ["Vanadium", 110e3, 21e6, 63e6, "t", "Aciers, batteries à flux", "Chine"],
+    ["Phosphate (roche)", 250e6, 73e9, None, "t", "Engrais", "Chine (réserves : Maroc)"],
+]
+metaux = [{"l": m[0], "prod": m[1], "res": m[2], "ress": m[3], "usage": m[5], "prod1": m[6], "ans": round(m[2] / m[1]), "ans_ress": round(m[3] / m[1]) if m[3] else None} for m in METAUX]
+metaux.sort(key=lambda x: x["ans"])
+out = {"metaux": metaux, "fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
 json.dump(out, open(os.path.join(HERE, "..", "data", "limites.json"), "w"), ensure_ascii=False)
 for i in ind:
     print(i["k"], i["ecart"], i["dernier"])

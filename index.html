@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121y">
+<link rel="stylesheet" href="style.css?v=20261121z">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -670,19 +670,22 @@
       </tbody></table></div>
     </div>
     <div>
-      <h3>Métaux : réserves et années de production (ordres de grandeur)</h3>
-      <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Métal</th><th>Années au rythme actuel</th><th>Ce qui pèse</th></tr></thead><tbody>
-        <tr><td><b>Zinc</b></td><td>≈ 20 ans</td><td>Réserves renouvelées par l'exploration</td></tr>
-        <tr><td><b>Nickel</b></td><td>≈ 35 ans</td><td>Batteries, acier inoxydable</td></tr>
-        <tr><td><b>Cuivre</b></td><td>≈ 40 ans</td><td>Électrification : réseaux, moteurs, éoliennes ; teneur des minerais en baisse</td></tr>
-        <tr><td><b>Cobalt</b></td><td>≈ 40 ans</td><td>Batteries ; production concentrée au Congo</td></tr>
-        <tr><td><b>Fer</b></td><td>≈ 70 ans</td><td>Abondant</td></tr>
-        <tr><td><b>Lithium</b></td><td>> 100 ans</td><td>Demande en très forte hausse avec les batteries</td></tr>
-        <tr><td><b>Phosphate</b></td><td>≈ 300 ans</td><td>Engrais ; réserves concentrées au Maroc</td></tr>
-      </tbody></table></div>
+      <h3>Métaux : réserves, ressources et années de production (USGS 2026)</h3>
+      <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Si la production augmente chaque année de <select id="li-g"><option value="0">0 % (rythme actuel)</option><option value="0.02">2 %</option><option value="0.03" selected>3 % (rythme des dernières décennies)</option><option value="0.05">5 %</option></select></label></div>
+      <div id="li-metaux"></div>
     </div>
   </div>
   <div class="callout small" id="li-res-txt"></div>
+  <div class="callout small" id="li-met-txt"></div>
+  <h3>Les scénarios du GIEC tiennent-ils ? La critique du « bouclage »</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Ce que dit Jean-Marc Jancovici</b> : les scénarios utilisés par le GIEC ne sont pas « bouclés ». Ils partent d'une croissance économique décidée à l'avance (le PIB mondial continue d'augmenter tout au long du siècle dans tous les grands scénarios socio-économiques, dits SSP), puis calculent l'énergie et les émissions qui vont avec. La disponibilité de l'énergie et des matières n'y freine jamais l'économie. Or, pour lui, l'histoire montre que le PIB suit l'énergie : si le pétrole et le gaz disponibles baissent, la production baissera aussi, quel que soit le scénario climatique choisi.</li>
+      <li><b>Ce que disent les modèles</b> : dans les scénarios compatibles avec 2 °C, le rapport du GIEC de 2022 estime que le PIB mondial de 2050 serait seulement de 1,3 à 2,7 % plus bas que sans politique climatique, c'est-à-dire qu'il continuerait de croître. Ces scénarios reposent aussi sur un retrait massif de CO₂ de l'atmosphère (bioénergie avec captage, forêts, captage direct dans l'air) à des échelles qui n'existent pas aujourd'hui.</li>
+      <li><b>Les critiques viennent des deux côtés</b> : des chercheurs (Keyßer et Lenzen, <i>Nature Communications</i>, 2021) regrettent que le GIEC n'étudie presque jamais de scénarios de décroissance ou de sobriété forte, qui demanderaient moins de technologies non éprouvées. Mais d'autres (Hausfather et Peters, <i>Nature</i>, 2020) ont montré que le scénario le plus pessimiste du GIEC (RCP8.5) suppose de brûler plus de charbon qu'il n'est plausible : sur ce point, le GIEC surestimait plutôt les fossiles disponibles.</li>
+      <li><b>Ce qu'on peut en retenir</b> : les modèles climatiques décrivent bien la physique du climat ; ce sont les hypothèses économiques (croissance, technologies futures, prix) qui sont fragiles. Une croissance continue avec moins d'énergie fossile suppose que l'électricité bas carbone, l'efficacité et les métaux suivent au bon rythme. Si ce n'est pas le cas, le PIB ralentira de lui-même, ce qui rejoint le message de <i>Limits to Growth</i> : la vraie question est de savoir si on organise ce ralentissement, ou si on le subit.</li>
+    </ul>
+  </div>
   <h3>Et dans 50 ans ? Le pétrole qui reste, et qui le garde</h3>
   <div class="callout small">
     <ul>
@@ -701,7 +704,7 @@
       <li><b>Garder le pétrole pour ce qui n'a pas de substitut</b> : chimie, plastiques techniques, médicaments, une partie de l'aviation et de l'agriculture (voir <a href="#agriculture">Agriculture</a>).</li>
     </ul>
   </div>
-  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <i>Mineral Commodity Summaries</i>, réserves divisées par la production minière annuelle, arrondies. Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
+  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf" target="_blank" rel="noopener"><i>Mineral Commodity Summaries 2026</i></a> (production minière 2025, réserves et ressources identifiées) ; Banque mondiale, <i>Minerals for Climate Action</i> (2020) ; GIEC, sixième rapport, groupe III (2022). Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
 </section>
 
 <section id="simulateur" class="panel">
@@ -2052,50 +2055,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121y"></script>
-<script src="app.js?v=20261121y"></script>
-<script src="energie.js?v=20261121y"></script>
-<script src="matieres.js?v=20261121y"></script>
-<script src="territoire.js?v=20261121y"></script>
-<script src="themes.js?v=20261121y"></script>
-<script src="societe.js?v=20261121y"></script>
-<script src="eco2.js?v=20261121y"></script>
-<script src="empreinte.js?v=20261121y"></script>
-<script src="argentprive.js?v=20261121y"></script>
-<script src="repartition.js?v=20261121y"></script>
-<script src="patrimoine.js?v=20261121y"></script>
-<script src="prelevements.js?v=20261121y"></script>
-<script src="travailvie.js?v=20261121y"></script>
-<script src="niveauvie.js?v=20261121y"></script>
-<script src="prosperite.js?v=20261121y"></script>
-<script src="exterieur.js?v=20261121y"></script>
-<script src="desindus.js?v=20261121y"></script>
-<script src="retraites.js?v=20261121y"></script>
-<script src="energiecout.js?v=20261121y"></script>
-<script src="energieformation.js?v=20261121y"></script>
-<script src="nucleaire.js?v=20261121y"></script>
-<script src="logementeco.js?v=20261121y"></script>
-<script src="competences.js?v=20261121y"></script>
-<script src="justicedroit.js?v=20261121y"></script>
-<script src="fonctionnaires.js?v=20261121y"></script>
-<script src="couper.js?v=20261121y"></script>
-<script src="seuilpays.js?v=20261121y"></script>
-<script src="logement.js?v=20261121y"></script>
-<script src="env.js?v=20261121y"></script>
-<script src="agriculture.js?v=20261121y"></script>
-<script src="rendements.js?v=20261121y"></script>
-<script src="monnaie.js?v=20261121y"></script>
-<script src="limites.js?v=20261121y"></script>
-<script src="sociologie.js?v=20261121y"></script>
-<script src="chaine.js?v=20261121y"></script>
-<script src="patrimoinehist.js?v=20261121y"></script>
-<script src="innovation.js?v=20261121y"></script>
+<script src="kpi.js?v=20261121z"></script>
+<script src="app.js?v=20261121z"></script>
+<script src="energie.js?v=20261121z"></script>
+<script src="matieres.js?v=20261121z"></script>
+<script src="territoire.js?v=20261121z"></script>
+<script src="themes.js?v=20261121z"></script>
+<script src="societe.js?v=20261121z"></script>
+<script src="eco2.js?v=20261121z"></script>
+<script src="empreinte.js?v=20261121z"></script>
+<script src="argentprive.js?v=20261121z"></script>
+<script src="repartition.js?v=20261121z"></script>
+<script src="patrimoine.js?v=20261121z"></script>
+<script src="prelevements.js?v=20261121z"></script>
+<script src="travailvie.js?v=20261121z"></script>
+<script src="niveauvie.js?v=20261121z"></script>
+<script src="prosperite.js?v=20261121z"></script>
+<script src="exterieur.js?v=20261121z"></script>
+<script src="desindus.js?v=20261121z"></script>
+<script src="retraites.js?v=20261121z"></script>
+<script src="energiecout.js?v=20261121z"></script>
+<script src="energieformation.js?v=20261121z"></script>
+<script src="nucleaire.js?v=20261121z"></script>
+<script src="logementeco.js?v=20261121z"></script>
+<script src="competences.js?v=20261121z"></script>
+<script src="justicedroit.js?v=20261121z"></script>
+<script src="fonctionnaires.js?v=20261121z"></script>
+<script src="couper.js?v=20261121z"></script>
+<script src="seuilpays.js?v=20261121z"></script>
+<script src="logement.js?v=20261121z"></script>
+<script src="env.js?v=20261121z"></script>
+<script src="agriculture.js?v=20261121z"></script>
+<script src="rendements.js?v=20261121z"></script>
+<script src="monnaie.js?v=20261121z"></script>
+<script src="limites.js?v=20261121z"></script>
+<script src="sociologie.js?v=20261121z"></script>
+<script src="chaine.js?v=20261121z"></script>
+<script src="patrimoinehist.js?v=20261121z"></script>
+<script src="innovation.js?v=20261121z"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121y"></script>
-<script src="histoire.js?v=20261121y"></script>
-<script src="chomage.js?v=20261121y"></script>
-<script src="sources.js?v=20261121y"></script>
-<script src="nav.js?v=20261121y"></script>
+<script src="soussol.js?v=20261121z"></script>
+<script src="histoire.js?v=20261121z"></script>
+<script src="chomage.js?v=20261121z"></script>
+<script src="sources.js?v=20261121z"></script>
+<script src="nav.js?v=20261121z"></script>
 </body>
 </html>
