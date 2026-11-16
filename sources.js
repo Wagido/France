@@ -62,6 +62,7 @@ const S = [
   ["Empreinte carbone", "eurostat", "env_ac_ghgfp / env_ac_ainah_r2", "Empreinte carbone de tous les pays par usage final et pays d'origine (modèle FIGARO), émissions directes des ménages", null, "annuel"],
   ["Solde extérieur", "fmi", "BCA_NGDPD", "Solde de la balance courante en % du PIB, depuis 1980", "https://www.imf.org/external/datamapper/BCA_NGDPD@WEO", "semestriel"],
   ["Solde extérieur", "eurostat", "tipsii10", "Position extérieure nette en % du PIB", null, "annuel"],
+  ["Industrie et innovation", "eurostat", "nama_10_a10 / nama_10_a10_e", "Valeur ajoutée et emploi de l'industrie manufacturière, France et voisins", null, "annuel"],
   ["Pays prospère", "fmi", "World Economic Outlook (datamapper)", "PIB par habitant en PPA, chômage, dette et solde publics", "https://www.imf.org/external/datamapper/datasets/WEO", "semestriel"],
   ["Pays prospère", "pnud", "Rapport sur le développement humain 2025, annexe statistique", "IDH, espérance de vie, années d'études, Gini, parts de revenu, IDH corrigé des inégalités", "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Statistical_Annex_Tables_1-7.pdf", "annuel"],
   ["Pays prospère", "bm", "SI.POV.DDAY", "Part de la population vivant avec moins de 3 dollars par jour (PPA 2021)", "https://data.worldbank.org/indicator/SI.POV.DDAY", "annuel"],

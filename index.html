@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261119w">
+<link rel="stylesheet" href="style.css?v=20261119x">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -628,6 +628,14 @@
       <h3>Production manufacturière</h3><div id="ind-prod" class="chart"></div></div>
     <div><h3>Dépenses de recherche et développement (% du PIB)</h3><div id="ind-rd" class="chart"></div><div class="legend-row" id="ind-rd-legend"></div></div>
   </div>
+  <h3>La désindustrialisation : du « fabless » de Serge Tchuruk à la réindustrialisation</h3>
+  <div class="kpis" id="di-kpis"></div>
+  <div class="grid2">
+    <div><p class="muted" style="margin-top:0">Part de l'industrie manufacturière dans la valeur ajoutée, en %</p><div id="di-va" class="chart"></div><div class="legend-row" id="di-va-legend"></div></div>
+    <div><p class="muted" style="margin-top:0">Emplois dans l'industrie manufacturière en France, en millions</p><div id="di-emp" class="chart"></div></div>
+  </div>
+  <div class="callout small" id="di-txt"></div>
+  <p class="muted" style="font-size:.8rem">Sources : Eurostat, comptes nationaux par branche (<a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_a10/default/table" target="_blank" rel="noopener">nama_10_a10</a> et nama_10_a10_e ; industrie manufacturière = section C, hors énergie, mines et construction ; données depuis 1975 pour la France, 1991 ou 1995 pour les autres pays) ; <a href="http://news.bbc.co.uk/2/hi/business/1409787.stm" target="_blank" rel="noopener">BBC, juin 2001</a> (déclaration de Serge Tchuruk au <i>Wall Street Journal</i>) ; Louis Gallois, <i>Pacte pour la compétitivité de l'industrie française</i>, 2012 ; L. Demmou, « La désindustrialisation en France », <a href="https://www.tresor.economie.gouv.fr/Articles/40bd46a0-80ec-45ca-a6eb-8188b4511e54/files/607b4417-04f7-4095-a295-4dfab49fc167" target="_blank" rel="noopener">direction générale du Trésor</a>, 2010.</p>
   <h3>Innovation : brevets et recherche</h3>
   <div class="grid2">
     <div><h3>Brevets européens par million d'habitants</h3><div id="in-brevets"></div></div>
@@ -1310,37 +1318,38 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261119w"></script>
-<script src="app.js?v=20261119w"></script>
-<script src="energie.js?v=20261119w"></script>
-<script src="matieres.js?v=20261119w"></script>
-<script src="territoire.js?v=20261119w"></script>
-<script src="themes.js?v=20261119w"></script>
-<script src="societe.js?v=20261119w"></script>
-<script src="eco2.js?v=20261119w"></script>
-<script src="empreinte.js?v=20261119w"></script>
-<script src="argentprive.js?v=20261119w"></script>
-<script src="repartition.js?v=20261119w"></script>
-<script src="patrimoine.js?v=20261119w"></script>
-<script src="prelevements.js?v=20261119w"></script>
-<script src="travailvie.js?v=20261119w"></script>
-<script src="niveauvie.js?v=20261119w"></script>
-<script src="prosperite.js?v=20261119w"></script>
-<script src="exterieur.js?v=20261119w"></script>
-<script src="couper.js?v=20261119w"></script>
-<script src="seuilpays.js?v=20261119w"></script>
-<script src="logement.js?v=20261119w"></script>
-<script src="env.js?v=20261119w"></script>
-<script src="agriculture.js?v=20261119w"></script>
-<script src="chaine.js?v=20261119w"></script>
-<script src="patrimoinehist.js?v=20261119w"></script>
-<script src="innovation.js?v=20261119w"></script>
+<script src="kpi.js?v=20261119x"></script>
+<script src="app.js?v=20261119x"></script>
+<script src="energie.js?v=20261119x"></script>
+<script src="matieres.js?v=20261119x"></script>
+<script src="territoire.js?v=20261119x"></script>
+<script src="themes.js?v=20261119x"></script>
+<script src="societe.js?v=20261119x"></script>
+<script src="eco2.js?v=20261119x"></script>
+<script src="empreinte.js?v=20261119x"></script>
+<script src="argentprive.js?v=20261119x"></script>
+<script src="repartition.js?v=20261119x"></script>
+<script src="patrimoine.js?v=20261119x"></script>
+<script src="prelevements.js?v=20261119x"></script>
+<script src="travailvie.js?v=20261119x"></script>
+<script src="niveauvie.js?v=20261119x"></script>
+<script src="prosperite.js?v=20261119x"></script>
+<script src="exterieur.js?v=20261119x"></script>
+<script src="desindus.js?v=20261119x"></script>
+<script src="couper.js?v=20261119x"></script>
+<script src="seuilpays.js?v=20261119x"></script>
+<script src="logement.js?v=20261119x"></script>
+<script src="env.js?v=20261119x"></script>
+<script src="agriculture.js?v=20261119x"></script>
+<script src="chaine.js?v=20261119x"></script>
+<script src="patrimoinehist.js?v=20261119x"></script>
+<script src="innovation.js?v=20261119x"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261119w"></script>
-<script src="histoire.js?v=20261119w"></script>
-<script src="chomage.js?v=20261119w"></script>
-<script src="sources.js?v=20261119w"></script>
-<script src="nav.js?v=20261119w"></script>
+<script src="soussol.js?v=20261119x"></script>
+<script src="histoire.js?v=20261119x"></script>
+<script src="chomage.js?v=20261119x"></script>
+<script src="sources.js?v=20261119x"></script>
+<script src="nav.js?v=20261119x"></script>
 </body>
 </html>
