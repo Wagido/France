@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121t">
+<link rel="stylesheet" href="style.css?v=20261121u">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -619,7 +619,7 @@
     <h2>Les limites à la croissance (1972) : suit-on les prédictions ? <span class="geo-fixed">Monde</span></h2>
   </div>
   <p class="lead">En 1972, une équipe du MIT publie <i>The Limits to Growth</i> (« Halte à la croissance ? » en français), commandé par le Club de Rome. Son modèle informatique, World3, simule l'évolution du monde jusqu'en 2100. Dans son scénario de référence, la croissance de la population et de la production s'arrête au XXI<sup>e</sup> siècle, puis décline brutalement. Cinquante ans plus tard, que disent les données ?</p>
-  <p class="muted" style="margin:0 0 8px">Quatre parties : <a href="#limites" data-to="li-p1">1. ce que dit le modèle</a> · <a href="#limites" data-to="li-p2">2. modèle et réalité, indicateur par indicateur</a> · <a href="#limites" data-to="li-p3">3. ce que disent les études récentes</a> · <a href="#limites" data-to="li-p4">4. ce qu'il faut en retenir</a></p>
+  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#limites" data-to="li-p1">1. ce que dit le modèle</a> · <a href="#limites" data-to="li-p2">2. modèle et réalité, indicateur par indicateur</a> · <a href="#limites" data-to="li-p3">3. ce que disent les études récentes</a> · <a href="#limites" data-to="li-p4">4. ce qu'il faut en retenir</a> · <a href="#limites" data-to="li-p5">5. les ressources : quand le pic ?</a></p>
   <div class="kpis" id="li-kpis"></div>
 
   <h3 id="li-p1" class="ag-part">1. Ce que dit le modèle</h3>
@@ -655,7 +655,35 @@
 
   <h3 id="li-p4" class="ag-part">4. Ce qu'il faut en retenir</h3>
   <div class="callout small" id="li-concl"></div>
-  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; consommation d'énergies fossiles, d'après l'Energy Institute). La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
+  <h3 id="li-p5" class="ag-part">5. Les ressources : pétrole, gaz, charbon, minerais. Quand atteint-on le pic ?</h3>
+  <p class="lead">Dans World3, ce sont les ressources non renouvelables qui déclenchent le déclin : quand elles deviennent plus difficiles à extraire, l'économie doit y consacrer de plus en plus de capital. Où en est-on vraiment ?</p>
+  <h3>Production mondiale d'énergies fossiles depuis 1900 (milliers de TWh par an)</h3>
+  <div id="li-fos" class="chart"></div><div class="legend-row" id="li-fos-legend"></div>
+  <div>
+    <div>
+      <h3>Énergies : réserves prouvées et années de production</h3>
+      <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Ressource</th><th>Réserves prouvées</th><th>Années au rythme actuel</th><th>Pic de production ?</th></tr></thead><tbody>
+        <tr><td><b>Pétrole</b></td><td>≈ 1 700 milliards de barils</td><td>≈ 50 ans</td><td>Pétrole conventionnel : vers 2006. Total (avec schiste et sables bitumineux) : pas encore, record en <span class="li-y"></span></td></tr>
+        <tr><td><b>Gaz</b></td><td>≈ 190 000 milliards de m³</td><td>≈ 50 ans</td><td>Pas encore : la production augmente de près de 2 % par an</td></tr>
+        <tr><td><b>Charbon</b></td><td>≈ 1 000 milliards de tonnes</td><td>≈ 140 ans</td><td>Pas encore : record en <span class="li-y"></span>, porté par la Chine et l'Inde</td></tr>
+        <tr><td><b>Uranium</b></td><td>≈ 6 à 8 millions de tonnes (ressources identifiées)</td><td>≈ 100 ans</td><td>Non ; bien plus avec des réacteurs à neutrons rapides</td></tr>
+      </tbody></table></div>
+    </div>
+    <div>
+      <h3>Métaux : réserves et années de production (ordres de grandeur)</h3>
+      <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Métal</th><th>Années au rythme actuel</th><th>Ce qui pèse</th></tr></thead><tbody>
+        <tr><td><b>Zinc</b></td><td>≈ 20 ans</td><td>Réserves renouvelées par l'exploration</td></tr>
+        <tr><td><b>Nickel</b></td><td>≈ 35 ans</td><td>Batteries, acier inoxydable</td></tr>
+        <tr><td><b>Cuivre</b></td><td>≈ 40 ans</td><td>Électrification : réseaux, moteurs, éoliennes ; teneur des minerais en baisse</td></tr>
+        <tr><td><b>Cobalt</b></td><td>≈ 40 ans</td><td>Batteries ; production concentrée au Congo</td></tr>
+        <tr><td><b>Fer</b></td><td>≈ 70 ans</td><td>Abondant</td></tr>
+        <tr><td><b>Lithium</b></td><td>> 100 ans</td><td>Demande en très forte hausse avec les batteries</td></tr>
+        <tr><td><b>Phosphate</b></td><td>≈ 300 ans</td><td>Engrais ; réserves concentrées au Maroc</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+  <div class="callout small" id="li-res-txt"></div>
+  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <i>Mineral Commodity Summaries</i>, réserves divisées par la production minière annuelle, arrondies. Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
 </section>
 
 <section id="simulateur" class="panel">
@@ -1980,50 +2008,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121t"></script>
-<script src="app.js?v=20261121t"></script>
-<script src="energie.js?v=20261121t"></script>
-<script src="matieres.js?v=20261121t"></script>
-<script src="territoire.js?v=20261121t"></script>
-<script src="themes.js?v=20261121t"></script>
-<script src="societe.js?v=20261121t"></script>
-<script src="eco2.js?v=20261121t"></script>
-<script src="empreinte.js?v=20261121t"></script>
-<script src="argentprive.js?v=20261121t"></script>
-<script src="repartition.js?v=20261121t"></script>
-<script src="patrimoine.js?v=20261121t"></script>
-<script src="prelevements.js?v=20261121t"></script>
-<script src="travailvie.js?v=20261121t"></script>
-<script src="niveauvie.js?v=20261121t"></script>
-<script src="prosperite.js?v=20261121t"></script>
-<script src="exterieur.js?v=20261121t"></script>
-<script src="desindus.js?v=20261121t"></script>
-<script src="retraites.js?v=20261121t"></script>
-<script src="energiecout.js?v=20261121t"></script>
-<script src="energieformation.js?v=20261121t"></script>
-<script src="nucleaire.js?v=20261121t"></script>
-<script src="logementeco.js?v=20261121t"></script>
-<script src="competences.js?v=20261121t"></script>
-<script src="justicedroit.js?v=20261121t"></script>
-<script src="fonctionnaires.js?v=20261121t"></script>
-<script src="couper.js?v=20261121t"></script>
-<script src="seuilpays.js?v=20261121t"></script>
-<script src="logement.js?v=20261121t"></script>
-<script src="env.js?v=20261121t"></script>
-<script src="agriculture.js?v=20261121t"></script>
-<script src="rendements.js?v=20261121t"></script>
-<script src="monnaie.js?v=20261121t"></script>
-<script src="limites.js?v=20261121t"></script>
-<script src="sociologie.js?v=20261121t"></script>
-<script src="chaine.js?v=20261121t"></script>
-<script src="patrimoinehist.js?v=20261121t"></script>
-<script src="innovation.js?v=20261121t"></script>
+<script src="kpi.js?v=20261121u"></script>
+<script src="app.js?v=20261121u"></script>
+<script src="energie.js?v=20261121u"></script>
+<script src="matieres.js?v=20261121u"></script>
+<script src="territoire.js?v=20261121u"></script>
+<script src="themes.js?v=20261121u"></script>
+<script src="societe.js?v=20261121u"></script>
+<script src="eco2.js?v=20261121u"></script>
+<script src="empreinte.js?v=20261121u"></script>
+<script src="argentprive.js?v=20261121u"></script>
+<script src="repartition.js?v=20261121u"></script>
+<script src="patrimoine.js?v=20261121u"></script>
+<script src="prelevements.js?v=20261121u"></script>
+<script src="travailvie.js?v=20261121u"></script>
+<script src="niveauvie.js?v=20261121u"></script>
+<script src="prosperite.js?v=20261121u"></script>
+<script src="exterieur.js?v=20261121u"></script>
+<script src="desindus.js?v=20261121u"></script>
+<script src="retraites.js?v=20261121u"></script>
+<script src="energiecout.js?v=20261121u"></script>
+<script src="energieformation.js?v=20261121u"></script>
+<script src="nucleaire.js?v=20261121u"></script>
+<script src="logementeco.js?v=20261121u"></script>
+<script src="competences.js?v=20261121u"></script>
+<script src="justicedroit.js?v=20261121u"></script>
+<script src="fonctionnaires.js?v=20261121u"></script>
+<script src="couper.js?v=20261121u"></script>
+<script src="seuilpays.js?v=20261121u"></script>
+<script src="logement.js?v=20261121u"></script>
+<script src="env.js?v=20261121u"></script>
+<script src="agriculture.js?v=20261121u"></script>
+<script src="rendements.js?v=20261121u"></script>
+<script src="monnaie.js?v=20261121u"></script>
+<script src="limites.js?v=20261121u"></script>
+<script src="sociologie.js?v=20261121u"></script>
+<script src="chaine.js?v=20261121u"></script>
+<script src="patrimoinehist.js?v=20261121u"></script>
+<script src="innovation.js?v=20261121u"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121t"></script>
-<script src="histoire.js?v=20261121t"></script>
-<script src="chomage.js?v=20261121t"></script>
-<script src="sources.js?v=20261121t"></script>
-<script src="nav.js?v=20261121t"></script>
+<script src="soussol.js?v=20261121u"></script>
+<script src="histoire.js?v=20261121u"></script>
+<script src="chomage.js?v=20261121u"></script>
+<script src="sources.js?v=20261121u"></script>
+<script src="nav.js?v=20261121u"></script>
 </body>
 </html>

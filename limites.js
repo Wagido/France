@@ -52,6 +52,7 @@ function draw() {
       <div class="in-card-n muted" style="font-size:.78rem">${esc(i.l.includes("(") ? "(" + i.l.split(" (").slice(1).join(" (") : "")}</div>
       <div class="chart" id="li-c-${k}"></div>
       <div class="in-card-bio" style="color:var(--muted)">Écart moyen depuis 2000 : <b style="color:${COL.bau}">${f1(e.bau)} %</b> avec le scénario de 1972, <b style="color:#b45309">${f1(e.bau2)} %</b> avec « ressources doublées » → plus proche : <b>${COURT[best].toLowerCase()}</b></div></div>`; }).join("");
+  drawRes();
   ordre.forEach(k => { lineChart($("#li-c-" + k), merge(I[k]), lines, { vfmt: v => n0(v), yfmt: v => v, h: 170, xticks: 4 }); today($("#li-c-" + k)); });
   legend("#li-legend2", [[COURT.bau, COL.bau], [COURT.bau2, COL.bau2], ["Données observées", COL.obs]]);
   const nb2 = ordre.filter(k => I[k].ecart.bau2 < I[k].ecart.bau).length;
@@ -77,5 +78,25 @@ function draw() {
     <li><b>Le lien avec la monnaie</b> : une économie dont la stabilité dépend de la croissance (voir <a href="#monnaie">Monnaie et croissance</a>) est mal préparée à un ralentissement imposé par les ressources. C'est la question que posait déjà le livre en 1972 : choisir de ralentir, ou subir le ralentissement.</li>
   </ul>`;
 }
+/* ressources : production d'énergies fossiles depuis 1900 */
+function drawRes() {
+  const { areaChart, legend } = window.TH, F = L.fossiles; if (!F || !$("#li-fos")) return;
+  const last = F.at(-1), y14 = F.find(r => r.annee === last.annee - 10);
+  const tc = k => 100 * ((last[k] / y14[k]) ** (1 / 10) - 1);
+  areaChart($("#li-fos"), F.map(r => ({ annee: r.annee, charbon: r.charbon / 1000, petrole: r.petrole / 1000, gaz: r.gaz / 1000 })), ["charbon", "petrole", "gaz"],
+    { charbon: "#57534e", petrole: "#1e293b", gaz: "#60a5fa" }, { charbon: "Charbon", petrole: "Pétrole", gaz: "Gaz" }, { vfmt: v => f1(v) + " milliers de TWh", yfmt: v => v, h: 280 });
+  legend("#li-fos-legend", [["Charbon", "#57534e"], ["Pétrole", "#1e293b"], ["Gaz", "#60a5fa"]]);
+  document.querySelectorAll(".li-y").forEach(e => e.textContent = last.annee);
+  const tot = last.charbon + last.petrole + last.gaz, t73 = F.find(r => r.annee === 1973);
+  $("#li-res-txt").innerHTML = `<ul>
+    <li><b>Aucune énergie fossile n'a encore atteint son pic de production</b> : en ${last.annee}, le monde a produit plus de pétrole, de gaz et de charbon que jamais (${n0(tot / 1000)} milliers de TWh, ${f1(tot / (t73.charbon + t73.petrole + t73.gaz))} fois plus qu'en 1973). Mais la croissance ralentit : sur les dix dernières années, +${f1(tc("petrole"))} % par an pour le pétrole, +${f1(tc("gaz"))} % pour le gaz, +${f1(tc("charbon"))} % pour le charbon.</li>
+    <li><b>Le pétrole « facile » a déjà passé son pic</b> : selon l'Agence internationale de l'énergie, la production de pétrole brut conventionnel plafonne depuis 2006. La hausse depuis vient du pétrole de schiste américain (les États-Unis sont devenus le premier producteur mondial), des sables bitumineux du Canada et des liquides de gaz : des pétroles plus chers à extraire, qui demandent plus d'énergie pour produire la même énergie. Et depuis le milieu des années 1980, on consomme chaque année plus de pétrole qu'on n'en découvre.</li>
+    <li><b>« 50 ans de réserves » ne veut pas dire « plus rien dans 50 ans »</b> : les réserves prouvées sont ce qu'on sait extraire de façon rentable aujourd'hui. Elles augmentent quand les prix montent ou que la technique progresse. Depuis les années 1980, on a presque toujours « 40 à 50 ans » de pétrole devant soi, et environ 40 ans de cuivre. Le vrai signal n'est pas la date de la fin, mais le coût croissant de chaque nouveau baril ou de chaque tonne de métal : des gisements plus profonds, plus lointains, des minerais moins riches (la teneur du cuivre extrait baisse régulièrement, il faut remuer toujours plus de roche).</li>
+    <li><b>Quand le pic ?</b> Pour le pétrole tous types confondus, la plupart des analyses le situent dans les années 2030, par épuisement des gisements ou par baisse de la demande avec les voitures électriques ; l'Agence internationale de l'énergie voit un plateau de la demande vers 2030 si les politiques annoncées sont appliquées. Mais les annonces de pic ont souvent été repoussées. Le gaz devrait culminer plus tard ; le charbon plafonne déjà, suspendu aux choix de la Chine et de l'Inde. Dans le scénario World3 « ressources doublées », la consommation de ressources non renouvelables culmine vers ${L.pic_nrur.bau2} ; vers ${L.pic_nrur.bau} dans celui de 1972.</li>
+    <li><b>La limite viendra sans doute du climat avant la géologie</b> : brûler toutes les réserves prouvées d'énergies fossiles émettrait bien plus de CO₂ que ce qui reste à émettre pour limiter le réchauffement à 2 °C. Une étude de référence (McGlade et Ekins, <i>Nature</i>, 2015) estimait qu'il faudrait laisser sous terre environ un tiers du pétrole, la moitié du gaz et plus de 80 % du charbon (voir <a href="#climat">Climat</a>).</li>
+    <li><b>Pour les métaux, la contrainte est la vitesse, pas la quantité</b> : la transition énergétique en demande beaucoup plus. Selon l'Agence internationale de l'énergie, une voiture électrique contient environ six fois plus de minerais qu'une voiture thermique, une éolienne terrestre neuf fois plus qu'une centrale à gaz de même puissance. Or ouvrir une mine prend en moyenne plus de quinze ans (voir <a href="#soussol">Sous-sol</a>), et le raffinage de nombreux métaux critiques (lithium, cobalt, terres rares, graphite) est concentré en Chine. Le risque n'est pas l'épuisement, mais des pénuries, des prix qui flambent et une dépendance géopolitique.</li>
+  </ul>`;
+}
+
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
