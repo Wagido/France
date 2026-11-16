@@ -1,0 +1,434 @@
+{
+ "pays": [
+  {
+   "code": "FR",
+   "nom": "France",
+   "depense": 15.0,
+   "depense_annee": 2024,
+   "niveau": 0.97,
+   "niveau_annee": 2025,
+   "remplacement": 0.61,
+   "remplacement_annee": 2025,
+   "esperance65": 21.9,
+   "esperance65_annee": 2024,
+   "emploi6064": 44.4,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "DE",
+   "nom": "Allemagne",
+   "depense": 11.7,
+   "depense_annee": 2024,
+   "niveau": 0.83,
+   "niveau_annee": 2025,
+   "remplacement": 0.48,
+   "remplacement_annee": 2025,
+   "esperance65": 19.7,
+   "esperance65_annee": 2024,
+   "emploi6064": 67.6,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "IT",
+   "nom": "Italie",
+   "depense": 15.8,
+   "depense_annee": 2024,
+   "niveau": 1.0,
+   "niveau_annee": 2025,
+   "remplacement": 0.8,
+   "remplacement_annee": 2025,
+   "esperance65": 21.4,
+   "esperance65_annee": 2024,
+   "emploi6064": 50.4,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "ES",
+   "nom": "Espagne",
+   "depense": 13.2,
+   "depense_annee": 2024,
+   "niveau": 1.06,
+   "niveau_annee": 2025,
+   "remplacement": 0.81,
+   "remplacement_annee": 2025,
+   "esperance65": 21.9,
+   "esperance65_annee": 2024,
+   "emploi6064": 53.0,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "NL",
+   "nom": "Pays-Bas",
+   "depense": 11.2,
+   "depense_annee": 2024,
+   "niveau": 0.76,
+   "niveau_annee": 2025,
+   "remplacement": 0.56,
+   "remplacement_annee": 2025,
+   "esperance65": 19.9,
+   "esperance65_annee": 2024,
+   "emploi6064": 69.5,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "SE",
+   "nom": "Suède",
+   "depense": 10.7,
+   "depense_annee": 2024,
+   "niveau": 0.84,
+   "niveau_annee": 2025,
+   "remplacement": 0.59,
+   "remplacement_annee": 2025,
+   "esperance65": 21.3,
+   "esperance65_annee": 2024,
+   "emploi6064": 71.1,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "DK",
+   "nom": "Danemark",
+   "depense": 11.2,
+   "depense_annee": 2024,
+   "niveau": 0.77,
+   "niveau_annee": 2025,
+   "remplacement": 0.46,
+   "remplacement_annee": 2025,
+   "esperance65": 20.1,
+   "esperance65_annee": 2024,
+   "emploi6064": 68.6,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "BE",
+   "nom": "Belgique",
+   "depense": 13.5,
+   "depense_annee": 2024,
+   "niveau": 0.8,
+   "niveau_annee": 2025,
+   "remplacement": 0.48,
+   "remplacement_annee": 2025,
+   "esperance65": 20.6,
+   "esperance65_annee": 2024,
+   "emploi6064": 46.8,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "AT",
+   "nom": "Autriche",
+   "depense": 15.4,
+   "depense_annee": 2024,
+   "niveau": 0.93,
+   "niveau_annee": 2025,
+   "remplacement": 0.56,
+   "remplacement_annee": 2025,
+   "esperance65": 20.3,
+   "esperance65_annee": 2024,
+   "emploi6064": 40.0,
+   "emploi6064_annee": 2025
+  },
+  {
+   "code": "EU27_2020",
+   "nom": "Moyenne de l'Union européenne",
+   "depense": 12.6,
+   "depense_annee": 2024,
+   "niveau": 0.91,
+   "niveau_annee": 2025,
+   "remplacement": 0.6,
+   "remplacement_annee": 2025,
+   "esperance65": 20.2,
+   "esperance65_annee": 2024,
+   "emploi6064": 55.0,
+   "emploi6064_annee": 2025
+  }
+ ],
+ "dependance": [
+  {
+   "annee": 1990,
+   "FR": null,
+   "DE": 22.0,
+   "IT": 21.5,
+   "SE": 27.7,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1991,
+   "FR": 21.2,
+   "DE": 21.7,
+   "IT": 22.0,
+   "SE": 27.7,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1992,
+   "FR": 21.6,
+   "DE": 21.8,
+   "IT": 22.4,
+   "SE": 27.7,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1993,
+   "FR": 22.0,
+   "DE": 21.9,
+   "IT": 22.9,
+   "SE": 27.6,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1994,
+   "FR": 22.4,
+   "DE": 22.2,
+   "IT": 23.4,
+   "SE": 27.6,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1995,
+   "FR": 22.7,
+   "DE": 22.5,
+   "IT": 24.0,
+   "SE": 27.4,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1996,
+   "FR": 23.1,
+   "DE": 22.8,
+   "IT": 24.7,
+   "SE": 27.4,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1997,
+   "FR": 23.5,
+   "DE": 23.0,
+   "IT": 25.2,
+   "SE": 27.4,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1998,
+   "FR": 23.8,
+   "DE": 23.2,
+   "IT": 25.8,
+   "SE": 27.3,
+   "EU27_2020": null
+  },
+  {
+   "annee": 1999,
+   "FR": 24.0,
+   "DE": 23.3,
+   "IT": 26.3,
+   "SE": 27.1,
+   "EU27_2020": null
+  },
+  {
+   "annee": 2000,
+   "FR": 24.3,
+   "DE": 23.9,
+   "IT": 26.8,
+   "SE": 26.9,
+   "EU27_2020": null
+  },
+  {
+   "annee": 2001,
+   "FR": 24.5,
+   "DE": 24.5,
+   "IT": 27.4,
+   "SE": 26.8,
+   "EU27_2020": 23.4
+  },
+  {
+   "annee": 2002,
+   "FR": 24.7,
+   "DE": 25.2,
+   "IT": 27.9,
+   "SE": 26.6,
+   "EU27_2020": 23.8
+  },
+  {
+   "annee": 2003,
+   "FR": 24.8,
+   "DE": 25.9,
+   "IT": 28.4,
+   "SE": 26.5,
+   "EU27_2020": 24.1
+  },
+  {
+   "annee": 2004,
+   "FR": 24.9,
+   "DE": 26.8,
+   "IT": 28.8,
+   "SE": 26.4,
+   "EU27_2020": 24.4
+  },
+  {
+   "annee": 2005,
+   "FR": 25.1,
+   "DE": 27.8,
+   "IT": 29.4,
+   "SE": 26.5,
+   "EU27_2020": 24.7
+  },
+  {
+   "annee": 2006,
+   "FR": 25.1,
+   "DE": 28.9,
+   "IT": 30.0,
+   "SE": 26.4,
+   "EU27_2020": 25.1
+  },
+  {
+   "annee": 2007,
+   "FR": 25.1,
+   "DE": 29.9,
+   "IT": 30.5,
+   "SE": 26.4,
+   "EU27_2020": 25.4
+  },
+  {
+   "annee": 2008,
+   "FR": 25.2,
+   "DE": 30.4,
+   "IT": 30.6,
+   "SE": 26.7,
+   "EU27_2020": 25.7
+  },
+  {
+   "annee": 2009,
+   "FR": 25.4,
+   "DE": 30.9,
+   "IT": 30.8,
+   "SE": 27.1,
+   "EU27_2020": 26.0
+  },
+  {
+   "annee": 2010,
+   "FR": 25.6,
+   "DE": 31.4,
+   "IT": 31.1,
+   "SE": 27.7,
+   "EU27_2020": 26.3
+  },
+  {
+   "annee": 2011,
+   "FR": 25.9,
+   "DE": 31.4,
+   "IT": 31.2,
+   "SE": 28.4,
+   "EU27_2020": 26.6
+  },
+  {
+   "annee": 2012,
+   "FR": 26.7,
+   "DE": 31.4,
+   "IT": 32.0,
+   "SE": 29.2,
+   "EU27_2020": 27.1
+  },
+  {
+   "annee": 2013,
+   "FR": 27.5,
+   "DE": 31.5,
+   "IT": 32.6,
+   "SE": 29.9,
+   "EU27_2020": null
+  },
+  {
+   "annee": 2014,
+   "FR": 28.3,
+   "DE": 31.6,
+   "IT": 33.3,
+   "SE": 30.6,
+   "EU27_2020": 28.4
+  },
+  {
+   "annee": 2015,
+   "FR": 29.2,
+   "DE": 32.0,
+   "IT": 34.0,
+   "SE": 31.1,
+   "EU27_2020": 29.0
+  },
+  {
+   "annee": 2016,
+   "FR": 30.1,
+   "DE": 32.0,
+   "IT": 34.5,
+   "SE": 31.5,
+   "EU27_2020": 29.6
+  },
+  {
+   "annee": 2017,
+   "FR": 30.9,
+   "DE": 32.4,
+   "IT": 35.0,
+   "SE": 31.6,
+   "EU27_2020": 30.2
+  },
+  {
+   "annee": 2018,
+   "FR": 31.6,
+   "DE": 32.8,
+   "IT": 35.4,
+   "SE": 31.7,
+   "EU27_2020": 30.8
+  },
+  {
+   "annee": 2019,
+   "FR": 32.3,
+   "DE": 33.2,
+   "IT": 35.8,
+   "SE": 31.9,
+   "EU27_2020": 31.4
+  },
+  {
+   "annee": 2020,
+   "FR": 33.0,
+   "DE": 33.7,
+   "IT": 36.4,
+   "SE": 32.1,
+   "EU27_2020": 32.0
+  },
+  {
+   "annee": 2021,
+   "FR": 33.4,
+   "DE": 34.2,
+   "IT": 37.0,
+   "SE": 32.4,
+   "EU27_2020": 32.6
+  },
+  {
+   "annee": 2022,
+   "FR": 33.8,
+   "DE": 34.7,
+   "IT": 37.5,
+   "SE": 32.6,
+   "EU27_2020": 33.1
+  },
+  {
+   "annee": 2023,
+   "FR": 34.3,
+   "DE": 34.9,
+   "IT": 37.8,
+   "SE": 32.8,
+   "EU27_2020": 33.4
+  },
+  {
+   "annee": 2024,
+   "FR": 34.9,
+   "DE": 35.2,
+   "IT": 38.4,
+   "SE": 33.1,
+   "EU27_2020": 33.9
+  },
+  {
+   "annee": 2025,
+   "FR": 35.5,
+   "DE": 35.9,
+   "IT": 39.0,
+   "SE": 33.4,
+   "EU27_2020": 34.4
+  }
+ ]
+}
