@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261122b">
+<link rel="stylesheet" href="style.css?v=20261122d">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -680,6 +680,73 @@
   </div>
   <div class="callout small" id="li-res-txt"></div>
   <div class="callout small" id="li-met-txt"></div>
+  <h3>Le recyclage peut-il prendre le relais ?</h3>
+  <div class="grid2">
+    <div>
+      <p class="lead" style="margin-top:0">Part du métal recyclé dans la consommation des États-Unis en 2025 (USGS). Il n'existe pas de chiffre mondial aussi récent ; pour la France et l'Europe, les ordres de grandeur sont proches.</p>
+      <div id="li-recy"></div>
+    </div>
+    <div>
+      <p class="lead" style="margin-top:0"><b>Le calcul qui fâche</b> : un métal recyclé aujourd'hui a été consommé il y a des années, quand on en utilisait moins. Même en recyclant presque tout, le recyclage ne peut couvrir qu'une partie des besoins tant que la consommation augmente.</p>
+      <div class="in-sim" style="grid-template-columns:1fr">
+        <label class="ctl">Hausse de la consommation chaque année <input type="range" id="li-rg" min="0" max="6" step="0.5" value="3"><b id="li-rg-v"></b></label>
+        <label class="ctl">Durée de vie des objets (câbles, bâtiments, voitures…) <input type="range" id="li-rl" min="5" max="50" step="5" value="25"><b id="li-rl-v"></b></label>
+        <label class="ctl">Part du métal récupéré en fin de vie <input type="range" id="li-rr" min="0" max="100" step="5" value="60"><b id="li-rr-v"></b></label>
+      </div>
+      <p class="in-verdict" id="li-recy-out"></p>
+    </div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Les métaux de base se recyclent bien</b> : plus de la moitié de l'acier, de l'aluminium, du cuivre, du plomb, de l'or et du nickel en fin de vie est récupérée dans le monde, selon le Programme des Nations unies pour l'environnement (2011). Recycler de l'aluminium demande environ 95 % d'énergie en moins que de le produire à partir de bauxite.</li>
+      <li><b>Les métaux de la transition se recyclent très mal</b> : selon la même étude, 34 métaux sur 60 étaient recyclés à moins de 1 %, dont le lithium, les terres rares, le gallium, l'indium, le germanium. Ils sont utilisés en petites quantités, mélangés à d'autres dans des alliages ou des composants, ce qui rend leur récupération difficile et chère.</li>
+      <li><b>Certaines utilisations sont « dispersives »</b> : le métal se disperse et ne peut plus être récupéré (pigments, engrais, additifs, usure des pneus et des freins, électronique jetée dans la nature). L'ingénieur Philippe Bihouix (<i>L'Âge des low tech</i>, 2014) en tire une conclusion : sans réduire la consommation, le recyclage ne fait que retarder l'épuisement.</li>
+    </ul>
+  </div>
+
+  <h3>Qui s'inquiète ? Presque tout le monde</h3>
+  <div class="in-need">
+    <div><b>L'Agence internationale de l'énergie</b><span>Elle publie chaque année depuis 2021 un rapport sur les « minerais critiques ». Elle alerte sur la concentration de la production et du raffinage, et sur le décalage entre la demande de la transition et les projets de mines annoncés, en particulier pour le cuivre et le lithium.</span></div>
+    <div><b>L'Union européenne</b><span>Le règlement sur les matières premières critiques (2024) liste 34 matières critiques et fixe des objectifs pour 2030 : extraire en Europe 10 % de sa consommation, en raffiner 40 %, en recycler 25 %, et ne dépendre d'aucun pays pour plus de 65 % d'une matière.</span></div>
+    <div><b>La France</b><span>Le rapport Varin (2022) a conduit à créer un observatoire des ressources minérales (OFREMI) et un fonds d'investissement dans les métaux critiques. Le BRGM a relancé en 2025 l'inventaire minier du pays, le premier depuis les années 1990 (voir <a href="#soussol">Sous-sol</a>).</span></div>
+    <div><b>La Chine</b><span>Elle a montré qu'elle pouvait s'en servir comme d'une arme : restrictions d'exportation du gallium et du germanium (2023), du graphite (2023), de l'antimoine (2024), puis de plusieurs terres rares (2025), qui ont désorganisé des usines automobiles en Europe et aux États-Unis.</span></div>
+    <div><b>Les États-Unis</b><span>Stocks stratégiques pour la défense, aides à l'ouverture de mines et de raffineries, accords avec des pays producteurs, et en 2025 un décret pour accélérer l'exploitation minière des grands fonds marins, à laquelle la France s'oppose.</span></div>
+    <div><b>Les chercheurs</b><span>Le géologue Olivier Vidal (CNRS) estime qu'il faudra extraire dans les prochaines décennies autant de métaux que depuis le début de l'humanité pour construire les infrastructures bas carbone. Aurore Stéphant (association SystExt) documente les dégâts des mines : eau, déchets toxiques, déforestation, conditions de travail.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>Alors, faut-il s'inquiéter ?</b> Personne de sérieux ne prévoit une « fin des métaux » dans quelques décennies : les ressources dans le sol sont bien plus grandes que les réserves, et le recyclage progresse. Mais trois risques font consensus : des métaux de plus en plus chers à extraire, en énergie, en eau et en dégâts environnementaux ; des pénuries temporaires et des hausses de prix, parce que les mines s'ouvrent beaucoup plus lentement que la demande n'augmente ; et une dépendance géopolitique, surtout envers la Chine. La réponse la plus sûre combine les trois leviers : recycler beaucoup plus, concevoir des objets réparables et faciles à démonter, et consommer moins de métal (voitures plus petites et moins nombreuses, objets qui durent).</p>
+  </div>
+
+  <h3>Et la France ? Pas de pétrole, pas de métaux… mais ça va ?</h3>
+  <div class="grid2">
+    <div class="callout small" style="margin-top:0">
+      <p><b>Ce qui inquiète</b></p>
+      <ul>
+        <li><b>Presque tout est importé</b> : le pétrole et le gaz (la production française couvre moins de 1 % des besoins), l'uranium (dernière mine fermée en 2001), et la quasi-totalité des métaux : il n'y a plus de mine de métaux en activité en métropole depuis la fermeture de la mine d'or de Salsigne en 2004.</li>
+        <li><b>La facture peut exploser</b> : la France a payé 116 milliards d'euros d'énergie importée en 2022, un record, avec la flambée des prix du gaz et du pétrole.</li>
+        <li><b>Les transports dépendent du pétrole à plus de 90 %</b>, l'agriculture des engrais importés (voir <a href="#agriculture">Agriculture</a>), l'industrie de métaux transformés en Chine.</li>
+        <li><b>Les fournisseurs peuvent changer de camp</b> : la Russie (gaz, uranium enrichi) depuis 2022, le Niger, dont la junte a pris le contrôle de la principale mine d'uranium exploitée par l'entreprise française Orano en 2025.</li>
+      </ul>
+    </div>
+    <div class="callout small" style="margin-top:0">
+      <p><b>Ce qui rassure (un peu)</b></p>
+      <ul>
+        <li><b>Une électricité presque sans fossiles</b> : nucléaire, hydraulique et renouvelables fournissent plus de 90 % de l'électricité. Chaque usage qui passe du pétrole à l'électricité réduit la dépendance (voir <a href="#energie">Énergie</a> et <a href="#nucleaire">Nucléaire</a>).</li>
+        <li><b>L'uranium se stocke</b> : quelques tonnes suffisent à faire tourner un réacteur, la France garde plusieurs années de réserves et achète à plusieurs pays (Kazakhstan, Ouzbékistan, Australie, Canada, Niger). Elle détient aussi des centaines de milliers de tonnes d'uranium appauvri, utilisables un jour par des réacteurs à neutrons rapides.</li>
+        <li><b>Du nickel en Nouvelle-Calédonie</b> : environ 5 % des réserves mondiales et 140 000 tonnes produites en 2025, mais une filière en crise (usines fermées ou en difficulté face au nickel indonésien).</li>
+        <li><b>Des projets</b> : la mine de lithium de l'Allier, le lithium géothermal d'Alsace, le nouvel inventaire minier du BRGM, et une industrie du recyclage développée (acier, aluminium, cuivre).</li>
+      </ul>
+    </div>
+  </div>
+  <p class="lead"><b>En résumé</b> : la France n'est pas plus mal lotie que ses voisins européens, qui importent aussi l'essentiel de leurs ressources, et mieux que beaucoup pour l'électricité. Mais elle est très exposée aux chocs de prix et aux décisions des pays producteurs. Sa marge de manœuvre tient à trois choses : électrifier, consommer moins de pétrole et de métal, et recycler.</p>
+
+  <h3>Que disent le GIEC et le Shift Project ?</h3>
+  <div class="in-need">
+    <div><b>Le GIEC</b><span>Son rôle est d'évaluer le climat et les moyens de limiter le réchauffement, pas de faire l'inventaire des ressources. Dans son rapport de 2022 sur les solutions, il cite les minerais critiques comme un risque pour le rythme de la transition (concentration de la production, délais d'ouverture des mines, impacts environnementaux) et recommande le recyclage, la sobriété et la diversification. Mais la plupart des modèles économiques qu'il utilise ne représentent pas les limites de métaux ou de pétrole : c'est précisément la critique du « bouclage » ci-dessous.</span></div>
+    <div><b>Le Shift Project</b><span>Ce groupe de réflexion fondé par Jean-Marc Jancovici a publié en 2021 une étude sur l'approvisionnement futur de l'Union européenne en pétrole, qui conclut à un risque de baisse dès les années 2030 (partie précédente), et en 2022 un « Plan de transformation de l'économie française », secteur par secteur, pour se passer des énergies fossiles. Ses travaux portent surtout sur l'énergie ; pour les métaux, il souligne les besoins de la transition et plaide pour la sobriété.</span></div>
+    <div><b>RTE et l'ADEME</b><span>Les scénarios de RTE (<i>Futurs énergétiques 2050</i>, 2021) ont évalué les besoins en métaux d'un système électrique sans fossiles : importants, notamment en cuivre, mais compatibles avec les ressources si le recyclage se développe. L'ADEME (<i>Transition(s) 2050</i>) compare quatre chemins pour la neutralité carbone : ceux qui misent sur la sobriété consomment beaucoup moins de matières que ceux qui misent sur la technologie.</span></div>
+  </div>
+
   <h3>Les scénarios du GIEC tiennent-ils ? La critique du « bouclage »</h3>
   <div class="callout small">
     <ul>
@@ -707,7 +774,7 @@
       <li><b>Garder le pétrole pour ce qui n'a pas de substitut</b> : chimie, plastiques techniques, médicaments, une partie de l'aviation et de l'agriculture (voir <a href="#agriculture">Agriculture</a>).</li>
     </ul>
   </div>
-  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf" target="_blank" rel="noopener"><i>Mineral Commodity Summaries 2026</i></a> (production minière 2025, réserves et ressources identifiées) ; Banque mondiale, <i>Minerals for Climate Action</i> (2020) ; GIEC, sixième rapport, groupe III (2022). Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
+  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf" target="_blank" rel="noopener"><i>Mineral Commodity Summaries 2026</i></a> (production minière 2025, réserves et ressources identifiées) ; Banque mondiale, <i>Minerals for Climate Action</i> (2020) ; PNUE, <i>Recycling Rates of Metals</i> (2011) ; règlement européen 2024/1252 sur les matières premières critiques ; GIEC, sixième rapport, groupe III (2022). Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
 </section>
 
 <section id="simulateur" class="panel">
@@ -2060,50 +2127,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261122b"></script>
-<script src="app.js?v=20261122b"></script>
-<script src="energie.js?v=20261122b"></script>
-<script src="matieres.js?v=20261122b"></script>
-<script src="territoire.js?v=20261122b"></script>
-<script src="themes.js?v=20261122b"></script>
-<script src="societe.js?v=20261122b"></script>
-<script src="eco2.js?v=20261122b"></script>
-<script src="empreinte.js?v=20261122b"></script>
-<script src="argentprive.js?v=20261122b"></script>
-<script src="repartition.js?v=20261122b"></script>
-<script src="patrimoine.js?v=20261122b"></script>
-<script src="prelevements.js?v=20261122b"></script>
-<script src="travailvie.js?v=20261122b"></script>
-<script src="niveauvie.js?v=20261122b"></script>
-<script src="prosperite.js?v=20261122b"></script>
-<script src="exterieur.js?v=20261122b"></script>
-<script src="desindus.js?v=20261122b"></script>
-<script src="retraites.js?v=20261122b"></script>
-<script src="energiecout.js?v=20261122b"></script>
-<script src="energieformation.js?v=20261122b"></script>
-<script src="nucleaire.js?v=20261122b"></script>
-<script src="logementeco.js?v=20261122b"></script>
-<script src="competences.js?v=20261122b"></script>
-<script src="justicedroit.js?v=20261122b"></script>
-<script src="fonctionnaires.js?v=20261122b"></script>
-<script src="couper.js?v=20261122b"></script>
-<script src="seuilpays.js?v=20261122b"></script>
-<script src="logement.js?v=20261122b"></script>
-<script src="env.js?v=20261122b"></script>
-<script src="agriculture.js?v=20261122b"></script>
-<script src="rendements.js?v=20261122b"></script>
-<script src="monnaie.js?v=20261122b"></script>
-<script src="limites.js?v=20261122b"></script>
-<script src="sociologie.js?v=20261122b"></script>
-<script src="chaine.js?v=20261122b"></script>
-<script src="patrimoinehist.js?v=20261122b"></script>
-<script src="innovation.js?v=20261122b"></script>
+<script src="kpi.js?v=20261122d"></script>
+<script src="app.js?v=20261122d"></script>
+<script src="energie.js?v=20261122d"></script>
+<script src="matieres.js?v=20261122d"></script>
+<script src="territoire.js?v=20261122d"></script>
+<script src="themes.js?v=20261122d"></script>
+<script src="societe.js?v=20261122d"></script>
+<script src="eco2.js?v=20261122d"></script>
+<script src="empreinte.js?v=20261122d"></script>
+<script src="argentprive.js?v=20261122d"></script>
+<script src="repartition.js?v=20261122d"></script>
+<script src="patrimoine.js?v=20261122d"></script>
+<script src="prelevements.js?v=20261122d"></script>
+<script src="travailvie.js?v=20261122d"></script>
+<script src="niveauvie.js?v=20261122d"></script>
+<script src="prosperite.js?v=20261122d"></script>
+<script src="exterieur.js?v=20261122d"></script>
+<script src="desindus.js?v=20261122d"></script>
+<script src="retraites.js?v=20261122d"></script>
+<script src="energiecout.js?v=20261122d"></script>
+<script src="energieformation.js?v=20261122d"></script>
+<script src="nucleaire.js?v=20261122d"></script>
+<script src="logementeco.js?v=20261122d"></script>
+<script src="competences.js?v=20261122d"></script>
+<script src="justicedroit.js?v=20261122d"></script>
+<script src="fonctionnaires.js?v=20261122d"></script>
+<script src="couper.js?v=20261122d"></script>
+<script src="seuilpays.js?v=20261122d"></script>
+<script src="logement.js?v=20261122d"></script>
+<script src="env.js?v=20261122d"></script>
+<script src="agriculture.js?v=20261122d"></script>
+<script src="rendements.js?v=20261122d"></script>
+<script src="monnaie.js?v=20261122d"></script>
+<script src="limites.js?v=20261122d"></script>
+<script src="sociologie.js?v=20261122d"></script>
+<script src="chaine.js?v=20261122d"></script>
+<script src="patrimoinehist.js?v=20261122d"></script>
+<script src="innovation.js?v=20261122d"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261122b"></script>
-<script src="histoire.js?v=20261122b"></script>
-<script src="chomage.js?v=20261122b"></script>
-<script src="sources.js?v=20261122b"></script>
-<script src="nav.js?v=20261122b"></script>
+<script src="soussol.js?v=20261122d"></script>
+<script src="histoire.js?v=20261122d"></script>
+<script src="chomage.js?v=20261122d"></script>
+<script src="sources.js?v=20261122d"></script>
+<script src="nav.js?v=20261122d"></script>
 </body>
 </html>

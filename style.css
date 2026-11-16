@@ -440,3 +440,5 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 .el-db-lbl { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); gap: 8px; }
 .el-db-lbl em { font-style: normal; }
 .el-db-sens { margin-top: 2px; }
+#li-recy .in-sbar { grid-template-columns: 100px 1fr 46px; gap: 0 8px; }
+#li-recy .in-sbar small { grid-column: 1 / -1; grid-row: 2; font-size: .72rem; margin-bottom: 4px; }
