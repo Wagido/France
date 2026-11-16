@@ -290,7 +290,7 @@ get ret_rempl.json "$E/ilc_pnp3?sex=T&geo=FR&geo=DE&geo=IT&geo=ES&geo=NL&geo=SE&
 get ret_esp.json "$E/demo_mlexpec?sex=T&age=Y65&geo=FR&geo=DE&geo=IT&geo=ES&geo=NL&geo=SE&geo=DK&geo=BE&geo=AT&geo=EU27_2020"
 get ret_emp.json "$E/lfsa_ergan?sex=T&age=Y60-64&citizen=TOTAL&geo=FR&geo=DE&geo=IT&geo=ES&geo=NL&geo=SE&geo=DK&geo=BE&geo=AT&geo=EU27_2020"
 get ret_dependance.json "$E/demo_pjanind?indic_de=OLDDEP1&geo=FR&geo=DE&geo=IT&geo=SE&geo=NL&geo=EU27_2020"
-get gov_p51g_b9.json "$E/gov_10a_main?unit=PC_GDP&sector=S13&na_item=P51G&na_item=B9&geo=FR&geo=DE&geo=EU27_2020&sinceTimePeriod=2010"
+get gov_p51g_b9.json "$E/gov_10a_main?unit=PC_GDP&sector=S13&na_item=P51G&na_item=B9&na_item=P51C&geo=FR&geo=DE&geo=EU27_2020&sinceTimePeriod=2010"
 get insee_prix_paris.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/010567012?startPeriod=1990-Q1"
 get friggit_paris_1200_2012.xls "https://www.igedd.developpement-durable.gouv.fr/IMG/xls/prix-immo-paris-1200-2012_cle2f2d1a.xls"
 echo "OK"

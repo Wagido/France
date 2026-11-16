@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121a">
+<link rel="stylesheet" href="style.css?v=20261121b">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -686,9 +686,10 @@
     <li><b>Qui</b> : l'État, les collectivités locales (qui en font la majorité), la Sécurité sociale (hôpitaux publics) et les organismes publics (universités, agences). Pas les entreprises publiques comme EDF ou la SNCF.</li>
     <li><b>Inclus</b> : constructions (routes, ponts, écoles, hôpitaux, réseaux d'eau), équipements (véhicules, informatique), matériel militaire, recherche publique et logiciels.</li>
     <li><b>L'entretien, en partie</b> : les grosses rénovations qui prolongent la durée de vie ou augmentent la capacité (réfection complète d'une chaussée, rénovation lourde d'un bâtiment) comptent comme investissement. Seul l'entretien courant (reboucher les nids-de-poule, repeindre une classe) est classé en dépense de fonctionnement.</li>
-    <li><b>Exclus</b> : achats de terrains, aides à l'investissement versées à d'autres (entreprises, ménages), et l'usure des équipements existants n'est pas retirée (montant « brut »).</li>
+    <li><b>Exclus</b> : achats de terrains, aides à l'investissement versées à d'autres (entreprises, ménages), et l'usure des équipements existants n'est pas retirée : c'est un montant « brut ».</li>
+    <li><b>L'usure (la « dépréciation »)</b> : chaque année, routes, bâtiments et équipements perdent de la valeur parce qu'ils vieillissent. Les comptables l'appellent « consommation de capital fixe » : c'est une estimation de ce qu'il faudrait dépenser juste pour maintenir le patrimoine en l'état. Investissement net = investissement brut − usure. Si l'investissement net est nul, le patrimoine public ne grandit pas, il est seulement entretenu.</li>
   </ul>
-  <p style="margin:4px 0 0">Source : <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">Eurostat, gov_10a_main</a> ; règles du système européen des comptes (SEC 2010), où les « améliorations importantes » d'un bien existant sont de la formation de capital et l'entretien et les réparations courantes une consommation intermédiaire.</p></details>
+  <p style="margin:4px 0 0">Source : <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">Eurostat, gov_10a_main</a> (P51G pour l'investissement brut, P51C pour l'usure) ; règles du système européen des comptes (SEC 2010), où les « améliorations importantes » d'un bien existant sont de la formation de capital et l'entretien et les réparations courantes une consommation intermédiaire.</p></details>
   <div class="callout small" id="ext-jum"></div>
   <p class="muted" style="font-size:.8rem">Sources : <a href="https://www.imf.org/external/datamapper/BCA_NGDPD@WEO" target="_blank" rel="noopener">FMI, World Economic Outlook</a> (balance courante, 2025 estimé) ; INSEE (solde commercial des biens et services) ; Eurostat, investissement et solde publics (<a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">gov_10a_main</a>) ; Eurostat, position extérieure nette (<a href="https://ec.europa.eu/eurostat/databrowser/view/tipsii10/default/table" target="_blank" rel="noopener">tipsii10</a>, pays de l'Union européenne seulement). Le cumul des déficits est la somme des soldes annuels en % du PIB.</p>
   <h3>Et si l'État ne pouvait plus emprunter ?</h3>
@@ -1422,44 +1423,44 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121a"></script>
-<script src="app.js?v=20261121a"></script>
-<script src="energie.js?v=20261121a"></script>
-<script src="matieres.js?v=20261121a"></script>
-<script src="territoire.js?v=20261121a"></script>
-<script src="themes.js?v=20261121a"></script>
-<script src="societe.js?v=20261121a"></script>
-<script src="eco2.js?v=20261121a"></script>
-<script src="empreinte.js?v=20261121a"></script>
-<script src="argentprive.js?v=20261121a"></script>
-<script src="repartition.js?v=20261121a"></script>
-<script src="patrimoine.js?v=20261121a"></script>
-<script src="prelevements.js?v=20261121a"></script>
-<script src="travailvie.js?v=20261121a"></script>
-<script src="niveauvie.js?v=20261121a"></script>
-<script src="prosperite.js?v=20261121a"></script>
-<script src="exterieur.js?v=20261121a"></script>
-<script src="desindus.js?v=20261121a"></script>
-<script src="retraites.js?v=20261121a"></script>
-<script src="energiecout.js?v=20261121a"></script>
-<script src="logementeco.js?v=20261121a"></script>
-<script src="competences.js?v=20261121a"></script>
-<script src="justicedroit.js?v=20261121a"></script>
-<script src="fonctionnaires.js?v=20261121a"></script>
-<script src="couper.js?v=20261121a"></script>
-<script src="seuilpays.js?v=20261121a"></script>
-<script src="logement.js?v=20261121a"></script>
-<script src="env.js?v=20261121a"></script>
-<script src="agriculture.js?v=20261121a"></script>
-<script src="chaine.js?v=20261121a"></script>
-<script src="patrimoinehist.js?v=20261121a"></script>
-<script src="innovation.js?v=20261121a"></script>
+<script src="kpi.js?v=20261121b"></script>
+<script src="app.js?v=20261121b"></script>
+<script src="energie.js?v=20261121b"></script>
+<script src="matieres.js?v=20261121b"></script>
+<script src="territoire.js?v=20261121b"></script>
+<script src="themes.js?v=20261121b"></script>
+<script src="societe.js?v=20261121b"></script>
+<script src="eco2.js?v=20261121b"></script>
+<script src="empreinte.js?v=20261121b"></script>
+<script src="argentprive.js?v=20261121b"></script>
+<script src="repartition.js?v=20261121b"></script>
+<script src="patrimoine.js?v=20261121b"></script>
+<script src="prelevements.js?v=20261121b"></script>
+<script src="travailvie.js?v=20261121b"></script>
+<script src="niveauvie.js?v=20261121b"></script>
+<script src="prosperite.js?v=20261121b"></script>
+<script src="exterieur.js?v=20261121b"></script>
+<script src="desindus.js?v=20261121b"></script>
+<script src="retraites.js?v=20261121b"></script>
+<script src="energiecout.js?v=20261121b"></script>
+<script src="logementeco.js?v=20261121b"></script>
+<script src="competences.js?v=20261121b"></script>
+<script src="justicedroit.js?v=20261121b"></script>
+<script src="fonctionnaires.js?v=20261121b"></script>
+<script src="couper.js?v=20261121b"></script>
+<script src="seuilpays.js?v=20261121b"></script>
+<script src="logement.js?v=20261121b"></script>
+<script src="env.js?v=20261121b"></script>
+<script src="agriculture.js?v=20261121b"></script>
+<script src="chaine.js?v=20261121b"></script>
+<script src="patrimoinehist.js?v=20261121b"></script>
+<script src="innovation.js?v=20261121b"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121a"></script>
-<script src="histoire.js?v=20261121a"></script>
-<script src="chomage.js?v=20261121a"></script>
-<script src="sources.js?v=20261121a"></script>
-<script src="nav.js?v=20261121a"></script>
+<script src="soussol.js?v=20261121b"></script>
+<script src="histoire.js?v=20261121b"></script>
+<script src="chomage.js?v=20261121b"></script>
+<script src="sources.js?v=20261121b"></script>
+<script src="nav.js?v=20261121b"></script>
 </body>
 </html>
