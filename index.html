@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261119s">
+<link rel="stylesheet" href="style.css?v=20261119t">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -586,17 +586,17 @@
     <p class="muted" style="font-size:.8rem">Calcul simple : la variation de prix est appliquée à la valeur des logements et des terrains de tous les secteurs ; les autres éléments ne changent pas. Source : Eurostat, comptes de patrimoine (nama_10_nfa_bs, nasa_10_f_bs).</p>
     <p style="margin-bottom:2px"><b>Et deux facteurs qui jouent lentement mais sûrement, détaillés juste en dessous</b></p>
     <ul id="ext-intro">
-      <li><b>La dette</b> : chaque année de déficit public s'ajoute à la dette et diminue le patrimoine net de l'État. Ce n'est pas grave si l'argent emprunté finance des routes, des écoles ou des réseaux qui resteront ; ça l'est s'il paie les dépenses courantes.</li>
-      <li><b>La balance commerciale</b> : quand le pays achète plus à l'étranger qu'il ne lui vend, il paie la différence en empruntant au reste du monde ou en lui vendant des actifs. Année après année, une partie du patrimoine français passe à l'étranger.</li>
+      <li><b>La balance commerciale</b>, qui dépend des échanges du secteur privé : quand le pays achète plus à l'étranger qu'il ne lui vend, il paie la différence en empruntant au reste du monde ou en lui vendant des actifs. Année après année, une partie du patrimoine français passe à l'étranger.</li>
+      <li><b>La dette publique</b>, qui vient de l'État : chaque année de déficit public s'ajoute à la dette et diminue le patrimoine net de l'État. Ce n'est pas grave si l'argent emprunté finance des routes, des écoles ou des réseaux qui resteront ; ça l'est s'il paie les dépenses courantes.</li>
     </ul>
   </div>
-  <h3>La balance commerciale et la dette : quand un pays vit au-dessus de ses moyens, il s'appauvrit peu à peu</h3>
+  <h3>La balance commerciale et la dette publique : quand un pays vit au-dessus de ses moyens, il s'appauvrit peu à peu</h3>
   <div class="grid2">
-    <div><p class="muted" style="margin-top:0">Solde courant (échanges et revenus avec l'étranger), en % du PIB</p><div id="ext-courant" class="chart"></div><div class="legend-row" id="ext-courant-legend"></div></div>
+    <div><p class="muted" style="margin-top:0">Balance commerciale et revenus avec l'étranger (solde courant), en % du PIB</p><div id="ext-courant" class="chart"></div><div class="legend-row" id="ext-courant-legend"></div></div>
     <div><p class="muted" style="margin-top:0">Position extérieure nette : ce que le pays possède à l'étranger moins ce qu'il lui doit, en % du PIB</p><div id="ext-position" class="chart"></div><div class="legend-row" id="ext-position-legend"></div></div>
   </div>
   <div class="callout small" id="ext-txt"></div>
-  <p class="muted" style="margin:10px 0 0">L'État emprunte-t-il pour investir ? Déficit public et investissement public, en % du PIB</p>
+  <p class="muted" style="margin:10px 0 0">La dette publique : l'État emprunte-t-il pour investir ? Déficit public et investissement public, en % du PIB</p>
   <div id="ext-public" class="chart"></div><div class="legend-row" id="ext-public-legend"></div>
   <p class="muted" style="font-size:.8rem">Sources : <a href="https://www.imf.org/external/datamapper/BCA_NGDPD@WEO" target="_blank" rel="noopener">FMI, World Economic Outlook</a> (balance courante, 2025 estimé) ; INSEE (solde commercial des biens et services) ; Eurostat, investissement et solde publics (<a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">gov_10a_main</a>) ; Eurostat, position extérieure nette (<a href="https://ec.europa.eu/eurostat/databrowser/view/tipsii10/default/table" target="_blank" rel="noopener">tipsii10</a>, pays de l'Union européenne seulement). Le cumul des déficits est la somme des soldes annuels en % du PIB.</p>
   <h3>Et si l'État ne pouvait plus emprunter ?</h3>
@@ -1309,37 +1309,37 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261119s"></script>
-<script src="app.js?v=20261119s"></script>
-<script src="energie.js?v=20261119s"></script>
-<script src="matieres.js?v=20261119s"></script>
-<script src="territoire.js?v=20261119s"></script>
-<script src="themes.js?v=20261119s"></script>
-<script src="societe.js?v=20261119s"></script>
-<script src="eco2.js?v=20261119s"></script>
-<script src="empreinte.js?v=20261119s"></script>
-<script src="argentprive.js?v=20261119s"></script>
-<script src="repartition.js?v=20261119s"></script>
-<script src="patrimoine.js?v=20261119s"></script>
-<script src="prelevements.js?v=20261119s"></script>
-<script src="travailvie.js?v=20261119s"></script>
-<script src="niveauvie.js?v=20261119s"></script>
-<script src="prosperite.js?v=20261119s"></script>
-<script src="exterieur.js?v=20261119s"></script>
-<script src="couper.js?v=20261119s"></script>
-<script src="seuilpays.js?v=20261119s"></script>
-<script src="logement.js?v=20261119s"></script>
-<script src="env.js?v=20261119s"></script>
-<script src="agriculture.js?v=20261119s"></script>
-<script src="chaine.js?v=20261119s"></script>
-<script src="patrimoinehist.js?v=20261119s"></script>
-<script src="innovation.js?v=20261119s"></script>
+<script src="kpi.js?v=20261119t"></script>
+<script src="app.js?v=20261119t"></script>
+<script src="energie.js?v=20261119t"></script>
+<script src="matieres.js?v=20261119t"></script>
+<script src="territoire.js?v=20261119t"></script>
+<script src="themes.js?v=20261119t"></script>
+<script src="societe.js?v=20261119t"></script>
+<script src="eco2.js?v=20261119t"></script>
+<script src="empreinte.js?v=20261119t"></script>
+<script src="argentprive.js?v=20261119t"></script>
+<script src="repartition.js?v=20261119t"></script>
+<script src="patrimoine.js?v=20261119t"></script>
+<script src="prelevements.js?v=20261119t"></script>
+<script src="travailvie.js?v=20261119t"></script>
+<script src="niveauvie.js?v=20261119t"></script>
+<script src="prosperite.js?v=20261119t"></script>
+<script src="exterieur.js?v=20261119t"></script>
+<script src="couper.js?v=20261119t"></script>
+<script src="seuilpays.js?v=20261119t"></script>
+<script src="logement.js?v=20261119t"></script>
+<script src="env.js?v=20261119t"></script>
+<script src="agriculture.js?v=20261119t"></script>
+<script src="chaine.js?v=20261119t"></script>
+<script src="patrimoinehist.js?v=20261119t"></script>
+<script src="innovation.js?v=20261119t"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261119s"></script>
-<script src="histoire.js?v=20261119s"></script>
-<script src="chomage.js?v=20261119s"></script>
-<script src="sources.js?v=20261119s"></script>
-<script src="nav.js?v=20261119s"></script>
+<script src="soussol.js?v=20261119t"></script>
+<script src="histoire.js?v=20261119t"></script>
+<script src="chomage.js?v=20261119t"></script>
+<script src="sources.js?v=20261119t"></script>
+<script src="nav.js?v=20261119t"></script>
 </body>
 </html>
