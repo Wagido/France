@@ -40,7 +40,7 @@ function draw() {
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - mg.b})`).call(d3.axisBottom(x).ticks(w < 500 ? 5 : 10).tickFormat(d => d + " %"));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => v.toLocaleString("fr-FR")));
   svg.append("text").attr("x", (mg.l + w - mg.r) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("fill", css("--muted")).attr("font-size", 11).text("Dette publique (% du PIB)");
-  svg.append("text").attr("transform", `translate(12,${(h - mg.b + mg.t) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("fill", css("--muted")).attr("font-size", 11).text("Seuil du multiplicateur");
+  svg.append("text").attr("transform", `translate(12,${(h - mg.b + mg.t) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("fill", css("--muted")).attr("font-size", 11).text("Seuil : multiplicateur à ne pas dépasser");
   el.replaceChildren(svg.node());
   const fr = P.find(d => d.code === "FR"), tri = [...P].sort((a, b) => a.seuil - b.seuil), rg = tri.findIndex(d => d.code === "FR") + 1;
   const pire = tri.slice(0, 4).map(d => esc(d.nom)).join(", "), danger = P.filter(d => d.seuil < m).length;

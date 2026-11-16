@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261118r">
+<link rel="stylesheet" href="style.css?v=20261118s">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -244,6 +244,14 @@
     <p class="muted" style="font-size:.78rem">Limites : c'est l'effet de la première année. Le simulateur sur 15 ans, plus bas, montre la suite.</p>
   </div>
   <h3>Le même seuil, pays par pays</h3>
+  <div class="callout small">
+    <p><b>Attention, ce graphique ne montre pas le multiplicateur de chaque pays</b> (on ne le connaît pas pays par pays : la fourchette 0,5-1 vaut à peu près partout). Il montre leur <b>seuil</b> : le multiplicateur à partir duquel une coupe ferait <i>monter</i> leur ratio dette/PIB au lieu de le faire baisser.</p>
+    <ul>
+      <li><b>Un seuil élevé est une bonne nouvelle</b> : en Irlande ou en Estonie (seuil 1,6-1,7), même une coupe très récessive (multiplicateur de 1 ou plus) fait encore baisser le ratio.</li>
+      <li><b>Un seuil bas est une mauvaise nouvelle</b> : en France, il suffit d'un multiplicateur de 0,62 pour que la coupe fasse monter le ratio la première année.</li>
+      <li><b>Pourquoi ?</b> Exemple français : couper 1 € fait perdre environ 0,8 € de PIB (si le multiplicateur vaut 0,8) et donc 0,8 × 46 % ≈ 0,37 € d'impôts et de cotisations ; la dette ne baisse que de 0,63 €. Or avec une dette de 116 % du PIB, perdre 0,8 € de PIB pèse plus lourd dans le ratio que ces 0,63 € de dette en moins. Le seuil vaut 1 ÷ (dette + prélèvements) : plus un pays est endetté et taxé, plus il est bas.</li>
+    </ul>
+  </div>
   <div id="simu-pays" class="chart"></div>
   <div class="callout small" id="simu-pays-txt"></div>
 
@@ -1206,34 +1214,34 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261118r"></script>
-<script src="app.js?v=20261118r"></script>
-<script src="energie.js?v=20261118r"></script>
-<script src="matieres.js?v=20261118r"></script>
-<script src="territoire.js?v=20261118r"></script>
-<script src="themes.js?v=20261118r"></script>
-<script src="societe.js?v=20261118r"></script>
-<script src="eco2.js?v=20261118r"></script>
-<script src="empreinte.js?v=20261118r"></script>
-<script src="argentprive.js?v=20261118r"></script>
-<script src="repartition.js?v=20261118r"></script>
-<script src="patrimoine.js?v=20261118r"></script>
-<script src="prelevements.js?v=20261118r"></script>
-<script src="travailvie.js?v=20261118r"></script>
-<script src="couper.js?v=20261118r"></script>
-<script src="seuilpays.js?v=20261118r"></script>
-<script src="logement.js?v=20261118r"></script>
-<script src="env.js?v=20261118r"></script>
-<script src="agriculture.js?v=20261118r"></script>
-<script src="chaine.js?v=20261118r"></script>
-<script src="patrimoinehist.js?v=20261118r"></script>
-<script src="innovation.js?v=20261118r"></script>
+<script src="kpi.js?v=20261118s"></script>
+<script src="app.js?v=20261118s"></script>
+<script src="energie.js?v=20261118s"></script>
+<script src="matieres.js?v=20261118s"></script>
+<script src="territoire.js?v=20261118s"></script>
+<script src="themes.js?v=20261118s"></script>
+<script src="societe.js?v=20261118s"></script>
+<script src="eco2.js?v=20261118s"></script>
+<script src="empreinte.js?v=20261118s"></script>
+<script src="argentprive.js?v=20261118s"></script>
+<script src="repartition.js?v=20261118s"></script>
+<script src="patrimoine.js?v=20261118s"></script>
+<script src="prelevements.js?v=20261118s"></script>
+<script src="travailvie.js?v=20261118s"></script>
+<script src="couper.js?v=20261118s"></script>
+<script src="seuilpays.js?v=20261118s"></script>
+<script src="logement.js?v=20261118s"></script>
+<script src="env.js?v=20261118s"></script>
+<script src="agriculture.js?v=20261118s"></script>
+<script src="chaine.js?v=20261118s"></script>
+<script src="patrimoinehist.js?v=20261118s"></script>
+<script src="innovation.js?v=20261118s"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261118r"></script>
-<script src="histoire.js?v=20261118r"></script>
-<script src="chomage.js?v=20261118r"></script>
-<script src="sources.js?v=20261118r"></script>
-<script src="nav.js?v=20261118r"></script>
+<script src="soussol.js?v=20261118s"></script>
+<script src="histoire.js?v=20261118s"></script>
+<script src="chomage.js?v=20261118s"></script>
+<script src="sources.js?v=20261118s"></script>
+<script src="nav.js?v=20261118s"></script>
 </body>
 </html>
