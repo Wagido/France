@@ -462,3 +462,10 @@ h3.li-sub { font-size: 1.02rem; margin-top: 22px; }
 .li-ing { border: 1px solid var(--line); border-left: 4px solid #2563eb; border-radius: 10px; background: var(--surface); margin: 14px 0; max-width: 1060px; }
 .li-ing > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: .95rem; }
 .li-ing > div { padding: 0 14px 10px; font-size: .88rem; }
+table.cmp-t.li-mx { min-width: 980px; }
+.li-mx th.rot { height: 110px; white-space: nowrap; vertical-align: bottom; padding: 4px 2px; }
+.li-mx th.rot span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: .76rem; }
+.li-mx td.mx { text-align: center; color: #2563eb; letter-spacing: -1px; font-size: .8rem; white-space: nowrap; }
+.li-mx td.mx3 { background: rgba(37,99,235,.14); } .li-mx td.mx2 { background: rgba(37,99,235,.07); }
+.li-mx td.mx-note { text-align: left; white-space: normal; font-size: .78rem; color: var(--muted); min-width: 200px; }
+.li-mx td:first-child { white-space: normal; min-width: 170px; text-align: left; }
