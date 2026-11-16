@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123n">
+<link rel="stylesheet" href="style.css?v=20261123o">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -483,7 +483,7 @@
     <h2>La monnaie et la dette obligent-elles à croître ? <em class="en-constr">(en construction)</em> <span class="geo-fixed">France</span></h2>
   </div>
   <p class="lead">Une idée revient souvent : la monnaie naît de la dette, il faut toujours de nouveaux crédits pour rembourser les anciens et leurs intérêts, donc l'économie est condamnée à croître sans fin dans un monde physique fini. Qu'en est-il vraiment ?</p>
-  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#monnaie" data-to="mo-p8">1. petite histoire de la monnaie, des orfèvres à l'euro</a> · <a href="#monnaie" data-to="mo-p1">2. comment naît la monnaie aujourd'hui</a> · <a href="#monnaie" data-to="mo-p6">3. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">4. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">5. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p7">6. le rendement du capital : taux sans risque, bêta, alpha</a> · <a href="#monnaie" data-to="mo-p4">7. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">8. les pistes</a></p>
+  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#monnaie" data-to="mo-p8">1. petite histoire de la monnaie, des orfèvres à l'euro</a> · <a href="#monnaie" data-to="mo-p1">2. comment naît la monnaie aujourd'hui</a> · <a href="#monnaie" data-to="mo-p6">3. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">4. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">5. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p7">6. le rendement du capital : taux sans risque, bêta, alpha</a> · <a href="#monnaie" data-to="mo-p4">7. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">8. comment gérer la finance si l'énergie baisse ?</a></p>
   <div class="kpis" id="mo-kpis"></div>
 
   <h3 id="mo-p8" class="ag-part">1. Petite histoire de la monnaie : de l'or des orfèvres à l'euro</h3>
@@ -932,15 +932,70 @@
     <p>Autrement dit : dette et rendement du capital sont liés, mais la façon de les accorder à une croissance faible se choisit. Les pistes de la partie 8 en sont des exemples.</p>
   </div>
 
-  <h3 id="mo-p5" class="ag-part">8. Les pistes proposées</h3>
+  <h3 id="mo-p5" class="ag-part">8. Comment gérer la finance dans un monde où l'énergie stagne ou baisse ?</h3>
+  <p class="lead">Le système financier attend une croissance en euros de 3 à 4 % par an (2 % d'inflation, 1 à 2 % de croissance réelle) et un rendement du capital d'environ 4 % après inflation. Si l'énergie disponible stagne, ou baisse parce que le pétrole et le gaz déclinent (partie 7, et <a href="#limites">Limites à la croissance</a>), la croissance réelle ne peut venir que des gains d'efficacité : elle tombe vers zéro, voire devient négative. Comment éviter que cette rencontre se fasse par des crises ?</p>
+  <nav class="li-toc"><b>Dans cette partie</b><ol>
+    <li><a href="#monnaie" data-to="mo-8-1">8.1 Le problème en chiffres : et si l'énergie baisse ?</a></li>
+    <li><a href="#monnaie" data-to="mo-8-2">8.2 Six leviers pour adapter la finance</a></li>
+    <li><a href="#monnaie" data-to="mo-8-3">8.3 Qui gagne, qui perd ?</a></li>
+    <li><a href="#monnaie" data-to="mo-8-4">8.4 Trois visions de l'avenir</a></li>
+  </ol></nav>
+
+  <h3 id="mo-8-1" class="li-sub">8.1 Le problème en chiffres : et si l'énergie baisse ?</h3>
+  <p>Le PIB réel évolue à peu près comme l'énergie consommée, plus les gains d'efficacité (on produit chaque année un peu plus avec la même énergie, de l'ordre de 1 à 2 % par an dans le monde). Réglez l'évolution de l'énergie et l'efficacité : le calculateur en déduit la croissance, puis ce que cela implique pour la dette publique et pour le capital.</p>
+  <div class="in-sim">
+    <label class="ctl">Énergie disponible, par an <input type="range" id="mo-fe" min="-4" max="2" step="0.25" value="-1"><b id="mo-fe-v"></b></label>
+    <label class="ctl">Gains d'efficacité, par an <input type="range" id="mo-fx" min="0" max="3" step="0.25" value="1.5"><b id="mo-fx-v"></b></label>
+    <label class="ctl">Inflation <input type="range" id="mo-fp" min="0" max="6" step="0.25" value="2"><b id="mo-fp-v"></b></label>
+    <label class="ctl">Taux d'intérêt moyen de la dette publique <input type="range" id="mo-fr" min="0" max="6" step="0.25" value="3"><b id="mo-fr-v"></b></label>
+  </div>
+  <div class="ctl-row" id="mo-f-presets" style="margin-bottom:8px"></div>
+  <div id="mo-f-out"></div>
+  <p class="muted" style="font-size:.84rem"><b>Hypothèses</b> : dette publique de 115 % du PIB (la France aujourd'hui) ; épargne nette de 10 % du revenu ; rendement exigé du capital de 4 % après inflation. Le lien entre énergie et PIB est un ordre de grandeur : il dépend des usages, et l'électrification permet de faire plus avec moins d'énergie primaire (voir <a href="#limites">Limites</a>, partie 6).</p>
+
+  <h3 id="mo-8-2" class="li-sub">8.2 Six leviers pour adapter la finance</h3>
+  <div class="mo-lev">
+    <details open><summary><b>① Faire baisser, en douceur, le rendement exigé</b></summary>
+      <p>Si l'économie ne croît plus, un rendement de 4 % après inflation n'est plus tenable (partie 7). Plutôt que d'attendre qu'il baisse par un krach, on peut le faire baisser progressivement : taux de la banque centrale durablement bas, épargne réglementée (livret A, assurance-vie) orientée vers des placements utiles mais peu rémunérés, inflation légèrement supérieure aux taux.</p>
+      <p><b>Exemples</b> : la France de 1945 à 1980 (circuit du Trésor), le Japon depuis 1995. <b>Limite</b> : des taux très bas font monter le prix des actifs (immobilier, actions), ce qui enrichit ceux qui possèdent déjà ; et les épargnants, souvent retraités, y perdent.</p></details>
+    <details open><summary><b>② Moins de dettes, plus de fonds propres</b></summary>
+      <p>Une dette exige un remboursement fixe, quoi qu'il arrive : c'est elle qui transforme un ralentissement en crise. Un financement en fonds propres (des actions, des parts) partage au contraire les pertes : si l'entreprise gagne moins, l'actionnaire touche moins, mais personne ne fait faillite.</p>
+      <p><b>Concrètement</b> : supprimer l'avantage fiscal des intérêts d'emprunt par rapport aux dividendes ; imposer aux banques beaucoup plus de fonds propres (20 à 30 % au lieu d'environ 10 %, comme le proposent les économistes Anat Admati et Martin Hellwig) ; encourager les prêts dont le remboursement suit les revenus (prêts étudiants indexés sur le salaire, prêts participatifs). <b>Limite</b> : le crédit devient plus cher, l'investissement plus lent.</p></details>
+    <details open><summary><b>③ Restructurer les dettes de façon ordonnée, plutôt que subir les défauts</b></summary>
+      <p>L'histoire est pleine d'effacements de dettes : les « jubilés » de l'Antiquité, l'accord de Londres de 1953 qui efface la moitié de la dette allemande, la Grèce en 2012. Les faire avant la crise, selon des règles, coûte moins cher que de les subir. En 2021, une centaine d'économistes (dont Thomas Piketty) ont proposé que la BCE annule les dettes publiques qu'elle détient, en échange d'investissements dans la transition.</p>
+      <p><b>Limite</b> : interdit par les traités européens ; et toute dette annulée est une perte pour quelqu'un (ici la banque centrale, donc indirectement les États).</p></details>
+    <details open><summary><b>④ Partager le gâteau plutôt que l'agrandir</b></summary>
+      <p>Si le gâteau ne grossit plus, la question devient celle du partage. Plusieurs outils réduisent le besoin de croissance : taxer davantage les gros patrimoines et les héritages (l'épargne accumulée des plus riches est ce qui crée la pression, partie 4) ; garder des retraites par répartition, qui dépendent des salaires et non du rendement du capital ; partager le travail (temps de travail plus court) pour que les gains de productivité ne créent pas de chômage.</p>
+      <p><b>Limite</b> : c'est le levier le plus conflictuel, et les capitaux peuvent fuir vers les pays qui taxent moins si ces règles ne sont pas prises à plusieurs.</p></details>
+    <details open><summary><b>⑤ Orienter la création monétaire vers la transition</b></summary>
+      <p>Tant que l'énergie fossile est encore là, la meilleure façon de préparer sa baisse est d'investir massivement maintenant : rénovation des bâtiments, électrification des transports et de l'industrie, réseaux, production d'électricité bas carbone. Le rapport Pisani-Ferry et Mahfouz (2023) estime le besoin à environ 66 milliards d'euros d'investissements supplémentaires par an en France d'ici 2030.</p>
+      <p><b>Les outils</b> : des prêts de la BCE aux banques à taux réduit, réservés aux crédits pour la transition (comme elle l'a fait de 2014 à 2023 pour les prêts aux entreprises) ; des règles de fonds propres plus exigeantes pour les crédits aux énergies fossiles ; une banque publique d'investissement plus puissante. <b>Limite</b> : la BCE n'a pas le mandat de choisir les secteurs ; il faudrait le changer.</p></details>
+    <details open><summary><b>⑥ Rendre le système robuste à la décroissance des volumes</b></summary>
+      <p>Aujourd'hui, une baisse du PIB déclenche des faillites, du chômage, des déficits, puis des plans de relance pour faire repartir la croissance. Un système robuste devrait pouvoir encaisser une baisse lente sans s'effondrer : banques beaucoup moins endettées (②), monnaie pleine pour que les dépôts ne disparaissent pas avec les crédits (partie 3), stabilisateurs automatiques (chômage partiel, revenus de remplacement), et des indicateurs de réussite autres que le PIB (empreinte, santé, inégalités).</p>
+      <p><b>Limite</b> : aucun pays riche n'a encore fait l'expérience volontaire d'une baisse durable de son PIB ; les seuls exemples sont subis (Grèce 2008-2016 : −25 %, Cuba après 1991).</p></details>
+  </div>
+
+  <h3 id="mo-8-3" class="li-sub">8.3 Qui gagne, qui perd ?</h3>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Levier</th><th>Qui y perd</th><th>Qui y gagne</th><th>Ce qu'il faut pour le faire</th></tr></thead>
+    <tbody>
+      <tr><td><b>① Rendement plus bas, inflation</b></td><td>Épargnants, retraités, détenteurs d'obligations</td><td>Emprunteurs, jeunes, État endetté</td><td>Une banque centrale et un État d'accord ; accepter plus d'inflation que 2 %</td></tr>
+      <tr><td><b>② Moins de dette, plus de fonds propres</b></td><td>Actionnaires des banques (rendement plus faible), emprunteurs (crédit plus cher)</td><td>Contribuables (moins de sauvetages), stabilité</td><td>Règles de Bâle et fiscalité, à l'échelle européenne</td></tr>
+      <tr><td><b>③ Restructurations ordonnées</b></td><td>Créanciers</td><td>Débiteurs, États surendettés</td><td>Changer les traités pour la dette détenue par la BCE ; des procédures de faillite d'État</td></tr>
+      <tr><td><b>④ Partage du gâteau</b></td><td>Gros patrimoines, héritiers</td><td>Salariés, ceux qui ne possèdent pas</td><td>Une majorité politique, et une coordination entre pays</td></tr>
+      <tr><td><b>⑤ Crédit orienté vers la transition</b></td><td>Secteurs fossiles, spéculation immobilière</td><td>Industrie et ménages qui s'équipent</td><td>Un nouveau mandat pour la BCE, ou des banques publiques</td></tr>
+      <tr><td><b>⑥ Système robuste</b></td><td>Peu de perdants directs, mais une croissance un peu plus lente</td><td>Tous, en cas de choc</td><td>Une vision de long terme partagée</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="mo-8-4" class="li-sub">8.4 Trois visions de l'avenir</h3>
   <div class="in-need">
-    <div><b>La monnaie « pleine » ou 100 %</b><span>Les banques ne créent plus de monnaie : elles ne prêtent que l'épargne qu'on leur confie, et seule la banque centrale émet la monnaie. Proposé par Irving Fisher et les économistes de Chicago dans les années 1930, repris par deux économistes du FMI en 2012 (Benes et Kumhof, « The Chicago Plan Revisited » ; voir la partie 3). Les Suisses l'ont rejeté par référendum le 10 juin 2018, à 75,7 %.</span></div>
-    <div><b>Une économie de post-croissance</b><span>Réduire la dépendance à la croissance plutôt que la monnaie : partage du temps de travail, retraites par répartition plutôt que par capitalisation, limites aux rendements et aux dettes, fiscalité qui fait redépenser les revenus accumulés. C'est la voie étudiée par Tim Jackson et Peter Victor.</span></div>
-    <div><b>Des crédits orientés</b><span>Faire que la création monétaire finance la sobriété et la transition (rénovation, transports, énergie) plutôt que la spéculation immobilière : taux différenciés de la banque centrale, règles de fonds propres selon l'usage du crédit.</span></div>
-    <div><b>L'inflation et l'annulation</b><span>Les solutions historiques : une inflation un peu plus forte allège les dettes (au détriment des épargnants) ; les annulations ou restructurations de dettes, fréquentes dans l'histoire, remettent les compteurs à zéro, avec des perdants.</span></div>
+    <div><b>La croissance verte</b><span>La position des gouvernements et de la plupart des économistes : la technique (électrification, renouvelables, nucléaire, efficacité) permettra de continuer à croître en baissant fortement l'énergie fossile et les matières. La finance n'a pas besoin de changer en profondeur, il faut l'orienter (⑤). <b>Pari</b> : un découplage beaucoup plus rapide que celui observé jusqu'ici.</span></div>
+    <div><b>La post-croissance</b><span>Tim Jackson, Peter Victor, Éloi Laurent : on ne sait pas si la croissance continuera, donc il faut des institutions qui n'en dépendent plus (②, ④, ⑥), puis laisser le PIB faire ce qu'il fera. <b>Pari</b> : on peut réformer retraites, dettes et emploi avant d'y être contraint.</span></div>
+    <div><b>La décroissance</b><span>Giorgos Kallis, Jason Hickel, Timothée Parrique : les pays riches doivent réduire volontairement leur production et leur consommation de matières, en protégeant les besoins essentiels, pour rester dans les limites de la planète. Tous les leviers à la fois, y compris ③. <b>Pari</b> : une adhésion démocratique à une baisse du niveau de consommation.</span></div>
   </div>
   <div class="callout small">
-    <p><b>En résumé</b> : la monnaie créée par le crédit n'oblige pas, à elle seule, à croître sans fin ; l'argent des intérêts revient dans l'économie quand ceux qui les touchent le dépensent. Ce qui rend notre système dépendant de la croissance, c'est la combinaison des dettes à intérêt positif, de l'attente de rendement du capital, du besoin d'emplois et de la fragilité du crédit. Rien de tout cela n'est une loi physique : ce sont des règles, qui peuvent changer, mais qui n'ont jamais été conçues pour une économie stationnaire.</p>
+    <p><b>En résumé</b> : la monnaie créée par le crédit n'oblige pas, à elle seule, à croître sans fin ; l'argent des intérêts revient dans l'économie quand ceux qui les touchent le dépensent. Ce qui rend notre système dépendant de la croissance, c'est la combinaison des dettes à intérêt positif, de l'attente de rendement du capital, de l'épargne qui s'accumule, du besoin d'emplois et de la fragilité du crédit. Rien de tout cela n'est une loi physique : ce sont des règles, qui peuvent changer, mais qui n'ont jamais été conçues pour une économie stationnaire. Si l'énergie disponible baisse, ces règles s'adapteront de toute façon : soit par des choix (les six leviers), soit par des crises (inflation subie, krachs, défauts). La différence entre les deux, c'est qui paie, et quand.</p>
   </div>
   <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; BCE, statistiques monétaires (agrégats M1, M2, M3 de la zone euro) et Eurostat (PIB de la zone euro) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
 </section>
@@ -2582,50 +2637,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123n"></script>
-<script src="app.js?v=20261123n"></script>
-<script src="energie.js?v=20261123n"></script>
-<script src="matieres.js?v=20261123n"></script>
-<script src="territoire.js?v=20261123n"></script>
-<script src="themes.js?v=20261123n"></script>
-<script src="societe.js?v=20261123n"></script>
-<script src="eco2.js?v=20261123n"></script>
-<script src="empreinte.js?v=20261123n"></script>
-<script src="argentprive.js?v=20261123n"></script>
-<script src="repartition.js?v=20261123n"></script>
-<script src="patrimoine.js?v=20261123n"></script>
-<script src="prelevements.js?v=20261123n"></script>
-<script src="travailvie.js?v=20261123n"></script>
-<script src="niveauvie.js?v=20261123n"></script>
-<script src="prosperite.js?v=20261123n"></script>
-<script src="exterieur.js?v=20261123n"></script>
-<script src="desindus.js?v=20261123n"></script>
-<script src="retraites.js?v=20261123n"></script>
-<script src="energiecout.js?v=20261123n"></script>
-<script src="energieformation.js?v=20261123n"></script>
-<script src="nucleaire.js?v=20261123n"></script>
-<script src="logementeco.js?v=20261123n"></script>
-<script src="competences.js?v=20261123n"></script>
-<script src="justicedroit.js?v=20261123n"></script>
-<script src="fonctionnaires.js?v=20261123n"></script>
-<script src="couper.js?v=20261123n"></script>
-<script src="seuilpays.js?v=20261123n"></script>
-<script src="logement.js?v=20261123n"></script>
-<script src="env.js?v=20261123n"></script>
-<script src="agriculture.js?v=20261123n"></script>
-<script src="rendements.js?v=20261123n"></script>
-<script src="monnaie.js?v=20261123n"></script>
-<script src="limites.js?v=20261123n"></script>
-<script src="sociologie.js?v=20261123n"></script>
-<script src="chaine.js?v=20261123n"></script>
-<script src="patrimoinehist.js?v=20261123n"></script>
-<script src="innovation.js?v=20261123n"></script>
+<script src="kpi.js?v=20261123o"></script>
+<script src="app.js?v=20261123o"></script>
+<script src="energie.js?v=20261123o"></script>
+<script src="matieres.js?v=20261123o"></script>
+<script src="territoire.js?v=20261123o"></script>
+<script src="themes.js?v=20261123o"></script>
+<script src="societe.js?v=20261123o"></script>
+<script src="eco2.js?v=20261123o"></script>
+<script src="empreinte.js?v=20261123o"></script>
+<script src="argentprive.js?v=20261123o"></script>
+<script src="repartition.js?v=20261123o"></script>
+<script src="patrimoine.js?v=20261123o"></script>
+<script src="prelevements.js?v=20261123o"></script>
+<script src="travailvie.js?v=20261123o"></script>
+<script src="niveauvie.js?v=20261123o"></script>
+<script src="prosperite.js?v=20261123o"></script>
+<script src="exterieur.js?v=20261123o"></script>
+<script src="desindus.js?v=20261123o"></script>
+<script src="retraites.js?v=20261123o"></script>
+<script src="energiecout.js?v=20261123o"></script>
+<script src="energieformation.js?v=20261123o"></script>
+<script src="nucleaire.js?v=20261123o"></script>
+<script src="logementeco.js?v=20261123o"></script>
+<script src="competences.js?v=20261123o"></script>
+<script src="justicedroit.js?v=20261123o"></script>
+<script src="fonctionnaires.js?v=20261123o"></script>
+<script src="couper.js?v=20261123o"></script>
+<script src="seuilpays.js?v=20261123o"></script>
+<script src="logement.js?v=20261123o"></script>
+<script src="env.js?v=20261123o"></script>
+<script src="agriculture.js?v=20261123o"></script>
+<script src="rendements.js?v=20261123o"></script>
+<script src="monnaie.js?v=20261123o"></script>
+<script src="limites.js?v=20261123o"></script>
+<script src="sociologie.js?v=20261123o"></script>
+<script src="chaine.js?v=20261123o"></script>
+<script src="patrimoinehist.js?v=20261123o"></script>
+<script src="innovation.js?v=20261123o"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123n"></script>
-<script src="histoire.js?v=20261123n"></script>
-<script src="chomage.js?v=20261123n"></script>
-<script src="sources.js?v=20261123n"></script>
-<script src="nav.js?v=20261123n"></script>
+<script src="soussol.js?v=20261123o"></script>
+<script src="histoire.js?v=20261123o"></script>
+<script src="chomage.js?v=20261123o"></script>
+<script src="sources.js?v=20261123o"></script>
+<script src="nav.js?v=20261123o"></script>
 </body>
 </html>

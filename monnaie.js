@@ -15,6 +15,7 @@ async function init() {
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
   if ($("#mo-st-prev")) { $("#mo-st-prev").onclick = () => { stI = Math.max(0, stI - 1); stepper(); }; $("#mo-st-next").onclick = () => { stI = Math.min(ST.length - 1, stI + 1); stepper(); }; }
+  ["mo-fe", "mo-fx", "mo-fp", "mo-fr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", futur));
   ["mo-sg", "mo-ss", "mo-sr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", stag));
   ["mo-k", "mo-pond"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", bale));
   ["mo-rf", "mo-erp", "mo-beta", "mo-obt"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", capm));
@@ -97,6 +98,35 @@ function drawInfl() {
   svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
     .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b><br>Hausse des prix : ${f1(d.inflation)} %`, ev); }).on("pointerleave", hideTip);
   el.replaceChildren(svg.node());
+}
+
+function fpresets() {
+  const el = $("#mo-f-presets"); if (!el || el.childElementCount) return;
+  const P = [["Comme depuis 2000 (énergie stable)", 0, 1.25, 2, 3], ["Le pétrole et le gaz déclinent, compensés en partie", -1, 1.5, 2, 3], ["Contraction énergétique forte", -3, 1.5, 2, 3], ["Contraction, avec inflation", -2, 1.5, 5, 3], ["Croissance verte réussie", 0.5, 2.5, 2, 3]];
+  el.innerHTML = P.map((q, k) => `<button type="button" class="in-chip" data-k="${k}">${q[0]}</button>`).join("");
+  el.querySelectorAll("button").forEach(btn => btn.onclick = () => { const q = P[+btn.dataset.k]; ["mo-fe", "mo-fx", "mo-fp", "mo-fr"].forEach((id, j) => $("#" + id).value = q[j + 1]); futur(); });
+}
+
+/* finance et énergie : croissance réelle ≈ énergie + efficacité ; effort sur la dette ; part du capital */
+function futur() {
+  if (!$("#mo-fe")) return;
+  const e = +$("#mo-fe").value, x = +$("#mo-fx").value, p = +$("#mo-fp").value, r = +$("#mo-fr").value;
+  $("#mo-fe-v").textContent = sg(e) + " %"; $("#mo-fx-v").textContent = "+" + f2(x) + " %"; $("#mo-fp-v").textContent = f2(p) + " %"; $("#mo-fr-v").textContent = f2(r) + " %";
+  const g = ((1 + e / 100) * (1 + x / 100) - 1) * 100, n = ((1 + g / 100) * (1 + p / 100) - 1) * 100, d = 115;
+  const effort = d * (r - n) / (100 + n), pib25 = 100 * Math.pow(1 + g / 100, 25), beta = g > 0 ? 10 / g : Infinity, alpha = 4 * beta;
+  const row = (l, v, c) => `<div class="mo-f-r"><span>${l}</span><b style="color:${c || "inherit"}">${v}</b></div>`;
+  const col = v => v >= 0 ? "var(--pos)" : "var(--neg)";
+  $("#mo-f-out").innerHTML = `<div class="mo-f">` +
+    row("Croissance réelle (volume)", sg(Math.round(g * 100) / 100) + " % par an", col(g)) +
+    row("Croissance en euros (avec l'inflation)", sg(Math.round(n * 100) / 100) + " % par an", col(n - r)) +
+    row("Production dans 25 ans", n0(pib25) + " (aujourd'hui = 100)", col(g)) +
+    row("Effort annuel pour stabiliser la dette publique", effort > 0.05 ? f1(effort) + " % du PIB, soit environ " + n0(effort * 29) + " milliards d'euros" : "aucun : elle fond d'elle-même", effort > 0.05 ? "var(--neg)" : "var(--pos)") +
+    row("Part du revenu réclamée à long terme par le capital (rendement de 4 %)", isFinite(alpha) ? n0(alpha) + " %" + (alpha > 100 ? " : impossible" : "") : "sans limite : impossible", isFinite(alpha) && alpha <= 32 ? "var(--pos)" : "var(--neg)") + `</div>` +
+    `<p class="in-verdict">${g >= 2 ? "Une croissance solide : le système actuel tient sans difficulté, si ce découplage entre énergie et production se réalise vraiment, ce qui n'a jamais été observé à ce rythme."
+      : g >= 1 ? "Une croissance modeste mais réelle : le système actuel tient, à condition que l'efficacité progresse vraiment à ce rythme."
+      : g > 0 ? "Une croissance très faible : les dettes demandent un effort, et le rendement exigé du capital devient trop élevé. Il faudra qu'il baisse (levier ①) ou que sa part grandisse (inégalités)."
+      : effort <= 0.05 ? "<span style=\"color:var(--neg)\">La production baisse</span>, mais l'inflation fait fondre la dette publique : ce sont les épargnants qui paient, par une perte de pouvoir d'achat de leur épargne. C'est la voie ② de la partie 7, subie plutôt que choisie, et le rendement du capital ne peut pas être tenu."
+      : "<span style=\"color:var(--neg)\">La production baisse</span> : avec les règles actuelles, dettes et rendement du capital ne peuvent plus être honorés. Sans les leviers ci-dessous, ils s'ajusteront par l'inflation, les défauts ou les krachs."}</p>`;
 }
 
 /* rendement du capital et croissance : patrimoine d'équilibre s/g et part du capital r × s/g */
@@ -314,7 +344,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale(); stag();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale(); stag(); futur(); fpresets();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
