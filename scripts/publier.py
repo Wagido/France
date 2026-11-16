@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Prépare la version publiée du site : retire les rubriques non publiées (aujourd'hui « Société »).
+"""Prépare la version publiée du site : retire les rubriques non publiées (aujourd'hui « Société »),
+sauf les onglets qu'on a choisi d'en publier (PUBLIES).
 Le code reste complet dans le dépôt ; seule la copie mise en ligne (dossier _site) est allégée.
-Pour remettre une rubrique en ligne, la retirer de la liste NON_PUBLIE.
+Pour remettre toute une rubrique en ligne, la retirer de la liste NON_PUBLIE ;
+pour publier un seul onglet d'une rubrique non publiée, l'ajouter à PUBLIES.
 Usage : python3 scripts/publier.py _site/index.html
 """
 import re, sys
 
-NON_PUBLIE = ["societe"]          # valeurs data-group des rubriques à ne pas publier
+NON_PUBLIE = ["societe"]                 # valeurs data-group des rubriques à ne pas publier
+PUBLIES = {"societe": ["electorat"]}     # onglets publiés malgré tout dans ces rubriques
 
 p = sys.argv[1]
 t = open(p, encoding="utf-8").read()
@@ -16,10 +19,18 @@ for g in NON_PUBLIE:
     m = re.search(r'\s*<nav class="tabs" data-group="%s"[^>]*>(.*?)</nav>' % g, t, re.S)
     if not m:
         continue
-    ids = re.findall(r'href="#([^"]+)"', m.group(1))
-    t = t[:m.start()] + t[m.end():]
-    # le bouton de la rubrique
-    t = re.sub(r'\s*<button type="button" data-group="%s">[^<]*</button>' % g, "", t)
+    garder = PUBLIES.get(g, [])
+    ids = [i for i in re.findall(r'href="#([^"]+)"', m.group(1)) if i not in garder]
+    if garder:
+        # on garde la rubrique, avec seulement les onglets publiés
+        nav = m.group(0)
+        for i in ids:
+            nav = re.sub(r'\s*<a href="#%s">[^<]*</a>' % re.escape(i), "", nav)
+        t = t[:m.start()] + nav + t[m.end():]
+    else:
+        t = t[:m.start()] + t[m.end():]
+        # le bouton de la rubrique
+        t = re.sub(r'\s*<button type="button" data-group="%s">[^<]*</button>' % g, "", t)
     # les sections elles-mêmes
     for i in ids:
         t, n = re.subn(r'\s*<section id="%s" class="panel[^"]*">.*?</section>' % re.escape(i), "", t, flags=re.S)
@@ -27,6 +38,6 @@ for g in NON_PUBLIE:
             retires.append(i)
     # les liens vers ces sections ailleurs dans la page deviennent du texte simple
     for i in ids:
-        t = re.sub(r'<a href="#%s">(.*?)</a>' % re.escape(i), r"\1", t)
+        t = re.sub(r'<a href="#%s"[^>]*>(.*?)</a>' % re.escape(i), r"\1", t)
 open(p, "w", encoding="utf-8").write(t)
-print("Rubriques non publiées :", ", ".join(NON_PUBLIE), "| sections retirées :", ", ".join(retires))
+print("Rubriques non publiées :", ", ".join(NON_PUBLIE), "| onglets publiés malgré tout :", PUBLIES, "| sections retirées :", ", ".join(retires))
