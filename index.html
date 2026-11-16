@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261119l">
+<link rel="stylesheet" href="style.css?v=20261119n">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -584,8 +584,13 @@
       <li><b>Le patrimoine public</b> (routes, écoles, réseaux) est compté à son coût de remplacement, pas à un prix de marché : il varie peu.</li>
     </ul>
     <p class="muted" style="font-size:.8rem">Calcul simple : la variation de prix est appliquée à la valeur des logements et des terrains de tous les secteurs ; les autres éléments ne changent pas. Source : Eurostat, comptes de patrimoine (nama_10_nfa_bs, nasa_10_f_bs).</p>
+    <p style="margin-bottom:2px"><b>Et deux facteurs qui jouent lentement mais sûrement, détaillés juste en dessous</b></p>
+    <ul id="ext-intro">
+      <li><b>La dette</b> : chaque année de déficit public s'ajoute à la dette et diminue le patrimoine net de l'État. Ce n'est pas grave si l'argent emprunté finance des routes, des écoles ou des réseaux qui resteront ; ça l'est s'il paie les dépenses courantes.</li>
+      <li><b>La balance commerciale</b> : quand le pays achète plus à l'étranger qu'il ne lui vend, il paie la différence en empruntant au reste du monde ou en lui vendant des actifs. Année après année, une partie du patrimoine français passe à l'étranger.</li>
+    </ul>
   </div>
-  <h3>Le solde avec l'étranger : quand un pays vit au-dessus de ses moyens, il s'appauvrit peu à peu</h3>
+  <h3>La balance commerciale et la dette : quand un pays vit au-dessus de ses moyens, il s'appauvrit peu à peu</h3>
   <div class="grid2">
     <div><p class="muted" style="margin-top:0">Solde courant (échanges et revenus avec l'étranger), en % du PIB</p><div id="ext-courant" class="chart"></div><div class="legend-row" id="ext-courant-legend"></div></div>
     <div><p class="muted" style="margin-top:0">Position extérieure nette : ce que le pays possède à l'étranger moins ce qu'il lui doit, en % du PIB</p><div id="ext-position" class="chart"></div><div class="legend-row" id="ext-position-legend"></div></div>
@@ -1304,37 +1309,37 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261119l"></script>
-<script src="app.js?v=20261119l"></script>
-<script src="energie.js?v=20261119l"></script>
-<script src="matieres.js?v=20261119l"></script>
-<script src="territoire.js?v=20261119l"></script>
-<script src="themes.js?v=20261119l"></script>
-<script src="societe.js?v=20261119l"></script>
-<script src="eco2.js?v=20261119l"></script>
-<script src="empreinte.js?v=20261119l"></script>
-<script src="argentprive.js?v=20261119l"></script>
-<script src="repartition.js?v=20261119l"></script>
-<script src="patrimoine.js?v=20261119l"></script>
-<script src="prelevements.js?v=20261119l"></script>
-<script src="travailvie.js?v=20261119l"></script>
-<script src="niveauvie.js?v=20261119l"></script>
-<script src="prosperite.js?v=20261119l"></script>
-<script src="exterieur.js?v=20261119l"></script>
-<script src="couper.js?v=20261119l"></script>
-<script src="seuilpays.js?v=20261119l"></script>
-<script src="logement.js?v=20261119l"></script>
-<script src="env.js?v=20261119l"></script>
-<script src="agriculture.js?v=20261119l"></script>
-<script src="chaine.js?v=20261119l"></script>
-<script src="patrimoinehist.js?v=20261119l"></script>
-<script src="innovation.js?v=20261119l"></script>
+<script src="kpi.js?v=20261119n"></script>
+<script src="app.js?v=20261119n"></script>
+<script src="energie.js?v=20261119n"></script>
+<script src="matieres.js?v=20261119n"></script>
+<script src="territoire.js?v=20261119n"></script>
+<script src="themes.js?v=20261119n"></script>
+<script src="societe.js?v=20261119n"></script>
+<script src="eco2.js?v=20261119n"></script>
+<script src="empreinte.js?v=20261119n"></script>
+<script src="argentprive.js?v=20261119n"></script>
+<script src="repartition.js?v=20261119n"></script>
+<script src="patrimoine.js?v=20261119n"></script>
+<script src="prelevements.js?v=20261119n"></script>
+<script src="travailvie.js?v=20261119n"></script>
+<script src="niveauvie.js?v=20261119n"></script>
+<script src="prosperite.js?v=20261119n"></script>
+<script src="exterieur.js?v=20261119n"></script>
+<script src="couper.js?v=20261119n"></script>
+<script src="seuilpays.js?v=20261119n"></script>
+<script src="logement.js?v=20261119n"></script>
+<script src="env.js?v=20261119n"></script>
+<script src="agriculture.js?v=20261119n"></script>
+<script src="chaine.js?v=20261119n"></script>
+<script src="patrimoinehist.js?v=20261119n"></script>
+<script src="innovation.js?v=20261119n"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261119l"></script>
-<script src="histoire.js?v=20261119l"></script>
-<script src="chomage.js?v=20261119l"></script>
-<script src="sources.js?v=20261119l"></script>
-<script src="nav.js?v=20261119l"></script>
+<script src="soussol.js?v=20261119n"></script>
+<script src="histoire.js?v=20261119n"></script>
+<script src="chomage.js?v=20261119n"></script>
+<script src="sources.js?v=20261119n"></script>
+<script src="nav.js?v=20261119n"></script>
 </body>
 </html>
