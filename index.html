@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123y">
+<link rel="stylesheet" href="style.css?v=20261124a">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1752,7 +1752,7 @@
       </div>
     </div>
   </div>
-  <p class="muted" style="margin:0 0 8px">Quatre parties : <a href="#energie" data-to="en-p1">1. d'où vient l'énergie</a> · <a href="#energie" data-to="en-p2">2. combien coûte un MWh</a> · <a href="#energie" data-to="en-p3">3. comparer des systèmes complets</a> · <a href="#energie" data-to="en-p4">4. souveraineté</a></p>
+  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#energie" data-to="en-p1">1. d'où vient l'énergie</a> · <a href="#energie" data-to="en-p2">2. combien coûte un MWh</a> · <a href="#energie" data-to="en-p3">3. comparer des systèmes complets</a> · <a href="#energie" data-to="en-p4">4. souveraineté</a> · <a href="#energie" data-to="en-p5">5. s'est-on fait avoir par le marché européen ?</a></p>
   <h3 class="en-part" id="en-p1">1. D'où vient l'énergie et où va-t-elle ?</h3>
   <div class="kpis" id="en-kpis"></div>
   <p class="lead">Toute l'énergie qui entre dans le pays ou y est produite, et ce qu'elle devient : transformée en électricité ou en carburants, consommée par les logements, les transports, l'industrie, ou perdue en chaleur. Le nucléaire est compté comme la chaleur produite dans les réacteurs : environ deux tiers sont perdus (rejetés dans les rivières ou l'air) pour un tiers transformé en électricité. Survolez un bloc pour suivre ses flux.</p>
@@ -1838,6 +1838,95 @@
 
   <h3 class="en-part" id="en-p4">4. Souveraineté : dépend-on de l'étranger ?</h3>
   <div class="callout small" id="ff-souv"></div>
+  <h3 class="en-part" id="en-p5">5. La France s'est-elle fait avoir par le marché européen de l'électricité ?</h3>
+  <p class="lead">La France a construit, entre 1970 et 2000, un parc nucléaire et hydraulique qui produit une électricité bon marché. Pourtant, en 2022-2023, les Français ont vu leurs factures exploser comme celles de leurs voisins qui brûlent du gaz. Comment le prix se forme-t-il, qu'a changé l'ouverture à la concurrence, et qu'avait prévu l'ancien patron d'EDF, Marcel Boiteux ?</p>
+  <nav class="li-toc"><b>Dans cette partie</b><ol>
+    <li><a href="#energie" data-to="mk-1">5.1 Comment se forme le prix : la dernière centrale appelée</a></li>
+    <li><a href="#energie" data-to="mk-2">5.2 De l'EDF monopole à la concurrence : les grandes dates</a></li>
+    <li><a href="#energie" data-to="mk-3">5.3 L'ARENH : le nucléaire d'EDF vendu à ses concurrents</a></li>
+    <li><a href="#energie" data-to="mk-4">5.4 La prévision de Marcel Boiteux</a></li>
+    <li><a href="#energie" data-to="mk-5">5.5 Alors, s'est-on fait avoir ?</a></li>
+  </ol></nav>
+
+  <h3 id="mk-1" class="li-sub">5.1 Comment se forme le prix : la dernière centrale appelée</h3>
+  <p>Sur le marché de gros européen, chaque heure, les producteurs proposent leur électricité au prix qu'il leur coûte de produire un MWh de plus (leur <b>coût marginal</b> : surtout le combustible). On appelle les centrales de la moins chère à la plus chère, jusqu'à couvrir la demande. <b>Le prix payé à toutes les centrales est celui de la dernière appelée.</b> Réglez la demande, le vent et le soleil, et le prix du gaz :</p>
+  <div class="in-sim">
+    <label class="ctl">Demande d'électricité <input type="range" id="mk-d" min="30" max="95" step="1" value="80"><b id="mk-d-v"></b></label>
+    <label class="ctl">Production éolienne et solaire <input type="range" id="mk-r" min="0" max="40" step="1" value="8"><b id="mk-r-v"></b></label>
+    <label class="ctl">Prix du gaz <input type="range" id="mk-g" min="15" max="250" step="5" value="35"><b id="mk-g-v"></b></label>
+  </div>
+  <div id="mk-chart" class="chart"></div>
+  <div id="mk-out"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Pourquoi cette règle ?</b> C'est celle de tous les marchés d'un bien identique : un MWh vaut un MWh, d'où qu'il vienne. Elle garantit qu'on utilise toujours d'abord les centrales les moins chères à faire tourner, et elle envoie un signal : quand le prix monte, il devient rentable de construire de nouvelles centrales ou de consommer moins. C'est aussi la règle qui tarifait le kWh d'EDF du temps de Marcel Boiteux (voir 5.4), mais au coût de long terme d'un parc entier, pas au coût d'une centrale à gaz à un instant donné.</li>
+      <li><b>Le problème pour la France</b> : le nucléaire et l'hydraulique coûtent cher à construire, mais presque rien à faire tourner. Sur le marché, ils reçoivent pourtant le prix fixé par la centrale à gaz, en France ou chez un voisin, car les réseaux sont reliés. Quand le gaz flambe, le prix flambe, même si la France produit surtout du nucléaire : c'est la <b>rente inframarginale</b> affichée ci-dessus.</li>
+      <li><b>Les réseaux sont reliés</b> : la France échange de l'électricité à chaque heure avec six voisins. Le prix français s'aligne sur celui de ses voisins dès que les lignes ne sont pas saturées. On ne peut donc pas avoir un prix français très bas quand le prix allemand ou italien est très haut : l'électricité partirait chez eux.</li>
+    </ul>
+  </div>
+
+  <h3 id="mk-2" class="li-sub">5.2 De l'EDF monopole à la concurrence : les grandes dates</h3>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Date</th><th>Ce qui se passe</th></tr></thead>
+    <tbody>
+      <tr><td><b>1946</b></td><td>Nationalisation : naissance d'EDF, monopole public de la production, du transport et de la distribution.</td></tr>
+      <tr><td><b>1974-2000</b></td><td>Plan Messmer : 58 réacteurs construits en vingt-cinq ans. La France obtient une électricité parmi les moins chères d'Europe et quasiment sans carbone.</td></tr>
+      <tr><td><b>1996, 2003, 2009</b></td><td>Trois directives européennes ouvrent les marchés de l'électricité à la concurrence et séparent la production, le réseau et la vente. La France les a négociées et votées, comme les autres États.</td></tr>
+      <tr><td><b>2000-2007</b></td><td>Ouverture progressive : les grandes entreprises (2000), toutes les entreprises (2004), puis tous les particuliers (1<sup>er</sup> juillet 2007) peuvent choisir leur fournisseur. EDF devient une société anonyme (2004) et entre en Bourse (2005). Le réseau de transport devient RTE, la distribution Enedis.</td></tr>
+      <tr><td><b>2010</b></td><td>La loi NOME crée l'ARENH (5.3), pour permettre à des concurrents sans centrales d'exister face au nucléaire d'EDF, à la demande de la Commission européenne.</td></tr>
+      <tr><td><b>2015</b></td><td>Les tarifs réglementés (le « tarif bleu ») sont désormais calculés « par empilement » : en partie au prix de l'ARENH, en partie au prix du marché. Même les clients restés chez EDF au tarif réglementé suivent donc en partie le marché.</td></tr>
+      <tr><td><b>2019-2021</b></td><td>Le projet « Hercule » de découpage d'EDF (nucléaire public d'un côté, renouvelables et distribution ouverts aux capitaux privés de l'autre) est abandonné, faute d'accord avec Bruxelles et devant l'opposition des syndicats.</td></tr>
+      <tr><td><b>2022</b></td><td>Crise : flambée du gaz après l'invasion de l'Ukraine et, en même temps, la moitié des réacteurs français à l'arrêt (corrosion, maintenances repoussées par le Covid). La production nucléaire tombe à environ 280 TWh, son plus bas depuis la fin des années 1980, et la France importe plus qu'elle n'exporte pour la première fois depuis plus de quarante ans. Les prix à terme pour 2023 dépassent 1 000 €/MWh l'été 2022. L'État impose un « bouclier tarifaire » (hausse limitée à 4 % en 2022, 15 % en 2023) et oblige EDF à vendre 20 TWh d'ARENH de plus. EDF annonce une perte record d'environ 18 milliards d'euros.</td></tr>
+      <tr><td><b>2023</b></td><td>L'État rachète les actionnaires minoritaires : EDF redevient publique à 100 %. Accord avec l'État pour l'après-ARENH. L'Union européenne réforme son marché (adopté en 2024) : contrats de long terme et « contrats pour différence » à prix garanti pour les nouvelles centrales, nucléaire compris.</td></tr>
+      <tr><td><b>2026</b></td><td>Fin de l'ARENH (31 décembre 2025). EDF vend son nucléaire au prix du marché et par contrats de long terme ; au-delà de certains seuils de prix, une partie de ses revenus doit être reversée aux consommateurs (« versement nucléaire universel »).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="mk-3" class="li-sub">5.3 L'ARENH : le nucléaire d'EDF vendu à ses concurrents</h3>
+  <ul class="mo-ul">
+    <li><b>Le principe</b> : de 2011 à 2025, EDF devait vendre aux fournisseurs concurrents (Engie, TotalEnergies, et des dizaines de petits fournisseurs) jusqu'à 100 TWh de sa production nucléaire par an, environ un quart, au prix fixe de 42 €/MWh (40 € la première année). Sans cela, aucun concurrent sans centrales n'aurait pu vendre moins cher qu'EDF.</li>
+    <li><b>Une option à sens unique</b> : quand le prix du marché était inférieur à 42 € (2015-2016, puis 2020), les fournisseurs achetaient sur le marché et ne demandaient rien à EDF ; quand il était supérieur, ils réclamaient tout le volume d'ARENH. EDF supportait le risque à la baisse sans profiter de la hausse. En 2022, le prix de marché dépassait 200 €/MWh, et EDF a dû vendre à 42 € (et 46 € pour le supplément), ce qui lui a coûté plusieurs milliards d'euros.</li>
+    <li><b>Un prix jamais réévalué</b> : 42 € fixés en 2012, alors que les coûts du nucléaire existant (maintenance, « grand carénage » pour prolonger les réacteurs) ont augmenté. La Commission de régulation de l'énergie l'estimait au-dessus de ce niveau. EDF a moins investi qu'il ne l'aurait pu.</li>
+    <li><b>Une concurrence surtout commerciale</b> : beaucoup de fournisseurs alternatifs ne produisent rien ; ils revendent l'électricité d'EDF achetée à l'ARENH ou sur le marché, avec un service client. Quand les prix ont flambé fin 2021, plusieurs ont cessé leur activité ou renvoyé leurs clients vers EDF.</li>
+    <li><b>Mais il a aussi protégé les clients</b> : pendant la crise, l'ARENH a gardé une partie de l'électricité des Français à 42 €. Sans lui, les fournisseurs auraient tout acheté au prix du marché.</li>
+  </ul>
+
+  <h3 id="mk-4" class="li-sub">5.4 La prévision de Marcel Boiteux</h3>
+  <div class="callout small">
+    <p><b>Qui était-il ?</b> Marcel Boiteux (1922-2023), économiste, mathématicien de formation, directeur général puis président d'EDF de 1967 à 1987. Il a inventé la tarification de l'électricité au coût marginal de long terme (le « tarif vert » de 1958, étudié dans le monde entier) et a dirigé la construction du parc nucléaire.</p>
+    <p><b>Ce qu'il avait annoncé</b> : dans un article de la revue <i>Futuribles</i> en 2007, « Les ambiguïtés de la concurrence », et dans plusieurs interventions, il expliquait en substance :</p>
+    <ul>
+      <li><b>que la concurrence ferait monter les prix au lieu de les baisser</b> : dans un parc dominé par le nucléaire amorti, le coût moyen est bas ; or un marché fixe le prix au coût de la centrale la plus chère appelée, souvent au gaz. Pour que des concurrents sans nucléaire puissent vivre, il fallait que le prix monte jusqu'à leurs coûts ;</li>
+      <li><b>que l'électricité se prête mal à la concurrence</b> : un produit identique, impossible à stocker en masse, qui demande des investissements énormes amortis sur 40 à 60 ans. Aucun investisseur privé ne construit un réacteur nucléaire sur la seule base de prix de marché qui varient d'une heure à l'autre ;</li>
+      <li><b>que la rente du nucléaire irait aux producteurs et aux intermédiaires</b> plutôt qu'aux consommateurs, qui avaient payé ce parc par leurs factures pendant trente ans.</li>
+    </ul>
+    <p><b>Ce qui s'est vérifié</b> : les prix de l'électricité pour les ménages ont augmenté plus vite que l'inflation depuis l'ouverture, et 2022 a montré que le prix français suivait le gaz. La réforme européenne de 2024 et l'accord État-EDF reviennent, sous une autre forme, à son idée : vendre le nucléaire à un prix proche de son coût, par des contrats de long terme.</p>
+    <p><b>Ce qui se discute</b> : la hausse des prix depuis 2007 vient aussi des taxes, du financement des renouvelables, de la hausse des coûts du nucléaire existant et des réseaux, pas seulement du marché. Et le monopole d'EDF n'avait pas empêché les dérives de coûts (l'EPR de Flamanville).</p>
+  </div>
+
+  <h3 id="mk-5" class="li-sub">5.5 Alors, s'est-on fait avoir ?</h3>
+  <div class="grid2">
+    <div class="callout small" style="margin-top:0">
+      <p><b>Oui, en partie</b></p>
+      <ul>
+        <li>Le prix payé par les Français suit le coût du gaz, alors que la France produit surtout du nucléaire et de l'hydraulique, déjà payés.</li>
+        <li>L'ARENH a été une option gratuite pour les concurrents d'EDF, et un prix jamais réévalué a privé EDF de ressources pour investir.</li>
+        <li>Les tarifs réglementés ont été indexés en partie sur le marché depuis 2015, ce qui a transmis les hausses aux ménages.</li>
+        <li>La concurrence n'a pas fait baisser les prix pour les ménages ; elle a surtout créé des intermédiaires.</li>
+      </ul>
+    </div>
+    <div class="callout small" style="margin-top:0">
+      <p><b>Non, ou pas seulement</b></p>
+      <ul>
+        <li>La crise de 2022 est aussi venue des réacteurs français à l'arrêt : sans les importations des voisins, la France aurait connu des coupures. Le marché européen l'a secourue.</li>
+        <li>La plupart des années, la France exporte beaucoup (un record d'environ 90 TWh en 2024) et le marché lui rapporte des milliards.</li>
+        <li>Avec le bouclier tarifaire, les ménages français ont payé en 2022-2023 l'un des prix les plus bas d'Europe ; c'est l'État (le contribuable) et EDF qui ont absorbé la différence.</li>
+        <li>La France a négocié et voté les directives d'ouverture, et a obtenu en 2024 la reconnaissance du nucléaire dans les contrats à prix garanti.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="callout small"><b>En résumé</b> : le marché européen fait bien une chose, répartir à chaque heure la production entre pays au moindre coût. Il en fait mal une autre : faire profiter les consommateurs d'investissements anciens et peu chers à faire tourner, comme le nucléaire français. Marcel Boiteux l'avait dit. La réponse qui se dessine n'est pas de sortir du marché, mais d'y ajouter des contrats de long terme au coût de production, ce que la France a obtenu en partie en 2023-2024. Les dates et montants de cette partie sont donnés de mémoire et seront revérifiés.</p>
+
   <p class="muted" style="font-size:.8rem">Sources : RTE, <a href="https://assets.rte-france.com/prod/public/2022-02/BP50_Principaux%20re%CC%81sultats_fev2022_Chap11_analyse%20economique.pdf" target="_blank" rel="noopener"><i>Futurs énergétiques 2050</i>, rapport complet, chapitre 11 « Analyse économique »</a> (février 2022) ; RTE, <a href="https://assets.rte-france.com/prod/public/2026-04/RTE-Reactualisation-FE-2050-consultation-publique-2026-propositions-detaillees.pdf" target="_blank" rel="noopener">réactualisation, consultation publique</a> (avril 2026) ; CRE, <a href="https://www.vie-publique.fr/files/rapport/pdf/300538.pdf" target="_blank" rel="noopener">coûts complets du nucléaire historique 2026-2028</a> (septembre 2025) ; CRE, <a href="https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260114_2026-06_TRVE_2026.pdf" target="_blank" rel="noopener">délibération TRVE n° 2026-06</a> (janvier 2026). Les valeurs RTE sont extraites des tracés vectoriels des graphiques du rapport (précision de l'ordre de 1 %), sauf mention dans le texte.</p>
 </section>
 
@@ -2904,51 +2993,52 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123y"></script>
-<script src="app.js?v=20261123y"></script>
-<script src="energie.js?v=20261123y"></script>
-<script src="matieres.js?v=20261123y"></script>
-<script src="territoire.js?v=20261123y"></script>
-<script src="themes.js?v=20261123y"></script>
-<script src="societe.js?v=20261123y"></script>
-<script src="eco2.js?v=20261123y"></script>
-<script src="empreinte.js?v=20261123y"></script>
-<script src="argentprive.js?v=20261123y"></script>
-<script src="repartition.js?v=20261123y"></script>
-<script src="patrimoine.js?v=20261123y"></script>
-<script src="prelevements.js?v=20261123y"></script>
-<script src="travailvie.js?v=20261123y"></script>
-<script src="niveauvie.js?v=20261123y"></script>
-<script src="prosperite.js?v=20261123y"></script>
-<script src="exterieur.js?v=20261123y"></script>
-<script src="desindus.js?v=20261123y"></script>
-<script src="retraites.js?v=20261123y"></script>
-<script src="energiecout.js?v=20261123y"></script>
-<script src="energieformation.js?v=20261123y"></script>
-<script src="nucleaire.js?v=20261123y"></script>
-<script src="logementeco.js?v=20261123y"></script>
-<script src="competences.js?v=20261123y"></script>
-<script src="justicedroit.js?v=20261123y"></script>
-<script src="fonctionnaires.js?v=20261123y"></script>
-<script src="couper.js?v=20261123y"></script>
-<script src="seuilpays.js?v=20261123y"></script>
-<script src="logement.js?v=20261123y"></script>
-<script src="env.js?v=20261123y"></script>
-<script src="agriculture.js?v=20261123y"></script>
-<script src="rendements.js?v=20261123y"></script>
-<script src="monnaie.js?v=20261123y"></script>
-<script src="limites.js?v=20261123y"></script>
-<script src="sociologie.js?v=20261123y"></script>
-<script src="chaine.js?v=20261123y"></script>
-<script src="patrimoinehist.js?v=20261123y"></script>
-<script src="innovation.js?v=20261123y"></script>
+<script src="kpi.js?v=20261124a"></script>
+<script src="app.js?v=20261124a"></script>
+<script src="energie.js?v=20261124a"></script>
+<script src="matieres.js?v=20261124a"></script>
+<script src="territoire.js?v=20261124a"></script>
+<script src="themes.js?v=20261124a"></script>
+<script src="societe.js?v=20261124a"></script>
+<script src="eco2.js?v=20261124a"></script>
+<script src="empreinte.js?v=20261124a"></script>
+<script src="argentprive.js?v=20261124a"></script>
+<script src="repartition.js?v=20261124a"></script>
+<script src="patrimoine.js?v=20261124a"></script>
+<script src="prelevements.js?v=20261124a"></script>
+<script src="travailvie.js?v=20261124a"></script>
+<script src="niveauvie.js?v=20261124a"></script>
+<script src="prosperite.js?v=20261124a"></script>
+<script src="exterieur.js?v=20261124a"></script>
+<script src="desindus.js?v=20261124a"></script>
+<script src="retraites.js?v=20261124a"></script>
+<script src="energiecout.js?v=20261124a"></script>
+<script src="energieformation.js?v=20261124a"></script>
+<script src="nucleaire.js?v=20261124a"></script>
+<script src="logementeco.js?v=20261124a"></script>
+<script src="competences.js?v=20261124a"></script>
+<script src="justicedroit.js?v=20261124a"></script>
+<script src="fonctionnaires.js?v=20261124a"></script>
+<script src="couper.js?v=20261124a"></script>
+<script src="seuilpays.js?v=20261124a"></script>
+<script src="logement.js?v=20261124a"></script>
+<script src="env.js?v=20261124a"></script>
+<script src="agriculture.js?v=20261124a"></script>
+<script src="rendements.js?v=20261124a"></script>
+<script src="monnaie.js?v=20261124a"></script>
+<script src="limites.js?v=20261124a"></script>
+<script src="sociologie.js?v=20261124a"></script>
+<script src="chaine.js?v=20261124a"></script>
+<script src="patrimoinehist.js?v=20261124a"></script>
+<script src="innovation.js?v=20261124a"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123y"></script>
-<script src="histoire.js?v=20261123y"></script>
-<script src="chomage.js?v=20261123y"></script>
-<script src="tableau.js?v=20261123y"></script>
-<script src="sources.js?v=20261123y"></script>
-<script src="nav.js?v=20261123y"></script>
+<script src="soussol.js?v=20261124a"></script>
+<script src="histoire.js?v=20261124a"></script>
+<script src="chomage.js?v=20261124a"></script>
+<script src="marche.js?v=20261124a"></script>
+<script src="tableau.js?v=20261124a"></script>
+<script src="sources.js?v=20261124a"></script>
+<script src="nav.js?v=20261124a"></script>
 </body>
 </html>
