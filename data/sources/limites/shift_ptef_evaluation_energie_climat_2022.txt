@@ -1,0 +1,2042 @@
+L’évaluation énergie-climat du PTEF
+Quelles conséquences énergie-climat à la fin du prochain
+quinquennat, et en 2050, si le PTEF était mis en place ?
+
+Cette note vise à rendre transparents et compréhensible notre démarche d’évaluation énergie-
+climat des effets de la mise en place (hypothétique) du PTEF, ses résultats, et les grands
+enseignements que nous en tirons.
+Elle se compose d’une partie méthodologique détaillant notre démarche, nos hypothèses
+structurantes et nos choix de paramètres dans cette évaluation ; de trois parties exposant les
+hypothèses dédiées et les résultats, chacune relative à nos dates d’évaluation : 2020, 2027 et
+2050 ; une partie qui tire les « grands enseignements » de nos travaux d’évaluation énergie-
+climat.
+
+
+Table des matières
+Table des matières...................................................................................................... 1
+
+I. Approche de l’évaluation énergie-climat du PTEF ................................................ 3
+
+     A. Objectifs du travail ............................................................................................. 3
+     B. Périmètre de l’évaluation énergie-climat du PTEF .............................................. 5
+     C. Principe général de l’évaluation énergie-climat ................................................ 10
+     D. L’impact des contraintes physiques sur le travail des secteurs ........................ 14
+
+II. Notre point de départ : ~ 2020 .............................................................................. 20
+
+     A. Nos données d’entrée ...................................................................................... 20
+     B. Paramétrage et validation de notre calculatrice carbone .................................. 22
+
+III. Notre point de passage : l’année 2027 ............................................................... 25
+
+     A. Les demandes des secteurs ............................................................................ 25
+     B. Le mix énergétique en 2027 et les FE .............................................................. 27
+     C. Le bilan carbone en 2027 ................................................................................ 27
+
+IV. Notre échéance finale : l’année 2050 ................................................................. 28
+
+     A. Les demandes des secteurs ............................................................................ 28
+     B. Le mix énergétique en 2050 ............................................................................. 30
+     C. Le bilan carbone .............................................................................................. 36
+
+V. Evolutions énergie-climat par la mise en place du PTEF entre 2022 et 2050 ... 39
+
+     A. Evolution de la demande en énergie finale....................................................... 39
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                        1
+     B. Evolution du bilan carbone ............................................................................... 40
+
+VI. Grands enseignements de l’évaluation énergie-climat du PTEF ..................... 41
+
+     A. La disponibilité en carburants liquides et gazeux non fossiles sera
+     vraisemblablement très limitée ............................................................................. 41
+     B. Plus on tarde à lancer les grands travaux d’infrastructures électriques, plus la
+     sobriété sera forte en 2050 ................................................................................... 42
+     C. Les filières énergétiques secondaires basées sur la biomasse ou l’électricité
+     doivent être développées de manière ambitieuse mais contrôlée ......................... 43
+     D. Un retard dans la transformation du reste de l’économie vers la sobriété
+     systémique et l’efficacité induira des arbitrages énergétiques difficiles ................. 44
+
+VII. Bibliographie ...................................................................................................... 46
+
+
+À PROPOS DU SHIFT PROJECT .............................................................................. 48
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                        2
+I. Approche de l’évaluation énergie-climat du
+PTEF
+Le Plan de transformation de l’économie française est un recueil de propositions sectorielles
+touchant à l’ensemble de l’économie. Ces propositions, si tant est qu’elles sont mises en place
+lors du prochain quinquennat, auront des répercussions sur l’économie physique dès les années
+à venir, et jusqu’à 2050 dans l’hypothèse de la continuation de leur application lors des
+quinquennats suivants.
+Le travail d’évaluation énergie-climat du PTEF consiste à évaluer l’effet de nos propositions
+sectorielles sur les flux d’énergie et de carbone / autres gaz à effet de serre (GES) dans la
+société française. Un tel travail pourrait en théorie être effectué pour toutes les années à partir
+de 2022, jusqu’à un horizon de temps où nos propositions auraient atteint leurs pleins effets. Au-
+delà de cet horizon de temps, il ne servirait à rien de documenter les années suivantes. Etant
+donné nos moyens limités, nous avons sélectionné deux dates qu’il nous paraît indispensable
+de documenter, et qui nous permettent déjà de tirer un ensemble de conclusions sur les
+effets du PTEF à différents horizons de temps : l’année 2027, qui permet d’estimer la vitesse
+à laquelle la décarbonation débute sur le prochain quinquennat ; et l’année 2050, qui permet de
+s’assurer que les propositions aux effets rapides sont bien compatibles avec une décarbonation
+plus poussée sur le moyen/ long-terme, et qui permet de comparer les effets long-terme du PTEF
+avec le fameux objectif de « neutralité carbone » que s’est fixé la France pour 2050.
+
+
+Ce travail pourrait ressembler à une évaluation de type « exploratoire » dans le sens où on
+propose un ensemble de mesures dont on évalue ensuite les effets, sans chercher coute que
+coute à atteindre un objectif final. Cependant, chacun des secteurs du PTEF a travaillé dans une
+optique de réduction maximale et rapide de ses consommations fossiles et de ses émissions de
+GES. Ainsi, les mesures proposées par les secteurs sont dirigées par ces objectifs. Le travail
+d’évaluation permet simplement de mesurer l’écart aux objectifs fixés, ou leur bonne atteinte.
+
+
+A. Objectifs du travail
+
+1. Le dimensionnement de l’industrie énergétique
+
+La Figure 1 ci-dessous décrit de manière très macroscopique ce qu’est le système énergétique
+dans son ensemble, et place l’industrie de l’énergie dans ce système.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022               3
+Figure 1 : Chaîne énergétique de l’extraction d’énergie primaire à l’obtention de biens, et de services
+énergétiques. L’énergie primaire, sous forme de stock (pétrole brut, gaz, charbon, minerais d’uranium,
+biomasse, eau stockée dans un barrage…) ou de flux (vent, rayonnement solaire…) est extraite de
+l’environnement puis transformée en énergies sous forme finale, par l’industrie de l’énergie. Ces énergies
+finales sont consommables par les procédés industriels et de la construction/génie civil, qui vont produire des
+biens, des équipements, et des infrastructures. Ces objets peuvent alors eux-mêmes servir dans l’industrie de
+l’énergie ou l’industrie des biens ; alternativement, ils peuvent servir aux individus, en tant qu’objets qui ne
+consomment pas d’énergie (stylos, tables, portes, vêtements…), ou en tant qu’équipements individuels
+consommateurs d’énergie (équipements numériques, voitures, éclairage…), qui fournissent des services
+énergétiques.
+
+
+
+
+Les liens numérotés en rouge dans cette figure n’étaient pas du tout, ou mal représentés dans
+les études prospectives classiques il y a quelques années. Les prospectivistes français se sont
+récemment saisis de ce sujet et améliorent leurs pratiques. Le secteur de l’industrie du PTEF a
+également fait l’effort de quantifier ces liens et d’en tenir compte dans la quantité d’énergie qu’il
+consomme. Le lien (2), la consommation d’énergie pour construire l’industrie énergétique,
+n’a cependant pas pu être quantifié et est donc supposé constant, dans le PTEF, par
+rapport à aujourd’hui. Autrement dit, l’effort de génie civil pour établir la transition du mix
+énergétique, n’est pas pris en compte dans nos bilans. Les quantités de matériaux consommées
+comparées entre la construction et le génie civil pour les transitions étudiées par RTE dans ses
+Futurs énergétiques 2050 (RTE, 2021), suggèrent cependant que l’énergie consommée pour
+transformer le système électrique est d’un ordre de grandeur inférieur à celui de la construction
+de logements neufs actuelle.
+
+
+Le premier objectif de notre travail d’évaluation énergie-climat est de s’assurer que l’industrie
+de l’énergie (côté offre) est bien dimensionnée pour alimenter le côté demande, à la fois
+l’industrie lourde, manufacturière et de l’après première vie, et les équipements énergétiques pour
+les individus, en tenant compte de sa propre consommation (et des pertes de transport et
+distribution, non représentées sur le schéma). Dit autrement, il s’agit de définir le contenu du bloc
+« Industrie énergie » dans le schéma, en fonction des transformations proposées par les
+différents secteurs du PTEF, qui aboutissent à un niveau de demande en « énergies finales » (la
+flèche sortant du bloc « Industrie énergie »).
+Répondre à cet objectif passe donc par une étape préalable : recenser les besoins en énergie
+des différents secteurs du PTEF. C’est ce que nous appelons par la suite l’évaluation énergie.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                             4
+La seconde étape est cruciale, et touche à un pan entier de l’industrie : définir le mix
+énergétique qui permettra de répondre à cette demande en énergie finale. Ce mix est en fait
+un ensemble d’infrastructures énergétiques qui transforment l’énergie primaire, sous différentes
+formes, en énergie finale, sous différentes formes également. Définir un mix n’est donc pas qu’un
+exercice théorique : il faut tenir compte de l’industrie de l’énergie existante et des différentes
+contraintes physiques qui pourraient s’appliquer à elle au cours des prochaines décennies. Cette
+étape permet d’ébaucher les grandes transformations qu’il faudra effectuer dans l’industrie
+de l’énergie : le type d’énergie à produire, les quantités, les procédés, les réseaux de transport
+et de distribution de ces énergies.
+Cette étape permettra également d’estimer à quel point la dépendance de la France aux énergies
+fossiles se réduit par l’application du PTEF. Ce point est d’importance, car une sortie rapide de
+cette dépendance nous rendrait plus résilient aux possibles chocs d’approvisionnement,
+notamment sur le pétrole, dans les décennies à venir.
+
+
+
+
+2. L’évaluation carbone
+
+Après avoir défini un mix énergétique qui permette de répondre à la demande en énergie finale
+des secteurs, nous établiront un bilan carbone de l’ensemble du territoire français. Ce bilan
+permettra d’estimer l’écart aux objectifs que nous nous sommes fixés en termes de réduction de
+nos émissions de GES : - 5 %/an dès les 5 prochaines années, et une décarbonation « poussée »
+d’ici 2050.
+
+
+
+
+B. Périmètre de l’évaluation énergie-climat du PTEF
+
+1. Les activités concernées
+
+Dans le PTEF, et sauf mention contraire, nous évaluons la consommation d’énergie et les
+émissions de GES induites par les procédés ou les activités qui se tiennent sur le sol
+français.
+
+
+2. Les secteurs inclus dans l’évaluation énergie-climat
+
+Pour éviter les doubles comptes, seuls certains secteurs du PTEF ont été mobilisés pour
+l’évaluation énergie-climat. Le PTEF explore et propose des transformations pour une
+quinzaine de secteurs de l’économie et d’activités humaines. Cependant, les activités
+comptabilisées dans certains secteurs sont également comptabilisées dans d’autres secteurs.
+Par exemple, le secteur de la culture englobe des activités :
+  •    de déplacements de personnes qui se rendent à un festival de musique dans une autre
+       région ; ces déplacements sont déjà comptés dans le secteur de la mobilité à longue
+       distance pour ceux qui sont supérieurs à 80 km
+  •    de déplacements d’employés d’un musée ou d’un cinéma pour se rendre à leur travail ; ces
+       déplacements sont comptabilisés en tant que déplacements domicile-travail dans le secteur
+       de la mobilité quotidienne
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022              5
+  •     de chauffage et d’éclairage d’un théâtre ou d’un atelier de création artistique ; ces activités
+        sont comptabilisés dans les secteurs du tertiaire et du logement ;
+  •     de transport d’œuvres ou de livres ; ces activités sont comptabilisés dans le secteur du fret.
+
+
+
+
+Pour éviter de compter deux fois la consommation d’énergie et les émissions de GES
+correspondantes, nous avons donc conservé un découpage « classique » des activités
+humaines pour notre comptabilité :
+
+  •     L’industrie (lourde, manufacturière, de l’après première vie)
+  •     Le résidentiel
+  •     Le tertiaire
+  •     Les transports (sous-découpés en mobilité quotidienne, mobilité à longue distance et fret)
+  •     L’agriculture et l’exploitation de la forêt
+  •     L’industrie énergétique
+
+
+Voici un descriptif synthétique des activités incluses dans la comptabilité énergie-climat du
+PTEF :
+
+
+      Secteurs du bouclage                          Périmètre de comptabilité énergie-climat
+ Industrie                             Procédés de production industriels, de la construction et du
+                                       génie civil, que les produits soient destinés à la consommation
+                                       intérieure ou non
+ Résidentiel                           Activités consommatrices d’énergie prenant place dans le parc
+                                       résidentiel sur le sol français
+ Tertiaire                             Activités consommatrices d’énergie prenant place dans le parc
+                                       de bâtiments tertiaires et relatives à des infrastructures
+                                       (services, commerces, enseignement, santé, data centers,
+                                       éclairage public, assainissement de l’eau…)
+ Mobilité quotidienne                  Déplacements des résidents français sur le sol français à moins
+                                       de 80 km de leur domicile
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                       6
+ Mobilité à longue distance            Déplacements des résidents français à plus de 80 km de leur
+                                       domicile, en France ou à l’étranger
+ Fret                                  Transport intérieur (sur le sol français) de marchandises, que
+                                       ces marchandises soient destinées à la consommation
+                                       intérieure ou non, hors aérien
+ Agriculture et forêt                  Activités agricoles ou d’exploitation/ entretien de la forêt sur le
+                                       sol français
+ Industrie énergétique                 Activités de raffinage, production, transport et distribution
+                                       d’énergie finale prenant place sur le sol français
+
+
+
+
+3. La comptabilité des vecteurs énergétiques
+
+La comptabilité de l’énergie pose des questions de périmètre et d’unité. Une valeur
+représentant une quantité d’énergie ne peut être interprétée sans avoir au préalable précisé :
+  •     le périmètre des procédés/activités inclus dans le comptage (quels procédés/activités, et
+        sur quel périmètre géographique)
+  •     le type de vecteur énergétique : est-ce de l’énergie sous forme de diesel, d’électricité, de
+        kérosène, de bois, de chaleur, etc. ? Par convention, l’énergie contenue dans un
+        combustible ou dans un matériau fissile correspond en fait à la chaleur dégagée lors de sa
+        combustion.
+  •     si le vecteur est un combustible, on peut exprimer son contenu énergétique par une valeur
+        de pouvoir calorifique supérieur (PCS) ou inférieur (PCI). La valeur PCS représente la
+        chaleur de combustion + la chaleur contenue dans l’évaporation de l’eau du combustible
+        lors de la combustion, alors que la PCI représente la chaleur de combustion uniquement.
+        La PCS est donc supérieure à la PCI.
+  •     l’unité utilisée ; celle-ci peut-être une unité d’énergie directement, ou une unité quantifiant
+        le vecteur considéré par un autre moyen : sa masse, son volume…
+
+
+Dans cette note, nous préciserons les types de vecteurs et passerons autant que possible par
+des unités d’énergie directement. Par défaut, et sauf mention du contraire, nous exprimerons les
+valeurs en PCI.
+Les vecteurs énergétiques finaux sont découpés dans le PTEF selon les types suivants (et
+sans préjuger de la manière dont ils sont produits, par exemple le bioéthanol pourrait être compté
+dans la catégorie « essence ») :
+
+
+           Type                               Sous-type                                Description
+                                                                             Bois bûche, connexes de scierie,
+ Carburants solides            Bois-énergie et assimilés                     déchets de bois, déchets solides
+                                                                             renouvelables…
+                               Charbon
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                              7
+                                                                             Déchets municipaux ou
+                               Déchets non renouvelables                     industriels non renouvelables
+                                                                             (dérivés du pétrole)
+ Carburants liquides           Fioul
+                               Essence
+                               Diesel
+                               Kérosène
+                               Gaz de pétrole liquéfié
+                               Autres produits pétroliers                    Naphta, bitume, lubrifiant,…
+ Carburants gazeux             Méthane
+                               Gaz de haut fourneau
+ Hydrogène                     N/A
+ Electricité de réseau         N/A
+ Chaleur                       Solaire thermique                             Solaire thermique sur toiture
+                                                                             Chaleur extraite de
+                               Chaleur environnement                         l’environnement par les pompes
+                                                                             à chaleur
+                               Chaleur de réseau
+
+
+
+
+4. La comptabilité des carburants utilisés comme matière première
+
+Afin de dimensionner correctement l’industrie énergétique en charge de produire les énergies
+finales, nous incluons dans notre comptabilité les besoins des industries de la pétrochimie
+en matières premières énergétiques. L’industrie consomme du naphta, du diesel, des bitumes,
+ou d’autres produits pétroliers pour produire des plastiques, des routes, des fibres textiles etc.
+Ces dérivés du pétrole doivent être produits si on veut en consommer, et c’est l’industrie
+énergétique qui se charge de les produire.
+
+
+
+
+5. La comptabilité des GES
+
+Le PTEF comptabilise les émissions de GES dues aux activités que nous avons listées plus haut.
+Ces émissions peuvent provenir de différents types de processus physiques, biologiques
+ou procédés industriels : la combustion, la production de ciment, la production de verre, la
+production d’acier, les fuites et émanations de gaz à effet de serre (gaz utilisés dans la
+réfrigération et la climatisation, usage de lubrifiants, épandage d’engrais…), la fermentation
+entérique (digestion des ruminants). Elles peuvent également provenir de l’utilisation des terres
+et du changement d’affectation des terres, et de la foresterie (UTCATF), et relâchant du
+carbone qui était stocké dans les sols ou dans la biomasse présente sur ces terres.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                            8
+Nous comptabilisons l’ensemble de ces émissions selon le périmètre CITEPA (CITEPA,
+2020)
+Nous comptabilisons également le stockage de carbone dans les sols et dans la biomasse
+par changement d’utilisation des terres et de leur affectation, ou par procédés industriels
+(capture et séquestration du carbone).
+Enfin, selon la méthodologie CITEPA, nous considérons par convention de comptabilité que toute
+biomasse ligneuse extraite de l’environnement, qu’elle provienne de bois de forêt ou hors forêt
+(vigne, vergers, haies…) est brûlée au cours de l’année et comptabilisée comme émission dans
+le secteur UTCATF. Ainsi, du point de vue comptable,
+
+    •   Si cette biomasse ligneuse est effectivement brûlée, sous forme brute ou transformée
+        (biocarburants ou biogaz de deuxième génération, 2G), alors les émissions
+        correspondantes sont bien comptées dans le secteur UTCATF qui a vu son bois prélevé,
+        mais ne sont pas comptées (émissions nulles) dans le secteur qui a utilisé cette biomasse.
+        Ces pourquoi les facteurs d’émissions de ces carburants seront considérés comme nuls.
+    •   Si ce n’est pas le cas (fabrication de meuble, construction, enfouissement…), elle sera
+        considérée comme stockée et les émissions correspondantes seront retranchées, dans le
+        sous-secteur « produits bois » du secteur UTCATF.
+
+
+La biomasse non ligneuse prélevée et brûlée sous forme brute ou transformée (biocarburants de
+première génération, biogaz) n’est pas comptabilisée dans les émissions de GES car elle
+participe d’un cycle court du carbone.
+
+
+
+
+6. Nos trois dates d’évaluation : 2022, 2027, 2050
+
+Les évaluations énergie-climat du PTEF seront effectuées à trois dates, en ligne avec l’approche
+générale du PTEF :
+    •   Notre point de départ se situe formellement en 2022, même si les données utilisées pour
+        caractériser ce point de départ ont été collectées en 2018 ou 2019 1.
+    •   Nous proposons un point de passage en 2027, afin de donner une estimation des effets
+        du PTEF à court-terme, à l’issue du quinquennat 2022-2027, en imaginant l’élection d’un
+        gouvernement qui mette en place le PTEF dès 2022.
+    •   Enfin, le PTEF se donne une échéance à 2050. Il ne s’agit pas d’une échéance marquant
+        la fin d’une transformation, mais plutôt d’un point de passage à plus long terme qui permet :
+             o De s’assurer que les efforts de transformation effectués par les différents secteurs
+                  du PTEF dès le prochain quinquennat sont bien compatibles avec une
+
+
+
+
+1
+  Nous considérons, au vu de notre horizon temporel et du sujet traité, que cet écart de quelques années sur le point de
+départ ne joue qu’au second ordre. Notre horizon temporel est de 28 ans (2022-2050), et nous considérons la
+consommation macroscopique1 d’énergie d’un pays qui n’a pas engagé de rupture énergétique entre 2018 et 2022.
+Cette valeur macroscopique a donc toutes les chances d’être stable sur quelques années. La crise COVID a
+significativement affecté la consommation d’énergie de l’année 2020, et elle devrait affecter dans une moindre mesure
+celle de l’année 2021. Pour la suite de notre exercice d’évaluation, nous supposons que la consommation de 2022 sera
+sensiblement égale à celle des années pré-COVID, par rapport aux fortes évolutions que propose le PTEF dès les
+années suivantes. Autrement dit, nous considérons que la calibration de notre point de départ avec des données qui ne
+sont pas tout à fait à jour induit une erreur de second ordre devant les variations de premier ordre qu’induit la mise en
+place du PTEF dans les années suivantes.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                      9
+                 décarbonation qui continue sur le temps plus long. Cela permet d’éviter
+                 d’éventuelles impasses court-termistes.
+            o    De comparer les émissions du pays en 2050, si le PTEF est suivi, à l’objectif
+                 de plus en plus consensuel de neutralité carbone : les transformations
+                 proposées sont-elles à la hauteur ? Les efforts suggérés sont-ils du bon ordre de
+                 grandeur ?
+
+
+
+C. Principe général de l’évaluation énergie-climat
+
+1. Processus de travail
+
+Afin d’établir le bilan carbone du pays à une date donnée, 2050 par exemple, nous sommes partis
+des demandes en énergie exprimées par les différents secteurs du PTEF en 2050.
+          Par exemple, suite aux transformations du PTEF en 2050, le secteur Tertiaire requiert
+          0,1 Mtep de bois-énergie, 0,3 Mtep de fioul, 0,1 Mtep de GPL, etc., en 2050.
+Nous avons ensuite agrégé les demandes des différents secteurs pour obtenir une demande
+globale en énergie finale par type de vecteur énergétique.
+          Par exemple, suite aux transformations du PTEF en 2050, la France requiert 5,36 Mtep
+          de bois-énergie et assimilé (essentiellement pour la production d’électricité, pour le
+          chauffage résidentiel et pour les chaudières industrielles), 0,18 Mtep de déchets non
+          renouvelables pour les chaudières industrielles, 0,62 Mtep de fioul (essentiellement pour
+          du chauffage résiduel et pour l’industrie énergétique), etc.
+En parallèle, nous avons défini un ensemble de contraintes structurantes sur le mix
+énergétique que nous pouvions proposer pour 2050, notamment sur certains gisements de
+ressources, ou sur l’inertie de transformation de l’industrie énergétique à partir de l’existant.
+Nous avons ensuite sélectionné un mix énergétique permettant de répondre à la demande en
+énergie finale pour chaque type de vecteur tout en respectant les contraintes structurantes, et de
+manière la plus décarbonée possible.
+          Par exemple, on répond aux besoins en gaz dans la France transformée par le PTEF,
+          qui sont bien moindres qu’aujourd’hui, grâce à la méthanisation à partir biomasse
+          méthanisable issue exclusivement de résidus de l’agriculture, et grâce à la
+          pyrogazéification de bois (biomasse lignocellulosique) grâce aux procédés 2G. On
+          s’assure que les prélèvements de biomasse concernée respectent les contraintes de
+          gisement identifiées au préalable.
+A partir de ce choix de mix, qui définit la manière dont on produit en 2050 les différents vecteurs
+énergétiques finaux, nous avons calculé les facteurs d’émission (FE) desdits vecteurs.
+          Par exemple, le facteur d’émission du gaz après transformation proposée par le PTEF
+          est de 260 kgCO2e/tep (PCI) (à comparer au FE du gaz fossile, qui est de 2180
+          kgCO2e/tep). Le facteur d’émission de la pyrogazéification a été considéré nul, quand
+          celui de la méthanisation a été fixé à 280 kgCO2e/tep pour tenir compte des fuites de
+          méthane.
+La demande en chaque type de vecteur pour combustion et le FE associé nous ont permis de
+calculer les émissions de GES dues à la combustion en France.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022              10
+          Par exemple, la demande globale en gaz pour combustion suite à la transformation de
+          l’économie est de 7,4 Mtep, pour un FE de 260 kgCO2e/tep, soit des émissions dues à
+          la combustion du gaz de 1,9 MtCO2e.
+Grâce au recueil des estimations par l’industrie et l’agriculture de leurs émissions hors
+combustion suite à leur transformation, nous avons calculé les émissions totales du pays en 2050,
+si le PTEF était mis en place.
+
+
+
+
+Ce processus a été complètement effectué pour 2050.
+Pour l’année de départ, 2022, le mix énergétique n’a pas été à proprement parler choisi puisqu’il
+s’agit du mix actuel. Il a plutôt été observé donc.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022            11
+Pour le point de passage 2027, le mix a été considéré comme statique par rapport à aujourd’hui,
+si ce n’est pour la fermeture des dernières centrales à charbon dans le mix électrique, qu’on
+considère comme acquise pour 2027. Ainsi, pour 2027, les évolutions des émissions qu’on
+observera suite à la transformation pendant le quinquennat à venir sont essentiellement dues aux
+transformations prévues par les autres secteurs du PTEF, et très marginalement à la
+transformation de l’industrie énergétique.
+
+
+
+
+2. Les données d’entrée et de sortie
+
+Le schéma ci-dessous synthétise les données d’entrée et de sortie, ainsi que les paramètres, de
+notre évaluation énergie-climat.
+
+
+
+
+3. Flux de données
+
+Le schéma suivant décrit les flux de données qui sous-tendent l’évaluation énergie-climat du
+PTEF. Ces flux sont établis lors des étapes de travail décrites précédemment.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022           12
+La demande globale représente tout ce que l’industrie énergétique doit produire pour que la
+société dans son ensemble fonctionne. Pour établir cette demande globale en énergie finale,
+nous tenons compte de la demande de l’industrie énergétique elle-même et nous y incluons les
+pertes (de transport, distribution, stockage). Afin d’éviter des double-comptes, nous excluons
+l’énergie « intermédiaire » utilisée pour une conversion de vecteur énergétique final. Par exemple
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022             13
+l’électricité pour produire de l’hydrogène, ou le gaz utilisé pour produire de la chaleur de réseau,
+sont exclus.
+Notre proposition de mix énergétique peut mettre en jeu des conversions entre vecteurs finaux
+(voir l’exemple concret de l’année 2050, en section IV.B.1). Par exemple on pourra proposer de
+produire l’hydrogène dont certains secteurs pourraient avoir besoin via l’électrolyse plutôt que par
+le vaporéformage du méthane. Ainsi, la production de l’H2 final requerra la production d’un
+surplus d’électricité dédié. Ce surplus sera inclus dans les calculs qui permettront d’aboutir à un
+mix énergétique cohérent, c’est-à-dire à la définition des vecteurs énergétiques primaires (ou
+intermédiaires) qui alimentent les procédés de l’industrie énergétique pour produire les vecteurs
+finaux.
+
+
+
+
+    Figure 2 : La demande globale dans le PTEF représente les vecteurs énergétiques finaux que l’industrie de
+    l’énergie doit produire, incluant les pertes de transport, distribution et stockage éventuelles, et les propres
+    besoins de fonctionnement de l’industrie de l’énergie elle-même. Elle n’inclut pas la production de vecteurs
+                       « intermédiaires » qui seront transformés en d’autres vecteurs finaux.
+
+
+
+
+D. L’impact des contraintes physiques sur le travail des
+secteurs
+Les secteurs avaient bien sûr pour objectif de départ de réduire leurs consommations
+d’énergie fossile et leurs émissions de GES au maximum d’ici 2050. Si chaque secteur aurait
+pu être tenté de remplacer ces carburants fossiles par de l’électricité, par des carburants issus
+de la biomasse ou par des carburants de synthèse 2, une rapide analyse des gisements
+d’énergie décarbonée qui seront disponibles avec un niveau de probabilité raisonnable en
+2050 fait apparaître des contraintes supplémentaires auxquelles les secteurs doivent se
+plier.
+
+
+
+
+2
+    issus d’électricité et de carbone capturé
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                14
+1. Remplacer les énergies fossiles par de la biomasse :
+pas le bon ordre de grandeur
+
+Dans le PTEF, la biomasse est l’ensemble des ressources végétales 3 ou issues d’animaux
+d’élevage 4 utilisables pour produire de l’énergie, que ça soit par combustion directe ou après
+transformation sous forme solide, liquide ou gazeuse.
+Quelques ordres de grandeur suggèrent que la quantité de biomasse disponible en France et en
+Europe ne suffira pas à remplacer les énergies fossiles.
+Diverses estimations de la disponibilité en biomasse en 2050 ont été effectuées pour la France
+(ADEME, 2018, 2021; France Stratégie, 2021; MTES, 2020; Roux & Dhôte, 2017; Solagro, 2016).
+Un consensus se dégage progressivement sur l’ordre de grandeur de disponibilité parmi les
+acteurs de la prospective (WWF France / Solagro, 2022).
+Nous conservons des estimations qui nous semblent prudentes, c’est-à-dire dont on peut
+raisonnablement espérer qu’elles se réalisent étant donné les transformations proposées par le
+PTEF, notre objectif de prioriser la production alimentaire, la protection des habitats naturels, et
+les produits bois avant la production d’énergie, et malgré les risques que fait peser le changement
+climatique sur les rendements forestiers et agricoles.
+    •       Des résidus agricoles récoltés à des fins énergétiques seront disponibles en plus grande
+            quantité qu’aujourd’hui via une augmentation des pratiques agroécologiques. Nous
+            gardons l’estimation de France stratégie : 6,9 Mtep de biogaz, 1,8 Mtep de bois issu des
+            haies et des pratiques d’agroforesterie et 0,8 Mtep de combustible biomasse.
+    •       L’exploitation forestière n’augmente pas, mais le bois reste plus en France qu’aujourd’hui
+            pour alimenter directement la fabrication de produits bois, générant plus de déchets et
+            connexes pour la production d’énergie. Nous nous basons sur l’estimation de l’IGN et sur
+            le scénario le plus prudent des Transition(s) 2050 5 : 10,1 Mtep de bois.
+
+
+Ainsi, en ordre de grandeur prudent, nous disposerons de ~20 Mtep de biomasse pour
+l’énergie en 2050, soit environ le double de la consommation de biomasse énergie actuelle. Il
+faut comparer cet ordre de grandeur aux consommations actuelles d’énergie fossile que la
+biomasse pourrait remplacer :
+        •     ~70 Mtep de liquides fossiles, soit la quasi-totalité de nos consommations liquides
+        •     ~40 Mtep de gaz fossile, soit la quasi-totalité de nos consommations gazeuses
+        •     ~8 Mtep de charbon, soit environ la moitié de nos consommations solides
+
+
+On voit que la biomasse française ne pourra pas répondre à plus de 15 % de nos
+consommations agrégées de gaz et de liquides.
+Une option serait alors d’affecter des surfaces ayant actuellement un usage non énergétique
+(notre alimentation, la production de produits bois, la sauvegarde de la biodiversité) à la
+production d’énergie. Même en étant relativement optimiste sur le rendement à l’hectare des
+
+
+
+3
+  Par exemple le bois de forêt, le bois issu des haies ou de l’agroforesterie, les résidus de cultures annuelles, l’herbe
+fauchée, les déchets de bois ou agricoles…
+4
+  Les effluents d’élevage
+5
+  Dont nous excluons les cultures lignocellulosiques dédiées à la production d’énergie.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                          15
+procédés de deuxième génération 6 (qui est environ deux fois plus grand que celui des procédés
+de première génération), il faudrait dédier environ 10% de nos surfaces arables et forestières
+pour espérer produire ~9-14 Mtep de gaz ou liquide. Ainsi, il faudrait dédier plus de l’ensemble
+de nos surfaces arables et forestières pour répondre à notre demande actuelle en gaz et
+liquide.
+On retrouve au niveau européen une forte limitation de la biomasse pour répondre à la
+demande en gaz et liquides 7, ce qui empêche structurellement de miser significativement sur
+les importations de biomasse depuis les pays européens. Cela soulève également la possibilité
+pour les décennies à venir d’une augmentation simultanée de la demande en biomasse de
+l’ensemble des pays européens, ce qui créerait des goulets d’étranglement et des contraintes
+d’approvisionnement sur cette ressource.
+Ainsi, sans solution alternative à la biomasse, notre consommation d’énergie sous forme
+liquide ou gazeuse devrait être divisée par 6, en ordre de grandeur, par rapport à aujourd’hui.
+
+
+2. Les carburants de synthèse : une chaîne énergétique trop peu
+efficace pour remplacer les fossiles
+
+L’unique solution alternative proposée pour produire du méthane et des liquides décarbonés est
+leur synthèse à partir d’hydrogène (décarboné) et de carbone capturé au préalable. Le premier
+doit être produit à partir d’électricité décarbonée par électrolyse, et le second doit provenir d’une
+source non fossile, sans quoi le fait de brûler le carburant de synthèse en reviendrait à émettre
+autant que du carburant fossile.
+Cela fait deux intrants desquels il faut estimer le besoin et le comparer aux gisements possibles.
+Quelques ordres de grandeur sur les besoins en électricité pour produire suffisamment de gaz et
+de liquides de synthèse fixent les idées sur le caractère marginal que pourront jouer les
+carburants de synthèse, étant donné leur faible rendement et la limitation de productible
+électrique en 2050. Le rendement raisonnablement optimiste de la synthèse de gaz à partir
+d’électricité est de 60 % (PCI), quand celui pour synthétiser les liquides est plutôt de 50%. Ainsi,
+il faudrait ~70 Mtep et ~140 Mtep d’électricité pour répondre à la consommation en gaz et liquides
+fossiles, à comparer à la production actuelle de ~50 Mtep. Soit une multiplication par 5 de la
+production électrique pour répondre à la demande actuelle.
+Il apparaît que les gisements limités de carbone « biogénique » 8 pourraient constituer une
+contrainte aussi forte que la disponibilité en électricité, au niveau européen. Il est estimé
+qu’on pourrait produire, étant donné les sources de carbone en Europe projetées d’ici 2040, en
+supposant que ces sources ne soient plus fossiles et qu’on y installe des dispositifs de captation
+du carbone, 150 Mds de L de diesel (Christensen & Petrenko, 2017), soit environ 135 Mtep,
+toujours à comparer à la consommation actuelle de l’UE de ~450 Mtep de liquide et 250 Mtep de
+gaz.
+Ces ordres de grandeur suggèrent que la situation demeurera la même pour l’ensemble du globe.
+Il faudrait tripler la production d’électricité mondiale d’ici 2050 pour remplacer la consommation
+
+
+
+6
+  Entre 2 et 3 tep PCI par hectare et par an pourraient être obtenus en 2050, de manière optimiste.
+7
+  Avec des ordres de grandeur relativement optimistes de rendement énergétique à l’hectare par des cultures de
+biomasse dédiée (2,5 tep PCI gaz/ha et 2 tep PCI liquide/ha), répondre aux 250 Mtep de gaz et 450 Mtep de liquides de
+consommation de l’UE prendrait respectivement 30% et 70% de la surface de l’ensemble des forêts et des terres
+agricoles de l’UE !
+8
+  C’est-à-dire non directement issu de sources fossiles
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                16
+mondiale de produits pétroliers par des carburants de synthèse. Et cela supposerait des sources
+immenses de carbone biogénique.
+
+
+3. Le productible électrique sera limité en France en 2050
+par l’inertie du système électrique et les concurrences de demande
+avec les autres pays
+
+Les récents travaux d’RTE sont riches d’enseignements sur les évolutions possibles du mix
+électrique français et sur les contraintes auxquelles il va être soumis (RTE, 2021).
+La planification la plus volontariste de déploiement de nouveau nucléaire français aboutit
+en 2050 à une capacité installée d’environ 50 GW, pour un productible électrique de 325
+TWh/an. Nos réacteurs nucléaires ont été mis en service de façon groupée à partir des années
+1980, et un grand nombre d’entre eux va devoir s’arrêter sur un laps de temps court. Si l’on veut
+avoir assez d’électricité lorsque ces réacteurs prendront la retraite, des capacités de
+remplacement devront à ce moment-là être opérationnelles. Le timing est serré. Lors de la
+décennie 2040, 80 % des réacteurs atteindraient soixante ans, si jamais ils passaient avec succès
+leur précédente visite décennale (leur « examen de sûreté »). L’hypothèse de pousser la majorité
+du parc jusqu’à une durée de fonctionnement moyenne de 60 ans a été retenue dans le scénario
+le plus ambitieux et optimiste sur le nucléaire d’RTE. Selon RTE, le statut ambitieux de cette
+hypothèse n’a pas été contesté par les parties prenantes impliquées dans la construction des
+scénarios.
+D’après ses propres estimations, l’industrie électronucléaire française sera au mieux capable de
+produire une paire de réacteurs de type EPR tous les deux ans à partir de 2035, si leur
+construction est actée au cours du prochain quinquennat. Cela correspondrait à mettre en service
+au maximum 14 EPR 2 entre 2035 et 2050, dont la majorité entre 2040 et 2050. Au global, elle
+estime une capacité installée de nucléaire français maximale de 50 GW en 2050, dont environ la
+moitié issue de nouveaux réacteurs.
+La production et l’installation de capacités de production renouvelables (ENR, essentiellement le
+photovoltaïque, PV, et l’éolien en mer ou terrestre) sont elles aussi limitées par une inertie
+industrielle. Ainsi, dans son scénario le plus ambitieux et optimiste sur le déploiement des
+énergies renouvelables électriques, RTE envisage le déploiement de ~210 GW de PV, ~75 GW
+d’éolien terrestre et ~60 GW d’éolien en mer, pour produire ~645 TWh/an. Les rythmes de
+déploiement associés sont très élevés et doivent être maintenus pendant 30 ans sans baisses
+de régime. Ces rythmes et des points de comparaisons sont fournis par les diagrammes ci-
+dessous, issus des Futurs énergétiques 2050 d’RTE.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022            17
+                                          Figure 3 : source RTE (RTE, 2021)
+
+
+
+
+Ces déploiements ont des impacts significatifs sur la consommation de certains matériaux,
+comme le cuivre ou l’aluminium, avec des consommations deux fois plus importantes pour le mix
+100% ENR que pour le mix avec le plus de nucléaire. Les quantités de béton et d’acier sont
+également importantes, mais restent mesurées devant la consommation actuelle du secteur de
+la construction.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022         18
+                                          Figure 4 : source RTE (RTE, 2021)
+
+
+De tels déploiements ont également un impact sur l’espace au sol mobilisé pour installer ces
+capacités diffuses. Le PV pourrait venir occuper chaque année une surface équivalente à 30 %
+des surfaces nouvellement artificialisées (construction neuves, commerces, nouvelles routes et
+autoroutes…), bien qu’il ne soit pas forcément source de nouvelle artificialisation à proprement
+parler.
+Plus les besoins de déploiement ou de renouvellement de capacités de production sont
+massifs, plus les risques de sous-déploiement à l’échéance 2050 sont grands. En étant
+extrêmement optimiste, le productible à partir de nucléaire français et d’ENR pourrait être de ~645
+TWh issus d’ENR + 325 TWh issus du nucléaire. Cependant, les déploiements associés sont
+tributaires de la mise en place et du maintien sur plusieurs décennies de chaînes logistiques
+assurant l’approvisionnement des matériaux nécessaires à la construction.
+Or, dans un contexte de transition mondiale, on peut aisément imaginer qu’une part importante
+des pays du monde va réclamer ces mêmes technologies (qu’elles soient nucléaires ou ENR) sur
+la même période de temps. De plus, ces transformations devront se faire dans un contexte
+d’impacts du changement climatique grandissant. Les risques de ruptures plus ou moins
+temporaires d’approvisionnement ne sont donc pas négligeables et peuvent être de
+diverses natures : incapacité des industries extractives à monter en capacité au bon rythme,
+instabilité des chaînes logistiques et des prix de la ressource dans un monde où les demandes
+augmentent partout en même temps, déstabilisation de certains tissus productifs selon les
+événements climatiques extrêmes, etc.
+Dans ce contexte d’incertitude, en poussant tous les curseurs au maximum (déploiement du
+nucléaire et des ENR), on peut raisonnablement espérer, et cela sera notre hypothèse, un
+productible électrique ambitieux de 645 TWh en 2050 (contre environ 570 TWh
+aujourd’hui). Les efforts de sobriété/efficacité par les secteurs pour s’éloigner de ce seuil haut
+seront précieux : plus la réduction de demande électrique est effective, plus les risques de
+pénurie d’électricité, dus aux incertitudes sur la transformation du système électrique d’ici
+2050, seront faibles.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022              19
+4. Implications sur notre approche de bouclage et sur le travail des
+secteurs
+
+Le PTEF se place dans un cadre « prudentiel » : il suppose une action ambitieuse et
+organisée, mais tient compte des diverses contraintes physiques et des incertitudes
+inhérentes aux trente prochaines années. Notamment, les contraintes sur la ressource en
+biomasse, et les incertitudes sur la ressource électrique sont structurantes pour le
+dimensionnement d’ensemble du mix énergétique de 2050. Pour rappel :
+     •    Une disponibilité en biomasse de ~20 Mtep
+     •    Une disponibilité en électricité de ~55 Mtep
+
+
+Cette disponibilité en électricité laisse très peu de place à la synthèse de carburant ou de
+méthane. Avec un rendement de 50%, on obtiendrait ~25 Mtep de liquides (soit à peine plus d’un
+tiers de notre consommation actuelle de liquides) si on y dédiait 100 % de notre électricité. Et
+c’est sans compter les besoins en carbone renouvelable nécessaire à la synthèse de ces
+carburants si on veut qu’ils soient eux-mêmes renouvelables.
+On voit donc que la quantité de liquides et de gaz décarbonés sera très contrainte en 2050. Une
+disponibilité maximale de l’ordre de 20 Mtep semble crédible et prudente. Cela signifie une
+division par plus de 5 d’ici 2050 de l’usage de combustibles liquides ou de méthane, quelle
+que soit la manière dont on les produit.
+Cet objectif a été le point de départ des différents secteurs du PTEF. Il explique en bonne partie
+pourquoi les secteurs mettent en place de grands efforts de sobriété, d’efficacité énergétique
+par une meilleure organisation de nos usages, d’efficacité énergétique par l’amélioration
+technologique, et d’électrification des usages. Ainsi, face à un choix d’organisation ou de
+technologie, la question du vecteur énergétique à utiliser et de l’efficacité d’ensemble de la chaîne
+énergétique en jeu a été déterminante. Pour transporter des marchandises, on préfèrera utiliser
+le train ou le bateau fluvial plutôt que le routier car ils sont plus efficaces énergétiquement que le
+camion. Pour les camions restant, on cherchera à les électrifier par batterie et/ou caténaire, la
+chaîne énergétique étant bien meilleure que de passer par de l’hydrogène (~80% de rendement
+contre ~35%). Et ainsi de suite.
+
+
+II. Notre point de départ : ~ 2020
+
+A. Nos données d’entrée
+Notre point de départ en termes de consommation énergétique se base sur l’année 2018 telle
+que déclarée par la France à Eurostat pour l’industrie (y compris énergétique), ou sur les analyses
+sectorielles pour les autres secteurs.
+
+
+Voici une image de cette demande :
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                 20
+                                        Biomasse           Déchets non                                            Autres                           Gaz hauts           Chaleur     Solaire Chaleur de
+            Energie (Mtep)                        Charbon              Fioul     Essence   Diesel   Kérosène                   GPL     H2   Elec.              Gaz                                      Total
+                                         énergie             renouv.                                           (prod. pétr.)                       fourneaux            envir.   thermique   réseau
+Demande de l'Industrie                       1,5      2,5         0,37  0,21          -       1,4        -             1,1       -      -    10         1,7    11           -           -        1,5     31
+Demande du Résidentiel                       3,7       -           -    3,4           -        -         -              -       1,1     -    14          -     12          2,3          -        1,4     37
+Demande du Tertiaire                         0,28     0,36        0,06  2,2           -        -         -              -       0,28    -    11          -      6,1        0,2          -        0,78    22
+Demande des Transports                        -        -           -      -          8,1     33         7,4             -        -      -     0,8        -      0,01        -            -        -      49
+Demande de l'Agri & Forêt                    0,14      -           -      -           -       3,0        -              -        -      -     0,73       -      0,2         -           -        0,03     4,1
+Demande des secteurs
+                                            5,6       2,9         0,43    5,8       8,1      37         7,4           1,1       1,4     -    37         1,7    29         2,5          -         3,7    144
+(hors secteur de l'Energie)
+Demande de l'Energie                        2,6       1,5          -      0,47       -         -         -            1,5        -      -     6,7       0,39    8,6        -           -          -      22
+dont pour la Production d'électricité       2,6       1,5          -      0,39       -         -         -             -         -      -      -         -      5,7        -           -          -      10
+dont pour la Prod d'un autre vecteur         -         -           -       -         -         -         -             -         -      -      -         -      1,9        -           -          -       1,9
+dont autoconso et pertes                     -         -           -      0,08       -         -         -            1,5        -      -     6,7       0,39    0,95       -           -          -      10
+Demande non énergétique                      -         -           -       -         -        1,0        -           10          -      -      -         -      1,2        -           -          -      13
+Total à produire                            5,6       2,9         0,43    5,9       8,1      38         7,4          13         1,37    -    44         2,05   31         2,5          -         3,7    166
+
+
+
+
+               L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                                                                                  21
+Notre point de départ se caractérise par une consommation de liquides et de gaz, aujourd’hui
+essentiellement fossiles, dans tous les secteurs : en quasi-totalité pour le secteur des
+transports, en majorité pour les secteurs de l’industrie, de l’agriculture/forêt et du résidentiel,
+significative pour les secteurs du tertiaire et de l’industrie énergétique.
+Il se caractérise également par un partage des formes finales d’énergie essentiellement entre les
+liquides (~50%), l’électricité (~1/3) et le gaz (~1/5).
+Note : l’hydrogène n’est pas représenté ici comme un vecteur final. Il est pour l’instant utilisé
+seulement en interne de l’industrie, qui déclare une consommation d’énergie finale directement
+sous forme de gaz (méthane). Le fait que ce dernier soit en fait converti en H2 est donc
+transparent selon cette comptabilité énergétique en 2020. Pour l’année 2050, l’H2 apparaîtra en
+tant que tel car il sera aussi utilisé par le secteur des transports.
+
+
+
+
+B. Paramétrage et validation de notre calculatrice carbone
+
+1. Le mix énergétique et les FE sélectionnés
+
+Venons-en maintenant à l’industrie qui répond à ces demandes.
+Les données sur le mix énergétique hors électricité provient d’Eurostat 2018 (EUROSTAT,
+2021) ; le mix électrique provient du bilan électrique 2018 d’RTE (RTE, 2018).
+Les figures Figure 6 et Figure 7 décrivent ces mix.
+C’est à partir de ces données de mix que nous calculons les facteurs d’émission (FE) moyens
+pour les types agrégés de vecteurs énergétiques, notés « mix » dans le tableau suivant.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022              22
+                            FE (kgCO2e/tep PCI)                                  Valeur
+                            Bois-énergie                                                   -
+                            Charbon                                                   4 025
+                            Déchets non renouvelables                                 3 768
+                            Fioul                                                     3 170
+                            Essence "mix"                                             2 694
+                            Essence fossile                                           2 907
+                            Bioéthanol                                                     -
+                            Bioéthanol 2G                                                  -
+                            Diesel "mix"                                              2 913
+                            Diesel fossile                                            3 150
+                            Biodiesel                                                      -
+                            Biodiesel 2G                                                   -
+                            Kérosène "mix"                                            3 020
+                            Kérosène fossile                                          3 020
+                            Biokérosène                                                    -
+                            Maritime (prod. pétr.)                                    3 213
+                            Autres (prod. pétr.)                                      3 852
+                            GPL                                                       2 700
+                            Electricité                                                 398
+                            Gaz haut fourn                                           11 472
+                            Gaz "mix"                                                 2 170
+                            Gaz fossile                                               2 180
+                            Biogaz                                                      294
+                            Chaleur environnement                                          -
+                            Chaleur solaire thermique                                      -
+                            Chaleur de réseau                                         1 105
+                            Nucléaire                                                      -
+                            PV                                                             -
+                            Eolien                                                         -
+                            Hydraulique (élec)                                             -
+Tableau 1 : facteurs d’émissions utilisés pour l’évaluation carbone du PTEF. Les lignes bleutées correspondent
+ à des valeurs moyennes de « mix », pour l’année 2020. Elles évoluent donc pour les années 2027 et 2050, car
+                                                 les mix évoluent.
+
+
+Le périmètre de comptage des émissions pour les FE est territorial. D’autre part, il ne tient compte
+que des émissions dues à la combustion et des fuites gazeuses dans l’atmosphère. Ce choix de
+périmètre tient essentiellement à une approche d’affectation des émissions entre les secteurs.
+Les émissions dites « amont » dans la base carbone de l’ADEME, c’est-à-dire qui sont induites
+par les procédés de fabrication du vecteur énergétique final, sont générées soit en dehors du sol
+français (par exemple les émissions dues à l’extraction pétrolière), soit dans des secteurs du
+PTEF qui les prennent déjà en compte (par exemple, les émissions dues à la production agricole
+destinée à la production de biocarburants sont comptées dans le secteur Agriculture ; celles dues
+au transport de la biomasse pour produire ce carburants sont comptées dans le secteur Fret).
+Une exception à cela : la conversion entre vecteurs énergétiques finaux. Par exemple, les
+émissions de combustion du gaz pour produire de l’électricité ou de la chaleur seront comptées
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                         23
+dans le secteur qui consomme l’électricité ou la chaleur, et pas dans le secteur de l’industrie
+énergétique.
+
+
+
+
+2. Le bilan carbone
+
+Au global, selon nos calculs à partir des consommations énergétiques et des FE, les émissions
+de la France au périmètre PTEF sont de 450 MtCO2e en 2020. Ce périmètre est identique au
+périmètre CITEPA, sauf pour la mobilité à longue distance (MLD) des Français, qui inclut une
+part de l’aérien international.
+
+   Emissions GES 2019
+   (total = 450 MtCO2)
+   Périmètre PTEF
+
+                                                                                     Résidentiel -
+                                                                                       Tertiaire
+                                                                                        16%
+                                                                                      Agri et Forêt
+                                                                                           2%
+        Agriculture et
+                                                                                         Industrie
+          déchets
+                                                                                           15%
+            20%                        Utilisation
+                                       d'énergie                                     Industrie de
+                                          69%                                          l'énergie
+                                                                                          4%
+     Procédés                                                                           Mob quoti
+ industriels et gaz                                                                        14%
+    réfrigérants
+        11%                                                                           MLD des Français
+                                                                                            9%
+
+
+                                                                                      Fret intérieur
+                                                                                           9%
+
+
+
+
+Les émissions non énergétiques proviennent de certains procédés industriels, de l’agriculture, du
+traitement des déchets et des climatisations/ réfrigérations. Elles représentent environ 140
+MtCO2e/an actuellement. (CITEPA, 2021)
+Les puits proviennent de l’utilisation des terres, du changement d’affectation des terres et de la
+foresterie (UTCATF). Aujourd’hui, ces puits sont essentiellement constitués de la forêt en
+croissance et des terres qui sont nouvellement converties en forêt. Ils sont partiellement
+compensés par les terres qui sont converties en terres agricoles et de celles qui sont artificialisés.
+Ainsi, ce secteur capte actuellement environ 25-30 MtCO2e/an. (CITEPA, 2021)
+
+
+
+
+3. Comparatif avec les statistiques nationales (CITEPA)
+
+Notre point de départ correspond globalement bien à l’image fournie par le CITEPA en termes
+d’émissions de GES. Cela valide notre mode de calcul des émissions de GES à partir des
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                     24
+consommations énergétiques sectorielles et de la définition du mix à partir des énergies
+primaires.
+
+
+                  (MtCO2e)                                    PTEF 2020              CITEPA 2019
+ Total net (émissions – puits)                                     424                   411
+ Total des émissions                                               449                   441
+    Emissions énergétiques                                         313                   301
+    Emissions non énergétiques                                     136                   140
+ Puits                                                              26                   30
+
+
+Le seul écart significatif (~10 MtCO2e) provient du secteur des transports, et s’explique par des
+périmètres légèrement différents entre le PTEF et le bilan CITEPA : le PTEF inclut l’aérien
+international pour les passagers français, mais n’inclut pas le maritime, ni le fluvial de passagers.
+
+
+
+
+III. Notre point de passage : l’année 2027
+En 2027, les secteurs ont commencé à se transformer, en fonction de leurs inerties respectives
+et du niveau de volontarisme des propositions formulées.
+Ce sont essentiellement les demandes énergétiques des secteurs qui font évoluer le niveau des
+émissions, en particulier ceux du logement, du tertiaire et des transports. L’industrie et
+l’agriculture évoluent plus lentement. Quant à l’industrie énergétique, elle n’évolue que par une
+décarbonation de l’électricité par l’arrêt ou la moindre utilisation de centrales thermiques fossiles
+dans la production électrique.
+
+
+
+
+A. Les demandes des secteurs
+La demande en énergie finale en 2027 est décrite ci-après :
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                 25
+                                        Biomasse          Déchets non                                                Autres                           Gaz hauts           Chaleur     Solaire Chaleur de
+            Energie (Mtep)                        Charbon             Fioul        Essence    Diesel   Kérosène                   GPL     H2   Elec.              Gaz                                      Total
+                                         énergie            renouv.                                               (prod. pétr.)                       fourneaux            envir.   thermique   réseau
+Demande de l'Industrie                       1,5      2,5        0,37  0,21            -        1,4         -             1,1       -      -    10         1,7    11           -           -        1,5     31
+Demande du Résidentiel                       3,5       -          -    2,1             -         -          -              -       0,6     -    14          -      9          3,4          -        1,2     33
+Demande du Tertiaire                         0,26      -         0,06  1,5             -         -          -              -       0,17    -    11          -      4,6        0,5          -        0,68    19
+Demande des Transports                        -        -          -      -            6,2      23          6,1             -        -      -     2,1       0,00    0,00        -           -         -      37
+Demande de l'Agri & Forêt                    0,14      -          -      -             -        3,0         -              -        -      -     0,73       -      0,2         -           -        0,03     4,1
+Demande des secteurs
+                                            5,3        2,5          0,43    3,7       6,2      27          6,1           1,1       0,7     -    38         1,7    24         3,9          -         3,4    124
+(hors secteur de l'Energie)
+Demande de l'Energie                        2,8         -            -      0,48       -         -          -            1,5        -      -     6,7       0,39    5,9        -           -          -      18
+dont pour la Production d'électricité       2,8         -            -      0,40       -         -          -             -         -      -      -         -      3,1        -           -          -       6
+dont pour la Prod d'un autre vecteur         -          -            -       -         -         -          -             -         -      -      -         -      1,9        -           -          -       1,9
+dont autoconso et pertes                     -          -            -      0,08       -         -          -            1,5        -      -     6,7       0,39    0,87       -           -          -      10
+Demande non énergétique                      -          -            -       -         -        1,0         -           10          -      -      -         -      1,2        -           -          -      13
+Total à produire                            5,3        2,5          0,43    3,8       6,2      28          6,1          13         0,74    -    44         2,05   27         3,9          -         3,4    146
+
+
+
+
+                 L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                                                                                26
+B. Le mix énergétique en 2027 et les FE
+L’industrie énergétique n’évolue que très peu dans le PTEF entre 2022 et 2027, si ce n’est pour
+prendre en compte les évolutions prévues dans le mix électrique, telles que suggérées dans la
+description du scénario N03 en 2030 d’RTE (RTE, 2021), avec une disparition de l’usage du
+charbon, et une division par 2 environ de l’usage de centrales thermiques à flamme, avec la
+montée en puissance du PV et de l’éolien (essentiellement terrestre à cet horizon de temps).
+Le PTEF n’encourage pas le développement des biocarburants de 1ère génération, dont les
+cultures se stabilisent (elles disparaissent ensuite entre 2027 et 2050 pour se réorienter vers la
+culture alimentaire). Comme la demande en liquide se réduit, on assiste à une très légère
+décarbonation relative de ce vecteur final. On observe un effet inverse sur le gaz : cette catégorie
+inclut les gaz de haut fourneau, qui ont un FE très supérieur à celui du gaz naturel. Comme la
+demande en gaz naturel baisse, la part relative des gaz de haut fourneau augmente, ce qui fait
+augmenter le FE moyen du vecteur gaz.
+
+
+Les FE évoluent ainsi, entre 2022 et 2027
+
+
+
+kgCO2e/tep PCI             Solides          Liquides            Gaz          Electricité   Chaleur
+          2020                   1484             2956              2767             398        657
+          2027                   1415             2907              2866             159        518
+
+
+
+
+C. Le bilan carbone en 2027
+Les émissions en 2027 suite aux transformations proposées par le PTEF sont de 370 MtCO2e.
+Elles se répartissent comme décrit dans la Figure 3.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                    27
+                 Emissions GES 2027                                    Résidentiel
+                                                                          8%
+                 (total = 370 MtCO2e)
+                 Périmètre PTEF                                                      Tertiaire
+                                                                                       5%
+                                     Transports
+                                                                                        Agri et Forêt
+                                        27%
+                                                                                             2%
+
+
+                                                                                     Industrie
+                                                                                       18%
+
+
+
+
+                                  Agri et déchets                               Indus énergie
+                                  (hors énergie)                   Procédés     (Auto-conso +
+                                        22%                      industriels et    pertes)
+                                                                   gaz réfrig.       4%
+                                                                     13%
+
+      Figure 5 : Répartition des émissions de GES suite aux transformations proposées par le PTEF, en 2027
+
+
+Entre 2022 et 2027, le PTEF permet donc une réduction des émissions de 450 à 370 MtCO2e,
+soit environ 20 % de réduction, ou 4 % de réduction des émissions chaque année sur le
+quinquennat de mise en place.
+Selon notre comptabilité sectorielle :
+  •     La transformation du résidentiel et du tertiaire permet une baisse de ~25 MtCO2e
+  •     La transformation des transports permet une baisse de ~40 MtCO2e
+  •     Le déploiement progressif des nouvelles pratiques dans l’agriculture permet une réduction
+        des émissions hors énergie de ~7MtCO2e.
+
+
+Selon une comptabilité transversale, l’évolution du mix électrique en lui-même permet une baisse
+de ~10 MtCO2e.
+
+
+
+
+IV. Notre échéance finale : l’année 2050
+
+A. Les demandes des secteurs
+Pour l’année 2050, les demandes par secteur et vecteur sont décrites dans le tableau et les
+figures suivant :
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                           28
+                                        Biomasse          Déchets non                                                Autres                             Gaz hauts           Chaleur     Solaire Chaleur de
+            Energie (Mtep)                        Charbon             Fioul       Essence    Diesel    Kérosène                   GPL     H2     Elec.              Gaz                                          Total
+                                         énergie            renouv.                                               (prod. pétr.)                         fourneaux            envir.   thermique   réseau
+Demande de l'Industrie                       0,64      -         0,18  0,06            -       0,38         -             0,32      -     1,1     16          -      3,1         -           -        0,41        22
+Demande du Résidentiel                       1,6       -          -     -              -        -           -              -       0,05    -      11          -      0,76       5,5          -        1,6         21
+Demande du Tertiaire                         0,12      -          -    0,29            -        -           -              -       0,05    -       9,0        -      0,61       1,2          -        0,89        12
+Demande des Transports                        -        -          -     -              -       0,03        2,5             -        -     0,43     7,0        -       -          -           -         -          10
+Demande de l'Agri & Forêt                    0,14      -          -     -              -       0,30         -              -        -      -       0,81       -      1,9         -           -        0,03         3,2
+Demande des secteurs
+                                             2,5        -          0,18    0,35        -       0,70        2,5           0,32      0,10   1,5     43          -      6,3       6,8          -         2,9         68
+(hors secteur de l'Energie)
+Demande de l'Energie                         4,6        -            -      -          -        -           -              -        -      -       9,1        -      1,1        -           -          -          15
+dont auto-conso + pertes                      -         -            -      -          -        -           -              -        -      -       6,9        -      0,65       -           -          -           7,5
+dont pour la Production d'électricité        3,4        -            -      -          -        -           -              -        -      -        -         -      0,09       -           -          -           3,5
+dont pour la Production d'autres
+                                             1,2        -            -      -          -        -           -              -        -      -       2,2        -      0,32       -           -          -           3,7
+vecteurs finaux
+Demande non énergétique                       -         -           -       -          -       0,77         -            7,9        -      -        -         -      0,32       -           -          -           9,0
+Total à produire                             2,5        -          0,18    0,35        -       1,5         2,5           8,3       0,10   1,5     50          -      7,3       6,8          -         2,9         84
+
+
+
+
+                  L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                                                                                        29
+B. Le mix énergétique en 2050
+Quel système pourrait répondre à cette demande de manière décarbonée en 2050 ?
+Comme expliqué dans la section I.D, le mix énergétique en 2050 est soumis à diverses
+contraintes structurantes liées à son inertie, à l’existant en 2022, et aux gisements de
+ressources disponibles.
+Nous avons retenu les hypothèses suivantes :
+    •  Le mix électrique retenu se base sur le scénario N03 de RTE (RTE, 2021), qui tient
+       effectivement compte des contraintes d’inertie sur la transformation du système électrique.
+       Le scénario N03 est celui qui développe le nucléaire français de manière la plus ambitieuse.
+       On suppose que le niveau visé de capacité nucléaire est atteint 9.
+  • Nous gardons l’estimation de France stratégie pour la biomasse hors forêt disponible en
+       2050 : 6,9 Mtep de biogaz, 1,8 Mtep de bois issu des haies et des pratiques d’agroforesterie
+       et 0,8 Mtep de combustible biomasse.
+  • Nous nous basons sur l’estimation de l’IGN (Roux & Dhôte, 2017) et sur le scénario le plus
+       prudent des Transition(s) 2050 10 (ADEME, 2021) en ce qui concerne la ressource en bois
+       énergie : 10,1 Mtep de bois.
+Nous avons cherché à établir un mix énergétique répondant aux demandes exprimées par les
+différents secteurs du PTEF, tout en respectant les contraintes.
+Pour ce faire, nous avons supposé la disponibilité en 2050 de technologies de production
+d’agrocarburants et de biogaz 2G. Ainsi, les gisements en biomasse ligneuse (bois) peuvent
+être convertis en formes liquides ou en gaz. Cela suppose la disponibilité
+D’autre part, nous avons priorisé les rendements de production d’énergie finale les plus
+efficaces à partir de la biomasse. La biomasse ligneuse est d’abord affectée à la demande de
+combustibles solides (pas de conversion), puis à celle de combustible gazeux via des procédés
+2G (60 % de rendement supposé en 2050), puis à celle de combustibles liquides via des procédés
+2G là-aussi (50 % de rendement en 2050).
+Pour le mix électrique, nous avons priorisé une base de nucléaire la plus ambitieuse
+possible. Cette technologie est la plus efficace en termes de consommation de matériaux au
+niveau du système électrique (plus le système électrique en dispose, moins il est consommateur
+de matériaux pour un niveau de production donné) ; elle permet de réduire les besoins en
+vecteurs gazeux pour l’équilibrage du réseau 11, qui seront en disponibilité limitée ; elle apporte
+de la stabilité au système électrique, ce qui permet de s’affranchir du risque technologique que
+pose la faible maturité des technologies permettant le fonctionnement stable d’un système
+électrique avec 100 % ENR.
+
+
+
+
+9
+  Comme souligné dans la partie I.D.3, l’atteinte de cet objectif n’est pas évidente. Il s’agit donc de planifier et de mettre
+les moyens en adéquation avec son atteinte, tout en développant de manière ambitieuse les renouvelables pour
+minimiser les risques de manque d’énergie en 2050.
+10
+   Dont nous excluons les cultures lignocellulosiques dédiées à la production d’énergie.
+11
+   RTE estime que dans un mix 100 % ENR en 2050, il faudrait produire ~15 TWh d’électricité par des moyens très
+flexibles (gaz ou hydrogène). Si l’on passe par le gaz, cela requiert ~3 Mtep de gaz, ce qui est significatif devant les ~20
+Mtep de biomasse dont on disposera en 2050.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                         30
+1. Les conversions entre vecteurs finaux
+
+Notre mix énergétique met en jeu des conversions entre vecteurs finaux :
+  •    Pour l’équilibrage du système électrique, en suivant le scénario N03 d’RTE, la combustion
+       de solides et de gaz est requise dans des centrales thermiques à flamme
+  •    Pour produire de l’hydrogène, nous passons par l’électrolyse de l’eau à partir d’électricité
+  •    Pour produire de la chaleur de réseau, en plus de passer par l’usage de vecteurs primaires,
+       nous passons par la combustion de solides et de gaz
+
+
+
+
+   Figure 6 : Schéma descriptif de la chaîne énergétique pour passer de l’énergie primaire à l’énergie finale. A
+partir de l’énergie primaire, l’industrie énergétique produit un ensemble de vecteurs sous forme finale (A), dont
+ une partie (B, les vecteurs intermédiaires) est en fait destinée à être convertie en d’autres formes de vecteurs
+finaux (C). Par exemple, la biomasse solide peut servir à produire de la chaleur, ou de l’électricité. La biomasse
+gaz peut servir à produire de l’électricité. L’électricité sert à produire de l’hydrogène. La demande globale (voir
+                                                Figure 2) est alors (D).
+
+
+Ces jeux de conversion entre vecteurs aboutissent à l’expression d’un besoin d’énergie finale ou
+intermédiaire à produire directement à partir de vecteurs primaires.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                              31
+                        Figure 7 : Energie finale à produire et conversions entre vecteurs.
+L’énergie finale « à produire à partir de primaire » correspond à (A) dans la Figure 3. « Pour conversions autres
+    vecteurs » correspond à (B). « Issu de conversion entre vecteurs » correspond à (C). La consommation
+                                    d’énergie finale + pertes correspond à (D).
+
+
+
+
+2. Les solides et la chaleur
+
+Pour produire la chaleur de réseau qui doit l’être à partir de vecteurs primaires, nous mobilisons
+les gisements proposés par le secteur logement : la géothermie, les déchets et la chaleur fatale
+industrielle.
+Pour produire les combustibles solides, nous exploitons la ressource en bois de forêt et en
+biomasse agricole essentiellement.
+
+
+3. Les gaz et liquides
+
+La production de gaz est satisfaite par le gisement en biogaz issu de la méthanisation et de gaz
+issu du bois de forêt ou hors forêt par les procédés 2G. La quantité de biométhane produite par
+méthanisation serait de 7 Mtep environ, soit un peu plus d’1/6 de la quantité de gaz consommée
+actuellement en France. Cela représente une montée de l’industrie de la méthanisation très
+conséquente, avec plusieurs milliers d’installations sur le territoire.
+La production de liquides ne peut être satisfaite qu’à 17 % à partir de biomasse (via les procédés
+2G à partir de bois de forêt ou hors forêt). Le reste est satisfait par des importations de liquides
+fossiles. La biomasse assure ainsi un peu plus de 2 Mtep de production de liquides, par des
+procédés 2G. Cette quantité, faible devant nos consommations actuelles, prend une autre
+dimension à partir de biomasse : il faudrait une vingtaine de bioraffineries produisant un peu plus
+de 100 000 t de carburant/an (IFPEN, 2015), et drainant chacune 560 000 t de biomasse (du
+bois), soit un peu plus de 50 poids-lourds chaque jour de l’année.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                            32
+                    Mix de production des vecteurs finaux ou
+                    intermédiaires à partir de vecteurs primaires
+                    PTEF, 2050
+               14
+                                                                       Fossile
+               12
+                                                                       Déchets (UVE) +
+               10                                                      récup chaleur indus
+
+               8                                                       Géothermie
+     Mtep/an
+
+
+
+
+               6                                                       Biomasse
+                                                                       lignocellulosique
+               4
+                                                                       Biomasse agricole
+               2                                                       méthanisable
+
+                                                                       Biomasse agricole non
+               0                                                       méthanisable
+                       Gaz   Liquides Solides Chaleur
+
+
+
+Cette exploitation de la biomasse permet d’éviter un peu plus de 25 MtCO2e/an d’émissions par
+rapport à un usage de fossiles.
+Notons que sans cette exploitation de la biomasse à une échelle industrielle (mais très limitée
+par rapport à nos consommations actuelles), une sobriété plus forte dans l’aérien et des pratiques
+agricoles et forestières qui se passent d’engins mobiles thermiques seraient requises.
+
+
+4. L’électricité
+
+Le mix électrique a été construit en se basant sur le scénario N03 d’RTE, celui qui développe de
+manière la plus ambitieuse les capacités nucléaires de filière française. Une différence notable
+sépare le scénario N03 en 2050 du point d’arrivée du PTEF : le niveau de demande en électricité.
+La production d’électricité requise pour alimenter la société suite aux transformations proposées
+par le PTEF (production d’hydrogène comprise) est de 610 TWh, quand celle retenue par RTE
+dans son scénario central est de 650 TWh.
+Comme mentionné dans la partie I.D.3, nous considérons qu’un mix est d’autant plus efficace en
+termes de consommation de matériaux et de consommation d’énergies liquides ou gazeuses qu’il
+contient de nucléaire 12. Nous conservons de ce fait la capacité et le productible nucléaire
+maximaux envisagés par RTE : 50 GW installés pour 330 TWh produits.
+
+
+
+
+12
+  En tous cas aux alentours de la part de nucléaire où nous nous situons (<70 %). Le raisonnement ne vaudrait plus
+au-delà d’une certaine part, le nucléaire devenant alors moins efficace en suivi de la demande que les technologies
+thermiques.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                    33
+Nous conservons également les capacités hydrauliques envisagées par RTE : 22 GW pour
+63 TWh produits.
+Par un raisonnement conservatif, nous conservons les capacités et le productible du thermique
+à flamme du scénario d’RTE, même si la part relative d’ENR variables dans notre mix est moindre.
+Ainsi, nous nous assurons d’un niveau de sécurité d’approvisionnement au moins aussi bon que
+celui prévu par RTE (qui est d’un même niveau que celui que nous connaissons aujourd’hui).
+Enfin, nous complétons le mix (soit un complément de 180 TWh) par les énergies renouvelables
+variables, au prorata de ce qui est envisagé par RTE (soit environ 1/3 d’éolien en mer, 1/3 d’éolien
+terrestre et 1/3 de PV).
+
+
+
+                  Comparaison mix électriques (production
+                  annuelle)
+                  2019, et N03 / PTEF 2050
+         700
+
+         600
+
+         500
+                                                                            Thermique à flamme
+         400
+   TWh
+
+
+
+
+                                                                            PV
+         300                                                                Eolien en mer
+                                                                            Eolien terrestre
+         200
+                                                                            Hydroélec
+         100                                                                Nucléaire
+
+            0
+                     2019            RTE N03         PTEF 2050
+                 (y.c. balance                        (balance
+                 commerciale)                       commerciale
+                                                        nulle)
+
+   Figure 8 : Comparaison des mix électriques actuel, en 2050 pour le scénario N03 d’RTE et en 2050 pour le
+                                                   PTEF.
+
+
+
+
+Le choix de ce mix sous-entend un fort développement de renouvelables variables. En
+moyenne sur les 28 années à venir, il faut développer en moyenne 0,7 GW d’éolien terrestre,
+0,65 GW d’éolien en mer, et 1,75 GW de PV. Il sous-entend un déploiement maximal de ce
+que peut fournir la filière nucléaire française, selon ses propres estimations.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                            34
+5. Ensemble du mix
+
+Le mix obtenu en suivant les logiques du PTEF est décrit sur le diagramme suivant.
+
+
+
+
+  Figure 9 : Production d’énergie finale, par source primaire, en 2019 et en 2050 suite à application du PTEF.
+
+
+
+
+On constate la forte contraction de la consommation d’énergie finale par notre société. Cette forte
+contraction est essentiellement due :
+     •    Aux efforts de sobriété et d’efficacité organisationnelle dans les différents secteurs du
+          PTEF
+     •    Aux efforts d’amélioration technologique visant la baisse de la consommation unitaire,
+          des équipements des ménages et des procédés industriels
+     •    A un recours accru à l’électricité, qui est une énergie finale plus « efficace » que les
+          vecteurs thermiques.
+
+
+On constate ici visuellement l’écart d’ordre de grandeur entre la biomasse disponible de
+manière raisonnable et avec une bonne probabilité en 2050 et la consommation actuelle
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                               35
+d’énergie fossile. La consommation de ce type de vecteur est drastiquement réduite, et
+consomme pourtant l’ensemble du gisement « raisonnable et certain » de biomasse (17 Mtep).
+On constate également la place centrale que prend le vecteur électricité dans la société telle
+qu’elle adviendrait suite à la mise en place du PTEF.
+On constate enfin que l’objectif de se passer complètement d’énergie fossile n’est pas
+atteint, malgré les efforts très conséquents de sobriété, d’efficacité organisationnelle,
+d’amélioration technologique et d’électrification qu’embarquent les propositions du PTEF.
+Etant donné la certaine « fluidité » de la biomasse pour répondre aux besoins en gaz et en
+liquides, il ne faut pas faire porter la responsabilité de ce besoin résiduel par les uniques secteurs
+demandeurs d’énergie liquide, mais par ceux qui demandent du gaz OU des liquides.
+  •    La fabrication de matières à partir de pétrole est la première consommatrice de ces formes
+       d’énergie
+  •    C’est ensuite l’industrie via sa demande résiduelle en gaz et en liquides
+  •    Puis les secteurs de l’aviation et de l’agriculture
+
+
+C. Le bilan carbone
+
+1. Les émissions énergétiques
+
+Etant donné le mix sélectionné, les différents vecteurs voient leur facteur d’émission fortement
+évoluer par rapport à 2020. Voici une synthèse de cette évolution pour nos types de vecteurs.
+
+
+
+kgCO2e/tep PCI             Solides          Liquides            Gaz          Electricité   Chaleur
+          2020                   1484             2956              2767             398        657
+          2027                   1415             2907              2866             159        518
+          2050                    257              448               262               0        215
+
+
+
+Ces évolutions s’expliquent par les effets suivants :
+  •    Pour les solides, le charbon n’est plus présent dans le mix. Il y subsiste des déchets non
+       renouvelables qui sont valorisés énergétiquement par l’industrie.
+  •    Pour les liquides (utilisés comme combustibles), la part des fossiles passe de 95 % à 45 %,
+       ce qui explique la division par 2 du FE moyen.
+  •    Le gaz est produit à partir de méthanisation essentiellement, si bien qu’on retrouve le FE
+       de ce procédé (essentiellement dû aux fuites de méthane).
+  •    Dans l’électricité, les rares centrales thermiques à flamme sont alimentées par des
+       combustibles issus de la biomasse uniquement, amenant le FE de l’électricité proche de
+       zéro.
+  •    La production de chaleur passe plus fortement par la chaleur environnement (captée par
+       les pompes à chaleur), qui est décarbonée : de 40 % en 2020 à 70 % en 2050. Le reste de
+       la chaleur continue entre autre à valoriser les déchets y compris non renouvelables (comme
+       les plastiques, qui sont toujours produits à partir de pétrole fossile), si bien que son FE ne
+       tombe pas à zéro.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                    36
+Les émissions énergétiques sont réduites à 10 MtCO2e en 2050, contre environ 300 aujourd’hui.
+
+
+             Emissions énergétiques de GES
+             PTEF 2050
+            12
+
+
+            10
+
+
+            8                                                 Chaleur
+                                                              Electricité
+   MtCO2e
+
+
+
+
+            6                                                 H2
+                                                              Gaz
+            4                                                 Liquides
+                                                              Solides
+            2
+
+
+            0
+                               2050
+
+
+
+
+2. Les émissions non énergétiques et les puits
+
+Les émissions non énergétiques proviennent de certains procédés industriels, de l’agriculture, du
+traitement des déchets et des climatisations/ réfrigérations. Elles représentent environ 140
+MtCO2e/an actuellement.
+Les émissions non énergétiques de l’industrie seront divisées par un facteur 3 par la mise en
+place du PTEF. Celles de l’agriculture, par 2.
+A défaut de proposition sur la conception et l’usage des équipements de réfrigération et
+de climatisation, ou sur le traitement des déchets, dans le PTEF, nous supposons une
+stabilité des émissions entre 2020 et 2050.
+
+
+Les puits proviennent de l’utilisation des terres, du changement d’affectation des terres et de la
+foresterie (UTCATF). Aujourd’hui, ces puits sont essentiellement constitués de la forêt en
+croissance et des terres qui sont nouvellement converties en forêt. Ils sont partiellement
+compensés par les terres qui sont converties en terres agricoles et de celles qui sont artificialisés.
+Ainsi, ce secteur capte actuellement environ 25-30 MtCO2e/an.
+En l’état de nos recherches et de nos propositions, nous estimons prudent de ne pas
+parier sur un accroissement durable des puits :
+
+  •     Le stockage de carbone par les prairies et les champs via des pratiques agricoles/
+        d’élevage ne pourrait être que temporaire (ce puits serait plein en une trentaine d’années),
+        et incertain (les conditions climatiques pourraient le faire déborder).
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                 37
+     •    Le changement d’affectation des champs en forêt, ou l’arrêt des pourrait constituer un puits
+          pendant quelques décennies. Mais tout comme le stockage dans les prairies et les champs,
+          cela ne serait que temporaire et incertain. D’autre part, nous n’avons pas exploré ce type
+          de proposition.
+     •    A l’heure actuelle, l’artificialisation des terres (essentiellement sur des champs, des prairies
+          et de la forêt) émet 10 MtCO2/an. Réduire cette artificialisation permettrait donc un gain de
+          10 MtCO2 dans le secteur UTCATF. Le secteur logement n’ayant pas encore tranché sur
+          sa trajectoire de construction neuve 13, nous considérons, pour être conservatifs dans notre
+          estimation carbone, une stabilité de l’artificialisation.
+
+
+La capture et séquestration de carbone (CSC) se développe dans l’industrie, à hauteur de
+3 MtCO2e/an en 2050.
+
+
+3. Bilan carbone global
+
+Ainsi, au global, le bilan carbone long-terme du PTEF est le suivant :
+
+
+
+                    Emissions de GES par secteur
+                    Energétiques et non énergétiques
+                    PTEF 2050
+              100
+                                                                           Traitement
+              80                                                            déchets
+                    Indus énergie
+                    (Auto-conso +
+                       pertes)
+              60                                                          Agri et Forêt
+
+
+              40     Transports
+     MtCO2e
+
+
+
+
+                       Tertiaire
+              20     Résidentiel
+                                                                            Industrie
+
+               0
+                                                 2050
+                                                                            UTCATF et
+              -20                                                             CSC
+
+
+              -40
+
+On voit que les émissions non énergétiques dominent largement.
+On constate également que le PTEF n’atteint pas la neutralité carbone. Cela est dû à plusieurs
+de nos choix structurants :
+
+
+
+
+13
+   Si la trajectoire se rapproche du scénario « Bas » du secteur logement alors l’artificialisation nette pourrait s’annuler
+d’ici 2050 ; si elle se rapproche plutôt du scénario « Médian », alors l’artificialisation ne ferait que se stabiliser par
+rapport à aujourd’hui.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                         38
+  •    Des propositions manquantes : comme mentionné, nous n’avons pas fait de propositions
+       sur les gaz réfrigérants ou sur le traitement des déchets, alors qu’ils comptent pour
+       30 MtCO2e en 2020, soit environ 1/3 de nos émissions en 2050 dans le cadre du PTEF.
+  •    Aller plus loin requerrait assez directement des efforts de sobriété, étant donné que
+       les secteurs ont déjà poussé les améliorations technologiques et l’efficacité
+       organisationnelle :
+           o dans le logement, nous aurions pu opter pour le scénario de réduction forte de la
+               construction neuve, qui pourrait jouer sur 10 MtCO2e supplémentaires de par l’arrêt
+               de l’artificialisation nette des sols, et sur 2 Mt dus à la production de ciment. Ce
+               choix nous a semblé mériter particulièrement une discussion démocratique avant
+               d’être tranché. (The Shift Project, 2021)
+           o Les transformations envisagées dans le secteur de l’agriculture nous paraissent
+               d’ores et déjà très volontaristes. Les émissions restantes (environ 35 MtCO2e)
+               proviennent pour moitié du cheptel bovin restant (qui est déjà divisé par 2 suite aux
+               propositions du PTEF de réduire leur consommation), et de l’épandage d’engrais
+               azotés (décarbonés) déjà fortement réduit par un déploiement des pratiques
+               agroécologiques (Lallemand, 2020). Aller plus loin dans la décarbonation de ce
+               secteur passerait prioritairement par une réduction encore plus forte de la
+               consommation de bovins.
+           o Réduire notre consommation de biomasse énergétique pourrait permettre d’en
+               libérer pour décarboner nos plastiques, ce qui réduirait l’impact du secteur de la
+               chimie et éviterait les émissions dus à l’incinération des déchets en plastique. Cela
+               signifierait essentiellement une réduction de l’usage de l’avion, et une mécanisation
+               encore plus réduite des pratiques agricoles et forestières.
+  •    Une estimation prudentielle des puits durables disponibles en 2050, comme cela a été
+       évoqué.
+
+
+
+
+V. Evolutions énergie-climat par la mise en place
+du PTEF entre 2022 et 2050
+
+A. Evolution de la demande en énergie finale
+La mise en application du PTEF permet une réduction forte de la consommation d’énergie finale.
+Celle-ci passe de 170 Mtep à environ 85 Mtep, soit une division par 2.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022               39
+                   Evolution de la consommation d'énergie finale, par
+                   secteur
+                   par la mise en place du PTEF entre 2022 et 2050
+             180
+                                                                                     Indus énergie (Auto-conso
+             160                                                                     + pertes)
+             140                                                                     Agri et Forêt
+
+             120
+                                                                                     Transports
+             100
+   Mtep/an
+
+
+
+
+             80                                                                      Tertiaire
+
+             60
+                                                                                     Résidentiel
+             40
+             20                                                                      Mat. Prem. Industrie
+
+              0                                                                      Industrie
+                       2022               2027                2050
+
+
+
+
+                   Evolution de la consommation d'énergie finale, par
+                   vecteur
+                   par la mise en place du PTEF entre 2022 et 2050
+             180
+             160
+             140                                                                                   Chaleur envir.
+             120                                                                                   Chaleur
+                                                                                                   Electricité
+   Mtep/an
+
+
+
+
+             100
+             80                                                                                    H2
+             60                                                                                    Gaz
+
+             40                                                                                    Liquides
+
+             20                                                                                    Solides
+
+              0
+                         2022                     2027                     2050
+
+
+
+
+B. Evolution du bilan carbone
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                  40
+                        Emissions de GES par secteur
+                        Energétiques et non énergétiques
+                        par la mise en place du PTEF entre 2022 et 2050
+            500
+                                                                                     UTCATF et CSC
+            400
+                                                                                     Traitement déchets
+            300
+                                                                                     Indus énergie (Auto-
+   MtCO2e
+
+
+
+
+                                                                                     conso + pertes)
+            200
+                                                                                     Agri et Forêt
+
+            100
+                                                                                     Transports
+
+              0                                                                      Tertiaire
+                       2022                2027                2050
+            -100
+
+
+
+VI. Grands enseignements de l’évaluation
+énergie-climat du PTEF
+
+A. La disponibilité en carburants liquides et gazeux non
+fossiles sera vraisemblablement très limitée
+Comme nous l’avons décrit dans la partie Erreur ! Source du renvoi introuvable., il faudra se
+passer au maximum de ces formes d’énergie, sans quoi nous devrions leur dédier un espace de
+culture qui représenterait une part majeure de notre pays pour les produire à partir de biomasse,
+ou alors multiplier notre production électrique par 5 pour réussir à les synthétiser. Ainsi, de
+manière raisonnable, on peut estimer que nos consommations d’énergie liquide et gazeuse
+doivent être divisées par plus de 6.
+Sans parler de ces limitations, programmer de remplacer le pétrole et le gaz par leurs avatars
+« bio » ou « de synthèse » ne ferait que retarder les transformations nécessaires, en ne
+changeant ni les infrastructures industrielles concernées, ni les équipements de consommation
+(voitures, chaudières…) qui seront alors prêts à accueillir les fossiles lorsqu’on se rendra compte,
+par exemple, que les « bio » ne suffisent pas, ou sont trop chers.
+
+
+Préparer le déclin des carburants liquides et gazeux. Comme nous l’avons vu, les
+combustibles liquides et gazeux vont en grande partie sortir de nos vies et de notre économie.
+Les filières du pétrole et du gaz vont donc voir leurs activités en France diminuer fortement d’ici
+2050.
+Cela ne peut se faire sans préparation sérieuse et sans coordination avec l’évolution du reste de
+l’économie. Tout comme la mise en service du réseau gazier s’est faite au fil du temps, en
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                          41
+équipant chaque maison avant d’y injecter le gaz, il faudra réaliser une opération inverse, quartier
+par quartier, commune par commune : remplacer les équipements au gaz par des équipements
+électriques dans chaque maison et appartement, puis condamner les portions de réseau
+devenues inutiles. Certaines portions du réseau pourront rester fonctionnelles selon les besoins
+résiduels en consommation de gaz et selon les possibilités d’injection de biogaz, moyennant
+quelques adaptations, par exemple sur la puissance des compresseurs qui permettent au gaz de
+circuler.
+Il faudra faire de même avec le réseau de stations-service : à mesure que les ménages en France
+s’équipent de voitures électriques et que leurs foyers sont équipés en bornes de recharge,
+certaines stations-service pourront fermer ; puis des dates de fermeture par localités seront
+décidées, cinq ans à l’avance, pour laisser le temps aux derniers ménages de changer de voiture.
+Évidemment, une politique d’aide à ceux qui n’ont pas les moyens de changer de voiture devra
+être mise en place pour que personne ne se retrouve sans moyen de se déplacer.
+Dans le même temps, l’emploi dans les secteurs gaziers et pétroliers en France va chuter, ce qui
+doit être anticipé.
+
+
+
+
+B. Plus on tarde à lancer les grands travaux d’infrastructures
+électriques, plus la sobriété sera forte en 2050
+Le système électrique va devenir l’infrastructure énergétique majeure de demain. Prises
+ensemble, les transformations du PTEF induisent d’ici 2050 une hausse de la consommation
+d’électricité de 20 % environ, et une très forte dépendance de l’économie et de nos modes
+de vie au bon fonctionnement du système électrique. Si chacun de nos chauffages,
+cuisinières, voitures, écrans et une large partie des machines de nos usines fonctionnent à
+l’électricité, mieux vaut que celle-ci soit toujours disponible à la prise !
+Ce système électrique va devoir muter fortement et rapidement. Nos réacteurs nucléaires ont en
+effet été mis en service de façon groupée à partir des années 1980, et un grand nombre d’entre
+eux va devoir s’arrêter sur un laps de temps court. Si l’on veut avoir assez d’électricité lorsque
+ces réacteurs prendront la retraite, des capacités de remplacement devront à ce moment-là être
+opérationnelles. Le timing est serré (voir I.D.3). Lors de la décennie 2040, 80 % des réacteurs
+atteindraient soixante ans, si jamais ils passaient avec succès leur précédente visite décennale
+(leur « examen de sûreté »). D’après ses propres estimations, l’industrie électronucléaire
+française sera au mieux capable de produire une paire de réacteurs de type EPR tous les deux
+ans à partir de 2035, si leur construction est actée au cours du prochain quinquennat.
+Mais ces mutations seront loin de suffire : le nucléaire et les barrages hydroélectriques ne
+répondraient alors qu’à environ 65 % de la consommation des secteurs du PTEF en 2050.
+Il est en outre nécessaire d’accélérer l’installation d’énergies renouvelables électriques (les « EnR
+», éolien et photovoltaïque essentiellement) sans tomber dans la surconsommation de matériaux
+et d’espace foncier, et/ou de faire appel à une filière électronucléaire étrangère (ou privée ?).
+Selon les estimations les plus récentes d’RTE, avec la base de nucléaire que nous avons retenue,
+un complément par les ENR signifierait environ 10 000 mats d’éoliennes terrestres en plus
+qu’aujourd’hui, soit 14 000 mats. Si on imagine que les éoliennes se répartissent en parc de 10
+éoliennes en moyenne, soit 1400 parcs au total, ce serait environ 2 % des communes françaises
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                42
+qui verraient un nouveau parc s’installer chez elles 14. Un complément par les ENR signifierait
+également environ 60 000 ha utilisés pour la production de photovoltaïque au sol, soit 0,1% de la
+surface du pays. En termes d’affectation annuelle de cet espace, il faudrait affecter 2100 ha
+chaque année au PV, à comparer à l’artificialisation totale actuelle qui est d’un ordre de grandeur
+supérieur (environ 25 000 ha/an, dont les deux tiers pour la construction de logements) 15.
+Puisque la ligne de crête est étroite, il faut mettre toutes les chances de notre côté en
+menant les efforts de front : sobriété, efficacité, nucléaire et renouvelables. Si nous ne
+parvenons à suivre cette crête, des politiques de sobriété bien plus strictes devront être préparées
+et acceptées démocratiquement. Pour éviter un tel débat, le risque sera alors grand que l’objectif
+de décarbonation soit remis à plus tard…
+Si le choix d’un déploiement accéléré des EnR est fait en complément du nucléaire français, il
+faudra y adapter notre réseau électrique en développant les interconnexions avec nos voisins
+européens 16, et en permettant un certain pilotage de machines et équipements connectés au
+réseau 17. Ces leviers, avec une base de production nucléaire, devraient suffire à assurer la
+fiabilité du réseau sans recours à du stockage massif par batterie. Dans ce cas de figure, un
+complément faible de centrales électriques thermique à flamme (par exemple alimenté au biogaz
+ou à la biomasse) suffira, selon le rapport Futurs énergétiques 2050 publié en 2021 par Réseau
+transport d’électricité.
+Enfin, il faudra déployer deux grands réseaux de bornes de recharge pour les voitures et utilitaires
+légers électriques : un réseau « lent », chez les particuliers et sur les lieux de travail, pour assurer
+les recharges « quotidiennes », et un réseau « rapide », le long des autoroutes ou des nationales,
+qui permettra une recharge complète en trente minutes.
+
+
+
+
+C. Les filières énergétiques secondaires basées sur la
+biomasse ou l’électricité doivent être développées de manière
+ambitieuse mais contrôlée
+L’électricité sera l’énergie majoritaire. Mais d’autres formes d’énergie seront consommées, en
+quantités relativement plus petites.
+Le bois ou la biomasse agricole, ainsi que la chaleur distribuée par réseau seront consommés
+essentiellement dans le résidentiel et le tertiaire pour se chauffer. Du bois sera également utilisé
+pour produire de l’électricité.
+Le gaz issu de l’agriculture continuera d’être consommé dans les différents secteurs de
+l’économie, mais en des quantités cinq fois moindres que le gaz naturel actuellement. Ces
+quantités sont néanmoins très élevées quand il s’agit de les produire par méthanisation : plusieurs
+milliers d’installations de méthanisation seront nécessaires sur le territoire, chacune pour drainer
+
+
+
+14
+   Ce serait environ le double si on se passait de nucléaire.
+15
+   Cela serait 3 fois plus si on se passait de nucléaire.
+16
+   Cela permet de bénéficier d’effets de « foisonnement », notamment pour l’éolien, car plusieurs régimes de vent
+circulent en Europe, si bien qu’il peut être plus avantageux de mettre en commun la production grâce aux
+interconnexions que d’installer des moyens de production supplémentaires dans tous les pays.
+17
+   Par exemple, les voitures électriques peuvent se recharger préférentiellement en pleine nuit lorsque la demande en
+électricité est faible, ou en milieu de journée lorsqu’il y a du soleil, plutôt que le soir vers 19 heures au moment où le
+plus de gens les branchent ; les chauffe-eau peuvent partiellement être pilotés, en décalant par exemple d’une demi-
+heure le réchauffage de l’eau.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                                       43
+les résidus agricoles de plusieurs communes. Le gaz obtenu devra alors être injecté sur le réseau
+ou consommé localement par les machines agricoles.
+
+
+Les agrocarburants et l’hydrogène que nous parviendrions à produire en 2050 seront
+essentiellement utilisés dans l’aviation et l’industrie.
+Par exemple pour que l’aérien puisse effectivement passer à l’hydrogène, les aéroports encore
+ouverts d’ici 2040 devraient s’équiper d’usines d’électrolyse de quelques hectares, dont les
+électrolyseurs seraient mis en service au fur et à mesure du déploiement de la flotte d’avions
+hydrogène. Ce mouvement devrait se faire simultanément dans différents aéroports européens,
+pour ouvrir progressivement des lignes adaptées aux vols à hydrogène.
+Les industries consommatrices d’hydrogène (les sites restants de production d’ammoniac et de
+raffinage) devront aussi investir dans leurs installations d’électrolyse.
+Des carburants liquides seront produits pour alimenter en priorité les stocks stratégiques de la
+nation, les groupes électrogènes de secours (hôpitaux, centrales électriques…), et les armées.
+Dans un monde en transition, il s’agira d’une ressource rare et chère issue de la transformation
+de résidus agricoles et de bois, disponible en quantités très limitées face à la demande, au niveau
+européen. Les quelques grands aéroports français qui assureront les lignes long-courrier encore
+en vigueur seront partiellement approvisionnés par ces carburants, en des volumes qui
+dépendront des rendements agricoles et forestiers chaque année. Des zones agricoles et
+forestières de l’échelle de quelques départements se structureront autour d’agroraffineries de
+deuxième génération, afin de produire quelques millions de tonnes de carburant qui seront
+transportées vers les points stratégiques et les aéroports.
+Il faudra se fixer une limite collective claire à l’exploitation de la biomasse à des fins
+énergétiques, comme par un exemple un taux maximal d’espace dédié à cette production
+énergétique : par exemple, ne pas dédier, dans chaque région, plus de 5% de la surface arable
+et forestière à la production énergétique. Dans le PTEF, nous proposons même par prudence
+de ne dédier aucune surface agricole, et aucune nouvelle surface forestière, à cette
+production.
+
+
+
+
+D. Un retard dans la transformation du reste de l’économie vers
+la sobriété systémique et l’efficacité induira des arbitrages
+énergétiques difficiles
+Le déploiement accéléré mais résolument orienté vers la décarbonation et la résilience de ces
+infrastructures énergétiques doit être décidé et déclenché dès le prochain quinquennat. Il est une
+condition clé de réduction des risques énergétiques et matériels auxquels nous ferons face au
+cours du XXIème siècle.
+Une sobriété systémique doit être organisée collectivement. Une telle sobriété requiert le
+déploiement d’infrastructures, d’équipements et de services, qui fera à nouveau appel au
+tissu économique : réseau cyclable, vélos à assistance électriques et services associés ;
+infrastructures ferroviaires, haut niveau de service du train à l’échelle française et européenne et
+offre touristique locale attractive ; autoroutes électriques pour les camions et les autocars ;
+voitures moins puissantes et aérodynamiques ; consignes de réutilisation des emballages et
+filières de recyclage ; réduction du cheptel bovin au profit des petites productions de qualité…
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022               44
+Elle permet une réduction d’ensemble de la demande énergétique et matérielle, tout en
+conservant nos usages et nos libertés essentielles. Elle est indispensable pour assurer que
+chacun puisse encore jouir de ces usages et libertés essentielles dans le contexte à venir
+de diminution de la disponibilité en énergie : toute sobriété non organisée serait alors subie
+de plein fouet par une réduction pure et simple de nos usages.
+Ces déploiements d’infrastructures et services doivent s’effectuer en parallèle de la mise à jour
+massive des parcs d’équipements ménagers (gazinières, chauffages, éclairages, terminaux
+numériques, petites automobiles…) ou publics/industriels (bus, camions, trains, véhicules
+utilitaires, procédés industriels…) : ils doivent être électrifiés au maximum et gagner en
+efficacité énergétique sans quoi les usages correspondant ne sauraient être ni décarbonés ni
+assurés. Il doit s’accompagner d’une rénovation thermique des bâtiments publics, individuels
+ou privés très large afin de réduire le risque de manquer d’électricité et donc d’arbitrer sur les
+usages qui y auront droit.
+C’est la conjonction coordonnée de ces deux mouvements : déploiement planifié d’infrastructures
+énergétiques, et déploiement lui aussi planifié d’infrastructures et d’équipements permettant la
+massification de la sobriété et de l’efficacité énergétique, qui permettra de naviguer avec sérénité
+dans ce XXIème siècle soumis aux limites d’un monde fini.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022               45
+VII. Bibliographie
+ADEME. (2018). Un mix de gaz 100% renouvelable en France ? Etude de faisabilité technico-
+
+          économique (p. 283). ADEME.
+
+ADEME. (2021). Transition(s) 2050—Choisir maintenant, agir pour le climat (p. 687). ADEME.
+
+Christensen, A., & Petrenko, C. (2017). CO2-Based Synthetic Fuel : Assessment of Potential
+
+          European Capacity and Environmental Performance (p. 67). ECF / ICCT.
+
+CITEPA. (2020). Organisation et méthodes des inventaires nationaux des émissions
+
+          atmosphériques en France (p. 981).
+
+CITEPA. (2021). Inventaire national d’émissions de gaz à effet de serre et de polluants
+
+          atmosphériques—Format CNUCC. Consulté à l’adresse citepa.org
+
+EUROSTAT. (2021, avril 14). Bilans énergétiques—France. Consulté 9 septembre 2020, à
+
+          l’adresse https://ec.europa.eu/eurostat/fr/web/energy/data/energy-balances
+
+France Stratégie. (2021). La biomasse agricole : Quelles ressources pour quel potentiel
+
+          énergétique ? (p. 136). France Stratégie.
+
+IFPEN. (2015). Biocarburants de deuxième génération : Une nouvelle étape est franchie (p. 6).
+
+          IFPEN.               Consulté                 à          l’adresse              IFPEN            website:
+
+          https://www.connaissancedesenergies.org/sites/default/files/pdf-pt-
+
+          vue/ifpen_biocarburant2emegeneration.pdf
+
+Lallemand, F. (2020). Vers un plan de transformation de l’économie française en faveur du climat
+
+          et de la résilience—Agriculture et alimentation (p. 35). The Shift Project. Consulté à
+
+          l’adresse         The        Shift        Project        website:          https://theshiftproject.org/wp-
+
+          content/uploads/2021/04/TSP-PTEF-V1-FL-Agriculture.pdf
+
+MTES. (2020). Stratégie nationale bas-carbone—La transition écologique et solidaire vers la
+
+          neutralité           carbone            (p.          192).          Consulté            à       l’adresse
+
+          https://www.ecologie.gouv.fr/sites/default/files/2020-03-25_MTES_SNBC2.pdf
+
+Roux, A., & Dhôte, J.-F. (2017). Quel rôle pour les forêts et la filière forêt-bois françaises dans
+
+          l’atténuation du changement climatique ? Une étude des freins et des leviers forestiers à
+
+          l’horizon 2050. INRA et IGN. Consulté à l’adresse INRA et IGN website: https://inventaire-
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                               46
+          forestier.ign.fr/IMG/pdf/419207-b987f-resource-etude-forets-bois-et-changement-
+
+          climatique-rapport.pdf
+
+RTE. (2018). Bilan électrique 2018 (p. 175). RTE.
+
+RTE. (2021). Futurs énergétiques 2050. RTE. Consulté à l’adresse RTE website: https://www.rte-
+
+          france.com/analyses-tendances-et-prospectives/bilan-previsionnel-2050-futurs-
+
+          energetiques#Lesdocuments
+
+Solagro. (2016). Le scénario Afterre 2050 (p. 96). Solagro.
+
+The Shift Project. (2021). Habiter dans une société bas carbone—Dans le cadre du Plan de
+
+          transformation           de       l’économie          française.           Consulté   à   l’adresse
+
+          https://theshiftproject.org/article/rapport-final-habiter-dans-une-societe-bas-carbone-7-
+
+          octobre-2021/
+
+WWF France / Solagro. (2022). Biomasse : Un réel potentiel pour la transition énergétique ? (p.
+
+          43). WWF France / Solagro.
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                        47
+À propos du Shift Project
+
+The Shift Project est un think tank qui œuvre en faveur d’une économie post-carbone.
+Association loi 1901 reconnue d’intérêt général et guidée par l’exigence de la rigueur
+scientifique, notre mission est d’éclairer et influencer le débat sur la transition énergétique en
+Europe. Le développement exponentiel du numérique, et la façon dont ce développement
+peut interagir avec les objectifs de décarbonation de nos sociétés, constitue l’un des angles
+essentiels des enjeux de la transition carbone.
+Nos membres sont de grandes entreprises qui veulent faire de la transition énergétique leur
+priorité.
+
+
+
+
+Contact:
+
+Nicolas Raillard
+Chef de projets
+Nicolas.raillard@theshiftproject.org
+
+
+
+
+                                                     16 rue de Budapest, 75009 Paris
+                                                     contact@theshiftproject.org
+                                                     www.theshiftproject.org
+
+
+
+
+L’évaluation énergie-climat du PTEF (relecture) – The Shift Project – février 2022                   48
+
