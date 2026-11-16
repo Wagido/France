@@ -24,7 +24,7 @@ function draw() {
   kpis("#rp-kpis", [
     [md(R.pib), [`richesse produite en France en ${R.annee}`], "PIB"],
     [md(R.po), [`soit <b>${pp(R.po)}</b>, prélevés en impôts (TVA, impôt sur le revenu…) et en cotisations sociales`, `il reste ${md(laisse)} (${pp(laisse)}) aux ménages et aux entreprises`], "Prélèvements obligatoires"],
-    [md(R.te), [`soit <b style="color:#dc2626">${pp(R.te)}</b>, dépensés par l'État, les collectivités et la Sécurité sociale`, `financés par les prélèvements (${md(R.po)}), d'autres recettes (${md(R.autres_recettes)}) et l'emprunt (${md(R.emprunt)})`], "Dépense publique"],
+    [md(R.te), [`c'est le fameux « <b style="color:#dc2626">${pp(R.te).replace(" du PIB", "")} du PIB</b> » : tout ce que l'État, les collectivités et la Sécurité sociale font passer par leurs caisses`, `mais ${md(redis)} sont aussitôt reversés aux ménages et aux entreprises (pensions, allocations, aides, intérêts) : ce n'est pas de la richesse « consommée » par l'État`, `payé par les prélèvements (${md(R.po)}), d'autres recettes (${md(R.autres_recettes)}) et l'emprunt (${md(R.emprunt)})`], "Argent public"],
     [md(prive), [`ce que gardent ménages et entreprises (${md(laisse)}) + ce que l'argent public leur reverse : pensions, allocations, aides, intérêts (${md(redis)})`, `ménages : ${md(men)} · entreprises : ${md(entG)} · prêteurs, associations, Europe : ${md(autres)}`], "Argent privé"],
   ]);
   const det = (...a) => a.map(([l, v]) => `${l} : ${md(v)}`).join("<br>");
