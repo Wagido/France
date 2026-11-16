@@ -108,15 +108,27 @@ function draw() {
     </ul>
     <p style="margin-bottom:2px"><b>2. « Riches, donc démocratiques » : la thèse de la modernisation</b></p>
     <ul>
-      <li>Lipset (1959) : en s'enrichissant, un pays forme une classe moyenne éduquée qui réclame des droits. La Corée du Sud et Taïwan dans les années 1980, ou l'Espagne après Franco, vont dans ce sens.</li>
-      <li>Mais Przeworski et Limongi (1997) ont nuancé : la richesse ne déclenche pas vraiment le passage à la démocratie, elle la rend durable. Au-delà d'un certain revenu, aucune démocratie ne s'est effondrée ; les démocraties pauvres, elles, basculent souvent.</li>
+      <li><b>Le point de départ, Lipset (1959)</b> : en s'enrichissant, un pays s'urbanise, s'éduque et voit naître une large classe moyenne.</li>
+      <li><b>Les classes moyennes, une fois à l'abri du besoin, réclament des droits</b> : liberté d'expression, élections libres, justice indépendante. Elles ont aussi quelque chose à protéger (un logement, une entreprise, une épargne) contre l'arbitraire du pouvoir.</li>
+      <li><b>« Pas de bourgeoisie, pas de démocratie »</b> (Barrington Moore, 1966) : en Angleterre, ce sont les marchands et les propriétaires qui ont imposé des limites au roi.</li>
+      <li><b>Qui paie des impôts veut contrôler leur usage</b> : « pas d'impôt sans représentation », criaient les colons américains en 1776. À l'inverse, les pays qui vivent de la rente pétrolière taxent peu leurs habitants, qui réclament moins de comptes : ils restent souvent autoritaires (Ross, 2001).</li>
+      <li><b>Des exemples</b> : la Corée du Sud (1987), Taïwan (fin des années 1980), l'Espagne après Franco, le Chili (1990) sont devenus démocratiques après une forte croissance.</li>
+      <li><b>Mais la thèse a ses limites</b> : la classe moyenne chinoise, aujourd'hui très nombreuse, n'a pas démocratisé le pays. Et Przeworski et Limongi (1997) ont montré que la richesse ne déclenche pas vraiment le passage à la démocratie : elle la rend durable. Au-delà d'un certain revenu, aucune démocratie ne s'est effondrée ; les démocraties pauvres, elles, basculent souvent.</li>
     </ul>
     <p style="margin-bottom:2px"><b>3. « Démocratiques, donc riches » : l'effet inverse</b></p>
     <ul>
       <li>Acemoglu, Naidu, Restrepo et Robinson (2019) : un pays qui se démocratise a, 25 ans après, un PIB par habitant environ 20 % plus élevé.</li>
-      <li>Les raisons avancées : plus d'investissement, plus d'éducation et de santé, moins d'instabilité.</li>
+      <li>Les raisons avancées : plus d'investissement, plus d'éducation et de santé, moins d'instabilité, et des dirigeants qui doivent rendre des comptes.</li>
     </ul>
-    <p style="margin-bottom:2px"><b>4. La réponse la plus solide : une cause commune</b></p>
+    <p style="margin-bottom:2px"><b>4. Et la religion ? La thèse de Max Weber</b></p>
+    <ul>
+      <li><b>La thèse (1905)</b> : dans <i>L'Éthique protestante et l'esprit du capitalisme</i>, Weber soutient que le protestantisme, surtout calviniste, a favorisé le capitalisme : le travail vu comme une vocation, l'épargne, le refus des dépenses de luxe, la réussite comme signe d'élection. D'où, selon lui, l'avance de l'Europe du Nord.</li>
+      <li><b>Ce que disent les études récentes</b> : les régions protestantes de Prusse étaient bien plus riches au XIX<sup>e</sup> siècle, mais l'écart s'explique presque entièrement par l'alphabétisation (Becker et Woessmann, 2009). Luther voulait que chacun lise la Bible : les protestants ont appris à lire plus tôt, et c'est cette instruction qui les a enrichis, plus qu'une morale du travail.</li>
+      <li><b>Pas d'effet direct sur la croissance</b> : dans les villes allemandes de 1300 à 1900, être passé au protestantisme n'a pas accéléré la croissance (Cantoni, 2015).</li>
+      <li><b>Un effet sur la démocratie</b> : dans les anciennes colonies, là où des missionnaires protestants ont ouvert des écoles, imprimé des livres et créé des associations, la démocratie est aujourd'hui plus solide (Woodberry, 2012).</li>
+      <li><b>En clair</b> : ce n'est pas tant la foi qui a compté que l'école qu'elle a apportée. C'est encore l'éducation, comme dans la thèse de la modernisation.</li>
+    </ul>
+    <p style="margin-bottom:2px"><b>5. La réponse la plus solide : une cause commune</b></p>
     <ul>
       <li>Acemoglu, Johnson, Robinson et Yared (2008) ont comparé chaque pays à lui-même dans le temps : ils ne trouvent presque plus d'effet de la richesse sur la démocratie.</li>
       <li>Les deux viennent surtout d'une même racine : des institutions qui limitent le pouvoir et protègent la propriété, souvent héritées de l'histoire. L'Angleterre après la Glorieuse Révolution de 1688 en est l'exemple classique.</li>
@@ -124,7 +136,8 @@ function draw() {
     <p style="margin-bottom:2px"><b>En résumé</b></p>
     <ul>
       <li>La démocratie aide à s'enrichir, modestement mais réellement.</li>
-      <li>La richesse aide surtout la démocratie à tenir.</li>
+      <li>La richesse aide surtout la démocratie à tenir, en faisant naître des classes moyennes qui réclament des droits et ont des biens à protéger.</li>
+      <li>L'éducation est le fil rouge : elle enrichit, elle nourrit la demande de libertés, et c'est par elle que le protestantisme a compté.</li>
       <li>Les deux reposent sur des institutions solides : c'est pourquoi elles sont présentées ici comme le socle de tout le reste.</li>
     </ul>`;
   $("#pr-vie-txt").innerHTML = `<ul>
