@@ -65,6 +65,7 @@ const S = [
   ["Solde extérieur", "eurostat", "tipsii10", "Position extérieure nette en % du PIB", null, "annuel"],
   ["Industrie et innovation", "eurostat", "nama_10_a10 / nama_10_a10_e", "Valeur ajoutée et emploi de l'industrie manufacturière, France et voisins", null, "annuel"],
   ["Énergie", "rte", "Futurs énergétiques 2050", "Coûts complets du système électrique selon six scénarios (2060)", "https://assets.rte-france.com/prod/public/2021-10/Futurs-Energetiques-2050-principaux-resultats_0.pdf", "ponctuel"],
+  ["Logement (économie)", "insee", "Revenus et patrimoine des ménages 2024", "Propriétaires et patrimoine selon l'âge (début 2021)", "https://www.insee.fr/fr/statistiques/7941429", "ponctuel"],
   ["Retraites", "eurostat", "spr_exp_pens / ilc_pnp2 / ilc_pnp3", "Dépenses de pensions, niveau de vie relatif des 65 ans et plus, taux de remplacement", null, "annuel"],
   ["Retraites", "eurostat", "demo_mlexpec / lfsa_ergan / demo_pjanind", "Espérance de vie à 65 ans, emploi des 60-64 ans, rapport de dépendance des personnes âgées", null, "annuel"],
   ["Pays prospère", "fmi", "World Economic Outlook (datamapper)", "PIB par habitant en PPA, chômage, dette et solde publics", "https://www.imf.org/external/datamapper/datasets/WEO", "semestriel"],
@@ -144,7 +145,7 @@ function render() {
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
 // en bas de chaque article, ses sources en petit
-const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], retraites: ["Retraites"], simulateur: ["Argent public", "PIB", "Argentine"],
+const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé", "Logement (économie)"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], retraites: ["Retraites"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine", "Solde extérieur"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"], prosperite: ["Pays prospère"],
   biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],

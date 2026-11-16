@@ -1,0 +1,18 @@
+{
+ "source_proprietaires": "INSEE, Revenus et patrimoine des ménages, édition 2024, fiche 3.10 « Détention de la résidence principale », figure 1 (enquêtes Patrimoine 1998, 2010, Histoire de vie et Patrimoine 2020-2021)",
+ "proprietaires": [
+  {"age": "Moins de 30 ans", "1998": 11.2, "2010": 12.8, "2021": 16.7},
+  {"age": "30 à 39 ans", "1998": 42.0, "2010": 47.2, "2021": 47.3},
+  {"age": "40 à 49 ans", "1998": 61.1, "2010": 58.5, "2021": 57.8},
+  {"age": "50 à 64 ans", "1998": 71.6, "2010": 69.1, "2021": 62.6},
+  {"age": "65 ans ou plus", "1998": 69.2, "2010": 71.7, "2021": 70.2}
+ ],
+ "source_patrimoine": "INSEE, Revenus et patrimoine des ménages, édition 2024, fiche « Patrimoine brut des ménages » (début 2021)",
+ "patrimoine_median": [
+  {"age": "Moins de 30 ans", "v": 20400},
+  {"age": "60 à 69 ans", "v": 232800},
+  {"age": "70 ans ou plus", "v": 211500}
+ ],
+ "mises_en_chantier_2025": 269700,
+ "source_chantiers": "SDES, logements commencés en 2025 (estimation, repris par la presse et l'INSEE) ; plus bas niveau depuis 2000 en 2024"
+}
