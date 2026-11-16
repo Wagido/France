@@ -43,16 +43,15 @@ function draw() {
       <li><b>Les 30 000 euros quittent le circuit français</b> : ce sont les salariés de Volkswagen qui les touchent, et ils les dépensent en Allemagne. Si la voiture avait été fabriquée en France, cet argent aurait payé des ouvriers français, qui l'auraient dépensé chez le boulanger, à la supérette, chez le coiffeur, qui l'auraient eux-mêmes dépensé ailleurs en France.</li>
       <li><b>Résultat : moins d'activité et moins d'emplois en France</b>. Le boulanger a moins de clients, l'usine française qui aurait pu fabriquer la voiture n'existe pas ou ferme. C'est le lien direct entre déficit commercial et désindustrialisation (voir l'onglet <a href="#industrie">Industrie et innovation</a>).</li>
       <li><b>Et sur la durée, la dette</b> : les Français continuent pourtant d'acheter autant. Puisque leurs ventes à l'étranger ne rapportent pas assez pour tout payer, la différence vient de leur épargne, du crédit, et des dépenses de l'État financées par l'emprunt (par exemple les allocations chômage des emplois perdus). Une bonne partie de cet emprunt est prêtée par des épargnants étrangers : c'est pourquoi la France doit chaque année un peu plus au reste du monde (graphique de droite).</li>
-      <li><b>Alors, quel rapport avec l'État ?</b> On vient de voir que ce sont les entreprises et les ménages qui achètent à l'étranger. Mais pour le pays dans son ensemble, une seule question compte : <b>épargne-t-il assez pour financer ce qu'il dépense ?</b>
+      <li><b>Pourquoi l'État pèse-t-il autant dans cette dette ?</b> Parce que, pour le pays tout entier, tout se joue entre ce qu'on met de côté et ce qu'on emprunte :
         <ul>
-          <li><b>Les ménages</b> mettent de l'argent de côté : c'est l'épargne du pays.</li>
-          <li><b>Les entreprises</b> empruntent cette épargne pour investir (usines, machines, logiciels).</li>
-          <li><b>L'État</b>, quand il est en déficit, emprunte lui aussi cette épargne, mais pour couvrir ses dépenses (${f1(-puL.solde_FR)} % du PIB en ${puL.annee}).</li>
-          <li><b>Si l'épargne des ménages ne suffit pas</b> à financer à la fois les entreprises et l'État, le manque vient de l'étranger. Ce manque, c'est exactement le déficit avec l'étranger.</li>
-          <li><b>En France</b>, les ménages épargnent beaucoup, mais le déficit de l'État en absorbe une grande partie. Le reste est fourni par l'étranger, qui achète surtout des obligations de l'État : plus de la moitié de la dette de l'État est détenue par des non-résidents.</li>
+          <li><b>les ménages</b> épargnent, et en France ils épargnent beaucoup ;</li>
+          <li><b>les entreprises</b> empruntent une partie de cette épargne pour investir ;</li>
+          <li><b>l'État</b> en emprunte une grosse part pour couvrir son déficit (${f1(-puL.solde_FR)} % du PIB en ${puL.annee}) ;</li>
+          <li><b>ce qui manque</b>, quand l'épargne des ménages ne suffit pas pour tout le monde, est emprunté à l'étranger : c'est exactement le déficit avec le reste du monde. En France, c'est surtout l'État qui le comble, en vendant ses obligations : plus de la moitié de sa dette est détenue par des étrangers.</li>
         </ul>
       </li>
-      <li><b>En résumé</b> : ce ne sont pas les pouvoirs publics qui importent, mais ce sont eux qui ont le plus besoin de l'argent de l'étranger. Les économistes parlent de « déficits jumeaux » : un déficit public pousse le pays vers un déficit extérieur. La France en est une version modérée, car l'épargne élevée des ménages compense une grande partie du déficit de l'État.</li>
+      <li><b>En résumé</b> : ce ne sont pas les pouvoirs publics qui achètent la voiture allemande, mais c'est l'État qui a le plus besoin de l'argent de l'étranger. Les économistes parlent de « déficits jumeaux » : un déficit public pousse le pays vers un déficit extérieur. La France en est une version modérée, car l'épargne élevée des ménages compense une grande partie du déficit de l'État.</li>
     </ul>
     <p style="margin-bottom:2px"><b>2. De l'autre, la dette publique, qui vient de l'État : utile si elle finance de l'investissement, nocive si elle paie les dépenses courantes</b></p>
     <ul>
