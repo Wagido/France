@@ -96,6 +96,11 @@ const S = [
   ["Capital social et culturel", "eurostat", "ilc_scp03 à 28 / ilc_pw01 à 10", "Pratiques culturelles, liens, engagement, confiance, bien-être", null, "module tous les 6 ans ; bien-être annuel"],
 ];
 
+// un thème n'est listé que si au moins un onglet publié l'utilise (les rubriques non publiées sont retirées de la page en ligne)
+function themeVisible(th) {
+  const arts = Object.entries(PAR_ARTICLE).filter(([, ths]) => ths.includes(th)).map(([id]) => id);
+  return !arts.length || arts.some(id => document.getElementById(id));
+}
 function render() {
   const el = document.getElementById("src-table"); if (!el) return;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -104,7 +109,7 @@ function render() {
     return code.split(/\s*\/\s*/).map(c => /^[a-z]{2,5}_[\w]+$/.test(c.trim()) ? `<a href="${ES(c.trim())}" target="_blank" rel="noopener"><code>${esc(c.trim())}</code></a>` : esc(c)).join(" · ");
   };
   el.innerHTML = `<div class="table-scroll"><table class="cmp-t src"><thead><tr><th>Thème</th><th>Source</th><th>Jeu de données</th><th>Contenu</th><th>Publication</th></tr></thead><tbody>` +
-    S.map(([t, o, c, d, u, f]) => `<tr><td>${esc(t)}</td><td>${esc(ORG[o].nom)}</td><td>${link(c, u)}</td><td>${esc(d)}</td><td>${esc(f)}</td></tr>`).join("") + `</tbody></table></div>`;
+    S.filter(([t]) => themeVisible(t)).map(([t, o, c, d, u, f]) => `<tr><td>${esc(t)}</td><td>${esc(ORG[o].nom)}</td><td>${link(c, u)}</td><td>${esc(d)}</td><td>${esc(f)}</td></tr>`).join("") + `</tbody></table></div>`;
   document.getElementById("src-orgs").innerHTML = Object.values(ORG).map(o =>
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }

@@ -31,6 +31,7 @@ jobs:
           mkdir -p _site
           cp -r index.html style.css *.js lib data _site/
           rm -rf _site/data/sources
+          python3 scripts/publier.py _site/index.html   # retire les rubriques non publiées (Société)
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
