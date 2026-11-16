@@ -980,5 +980,302 @@
    "retraite_part": 28.73,
    "rendement": 0.83
   }
- ]
+ ],
+ "depenses": {
+  "annee": 2024,
+  "total": 1671.8,
+  "postes": [
+   {
+    "k": "retraites",
+    "l": "Retraites",
+    "md": 432.6,
+    "pc_dep": 25.9,
+    "pc_pib": 14.7
+   },
+   {
+    "k": "sante",
+    "l": "Santé",
+    "md": 261.2,
+    "pc_dep": 15.6,
+    "pc_pib": 8.9
+   },
+   {
+    "k": "economie",
+    "l": "Économie, transports, énergie",
+    "md": 166.1,
+    "pc_dep": 9.9,
+    "pc_pib": 5.7
+   },
+   {
+    "k": "enseignement",
+    "l": "Enseignement",
+    "md": 148.6,
+    "pc_dep": 8.9,
+    "pc_pib": 5.1
+   },
+   {
+    "k": "services",
+    "l": "Administration générale, recherche",
+    "md": 122.2,
+    "pc_dep": 7.3,
+    "pc_pib": 4.2
+   },
+   {
+    "k": "maladie",
+    "l": "Arrêts maladie, invalidité",
+    "md": 83.9,
+    "pc_dep": 5.0,
+    "pc_pib": 2.9
+   },
+   {
+    "k": "cadre",
+    "l": "Environnement, urbanisme, logement",
+    "md": 72.4,
+    "pc_dep": 4.3,
+    "pc_pib": 2.5
+   },
+   {
+    "k": "famille",
+    "l": "Famille",
+    "md": 66.7,
+    "pc_dep": 4.0,
+    "pc_pib": 2.3
+   },
+   {
+    "k": "solidarite",
+    "l": "Logement, exclusion, action sociale",
+    "md": 61.3,
+    "pc_dep": 3.7,
+    "pc_pib": 2.1
+   },
+   {
+    "k": "dette",
+    "l": "Intérêts de la dette",
+    "md": 58.9,
+    "pc_dep": 3.5,
+    "pc_pib": 2.0
+   },
+   {
+    "k": "defense",
+    "l": "Défense",
+    "md": 54.2,
+    "pc_dep": 3.2,
+    "pc_pib": 1.8
+   },
+   {
+    "k": "securite",
+    "l": "Police, justice, pompiers",
+    "md": 52.1,
+    "pc_dep": 3.1,
+    "pc_pib": 1.8
+   },
+   {
+    "k": "chomage",
+    "l": "Chômage",
+    "md": 48.5,
+    "pc_dep": 2.9,
+    "pc_pib": 1.7
+   },
+   {
+    "k": "culture",
+    "l": "Culture, sport, loisirs",
+    "md": 43.1,
+    "pc_dep": 2.6,
+    "pc_pib": 1.5
+   }
+  ]
+ },
+ "electeurs": {
+  "annee_pop": 2025,
+  "groupes": [
+   {
+    "l": "18-29 ans",
+    "pop": 17.4,
+    "presid": 15.6,
+    "legis": 10.6
+   },
+   {
+    "l": "30-44 ans",
+    "pop": 23.4,
+    "presid": 22.9,
+    "legis": 19.7
+   },
+   {
+    "l": "45-59 ans",
+    "pop": 23.9,
+    "presid": 25.7,
+    "legis": 27.4
+   },
+   {
+    "l": "60-74 ans",
+    "pop": 21.8,
+    "presid": 23.5,
+    "legis": 27.5
+   },
+   {
+    "l": "75 ans et plus",
+    "pop": 13.5,
+    "presid": 12.2,
+    "legis": 14.7
+   }
+  ],
+  "plus60": {
+   "pop": 35.3,
+   "presid": 35.7,
+   "legis": 42.3
+  },
+  "plus50": {
+   "pop": 51.6,
+   "presid": 53.3,
+   "legis": 61.4
+  },
+  "plus65": {
+   "pop": 27.4,
+   "presid": 27.1,
+   "legis": 32.6
+  },
+  "participation": [
+   {
+    "l": "18-24 ans",
+    "presid": 74.8,
+    "legis": 34.8
+   },
+   {
+    "l": "25-29 ans",
+    "presid": 73.3,
+    "legis": 35.3
+   },
+   {
+    "l": "30-34 ans",
+    "presid": 76.1,
+    "legis": 40.1
+   },
+   {
+    "l": "35-39 ans",
+    "presid": 80.8,
+    "legis": 48.2
+   },
+   {
+    "l": "40-44 ans",
+    "presid": 86.4,
+    "legis": 56.4
+   },
+   {
+    "l": "45-49 ans",
+    "presid": 88.4,
+    "legis": 62.4
+   },
+   {
+    "l": "50-54 ans",
+    "presid": 89.1,
+    "legis": 65.4
+   },
+   {
+    "l": "55-59 ans",
+    "presid": 89.1,
+    "legis": 69.2
+   },
+   {
+    "l": "60-64 ans",
+    "presid": 90.1,
+    "legis": 71.1
+   },
+   {
+    "l": "65-69 ans",
+    "presid": 89.6,
+    "legis": 71.8
+   },
+   {
+    "l": "70-74 ans",
+    "presid": 87.7,
+    "legis": 75.2
+   },
+   {
+    "l": "75-79 ans",
+    "presid": 85.6,
+    "legis": 73.6
+   },
+   {
+    "l": "80-84 ans",
+    "presid": 79.9,
+    "legis": 68.5
+   },
+   {
+    "l": "85-89 ans",
+    "presid": 64.4,
+    "legis": 51.3
+   },
+   {
+    "l": "90 ans ou plus",
+    "presid": 43.2,
+    "legis": 33.3
+   }
+  ],
+  "projection": [
+   {
+    "annee": 2025,
+    "plus65": 28.5
+   },
+   {
+    "annee": 2030,
+    "plus65": 30.3
+   },
+   {
+    "annee": 2035,
+    "plus65": 31.8
+   },
+   {
+    "annee": 2040,
+    "plus65": 33.3
+   },
+   {
+    "annee": 2045,
+    "plus65": 33.9
+   },
+   {
+    "annee": 2050,
+    "plus65": 34.7
+   },
+   {
+    "annee": 2055,
+    "plus65": 35.3
+   },
+   {
+    "annee": 2060,
+    "plus65": 35.5
+   },
+   {
+    "annee": 2065,
+    "plus65": 35.7
+   },
+   {
+    "annee": 2070,
+    "plus65": 36.6
+   },
+   {
+    "annee": 2075,
+    "plus65": 37.5
+   },
+   {
+    "annee": 2080,
+    "plus65": 38.4
+   },
+   {
+    "annee": 2085,
+    "plus65": 38.7
+   },
+   {
+    "annee": 2090,
+    "plus65": 38.9
+   },
+   {
+    "annee": 2095,
+    "plus65": 39.1
+   },
+   {
+    "annee": 2100,
+    "plus65": 39.4
+   }
+  ]
+ }
 }

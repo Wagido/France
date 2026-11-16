@@ -10,12 +10,47 @@ async function init() {
   try { R = await fetch("data/retraites.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   try { draw(); } catch (e) { console.error("retraites", e); }
 }
+/* la première dépense publique, et le poids des âgés dans les urnes */
+function drawPoids() {
+  const { lineChart, legend, esc } = window.TH, $ = s => document.querySelector(s);
+  const nf = (v, d = 0) => v.toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const Dp = R.depenses, E = R.electeurs;
+  if (Dp && $("#rt-depenses")) {
+    const P = Dp.postes, mx = P[0].md;
+    $("#rt-dep-lead").innerHTML = `Dépenses de toutes les administrations publiques (État, collectivités, Sécurité sociale) par grande fonction, en ${Dp.annee} : ${nf(Dp.total)} milliards d'euros au total. Les retraites en représentent <b>${nf(P[0].pc_dep)} %</b>, soit ${nf(P[0].md)} milliards, plus que la santé et l'enseignement réunis.`;
+    $("#rt-depenses").innerHTML = `<div class="pp-rows">` + P.map(p => `<div class="in-sbar"><span class="lab">${esc(p.l)}</span><span class="tr"><span style="width:${(100 * p.md / mx).toFixed(1)}%;background:${p.k === "retraites" ? "#dc2626" : "#94a3b8"}"></span></span><b>${nf(p.md)} Md€</b><small class="muted">${nf(p.pc_dep, 1)} % des dépenses</small></div>`).join("") + `</div>
+      <p class="muted" style="font-size:.78rem;margin:4px 0 0">Eurostat, dépenses des administrations publiques par fonction (COFOG), regroupées comme dans l'onglet <a href="#argent-public">Argent public</a>. « Retraites » : pensions de vieillesse et de réversion.</p>`;
+  }
+  if (E && $("#rt-urnes")) {
+    const C = { pop: "#cbd5e1", presid: "#60a5fa", legis: "#1d4ed8" }, mx = Math.max(...E.groupes.flatMap(g => [g.pop, g.presid, g.legis]));
+    $("#rt-urnes").innerHTML = E.groupes.map(g => `<div class="rt-urne"><span class="lab">${g.l}</span><span class="rt-urne-b">${["pop", "presid", "legis"].map(k =>
+      `<span class="rt-urne-r"><span style="width:${(85 * g[k] / mx).toFixed(1)}%;background:${C[k]}"></span><b>${nf(g[k], 1)} %</b></span>`).join("")}</span></div>`).join("");
+    legend("#rt-urnes-legend", [["Part des adultes", C.pop], ["Part des votants à la présidentielle", C.presid], ["Part des votants aux législatives", C.legis]]);
+    const Pa = E.participation.map((p, i) => ({ annee: i, ...p }));
+    lineChart($("#rt-part"), Pa, [{ k: "presid", l: "Présidentielle", c: C.presid }, { k: "legis", l: "Législatives", c: C.legis }], { vfmt: v => nf(v, 1) + " %", yfmt: v => v + " %", h: 240 });
+    $("#rt-part").querySelectorAll("g.axis")[0]?.querySelectorAll(".tick").forEach(t => { const i = +t.querySelector("text").textContent; t.querySelector("text").textContent = Number.isInteger(i) && Pa[i] ? Pa[i].l.replace(" ans", "").replace(" ou plus", "+") : ""; });
+    legend("#rt-part-legend", [["Présidentielle", C.presid], ["Législatives", C.legis]]);
+    lineChart($("#rt-proj"), E.projection, [{ k: "plus65", l: "65 ans et plus, en % des 20 ans et plus", c: "#dc2626" }], { vfmt: v => nf(v, 1) + " %", yfmt: v => v + " %", h: 240, nozero: true });
+    const p0 = E.projection[0], p50 = E.projection.find(p => p.annee === 2050), p70 = E.projection.find(p => p.annee === 2070);
+    $("#rt-urnes-txt").innerHTML = `<ul>
+      <li><b>Les 60 ans et plus sont ${nf(E.plus60.pop)} % des adultes, mais ${nf(E.plus60.legis)} % des votants aux législatives</b> (${nf(E.plus60.presid)} % à la présidentielle), parce qu'ils votent beaucoup plus que les jeunes : 71 à 75 % des 60-79 ans ont voté aux législatives de 2022, contre 35 % des 18-29 ans. Avec les 50-59 ans, proches de la retraite, les plus de 50 ans pèsent <b>${nf(E.plus50.legis)} %</b> des votants aux législatives : une majorité.</li>
+      <li><b>Le poids grandit</b> : les 65 ans et plus étaient ${nf(p0.plus65, 1)} % des adultes en ${p0.annee} ; ils devraient être ${nf(p50.plus65, 1)} % en 2050 et ${nf(p70.plus65, 1)} % en 2070, selon le scénario central d'Eurostat.</li>
+      <li><b>D'où la difficulté politique</b> : une réforme qui baisse les pensions ou retarde le départ touche directement l'électorat qui vote le plus. C'est pourquoi les réformes françaises ont presque toujours épargné les retraités actuels et fait porter l'effort sur les futurs retraités, par la durée de cotisation et l'âge, ou sur les actifs, par les cotisations. Les mesures qui touchent les pensions déjà versées (gel ou sous-indexation, hausse de la CSG des retraités en 2018) ont été parmi les plus contestées, et souvent corrigées ensuite.</li>
+      <li><b>Mais les retraités ne votent pas d'un bloc</b>, et beaucoup se soucient de la situation de leurs enfants et petits-enfants. Plusieurs pays ont contourné l'obstacle en liant automatiquement l'âge de départ à l'espérance de vie (Danemark, Pays-Bas, Suède, Italie) : la règle est votée une fois, puis s'applique sans nouveau vote.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Calcul du site : population par âge au 1<sup>er</sup> janvier ${E.annee_pop} (Eurostat), pondérée par la participation par âge mesurée par l'Insee (<a href="https://www.insee.fr/fr/statistiques/6658145" target="_blank" rel="noopener">enquête sur la participation électorale 2022, Insee Première n° 1928</a>). Approximation : la population comprend des étrangers, qui ne votent pas, plus nombreux aux âges actifs ; le poids réel des plus âgés parmi les électeurs est donc un peu plus élevé. Projection : Eurostat, scénario central, 65 ans et plus rapportés aux 20 ans et plus.</p>`;
+  }
+}
+
 function draw() {
+  drawPoids();
   const { kpis, lineChart, legend, esc } = window.TH;
   const nf = (v, d = 0) => v == null ? "n.d." : v.toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
   const P = Object.fromEntries(R.pays.map(p => [p.code, p])), fr = P.FR, de = P.DE, ue = P.EU27_2020;
   kpis("#rt-kpis", [
     [nf(fr.depense, 1) + " %", [`du PIB consacré aux retraites (${fr.depense_annee})`, `Allemagne ${nf(de.depense, 1)} %, moyenne de l'UE ${nf(ue.depense, 1)} %`], "Dépense"],
+    R.depenses && [nf(R.depenses.postes[0].pc_dep) + " %", [`des dépenses publiques vont aux retraites (${R.depenses.annee})`, `la première dépense de l'État et de la Sécurité sociale, loin devant la santé`], "1re dépense publique"],
+    R.electeurs && [nf(R.electeurs.plus60.legis) + " %", [`des votants aux législatives de 2022 avaient 60 ans ou plus`, `${nf(R.electeurs.plus60.pop)} % des adultes`], "Poids électoral"],
     [nf(fr.niveau, 2), [`revenu des 65 ans et plus rapporté à celui des moins de 65 ans`, `presque le même niveau de vie ; Allemagne ${nf(de.niveau, 2)}`], "Niveau de vie des retraités"],
     [nf(fr.esperance65, 1) + " ans", [`d'espérance de vie à 65 ans, l'une des plus longues d'Europe`, `Allemagne ${nf(de.esperance65, 1)} ans`], "Durée de la retraite"],
     [nf(fr.emploi6064) + " %", [`des 60-64 ans ont un emploi`, `Allemagne ${nf(de.emploi6064)} %, Suède ${nf(P.SE.emploi6064)} %`], "On part tôt"],
