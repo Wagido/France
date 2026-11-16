@@ -386,6 +386,13 @@
   <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
   <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
   <div class="callout small" id="mo-credit-txt"></div>
+  <h3>Les masses monétaires M1, M2, M3 de la zone euro (milliards d'euros, fin d'année)</h3>
+  <p class="lead">Depuis l'euro, la France n'a plus de masse monétaire propre : ce sont celles de la zone euro, publiées par la BCE. Chaque agrégat englobe le précédent, de la monnaie la plus « liquide » (utilisable tout de suite) à la moins liquide.</p>
+  <div class="grid2">
+    <div><div id="mo-m" class="chart"></div><div class="legend-row" id="mo-m-legend"></div></div>
+    <div><h3 style="margin-top:0">En % du PIB de la zone euro, et croissance annuelle de M3</h3><div id="mo-mpib" class="chart"></div><div class="legend-row" id="mo-mpib-legend"></div></div>
+  </div>
+  <div class="callout small" id="mo-m-txt"></div>
 
   <h3 id="mo-p2" class="ag-part">2. L'argent des intérêts manque-t-il ?</h3>
   <p class="lead">L'argument : la banque crée les 200 000 € du prêt, mais pas les intérêts. Il faudrait donc toujours un nouveau crédit, quelque part, pour trouver l'argent des intérêts. Testons-le sur une économie miniature, sans aucune croissance : une banque, des emprunteurs, un stock de dettes constant (chaque prêt remboursé est remplacé par un nouveau, de même montant).</p>
@@ -437,6 +444,8 @@
       <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
       <li><b>Mais le « découplage » reste partiel.</b> En France, les émissions de gaz à effet de serre sur le territoire baissent alors que le PIB augmente. L'empreinte carbone, qui compte ce que nous importons, baisse beaucoup moins vite, et la consommation de matières reste élevée (voir <a href="#climat">Climat</a> et <a href="#matieres">Matières</a>). À l'échelle du monde, la consommation d'énergie et de matières continue d'augmenter avec le PIB.</li>
       <li><b>Le conflit est donc réel</b> : une économie dont la stabilité repose sur 2 % de croissance par an pour toujours dépend, en pratique, d'une hausse de l'usage des ressources, tant que le découplage n'est pas beaucoup plus rapide. 2 % par an, c'est un PIB multiplié par 7 en un siècle.</li>
+      <li><b>Et si l'énergie cesse d'augmenter ?</b> Le PIB et l'énergie ont longtemps crû ensemble, mais pas au même rythme : dans le monde, la quantité d'énergie par euro de PIB baisse d'environ 1 à 2 % par an. Une énergie stable laisse donc encore une croissance de cet ordre, si l'efficacité continue de progresser. En France, la consommation d'énergie baisse depuis le milieu des années 2000 alors que le PIB a continué d'augmenter, en partie parce que des productions énergivores sont parties à l'étranger. Une baisse forte et durable de l'énergie disponible, en revanche, se traduirait très probablement par une baisse de la production : on ne sait pas produire sans énergie.</li>
+      <li><b>Une économie qui stagne n'arrête pas d'elle-même d'exiger du rendement</b> : le rendement baisse, ou il se prend sur les autres. Trois voies, toutes observées : le capital prend une part plus grande du revenu (les salaires stagnent, les inégalités montent) ; l'inflation et des taux plus bas que l'inflation rongent l'épargne et les dettes, comme en France de 1945 à 1980 ; ou les pertes se réalisent brutalement, par faillites, défauts et krachs. Le Japon, en quasi-stagnation depuis les années 1990, a vu ses taux tomber à zéro : le rendement exigé a baissé, il n'a pas disparu. Choisir l'une ou l'autre de ces voies est une décision politique (fiscalité, retraites, règles financières), pas une conséquence automatique.</li>
       <li><b>Et les ressources elles-mêmes peuvent freiner la croissance</b> : énergie plus chère, sols moins productifs, climat qui coûte (voir <a href="#agriculture">Agriculture</a> et <a href="#catastrophes">Catastrophes climatiques</a>). Une croissance faible rendrait alors les dettes plus lourdes : c'est le scénario qui inquiète.</li>
     </ul>
   </div>
@@ -451,7 +460,7 @@
   <div class="callout small">
     <p><b>En résumé</b> : la monnaie créée par le crédit n'oblige pas, à elle seule, à croître sans fin ; l'argent des intérêts revient dans l'économie quand ceux qui les touchent le dépensent. Ce qui rend notre système dépendant de la croissance, c'est la combinaison des dettes à intérêt positif, de l'attente de rendement du capital, du besoin d'emplois et de la fragilité du crédit. Rien de tout cela n'est une loi physique : ce sont des règles, qui peuvent changer, mais qui n'ont jamais été conçues pour une économie stationnaire.</p>
   </div>
-  <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
+  <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; BCE, statistiques monétaires (agrégats M1, M2, M3 de la zone euro) et Eurostat (PIB de la zone euro) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
 </section>
 
 <section id="simulateur" class="panel">

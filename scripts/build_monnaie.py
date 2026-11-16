@@ -3,7 +3,8 @@
 Sources :
   INSEE, comptes nationaux base 2020 : PIB en valeur (011779992) et en volume (011779991) → croissance nominale et réelle ;
   Eurostat irt_lt_mcby_a : taux d'intérêt à long terme de l'État (critère de Maastricht), France, complété avant 1970 par la Macrohistory Database ;
-  Jordà, Schularick et Taylor, Macrohistory Database : crédits bancaires au secteur privé, monnaie au sens large, PIB nominal.
+  Jordà, Schularick et Taylor, Macrohistory Database : crédits bancaires au secteur privé, monnaie au sens large, PIB nominal ;
+  BCE, statistiques monétaires (BSI) : M1, M2, M3 et billets de la zone euro ; Eurostat nama_10_gdp : PIB de la zone euro.
 Usage (depuis la racine) : python3 scripts/build_monnaie.py
 """
 import json, os, re
@@ -61,6 +62,31 @@ def moy(a, b, k):
 periodes = [{"l": f"{a}-{b}", "a": a, "b": b, "nominal": moy(a, b, "nominal"), "reel": moy(a, b, "reel"), "taux": moy(a, b, "taux")}
             for a, b in ((1950, 1973), (1974, 1985), (1986, 2007), (2008, 2019), (2020, serie[-1]["annee"]))]
 
-out = {"serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
+# agrégats monétaires de la zone euro (BCE, fin d'année, milliards d'euros) et PIB de la zone euro (Eurostat)
+import csv
+A = {}
+with open(os.path.join(SRC, "monnaie", "ecb_agregats.csv"), encoding="utf-8") as fh:
+    for r in csv.DictReader(fh):
+        y, mo = r["TIME_PERIOD"].split("-")
+        if mo == "12" and r["OBS_VALUE"]:
+            A.setdefault(int(y), {})[r["BS_ITEM"]] = float(r["OBS_VALUE"]) / 1000
+dp = json.load(open(os.path.join(SRC, "monnaie", "pib_zone_euro.json")))
+invp = {i: y for y, i in dp["dimension"]["time"]["category"]["index"].items()}
+pib_ea = {int(invp[int(k)]): v / 1000 for k, v in dp["value"].items()}
+agregats = []
+for y in sorted(A):
+    a_ = A[y]
+    if not all(k in a_ for k in ("L10", "M10", "M20", "M30")):
+        continue
+    row = {"annee": y, "billets": round(a_["L10"]), "depots_vue": round(a_["M10"] - a_["L10"]), "epargne_court": round(a_["M20"] - a_["M10"]), "titres": round(a_["M30"] - a_["M20"]),
+           "m1": round(a_["M10"]), "m2": round(a_["M20"]), "m3": round(a_["M30"])}
+    if y - 1 in A and "M30" in A[y - 1]:
+        row["m3_croiss"] = round(100 * (a_["M30"] / A[y - 1]["M30"] - 1), 1)
+    if y in pib_ea:
+        row.update({"m1_pib": round(100 * a_["M10"] / pib_ea[y], 1), "m3_pib": round(100 * a_["M30"] / pib_ea[y], 1), "pib": round(pib_ea[y])})
+    agregats.append(row)
+dern = sorted(r["TIME_PERIOD"] for r in csv.DictReader(open(os.path.join(SRC, "monnaie", "ecb_agregats.csv"), encoding="utf-8")))[-1]
+
+out = {"agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
 json.dump(out, open(os.path.join(HERE, "..", "data", "monnaie.json"), "w"), ensure_ascii=False, indent=1)
-print(serie[0], serie[-1], credit[0], credit[-1], periodes, sep="\n")
+print(agregats[0], agregats[-1], dern, serie[0], serie[-1], credit[0], credit[-1], periodes, sep="\n")

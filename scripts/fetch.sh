@@ -29,6 +29,10 @@ get agri/cultures.json "$E/apro_cpsh1?geo=FR&strucpro=MAR_THS_HA&sinceTimePeriod
 get agri/cultures_ar.json "$E/apro_cpsh1?geo=FR&strucpro=AR_THS_HA&sinceTimePeriod=2000$CR"
 get agri/bio.json "$E/org_cropar?geo=FR&unit=HA&agprdmet=TOTAL&sinceTimePeriod=2012"
 get agri/cult_pays.json "$E/apro_cpsh1?strucpro=MAR_THS_HA&sinceTimePeriod=2022&crops=UAA&crops=C0000&crops=J0000"
+# Monnaie et croissance : agrégats monétaires M1, M2, M3 et billets de la zone euro (BCE), PIB de la zone euro
+mkdir -p monnaie
+get monnaie/ecb_agregats.csv "https://data-api.ecb.europa.eu/service/data/BSI/M.U2.Y.V.M10+M20+M30+L10.X.1.U2.2300.Z01.E?format=csvdata&detail=dataonly"
+get monnaie/pib_zone_euro.json "$E/nama_10_gdp?geo=EA20&unit=CP_MEUR&na_item=B1GQ"
 # Sans intrants ? rendements, engrais et pesticides de la France (FAOSTAT, fichiers complets filtrés)
 FB="https://bulks-faostat.fao.org/production"
 for z in "Production_Crops_Livestock_E_Europe:fao_rendements:rendements" "Inputs_FertilizersNutrient_E_Europe:fao_engrais_fr:france" "Inputs_Pesticides_Use_E_All_Data:fao_pesticides_fr:france"; do

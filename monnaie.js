@@ -89,6 +89,25 @@ function draw() {
     <li><b>La dette totale grossit, mais ce n'est pas une loi</b> : entre les deux guerres, et de 1945 au début des années 1970, la dette publique a fondu (de ${n0(C.find(c => c.annee === 1920).dette_publique)} % du PIB en 1920 à ${n0(c70.dette_publique)} % en 1970), grâce à la croissance et surtout à l'inflation. Le crédit privé, lui, a stagné ou reculé à plusieurs reprises (années 1930, 1990-2000 : ${n0(C.find(c => c.annee === 1990).credit)} % → ${n0(c00.credit)} %).</li>
   </ul>
   <p class="muted" style="font-size:.78rem">Jordà, Schularick et Taylor, Macrohistory Database : crédits des banques au secteur privé non financier, monnaie au sens large (M2 ou M3 selon les périodes), dette publique, rapportés au PIB. Série arrêtée en ${cL.annee}. Pas de données pour les années de guerre.</p>`;
+  // M1, M2, M3 (BCE)
+  const AG = M.agregats, aL = AG.at(-1), a99 = AG.find(a => a.annee === 1999), a07 = AG.find(a => a.annee === 2007), a21 = AG.find(a => a.annee === 2021), a23 = AG.find(a => a.annee === 2023);
+  const { areaChart } = window.TH;
+  areaChart($("#mo-m"), AG, ["billets", "depots_vue", "epargne_court", "titres"], { billets: "#16a34a", depots_vue: "#2563eb", epargne_court: "#93c5fd", titres: "#cbd5e1" },
+    { billets: "Billets et pièces", depots_vue: "Dépôts à vue (comptes courants)", epargne_court: "Épargne à court terme (livrets, dépôts à terme ≤ 2 ans)", titres: "Titres monétaires (fonds monétaires, pensions, titres ≤ 2 ans)" }, { vfmt: v => n0(v) + " Md€", yfmt: v => n0(v / 1000) + " 000", h: 280 });
+  legend("#mo-m-legend", [["M1 : billets", "#16a34a"], ["M1 : dépôts à vue", "#2563eb"], ["+ M2 : livrets, dépôts à terme", "#93c5fd"], ["+ M3 : titres monétaires", "#cbd5e1"]]);
+  lineChart($("#mo-mpib"), AG.filter(a => a.m3_pib != null || a.annee >= 1990), [{ k: "m3_pib", l: "M3 en % du PIB", c: "#64748b" }, { k: "m1_pib", l: "M1 en % du PIB", c: "#2563eb" }, { k: "m3_croiss", l: "Croissance annuelle de M3", c: "#dc2626", dash: "4 3" }],
+    { vfmt: v => f1(v) + " %", yfmt: v => v + " %", h: 280 });
+  legend("#mo-mpib-legend", [["M3 en % du PIB", "#64748b"], ["M1 en % du PIB", "#2563eb"], ["Croissance annuelle de M3", "#dc2626", 1]]);
+  const mx3 = AG.filter(a => a.m3_croiss != null && a.annee >= 2000).reduce((a, b) => b.m3_croiss > a.m3_croiss ? b : a);
+  const mn3 = AG.filter(a => a.m3_croiss != null && a.annee >= 2000).reduce((a, b) => b.m3_croiss < a.m3_croiss ? b : a);
+  $("#mo-m-txt").innerHTML = `<ul>
+    <li><b>M1</b> = billets et pièces + dépôts à vue (l'argent des comptes courants) : ${n0(aL.m1)} milliards d'euros fin ${aL.annee}. <b>M2</b> ajoute l'épargne disponible à court terme (en France : Livret A, LDDS, livrets bancaires, comptes à terme de moins de 2 ans) : ${n0(aL.m2)} milliards. <b>M3</b> ajoute des placements très proches de la monnaie (fonds monétaires, titres à moins de 2 ans) : ${n0(aL.m3)} milliards, soit ${n0(aL.m3_pib)} % du PIB de la zone euro.</li>
+    <li><b>Les billets ne sont qu'une petite partie</b> : ${n0(100 * aL.billets / aL.m3)} % de M3. Tout le reste est de la monnaie de banque, créée par le crédit.</li>
+    <li><b>La masse monétaire grossit plus vite que l'économie</b> : M3 est passée de ${n0(a99.m3)} milliards en 1999 à ${n0(aL.m3)} en ${aL.annee}, soit ×${f1(aL.m3 / a99.m3)}, quand le PIB de la zone euro était multiplié par ${f1(aL.pib / a99.pib)}. C'est surtout M1 qui a gonflé : avec des taux à zéro de 2015 à 2021, garder son argent sur un compte courant ne coûtait rien (M1 : ${n0(a07.m1_pib)} % du PIB en 2007, ${n0(a21.m1_pib)} % en 2021).</li>
+    <li><b>Quand les taux remontent, la monnaie change de forme</b> : en 2023, l'argent a quitté les comptes courants pour les comptes à terme et les livrets mieux rémunérés (M1 : ${n0(a23.m1)} milliards fin 2023 contre ${n0(a21.m1)} fin 2021). La croissance de M3 a varié de ${f1(mn3.m3_croiss)} % (${mn3.annee}) à ${f1(mx3.m3_croiss)} % (${mx3.annee}).</li>
+    <li><b>La masse monétaire n'explique pas tout de l'inflation</b> : de 2009 à 2019, M3 a progressé sans faire monter les prix à la consommation (l'argent est allé vers l'immobilier et les actifs financiers) ; en 2021-2022, l'inflation est surtout venue de l'énergie, même si la forte création monétaire de 2020-2021 y a contribué.</li>
+  </ul>
+  <p class="muted" style="font-size:.78rem">BCE, statistiques des bilans des institutions financières monétaires (BSI), agrégats de la zone euro corrigés des variations saisonnières, encours de fin décembre ; données jusqu'en ${M.agregats_dernier_mois.replace("-", "/")}. Avant 1999, reconstitution par la BCE. PIB : Eurostat, zone euro à 20 pays (depuis 1995).</p>`;
   lineChart($("#mo-rg"), S, [{ k: "nominal", l: "Croissance du PIB en valeur", c: "#2563eb" }, { k: "taux", l: "Taux d'intérêt à 10 ans de l'État", c: "#dc2626" }, { k: "reel", l: "dont croissance réelle (volume)", c: "#2563eb", dash: "3 3" }],
     { vfmt: v => f1(v) + " %", yfmt: v => v + " %", h: 280 });
   legend("#mo-rg-legend", [["Croissance du PIB en valeur (réelle + prix)", "#2563eb"], ["dont croissance réelle", "#2563eb", 1], ["Taux d'intérêt à 10 ans de l'État", "#dc2626"]]);
