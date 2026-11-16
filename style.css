@@ -458,3 +458,4 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 .li-toc ul { margin: 2px 0 6px; padding-left: 1.1em; columns: 2; column-gap: 24px; font-weight: 400; font-size: .85rem; }
 @media (max-width: 640px) { .li-toc ul { columns: 1; } }
 h3.li-sub { font-size: 1.02rem; margin-top: 22px; }
+.en-constr { font-style: normal; font-weight: 500; font-size: .7em; color: var(--muted); }
