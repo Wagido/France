@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121o">
+<link rel="stylesheet" href="style.css?v=20261121p">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1306,8 +1306,8 @@
   <div class="panel-head">
     <h2>Agriculture : peut-on être autonome sans intrants ? <span class="geo-fixed">France</span></h2>
   </div>
-  <p class="muted" style="margin:0 0 8px">Six parties : <a href="#agriculture" data-to="ag-p1">1. ce qu'on cultive</a> · <a href="#agriculture" data-to="in-p1">2. ce qui fait pousser une plante</a> · <a href="#agriculture" data-to="in-p2">3. les rendements</a> · <a href="#agriculture" data-to="in-p3">4. les intrants</a> · <a href="#agriculture" data-to="in-p4">5. et en bio ?</a> · <a href="#agriculture" data-to="in-p5">6. nourrir la France sans intrants ?</a></p>
-  <div class="kpis" id="in-kpis"></div>
+  <p class="muted" style="margin:0 0 8px">Six parties : <a href="#agriculture" data-to="ag-p1">1. ce qu'on cultive</a> · <a href="#agriculture" data-to="agr-p1">2. ce qui fait pousser une plante</a> · <a href="#agriculture" data-to="agr-p2">3. les rendements</a> · <a href="#agriculture" data-to="agr-p3">4. les intrants</a> · <a href="#agriculture" data-to="agr-p4">5. et en bio ?</a> · <a href="#agriculture" data-to="agr-p5">6. nourrir la France sans intrants ?</a></p>
+  <div class="kpis" id="agr-kpis"></div>
 
   <h3 id="ag-p1" class="ag-part">1. Ce qu'on cultive</h3>
   <div class="kpis" id="agriculture-kpis"></div>
@@ -1316,7 +1316,7 @@
   <h3>Surfaces depuis 2000 (millions d'hectares)</h3><div id="ag-evol" class="chart"></div><div class="legend-row" id="ag-evol-legend"></div>
   <div class="callout small" id="agriculture-txt"></div>
 
-  <h3 id="in-p1" class="ag-part">2. Ce qui fait pousser une plante</h3>
+  <h3 id="agr-p1" class="ag-part">2. Ce qui fait pousser une plante</h3>
   <p class="lead">Une plante fabrique sa matière avec la lumière, l'air et l'eau. Le sol ne fournit qu'une petite partie de sa masse, mais c'est souvent cette petite partie qui limite la récolte.</p>
   <div class="in-need">
     <div><b>Lumière et CO₂</b><span>Par la photosynthèse, la plante transforme le gaz carbonique de l'air et l'eau en sucres. Le carbone, l'oxygène et l'hydrogène font environ 95 % de la matière sèche d'une plante : elle vient de l'air et de l'eau, pas du sol.</span></div>
@@ -1331,37 +1331,37 @@
     <p><b>Toute récolte exporte le sol</b> : le grain vendu emporte l'azote, le phosphore et le potassium qu'il contient. Autrefois, ils revenaient en partie au champ par le fumier et les excréments humains. Aujourd'hui, les grains partent vers les villes, les élevages et l'étranger : sans apports extérieurs, la fertilité baisse. C'est tout le sujet de la suite.</p>
   </div>
 
-  <h3 id="in-p2" class="ag-part">3. Les rendements</h3>
+  <h3 id="agr-p2" class="ag-part">3. Les rendements</h3>
   <h3>Le blé depuis 1815</h3>
   <p class="lead">Quintaux de blé par hectare (1 quintal = 100 kg). Avant 1961 : repères historiques publiés (ordres de grandeur, avec leur fourchette) ; depuis 1961 : série annuelle de la FAO.</p>
-  <div id="in-ble" class="chart"></div>
-  <div class="legend-row" id="in-ble-legend"></div>
-  <div class="callout small" id="in-ble-txt"></div>
+  <div id="agr-ble" class="chart"></div>
+  <div class="legend-row" id="agr-ble-legend"></div>
+  <div class="callout small" id="agr-ble-txt"></div>
 
   <h3>Le rendement par type de culture depuis 1961</h3>
   <p class="lead">Moyenne des cinq premières années (1961-1965) et des cinq dernières, et meilleure moyenne sur cinq ans. Quintaux par hectare pour les grains, tonnes par hectare pour les pommes de terre et les betteraves.</p>
-  <div id="in-cult" class="in-mini"></div>
-  <div class="callout small" id="in-cult-txt"></div>
+  <div id="agr-cult" class="in-mini"></div>
+  <div class="callout small" id="agr-cult-txt"></div>
 
-  <h3 id="in-p3" class="ag-part"><span id="intrants"></span>4. Les intrants : engrais et pesticides</h3>
+  <h3 id="agr-p3" class="ag-part"><span id="intrants"></span>4. Les intrants : engrais et pesticides</h3>
   <p class="lead">Les « intrants » sont ce que l'agriculteur achète hors de sa ferme pour produire : engrais, produits phytosanitaires, semences, carburant, aliments du bétail. Les deux qui comptent le plus pour le rendement sont les engrais et les pesticides.</p>
   <div class="grid2">
-    <div><h3>Engrais minéraux par hectare cultivé (kg d'éléments nutritifs)</h3><div id="in-engrais" class="chart"></div><div class="legend-row" id="in-engrais-legend"></div></div>
-    <div><h3>Pesticides vendus (tonnes de substances actives)</h3><div id="in-pest" class="chart"></div><div class="legend-row" id="in-pest-legend"></div></div>
+    <div><h3>Engrais minéraux par hectare cultivé (kg d'éléments nutritifs)</h3><div id="agr-engrais" class="chart"></div><div class="legend-row" id="agr-engrais-legend"></div></div>
+    <div><h3>Pesticides vendus (tonnes de substances actives)</h3><div id="agr-pest" class="chart"></div><div class="legend-row" id="agr-pest-legend"></div></div>
   </div>
   <h3>Les engrais : la France dépend de l'étranger</h3>
   <p class="lead">Utilisation par l'agriculture et production en France, en milliers de tonnes d'éléments nutritifs.</p>
-  <div id="in-dep"></div>
-  <div class="callout small" id="in-intrants-txt"></div>
+  <div id="agr-dep"></div>
+  <div class="callout small" id="agr-intrants-txt"></div>
 
   <h3 id="pesticides">Risque lié aux pesticides (indice 100 en 2011-2013)</h3><div id="pe-fr" class="chart"></div><div class="legend-row" id="pe-fr-legend"></div>
   <div class="callout small" id="pesticides-txt"></div>
 
-  <h3 id="in-p4" class="ag-part">5. Et en bio ?</h3>
+  <h3 id="agr-p4" class="ag-part">5. Et en bio ?</h3>
   <p class="lead">L'agriculture biologique n'utilise ni engrais azotés de synthèse ni pesticides de synthèse. Ce n'est pas une agriculture sans intrants : elle apporte du fumier, des composts, des engrais organiques, et emploie des produits autorisés (cuivre, soufre, insecticides naturels).</p>
   <h3>La part du bio depuis 2012</h3><div id="ag-bio" class="chart"></div><div class="legend-row" id="ag-bio-legend"></div>
   <h3>Le rendement en bio</h3>
-  <div id="in-bio"></div>
+  <div id="agr-bio"></div>
   <div class="callout small">
     <ul>
       <li><b>En France, le blé bio rend environ deux fois moins</b> que le blé conventionnel : −55 % en moyenne sur 2018-2022, −57 % en 2022, selon l'enquête Terres labourables du ministère de l'Agriculture. L'écart est de −47 % pour l'orge d'hiver et de −28 % seulement pour le tournesol, une culture peu gourmande en azote. Il varie selon les régions (−38 % pour le blé en Auvergne-Rhône-Alpes, −58 % dans le Grand Est) et reste stable d'une année à l'autre <a href="https://agreste.agriculture.gouv.fr/agreste-web/disaron/Pri2308/detail/" target="_blank" rel="noopener">[Agreste Primeur n° 8, 2023]</a>.</li>
@@ -1373,19 +1373,19 @@
     </ul>
   </div>
 
-  <h3 id="in-p5" class="ag-part">6. Nourrir la France sans intrants ? Le simulateur des céréales</h3>
+  <h3 id="agr-p5" class="ag-part">6. Nourrir la France sans intrants ? Le simulateur des céréales</h3>
   <p class="lead">Les céréales sont la base de tout : pain, pâtes, mais aussi alimentation des animaux. La France en produit environ deux fois ce qu'elle consomme. Que se passe-t-il si on les cultive sans engrais ni pesticides de synthèse ?</p>
-  <div class="ctl-row" id="in-presets" style="margin-bottom:8px"></div>
+  <div class="ctl-row" id="agr-presets" style="margin-bottom:8px"></div>
   <div class="in-sim">
-    <label class="ctl">Part des céréales cultivées sans intrants de synthèse <input type="range" id="in-s" min="0" max="100" step="5" value="100"><b id="in-s-v"></b></label>
-    <label class="ctl">Perte de rendement <input type="range" id="in-g" min="0" max="90" step="1" value="50"><b id="in-g-v"></b></label>
-    <label class="ctl">Part de ces terres en légumineuses pour fournir l'azote <input type="range" id="in-r" min="0" max="50" step="5" value="25"><b id="in-r-v"></b></label>
-    <label class="ctl">Baisse des céréales données aux animaux (moins de viande, de lait, d'œufs) <input type="range" id="in-m" min="0" max="100" step="5" value="0"><b id="in-m-v"></b></label>
+    <label class="ctl">Part des céréales cultivées sans intrants de synthèse <input type="range" id="agr-s" min="0" max="100" step="5" value="100"><b id="agr-s-v"></b></label>
+    <label class="ctl">Perte de rendement <input type="range" id="agr-g" min="0" max="90" step="1" value="50"><b id="agr-g-v"></b></label>
+    <label class="ctl">Part de ces terres en légumineuses pour fournir l'azote <input type="range" id="agr-r" min="0" max="50" step="5" value="25"><b id="agr-r-v"></b></label>
+    <label class="ctl">Baisse des céréales données aux animaux (moins de viande, de lait, d'œufs) <input type="range" id="agr-m" min="0" max="100" step="5" value="0"><b id="agr-m-v"></b></label>
   </div>
-  <div id="in-sim-out"></div>
-  <div class="callout small" id="in-sim-txt"></div>
+  <div id="agr-sim-out"></div>
+  <div class="callout small" id="agr-sim-txt"></div>
 
-  <div class="callout small" id="in-concl"></div>
+  <div class="callout small" id="agr-concl"></div>
   <p class="muted" style="font-size:.78rem">Sources : FAOSTAT (rendements des cultures 1961-2024, engrais minéraux par élément nutritif, pesticides par catégorie, bilans alimentaires) ; Agreste, enquête Terres labourables (rendements bio et conventionnels 2018-2022) ; repères historiques du rendement du blé : Académie d'agriculture de France, <a href="https://www.academie-agriculture.fr/publications/encyclopedie/reperes/0102r02-evolution-du-rendement-moyen-annuel-du-ble-france-entiere" target="_blank" rel="noopener">évolution du rendement moyen du blé de 1815 à 2024</a>, statistique agricole décennale de 1892 et presse agricole. Les valeurs agronomiques (besoins en azote, en eau, fixation par les légumineuses) sont des ordres de grandeur usuels. Le simulateur est un calcul simple, pas un modèle : il ne tient compte ni des autres cultures, ni des changements de rotation, ni du climat.</p>
 </section>
 
@@ -1889,49 +1889,49 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121o"></script>
-<script src="app.js?v=20261121o"></script>
-<script src="energie.js?v=20261121o"></script>
-<script src="matieres.js?v=20261121o"></script>
-<script src="territoire.js?v=20261121o"></script>
-<script src="themes.js?v=20261121o"></script>
-<script src="societe.js?v=20261121o"></script>
-<script src="eco2.js?v=20261121o"></script>
-<script src="empreinte.js?v=20261121o"></script>
-<script src="argentprive.js?v=20261121o"></script>
-<script src="repartition.js?v=20261121o"></script>
-<script src="patrimoine.js?v=20261121o"></script>
-<script src="prelevements.js?v=20261121o"></script>
-<script src="travailvie.js?v=20261121o"></script>
-<script src="niveauvie.js?v=20261121o"></script>
-<script src="prosperite.js?v=20261121o"></script>
-<script src="exterieur.js?v=20261121o"></script>
-<script src="desindus.js?v=20261121o"></script>
-<script src="retraites.js?v=20261121o"></script>
-<script src="energiecout.js?v=20261121o"></script>
-<script src="energieformation.js?v=20261121o"></script>
-<script src="nucleaire.js?v=20261121o"></script>
-<script src="logementeco.js?v=20261121o"></script>
-<script src="competences.js?v=20261121o"></script>
-<script src="justicedroit.js?v=20261121o"></script>
-<script src="fonctionnaires.js?v=20261121o"></script>
-<script src="couper.js?v=20261121o"></script>
-<script src="seuilpays.js?v=20261121o"></script>
-<script src="logement.js?v=20261121o"></script>
-<script src="env.js?v=20261121o"></script>
-<script src="agriculture.js?v=20261121o"></script>
-<script src="rendements.js?v=20261121o"></script>
-<script src="monnaie.js?v=20261121o"></script>
-<script src="limites.js?v=20261121o"></script>
-<script src="chaine.js?v=20261121o"></script>
-<script src="patrimoinehist.js?v=20261121o"></script>
-<script src="innovation.js?v=20261121o"></script>
+<script src="kpi.js?v=20261121p"></script>
+<script src="app.js?v=20261121p"></script>
+<script src="energie.js?v=20261121p"></script>
+<script src="matieres.js?v=20261121p"></script>
+<script src="territoire.js?v=20261121p"></script>
+<script src="themes.js?v=20261121p"></script>
+<script src="societe.js?v=20261121p"></script>
+<script src="eco2.js?v=20261121p"></script>
+<script src="empreinte.js?v=20261121p"></script>
+<script src="argentprive.js?v=20261121p"></script>
+<script src="repartition.js?v=20261121p"></script>
+<script src="patrimoine.js?v=20261121p"></script>
+<script src="prelevements.js?v=20261121p"></script>
+<script src="travailvie.js?v=20261121p"></script>
+<script src="niveauvie.js?v=20261121p"></script>
+<script src="prosperite.js?v=20261121p"></script>
+<script src="exterieur.js?v=20261121p"></script>
+<script src="desindus.js?v=20261121p"></script>
+<script src="retraites.js?v=20261121p"></script>
+<script src="energiecout.js?v=20261121p"></script>
+<script src="energieformation.js?v=20261121p"></script>
+<script src="nucleaire.js?v=20261121p"></script>
+<script src="logementeco.js?v=20261121p"></script>
+<script src="competences.js?v=20261121p"></script>
+<script src="justicedroit.js?v=20261121p"></script>
+<script src="fonctionnaires.js?v=20261121p"></script>
+<script src="couper.js?v=20261121p"></script>
+<script src="seuilpays.js?v=20261121p"></script>
+<script src="logement.js?v=20261121p"></script>
+<script src="env.js?v=20261121p"></script>
+<script src="agriculture.js?v=20261121p"></script>
+<script src="rendements.js?v=20261121p"></script>
+<script src="monnaie.js?v=20261121p"></script>
+<script src="limites.js?v=20261121p"></script>
+<script src="chaine.js?v=20261121p"></script>
+<script src="patrimoinehist.js?v=20261121p"></script>
+<script src="innovation.js?v=20261121p"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121o"></script>
-<script src="histoire.js?v=20261121o"></script>
-<script src="chomage.js?v=20261121o"></script>
-<script src="sources.js?v=20261121o"></script>
-<script src="nav.js?v=20261121o"></script>
+<script src="soussol.js?v=20261121p"></script>
+<script src="histoire.js?v=20261121p"></script>
+<script src="chomage.js?v=20261121p"></script>
+<script src="sources.js?v=20261121p"></script>
+<script src="nav.js?v=20261121p"></script>
 </body>
 </html>
