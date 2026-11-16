@@ -14,6 +14,7 @@ async function init() {
   try { M = await fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
+  ["mo-rf", "mo-erp", "mo-beta", "mo-obt"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", capm));
   ["mo-d", "mo-r", "mo-g", "mo-p", "mo-s"].forEach(id => $("#" + id).addEventListener("input", snow));
   presets();
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
@@ -95,6 +96,113 @@ function drawInfl() {
   el.replaceChildren(svg.node());
 }
 
+/* taux de dépôt de la BCE (en marches d'escalier) */
+function tauxBce() {
+  const el = $("#mo-tbce"), T = M.taux_bce && M.taux_bce.depot; if (!el || !T || !el.clientWidth) return;
+  const { showTip, hideTip, css } = window.TH, P = d3.timeParse("%Y-%m-%d");
+  const D = T.map(([d, v]) => ({ d: P(d), v })).filter((x, i, a) => i === 0 || x.v !== a[i - 1].v); const now = new Date(); D.push({ d: now, v: D.at(-1).v });
+  const w = Math.max(320, el.clientWidth), h = 250, m = { t: 14, r: 14, b: 26, l: 40 };
+  const x = d3.scaleTime([D[0].d, now], [m.l, w - m.r]), y = d3.scaleLinear([-1, d3.max(D, d => d.v) + .5], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--muted"));
+  svg.append("path").attr("fill", "none").attr("stroke", "#2563eb").attr("stroke-width", 2).attr("d", d3.line().curve(d3.curveStepAfter).x(d => x(d.d)).y(d => y(d.v))(D));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(w < 560 ? 5 : 10));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => v + " %")).call(s => s.select(".domain").remove());
+  const bis = d3.bisector(d => d.d).right, F = d3.timeFormat("%d/%m/%Y");
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = D[Math.max(0, bis(D, x.invert(d3.pointer(ev)[0])) - 1)]; showTip(`Depuis le <b>${F(d.d)}</b> : ${f2(d.v)} %`, ev); }).on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
+  const L = D.at(-2), neg = D.filter(d => d.v < 0), n0d = neg[0], n1d = D.find(d => d.d > n0d.d && d.v >= 0), mx = D.filter(d => d.d.getFullYear() >= 2022).reduce((a, d) => d.v > a.v ? d : a);
+  $("#mo-tbce-txt").innerHTML = `<ul>
+    <li><b>Aujourd'hui : ${f2(L.v)} %</b>, depuis le ${F(L.d)}. C'est ce que rapporte aux banques l'argent laissé à la BCE, et le plancher de tous les taux de la zone euro.</li>
+    <li><b>De ${n0d.d.getFullYear()} à ${n1d.d.getFullYear()}, le taux a été négatif</b> (jusqu'à −0,50 %) : les banques payaient pour garder des réserves, afin de les pousser à prêter et de relancer une inflation trop faible.</li>
+    <li><b>En 2022-2023, la BCE l'a remonté jusqu'à ${f2(mx.v)} %</b> pour combattre l'inflation qui avait suivi le Covid et la guerre en Ukraine, la hausse la plus rapide de son histoire. Les crédits immobiliers sont passés d'environ 1 % à plus de 4 %, et la production de crédit s'est effondrée : c'est le frein monétaire en action.</li>
+  </ul>`;
+}
+
+/* soldes TARGET entre banques centrales */
+function target() {
+  const el = $("#mo-target"), T = M.target; if (!el || !T || !el.clientWidth) return;
+  const { lineChart, legend } = window.TH;
+  const K = [{ k: "de", l: "Allemagne", c: "#111827" }, { k: "nl", l: "Pays-Bas", c: "#f97316" }, { k: "fr", l: "France", c: "#2563eb" }, { k: "es", l: "Espagne", c: "#eab308" }, { k: "it", l: "Italie", c: "#16a34a" }, { k: "gr", l: "Grèce", c: "#06b6d4" }];
+  lineChart(el, T, K, { vfmt: v => sg(v).replace(",00", "") + " Mds €", yfmt: v => n0(v), h: 280 });
+  legend("#mo-target-legend", K.map(k => [k.l, k.c]));
+  const L = T.at(-1), pk = (k, s) => T.reduce((a, d) => (s * d[k] > s * a[k] ? d : a)), de = pk("de", 1), it = pk("it", -1), mm = M.target_mois.split("-");
+  $("#mo-target-txt").innerHTML = `<ul>
+    <li><b>Comment lire</b> : quand un épargnant italien transfère ses euros vers une banque allemande, ou qu'une entreprise allemande est payée par un client espagnol, des réserves passent de la Banque d'Italie (ou d'Espagne) à la Bundesbank. Elles ne voyagent pas vraiment : la Banque d'Italie se retrouve devoir cette somme à l'Eurosystème, et la Bundesbank détient une créance sur lui. Ces soldes s'accumulent depuis la crise de 2008.</li>
+    <li><b>En ${["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"][+mm[1] - 1]} ${mm[0]}, la Bundesbank détient ${n0(L.de)} milliards d'euros de créances</b> sur le reste de l'Eurosystème (record : ${n0(de.de)} milliards en ${de.annee}). La Banque d'Italie en doit ${n0(-L.it)} milliards (${n0(-it.it)} au plus haut en ${it.annee}), la Banque d'Espagne ${n0(-L.es)}, la Banque de France ${n0(-L.fr)}.</li>
+    <li><b>Tant que l'euro existe, ces soldes ne posent pas de problème</b> : ce sont des écritures internes, comme entre les agences d'une même banque. Mais si un pays quittait l'euro, sa banque centrale devrait une somme énorme qu'elle ne pourrait sans doute pas rembourser. C'est un indicateur de la confiance : quand on craint pour un pays, l'argent fuit ses banques vers l'Allemagne, et son solde se creuse (Grèce et Espagne en 2012, Italie en 2018-2022).</li>
+    <li><b>Conclusion</b> : un euro est un euro tant que tout le monde croit que la zone euro tiendra. La monnaie de banque centrale est unique ; la monnaie de nos comptes, elle, garde une nationalité, celle de la banque et de l'État qui la garantissent.</li>
+  </ul>`;
+}
+
+/* histoire longue : monnaie/PIB et prix, avec les grandes époques monétaires */
+function hist() {
+  const H = M.histoire; if (!H || !$("#mo-hmon") || !$("#mo-hmon").clientWidth) return;
+  const { showTip, hideTip, css } = window.TH, y1 = H.at(-1).annee;
+  const E = [[1873, 1914, "Étalon-or", "#ca8a04"], [1914, 1944, "Guerres", "#dc2626"], [1944, 1971, "Bretton Woods", "#2563eb"], [1971, 1999, "Sans métal", "#64748b"], [1999, y1, "Euro", "#7c3aed"]];
+  const draw = (sel, key, log, fmt, tip) => {
+    const el = $(sel), D = H.filter(d => d[key] != null), w = Math.max(300, el.clientWidth), h = 280, m = { t: 30, r: 12, b: 26, l: 46 };
+    const x = d3.scaleLinear([1870, y1], [m.l, w - m.r]);
+    const y = log ? d3.scaleLog([0.5, d3.max(D, d => d[key]) * 1.5], [h - m.b, m.t]) : d3.scaleLinear([0, d3.max(D, d => d[key]) * 1.08], [h - m.b, m.t]);
+    const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    E.forEach(([a, b, l, c], i) => {
+      svg.append("rect").attr("x", x(a)).attr("width", x(b) - x(a)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", c).attr("opacity", .1);
+      svg.append("text").attr("x", (x(a) + x(b)) / 2).attr("y", m.t - (i % 2 ? 4 : 16)).attr("text-anchor", "middle").attr("font-size", w < 460 ? 8.5 : 10).attr("fill", c).text(l);
+    });
+    const ticks = log ? [1, 10, 100, 1000] : y.ticks(5);
+    svg.append("g").attr("class", "grid").selectAll("line").data(ticks).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+    svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).attr("stroke-width", 1.8).attr("d", d3.line().defined(d => d[key] != null).x(d => x(d.annee)).y(d => y(d[key]))(D));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(w < 460 ? 4 : 7));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues(ticks).tickFormat(fmt)).call(s => s.select(".domain").remove());
+    const bis = d3.bisector(d => d.annee).center;
+    svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+      .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b><br>${tip(d[key])}`, ev); }).on("pointerleave", hideTip);
+    el.replaceChildren(svg.node());
+  };
+  const nf = v => v.toLocaleString("fr-FR", { maximumFractionDigits: v < 10 ? 2 : 0 });
+  draw("#mo-hmon", "monnaie", false, v => v + " %", v => `Masse monétaire : ${f1(v)} % du PIB`);
+  draw("#mo-hprix", "prix", true, v => nf(v), v => `Prix : ${nf(v)} fois ceux de 1913`);
+  const g = a => H.find(d => d.annee === a) || {}, p73 = g(1873).prix, p13 = g(1913).prix, p71 = g(1971).prix, pL = H.filter(d => d.prix).at(-1), pk = H.filter(d => d.annee >= 1939 && d.annee <= 1946 && d.monnaie).reduce((a, d) => d.monnaie > a.monnaie ? d : a);
+  const an = (a, b, pa, pb) => 100 * (Math.pow(pb / pa, 1 / (b - a)) - 1);
+  $("#mo-hist-txt").innerHTML = `<ul>
+    <li><b>Sous l'étalon-or (1873-1913), les prix ont varié de ${sg(Math.round(an(1873, 1913, p73, p13) * 10) / 10)} % par an en moyenne</b> : ils sont presque identiques au début et à la fin. Mais la masse monétaire est passée de ${n0(g(1873).monnaie)} % à ${n0(g(1913).monnaie)} % du PIB : les banques créaient de la monnaie, l'or tenait seulement les prix.</li>
+    <li><b>Depuis 1913, les prix ont été multipliés par environ ${n0(Math.round(pL.prix / 100) * 100)}</b> (en ${pL.annee}, en comptant en anciens francs : 1 euro vaut 655,957 anciens francs). L'essentiel de cette hausse a lieu pendant les guerres et sous Bretton Woods : les prix sont multipliés par ${n0(p71 / p13)} entre 1913 et 1971, puis par ${f1(pL.prix / p71)} depuis.</li>
+    <li><b>Le pic de la Seconde Guerre mondiale</b> (${n0(pk.monnaie)} % du PIB en ${pk.annee}) vient de la monnaie créée pour payer la guerre puis l'occupation, alors que la production s'effondrait ; l'inflation des années suivantes la fait fondre (${n0(g(1950).monnaie)} % en 1950). Depuis 2008, la hausse vient du crédit et des rachats de dettes par la banque centrale, sans inflation forte jusqu'en 2021 : la monnaie nouvelle est allée surtout vers les prix des actifs (immobilier, actions).</li>
+  </ul>`;
+}
+
+/* rendement exigé (MEDAF) : taux sans risque + bêta × prime de risque ; alpha = obtenu − exigé */
+function capm() {
+  if (!$("#mo-rf")) return;
+  const rf = +$("#mo-rf").value, erp = +$("#mo-erp").value, be = +$("#mo-beta").value, ob = +$("#mo-obt").value;
+  $("#mo-rf-v").textContent = f2(rf) + " %"; $("#mo-erp-v").textContent = f2(erp) + " pts"; $("#mo-beta-v").textContent = be.toLocaleString("fr-FR", { minimumFractionDigits: 1 }); $("#mo-obt-v").textContent = f1(ob) + " %";
+  const ex = rf + be * erp, al = ob - ex, dbl = ex > 0 ? Math.log(2) / Math.log(1 + ex / 100) : null;
+  const last = M.serie.at(-1), p5 = M.serie.slice(-5), gN = p5.reduce((a, x) => a + x.nominal, 0) / p5.length;
+  const bar = (l, v, c) => `<div class="in-sbar"><span class="lab">${l}</span><span class="tr"><span style="width:${Math.max(0, Math.min(100, v * 5))}%;background:${c}"></span></span><b>${f1(v)} %</b><small></small></div>`;
+  $("#mo-capm-out").innerHTML = bar("Taux sans risque (dette de l'État)", rf, "#64748b") + bar(`+ ${be.toLocaleString("fr-FR")} × prime de risque`, be * erp, "#93c5fd") + bar("= Rendement exigé", ex, "#2563eb") + bar("Rendement obtenu", ob, ob >= ex ? "#16a34a" : "#dc2626") +
+    `<p class="in-verdict">Rendement exigé : <b>${f1(ex)} % par an</b>${dbl ? ` (le capital double en ${n0(dbl)} ans)` : ""}. Alpha : <b style="color:${al >= 0 ? "var(--pos)" : "var(--neg)"}">${sg(Math.round(al * 10) / 10)} point${Math.abs(al) >= 2 ? "s" : ""}</b> ${al > 0 ? "(surperformance)" : al < 0 ? "(sous-performance)" : ""}. À comparer à la croissance de l'économie française en valeur : ${f1(gN)} % par an en moyenne sur ${p5[0].annee}-${last.annee}.</p>`;
+}
+
+/* rendements réels du capital en France par période */
+function rendements() {
+  const { legend } = window.TH, P = M.rendements_periodes; if (!P || !$("#mo-rend")) return;
+  const K = [["actions", "Actions (dividendes compris)", "#2563eb"], ["logement", "Logement (loyers compris)", "#f59e0b"], ["obligations", "Obligations d'État à long terme", "#16a34a"], ["monetaire", "Placements sans risque à court terme", "#94a3b8"]];
+  const mx = Math.max(...P.flatMap(p => K.map(k => Math.abs(p[k[0]] || 0))));
+  $("#mo-rend").innerHTML = `<div class="mo-rend">` + P.map(p => `<div class="mo-rend-p"><b>${p.l}</b><small class="muted">inflation ${f1(p.inflation)} %/an</small>${K.map(k => { const v = p[k[0]];
+    return `<div class="mo-rend-r"><span class="mo-rend-t"><i class="${v < 0 ? "neg" : ""}" style="width:${(50 * Math.abs(v) / mx).toFixed(1)}%;background:${k[2]}"></i></span><em>${sg(v)} %</em></div>`; }).join("")}</div>`).join("") + `</div>`;
+  legend("#mo-rend-legend", K.map(k => [k[1], k[2]]));
+  const L = P.at(-1), g = M.serie.filter(x => x.annee >= 1950 && x.annee <= 2020), gr = g.reduce((a, x) => a + x.reel, 0) / g.length, a = P[1], b = P[2];
+  $("#mo-rend-txt").innerHTML = `<ul>
+    <li><b>Sur 1950-2020, les actions ont rapporté ${f1(L.actions)} % par an après inflation</b>, le logement ${f1(L.logement)} % (loyers compris, avant frais et impôts), les obligations d'État ${f1(L.obligations)} %, les placements sans risque à court terme ${f1(L.monetaire)} %. L'écart entre les actions et le sans risque, environ ${f1(L.actions - L.monetaire)} points, est la prime de risque effectivement obtenue sur la période.</li>
+    <li><b>Le capital a rapporté plus que la croissance</b> : l'économie française a crû de ${f1(gr)} % par an en volume sur la même période. C'est l'inégalité « r > g » de Thomas Piketty : quand le rendement du capital dépasse la croissance, les patrimoines grossissent plus vite que les revenus du travail.</li>
+    <li><b>Mais ce n'est pas une loi</b> : de 1950 à 1979, les placements sans risque ont rapporté ${f1(a.monetaire)} % et les obligations ${f1(a.obligations)} % par an après inflation. L'inflation et des taux bas, encadrés par l'État (le « circuit du Trésor », voir la partie 3), ont fait payer les détenteurs d'épargne et fondre les dettes, pendant les années de croissance les plus fortes. De 1980 à 2007, c'est l'inverse : taux élevés, inflation maîtrisée, ${f1(b.obligations)} % par an pour les obligations, et dettes qui gonflent.</li>
+    <li><b>Dette et rendement du capital sont donc liés</b> : le taux de la dette publique est le plancher de tous les rendements. Dans une économie qui croît peu, un rendement élevé du capital fait grossir les dettes et les patrimoines plus vite que les revenus ; pour en sortir, l'histoire montre trois voies, déjà évoquées : la croissance, l'inflation avec des taux maintenus bas (« répression financière »), ou les pertes (défauts, faillites, krachs). Le niveau des taux n'est pas une loi de la nature : il dépend de la banque centrale, de la réglementation de l'épargne et des choix politiques.</li>
+  </ul>
+  <p class="muted" style="font-size:.78rem">Jordà, Knoll, Kuvshinov, Schularick et Taylor, « The Rate of Return on Everything, 1870-2015 », <i>Quarterly Journal of Economics</i> (2019), Macrohistory Database ; moyennes arithmétiques des rendements annuels réels (rendement nominal total déflaté par les prix à la consommation). Croissance : INSEE.</p>`;
+}
+
 function draw() {
   if (!M || !$("#mo-credit")) return;
   const { kpis, lineChart, legend, esc } = window.TH;
@@ -143,7 +251,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
