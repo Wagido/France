@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121m">
+<link rel="stylesheet" href="style.css?v=20261121n">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -63,7 +63,6 @@
       <a href="#transports">Transports</a>
       <span class="tab-sep">Climat</span>
       <a href="#climat">Climat</a>
-      <a href="#empreinte">Empreinte carbone</a>
       <a href="#catastrophes">Catastrophes climatiques</a>
       <a href="#transition">Qui paie la transition ?</a>
       <span class="tab-sep">Terres et matières</span>
@@ -1190,44 +1189,6 @@
   </div>
 </section>
 
-<section id="climat" class="panel">
-  <div class="panel-head">
-    <h2>Climat : les émissions de gaz à effet de serre <span class="geo-tag"></span></h2>
-  </div>
-  <div class="kpis" id="cl-kpis"></div>
-  <p class="lead">En millions de tonnes d'équivalent CO₂ (chaque gaz est converti selon son effet sur le réchauffement). Ce sont les émissions produites sur le territoire. Celles des produits importés (l'« empreinte carbone ») n'y sont pas, et celles des forêts et des sols sont montrées à part, sous zéro quand elles absorbent du CO₂.</p>
-  <div id="cl-chart" class="chart"></div><div class="legend-row" id="cl-legend"></div>
-  <div class="grid2">
-    <div><h3>Par gaz (dernière année)</h3><div id="cl-gaz" class="chart"></div></div>
-    <div><h3>Comparer les pays</h3><div id="cl-cmp" class="chart"></div></div>
-  </div>
-</section>
-
-<section id="empreinte" class="panel">
-  <div class="panel-head">
-    <h2>Empreinte carbone : ce que pèse notre consommation <span class="geo-tag"></span></h2>
-  </div>
-  <div class="kpis" id="ec-kpis"></div>
-  <p class="lead">L'empreinte compte tous les gaz à effet de serre émis pour satisfaire la consommation des habitants, où qu'ils soient émis : en France, mais aussi en Chine pour un téléphone ou au Brésil pour du soja. À la différence des émissions « du territoire » (onglet Climat), elle ajoute les importations et retire les exportations.</p>
-  <div id="ec-fr">
-    <h3>Les grands postes de consommation (France)</h3>
-    <div id="ec-postes" class="chart"></div>
-    <p class="muted" id="ec-postes-note" style="font-size:.85rem"></p>
-    <div class="grid2">
-      <div><h3>Depuis 1990</h3><div id="ec-serie" class="chart"></div><div class="legend-row" id="ec-serie-legend"></div></div>
-      <div><h3>Où ces gaz sont-ils émis ?</h3><div id="ec-orig" class="chart"></div></div>
-    </div>
-    <div class="callout small" id="ec-txt"></div>
-    <h3>La France dans le monde (tonnes par habitant)</h3>
-    <div id="ec-monde" class="chart"></div>
-  </div>
-  <h3 id="ec-usage-h">Qui consomme : ménages, services publics, investissements</h3>
-  <div id="ec-usage" class="chart"></div><div class="legend-row" id="ec-usage-legend"></div>
-  <p class="muted" id="ec-usage-note" style="font-size:.85rem"></p>
-  <h3>Comparer les pays</h3><div id="ec-cmp" class="chart"></div>
-  <p class="muted" style="font-size:.84rem">Eurostat, modèle entrées-sorties mondial FIGARO (env_ac_ghgfp), émissions directes des ménages comprises. Pour la France, le SDES et l'INSEE publient leur propre calcul, très proche (8,2 t contre 8,1 t par habitant en 2024).</p>
-</section>
-
 <section id="dechets" class="panel">
   <div class="panel-head">
     <h2>Déchets : qui les produit, ce qu'ils deviennent <span class="geo-tag"></span></h2>
@@ -1308,6 +1269,42 @@
   <h3>Décès prématurés dus aux particules fines (PM2,5) en France</h3><div id="air-fr" class="chart"></div><div class="legend-row" id="air-fr-legend"></div>
   <h3>Décès prématurés pour 100 000 habitants : la France et les autres pays</h3><div id="air-pays"></div>
   <div class="callout small" id="air-txt"></div>
+</section>
+
+<section id="climat" class="panel">
+  <div class="panel-head">
+    <h2>Climat : nos émissions et notre empreinte carbone <span class="geo-tag"></span></h2>
+  </div>
+  <p class="muted" style="margin:0 0 8px">Deux façons de compter : <a href="#climat" data-to="cl-p1">1. les gaz émis sur le territoire</a> · <a href="#climat" data-to="empreinte">2. l'empreinte carbone, qui ajoute ce que nous importons et retire ce que nous exportons</a></p>
+  <h3 id="cl-p1" class="ag-part">1. Ce qui est émis en France</h3>
+  <div class="kpis" id="cl-kpis"></div>
+  <p class="lead">En millions de tonnes d'équivalent CO₂ (chaque gaz est converti selon son effet sur le réchauffement). Ce sont les émissions produites sur le territoire. Celles des produits importés n'y sont pas (voir la partie 2, l'empreinte carbone), et celles des forêts et des sols sont montrées à part, sous zéro quand elles absorbent du CO₂.</p>
+  <div id="cl-chart" class="chart"></div><div class="legend-row" id="cl-legend"></div>
+  <div class="grid2">
+    <div><h3>Par gaz (dernière année)</h3><div id="cl-gaz" class="chart"></div></div>
+    <div><h3>Comparer les pays : les émissions du territoire</h3><div id="cl-cmp" class="chart"></div></div>
+  </div>
+
+  <h3 id="empreinte" class="ag-part">2. L'empreinte carbone : ce que pèse notre consommation</h3>
+  <div class="kpis" id="ec-kpis"></div>
+  <p class="lead">L'empreinte compte tous les gaz à effet de serre émis pour satisfaire la consommation des habitants, où qu'ils soient émis : en France, mais aussi en Chine pour un téléphone ou au Brésil pour du soja. À la différence des émissions « du territoire » (partie 1), elle ajoute les importations et retire les exportations.</p>
+  <div id="ec-fr">
+    <h3>Les grands postes de consommation (France)</h3>
+    <div id="ec-postes" class="chart"></div>
+    <p class="muted" id="ec-postes-note" style="font-size:.85rem"></p>
+    <div class="grid2">
+      <div><h3>Depuis 1990</h3><div id="ec-serie" class="chart"></div><div class="legend-row" id="ec-serie-legend"></div></div>
+      <div><h3>Où ces gaz sont-ils émis ?</h3><div id="ec-orig" class="chart"></div></div>
+    </div>
+    <div class="callout small" id="ec-txt"></div>
+    <h3>La France dans le monde (tonnes par habitant)</h3>
+    <div id="ec-monde" class="chart"></div>
+  </div>
+  <h3 id="ec-usage-h">Qui consomme : ménages, services publics, investissements</h3>
+  <div id="ec-usage" class="chart"></div><div class="legend-row" id="ec-usage-legend"></div>
+  <p class="muted" id="ec-usage-note" style="font-size:.85rem"></p>
+  <h3>Comparer les pays : l'empreinte</h3><div id="ec-cmp" class="chart"></div>
+  <p class="muted" style="font-size:.84rem">Eurostat, modèle entrées-sorties mondial FIGARO (env_ac_ghgfp), émissions directes des ménages comprises. Pour la France, le SDES et l'INSEE publient leur propre calcul, très proche (8,2 t contre 8,1 t par habitant en 2024).</p>
 </section>
 
 <section id="catastrophes" class="panel">
@@ -1629,47 +1626,47 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121m"></script>
-<script src="app.js?v=20261121m"></script>
-<script src="energie.js?v=20261121m"></script>
-<script src="matieres.js?v=20261121m"></script>
-<script src="territoire.js?v=20261121m"></script>
-<script src="themes.js?v=20261121m"></script>
-<script src="societe.js?v=20261121m"></script>
-<script src="eco2.js?v=20261121m"></script>
-<script src="empreinte.js?v=20261121m"></script>
-<script src="argentprive.js?v=20261121m"></script>
-<script src="repartition.js?v=20261121m"></script>
-<script src="patrimoine.js?v=20261121m"></script>
-<script src="prelevements.js?v=20261121m"></script>
-<script src="travailvie.js?v=20261121m"></script>
-<script src="niveauvie.js?v=20261121m"></script>
-<script src="prosperite.js?v=20261121m"></script>
-<script src="exterieur.js?v=20261121m"></script>
-<script src="desindus.js?v=20261121m"></script>
-<script src="retraites.js?v=20261121m"></script>
-<script src="energiecout.js?v=20261121m"></script>
-<script src="energieformation.js?v=20261121m"></script>
-<script src="nucleaire.js?v=20261121m"></script>
-<script src="logementeco.js?v=20261121m"></script>
-<script src="competences.js?v=20261121m"></script>
-<script src="justicedroit.js?v=20261121m"></script>
-<script src="fonctionnaires.js?v=20261121m"></script>
-<script src="couper.js?v=20261121m"></script>
-<script src="seuilpays.js?v=20261121m"></script>
-<script src="logement.js?v=20261121m"></script>
-<script src="env.js?v=20261121m"></script>
-<script src="agriculture.js?v=20261121m"></script>
-<script src="rendements.js?v=20261121m"></script>
-<script src="chaine.js?v=20261121m"></script>
-<script src="patrimoinehist.js?v=20261121m"></script>
-<script src="innovation.js?v=20261121m"></script>
+<script src="kpi.js?v=20261121n"></script>
+<script src="app.js?v=20261121n"></script>
+<script src="energie.js?v=20261121n"></script>
+<script src="matieres.js?v=20261121n"></script>
+<script src="territoire.js?v=20261121n"></script>
+<script src="themes.js?v=20261121n"></script>
+<script src="societe.js?v=20261121n"></script>
+<script src="eco2.js?v=20261121n"></script>
+<script src="empreinte.js?v=20261121n"></script>
+<script src="argentprive.js?v=20261121n"></script>
+<script src="repartition.js?v=20261121n"></script>
+<script src="patrimoine.js?v=20261121n"></script>
+<script src="prelevements.js?v=20261121n"></script>
+<script src="travailvie.js?v=20261121n"></script>
+<script src="niveauvie.js?v=20261121n"></script>
+<script src="prosperite.js?v=20261121n"></script>
+<script src="exterieur.js?v=20261121n"></script>
+<script src="desindus.js?v=20261121n"></script>
+<script src="retraites.js?v=20261121n"></script>
+<script src="energiecout.js?v=20261121n"></script>
+<script src="energieformation.js?v=20261121n"></script>
+<script src="nucleaire.js?v=20261121n"></script>
+<script src="logementeco.js?v=20261121n"></script>
+<script src="competences.js?v=20261121n"></script>
+<script src="justicedroit.js?v=20261121n"></script>
+<script src="fonctionnaires.js?v=20261121n"></script>
+<script src="couper.js?v=20261121n"></script>
+<script src="seuilpays.js?v=20261121n"></script>
+<script src="logement.js?v=20261121n"></script>
+<script src="env.js?v=20261121n"></script>
+<script src="agriculture.js?v=20261121n"></script>
+<script src="rendements.js?v=20261121n"></script>
+<script src="chaine.js?v=20261121n"></script>
+<script src="patrimoinehist.js?v=20261121n"></script>
+<script src="innovation.js?v=20261121n"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121m"></script>
-<script src="histoire.js?v=20261121m"></script>
-<script src="chomage.js?v=20261121m"></script>
-<script src="sources.js?v=20261121m"></script>
-<script src="nav.js?v=20261121m"></script>
+<script src="soussol.js?v=20261121n"></script>
+<script src="histoire.js?v=20261121n"></script>
+<script src="chomage.js?v=20261121n"></script>
+<script src="sources.js?v=20261121n"></script>
+<script src="nav.js?v=20261121n"></script>
 </body>
 </html>
