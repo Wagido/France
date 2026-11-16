@@ -5,7 +5,7 @@ let S = null;
 const $ = s => document.querySelector(s);
 const n0 = v => Math.round(v).toLocaleString("fr-FR");
 const f1 = v => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
-const sg = v => (v > 0 ? "+" : v < 0 ? "−" : "") + n0(Math.abs(v));
+const sg = v => { const r = Math.round(v); return r === 0 ? "0" : (r > 0 ? "+" : "−") + n0(Math.abs(r)); };
 
 async function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
@@ -94,7 +94,7 @@ function carte() {
 }
 
 /* écarts gauche : pays, avant 1980 et depuis 2000 */
-function dumbbell(sel, key, fmt) {
+function dumbbell(sel, key, fmt, opts) {
   const { esc } = window.TH, P = S.long.pays.filter(p => p.debut[key] != null || p.fin[key] != null).sort((a, b) => (b.fin[key] ?? -99) - (a.fin[key] ?? -99));
   const vals = P.flatMap(p => [p.debut[key], p.fin[key]]).filter(v => v != null), mx = Math.max(10, ...vals.map(Math.abs));
   const X = v => 50 + 50 * v / mx;
@@ -102,8 +102,9 @@ function dumbbell(sel, key, fmt) {
     return `<div class="el-db-row${p.nom === "France" ? " me" : ""}"><span class="lab">${esc(p.nom)}</span><span class="el-db-tr"><i class="z"></i>
       ${a != null && b != null ? `<i class="ln" style="left:${Math.min(X(a), X(b))}%;width:${Math.abs(X(b) - X(a))}%"></i>` : ""}
       ${a != null ? `<b class="d0" style="left:${X(a)}%" title="avant 1980 : ${fmt(a)}"></b>` : ""}${b != null ? `<b class="d1" style="left:${X(b)}%" title="depuis 2000 : ${fmt(b)}"></b>` : ""}</span>
-      <span class="num">${a != null ? fmt(a) : "–"} → <b>${b != null ? fmt(b) : "–"}</b></span></div>`; }).join("") +
-    `<div class="el-db-row el-db-axe"><span></span><span class="el-db-tr"><small style="left:0">−${n0(mx)}</small><small style="left:50%">0</small><small style="left:100%">+${n0(mx)}</small></span><span></span></div></div>`;
+      <span class="num">${a != null ? fmt(a) : "n.d."} → <b>${b != null ? fmt(b) : "n.d."}</b></span></div>`; }).join("") +
+    `<div class="el-db-row el-db-axe"><span></span><span class="el-db-tr"><small style="left:0">−${n0(mx)}</small><small style="left:50%">0</small><small style="left:100%">+${n0(mx)}</small></span><span></span></div>
+    <div class="el-db-row el-db-sens"><span></span><span class="el-db-lbl"><em>← ${opts.gauche}</em><em>${opts.droite} →</em></span><span></span></div></div>`;
 }
 
 function sexe() {
@@ -114,7 +115,7 @@ function sexe() {
   legend("#el-sexe-legend", [...L.camps.slice(0, 4).map(c => [c[1], c[2]]), ["Éric Zemmour (2022)", "#7c3aed"]]);
   const F = S.long.france.filter(r => r.femmes != null);
   lineChart($("#el-sexe-long"), F, [{ k: "femmes", l: "Vote de gauche : femmes moins hommes", c: "#db2777" }], { vfmt: v => sg(v) + " pts", yfmt: v => sg(v), h: 240 });
-  dumbbell("#el-sexe-pays", "femmes", v => sg(v));
+  dumbbell("#el-sexe-pays", "femmes", v => sg(v), { gauche: "les femmes votent plus à droite que les hommes", droite: "les femmes votent plus à gauche" });
   legend("#el-sexe-pays-legend", [["Avant 1980 (moyenne des élections)", "#a8a29e"], ["Depuis 2000", "#db2777"]]);
   const pos = S.long.pays.filter(p => p.fin.femmes > 2).length, neg = S.long.pays.filter(p => p.fin.femmes < -2).length, nb = S.long.pays.filter(p => p.fin.femmes != null).length;
   const dmin = S.long.pays.filter(p => p.debut.femmes != null && p.debut.femmes < 0).length, nd = S.long.pays.filter(p => p.debut.femmes != null).length;
@@ -132,7 +133,7 @@ function renversement() {
   lineChart($("#el-long"), F, [{ k: "diplome", l: "Diplôme : 10 % les plus diplômés moins les 90 % autres", c: "#7c3aed" }, { k: "revenu", l: "Revenu : 10 % les plus riches moins les 90 % autres", c: "#16a34a" }],
     { vfmt: v => sg(v) + " pts", yfmt: v => sg(v), h: 260 });
   legend("#el-long-legend", [["Diplôme : 10 % les plus diplômés − 90 % autres", "#7c3aed"], ["Revenu : 10 % les plus riches − 90 % autres", "#16a34a"]]);
-  dumbbell("#el-dip-pays", "diplome", v => sg(v));
+  dumbbell("#el-dip-pays", "diplome", v => sg(v), { gauche: "la gauche fait mieux chez les moins diplômés", droite: "chez les plus diplômés" });
   const a = F[0], b = F.at(-1), up = S.long.pays.filter(p => p.debut.diplome != null && p.fin.diplome != null && p.fin.diplome > p.debut.diplome).length, n = S.long.pays.filter(p => p.debut.diplome != null && p.fin.diplome != null).length;
   $("#el-long-txt").innerHTML = `<ul>
     <li><b>En 1956, la gauche était le vote des moins diplômés</b> : les 10 % les plus diplômés votaient ${sg(a.diplome)} points de moins pour la gauche que les autres. En ${b.annee}, ils votent <b>${sg(b.diplome)} points de plus</b>. La gauche, parti des ouvriers, est devenue celui des diplômés.</li>
