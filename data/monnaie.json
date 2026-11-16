@@ -1,4 +1,761 @@
 {
+ "histoire": [
+  {
+   "annee": 1870,
+   "monnaie": 43.0,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1871,
+   "monnaie": 46.0,
+   "prix": 0.9694
+  },
+  {
+   "annee": 1872,
+   "monnaie": 44.9,
+   "prix": 0.9592
+  },
+  {
+   "annee": 1873,
+   "monnaie": 48.3,
+   "prix": 0.9592
+  },
+  {
+   "annee": 1874,
+   "monnaie": 44.6,
+   "prix": 0.9592
+  },
+  {
+   "annee": 1875,
+   "monnaie": 46.5,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1876,
+   "monnaie": 52.4,
+   "prix": 0.9694
+  },
+  {
+   "annee": 1877,
+   "monnaie": 53.5,
+   "prix": 0.9694
+  },
+  {
+   "annee": 1878,
+   "monnaie": 58.1,
+   "prix": 0.949
+  },
+  {
+   "annee": 1879,
+   "monnaie": 62.3,
+   "prix": 0.949
+  },
+  {
+   "annee": 1880,
+   "monnaie": 57.5,
+   "prix": 0.9592
+  },
+  {
+   "annee": 1881,
+   "monnaie": 57.0,
+   "prix": 0.949
+  },
+  {
+   "annee": 1882,
+   "monnaie": 55.3,
+   "prix": 0.949
+  },
+  {
+   "annee": 1883,
+   "monnaie": 56.5,
+   "prix": 0.9694
+  },
+  {
+   "annee": 1884,
+   "monnaie": 59.9,
+   "prix": 0.9694
+  },
+  {
+   "annee": 1885,
+   "monnaie": 62.5,
+   "prix": 0.949
+  },
+  {
+   "annee": 1886,
+   "monnaie": 64.6,
+   "prix": 0.949
+  },
+  {
+   "annee": 1887,
+   "monnaie": 63.6,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1888,
+   "monnaie": 66.6,
+   "prix": 0.949
+  },
+  {
+   "annee": 1889,
+   "monnaie": 59.1,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1890,
+   "monnaie": 58.1,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1891,
+   "monnaie": 59.0,
+   "prix": 0.949
+  },
+  {
+   "annee": 1892,
+   "monnaie": 63.4,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1893,
+   "monnaie": 67.1,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1894,
+   "monnaie": 66.2,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1895,
+   "monnaie": 68.8,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1896,
+   "monnaie": 66.1,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1897,
+   "monnaie": 63.8,
+   "prix": 0.9082
+  },
+  {
+   "annee": 1898,
+   "monnaie": 61.4,
+   "prix": 0.9184
+  },
+  {
+   "annee": 1899,
+   "monnaie": 61.1,
+   "prix": 0.9184
+  },
+  {
+   "annee": 1900,
+   "monnaie": 63.4,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1901,
+   "monnaie": 70.1,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1902,
+   "monnaie": 67.1,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1903,
+   "monnaie": 65.5,
+   "prix": 0.9184
+  },
+  {
+   "annee": 1904,
+   "monnaie": 71.4,
+   "prix": 0.9184
+  },
+  {
+   "annee": 1905,
+   "monnaie": 73.5,
+   "prix": 0.9184
+  },
+  {
+   "annee": 1906,
+   "monnaie": 71.6,
+   "prix": 0.9286
+  },
+  {
+   "annee": 1907,
+   "monnaie": 66.9,
+   "prix": 0.9388
+  },
+  {
+   "annee": 1908,
+   "monnaie": 74.5,
+   "prix": 0.949
+  },
+  {
+   "annee": 1909,
+   "monnaie": 72.6,
+   "prix": 0.949
+  },
+  {
+   "annee": 1910,
+   "monnaie": 73.1,
+   "prix": 0.9592
+  },
+  {
+   "annee": 1911,
+   "monnaie": 67.9,
+   "prix": 1.0
+  },
+  {
+   "annee": 1912,
+   "monnaie": 62.6,
+   "prix": 1.0
+  },
+  {
+   "annee": 1913,
+   "monnaie": 60.3,
+   "prix": 1.0
+  },
+  {
+   "annee": 1914,
+   "monnaie": null,
+   "prix": 1.0204
+  },
+  {
+   "annee": 1915,
+   "monnaie": null,
+   "prix": 1.2005
+  },
+  {
+   "annee": 1916,
+   "monnaie": null,
+   "prix": 1.3806
+  },
+  {
+   "annee": 1917,
+   "monnaie": null,
+   "prix": 1.6206
+  },
+  {
+   "annee": 1918,
+   "monnaie": null,
+   "prix": 2.1008
+  },
+  {
+   "annee": 1919,
+   "monnaie": null,
+   "prix": 2.6411
+  },
+  {
+   "annee": 1920,
+   "monnaie": 42.8,
+   "prix": 3.6615
+  },
+  {
+   "annee": 1921,
+   "monnaie": 59.0,
+   "prix": 3.1813
+  },
+  {
+   "annee": 1922,
+   "monnaie": 51.0,
+   "prix": 3.0612
+  },
+  {
+   "annee": 1923,
+   "monnaie": 43.9,
+   "prix": 3.4214
+  },
+  {
+   "annee": 1924,
+   "monnaie": 39.3,
+   "prix": 3.9016
+  },
+  {
+   "annee": 1925,
+   "monnaie": 42.2,
+   "prix": 4.1417
+  },
+  {
+   "annee": 1926,
+   "monnaie": 38.4,
+   "prix": 5.4022
+  },
+  {
+   "annee": 1927,
+   "monnaie": 46.9,
+   "prix": 5.6423
+  },
+  {
+   "annee": 1928,
+   "monnaie": 52.0,
+   "prix": 5.6423
+  },
+  {
+   "annee": 1929,
+   "monnaie": 52.2,
+   "prix": 6.0024
+  },
+  {
+   "annee": 1930,
+   "monnaie": 60.8,
+   "prix": 6.0624
+  },
+  {
+   "annee": 1931,
+   "monnaie": 78.3,
+   "prix": 5.8223
+  },
+  {
+   "annee": 1932,
+   "monnaie": 88.6,
+   "prix": 5.2821
+  },
+  {
+   "annee": 1933,
+   "monnaie": 90.1,
+   "prix": 5.102
+  },
+  {
+   "annee": 1934,
+   "monnaie": 96.5,
+   "prix": 4.922
+  },
+  {
+   "annee": 1935,
+   "monnaie": 103.2,
+   "prix": 4.5018
+  },
+  {
+   "annee": 1936,
+   "monnaie": 88.1,
+   "prix": 4.8019
+  },
+  {
+   "annee": 1937,
+   "monnaie": 68.1,
+   "prix": 6.0624
+  },
+  {
+   "annee": 1938,
+   "monnaie": 64.5,
+   "prix": 6.9028
+  },
+  {
+   "annee": 1939,
+   "monnaie": 65.7,
+   "prix": 7.3229
+  },
+  {
+   "annee": 1940,
+   "monnaie": 89.7,
+   "prix": 8.7035
+  },
+  {
+   "annee": 1941,
+   "monnaie": 135.1,
+   "prix": 10.2041
+  },
+  {
+   "annee": 1942,
+   "monnaie": 143.1,
+   "prix": 12.3049
+  },
+  {
+   "annee": 1943,
+   "monnaie": 158.9,
+   "prix": 15.2461
+  },
+  {
+   "annee": 1944,
+   "monnaie": 198.1,
+   "prix": 18.6675
+  },
+  {
+   "annee": 1945,
+   "monnaie": 137.6,
+   "prix": 27.6711
+  },
+  {
+   "annee": 1946,
+   "monnaie": 73.7,
+   "prix": 42.1969
+  },
+  {
+   "annee": 1947,
+   "monnaie": 55.3,
+   "prix": 62.9652
+  },
+  {
+   "annee": 1948,
+   "monnaie": 42.0,
+   "prix": 99.88
+  },
+  {
+   "annee": 1949,
+   "monnaie": 36.3,
+   "prix": 112.5631
+  },
+  {
+   "annee": 1950,
+   "monnaie": 31.3,
+   "prix": 123.6609
+  },
+  {
+   "annee": 1951,
+   "monnaie": 29.4,
+   "prix": 144.271
+  },
+  {
+   "annee": 1952,
+   "monnaie": 28.7,
+   "prix": 161.7104
+  },
+  {
+   "annee": 1953,
+   "monnaie": 30.9,
+   "prix": 158.5396
+  },
+  {
+   "annee": 1954,
+   "monnaie": 33.2,
+   "prix": 158.5396
+  },
+  {
+   "annee": 1955,
+   "monnaie": 34.9,
+   "prix": 160.125
+  },
+  {
+   "annee": 1956,
+   "monnaie": 35.0,
+   "prix": 164.8812
+  },
+  {
+   "annee": 1957,
+   "monnaie": 34.2,
+   "prix": 172.8082
+  },
+  {
+   "annee": 1958,
+   "monnaie": 31.5,
+   "prix": 198.1745
+  },
+  {
+   "annee": 1959,
+   "monnaie": 32.7,
+   "prix": 210.8577
+  },
+  {
+   "annee": 1960,
+   "monnaie": 34.5,
+   "prix": 218.7847
+  },
+  {
+   "annee": 1961,
+   "monnaie": 37.2,
+   "prix": 225.1262
+  },
+  {
+   "annee": 1962,
+   "monnaie": 39.4,
+   "prix": 236.224
+  },
+  {
+   "annee": 1963,
+   "monnaie": 40.1,
+   "prix": 247.3218
+  },
+  {
+   "annee": 1964,
+   "monnaie": 39.6,
+   "prix": 255.2488
+  },
+  {
+   "annee": 1965,
+   "monnaie": 40.7,
+   "prix": 263.1757
+  },
+  {
+   "annee": 1966,
+   "monnaie": 41.6,
+   "prix": 270.982
+  },
+  {
+   "annee": 1967,
+   "monnaie": 43.6,
+   "prix": 278.5472
+  },
+  {
+   "annee": 1968,
+   "monnaie": 44.5,
+   "prix": 291.2022
+  },
+  {
+   "annee": 1969,
+   "monnaie": 40.7,
+   "prix": 308.8082
+  },
+  {
+   "annee": 1970,
+   "monnaie": 41.7,
+   "prix": 325.1739
+  },
+  {
+   "annee": 1971,
+   "monnaie": 44.3,
+   "prix": 342.7252
+  },
+  {
+   "annee": 1972,
+   "monnaie": 47.2,
+   "prix": 363.5046
+  },
+  {
+   "annee": 1973,
+   "monnaie": 47.1,
+   "prix": 390.3335
+  },
+  {
+   "annee": 1974,
+   "monnaie": 47.6,
+   "prix": 443.6113
+  },
+  {
+   "annee": 1975,
+   "monnaie": 48.9,
+   "prix": 495.4514
+  },
+  {
+   "annee": 1976,
+   "monnaie": 47.5,
+   "prix": 543.1411
+  },
+  {
+   "annee": 1977,
+   "monnaie": 48.4,
+   "prix": 594.7099
+  },
+  {
+   "annee": 1978,
+   "monnaie": 73.5,
+   "prix": 649.7239
+  },
+  {
+   "annee": 1979,
+   "monnaie": 73.6,
+   "prix": 718.8983
+  },
+  {
+   "annee": 1980,
+   "monnaie": 65.6,
+   "prix": 816.3994
+  },
+  {
+   "annee": 1981,
+   "monnaie": 64.8,
+   "prix": 925.0981
+  },
+  {
+   "annee": 1982,
+   "monnaie": 62.6,
+   "prix": 1035.9107
+  },
+  {
+   "annee": 1983,
+   "monnaie": 62.5,
+   "prix": 1133.9032
+  },
+  {
+   "annee": 1984,
+   "monnaie": 62.4,
+   "prix": 1220.9167
+  },
+  {
+   "annee": 1985,
+   "monnaie": 60.2,
+   "prix": 1292.1096
+  },
+  {
+   "annee": 1986,
+   "monnaie": 57.9,
+   "prix": 1324.9101
+  },
+  {
+   "annee": 1987,
+   "monnaie": 57.6,
+   "prix": 1368.4851
+  },
+  {
+   "annee": 1988,
+   "monnaie": 55.2,
+   "prix": 1405.4453
+  },
+  {
+   "annee": 1989,
+   "monnaie": 54.0,
+   "prix": 1454.612
+  },
+  {
+   "annee": 1990,
+   "monnaie": 51.5,
+   "prix": 1501.0765
+  },
+  {
+   "annee": 1991,
+   "monnaie": 48.6,
+   "prix": 1549.3122
+  },
+  {
+   "annee": 1992,
+   "monnaie": 46.4,
+   "prix": 1585.9342
+  },
+  {
+   "annee": 1993,
+   "monnaie": 45.6,
+   "prix": 1619.3096
+  },
+  {
+   "annee": 1994,
+   "monnaie": 46.0,
+   "prix": 1646.1175
+  },
+  {
+   "annee": 1995,
+   "monnaie": 48.4,
+   "prix": 1675.6897
+  },
+  {
+   "annee": 1996,
+   "monnaie": 47.0,
+   "prix": 1708.9167
+  },
+  {
+   "annee": 1997,
+   "monnaie": 48.8,
+   "prix": 1729.4911
+  },
+  {
+   "annee": 1998,
+   "monnaie": 48.4,
+   "prix": 1740.7523
+  },
+  {
+   "annee": 1999,
+   "monnaie": 49.1,
+   "prix": 1750.1026
+  },
+  {
+   "annee": 2000,
+   "monnaie": 49.3,
+   "prix": 1779.4336
+  },
+  {
+   "annee": 2001,
+   "monnaie": 50.7,
+   "prix": 1808.5234
+  },
+  {
+   "annee": 2002,
+   "monnaie": 53.1,
+   "prix": 1843.3088
+  },
+  {
+   "annee": 2003,
+   "monnaie": 54.0,
+   "prix": 1881.9901
+  },
+  {
+   "annee": 2004,
+   "monnaie": 55.3,
+   "prix": 1922.304
+  },
+  {
+   "annee": 2005,
+   "monnaie": 57.9,
+   "prix": 1955.8649
+  },
+  {
+   "annee": 2006,
+   "monnaie": 59.8,
+   "prix": 1988.6281
+  },
+  {
+   "annee": 2007,
+   "monnaie": 64.7,
+   "prix": 2018.2189
+  },
+  {
+   "annee": 2008,
+   "monnaie": 68.1,
+   "prix": 2074.9886
+  },
+  {
+   "annee": 2009,
+   "monnaie": 69.9,
+   "prix": 2076.8067
+  },
+  {
+   "annee": 2010,
+   "monnaie": 73.0,
+   "prix": 2108.6051
+  },
+  {
+   "annee": 2011,
+   "monnaie": 73.6,
+   "prix": 2153.1304
+  },
+  {
+   "annee": 2012,
+   "monnaie": 76.6,
+   "prix": 2195.2068
+  },
+  {
+   "annee": 2013,
+   "monnaie": 77.7,
+   "prix": 2214.1671
+  },
+  {
+   "annee": 2014,
+   "monnaie": 79.4,
+   "prix": 2225.4097
+  },
+  {
+   "annee": 2015,
+   "monnaie": 81.3,
+   "prix": 2226.2446
+  },
+  {
+   "annee": 2016,
+   "monnaie": 84.2,
+   "prix": 2230.3261
+  },
+  {
+   "annee": 2017,
+   "monnaie": 89.1,
+   "prix": 2253.3493
+  },
+  {
+   "annee": 2018,
+   "monnaie": 91.5,
+   "prix": 2295.0547
+  },
+  {
+   "annee": 2019,
+   "monnaie": 95.3,
+   "prix": 2320.4897
+  },
+  {
+   "annee": 2020,
+   "monnaie": 117.0,
+   "prix": 2331.5468
+  }
+ ],
  "rendements": [
   {
    "annee": 1871,

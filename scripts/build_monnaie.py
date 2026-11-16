@@ -109,6 +109,17 @@ def moy_r(a, b, k):
 periodes_r = [{"l": f"{a}-{b}", **{k: moy_r(a, b, k) for k in ("actions", "logement", "obligations", "monetaire", "inflation")}}
               for a, b in ((1900, 1949), (1950, 1979), (1980, 2007), (2008, 2020), (1950, 2020))]
 
-out = {"rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
+
+# longue histoire (JST, France, depuis 1870) : monnaie au sens large en % du PIB, niveau des prix (1913 = 1)
+wb3 = openpyxl.load_workbook(os.path.join(SRC, "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
+rows3 = wb3[wb3.sheetnames[0]].iter_rows(values_only=True)
+h3 = next(rows3)
+J = {k: h3.index(k) for k in ("year", "iso", "gdp", "money", "cpi")}
+H = [r for r in rows3 if r[J["iso"]] == "FRA" and r[J["year"]] >= 1870]
+c13 = next(r[J["cpi"]] for r in H if r[J["year"]] == 1913)
+histoire = [{"annee": r[J["year"]], "monnaie": round(100 * r[J["money"]] / r[J["gdp"]], 1) if r[J["money"]] and r[J["gdp"]] else None,
+             "prix": round(r[J["cpi"]] / c13, 4) if r[J["cpi"]] else None} for r in H]
+histoire = [x for x in histoire if x["monnaie"] is not None or x["prix"] is not None]
+out = {"histoire": histoire, "rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
 json.dump(out, open(os.path.join(HERE, "..", "data", "monnaie.json"), "w"), ensure_ascii=False, indent=1)
 print(agregats[0], agregats[-1], dern, serie[0], serie[-1], credit[0], credit[-1], periodes, sep="\n")

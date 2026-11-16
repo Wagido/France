@@ -96,6 +96,42 @@ function drawInfl() {
   el.replaceChildren(svg.node());
 }
 
+/* histoire longue : monnaie/PIB et prix, avec les grandes époques monétaires */
+function hist() {
+  const H = M.histoire; if (!H || !$("#mo-hmon") || !$("#mo-hmon").clientWidth) return;
+  const { showTip, hideTip, css } = window.TH, y1 = H.at(-1).annee;
+  const E = [[1873, 1914, "Étalon-or", "#ca8a04"], [1914, 1944, "Guerres", "#dc2626"], [1944, 1971, "Bretton Woods", "#2563eb"], [1971, 1999, "Sans métal", "#64748b"], [1999, y1, "Euro", "#7c3aed"]];
+  const draw = (sel, key, log, fmt, tip) => {
+    const el = $(sel), D = H.filter(d => d[key] != null), w = Math.max(300, el.clientWidth), h = 280, m = { t: 30, r: 12, b: 26, l: 46 };
+    const x = d3.scaleLinear([1870, y1], [m.l, w - m.r]);
+    const y = log ? d3.scaleLog([0.5, d3.max(D, d => d[key]) * 1.5], [h - m.b, m.t]) : d3.scaleLinear([0, d3.max(D, d => d[key]) * 1.08], [h - m.b, m.t]);
+    const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    E.forEach(([a, b, l, c], i) => {
+      svg.append("rect").attr("x", x(a)).attr("width", x(b) - x(a)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", c).attr("opacity", .1);
+      svg.append("text").attr("x", (x(a) + x(b)) / 2).attr("y", m.t - (i % 2 ? 4 : 16)).attr("text-anchor", "middle").attr("font-size", w < 460 ? 8.5 : 10).attr("fill", c).text(l);
+    });
+    const ticks = log ? [1, 10, 100, 1000] : y.ticks(5);
+    svg.append("g").attr("class", "grid").selectAll("line").data(ticks).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+    svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).attr("stroke-width", 1.8).attr("d", d3.line().defined(d => d[key] != null).x(d => x(d.annee)).y(d => y(d[key]))(D));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(w < 460 ? 4 : 7));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues(ticks).tickFormat(fmt)).call(s => s.select(".domain").remove());
+    const bis = d3.bisector(d => d.annee).center;
+    svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+      .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b><br>${tip(d[key])}`, ev); }).on("pointerleave", hideTip);
+    el.replaceChildren(svg.node());
+  };
+  const nf = v => v.toLocaleString("fr-FR", { maximumFractionDigits: v < 10 ? 2 : 0 });
+  draw("#mo-hmon", "monnaie", false, v => v + " %", v => `Masse monétaire : ${f1(v)} % du PIB`);
+  draw("#mo-hprix", "prix", true, v => nf(v), v => `Prix : ${nf(v)} fois ceux de 1913`);
+  const g = a => H.find(d => d.annee === a) || {}, p73 = g(1873).prix, p13 = g(1913).prix, p71 = g(1971).prix, pL = H.filter(d => d.prix).at(-1), pk = H.filter(d => d.annee >= 1939 && d.annee <= 1946 && d.monnaie).reduce((a, d) => d.monnaie > a.monnaie ? d : a);
+  const an = (a, b, pa, pb) => 100 * (Math.pow(pb / pa, 1 / (b - a)) - 1);
+  $("#mo-hist-txt").innerHTML = `<ul>
+    <li><b>Sous l'étalon-or (1873-1913), les prix ont varié de ${sg(Math.round(an(1873, 1913, p73, p13) * 10) / 10)} % par an en moyenne</b> : ils sont presque identiques au début et à la fin. Mais la masse monétaire est passée de ${n0(g(1873).monnaie)} % à ${n0(g(1913).monnaie)} % du PIB : les banques créaient de la monnaie, l'or tenait seulement les prix.</li>
+    <li><b>Depuis 1913, les prix ont été multipliés par environ ${n0(Math.round(pL.prix / 100) * 100)}</b> (en ${pL.annee}, en comptant en anciens francs : 1 euro vaut 655,957 anciens francs). L'essentiel de cette hausse a lieu pendant les guerres et sous Bretton Woods : les prix sont multipliés par ${n0(p71 / p13)} entre 1913 et 1971, puis par ${f1(pL.prix / p71)} depuis.</li>
+    <li><b>Le pic de la Seconde Guerre mondiale</b> (${n0(pk.monnaie)} % du PIB en ${pk.annee}) vient de la monnaie créée pour payer la guerre puis l'occupation, alors que la production s'effondrait ; l'inflation des années suivantes la fait fondre (${n0(g(1950).monnaie)} % en 1950). Depuis 2008, la hausse vient du crédit et des rachats de dettes par la banque centrale, sans inflation forte jusqu'en 2021 : la monnaie nouvelle est allée surtout vers les prix des actifs (immobilier, actions).</li>
+  </ul>`;
+}
+
 /* rendement exigé (MEDAF) : taux sans risque + bêta × prime de risque ; alpha = obtenu − exigé */
 function capm() {
   if (!$("#mo-rf")) return;
@@ -120,7 +156,7 @@ function rendements() {
   $("#mo-rend-txt").innerHTML = `<ul>
     <li><b>Sur 1950-2020, les actions ont rapporté ${f1(L.actions)} % par an après inflation</b>, le logement ${f1(L.logement)} % (loyers compris, avant frais et impôts), les obligations d'État ${f1(L.obligations)} %, les placements sans risque à court terme ${f1(L.monetaire)} %. L'écart entre les actions et le sans risque, environ ${f1(L.actions - L.monetaire)} points, est la prime de risque effectivement obtenue sur la période.</li>
     <li><b>Le capital a rapporté plus que la croissance</b> : l'économie française a crû de ${f1(gr)} % par an en volume sur la même période. C'est l'inégalité « r > g » de Thomas Piketty : quand le rendement du capital dépasse la croissance, les patrimoines grossissent plus vite que les revenus du travail.</li>
-    <li><b>Mais ce n'est pas une loi</b> : de 1950 à 1979, les placements sans risque ont rapporté ${f1(a.monetaire)} % et les obligations ${f1(a.obligations)} % par an après inflation. L'inflation et des taux bas, encadrés par l'État (le « circuit du Trésor », voir la partie 2), ont fait payer les détenteurs d'épargne et fondre les dettes, pendant les années de croissance les plus fortes. De 1980 à 2007, c'est l'inverse : taux élevés, inflation maîtrisée, ${f1(b.obligations)} % par an pour les obligations, et dettes qui gonflent.</li>
+    <li><b>Mais ce n'est pas une loi</b> : de 1950 à 1979, les placements sans risque ont rapporté ${f1(a.monetaire)} % et les obligations ${f1(a.obligations)} % par an après inflation. L'inflation et des taux bas, encadrés par l'État (le « circuit du Trésor », voir la partie 3), ont fait payer les détenteurs d'épargne et fondre les dettes, pendant les années de croissance les plus fortes. De 1980 à 2007, c'est l'inverse : taux élevés, inflation maîtrisée, ${f1(b.obligations)} % par an pour les obligations, et dettes qui gonflent.</li>
     <li><b>Dette et rendement du capital sont donc liés</b> : le taux de la dette publique est le plancher de tous les rendements. Dans une économie qui croît peu, un rendement élevé du capital fait grossir les dettes et les patrimoines plus vite que les revenus ; pour en sortir, l'histoire montre trois voies, déjà évoquées : la croissance, l'inflation avec des taux maintenus bas (« répression financière »), ou les pertes (défauts, faillites, krachs). Le niveau des taux n'est pas une loi de la nature : il dépend de la banque centrale, de la réglementation de l'épargne et des choix politiques.</li>
   </ul>
   <p class="muted" style="font-size:.78rem">Jordà, Knoll, Kuvshinov, Schularick et Taylor, « The Rate of Return on Everything, 1870-2015 », <i>Quarterly Journal of Economics</i> (2019), Macrohistory Database ; moyennes arithmétiques des rendements annuels réels (rendement nominal total déflaté par les prix à la consommation). Croissance : INSEE.</p>`;
@@ -174,7 +210,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow(); capm(); rendements();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

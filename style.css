@@ -478,3 +478,6 @@ table.cmp-t.li-mx { min-width: 980px; }
 .mo-rend-t i { position: absolute; left: 50%; top: 1px; height: 10px; border-radius: 2px; }
 .mo-rend-t i.neg { left: auto; right: 50%; }
 .mo-rend-r em { font-style: normal; text-align: right; font-size: .8rem; }
+.mo-hist { font-size: .84rem; min-width: 720px; }
+.mo-hist td, .mo-hist th { vertical-align: top; }
+.mo-hist td:first-child { min-width: 130px; }
