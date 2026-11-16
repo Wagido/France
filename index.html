@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123w">
+<link rel="stylesheet" href="style.css?v=20261123x">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -600,7 +600,7 @@
     <li><a href="#monnaie" data-to="mo-2-2">2.2 Banque centrale et banques privées</a></li>
     <li><a href="#monnaie" data-to="mo-2-3">2.3 Tous les robinets : ce qui crée et ce qui détruit la monnaie</a></li>
     <li><a href="#monnaie" data-to="mo-2-4">2.4 Pourquoi les banques ne créent-elles pas de la monnaie sans limite ?</a></li>
-    <li><a href="#monnaie" data-to="mo-2-5">2.5 Combien de monnaie ? M1, M2, M3</a></li>
+    <li><a href="#monnaie" data-to="mo-2-5">2.5 Combien de monnaie ? Est-elle toute de la dette ? Suit-elle la production ?</a></li>
     <li><a href="#monnaie" data-to="mo-2-6">2.6 Un euro français est-il un euro allemand ?</a></li>
   </ol></nav>
 
@@ -684,10 +684,34 @@
   </div>
   <div id="mo-k-out" class="callout small"></div>
 
-  <h3 id="mo-2-5" class="li-sub">2.5 Combien de monnaie ?</h3>
-  <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
+  <h3 id="mo-2-5" class="li-sub">2.5 Combien de monnaie ? Est-elle toute de la dette ? Suit-elle la production ?</h3>
+  <div class="callout small">
+    <p><b>En bref</b></p>
+    <ul>
+      <li><b>Oui, presque toute la monnaie est la contrepartie d'une dette.</b> Chaque euro sur un compte est apparu quand une banque a prêté (à un ménage, une entreprise, l'État) ou acheté un titre. Les billets sont la dette de la banque centrale, qui les a émis en prêtant aux banques ou en achetant des titres. Quand les dettes sont remboursées, la monnaie disparaît.</li>
+      <li><b>Non, elle n'est pas proportionnelle aux biens produits.</b> Elle a varié de 30 % à près de 200 % du PIB en un siècle. Ce qui détermine sa quantité, c'est la demande de crédit, pas la quantité de marchandises.</li>
+      <li><b>Quand la monnaie croît plus vite que la production, elle va ailleurs</b> : dans la hausse des prix à la consommation (l'inflation, jusqu'aux années 1980), dans la hausse des prix des logements et des actions (depuis 2000), ou elle reste simplement sur les comptes, épargnée.</li>
+    </ul>
+  </div>
+
+  <h3>La monnaie est l'autre face du crédit</h3>
   <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : les deux courbes sont rapportées au PIB, la richesse produite chaque année. Bleu : ce que les banques ont prêté aux ménages et aux entreprises. Vert : la monnaie détenue par le public (billets, comptes courants, livrets). Les trous correspondent aux années de guerre, sans données.</p>
+  <div class="mo-bilan">
+    <div><b>Ce que possèdent les banques et la banque centrale</b>
+      <span>Crédits aux ménages et aux entreprises</span><span>Titres de dette publique (prêts à l'État)</span><span>Créances sur l'étranger, or</span></div>
+    <div class="eq">=</div>
+    <div><b>Ce qu'elles doivent</b>
+      <span class="m">La monnaie : billets, comptes courants, livrets</span><span>L'épargne longue placée chez elles</span><span>Leurs fonds propres</span></div>
+  </div>
   <div class="callout small" id="mo-credit-txt"></div>
+
+  <h3>Où va la monnaie ? Monnaie, production, prix et logements depuis 1950</h3>
+  <div id="mo-part" class="chart"></div><div class="legend-row" id="mo-part-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : tout part de 1 en 1970, sur une échelle où chaque graduation multiplie par 10. Si la monnaie suivait la production, les deux courbes seraient collées. L'écart montre l'excès de monnaie : il s'est traduit en hausse des prix, puis des logements.</p>
+  <div id="mo-part-per"></div>
+  <div class="callout small" id="mo-part-txt"></div>
+
   <h3>Les masses monétaires M1, M2, M3 de la zone euro (milliards d'euros, fin d'année)</h3>
   <p class="lead">Depuis l'euro, la France n'a plus de masse monétaire propre : ce sont celles de la zone euro, publiées par la BCE. Chaque agrégat englobe le précédent, de la monnaie la plus « liquide » (utilisable tout de suite) à la moins liquide.</p>
   <div class="grid2">
@@ -2880,51 +2904,51 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123w"></script>
-<script src="app.js?v=20261123w"></script>
-<script src="energie.js?v=20261123w"></script>
-<script src="matieres.js?v=20261123w"></script>
-<script src="territoire.js?v=20261123w"></script>
-<script src="themes.js?v=20261123w"></script>
-<script src="societe.js?v=20261123w"></script>
-<script src="eco2.js?v=20261123w"></script>
-<script src="empreinte.js?v=20261123w"></script>
-<script src="argentprive.js?v=20261123w"></script>
-<script src="repartition.js?v=20261123w"></script>
-<script src="patrimoine.js?v=20261123w"></script>
-<script src="prelevements.js?v=20261123w"></script>
-<script src="travailvie.js?v=20261123w"></script>
-<script src="niveauvie.js?v=20261123w"></script>
-<script src="prosperite.js?v=20261123w"></script>
-<script src="exterieur.js?v=20261123w"></script>
-<script src="desindus.js?v=20261123w"></script>
-<script src="retraites.js?v=20261123w"></script>
-<script src="energiecout.js?v=20261123w"></script>
-<script src="energieformation.js?v=20261123w"></script>
-<script src="nucleaire.js?v=20261123w"></script>
-<script src="logementeco.js?v=20261123w"></script>
-<script src="competences.js?v=20261123w"></script>
-<script src="justicedroit.js?v=20261123w"></script>
-<script src="fonctionnaires.js?v=20261123w"></script>
-<script src="couper.js?v=20261123w"></script>
-<script src="seuilpays.js?v=20261123w"></script>
-<script src="logement.js?v=20261123w"></script>
-<script src="env.js?v=20261123w"></script>
-<script src="agriculture.js?v=20261123w"></script>
-<script src="rendements.js?v=20261123w"></script>
-<script src="monnaie.js?v=20261123w"></script>
-<script src="limites.js?v=20261123w"></script>
-<script src="sociologie.js?v=20261123w"></script>
-<script src="chaine.js?v=20261123w"></script>
-<script src="patrimoinehist.js?v=20261123w"></script>
-<script src="innovation.js?v=20261123w"></script>
+<script src="kpi.js?v=20261123x"></script>
+<script src="app.js?v=20261123x"></script>
+<script src="energie.js?v=20261123x"></script>
+<script src="matieres.js?v=20261123x"></script>
+<script src="territoire.js?v=20261123x"></script>
+<script src="themes.js?v=20261123x"></script>
+<script src="societe.js?v=20261123x"></script>
+<script src="eco2.js?v=20261123x"></script>
+<script src="empreinte.js?v=20261123x"></script>
+<script src="argentprive.js?v=20261123x"></script>
+<script src="repartition.js?v=20261123x"></script>
+<script src="patrimoine.js?v=20261123x"></script>
+<script src="prelevements.js?v=20261123x"></script>
+<script src="travailvie.js?v=20261123x"></script>
+<script src="niveauvie.js?v=20261123x"></script>
+<script src="prosperite.js?v=20261123x"></script>
+<script src="exterieur.js?v=20261123x"></script>
+<script src="desindus.js?v=20261123x"></script>
+<script src="retraites.js?v=20261123x"></script>
+<script src="energiecout.js?v=20261123x"></script>
+<script src="energieformation.js?v=20261123x"></script>
+<script src="nucleaire.js?v=20261123x"></script>
+<script src="logementeco.js?v=20261123x"></script>
+<script src="competences.js?v=20261123x"></script>
+<script src="justicedroit.js?v=20261123x"></script>
+<script src="fonctionnaires.js?v=20261123x"></script>
+<script src="couper.js?v=20261123x"></script>
+<script src="seuilpays.js?v=20261123x"></script>
+<script src="logement.js?v=20261123x"></script>
+<script src="env.js?v=20261123x"></script>
+<script src="agriculture.js?v=20261123x"></script>
+<script src="rendements.js?v=20261123x"></script>
+<script src="monnaie.js?v=20261123x"></script>
+<script src="limites.js?v=20261123x"></script>
+<script src="sociologie.js?v=20261123x"></script>
+<script src="chaine.js?v=20261123x"></script>
+<script src="patrimoinehist.js?v=20261123x"></script>
+<script src="innovation.js?v=20261123x"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123w"></script>
-<script src="histoire.js?v=20261123w"></script>
-<script src="chomage.js?v=20261123w"></script>
-<script src="tableau.js?v=20261123w"></script>
-<script src="sources.js?v=20261123w"></script>
-<script src="nav.js?v=20261123w"></script>
+<script src="soussol.js?v=20261123x"></script>
+<script src="histoire.js?v=20261123x"></script>
+<script src="chomage.js?v=20261123x"></script>
+<script src="tableau.js?v=20261123x"></script>
+<script src="sources.js?v=20261123x"></script>
+<script src="nav.js?v=20261123x"></script>
 </body>
 </html>
