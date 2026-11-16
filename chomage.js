@@ -29,8 +29,8 @@ function draw() {
   ]);
   // escalier : deux barres à la même échelle
   const rows = [
-    ["INSEE, enquête Emploi", [["Chômeurs (BIT)", b.chomeurs, C.bit], ["Halo autour du chômage", b.halo, C.halo], ["Sous-emploi (temps partiel subi…)", b.sous_emploi, C.sous]]],
-    ["France Travail, inscrits", [["Catégorie A", f.A, C.A], ["Catégorie B", f.B, C.B], ["Catégorie C", f.C, C.C], ["Catégories D et E", f.DE || 0, C.DE]]],
+    ["① INSEE, enquête Emploi", [["Chômeurs (BIT)", b.chomeurs, C.bit], ["Halo autour du chômage", b.halo, C.halo], ["Sous-emploi (temps partiel subi…)", b.sous_emploi, C.sous]]],
+    ["② France Travail, inscrits", [["Catégorie A", f.A, C.A], ["Catégorie B", f.B, C.B], ["Catégorie C", f.C, C.C], ["Catégories D et E", f.DE || 0, C.DE]]],
   ];
   const max = d3.max(rows, r => d3.sum(r[1], x => x[1]));
   $("#ch-escalier").innerHTML = `<div class="cmp">${rows.map(([nom, seg]) => `<div class="cmp-row"><span class="cmp-name">${nom}</span><span class="cmp-stack" style="width:100%;height:34px;background:transparent">${seg.map(([l, v, c]) =>

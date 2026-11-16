@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121i">
+<link rel="stylesheet" href="style.css?v=20261121j">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1347,9 +1347,10 @@
   <p class="lead">Il n'y a pas un chiffre du chômage mais plusieurs. L'INSEE mesure le chômage par une enquête, selon la définition internationale du BIT. France Travail compte les personnes inscrites, réparties en cinq catégories. Et entre l'emploi et le chômage, il y a une zone grise : ceux qui voudraient travailler mais ne cochent pas toutes les cases, ou qui travaillent moins qu'ils le voudraient.</p>
   <h3>Du chiffre le plus étroit au plus large</h3>
   <div id="ch-escalier" class="chart"></div><div class="legend-row" id="ch-escalier-legend"></div>
+  <p class="muted" style="margin:6px 0 0">↓ Les deux graphiques ci-dessous racontent l'histoire de chacune de ces deux barres : à gauche la barre ① (INSEE), à droite la barre ② (France Travail).</p>
   <div class="grid2">
-    <div><h3>Les deux compteurs depuis 1996</h3><div id="ch-serie" class="chart"></div><div class="legend-row" id="ch-serie-legend"></div></div>
-    <div><h3>Chômage, halo et sous-emploi depuis 2003</h3><div id="ch-halo" class="chart"></div><div class="legend-row" id="ch-halo-legend"></div></div>
+    <div class="ch-lien" style="border-top-color:#dc2626"><h3>① La barre INSEE dans le temps : chômage, halo et sous-emploi depuis 2003</h3><div id="ch-halo" class="chart"></div><div class="legend-row" id="ch-halo-legend"></div></div>
+    <div class="ch-lien" style="border-top-color:#1e40af"><h3>② La barre France Travail dans le temps : les inscrits depuis 1996</h3><p class="muted" style="margin:0 0 4px;font-size:.85rem">Avec, en rouge, les chômeurs au sens du BIT (le bloc rouge de la barre ①) pour comparer les deux compteurs.</p><div id="ch-serie" class="chart"></div><div class="legend-row" id="ch-serie-legend"></div></div>
   </div>
   <h3>Qui est dans quelle case ?</h3>
   <div id="ch-defs"></div>
@@ -1573,46 +1574,46 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121i"></script>
-<script src="app.js?v=20261121i"></script>
-<script src="energie.js?v=20261121i"></script>
-<script src="matieres.js?v=20261121i"></script>
-<script src="territoire.js?v=20261121i"></script>
-<script src="themes.js?v=20261121i"></script>
-<script src="societe.js?v=20261121i"></script>
-<script src="eco2.js?v=20261121i"></script>
-<script src="empreinte.js?v=20261121i"></script>
-<script src="argentprive.js?v=20261121i"></script>
-<script src="repartition.js?v=20261121i"></script>
-<script src="patrimoine.js?v=20261121i"></script>
-<script src="prelevements.js?v=20261121i"></script>
-<script src="travailvie.js?v=20261121i"></script>
-<script src="niveauvie.js?v=20261121i"></script>
-<script src="prosperite.js?v=20261121i"></script>
-<script src="exterieur.js?v=20261121i"></script>
-<script src="desindus.js?v=20261121i"></script>
-<script src="retraites.js?v=20261121i"></script>
-<script src="energiecout.js?v=20261121i"></script>
-<script src="energieformation.js?v=20261121i"></script>
-<script src="nucleaire.js?v=20261121i"></script>
-<script src="logementeco.js?v=20261121i"></script>
-<script src="competences.js?v=20261121i"></script>
-<script src="justicedroit.js?v=20261121i"></script>
-<script src="fonctionnaires.js?v=20261121i"></script>
-<script src="couper.js?v=20261121i"></script>
-<script src="seuilpays.js?v=20261121i"></script>
-<script src="logement.js?v=20261121i"></script>
-<script src="env.js?v=20261121i"></script>
-<script src="agriculture.js?v=20261121i"></script>
-<script src="chaine.js?v=20261121i"></script>
-<script src="patrimoinehist.js?v=20261121i"></script>
-<script src="innovation.js?v=20261121i"></script>
+<script src="kpi.js?v=20261121j"></script>
+<script src="app.js?v=20261121j"></script>
+<script src="energie.js?v=20261121j"></script>
+<script src="matieres.js?v=20261121j"></script>
+<script src="territoire.js?v=20261121j"></script>
+<script src="themes.js?v=20261121j"></script>
+<script src="societe.js?v=20261121j"></script>
+<script src="eco2.js?v=20261121j"></script>
+<script src="empreinte.js?v=20261121j"></script>
+<script src="argentprive.js?v=20261121j"></script>
+<script src="repartition.js?v=20261121j"></script>
+<script src="patrimoine.js?v=20261121j"></script>
+<script src="prelevements.js?v=20261121j"></script>
+<script src="travailvie.js?v=20261121j"></script>
+<script src="niveauvie.js?v=20261121j"></script>
+<script src="prosperite.js?v=20261121j"></script>
+<script src="exterieur.js?v=20261121j"></script>
+<script src="desindus.js?v=20261121j"></script>
+<script src="retraites.js?v=20261121j"></script>
+<script src="energiecout.js?v=20261121j"></script>
+<script src="energieformation.js?v=20261121j"></script>
+<script src="nucleaire.js?v=20261121j"></script>
+<script src="logementeco.js?v=20261121j"></script>
+<script src="competences.js?v=20261121j"></script>
+<script src="justicedroit.js?v=20261121j"></script>
+<script src="fonctionnaires.js?v=20261121j"></script>
+<script src="couper.js?v=20261121j"></script>
+<script src="seuilpays.js?v=20261121j"></script>
+<script src="logement.js?v=20261121j"></script>
+<script src="env.js?v=20261121j"></script>
+<script src="agriculture.js?v=20261121j"></script>
+<script src="chaine.js?v=20261121j"></script>
+<script src="patrimoinehist.js?v=20261121j"></script>
+<script src="innovation.js?v=20261121j"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121i"></script>
-<script src="histoire.js?v=20261121i"></script>
-<script src="chomage.js?v=20261121i"></script>
-<script src="sources.js?v=20261121i"></script>
-<script src="nav.js?v=20261121i"></script>
+<script src="soussol.js?v=20261121j"></script>
+<script src="histoire.js?v=20261121j"></script>
+<script src="chomage.js?v=20261121j"></script>
+<script src="sources.js?v=20261121j"></script>
+<script src="nav.js?v=20261121j"></script>
 </body>
 </html>
