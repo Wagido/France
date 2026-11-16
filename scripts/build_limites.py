@@ -101,7 +101,14 @@ recyclage = [["Plomb", 70, "batteries au plomb, presque toutes recyclées"], ["O
              ["Aluminium", 28, "à partir des produits en fin de vie (canettes, voitures)"], ["Cobalt", 25, "alliages, batteries"], ["Étain", 22, "soudures, fer-blanc"],
              ["Argent", 11, "photographie, électronique"], ["Lithium", 0, "usines de recyclage de batteries en construction"],
              ["Terres rares", 0, "quantités limitées (aimants, lampes)"], ["Gallium", 0, "aucun recyclage des produits en fin de vie"]]
-out = {"recyclage": [{"l": l, "v": v, "note": n} for l, v, n in recyclage], "metaux": metaux, "fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
+# scénario du Shift Project pour la France : demande d'énergie finale par secteur (Mtep), « L'évaluation énergie-climat du PTEF » (2022),
+# tableaux des pages 20 (2020), 25 (2027) et 28 (2050) ; texte dans data/sources/limites/shift_ptef_evaluation_energie_climat_2022.txt
+ptef = {"secteurs": [["transports", "Transports", "#1e293b"], ["residentiel", "Logement", "#f59e0b"], ["industrie", "Industrie", "#64748b"],
+                     ["tertiaire", "Bureaux et services", "#a78bfa"], ["agri", "Agriculture et forêt", "#16a34a"], ["non_energ", "Usages non énergétiques (chimie, plastiques)", "#cbd5e1"]],
+        "annees": [{"annee": 2020, "transports": 49, "residentiel": 37, "industrie": 31, "tertiaire": 22, "agri": 4.1, "non_energ": 13, "elec": 37},
+                   {"annee": 2027, "transports": 37, "residentiel": 33, "industrie": 31, "tertiaire": 19, "agri": 4.1, "non_energ": 13, "elec": 38},
+                   {"annee": 2050, "transports": 10, "residentiel": 21, "industrie": 22, "tertiaire": 12, "agri": 3.2, "non_energ": 9.0, "elec": 43}]}
+out = {"ptef": ptef, "recyclage": [{"l": l, "v": v, "note": n} for l, v, n in recyclage], "metaux": metaux, "fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
 json.dump(out, open(os.path.join(HERE, "..", "data", "limites.json"), "w"), ensure_ascii=False)
 for i in ind:
     print(i["k"], i["ecart"], i["dernier"])

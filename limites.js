@@ -54,7 +54,7 @@ function draw() {
       <div class="in-card-n muted" style="font-size:.78rem">${esc(i.l.includes("(") ? "(" + i.l.split(" (").slice(1).join(" (") : "")}</div>
       <div class="chart" id="li-c-${k}"></div>
       <div class="in-card-bio" style="color:var(--muted)">Écart moyen depuis 2000 : <b style="color:${COL.bau}">${f1(e.bau)} %</b> avec le scénario de 1972, <b style="color:#b45309">${f1(e.bau2)} %</b> avec « ressources doublées » → plus proche : <b>${COURT[best].toLowerCase()}</b></div></div>`; }).join("");
-  drawRes(); metaux(); recyclage();
+  drawRes(); metaux(); recyclage(); ptef();
   ordre.forEach(k => { lineChart($("#li-c-" + k), merge(I[k]), lines, { vfmt: v => n0(v), yfmt: v => v, h: 170, xticks: 4 }); today($("#li-c-" + k)); });
   legend("#li-legend2", [[COURT.bau, COL.bau], [COURT.bau2, COL.bau2], ["Données observées", COL.obs]]);
   const nb2 = ordre.filter(k => I[k].ecart.bau2 < I[k].ecart.bau).length;
@@ -99,6 +99,24 @@ function metaux() {
     <li><b>La transition énergétique fait exploser la demande</b> : selon la Banque mondiale (2020), la production de graphite, de lithium et de cobalt devrait augmenter de près de 500 % d'ici 2050 pour les technologies bas carbone. Le géologue Simon Michaux (Service géologique de Finlande, 2021) va plus loin : remplacer tout le système fossile par l'électricité et les batteries demanderait plus de certains métaux que les réserves connues. Ses calculs sont contestés (ils supposent de tout stocker en batteries, sans recyclage ni changement de technologie), mais ils montrent l'ordre de grandeur du défi.</li>
     <li><b>La grande différence avec le pétrole</b> : un métal ne disparaît pas quand on l'utilise. Le cuivre, l'acier, l'aluminium sont déjà recyclés en grande partie ; plus la quantité de métal en circulation augmente, plus le recyclage peut couvrir une part des besoins. C'est la seule voie pour s'affranchir à terme des mines, mais elle demande du temps et beaucoup d'énergie.</li>
   </ul>`;
+}
+
+/* scénario du Shift Project (PTEF) : demande d'énergie finale par secteur */
+function ptef() {
+  const { esc, legend } = window.TH, P = L.ptef; if (!P || !$("#li-ptef")) return;
+  const tot = r => P.secteurs.reduce((a, s) => a + r[s[0]], 0), mx = Math.max(...P.annees.map(tot));
+  $("#li-ptef").innerHTML = `<div class="el-stack">` + P.annees.map(r => `<div class="el-row"><span class="lab"><b>${r.annee}</b> · ${n0(tot(r))} Mtep</span><span class="el-segs" style="width:${(100 * tot(r) / mx).toFixed(1)}%">${P.secteurs.map(s =>
+    `<span style="flex:${r[s[0]]} 0 0;background:${s[2]};${s[2] === "#cbd5e1" || s[2] === "#f59e0b" ? "color:#1f2937" : ""}" title="${esc(s[1])} : ${f1(r[s[0]])} Mtep">${r[s[0]] >= 6 ? n0(r[s[0]]) : ""}</span>`).join("")}</span></div>`).join("") + `</div>`;
+  legend("#li-ptef-legend", P.secteurs.map(s => [s[1], s[2]]));
+  const a = P.annees[0], z = P.annees.at(-1), b = k => Math.round(100 * (1 - z[k] / a[k]));
+  $("#li-ptef-txt").innerHTML = `<ul>
+    <li><b>La consommation d'énergie est divisée par deux</b> entre 2020 et 2050 (de ${n0(tot(a))} à ${n0(tot(z))} Mtep pour les secteurs ci-dessus ; de 170 à environ 85 Mtep en comptant le secteur de l'énergie lui-même). Ce n'est pas une baisse de niveau de vie programmée : une partie vient de l'efficacité (un moteur électrique consomme environ trois fois moins d'énergie qu'un moteur thermique, une pompe à chaleur trois fois moins qu'une chaudière), une partie de la sobriété.</li>
+    <li><b>Les transports baissent le plus (−${b("transports")} %)</b> : voitures électriques, mais aussi moins de kilomètres en voiture et en avion, plus de vélo, de train et de covoiturage. Le logement baisse de ${b("residentiel")} % (rénovation, pompes à chaleur), l'industrie de ${b("industrie")} %.</li>
+    <li><b>L'électricité devient le cœur du système</b> : sa consommation augmente d'environ 20 %. Même avec de nouveaux réacteurs, le nucléaire et l'hydraulique n'en fourniraient qu'environ 65 % en 2050 ; le reste viendrait des renouvelables, soit par exemple, selon le Shift, environ 10 000 éoliennes terrestres de plus qu'en 2022.</li>
+    <li><b>La biomasse est le goulot d'étranglement</b> : environ 20 Mtep disponibles de façon « raisonnable et certaine » (bois, biogaz), à comparer à environ 110 Mtep de pétrole et de gaz consommés aujourd'hui. Même avec tous ces efforts, le plan ne parvient pas à se passer complètement des énergies fossiles : il reste des besoins pour la chimie, l'industrie, l'aviation et l'agriculture.</li>
+    <li><b>Le message central</b> : « plus on tarde à lancer les grands travaux d'infrastructures électriques, plus la sobriété sera forte en 2050 ». Si l'électricité bas carbone n'arrive pas à temps, il faudra consommer encore moins, et cette sobriété sera alors subie.</li>
+  </ul>
+  <p class="muted" style="font-size:.78rem">The Shift Project, <a href="https://theshiftproject.org/publications/note-energie-climat-plan-transformation-economie-francaise/" target="_blank" rel="noopener">L'évaluation énergie-climat du Plan de transformation de l'économie française</a> (2022), tableaux de la demande d'énergie finale en 2020, 2027 et 2050. Énergie finale : celle qu'achètent les consommateurs (carburants, électricité, gaz, chaleur), hors pertes de production.</p>`;
 }
 
 /* recyclage : part recyclée (USGS) et calcul de la part maximale couverte par le recyclage */
