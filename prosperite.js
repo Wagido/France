@@ -93,13 +93,40 @@ function draw() {
   const CN = D.chine, FH = D.france_heritage;
   $("#pr-regime-txt").innerHTML = `<p style="margin-top:0"><b>Régime politique, richesse, liberté d'entreprendre et partage : quels liens ?</b></p><ul>
     <li><b>Démocratie et richesse vont ensemble, et la démocratie y contribue</b> : les pays riches sont presque tous des démocraties, à part Singapour et les monarchies pétrolières, et une étude sur 175 pays de 1960 à 2010 montre qu'un pays qui devient démocratique a, 25 ans plus tard, un PIB par habitant environ 20 % plus élevé (Acemoglu, Naidu, Restrepo et Robinson, 2019). Le lien passe par les institutions : un pouvoir contrôlé protège la propriété, les contrats et l'investissement.</li>
-    <li><b>Mais dans quel sens ? Riche donc démocratique, ou démocratique donc riche ?</b> Les deux, en partie. Toutes les démocraties ne sont pas riches (l'Inde, le Ghana, la Mongolie), et des pays riches ne sont pas démocratiques (Singapour, le Golfe). En s'enrichissant, un pays forme une classe moyenne éduquée qui réclame des droits (Corée du Sud, Taïwan) ; mais surtout, la richesse rend la démocratie durable : au-delà d'un certain revenu, aucune démocratie ne s'est effondrée (Przeworski et Limongi, 1997). Dans l'autre sens, la démocratie enrichit, modestement (+20 % en 25 ans). Le plus solide : les deux ont une cause commune, des institutions qui limitent le pouvoir et protègent la propriété, souvent héritées de l'histoire (Acemoglu, Johnson, Robinson et Yared, 2008). D'où la place des institutions comme socle de tout le reste.</li>
     <li><b>Le contre-exemple chinois</b> : la Chine (libertés : ${CN.fh}/100) a connu quarante ans de croissance très rapide sans démocratie, en rattrapant son retard. Elle reste à ${nf(CN.pib_hab)} dollars par habitant, moins de la moitié de la France. Rattraper son retard est possible sans libertés ; rejoindre les pays les plus riches, aucun grand pays ne l'a fait, hors cas particuliers comme Singapour ou les pays du pétrole.</li>
     <li><b>La liberté d'entreprendre en France : bonne sur les règles, faible sur le poids de l'État</b>. Avec ${nf(fr.heritage, 1)}/100, la France est ${fr.heritage_rang}<sup>e</sup> sur 176, loin de l'Allemagne (${nf(de.heritage, 1)}) et des États-Unis (${nf(us.heritage, 1)}). Dans le détail : droit de propriété ${nf(FH.droit_propriete)}/100, justice ${nf(FH.justice)}/100, facilité à créer une entreprise ${nf(FH.entreprendre)}/100, mais dépenses publiques ${nf(FH.depenses_publiques, 1)}/100, santé des finances publiques ${nf(FH.sante_budgetaire)}/100, impôts ${nf(FH.impots)}/100 et droit du travail ${nf(FH.travail)}/100. Ce n'est pas l'entrepreneur qui est empêché, c'est le poids des prélèvements et des dépenses qui pèse.</li>
     <li><b>Et le partage ?</b> Il n'y a pas de lien automatique. Les démocraties redistribuent davantage, car les électeurs le demandent, mais le résultat dépend des choix : les États-Unis sont libres et très inégalitaires, le Brésil démocratique est le plus inégalitaire des six, la France et l'Allemagne combinent libertés et faibles inégalités grâce à une forte redistribution.</li>
     <li><b>Il y a donc un arbitrage</b> : plus de redistribution veut dire plus d'impôts et de dépenses publiques, donc un score de liberté économique plus bas. La France a choisi le partage ; la question est de savoir si elle en a encore les moyens, avec la dette qu'il entraîne (voir l'onglet <a href="#couper">Couper où ?</a>).</li>
     <li><b>À lire avec prudence</b> : l'indice de liberté économique est publié par un centre de réflexion conservateur américain, qui note mieux les pays où l'État est petit et les impôts bas ; l'indice de Freedom House repose sur l'avis d'experts.</li>
   </ul>`;
+  $("#pr-sens-txt").innerHTML = `<p style="margin-top:0"><b>Les pays démocratiques sont-ils tous riches ? Ou est-ce parce qu'ils sont riches qu'ils sont devenus démocratiques ?</b> Ni l'un ni l'autre tout à fait : c'est l'un des grands débats de l'économie politique.</p>
+    <p style="margin-bottom:2px"><b>1. Toutes les démocraties ne sont pas riches</b></p>
+    <ul>
+      <li>L'Inde est la plus grande démocratie du monde, et reste pauvre ; le Ghana, le Sénégal, la Mongolie ou le Botswana sont des démocraties à revenus modestes.</li>
+      <li>À l'inverse, Singapour, les monarchies du Golfe, et en partie la Chine, sont riches ou en passe de l'être sans être démocratiques.</li>
+      <li>Le lien est donc une tendance, pas une règle.</li>
+    </ul>
+    <p style="margin-bottom:2px"><b>2. « Riches, donc démocratiques » : la thèse de la modernisation</b></p>
+    <ul>
+      <li>Lipset (1959) : en s'enrichissant, un pays forme une classe moyenne éduquée qui réclame des droits. La Corée du Sud et Taïwan dans les années 1980, ou l'Espagne après Franco, vont dans ce sens.</li>
+      <li>Mais Przeworski et Limongi (1997) ont nuancé : la richesse ne déclenche pas vraiment le passage à la démocratie, elle la rend durable. Au-delà d'un certain revenu, aucune démocratie ne s'est effondrée ; les démocraties pauvres, elles, basculent souvent.</li>
+    </ul>
+    <p style="margin-bottom:2px"><b>3. « Démocratiques, donc riches » : l'effet inverse</b></p>
+    <ul>
+      <li>Acemoglu, Naidu, Restrepo et Robinson (2019) : un pays qui se démocratise a, 25 ans après, un PIB par habitant environ 20 % plus élevé.</li>
+      <li>Les raisons avancées : plus d'investissement, plus d'éducation et de santé, moins d'instabilité.</li>
+    </ul>
+    <p style="margin-bottom:2px"><b>4. La réponse la plus solide : une cause commune</b></p>
+    <ul>
+      <li>Acemoglu, Johnson, Robinson et Yared (2008) ont comparé chaque pays à lui-même dans le temps : ils ne trouvent presque plus d'effet de la richesse sur la démocratie.</li>
+      <li>Les deux viennent surtout d'une même racine : des institutions qui limitent le pouvoir et protègent la propriété, souvent héritées de l'histoire. L'Angleterre après la Glorieuse Révolution de 1688 en est l'exemple classique.</li>
+    </ul>
+    <p style="margin-bottom:2px"><b>En résumé</b></p>
+    <ul>
+      <li>La démocratie aide à s'enrichir, modestement mais réellement.</li>
+      <li>La richesse aide surtout la démocratie à tenir.</li>
+      <li>Les deux reposent sur des institutions solides : c'est pourquoi elles sont présentées ici comme le socle de tout le reste.</li>
+    </ul>`;
   $("#pr-vie-txt").innerHTML = `<ul>
     <li><b>Les Français vivent le plus longtemps</b> des six pays : ${nf(fr.esperance_vie, 1)} ans, contre ${nf(us.esperance_vie, 1)} aux États-Unis, malgré un revenu plus bas. Un système de santé accessible compte autant que la richesse.</li>
     <li><b>L'IDH résume santé, éducation et revenu</b> : la France est ${fr.rang_idh}<sup>e</sup> au monde, derrière l'Allemagne (${de.rang_idh}<sup>e</sup>) et les États-Unis (${us.rang_idh}<sup>e</sup>), surtout à cause d'une durée d'études plus courte chez les adultes (${nf(fr.annees_etudes, 1)} ans, contre ${nf(de.annees_etudes, 1)} en Allemagne) et d'un revenu plus bas.</li>
