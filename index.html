@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121r">
+<link rel="stylesheet" href="style.css?v=20261121s">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -90,6 +90,7 @@
       <a href="#logement">Logement</a>
       <a href="#inegalites">Inégalités</a>
       <a href="#capital">Capital social et culturel</a>
+      <a href="#electorat">Sociologie électorale</a>
       <a href="#patrimoine-hist">Patrimoine historique</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
@@ -1833,6 +1834,63 @@
 </section>
 
 <!-- =============================================================== METHODE -->
+<section id="electorat" class="panel">
+  <div class="panel-head">
+    <h2>Sociologie électorale : qui vote, et pour qui ? <span class="geo-fixed">France</span></h2>
+  </div>
+  <p class="lead">Le vote est secret : pour savoir comment votent les jeunes, les ouvriers ou les diplômés, il faut interroger des milliers d'électeurs. Ces enquêtes d'Ipsos, faites juste avant ou le jour du vote, sont les plus détaillées dont on dispose. Elles donnent une image fiable des grandes tendances, avec une marge d'erreur de quelques points.</p>
+  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#electorat" data-to="el-p1">1. qui vote ?</a> · <a href="#electorat" data-to="el-p2">2. qui vote pour qui ?</a> · <a href="#electorat" data-to="el-p3">3. la carte des électorats : diplôme et revenu</a> · <a href="#electorat" data-to="el-p4">4. les grands clivages</a> · <a href="#electorat" data-to="el-p5">5. les limites</a></p>
+  <div class="kpis" id="el-kpis"></div>
+
+  <h3 id="el-p1" class="ag-part">1. Qui vote ?</h3>
+  <p class="lead">Aux élections de 2022 (présidentielle et législatives, quatre tours), part des inscrits de chaque âge qui ont voté à tous les tours, à certains, ou à aucun (Insee).</p>
+  <div id="el-insee"></div>
+  <div class="legend-row" id="el-insee-legend"></div>
+  <h3>Part des inscrits qui ont voté, selon l'âge, la profession et le revenu (Ipsos)</h3>
+  <div id="el-part"></div>
+  <div class="callout small" id="el-part-txt"></div>
+
+  <h3 id="el-p2" class="ag-part">2. Qui vote pour qui ?</h3>
+  <div class="ctl-row" style="margin-bottom:8px">
+    <label class="ctl">Élection <select id="el-elec"><option value="legislatives2024">Législatives 2024, 1er tour</option><option value="presidentielle2022">Présidentielle 2022, 1er tour</option></select></label>
+    <label class="ctl">Selon <select id="el-crit"></select></label>
+  </div>
+  <div id="el-bars"></div>
+  <div class="legend-row" id="el-bars-legend"></div>
+  <p class="muted" style="font-size:.78rem" id="el-bars-src"></p>
+  <div class="callout small" id="el-bars-txt"></div>
+
+  <h3 id="el-p3" class="ag-part">3. La carte des électorats : capital culturel et capital économique</h3>
+  <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? L'écart est rapporté au score national du parti : +50 % veut dire qu'il fait 50 % de son score national de plus dans le groupe du haut que dans celui du bas. La taille de la bulle est le score national.</p>
+  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label></div>
+  <div id="el-carte" class="chart"></div>
+  <div class="callout small" id="el-carte-txt"></div>
+
+  <h3 id="el-p4" class="ag-part">4. Les grands clivages</h3>
+  <div class="in-need">
+    <div><b>L'âge</b><span>Le clivage le plus fort aujourd'hui. Les jeunes votent d'abord à gauche, les 35-69 ans d'abord pour le Rassemblement national, les plus de 70 ans d'abord pour le camp présidentiel. Et les plus âgés votent deux fois plus souvent que les jeunes aux législatives.</span></div>
+    <div><b>Le diplôme</b><span>Le capital culturel sépare désormais plus les électorats que le revenu : les diplômés du supérieur votent à gauche et au centre, les non-bacheliers d'abord pour le Rassemblement national (49 % aux législatives de 2024).</span></div>
+    <div><b>La classe sociale et le revenu</b><span>Les ouvriers votent à 57 % pour le RN en 2024, les cadres à 21 %. Les foyers aisés votent au centre et à droite ; les plus modestes se partagent entre la gauche et le RN.</span></div>
+    <div><b>Le territoire</b><span>Le RN est en tête dans les villages et petites villes (40 % dans les communes de moins de 2 000 habitants), la gauche dans les grandes villes (33 % au-delà de 200 000 habitants).</span></div>
+    <div><b>La religion</b><span>Les catholiques pratiquants votent davantage à droite (LR, Zemmour), les personnes sans religion à gauche ; les personnes d'une autre religion (en majorité musulmane) votaient d'abord à gauche en 2022 (Mélenchon 38 %) ; en 2024, l'enquête les montre partagées entre la gauche (34 %) et le RN (39 %), à lire avec prudence vu la petite taille du groupe.</span></div>
+    <div><b>Le sentiment de sa situation</b><span>Plus encore que le revenu, le fait de « boucler juste » son budget ou de ne pas être satisfait de sa vie distingue le vote RN : 61 % chez les personnes pas du tout satisfaites de leur vie, 15 % chez les très satisfaites.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>Une France en trois blocs</b> : la plupart des politistes décrivent aujourd'hui un paysage en trois blocs de poids comparables. Un bloc de gauche, jeune, diplômé et urbain ; un bloc central-libéral, âgé, aisé et diplômé ; un bloc national, populaire, moins diplômé et plus rural ou périurbain. Thomas Piketty et Julia Cagé (<i>Une histoire du conflit politique</i>, 2023) y voient un retour à la « tripartition » du début du XX<sup>e</sup> siècle, où le clivage entre villes et campagnes comptait autant que celui entre classes sociales. Les retraités, qui votent le plus, sont la base du bloc central (voir <a href="#retraites">Retraites</a>).</p>
+    <p><b>Le capital social</b>, au sens de Bourdieu (le réseau de relations, l'appartenance à des groupes), n'est pas mesuré par ces enquêtes. Les indicateurs les plus proches sont le « milieu social » que chacun déclare et la satisfaction à l'égard de sa vie, disponibles dans le sélecteur de la partie 2. L'onglet <a href="#capital">Capital social et culturel</a> montre les pratiques culturelles et les liens sociaux, mais sans lien avec le vote.</p>
+  </div>
+
+  <h3 id="el-p5" class="ag-part">5. Les limites</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Ce sont des sondages</b> : 10 286 personnes en 2024, 4 000 en 2022, interrogées par internet selon la méthode des quotas (sexe, âge, profession, région, taille de commune). La marge d'erreur est de 1 à 2 points pour l'ensemble, mais de 3 à 5 points pour un petit groupe (les 18-24 ans, les chômeurs, les personnes d'une autre religion).</li>
+      <li><b>Le vote est déclaré</b> : certains ne disent pas la vérité, ou oublient. Les enquêtes sont redressées pour coller aux résultats réels.</li>
+      <li><b>Pas de causalité</b> : les catégories se recoupent. Les retraités sont âgés, les ouvriers peu diplômés : chaque tableau montre une association, pas la cause du vote.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Sources : Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, <a href="https://www.ipsos.com/fr-fr/legislatives-2024/sociologie-des-electorats-legislatives-2024" target="_blank" rel="noopener">sociologie des électorats, législatives 2024</a> ; Ipsos-Sopra Steria, <a href="https://www.ipsos.com/fr-fr/presidentielle-2022/1er-tour-abstentionnistes-sociologie-electorat" target="_blank" rel="noopener">sociologie des électorats, présidentielle 2022</a> ; Insee, <a href="https://www.insee.fr/fr/statistiques/6658145" target="_blank" rel="noopener">enquête sur la participation électorale 2022</a> (Insee Première n° 1928).</p>
+  </div>
+</section>
+
 <section id="patrimoine-hist" class="panel">
   <div class="panel-head">
     <h2>Patrimoine historique : la France et les autres pays <span class="geo-fixed">France</span></h2>
@@ -1920,49 +1978,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121r"></script>
-<script src="app.js?v=20261121r"></script>
-<script src="energie.js?v=20261121r"></script>
-<script src="matieres.js?v=20261121r"></script>
-<script src="territoire.js?v=20261121r"></script>
-<script src="themes.js?v=20261121r"></script>
-<script src="societe.js?v=20261121r"></script>
-<script src="eco2.js?v=20261121r"></script>
-<script src="empreinte.js?v=20261121r"></script>
-<script src="argentprive.js?v=20261121r"></script>
-<script src="repartition.js?v=20261121r"></script>
-<script src="patrimoine.js?v=20261121r"></script>
-<script src="prelevements.js?v=20261121r"></script>
-<script src="travailvie.js?v=20261121r"></script>
-<script src="niveauvie.js?v=20261121r"></script>
-<script src="prosperite.js?v=20261121r"></script>
-<script src="exterieur.js?v=20261121r"></script>
-<script src="desindus.js?v=20261121r"></script>
-<script src="retraites.js?v=20261121r"></script>
-<script src="energiecout.js?v=20261121r"></script>
-<script src="energieformation.js?v=20261121r"></script>
-<script src="nucleaire.js?v=20261121r"></script>
-<script src="logementeco.js?v=20261121r"></script>
-<script src="competences.js?v=20261121r"></script>
-<script src="justicedroit.js?v=20261121r"></script>
-<script src="fonctionnaires.js?v=20261121r"></script>
-<script src="couper.js?v=20261121r"></script>
-<script src="seuilpays.js?v=20261121r"></script>
-<script src="logement.js?v=20261121r"></script>
-<script src="env.js?v=20261121r"></script>
-<script src="agriculture.js?v=20261121r"></script>
-<script src="rendements.js?v=20261121r"></script>
-<script src="monnaie.js?v=20261121r"></script>
-<script src="limites.js?v=20261121r"></script>
-<script src="chaine.js?v=20261121r"></script>
-<script src="patrimoinehist.js?v=20261121r"></script>
-<script src="innovation.js?v=20261121r"></script>
+<script src="kpi.js?v=20261121s"></script>
+<script src="app.js?v=20261121s"></script>
+<script src="energie.js?v=20261121s"></script>
+<script src="matieres.js?v=20261121s"></script>
+<script src="territoire.js?v=20261121s"></script>
+<script src="themes.js?v=20261121s"></script>
+<script src="societe.js?v=20261121s"></script>
+<script src="eco2.js?v=20261121s"></script>
+<script src="empreinte.js?v=20261121s"></script>
+<script src="argentprive.js?v=20261121s"></script>
+<script src="repartition.js?v=20261121s"></script>
+<script src="patrimoine.js?v=20261121s"></script>
+<script src="prelevements.js?v=20261121s"></script>
+<script src="travailvie.js?v=20261121s"></script>
+<script src="niveauvie.js?v=20261121s"></script>
+<script src="prosperite.js?v=20261121s"></script>
+<script src="exterieur.js?v=20261121s"></script>
+<script src="desindus.js?v=20261121s"></script>
+<script src="retraites.js?v=20261121s"></script>
+<script src="energiecout.js?v=20261121s"></script>
+<script src="energieformation.js?v=20261121s"></script>
+<script src="nucleaire.js?v=20261121s"></script>
+<script src="logementeco.js?v=20261121s"></script>
+<script src="competences.js?v=20261121s"></script>
+<script src="justicedroit.js?v=20261121s"></script>
+<script src="fonctionnaires.js?v=20261121s"></script>
+<script src="couper.js?v=20261121s"></script>
+<script src="seuilpays.js?v=20261121s"></script>
+<script src="logement.js?v=20261121s"></script>
+<script src="env.js?v=20261121s"></script>
+<script src="agriculture.js?v=20261121s"></script>
+<script src="rendements.js?v=20261121s"></script>
+<script src="monnaie.js?v=20261121s"></script>
+<script src="limites.js?v=20261121s"></script>
+<script src="sociologie.js?v=20261121s"></script>
+<script src="chaine.js?v=20261121s"></script>
+<script src="patrimoinehist.js?v=20261121s"></script>
+<script src="innovation.js?v=20261121s"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121r"></script>
-<script src="histoire.js?v=20261121r"></script>
-<script src="chomage.js?v=20261121r"></script>
-<script src="sources.js?v=20261121r"></script>
-<script src="nav.js?v=20261121r"></script>
+<script src="soussol.js?v=20261121s"></script>
+<script src="histoire.js?v=20261121s"></script>
+<script src="chomage.js?v=20261121s"></script>
+<script src="sources.js?v=20261121s"></script>
+<script src="nav.js?v=20261121s"></script>
 </body>
 </html>

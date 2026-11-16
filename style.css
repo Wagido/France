@@ -416,3 +416,12 @@ table.cmp-t.rt-cmp tr.me td { font-weight: 400; }
 .rt-urne-b { display: grid; gap: 2px; }
 .rt-urne-r { display: flex; align-items: center; gap: 6px; font-size: .78rem; }
 .rt-urne-r > span { display: inline-block; height: 9px; border-radius: 3px; }
+/* Sociologie électorale */
+.el-stack { display: grid; gap: 4px; max-width: 980px; margin: 6px 0; }
+.el-row { display: grid; grid-template-columns: minmax(130px, 240px) 1fr; gap: 10px; align-items: center; font-size: .86rem; }
+.el-row.el-tot { border-top: 1px solid var(--line); padding-top: 4px; font-weight: 650; }
+.el-segs { display: flex; height: 22px; border-radius: 4px; overflow: hidden; }
+.el-segs > span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: .72rem; font-weight: 600; min-width: 0; }
+.el-part { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; }
+.el-v { grid-template-columns: minmax(110px, 170px) 1fr 50px; }
+@media (max-width: 640px) { .el-row { grid-template-columns: 1fr; gap: 2px; } }

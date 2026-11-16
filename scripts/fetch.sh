@@ -42,6 +42,9 @@ for f in co2 energy; do
   get "limites/owid_$f.csv" "https://raw.githubusercontent.com/owid/$f-data/master/owid-$f-data.csv"
   python3 -c "import csv,sys; r=csv.DictReader(open(sys.argv[1])); w=csv.DictWriter(open(sys.argv[2],'w',newline=''),fieldnames=r.fieldnames); w.writeheader(); [w.writerow(x) for x in r if x['country']=='World']" "limites/owid_$f.csv" "limites/owid_${f}_monde.csv" && rm -f "limites/owid_$f.csv"
 done
+# Sociologie électorale : rapports Ipsos (PDF converti en texte ; les valeurs sont retranscrites dans scripts/build_sociologie.py)
+mkdir -p sociologie
+get sociologie/ipsos_legislatives_2024.pdf "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-06/ipsos-talan-sociologie-electorats-legislatives-30-juin-rapport-complet.pdf" && pdftotext -layout sociologie/ipsos_legislatives_2024.pdf sociologie/ipsos_legislatives_2024.txt && rm -f sociologie/ipsos_legislatives_2024.pdf || true
 # Sans intrants ? rendements, engrais et pesticides de la France (FAOSTAT, fichiers complets filtrés)
 FB="https://bulks-faostat.fao.org/production"
 for z in "Production_Crops_Livestock_E_Europe:fao_rendements:rendements" "Inputs_FertilizersNutrient_E_Europe:fao_engrais_fr:france" "Inputs_Pesticides_Use_E_All_Data:fao_pesticides_fr:france"; do

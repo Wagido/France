@@ -1,0 +1,1928 @@
+{
+ "criteres": {
+  "age": "Âge",
+  "sexe": "Sexe",
+  "profession": "Profession",
+  "statut": "Statut d'emploi",
+  "diplome": "Diplôme",
+  "revenus": "Revenus du foyer",
+  "milieu": "Milieu social (déclaré)",
+  "finances": "Situation financière",
+  "agglo": "Taille de la commune",
+  "religion": "Religion",
+  "satisfaction": "Satisfaction à l'égard de sa vie"
+ },
+ "legislatives2024": {
+  "titre": "Législatives 2024, 1er tour",
+  "camps": [
+   [
+    "nfp",
+    "Nouveau Front populaire",
+    "#e11d48"
+   ],
+   [
+    "ens",
+    "Ensemble (camp présidentiel)",
+    "#f59e0b"
+   ],
+   [
+    "lr",
+    "LR et divers droite",
+    "#2563eb"
+   ],
+   [
+    "rn",
+    "RN et alliés",
+    "#1e3a8a"
+   ],
+   [
+    "aut",
+    "Autres",
+    "#cbd5e1"
+   ]
+  ],
+  "ensemble": [
+   28.1,
+   20.3,
+   10.2,
+   34,
+   7.4
+  ],
+  "tables": {
+   "age": [
+    {
+     "l": "18-24 ans",
+     "v": [
+      48,
+      9,
+      4,
+      33,
+      6
+     ]
+    },
+    {
+     "l": "25-34 ans",
+     "v": [
+      38,
+      13,
+      8,
+      32,
+      9
+     ]
+    },
+    {
+     "l": "35-49 ans",
+     "v": [
+      31,
+      17,
+      9,
+      36,
+      7
+     ]
+    },
+    {
+     "l": "50-59 ans",
+     "v": [
+      25,
+      18,
+      10,
+      40,
+      7
+     ]
+    },
+    {
+     "l": "60-69 ans",
+     "v": [
+      24,
+      21,
+      11,
+      35,
+      9
+     ]
+    },
+    {
+     "l": "70 ans et plus",
+     "v": [
+      18,
+      32,
+      14,
+      29,
+      7
+     ]
+    }
+   ],
+   "sexe": [
+    {
+     "l": "Hommes",
+     "v": [
+      27,
+      19,
+      10,
+      36,
+      8
+     ]
+    },
+    {
+     "l": "Femmes",
+     "v": [
+      29,
+      21,
+      11,
+      32,
+      7
+     ]
+    }
+   ],
+   "profession": [
+    {
+     "l": "Cadres",
+     "v": [
+      34,
+      26,
+      11,
+      21,
+      8
+     ]
+    },
+    {
+     "l": "Professions intermédiaires",
+     "v": [
+      35,
+      18,
+      8,
+      31,
+      8
+     ]
+    },
+    {
+     "l": "Employés",
+     "v": [
+      30,
+      12,
+      8,
+      44,
+      6
+     ]
+    },
+    {
+     "l": "Ouvriers",
+     "v": [
+      21,
+      7,
+      6,
+      57,
+      9
+     ]
+    },
+    {
+     "l": "Retraités",
+     "v": [
+      20,
+      29,
+      13,
+      31,
+      7
+     ]
+    },
+    {
+     "l": "dont anciens cadres et professions intermédiaires",
+     "v": [
+      21,
+      32,
+      15,
+      25,
+      7
+     ]
+    },
+    {
+     "l": "dont anciens employés et ouvriers",
+     "v": [
+      18,
+      26,
+      12,
+      36,
+      8
+     ]
+    }
+   ],
+   "statut": [
+    {
+     "l": "Salariés du privé",
+     "v": [
+      27,
+      17,
+      9,
+      40,
+      7
+     ]
+    },
+    {
+     "l": "Salariés du public",
+     "v": [
+      35,
+      16,
+      8,
+      33,
+      8
+     ]
+    },
+    {
+     "l": "À son compte",
+     "v": [
+      32,
+      21,
+      10,
+      28,
+      9
+     ]
+    },
+    {
+     "l": "Au chômage",
+     "v": [
+      37,
+      7,
+      5,
+      40,
+      11
+     ]
+    }
+   ],
+   "diplome": [
+    {
+     "l": "Inférieur au bac",
+     "v": [
+      17,
+      17,
+      10,
+      49,
+      7
+     ]
+    },
+    {
+     "l": "Baccalauréat",
+     "v": [
+      26,
+      19,
+      8,
+      38,
+      9
+     ]
+    },
+    {
+     "l": "Bac +2",
+     "v": [
+      28,
+      22,
+      11,
+      32,
+      7
+     ]
+    },
+    {
+     "l": "Bac +3 et plus",
+     "v": [
+      37,
+      22,
+      12,
+      22,
+      7
+     ]
+    }
+   ],
+   "revenus": [
+    {
+     "l": "Moins de 1 250 € par mois",
+     "v": [
+      35,
+      12,
+      8,
+      38,
+      7
+     ]
+    },
+    {
+     "l": "1 250 à 2 000 €",
+     "v": [
+      33,
+      15,
+      7,
+      36,
+      9
+     ]
+    },
+    {
+     "l": "2 000 à 3 000 €",
+     "v": [
+      26,
+      22,
+      9,
+      35,
+      8
+     ]
+    },
+    {
+     "l": "Plus de 3 000 €",
+     "v": [
+      26,
+      23,
+      12,
+      32,
+      7
+     ]
+    }
+   ],
+   "milieu": [
+    {
+     "l": "Défavorisés",
+     "v": [
+      29,
+      6,
+      5,
+      54,
+      6
+     ]
+    },
+    {
+     "l": "Catégories populaires",
+     "v": [
+      35,
+      12,
+      7,
+      38,
+      8
+     ]
+    },
+    {
+     "l": "Classes moyennes inférieures",
+     "v": [
+      26,
+      20,
+      10,
+      36,
+      8
+     ]
+    },
+    {
+     "l": "Classes moyennes supérieures",
+     "v": [
+      27,
+      28,
+      14,
+      25,
+      6
+     ]
+    },
+    {
+     "l": "Milieux aisés ou privilégiés",
+     "v": [
+      28,
+      27,
+      18,
+      21,
+      6
+     ]
+    }
+   ],
+   "finances": [
+    {
+     "l": "Met beaucoup d'argent de côté",
+     "v": [
+      27,
+      30,
+      18,
+      17,
+      8
+     ]
+    },
+    {
+     "l": "Met un peu d'argent de côté",
+     "v": [
+      28,
+      25,
+      12,
+      27,
+      8
+     ]
+    },
+    {
+     "l": "Boucle juste son budget",
+     "v": [
+      28,
+      15,
+      9,
+      41,
+      7
+     ]
+    },
+    {
+     "l": "Vit sur ses économies ou à crédit",
+     "v": [
+      29,
+      10,
+      7,
+      46,
+      8
+     ]
+    }
+   ],
+   "agglo": [
+    {
+     "l": "Moins de 2 000 habitants",
+     "v": [
+      23,
+      19,
+      10,
+      40,
+      8
+     ]
+    },
+    {
+     "l": "2 000 à 9 999 habitants",
+     "v": [
+      25,
+      19,
+      10,
+      39,
+      7
+     ]
+    },
+    {
+     "l": "10 000 à 49 999 habitants",
+     "v": [
+      26,
+      23,
+      10,
+      36,
+      5
+     ]
+    },
+    {
+     "l": "50 000 à 199 999 habitants",
+     "v": [
+      25,
+      20,
+      13,
+      34,
+      8
+     ]
+    },
+    {
+     "l": "200 000 habitants et plus",
+     "v": [
+      33,
+      21,
+      10,
+      28,
+      8
+     ]
+    }
+   ],
+   "religion": [
+    {
+     "l": "Catholiques pratiquants réguliers",
+     "v": [
+      13,
+      21,
+      20,
+      37,
+      9
+     ]
+    },
+    {
+     "l": "Catholiques pratiquants occasionnels",
+     "v": [
+      14,
+      22,
+      16,
+      40,
+      8
+     ]
+    },
+    {
+     "l": "Catholiques non pratiquants",
+     "v": [
+      18,
+      23,
+      11,
+      41,
+      7
+     ]
+    },
+    {
+     "l": "Autre religion",
+     "v": [
+      34,
+      11,
+      5,
+      39,
+      11
+     ]
+    },
+    {
+     "l": "Sans religion",
+     "v": [
+      39,
+      18,
+      7,
+      28,
+      8
+     ]
+    }
+   ],
+   "satisfaction": [
+    {
+     "l": "Très satisfait de sa vie",
+     "v": [
+      32,
+      30,
+      14,
+      15,
+      9
+     ]
+    },
+    {
+     "l": "Plutôt satisfait",
+     "v": [
+      28,
+      25,
+      11,
+      28,
+      8
+     ]
+    },
+    {
+     "l": "Plutôt pas satisfait",
+     "v": [
+      29,
+      10,
+      8,
+      47,
+      6
+     ]
+    },
+    {
+     "l": "Pas du tout satisfait",
+     "v": [
+      23,
+      4,
+      4,
+      61,
+      8
+     ]
+    }
+   ]
+  },
+  "votants": {
+   "age": [
+    [
+     "18-24 ans",
+     57
+    ],
+    [
+     "25-34 ans",
+     51
+    ],
+    [
+     "35-49 ans",
+     61
+    ],
+    [
+     "50-59 ans",
+     66
+    ],
+    [
+     "60-69 ans",
+     74
+    ],
+    [
+     "70 ans et plus",
+     80
+    ]
+   ],
+   "profession": [
+    [
+     "Cadres",
+     65
+    ],
+    [
+     "Professions intermédiaires",
+     62
+    ],
+    [
+     "Employés",
+     58
+    ],
+    [
+     "Ouvriers",
+     54
+    ],
+    [
+     "Retraités",
+     79
+    ]
+   ],
+   "revenus": [
+    [
+     "Moins de 1 250 €",
+     57
+    ],
+    [
+     "1 250 à 2 000 €",
+     62
+    ],
+    [
+     "2 000 à 3 000 €",
+     67
+    ],
+    [
+     "Plus de 3 000 €",
+     69
+    ]
+   ],
+   "diplome": [
+    [
+     "Inférieur au bac",
+     67
+    ],
+    [
+     "Baccalauréat",
+     66
+    ],
+    [
+     "Bac +2",
+     63
+    ],
+    [
+     "Bac +3 et plus",
+     67
+    ]
+   ]
+  },
+  "participation": 65.8,
+  "source": "Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, 10 286 inscrits interrogés par internet les 27 et 28 juin 2024"
+ },
+ "presidentielle2022": {
+  "titre": "Présidentielle 2022, 1er tour",
+  "camps": [
+   [
+    "gauche",
+    "Gauche et écologistes",
+    "#e11d48"
+   ],
+   [
+    "macron",
+    "Emmanuel Macron",
+    "#f59e0b"
+   ],
+   [
+    "droite",
+    "Pécresse, Lassalle, Dupont-Aignan",
+    "#2563eb"
+   ],
+   [
+    "rn",
+    "Marine Le Pen",
+    "#1e3a8a"
+   ],
+   [
+    "zem",
+    "Éric Zemmour",
+    "#7c3aed"
+   ]
+  ],
+  "candidats": [
+   "Poutou, Arthaud",
+   "Mélenchon",
+   "Roussel",
+   "Jadot",
+   "Hidalgo",
+   "Macron",
+   "Pécresse",
+   "Lassalle",
+   "Dupont-Aignan",
+   "Le Pen",
+   "Zemmour"
+  ],
+  "ensemble": [
+   32.1,
+   27.8,
+   10.0,
+   23.2,
+   7.1
+  ],
+  "tables": {
+   "age": [
+    {
+     "l": "18-24 ans",
+     "v": [
+      44,
+      20,
+      3,
+      25,
+      8
+     ],
+     "cand": [
+      1,
+      34,
+      2,
+      6,
+      1,
+      20,
+      2,
+      1,
+      0,
+      25,
+      8
+     ]
+    },
+    {
+     "l": "25-34 ans",
+     "v": [
+      44,
+      22,
+      5,
+      24,
+      5
+     ],
+     "cand": [
+      3,
+      36,
+      0,
+      4,
+      1,
+      22,
+      3,
+      2,
+      0,
+      24,
+      5
+     ]
+    },
+    {
+     "l": "35-49 ans",
+     "v": [
+      37,
+      24,
+      8,
+      27,
+      4
+     ],
+     "cand": [
+      3,
+      24,
+      3,
+      5,
+      2,
+      24,
+      2,
+      4,
+      2,
+      27,
+      4
+     ]
+    },
+    {
+     "l": "50-59 ans",
+     "v": [
+      31,
+      23,
+      9,
+      30,
+      7
+     ],
+     "cand": [
+      0,
+      24,
+      2,
+      4,
+      1,
+      23,
+      3,
+      4,
+      2,
+      30,
+      7
+     ]
+    },
+    {
+     "l": "60-69 ans",
+     "v": [
+      29,
+      30,
+      10,
+      22,
+      9
+     ],
+     "cand": [
+      1,
+      18,
+      3,
+      5,
+      2,
+      30,
+      4,
+      4,
+      2,
+      22,
+      9
+     ]
+    },
+    {
+     "l": "70 ans et plus",
+     "v": [
+      19,
+      41,
+      17,
+      13,
+      10
+     ],
+     "cand": [
+      1,
+      9,
+      2,
+      4,
+      3,
+      41,
+      12,
+      2,
+      3,
+      13,
+      10
+     ]
+    }
+   ],
+   "sexe": [
+    {
+     "l": "Hommes",
+     "v": [
+      30,
+      27,
+      11,
+      23,
+      9
+     ],
+     "cand": [
+      1,
+      22,
+      2,
+      4,
+      1,
+      27,
+      5,
+      4,
+      2,
+      23,
+      9
+     ]
+    },
+    {
+     "l": "Femmes",
+     "v": [
+      34,
+      29,
+      9,
+      23,
+      5
+     ],
+     "cand": [
+      2,
+      22,
+      3,
+      5,
+      2,
+      29,
+      4,
+      3,
+      2,
+      23,
+      5
+     ]
+    }
+   ],
+   "profession": [
+    {
+     "l": "Cadres",
+     "v": [
+      38,
+      34,
+      12,
+      11,
+      5
+     ],
+     "cand": [
+      1,
+      27,
+      1,
+      6,
+      3,
+      34,
+      6,
+      4,
+      2,
+      11,
+      5
+     ]
+    },
+    {
+     "l": "Professions intermédiaires",
+     "v": [
+      38,
+      27,
+      8,
+      24,
+      3
+     ],
+     "cand": [
+      0,
+      27,
+      4,
+      5,
+      2,
+      27,
+      3,
+      4,
+      1,
+      24,
+      3
+     ]
+    },
+    {
+     "l": "Employés",
+     "v": [
+      36,
+      17,
+      6,
+      35,
+      6
+     ],
+     "cand": [
+      2,
+      27,
+      1,
+      4,
+      2,
+      17,
+      2,
+      2,
+      2,
+      35,
+      6
+     ]
+    },
+    {
+     "l": "Ouvriers",
+     "v": [
+      31,
+      17,
+      8,
+      35,
+      9
+     ],
+     "cand": [
+      2,
+      25,
+      2,
+      2,
+      0,
+      17,
+      2,
+      3,
+      3,
+      35,
+      9
+     ]
+    },
+    {
+     "l": "Retraités",
+     "v": [
+      23,
+      37,
+      15,
+      17,
+      8
+     ],
+     "cand": [
+      1,
+      13,
+      3,
+      4,
+      2,
+      37,
+      9,
+      3,
+      3,
+      17,
+      8
+     ]
+    }
+   ],
+   "statut": [
+    {
+     "l": "Salariés du privé",
+     "v": [
+      32,
+      26,
+      9,
+      27,
+      6
+     ],
+     "cand": [
+      1,
+      25,
+      2,
+      3,
+      1,
+      26,
+      4,
+      3,
+      2,
+      27,
+      6
+     ]
+    },
+    {
+     "l": "Salariés du public",
+     "v": [
+      40,
+      22,
+      7,
+      27,
+      4
+     ],
+     "cand": [
+      1,
+      27,
+      3,
+      7,
+      2,
+      22,
+      2,
+      4,
+      1,
+      27,
+      4
+     ]
+    },
+    {
+     "l": "À son compte",
+     "v": [
+      37,
+      26,
+      9,
+      18,
+      10
+     ],
+     "cand": [
+      2,
+      27,
+      0,
+      8,
+      0,
+      26,
+      2,
+      4,
+      3,
+      18,
+      10
+     ]
+    },
+    {
+     "l": "Au chômage",
+     "v": [
+      44,
+      12,
+      9,
+      28,
+      7
+     ],
+     "cand": [
+      2,
+      37,
+      1,
+      2,
+      2,
+      12,
+      1,
+      3,
+      5,
+      28,
+      7
+     ]
+    }
+   ],
+   "diplome": [
+    {
+     "l": "Inférieur au bac",
+     "v": [
+      25,
+      23,
+      11,
+      34,
+      7
+     ],
+     "cand": [
+      2,
+      16,
+      2,
+      4,
+      1,
+      23,
+      5,
+      3,
+      3,
+      34,
+      7
+     ]
+    },
+    {
+     "l": "Baccalauréat",
+     "v": [
+      31,
+      25,
+      10,
+      26,
+      8
+     ],
+     "cand": [
+      0,
+      24,
+      3,
+      3,
+      1,
+      25,
+      4,
+      4,
+      2,
+      26,
+      8
+     ]
+    },
+    {
+     "l": "Bac +2",
+     "v": [
+      27,
+      31,
+      11,
+      23,
+      8
+     ],
+     "cand": [
+      0,
+      18,
+      2,
+      5,
+      2,
+      31,
+      6,
+      4,
+      1,
+      23,
+      8
+     ]
+    },
+    {
+     "l": "Bac +3 et plus",
+     "v": [
+      41,
+      32,
+      10,
+      12,
+      5
+     ],
+     "cand": [
+      2,
+      28,
+      2,
+      7,
+      2,
+      32,
+      5,
+      3,
+      2,
+      12,
+      5
+     ]
+    }
+   ],
+   "revenus": [
+    {
+     "l": "Moins de 1 250 € par mois",
+     "v": [
+      38,
+      13,
+      8,
+      31,
+      10
+     ],
+     "cand": [
+      1,
+      30,
+      1,
+      5,
+      1,
+      13,
+      2,
+      2,
+      4,
+      31,
+      10
+     ]
+    },
+    {
+     "l": "1 250 à 2 000 €",
+     "v": [
+      38,
+      23,
+      7,
+      25,
+      7
+     ],
+     "cand": [
+      2,
+      27,
+      3,
+      5,
+      1,
+      23,
+      3,
+      3,
+      1,
+      25,
+      7
+     ]
+    },
+    {
+     "l": "2 000 à 3 000 €",
+     "v": [
+      29,
+      26,
+      11,
+      27,
+      7
+     ],
+     "cand": [
+      0,
+      20,
+      3,
+      5,
+      1,
+      26,
+      5,
+      3,
+      3,
+      27,
+      7
+     ]
+    },
+    {
+     "l": "Plus de 3 000 €",
+     "v": [
+      28,
+      34,
+      12,
+      19,
+      7
+     ],
+     "cand": [
+      1,
+      19,
+      2,
+      4,
+      2,
+      34,
+      6,
+      4,
+      2,
+      19,
+      7
+     ]
+    }
+   ],
+   "milieu": [
+    {
+     "l": "Défavorisés",
+     "v": [
+      34,
+      12,
+      6,
+      37,
+      11
+     ],
+     "cand": [
+      3,
+      29,
+      0,
+      1,
+      1,
+      12,
+      1,
+      4,
+      1,
+      37,
+      11
+     ]
+    },
+    {
+     "l": "Catégories populaires",
+     "v": [
+      42,
+      15,
+      8,
+      29,
+      6
+     ],
+     "cand": [
+      3,
+      31,
+      4,
+      3,
+      1,
+      15,
+      3,
+      1,
+      4,
+      29,
+      6
+     ]
+    },
+    {
+     "l": "Classes moyennes inférieures",
+     "v": [
+      30,
+      27,
+      11,
+      25,
+      7
+     ],
+     "cand": [
+      0,
+      21,
+      2,
+      5,
+      2,
+      27,
+      5,
+      4,
+      2,
+      25,
+      7
+     ]
+    },
+    {
+     "l": "Classes moyennes supérieures",
+     "v": [
+      29,
+      38,
+      11,
+      15,
+      7
+     ],
+     "cand": [
+      1,
+      18,
+      2,
+      6,
+      2,
+      38,
+      6,
+      3,
+      2,
+      15,
+      7
+     ]
+    },
+    {
+     "l": "Milieux aisés ou privilégiés",
+     "v": [
+      15,
+      52,
+      12,
+      8,
+      13
+     ],
+     "cand": [
+      0,
+      10,
+      0,
+      1,
+      4,
+      52,
+      10,
+      2,
+      0,
+      8,
+      13
+     ]
+    }
+   ],
+   "agglo": [
+    {
+     "l": "Moins de 2 000 habitants",
+     "v": [
+      33,
+      25,
+      10,
+      26,
+      6
+     ],
+     "cand": [
+      3,
+      22,
+      2,
+      4,
+      2,
+      25,
+      3,
+      4,
+      3,
+      26,
+      6
+     ]
+    },
+    {
+     "l": "2 000 à 9 999 habitants",
+     "v": [
+      30,
+      22,
+      11,
+      28,
+      9
+     ],
+     "cand": [
+      1,
+      20,
+      3,
+      5,
+      1,
+      22,
+      2,
+      6,
+      3,
+      28,
+      9
+     ]
+    },
+    {
+     "l": "10 000 à 49 999 habitants",
+     "v": [
+      28,
+      31,
+      12,
+      23,
+      6
+     ],
+     "cand": [
+      1,
+      19,
+      2,
+      4,
+      2,
+      31,
+      7,
+      4,
+      1,
+      23,
+      6
+     ]
+    },
+    {
+     "l": "50 000 à 199 999 habitants",
+     "v": [
+      27,
+      35,
+      9,
+      24,
+      5
+     ],
+     "cand": [
+      0,
+      18,
+      2,
+      5,
+      2,
+      35,
+      6,
+      1,
+      2,
+      24,
+      5
+     ]
+    },
+    {
+     "l": "200 000 habitants et plus",
+     "v": [
+      34,
+      29,
+      10,
+      19,
+      8
+     ],
+     "cand": [
+      1,
+      25,
+      2,
+      5,
+      1,
+      29,
+      5,
+      3,
+      2,
+      19,
+      8
+     ]
+    }
+   ],
+   "religion": [
+    {
+     "l": "Catholiques pratiquants réguliers",
+     "v": [
+      15,
+      34,
+      23,
+      9,
+      19
+     ],
+     "cand": [
+      1,
+      6,
+      2,
+      4,
+      2,
+      34,
+      14,
+      3,
+      6,
+      9,
+      19
+     ]
+    },
+    {
+     "l": "Catholiques pratiquants occasionnels",
+     "v": [
+      23,
+      30,
+      15,
+      19,
+      13
+     ],
+     "cand": [
+      0,
+      15,
+      2,
+      6,
+      0,
+      30,
+      9,
+      3,
+      3,
+      19,
+      13
+     ]
+    },
+    {
+     "l": "Catholiques non pratiquants",
+     "v": [
+      19,
+      31,
+      12,
+      30,
+      8
+     ],
+     "cand": [
+      1,
+      11,
+      2,
+      4,
+      1,
+      31,
+      6,
+      4,
+      2,
+      30,
+      8
+     ]
+    },
+    {
+     "l": "Autre religion",
+     "v": [
+      48,
+      22,
+      14,
+      12,
+      4
+     ],
+     "cand": [
+      1,
+      38,
+      1,
+      6,
+      2,
+      22,
+      7,
+      2,
+      5,
+      12,
+      4
+     ]
+    },
+    {
+     "l": "Sans religion",
+     "v": [
+      44,
+      24,
+      6,
+      21,
+      5
+     ],
+     "cand": [
+      2,
+      32,
+      3,
+      5,
+      2,
+      24,
+      2,
+      3,
+      1,
+      21,
+      5
+     ]
+    }
+   ],
+   "satisfaction": [
+    {
+     "l": "Très satisfait de sa vie",
+     "v": [
+      25,
+      42,
+      4,
+      21,
+      8
+     ],
+     "cand": [
+      3,
+      13,
+      1,
+      5,
+      3,
+      42,
+      1,
+      2,
+      1,
+      21,
+      8
+     ]
+    },
+    {
+     "l": "Plutôt satisfait",
+     "v": [
+      30,
+      37,
+      9,
+      18,
+      6
+     ],
+     "cand": [
+      0,
+      20,
+      2,
+      6,
+      2,
+      37,
+      5,
+      3,
+      1,
+      18,
+      6
+     ]
+    },
+    {
+     "l": "Plutôt pas satisfait",
+     "v": [
+      46,
+      6,
+      5,
+      30,
+      13
+     ],
+     "cand": [
+      1,
+      39,
+      2,
+      2,
+      2,
+      6,
+      0,
+      3,
+      2,
+      30,
+      13
+     ]
+    },
+    {
+     "l": "Pas du tout satisfait",
+     "v": [
+      15,
+      4,
+      14,
+      45,
+      22
+     ],
+     "cand": [
+      0,
+      13,
+      0,
+      1,
+      1,
+      4,
+      2,
+      8,
+      4,
+      45,
+      22
+     ]
+    }
+   ]
+  },
+  "votants": {
+   "age": [
+    [
+     "18-24 ans",
+     58
+    ],
+    [
+     "25-34 ans",
+     54
+    ],
+    [
+     "35-49 ans",
+     77
+    ],
+    [
+     "50-59 ans",
+     80
+    ],
+    [
+     "60-69 ans",
+     88
+    ],
+    [
+     "70 ans et plus",
+     76
+    ]
+   ],
+   "profession": [
+    [
+     "Cadres",
+     74
+    ],
+    [
+     "Professions intermédiaires",
+     73
+    ],
+    [
+     "Employés",
+     73
+    ],
+    [
+     "Ouvriers",
+     66
+    ],
+    [
+     "Retraités",
+     81
+    ]
+   ],
+   "revenus": [
+    [
+     "Moins de 1 250 €",
+     66
+    ],
+    [
+     "1 250 à 2 000 €",
+     71
+    ],
+    [
+     "2 000 à 3 000 €",
+     75
+    ],
+    [
+     "Plus de 3 000 €",
+     77
+    ]
+   ],
+   "diplome": [
+    [
+     "Inférieur au bac",
+     76
+    ],
+    [
+     "Baccalauréat",
+     72
+    ],
+    [
+     "Bac +2",
+     74
+    ],
+    [
+     "Bac +3 et plus",
+     73
+    ]
+   ]
+  },
+  "participation": 73.7,
+  "source": "Ipsos-Sopra Steria, 4 000 inscrits interrogés par internet du 6 au 9 avril 2022"
+ },
+ "insee_age": [
+  {
+   "l": "18-24 ans",
+   "systematique": 16.4,
+   "intermittent": 59.8,
+   "abstention": 23.8
+  },
+  {
+   "l": "25-29 ans",
+   "systematique": 17.9,
+   "intermittent": 56.8,
+   "abstention": 25.3
+  },
+  {
+   "l": "30-34 ans",
+   "systematique": 19.8,
+   "intermittent": 57.2,
+   "abstention": 22.9
+  },
+  {
+   "l": "35-39 ans",
+   "systematique": 26.4,
+   "intermittent": 55.4,
+   "abstention": 18.2
+  },
+  {
+   "l": "40-44 ans",
+   "systematique": 32.5,
+   "intermittent": 54.5,
+   "abstention": 13
+  },
+  {
+   "l": "45-49 ans",
+   "systematique": 40.1,
+   "intermittent": 49.1,
+   "abstention": 10.8
+  },
+  {
+   "l": "50-54 ans",
+   "systematique": 41.7,
+   "intermittent": 48.3,
+   "abstention": 10
+  },
+  {
+   "l": "55-59 ans",
+   "systematique": 45,
+   "intermittent": 45.1,
+   "abstention": 9.9
+  },
+  {
+   "l": "60-64 ans",
+   "systematique": 46.8,
+   "intermittent": 44,
+   "abstention": 9.2
+  },
+  {
+   "l": "65-69 ans",
+   "systematique": 47.5,
+   "intermittent": 43.5,
+   "abstention": 9
+  },
+  {
+   "l": "70-74 ans",
+   "systematique": 52.8,
+   "intermittent": 36,
+   "abstention": 11.1
+  },
+  {
+   "l": "75-79 ans",
+   "systematique": 53.4,
+   "intermittent": 33.4,
+   "abstention": 13.2
+  },
+  {
+   "l": "80-84 ans",
+   "systematique": 48.1,
+   "intermittent": 33.6,
+   "abstention": 18.3
+  },
+  {
+   "l": "85-89 ans",
+   "systematique": 36.4,
+   "intermittent": 29,
+   "abstention": 34.6
+  },
+  {
+   "l": "90 ans ou plus",
+   "systematique": 21,
+   "intermittent": 23.5,
+   "abstention": 55.6
+  }
+ ]
+}

@@ -1,0 +1,929 @@
+SOCIOLOGIE DES
+ÉLECTORATS
+ET PROFIL DES
+ABSTENTIONNISTES
+Elections législatives
+30 juin 2024
+Vos contacts Ipsos :
+
+Brice Teinturier
+brice.teinturier@ipsos.com
+
+Jean-François Doridot
+jean-francois.doridot@ipsos.com
+    FICHE MÉTHODOLOGIQUE
+
+    ÉCHANTILLON                                       DATES DE TERRAIN                     METHODOLOGIE
+    10 286 personnes inscrites sur                    Du 27 au 28 juin 2024.               Échantillon interrogé par Internet
+    les listes électorales,                                                                via l’Access Panel Online d’Ipsos.
+    constituant un échantillon
+    représentatif de la population                                                         Méthode des quotas :
+    française âgée de 18 ans et plus.                                                      Sexe, âge, catégorie socio-professionnelle
+                                                                                           du répondant, région et catégorie
+                                                                                           d’agglomération.
+                                                                                           Note de lecture : tous les
+    ENQUÊTE IPSOS TALAN POUR FRANCE TÉLÉVISIONS, RADIO                                     résultats sont exprimés en
+    FRANCE ET PUBLIC SÉNAT                                                                 pourcentages (%)
+
+          Ce rapport a été élaboré dans le respect de la norme internationale ISO 20252 « Etudes de marché, études
+          sociales et d’opinion ». Ce rapport a été relu par Jean-François Doridot, Directeur Général (Ipsos Public
+          Affairs).
+2
+                                                                          2
+    PRÉCISIONS SUR L’INTERVALLE DE CONFIANCE
+    L’intervalle de confiance (aussi appelé marge d’erreur) est l’intervalle dans lequel se trouve la valeur recherchée avec une
+    probabilité fixée (le niveau de confiance). L’amplitude de cet intervalle dépend du niveau de confiance, de la valeur observée et
+    de la taille de l’échantillon. Le calcul n’est justifié que pour les sondages aléatoires. Il ne peut pas être déterminé dans le cas de
+    sondages par quotas mais on considère qu’il est proche de celui des sondages aléatoires.
+
+    INTERVALLE DE CONFIANCE (avec un niveau de confiance de 95%)                                         Note de lecture : Note de lecture
+    selon la taille d’échantillon interrogée et le score mesuré                                          : pour un échantillon de 10 286
+                                                                                                         personnes, si le score mesuré est
+                                                     SCORES MESURÉS                                     de 20%, il y a 95% de chances
+                     2% 5% 10% 15% 20% 25% 30% 35% 40% 45%                                               que la valeur réelle se situe
+          TAILLE DE_                                                                                     aujourd’hui entre 19,2 et 20,8
+                      ou  ou  ou  ou  ou  ou  ou  ou  ou  ou 50%
+    L’ÉCHANTILLON_                                                                                      (plus ou moins 0,8 point).
+                     98% 95% 90% 85% 80% 75% 70% 65% 60% 55%
+        100 personnes_    1,2    1,9    2,6    3,1    3,5    3,6    3,8    4,0    4,3    4,4    4,4      *Base ensemble
+        500 personnes_    0,9    1,4    1,9    2,2    2,5    2,7    2,8    3,0    3,0    3,1    3,1
+       1000 personnes_    0,7    1,1    1,5    1,8    2,0    2,2    2,3    2,4    2,5    2,5    2,5
+      2 000 personnes_    0,6    1,0    1,3    1,6    1,8    1,9    2,0    2,1    2,1    2,2    2,2
+      4 000 personnes_    0,4    0,7    0,9    1,1    1,2    1,3    1,4    1,5    1,5    1,5    1,5
+      8 000 personnes_    0,3    0,5    0,7    0,8    0,9    0,9    1,0    1,0    1,1    1,1    1,1
+    10 286 personnes*_    0,3    0,4    0,6    0,7    0,8    0,8    0,9    0,9    0,9    1,0    1,0
+
+
+3
+                                                                       3
+    LA SOCIOLOGIE DE
+    L’ÉLECTORAT
+
+
+    01
+4
+                       4
+    SOCIOLOGIE DES ÉLECTORATS
+
+
+                                               Un candidat                    Un candidat
+     SELON LE SEXE & L’ÂGE                    Nouveau Front
+                                                              Un candidat
+                                                                            Les Républicains
+                                                                                                Un candidat
+                                                                                                                  Autres
+                                                                                                                            %
+                                                               Ensemble                        RN et ses alliés            TOTAL
+                                                Populaire                   ou Divers Droite
+
+
+                                Ensemble         28,1          20,3             10,2                34            7,4      100
+     ▪   Sexe
+                                  Homme           27             19               10                36              8      100
+                                  Femme           29             21               11                32              7      100
+     ▪   Âge
+                                 18-24 ans        48              9               4                 33              6      100
+                                25-34 ans         38             13                8                32              9      100
+                                35-49 ans         31             17                9                36              7      100
+                                50-59 ans         25             18               10                40              7      100
+                                60-69 ans         24             21               11                35              9      100
+                             70 ans et plus       18             32               14                29              7      100
+
+5
+    SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+       SELON LA PROFESSION                           Un candidat
+                                                    Nouveau Front
+                                                                    Un candidat
+                                                                                    Un candidat
+                                                                                  Les Républicains
+                                                                                                      Un candidat
+                                                                                                                        Autres
+                                                                                                                                  %
+                                                                     Ensemble                        RN et ses alliés
+       DU RÉPONDANT                                   Populaire                   ou Divers Droite
+                                                                                                                                 TOTAL
+
+
+                                       Ensemble        28,1          20,3             10,2                34            7,4      100
+
+
+                                           Cadre        34             26               11                 21             8      100
+                         Profession intermédiaire       35             18                8                 31             8      100
+                                        Employé         30             12                8                44              6      100
+                                          Ouvrier       21              7                6                57              9      100
+                                         Retraité       20             29               13                 31             7      100
+                             dont… Retraité CSP+         21            32               15                25              7      100
+                             dont… Retraités CSP-        18            26               12                36              8      100
+
+
+6
+    SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+      SELON LE STATUT                              Un candidat
+                                                  Nouveau Front
+                                                                  Un candidat
+                                                                                  Un candidat
+                                                                                Les Républicains
+                                                                                                    Un candidat
+                                                                                                                      Autres
+                                                                                                                                %
+                                                                   Ensemble                        RN et ses alliés
+      DU RÉPONDANT                                  Populaire                   ou Divers Droite
+                                                                                                                               TOTAL
+
+
+                                    Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                                       Salarié        30             16                9                37              8      100
+                         dont… salarié du privé       27             17                9                40              7      100
+                        dont… salarié du public       35             16                8                33              8      100
+                                 À son compte         32             21               10                28              9      100
+                                  Au chômage          37              7                5                40             11      100
+
+
+
+
+7
+    SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LE DERNIER                       Un candidat
+                                           Nouveau Front
+                                                           Un candidat
+                                                                           Un candidat
+                                                                         Les Républicains
+                                                                                             Un candidat
+                                                                                                               Autres
+                                                                                                                         %
+                                                            Ensemble                        RN et ses alliés
+     DIPLÔME OBTENU                          Populaire                   ou Divers Droite
+                                                                                                                        TOTAL
+
+
+                             Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                        Inférieur au bac        17            17               10                49              7      100
+                          Baccalauréat         26             19                8                38              9      100
+                                 Bac +2        28             22               11                32              7      100
+                         Bac +3 et plus        37             22               12                22              7      100
+
+
+
+
+8
+    SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LE NIVEAU DE REVENUS                     Un candidat
+                                                   Nouveau Front
+                                                                   Un candidat
+                                                                                   Un candidat
+                                                                                 Les Républicains
+                                                                                                     Un candidat
+                                                                                                                       Autres
+                                                                                                                                 %
+                                                                    Ensemble                        RN et ses alliés
+     MENSUELS NETS DU FOYER                          Populaire                   ou Divers Droite
+                                                                                                                                TOTAL
+
+
+                                      Ensemble        28,1          20,3             10,2                34            7,4      100
+
+
+                               Moins de 1 250 €        35             12                8                38              7      100
+                             De 1 250 à 2 000 €        33             15                7                36              9      100
+                             De 2 000 à 3 000 €        26             22                9                35              8      100
+                                  Plus de 3000 €       26             23               12                32              7      100
+
+
+
+
+9
+ SOCIOLOGIE DES ÉLECTORATS
+
+     SELON LE VOTE AU 1ER TOUR DE L’ÉLECTION        Un candidat
+                                                   Nouveau Front
+                                                                   Un candidat
+                                                                                   Un candidat
+                                                                                 Les Républicains
+                                                                                                     Un candidat
+                                                                                                                       Autres
+                                                                                                                                 %
+                                                                    Ensemble                        RN et ses alliés
+     PRÉSIDENTIELLE 2022                             Populaire                   ou Divers Droite
+                                                                                                                                TOTAL
+
+
+                                      Ensemble        28,1          20,3             10,2                34            7,4      100
+
+
+                            Jean-Luc Mélenchon         77              3                3                 9              8      100
+                                  Fabien Roussel       66              7                9                 6             12      100
+                                  Yannick Jadot        61             19                7                 2             11      100
+                                   Anne Hidalgo        75             10               4                  3              8      100
+                               Emmanuel Macron         14             56               15                 8              7      100
+                                Valérie Pécresse        2             24               48                 21             5      100
+                                   Marine Le Pen        2              2               4                 89              3      100
+                                   Eric Zemmour         0              4                9                79              8      100
+                           Nicolas Dupont-Aignan        4              5               15                 61            15      100
+                                   Jean Lassalle       12             21               14                37             16      100
+10
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LE VOTE AUX ÉLECTIONS                         Un candidat
+                                                        Nouveau Front
+                                                                        Un candidat
+                                                                                        Un candidat
+                                                                                      Les Républicains
+                                                                                                          Un candidat
+                                                                                                                            Autres
+                                                                                                                                      %
+                                                                         Ensemble                        RN et ses alliés
+     EUROPÉENNES 2024                                     Populaire                   ou Divers Droite
+                                                                                                                                     TOTAL
+
+
+                                          Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                                  France Insoumise          94              0                1                 2              3      100
+                          Europe écologie les verts         67             16                5                  1            11      100
+                   Parti socialiste et Place publique       67             17                5                 2              9      100
+                                          Ensemble           3             76               13                  1             7      100
+                                   Les Républicains          1             28               55                 11             5      100
+                          Rassemblement National             1              2               4                  91             2      100
+                                        Reconquête           1              5                9                72             13      100
+
+
+11
+ SOCIOLOGIE DES ÉLECTORATS
+
+                                                          Un candidat                    Un candidat
+                                                                         Un candidat                       Un candidat                 %
+     SELON LA SYMPATHIE PARTISANE                        Nouveau Front
+                                                                          Ensemble
+                                                                                       Les Républicains
+                                                                                                          RN et ses alliés
+                                                                                                                             Autres
+                                                                                                                                      TOTAL
+                                                           Populaire                   ou Divers Droite
+
+
+                                              Ensemble      28,1          20,3             10,2                34            7,4      100
+
+
+                     La France Insoumise                     96              0                1                 0              3      100
+                Parti communiste français                    68              2               10                 6             14      100
+                           Parti socialiste                  73             12               4                  3              8      100
+                 Europe écologie les verts                   75              11               3                  1            10      100
+                             SOUS-TOTAL - GAUCHE             79              8                3                 2              8      100
+           Renaissance – Modem - Horizons                     3             74               14                 2              7      100
+                         Les Républicains                     1             19               49                28              3      100
+                 Rassemblement National                       1              1                1                95              2      100
+                            Reconquête !                      1              2                6                76             15      100
+                                          Aucun parti        21             24               14                30             11      100
+12
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LE MOMENT                                  Un candidat
+                                                     Nouveau Front
+                                                                     Un candidat
+                                                                                     Un candidat
+                                                                                   Les Républicains
+                                                                                                       Un candidat
+                                                                                                                         Autres
+                                                                                                                                   %
+                                                                      Ensemble                        RN et ses alliés
+     DU CHOIX DE VOTE                                  Populaire                   ou Divers Droite
+                                                                                                                                  TOTAL
+
+
+                                        Ensemble        28,1          20,3             10,2                34            7,4      100
+
+
+                           Ces dernières semaines        30             18                6                 41             5      100
+                                Ces derniers jours       27             26               18                 18            11      100
+                   Vous le ferez au dernier moment       18             23              20                  21            18      100
+
+
+
+
+13
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LA CATÉGORIE                                 Un candidat
+                                                       Nouveau Front
+                                                                       Un candidat
+                                                                                       Un candidat
+                                                                                     Les Républicains
+                                                                                                         Un candidat
+                                                                                                                           Autres
+                                                                                                                                     %
+                                                                        Ensemble                        RN et ses alliés
+     D’AGGLOMÉRATION                                     Populaire                   ou Divers Droite
+                                                                                                                                    TOTAL
+
+
+                                         Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                           Moins de 2 000 habitants        23             19               10                40              8      100
+                             2 000 à 9 999 habitants       25             19               10                39              7      100
+                           10 000 à 49 999 habitants       26             23               10                36              5      100
+                          50 000 à 199 999 habitants       25             20               13                34              8      100
+                          200 000 habitants et plus        33             21               10                28              8      100
+
+
+
+
+14
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+                                                      Un candidat                    Un candidat
+                                                                     Un candidat                       Un candidat                 %
+     SELON LA RELIGION                               Nouveau Front
+                                                                      Ensemble
+                                                                                   Les Républicains
+                                                                                                      RN et ses alliés
+                                                                                                                         Autres
+                                                                                                                                  TOTAL
+                                                       Populaire                   ou Divers Droite
+
+
+                                       Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                                       Catholique        16             23               13                 41             7      100
+                         …dont pratiquant régulier        13            21               20                 37             9      100
+                     …dont pratiquant occasionnel        14             22               16                40              8      100
+                            …dont non pratiquant          18            23               11                 41             7      100
+                                    Autre religion       34              11               5                39             11      100
+                                     Sans religion       39             18                7                28              8      100
+
+
+
+15
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LA SATISFACTION                            Un candidat
+                                                     Nouveau Front
+                                                                     Un candidat
+                                                                                     Un candidat
+                                                                                   Les Républicains
+                                                                                                       Un candidat
+                                                                                                                         Autres
+                                                                                                                                   %
+                                                                      Ensemble                        RN et ses alliés
+     À L’ÉGARD DE SA VIE                               Populaire                   ou Divers Droite
+                                                                                                                                  TOTAL
+
+
+                                       Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                                    Très satisfait       32             30               14                 15             9      100
+                                  Plutôt satisfait       28             25               11                28              8      100
+                       SOUS-TOTAL - SATISFAIT            28             25               12                27              8      100
+                              Plutôt pas satisfait       29             10                8                47              6      100
+                             Pas du tout satisfait       23              4               4                  61             8      100
+                   SOUS-TOTAL – PAS SATISFAIT            27              9                7                50              7      100
+
+
+
+16
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LE MILIEU SOCIAL                             Un candidat
+                                                       Nouveau Front
+                                                                       Un candidat
+                                                                                       Un candidat
+                                                                                     Les Républicains
+                                                                                                         Un candidat
+                                                                                                                           Autres
+                                                                                                                                     %
+                                                                        Ensemble                        RN et ses alliés
+     AUTO-DÉCLARÉ                                        Populaire                   ou Divers Droite
+                                                                                                                                    TOTAL
+
+
+                                         Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                                       Défavorisés         29              6                5                54              6      100
+                              Catégories populaires        35             12                7                38              8      100
+                     Classes moyennes inférieures          26             20               10                36              8      100
+                     Classes moyennes supérieures          27             28               14                25              6      100
+                        Milieux aisés ou Privilégiés       28             27               18                 21             6      100
+
+
+
+
+17
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+                                                            Un candidat                    Un candidat
+                                                                           Un candidat                       Un candidat                 %
+     SELON LA SITUATION FINANCIÈRE                         Nouveau Front
+                                                                            Ensemble
+                                                                                         Les Républicains
+                                                                                                            RN et ses alliés
+                                                                                                                               Autres
+                                                                                                                                        TOTAL
+                                                             Populaire                   ou Divers Droite
+
+
+                                             Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                      Arrive à mettre beaucoup d’argent
+                                                de côté
+                                                               27             30               18                 17             8      100
+                         Arrive à mettre un peu d’argent
+                                                 de côté
+                                                               28             25               12                27              8      100
+
+                                Boucle juste son budget        28             15                9                 41             7      100
+        Vit sur ses économies ou grâce à un ou plusieurs
+                                                 crédits
+                                                               29             10                7                46              8      100
+
+
+
+
+18
+ SOCIOLOGIE DES ÉLECTORATS
+
+
+
+
+     SELON LA SATISFACTION                            Un candidat
+                                                     Nouveau Front
+                                                                     Un candidat
+                                                                                     Un candidat
+                                                                                   Les Républicains
+                                                                                                       Un candidat
+                                                                                                                         Autres
+                                                                                                                                   %
+                                                                      Ensemble                        RN et ses alliés
+     À L’ÉGARD D’E. MACRON                             Populaire                   ou Divers Droite
+                                                                                                                                  TOTAL
+
+
+                                       Ensemble         28,1          20,3             10,2                34            7,4      100
+
+
+                                    Très satisfait       10             50               17                 11            12      100
+                                  Plutôt satisfait       13             56               15                 9              7      100
+                       SOUS-TOTAL - SATISFAIT            13             55               15                 9              8      100
+                              Plutôt pas satisfait       36             18               12                27              7      100
+                             Pas du tout satisfait       32              2                6                53              7      100
+                   SOUS-TOTAL – PAS SATISFAIT            33              9                9                42              7      100
+
+
+
+19
+     LE SOCIOLOGIE DE
+     L’ABSTENTION
+
+
+     02
+20
+ PROFIL DES ABSTENTIONNISTES
+
+             SELON LE SEXE & L’ÂGE
+                                                                                   TOTAL
+                                                      Votants   Abstentionnistes
+
+                                        Ensemble      65,8          34,2            100
+             ▪   Sexe
+                                          Homme        66             34            100
+                                          Femme        65             35            100
+             ▪   Âge
+                                         18-24 ans      57            43            100
+                                        25-34 ans       51            49            100
+                                        35-49 ans       61            39            100
+                                        50-59 ans      66             34            100
+                                        60-69 ans      74             26            100
+                                     70 ans et plus    80             20            100
+
+
+21
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LA PROFESSION DE L’INTERVIEWÉ.E
+                                                                                         TOTAL
+                                                            Votants   Abstentionnistes
+
+                                               Ensemble     65,8          34,2            100
+
+
+                                                   Cadre     65             35            100
+
+                                 Profession intermédiaire    62             38            100
+
+                                                Employé      58             42            100
+
+                                                  Ouvrier    54             46            100
+
+                                                 Retraité     79            21            100
+
+                                     dont… Retraité CSP+     84             16            100
+
+                                    dont… Retraités CSP-      75            25            100
+
+22
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LE STATUT DE L’INTERVIEWÉ.E
+                                                                                          TOTAL
+                                                             Votants   Abstentionnistes
+
+                                               Ensemble      65,8          34,2            100
+
+
+                                                  Salarié     59             41            100
+
+                                    dont… salarié du privé     57            43            100
+
+                                   dont… salarié du public     63            37            100
+
+                                            À son compte      65             35            100
+
+                                             Au chômage        61            39            100
+
+
+
+
+23
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LE DERNIER DIPLÔME OBTENU
+                                                                                       TOTAL
+                                                          Votants   Abstentionnistes
+
+                                            Ensemble      65,8          34,2            100
+
+                                       Inférieur au bac     67            33            100
+
+                                         Baccalauréat      66             34            100
+
+                                                Bac +2     63             37            100
+
+                                        Bac +3 et plus      67            33            100
+
+
+
+
+24
+ PROFIL DES ABSTENTIONNISTES
+
+
+             SELON LE NIVEAU DE REVENUS
+             MENSUELS NETS DU FOYER                                                       TOTAL
+                                                             Votants   Abstentionnistes
+
+                                               Ensemble      65,8          34,2            100
+
+                                          Moins de 1 250 €     57            43            100
+
+                                      De 1 250 à 2 000 €      62             38            100
+
+                                     De 2 000 à 3 000 €        67            33            100
+
+                                           Plus de 3000 €     69             31            100
+
+
+
+
+25
+ PROFIL DES ABSTENTIONNISTES
+
+     SELON LE VOTE AU 1ER TOUR
+     DE L’ÉLECTION PRÉSIDENTIELLE 2022                                                    TOTAL
+                                                             Votants   Abstentionnistes
+
+                                                Ensemble     65,8          34,2            100
+
+                                    Jean-Luc Mélenchon        72             28            100
+                                           Fabien Roussel      71            29            100
+                                            Yannick Jadot      73            27            100
+                                             Anne Hidalgo     70             30            100
+                                         Emmanuel Macron      74             26            100
+                                          Valérie Pécresse     78            22            100
+                                            Marine Le Pen      71            29            100
+                                            Eric Zemmour      74             26            100
+                                   Nicolas Dupont-Aignan      63             37            100
+                                            Jean Lassalle     48             52            100
+26
+ PROFIL DES ABSTENTIONNISTES
+
+
+     SELON LE VOTE AUX
+     ÉLECTIONS EUROPÉENNES 2024                                                             TOTAL
+                                                               Votants   Abstentionnistes
+
+                                                 Ensemble      65,8          34,2            100
+
+                                         France Insoumise        77            23            100
+                                  Europe écologie les verts      75            25            100
+                          Parti socialiste et Place publique     81            19            100
+                                                 Ensemble       83             17            100
+                                          Les Républicains       76            24            100
+                                  Rassemblement National        74             26            100
+                                               Reconquête        75            25            100
+
+
+
+27
+ PROFIL DES ABSTENTIONNISTES
+
+
+     SELON LA SYMPATHIE PARTISANE
+                                                                                              TOTAL
+                                                                 Votants   Abstentionnistes
+
+                                                      Ensemble   65,8          34,2            100
+
+                             La France Insoumise                  70             30            100
+                        Parti communiste français                 68             32            100
+                                   Parti socialiste               74             26            100
+                         Europe écologie les verts                66             34            100
+                                     SOUS-TOTAL - GAUCHE          70             30            100
+                   Renaissance – Modem - Horizons                  76            24            100
+                                 Les Républicains                  75            25            100
+                         Rassemblement National                    71            29            100
+                                    Reconquête !                   76            24            100
+                                                  Aucun parti     49             51            100
+28
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LA CATÉGORIE D’AGGLOMÉRATION
+                                                                                         TOTAL
+                                                            Votants   Abstentionnistes
+
+                                              Ensemble      65,8          34,2            100
+
+                                Moins de 2 000 habitants      67            33            100
+
+                                  2 000 à 9 999 habitants    68             32            100
+
+                                10 000 à 49 999 habitants    64             36            100
+
+                               50 000 à 199 999 habitants    65             35            100
+
+                                200 000 habitants et plus    65             35            100
+
+
+
+
+29
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LA RELIGION
+                                                                                              TOTAL
+                                                                 Votants   Abstentionnistes
+
+                                                   Ensemble      65,8          34,2            100
+
+                                                   Catholique     69             31            100
+
+                                     …dont pratiquant régulier    62             38            100
+
+                                 …dont pratiquant occasionnel     70             30            100
+
+                                        …dont non pratiquant       69            31            100
+
+                                                Autre religion    52             48            100
+
+                                                 Sans religion    65             35            100
+
+
+
+30
+ PROFIL DES ABSTENTIONNISTES
+
+
+             SELON LA SATISFACTION À L’ÉGARD DE SA
+             VIE                                                                           TOTAL
+                                                              Votants   Abstentionnistes
+
+                                                Ensemble      65,8          34,2            100
+
+                                             Très satisfait    58             42            100
+                                           Plutôt satisfait    68             32            100
+                                SOUS-TOTAL - SATISFAIT          67            33            100
+                                       Plutôt pas satisfait    64             36            100
+                                      Pas du tout satisfait    66             34            100
+                             SOUS-TOTAL – PAS SATISFAIT        64             36            100
+
+
+
+
+31
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LE MILIEU SOCIAL AUTO-DÉCLARÉ
+                                                                                             TOTAL
+                                                                Votants   Abstentionnistes
+
+                                                  Ensemble      65,8          34,2            100
+
+                                                Défavorisés      60             40            100
+
+                                     Catégories populaires       60             40            100
+
+                             Classes moyennes inférieures         67            33            100
+
+                             Classes moyennes supérieures         71            29            100
+
+                             S/T Milieux aisés ou Privilégiés     57            43            100
+
+
+
+
+32
+ PROFIL DES ABSTENTIONNISTES
+
+
+
+             SELON LA SITUATION FINANCIÈRE
+                                                                                              TOTAL
+                                                                 Votants   Abstentionnistes
+
+                                                   Ensemble      65,8          34,2            100
+
+                            Arrive à mettre beaucoup d’argent
+                                                      de côté
+                                                                  54             46            100
+                               Arrive à mettre un peu d’argent
+                                                       de côté
+                                                                  68             32            100
+
+                                      Boucle juste son budget     65             35            100
+                    S/T Vit sur ses économies ou grâce à un ou
+                                             plusieurs crédits
+                                                                  64             36            100
+
+
+
+
+33
+ PROFIL DES ABSTENTIONNISTES
+
+
+             SELON LA SATISFACTION
+             À L’ÉGARD D’E. MACRON                                                        TOTAL
+                                                             Votants   Abstentionnistes
+
+                                               Ensemble      65,8          34,2            100
+
+                                            Très satisfait    54             46            100
+                                          Plutôt satisfait    63             37            100
+                               SOUS-TOTAL - SATISFAIT         62             38            100
+                                      Plutôt pas satisfait    64             36            100
+                                     Pas du tout satisfait    70             30            100
+                            SOUS-TOTAL – PAS SATISFAIT         67            33            100
+
+
+
+
+34
+     ANNEXES
+
+
+
+
+35
+     NOS ENGAGEMENTS
+     Codes professionnels, certification qualité, conservation et protection des données
+
+     Ipsos est membre des organismes professionnels français et                La durée de conservation des données personnelles des personnes
+     européens des études de Marché et d’Opinion suivants :                    interviewées dans le cadre d’une étude est, à moins d’un
+          SYNTEC (www.syntec-etudes.com ), Syndicat professionnel des          engagement contractuel spécifique :
+          sociétés d’études de marché en France                                         • de 12 mois suivant la date de fin d’une étude Ad Hoc
+                                                                                        • de 36 mois suivant la date de fin de chaque vague d’une
+          ESOMAR (www.esomar.org ), European Society for Opinion and                      étude récurrente
+          Market Research,
+
+     Ipsos France s’engage à appliquer le code ICC/ESOMAR des études de
+     Marché et d’Opinion. Ce code définit les règles déontologiques des        Ipsos France est certifiée ISO 20252 : Market Research par
+     professionnels des études de marché et établit les mesures de             AFNOR Certification
+     protection dont bénéficient les personnes interrogées.                             • Ce document est élaboré dans le respect de ces codes
+                                                                                          et normes internationales. Les éléments techniques
+     Ipsos France s’engage à respecter les lois applicables. Ipsos a désigné              relatifs à l’étude sont présents dans le descriptif de la
+     un Data Protection Officer et a mis place un plan de conformité au                   méthodologie ou dans la fiche technique du rapport
+     Règlement Général sur la Protection des Données (Règlement (UE)                      d’étude.
+     2016/679). Pour plus d’information sur notre politique en matière de
+     protection des données personnelles : https://www.ipsos.com/fr-                    • Cette étude a été réalisée dans le respect de ces codes
+     fr/confidentialite-et-protection-des-donnees-personnelles                            et normes internationales
+
+
+
+
+36
+     F I A B I L I T É D E S R É S U LTAT S :
+     ÉTUDES AUTO-ADMINISTRÉES ONLINE
+     La fiabilité globale d’une enquête est le résultat du contrôle de toutes les composantes d’erreurs, c’est
+     pourquoi Ipsos impose des contrôles et des procédures strictes à toutes les phases de l’étude.
+
+
+     EN AMONT DU RECUEIL                                                                  Suivi du terrain : La collecte est suivie et contrôlée (pénétration, durée
+        Echantillon : structure et représentativité selon les données le plus             d’interview, cohérence des réponses, suivi du comportement du répondant,
+        récentes de l’Insee                                                               taux de participation, nombre de relances,…).
+        Questionnaire : le questionnaire est rédigé en suivant un process de
+        rédaction comprenant 12 standards obligatoires. Il est relu et validé par un   EN AVAL DU RECUEIL
+        niveau senior puis envoyé au client pour validation finale. La                    Les résultats sont analysés en respectant les méthodes d’analyses
+        programmation (ou script du questionnaire) est testée par au moins 2              statistiques (intervalle de confiance versus taille d’échantillon, tests de
+        personnes puis validée.                                                           significativité). Les premiers résultats sont systématiquement contrôlés
+                                                                                          versus les résultats bruts issus de la collecte. La cohérence des résultats
+     LORS DU RECUEIL                                                                      est aussi contrôlée (notamment les résultats observés versus les sources de
+                                                                                          comparaison en notre possession).
+        Echantillonnage : Ipsos impose des règles d’exploitation très strictes de
+        ses bases de tirages afin de maximiser le caractère aléatoire de la               Dans le cas d’une pondération de l’échantillon (méthode de calage sur
+        sélection de l’échantillon: tirage aléatoire, taux de sollicitation, taux de      marges), celle-ci est contrôlée par les équipes de traitement (DP) puis
+        participation, abandon en cours, hors cible…                                      validée par les équipes études.
+        Suivi du terrain : La collecte est suivie et contrôlée (pénétration, durée
+        d’interview, cohérence des réponses, suivi du comportement du
+        répondant, taux de participation, nombre de relances,…).
+
+
+
+
+37
+     À PROPOS
+     D’IPSOS                                                            GAME CHANGERS
+     Ipsos est l’un des leaders mondiaux des études de marché et        Dans un monde qui évolue rapidement, s’appuyer sur des
+     des sondages d’opinion, présent dans 90 marchés et comptant        données fiables pour prendre les bonnes décisions n’a jamais
+     près de 20 000 collaborateurs.                                     été aussi important.
+     Nos chercheurs, analystes et scientifiques sont passionnément
+     curieux et ont développé des capacités multi-spécialistes qui      Chez Ipsos, nous sommes convaincus que nos clients
+     permettent de fournir des informations et des analyses             cherchent plus qu’un simple fournisseur de données. Ils ont
+     poussées sur les actions, les opinions et les motivations des      besoin d’un véritable partenaire qui leur procure des
+     citoyens, des consommateurs, des patients, des clients et des      informations précises et pertinentes, et les transforme en
+     employés.                                                          connaissances pour leur permettre de passer à l’action.
+
+     Nos 75 solutions s’appuient sur des données primaires              Voilà pourquoi nos experts, curieux et passionnés, délivrent les
+     provenant de nos enquêtes, de notre suivi des réseaux sociaux      mesures les plus exactes pour en extraire l’information qui
+     et de techniques qualitatives ou observationnelles.                permettra d’avoir une vraie compréhension de la Société, des
+                                                                        Marchés et des Individus.
+     Notre signature « Game Changers » résume bien notre
+     ambition d’aider nos 5 000 clients à évoluer avec confiance        Nous mêlons notre savoir-faire au meilleur des sciences et de
+     dans un monde en rapide évolution.                                 la technologie, et appliquons nos quatre principes de sécurité,
+                                                                        simplicité, rapidité et de substance à tout ce que nous
+     Créé en France en 1975, Ipsos est coté à l’Euronext Paris          produisons.
+     depuis le 1er juillet 1999. L’entreprise fait partie des indices   Pour permettre à nos clients d’agir avec plus de rapidité,
+     SBF 120 et Mid-60 et est éligible au service de règlement          d’ingéniosité et d’audace.
+     différé (SRD).
+                                                                        La clef du succès se résume par une vérité simple :
+     ISIN code FR0000073298, Reuters ISOS.PA, Bloomberg                 You act better when you are sure.
+     IPS:FP www.ipsos.com
+
+
+38
+
