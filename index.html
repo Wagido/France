@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123p">
+<link rel="stylesheet" href="style.css?v=20261123v">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -33,6 +33,7 @@
       <button type="button" data-group="ressources">Ressources</button>
       <button type="button" data-group="croissance">Croissance</button>
       <button type="button" data-group="societe">Société</button>
+      <button type="button" data-group="science">Science</button>
       <button type="button" data-group="sources-g">Sources</button>
     </nav>
     <nav class="tabs" data-group="economie" aria-label="Économie" hidden>
@@ -82,7 +83,7 @@
     </nav>
     <nav class="tabs" data-group="croissance" aria-label="Croissance" hidden>
       <a href="#monnaie">Monnaie et croissance</a>
-      <a href="#limites">Limites à la croissance</a>
+      <a href="#limites">Limites physiques à la croissance</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
@@ -95,6 +96,9 @@
       <a href="#capital">Capital social et culturel</a>
       <a href="#electorat">Sociologie électorale</a>
       <a href="#patrimoine-hist">Patrimoine historique</a>
+    </nav>
+    <nav class="tabs" data-group="science" aria-label="Science" hidden>
+      <a href="#tableau">Tableau périodique</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
       <a href="#sources">Sources</a>
@@ -483,7 +487,7 @@
     <h2>La monnaie et la dette obligent-elles à croître ? <em class="en-constr">(en construction)</em> <span class="geo-fixed">France</span></h2>
   </div>
   <p class="lead">Une idée revient souvent : la monnaie naît de la dette, il faut toujours de nouveaux crédits pour rembourser les anciens et leurs intérêts, donc l'économie est condamnée à croître sans fin dans un monde physique fini. Qu'en est-il vraiment ?</p>
-  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#monnaie" data-to="mo-p8">1. petite histoire de la monnaie, des orfèvres à l'euro</a> · <a href="#monnaie" data-to="mo-p1">2. comment naît la monnaie aujourd'hui</a> · <a href="#monnaie" data-to="mo-p6">3. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">4. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">5. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p7">6. le rendement du capital : taux sans risque, bêta, alpha</a> · <a href="#monnaie" data-to="mo-p4">7. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">8. comment gérer la finance si l'énergie baisse ?</a></p>
+  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#monnaie" data-to="mo-p8">1. petite histoire de la monnaie, des orfèvres à l'euro</a> · <a href="#monnaie" data-to="mo-p1">2. comment naît la monnaie aujourd'hui</a> · <a href="#monnaie" data-to="mo-p6">3. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p7">4. comment se calculent les intérêts et le rendement du capital ?</a> · <a href="#monnaie" data-to="mo-p2">5. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">6. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p4">7. un monde fini : et si la croissance s'arrête ?</a> · <a href="#monnaie" data-to="mo-p5">8. comment s'y préparer : six leviers</a></p>
   <div class="kpis" id="mo-kpis"></div>
 
   <h3 id="mo-p8" class="ag-part">1. Petite histoire de la monnaie : de l'or des orfèvres à l'euro</h3>
@@ -612,7 +616,7 @@
     <ul>
       <li><b>À retenir</b> : la banque n'a prêté l'argent de personne. Elle a créé un dépôt en face d'une créance. La monnaie est née d'une promesse : la vôtre, de rembourser.</li>
       <li><b>Les réserves ne sont qu'un problème de règlement entre banques</b> : la banque A en a eu besoin seulement parce que l'argent est parti vers la banque B. Dans la réalité, des millions de paiements vont dans les deux sens chaque jour et se compensent en grande partie : une banque n'a besoin d'emprunter que le solde.</li>
-      <li><b>Les intérêts ne sont pas détruits</b> : ils deviennent un revenu de la banque, qui le redépense (salaires, impôts, dividendes) et le remet ainsi en circulation. C'est pourquoi l'argent des intérêts ne « manque » pas forcément (voir la partie 4).</li>
+      <li><b>Les intérêts ne sont pas détruits</b> : ils deviennent un revenu de la banque, qui le redépense (salaires, impôts, dividendes) et le remet ainsi en circulation. C'est pourquoi l'argent des intérêts ne « manque » pas forcément (voir la partie 5).</li>
       <li>C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
     </ul>
   </div>
@@ -763,7 +767,72 @@
     <li><b>La « théorie monétaire moderne »</b> (Stephanie Kelton, <i>Le mythe du déficit</i>, 2020) : un État qui émet sa propre monnaie ne peut pas faire faillite dans cette monnaie. Sa vraie limite n'est pas l'argent mais les ressources réelles (travail, énergie, matières) ; s'il dépense au-delà, c'est l'inflation, qu'il faut corriger par l'impôt. Elle ne s'applique pas à un pays de la zone euro pris seul.</li>
   </ul>
 
-  <h3 id="mo-p2" class="ag-part">4. L'argent des intérêts manque-t-il ?</h3>
+  <h3 id="mo-p7" class="ag-part">4. Comment se calculent les intérêts et le rendement du capital ?</h3>
+  <p class="lead">Le taux d'un crédit immobilier, celui d'un livret, la rémunération attendue d'une action : tous se calculent de la même façon. On part d'un taux de base, celui auquel l'État emprunte, et on ajoute des primes pour le temps, le risque, les frais et la marge. Comprendre ce calcul, c'est comprendre pourquoi dette et rendement du capital sont liés.</p>
+  <nav class="li-toc"><b>Dans cette partie</b><ol>
+    <li><a href="#monnaie" data-to="mo-4-1">4.1 Le taux de l'État, plancher de tous les taux</a></li>
+    <li><a href="#monnaie" data-to="mo-4-2">4.2 Le taux d'un crédit : comment la banque le fixe</a></li>
+    <li><a href="#monnaie" data-to="mo-4-3">4.3 Intérêts simples et intérêts composés</a></li>
+    <li><a href="#monnaie" data-to="mo-4-4">4.4 Le rendement du capital : taux sans risque, bêta, alpha</a></li>
+    <li><a href="#monnaie" data-to="mo-4-5">4.5 Ce que le capital a vraiment rapporté en France</a></li>
+  </ol></nav>
+
+  <h3 id="mo-4-1" class="li-sub">4.1 Le taux de l'État, plancher de tous les taux</h3>
+  <ul class="mo-ul">
+    <li><b>Comment il est fixé</b> : l'Agence France Trésor vend des obligations aux enchères (« adjudications »), plusieurs fois par mois. Les acheteurs (banques, assureurs, fonds, investisseurs étrangers) proposent un prix ; plus ils sont nombreux à vouloir de la dette française, plus le taux est bas. Le taux n'est donc pas décidé par l'État : c'est le prix que le marché exige pour lui prêter.</li>
+    <li><b>De quoi il est fait</b> : le taux directeur de la BCE (voir 2.2) et ce que les marchés anticipent de ses décisions futures ; l'inflation attendue (un prêteur veut être protégé contre la baisse de valeur de la monnaie) ; une <b>prime de terme</b> pour prêter longtemps (10 ou 30 ans) ; et une petite <b>prime de risque</b> propre à la France, l'écart avec l'Allemagne (environ 0,7 à 0,8 point depuis 2024).</li>
+    <li><b>Pourquoi on l'appelle « sans risque »</b> : on considère qu'un État qui emprunte dans sa monnaie remboursera toujours. C'est donc le minimum qu'un épargnant peut obtenir sans prendre de risque. Personne ne prêtera à une entreprise ou à un ménage moins cher qu'à l'État : son taux est le plancher de tous les autres.</li>
+  </ul>
+
+  <h3 id="mo-4-2" class="li-sub">4.2 Le taux d'un crédit : comment la banque le fixe</h3>
+  <p>Le taux de votre crédit immobilier est une addition. Réglez chaque morceau (les valeurs par défaut sont des ordres de grandeur de 2025-2026), puis le montant et la durée.</p>
+  <div class="in-sim">
+    <label class="ctl">Coût de l'argent pour la banque (proche du taux de l'État sur la même durée) <input type="range" id="mo-c1" min="0" max="6" step="0.1" value="2.6"><b id="mo-c1-v"></b></label>
+    <label class="ctl">Coût du risque (les emprunteurs qui ne remboursent pas) <input type="range" id="mo-c2" min="0" max="2" step="0.05" value="0.2"><b id="mo-c2-v"></b></label>
+    <label class="ctl">Frais de la banque (salaires, agences, informatique) <input type="range" id="mo-c3" min="0" max="2" step="0.05" value="0.5"><b id="mo-c3-v"></b></label>
+    <label class="ctl">Marge (rémunération des fonds propres de la banque) <input type="range" id="mo-c4" min="0" max="2" step="0.05" value="0.3"><b id="mo-c4-v"></b></label>
+    <label class="ctl">Montant emprunté <input type="range" id="mo-cm" min="50000" max="500000" step="10000" value="200000"><b id="mo-cm-v"></b></label>
+    <label class="ctl">Durée <input type="range" id="mo-cd" min="5" max="30" step="1" value="25"><b id="mo-cd-v"></b></label>
+  </div>
+  <div id="mo-cred-out"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>La mensualité est constante, mais son contenu change</b> : au début, elle sert surtout à payer les intérêts, calculés sur tout le capital restant dû ; à la fin, presque entièrement à rembourser le capital. C'est ce qu'on appelle un prêt « amortissable ».</li>
+      <li><b>La formule</b> : mensualité = capital × t ÷ (1 − (1 + t)<sup>−n</sup>), où t est le taux mensuel (le taux annuel divisé par 12) et n le nombre de mois. Le taux affiché par la banque (le TAEG) y ajoute l'assurance et les frais de dossier.</li>
+      <li><b>Pourquoi le taux de la BCE compte tant</b> : il fixe le coût de l'argent pour la banque, le premier morceau de l'addition. Quand la BCE est passée de −0,5 % à 4 % en 2022-2023, les crédits immobiliers sont passés d'environ 1 % à plus de 4 % : pour une même mensualité, on empruntait 30 % de moins.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-4-3" class="li-sub">4.3 Intérêts simples et intérêts composés</h3>
+  <ul class="mo-ul">
+    <li><b>Intérêts simples</b> : on touche chaque année un pourcentage du capital de départ. 1 000 € à 5 % rapportent 50 € par an : 2 500 € au bout de 30 ans.</li>
+    <li><b>Intérêts composés</b> : les intérêts sont ajoutés au capital et rapportent à leur tour. 1 000 € à 5 % deviennent 1 050 €, puis 1 102,50 €… et 4 322 € au bout de 30 ans. C'est la règle des placements, et celle des dettes qu'on ne rembourse pas.</li>
+    <li><b>La règle de 72</b> : un placement double en environ 72 ÷ taux années. À 3 %, en 24 ans ; à 6 %, en 12 ans ; à 9 %, en 8 ans. Un capital qui rapporte 4 % par an après inflation est multiplié par 7 en 50 ans. C'est cette croissance exponentielle du capital qui pose problème dans une économie qui ne croît plus (partie 7).</li>
+  </ul>
+
+  <h3 id="mo-4-4" class="li-sub">4.4 Le rendement du capital : taux sans risque, bêta, alpha</h3>
+  <p>Les épargnants et les actionnaires attendent un rendement. Il se calcule comme le taux d'un crédit : <b>le taux auquel l'État emprunte</b>, plus une prime pour le risque pris. Le rendement du capital est donc directement lié à la dette publique.</p>
+  <div class="in-need">
+    <div><b>① Le taux sans risque</b><span>C'est le taux des emprunts de l'État (en France, les OAT ; en zone euro, on prend souvent le Bund allemand) : on considère que l'État remboursera toujours. Il dépend du taux directeur de la BCE, de l'inflation attendue et de la confiance des prêteurs. À court terme, on prend le taux du marché monétaire ; à long terme, celui des obligations à 10 ans.</span></div>
+    <div><b>② Les primes de risque</b><span>On ajoute une prime pour chaque risque : une <b>prime de terme</b> pour prêter longtemps, une <b>prime de crédit</b> si l'emprunteur peut faire défaut (une entreprise paie plus cher que l'État), une <b>prime de liquidité</b> si le placement est difficile à revendre, et une <b>prime de risque actions</b> pour le risque de perte d'une action, estimée en général à 4 à 6 points par an.</span></div>
+    <div><b>③ Le modèle du bêta (MEDAF)</b><span>La formule classique d'évaluation des actifs financiers (MEDAF, ou CAPM en anglais) : <b>rendement exigé = taux sans risque + β × prime de risque du marché</b>. Le <b>bêta</b> mesure la sensibilité d'une action aux mouvements de la Bourse : β = 1, elle suit le marché ; β = 1,5, elle monte et baisse 1,5 fois plus fort, on exige donc plus ; β = 0,5, elle est plus stable, on exige moins.</span></div>
+    <div><b>④ L'alpha</b><span>L'<b>alpha</b> est ce qu'un placement rapporte <i>en plus</i> de ce que prévoit la formule. Un alpha positif signifie qu'un gérant a fait mieux que le risque pris ne le justifiait. C'est rare et peu durable : sur 10 à 15 ans, la grande majorité des fonds gérés activement font moins bien que les indices boursiers, une fois leurs frais déduits.</span></div>
+    <div><b>⑤ Le coût du capital des entreprises</b><span>Une entreprise se finance par dette et par actions. Son <b>coût moyen du capital</b> mélange le taux de ses emprunts et le rendement exigé par ses actionnaires (souvent 7 à 10 % par an pour une grande entreprise). Un investissement n'est lancé que s'il rapporte davantage : c'est ce seuil qui pousse à chercher toujours plus de croissance des profits.</span></div>
+    <div><b>⑥ Le prix des actifs</b><span>Le prix d'une action ou d'un logement est la valeur actuelle des revenus futurs (dividendes, loyers), « actualisés » au rendement exigé. Quand le taux sans risque baisse, le rendement exigé baisse et les prix montent : c'est ce qui s'est passé entre 2014 et 2021, avec des taux proches de zéro, pour les actions comme pour l'immobilier. Quand les taux remontent, comme en 2022-2023, les prix baissent.</span></div>
+  </div>
+  <h3>Le calculateur du rendement exigé</h3>
+  <div class="in-sim">
+    <label class="ctl">Taux sans risque (emprunt d'État à 10 ans) <input type="range" id="mo-rf" min="0" max="8" step="0.25" value="3.25"><b id="mo-rf-v"></b></label>
+    <label class="ctl">Prime de risque du marché des actions <input type="range" id="mo-erp" min="2" max="8" step="0.25" value="5"><b id="mo-erp-v"></b></label>
+    <label class="ctl">Bêta de l'action <input type="range" id="mo-beta" min="0" max="2" step="0.1" value="1"><b id="mo-beta-v"></b></label>
+    <label class="ctl">Rendement réellement obtenu <input type="range" id="mo-obt" min="-5" max="20" step="0.5" value="9"><b id="mo-obt-v"></b></label>
+  </div>
+  <div id="mo-capm-out"></div>
+  <h3 id="mo-4-5" class="li-sub">4.5 Ce que le capital a vraiment rapporté en France (rendement réel par an, après inflation)</h3>
+  <div id="mo-rend"></div><div class="legend-row" id="mo-rend-legend"></div>
+  <div class="callout small" id="mo-rend-txt"></div>
+
+  <h3 id="mo-p2" class="ag-part">5. L'argent des intérêts manque-t-il ?</h3>
   <p class="lead">C'est l'argument central de ceux qui disent que la monnaie-dette oblige à croître. Il se comprend avec une petite histoire.</p>
   <div class="callout small">
     <p><b>Le paradoxe de l'île</b></p>
@@ -796,21 +865,21 @@
       <li><b>L'intérêt, à lui seul, n'oblige pas à croître.</b> Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion : une économie sans croissance, avec de la monnaie créée par le crédit et des intérêts, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015).</li>
       <li><b>Le vrai problème, c'est l'argent qui s'accumule sans être redépensé.</b> Si les gagnants (la banque, ses actionnaires, les plus riches) épargnent une grande partie de ce qu'ils reçoivent, cet argent manque aux autres pour payer leurs dettes. Il faut alors de nouveaux crédits pour que l'économie continue de tourner, ou bien des défauts de paiement.</li>
       <li><b>Une épargne nulle est-elle possible ?</b> Oui, en net : ce que les uns épargnent, d'autres le dépensent. Les actifs épargnent pour leur retraite, les retraités puisent dans leur épargne ; un jeune ménage emprunte, un plus âgé rembourse. Dans une économie sans croissance et à population stable, ces mouvements peuvent s'équilibrer : l'épargne nette totale est alors nulle, et l'épargne brute sert seulement à remplacer ce qui s'use (machines, bâtiments). Mais en réalité, l'épargne nette est positive (en France, autour de 10 % du revenu), parce que les plus aisés épargnent beaucoup plus qu'ils ne désépargnent, et transmettent leur patrimoine.</li>
-      <li><b>Alors, ceux qui disent que les intérêts poussent à croître ont-ils tort ?</b> Sur le mécanisme, oui : l'argent des intérêts ne « manque » pas, il circule. Sur le résultat, ils ont en partie raison : <b>des intérêts positifs, combinés à une épargne qui s'accumule chez ceux qui les reçoivent</b>, créent bien une pression. Mais cette pression peut se résoudre de plusieurs façons : par la croissance, oui, mais aussi par la baisse des taux (le Japon), par l'inflation, ou par des pertes (krachs, faillites). La croissance est la solution la plus confortable, pas la seule possible. La partie 5 détaille ces forces, et la partie 7 ce que devient le rendement quand l'économie stagne.</li>
+      <li><b>Alors, ceux qui disent que les intérêts poussent à croître ont-ils tort ?</b> Sur le mécanisme, oui : l'argent des intérêts ne « manque » pas, il circule. Sur le résultat, ils ont en partie raison : <b>des intérêts positifs, combinés à une épargne qui s'accumule chez ceux qui les reçoivent</b>, créent bien une pression. Mais cette pression peut se résoudre de plusieurs façons : par la croissance, oui, mais aussi par la baisse des taux (le Japon), par l'inflation, ou par des pertes (krachs, faillites). La croissance est la solution la plus confortable, pas la seule possible. La partie 6 détaille ces forces, et la partie 7 ce que devient le rendement quand l'économie stagne.</li>
     </ul>
   </div>
 
-  <h3 id="mo-p3" class="ag-part">5. Ce qui pousse vraiment à croître</h3>
+  <h3 id="mo-p3" class="ag-part">6. Ce qui pousse vraiment à croître</h3>
   <p class="lead">La mécanique de la monnaie n'impose pas la croissance. Mais l'économie actuelle fonctionne beaucoup mieux avec elle, pour cinq raisons. La première, le poids des dettes, se mesure avec une règle simple ; les quatre autres suivent.</p>
   <div class="in-need">
-    <div><b>① Les dettes s'allègent avec la croissance</b><span>Une dette pèse moins lourd quand les revenus augmentent. Sans croissance, il faut la rembourser en se privant (5.1).</span></div>
-    <div><b>② Le capital attend un rendement</b><span>Épargnants, retraites par capitalisation, actionnaires attendent 3 à 7 % par an. Sans croissance, ce rendement se prend sur la part des autres (5.2 et partie 6).</span></div>
-    <div><b>③ La productivité supprime des emplois</b><span>On produit chaque année un peu plus par heure travaillée. Sans croissance, il faut moins d'heures : chômage, ou partage du travail (5.2).</span></div>
-    <div><b>④ L'épargne s'accumule</b><span>Ce qui est épargné sans être prêté ni dépensé manque à la demande ; il faut de nouveaux crédits pour compenser (partie 4).</span></div>
-    <div><b>⑤ Le crédit avance par vagues</b><span>Quand tout le monde rembourse en même temps, la monnaie disparaît et c'est la crise. Les États relancent à chaque fois (5.2).</span></div>
+    <div><b>① Les dettes s'allègent avec la croissance</b><span>Une dette pèse moins lourd quand les revenus augmentent. Sans croissance, il faut la rembourser en se privant (6.1).</span></div>
+    <div><b>② Le capital attend un rendement</b><span>Épargnants, retraites par capitalisation, actionnaires attendent 3 à 7 % par an. Sans croissance, ce rendement se prend sur la part des autres (6.2 et partie 4).</span></div>
+    <div><b>③ La productivité supprime des emplois</b><span>On produit chaque année un peu plus par heure travaillée. Sans croissance, il faut moins d'heures : chômage, ou partage du travail (6.2).</span></div>
+    <div><b>④ L'épargne s'accumule</b><span>Ce qui est épargné sans être prêté ni dépensé manque à la demande ; il faut de nouveaux crédits pour compenser (partie 5).</span></div>
+    <div><b>⑤ Le crédit avance par vagues</b><span>Quand tout le monde rembourse en même temps, la monnaie disparaît et c'est la crise. Les États relancent à chaque fois (6.2).</span></div>
   </div>
 
-  <h3 id="mo-5-1" class="li-sub">5.1 Les dettes et la croissance : la règle « r contre g »</h3>
+  <h3 id="mo-5-1" class="li-sub">6.1 Les dettes et la croissance : la règle « r contre g »</h3>
   <div class="callout small">
     <ul>
       <li><b>Un exemple</b> : vous devez 100 000 € à 3 %, soit 3 000 € d'intérêts par an, et vous gagnez 50 000 € par an. Si votre revenu augmente de 3 % par an, votre dette pèse le même poids chaque année sans que vous ayez rien à rembourser : vous pouvez même emprunter de quoi payer les intérêts. S'il n'augmente pas, il faut prendre les 3 000 € sur votre revenu, chaque année, juste pour que la dette ne grossisse pas.</li>
@@ -841,63 +910,52 @@
     </ul>
   </div>
 
-  <h3 id="mo-5-2" class="li-sub">5.2 Les autres forces</h3>
+  <h3 id="mo-5-2" class="li-sub">6.2 Les autres forces</h3>
   <div class="callout small">
     <ul>
-      <li><b>Le rendement du capital</b> : les épargnants, les fonds de retraite et les actionnaires attendent 3 à 7 % par an (la partie 6 explique comment ce chiffre est fixé). Dans une économie qui grossit, ce rendement vient d'un gâteau plus grand. Dans une économie qui ne croît plus, il ne peut venir que d'une part plus grande prise sur les salaires ou sur les autres. Ce n'est pas impossible, mais c'est une source de conflit politique.</li>
+      <li><b>Le rendement du capital</b> : les épargnants, les fonds de retraite et les actionnaires attendent 3 à 7 % par an (la partie 4 explique comment ce chiffre est fixé). Dans une économie qui grossit, ce rendement vient d'un gâteau plus grand. Dans une économie qui ne croît plus, il ne peut venir que d'une part plus grande prise sur les salaires ou sur les autres. Ce n'est pas impossible, mais c'est une source de conflit politique.</li>
       <li><b>L'emploi</b> : chaque année, on produit un peu plus par heure de travail (de l'ordre de 1 % par an en France depuis 2000, moins depuis 2019). Pour produire la même quantité, il faut donc moins d'heures. Sans croissance, soit le chômage monte, soit on réduit le temps de travail de chacun.</li>
       <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée (voir 2.3), la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, et les gouvernements comme les banques centrales relancent à chaque fois.</li>
       <li><b>En résumé</b> : rien dans la monnaie n'interdit une économie sans croissance. Mais nos institutions (dettes élevées, retraites, emploi, rendement attendu du capital) ont été construites pendant des décennies de croissance, et supposent qu'elle continue. S'en passer demande de les changer, ce que discute la partie 8.</li>
     </ul>
   </div>
 
-  <h3 id="mo-p7" class="ag-part">6. Le rendement du capital : comment se calcule-t-il ?</h3>
-  <p class="lead">Les épargnants et les actionnaires attendent un rendement. Ce rendement n'est pas fixé au hasard : il se calcule <b>à partir du taux auquel l'État emprunte</b>, le taux « sans risque », auquel on ajoute des primes pour chaque risque pris. Toute l'échelle des rendements du capital est donc accrochée au taux de la dette publique, lui-même guidé par la banque centrale.</p>
-  <div class="in-need">
-    <div><b>① Le taux sans risque</b><span>C'est le taux des emprunts de l'État (en France, les OAT ; en zone euro, on prend souvent le Bund allemand) : on considère que l'État remboursera toujours. Il dépend du taux directeur de la BCE, de l'inflation attendue et de la confiance des prêteurs. À court terme, on prend le taux du marché monétaire ; à long terme, celui des obligations à 10 ans.</span></div>
-    <div><b>② Les primes de risque</b><span>On ajoute une prime pour chaque risque : une <b>prime de terme</b> pour prêter longtemps, une <b>prime de crédit</b> si l'emprunteur peut faire défaut (une entreprise paie plus cher que l'État), une <b>prime de liquidité</b> si le placement est difficile à revendre, et une <b>prime de risque actions</b> pour le risque de perte d'une action, estimée en général à 4 à 6 points par an.</span></div>
-    <div><b>③ Le modèle du bêta (MEDAF)</b><span>La formule classique d'évaluation des actifs financiers (MEDAF, ou CAPM en anglais) : <b>rendement exigé = taux sans risque + β × prime de risque du marché</b>. Le <b>bêta</b> mesure la sensibilité d'une action aux mouvements de la Bourse : β = 1, elle suit le marché ; β = 1,5, elle monte et baisse 1,5 fois plus fort, on exige donc plus ; β = 0,5, elle est plus stable, on exige moins.</span></div>
-    <div><b>④ L'alpha</b><span>L'<b>alpha</b> est ce qu'un placement rapporte <i>en plus</i> de ce que prévoit la formule. Un alpha positif signifie qu'un gérant a fait mieux que le risque pris ne le justifiait. C'est rare et peu durable : sur 10 à 15 ans, la grande majorité des fonds gérés activement font moins bien que les indices boursiers, une fois leurs frais déduits.</span></div>
-    <div><b>⑤ Le coût du capital des entreprises</b><span>Une entreprise se finance par dette et par actions. Son <b>coût moyen du capital</b> mélange le taux de ses emprunts et le rendement exigé par ses actionnaires (souvent 7 à 10 % par an pour une grande entreprise). Un investissement n'est lancé que s'il rapporte davantage : c'est ce seuil qui pousse à chercher toujours plus de croissance des profits.</span></div>
-    <div><b>⑥ Le prix des actifs</b><span>Le prix d'une action ou d'un logement est la valeur actuelle des revenus futurs (dividendes, loyers), « actualisés » au rendement exigé. Quand le taux sans risque baisse, le rendement exigé baisse et les prix montent : c'est ce qui s'est passé entre 2014 et 2021, avec des taux proches de zéro, pour les actions comme pour l'immobilier. Quand les taux remontent, comme en 2022-2023, les prix baissent.</span></div>
-  </div>
-  <h3>Le calculateur du rendement exigé</h3>
-  <div class="in-sim">
-    <label class="ctl">Taux sans risque (emprunt d'État à 10 ans) <input type="range" id="mo-rf" min="0" max="8" step="0.25" value="3.25"><b id="mo-rf-v"></b></label>
-    <label class="ctl">Prime de risque du marché des actions <input type="range" id="mo-erp" min="2" max="8" step="0.25" value="5"><b id="mo-erp-v"></b></label>
-    <label class="ctl">Bêta de l'action <input type="range" id="mo-beta" min="0" max="2" step="0.1" value="1"><b id="mo-beta-v"></b></label>
-    <label class="ctl">Rendement réellement obtenu <input type="range" id="mo-obt" min="-5" max="20" step="0.5" value="9"><b id="mo-obt-v"></b></label>
-  </div>
-  <div id="mo-capm-out"></div>
-  <h3>Ce que le capital a vraiment rapporté en France (rendement réel par an, après inflation)</h3>
-  <div id="mo-rend"></div><div class="legend-row" id="mo-rend-legend"></div>
-  <div class="callout small" id="mo-rend-txt"></div>
-
-  <h3 id="mo-p4" class="ag-part">7. Un monde physique fini</h3>
+  <h3 id="mo-p4" class="ag-part">7. Un monde physique fini : et si la croissance s'arrête ?</h3>
   <p class="lead">Jusqu'ici, on n'a parlé que d'euros : la monnaie naît du crédit, la dette et le capital réclament un rendement, et ce rendement est plus facile à servir quand l'économie grossit. Reste la question de départ : une croissance <i>en euros</i> oblige-t-elle à consommer toujours plus d'énergie et de matières ? C'est là que l'économie rencontre la physique.</p>
+  <nav class="li-toc"><b>Dans cette partie</b><ol>
+    <li><a href="#monnaie" data-to="mo-7-1">7.1 Croissance en euros, croissance en énergie</a></li>
+    <li><a href="#monnaie" data-to="mo-7-2">7.2 Le problème en chiffres : et si l'énergie baisse ?</a></li>
+    <li><a href="#monnaie" data-to="mo-7-3">7.3 Si on ne fait rien : quatre ajustements subis</a></li>
+  </ol></nav>
+  <h3 id="mo-7-1" class="li-sub">7.1 Croissance en euros, croissance en énergie</h3>
   <div class="callout small">
     <ul>
       <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
       <li><b>Mais le « découplage » reste partiel.</b> En France, les émissions de gaz à effet de serre sur le territoire baissent alors que le PIB augmente. L'empreinte carbone, qui compte ce que nous importons, baisse beaucoup moins vite, et la consommation de matières reste élevée (voir <a href="#climat">Climat</a> et <a href="#matieres">Matières</a>). À l'échelle du monde, la consommation d'énergie et de matières continue d'augmenter avec le PIB.</li>
       <li><b>Le conflit est donc réel</b> : une économie dont la stabilité repose sur 2 % de croissance par an pour toujours dépend, en pratique, d'une hausse de l'usage des ressources, tant que le découplage n'est pas beaucoup plus rapide. 2 % par an, c'est un PIB multiplié par 7 en un siècle.</li>
       <li><b>Et si l'énergie cesse d'augmenter ?</b> Le PIB et l'énergie ont longtemps crû ensemble, mais pas au même rythme : dans le monde, la quantité d'énergie par euro de PIB baisse d'environ 1 à 2 % par an. Une énergie stable laisse donc encore une croissance de cet ordre, si l'efficacité continue de progresser. En France, la consommation d'énergie baisse depuis le milieu des années 2000 alors que le PIB a continué d'augmenter, en partie parce que des productions énergivores sont parties à l'étranger. Une baisse forte et durable de l'énergie disponible, en revanche, se traduirait très probablement par une baisse de la production : on ne sait pas produire sans énergie.</li>
-      <li><b>Une économie qui stagne n'arrête pas d'elle-même d'exiger du rendement</b> : le rendement doit baisser, ou se prendre sur les autres. C'est détaillé juste en dessous.</li>
+      <li><b>Une économie qui stagne n'arrête pas d'elle-même d'exiger du rendement</b> : le rendement doit baisser, ou se prendre sur les autres (7.2 et 7.3).</li>
       <li><b>Et les ressources elles-mêmes peuvent freiner la croissance</b> : énergie plus chère, sols moins productifs, climat qui coûte (voir <a href="#agriculture">Agriculture</a> et <a href="#catastrophes">Catastrophes climatiques</a>). Une croissance faible rendrait alors les dettes plus lourdes : c'est le scénario qui inquiète.</li>
     </ul>
   </div>
 
-  <h3 id="mo-7-1" class="li-sub">Quand l'économie stagne, que devient le rendement du capital ?</h3>
-  <p>Le capital (actions, immobilier, obligations, livrets) réclame un rendement : environ 4 % par an après inflation en moyenne sur un siècle (partie 6). Tant que l'économie grossit, ce rendement peut venir de la croissance. Si elle s'arrête, l'exigence ne disparaît pas d'elle-même : <b>le rendement doit baisser, ou se prendre sur les autres</b>. Le calculateur ci-dessous montre pourquoi.</p>
-  <h3>Le calculateur : quelle part du revenu va au capital ?</h3>
+  <h3 id="mo-7-2" class="li-sub">7.2 Le problème en chiffres : et si l'énergie baisse ?</h3>
+  <p>Le PIB réel évolue à peu près comme l'énergie consommée, plus les gains d'efficacité (on produit chaque année un peu plus avec la même énergie, de l'ordre de 1 à 2 % par an dans le monde). Réglez l'évolution de l'énergie et l'efficacité : le calculateur en déduit la croissance, puis ce que cela implique pour la dette publique et pour le capital.</p>
   <div class="in-sim">
-    <label class="ctl">Croissance de l'économie (g) <input type="range" id="mo-sg" min="0" max="4" step="0.25" value="1.5"><b id="mo-sg-v"></b></label>
-    <label class="ctl">Part du revenu épargnée chaque année (s) <input type="range" id="mo-ss" min="2" max="20" step="1" value="10"><b id="mo-ss-v"></b></label>
-    <label class="ctl">Rendement exigé du capital (r) <input type="range" id="mo-sr" min="0" max="8" step="0.25" value="4"><b id="mo-sr-v"></b></label>
+    <label class="ctl">Énergie disponible, par an <input type="range" id="mo-fe" min="-4" max="2" step="0.25" value="-1"><b id="mo-fe-v"></b></label>
+    <label class="ctl">Gains d'efficacité, par an <input type="range" id="mo-fx" min="0" max="3" step="0.25" value="1.5"><b id="mo-fx-v"></b></label>
+    <label class="ctl">Inflation <input type="range" id="mo-fp" min="0" max="6" step="0.25" value="2"><b id="mo-fp-v"></b></label>
+    <label class="ctl">Taux d'intérêt moyen de la dette publique <input type="range" id="mo-fr" min="0" max="6" step="0.25" value="3"><b id="mo-fr-v"></b></label>
+    <label class="ctl">Part du revenu épargnée chaque année <input type="range" id="mo-fs" min="2" max="20" step="1" value="10"><b id="mo-fs-v"></b></label>
+    <label class="ctl">Rendement exigé du capital (après inflation) <input type="range" id="mo-fk" min="0" max="8" step="0.25" value="4"><b id="mo-fk-v"></b></label>
   </div>
-  <div id="mo-stag-out"></div>
-  <p class="muted" style="font-size:.84rem"><b>Comment ça marche</b> : chaque année, on épargne une partie du revenu (s), qui vient grossir le patrimoine. À long terme, le patrimoine se stabilise à <b>s ÷ g</b> années de revenu : avec 10 % d'épargne et 2 % de croissance, 5 ans de revenu. Si le capital rapporte r, il reçoit chaque année <b>r × patrimoine</b>, en part du revenu national. C'est le raisonnement de Thomas Piketty (<i>Le Capital au XXIe siècle</i>, 2013). Quand la croissance tend vers zéro, le patrimoine accumulé grossit sans limite, et un rendement fixe finirait par absorber tout le revenu : c'est impossible, donc quelque chose doit céder. En France, le patrimoine représente aujourd'hui environ 6 ans de revenu national, contre 2 à 3 ans en 1950.</p>
+  <div class="ctl-row" id="mo-f-presets" style="margin-bottom:8px"></div>
+  <div id="mo-f-out"></div>
+  <p class="muted" style="font-size:.84rem"><b>Hypothèses</b> : dette publique de 115 % du PIB (la France aujourd'hui). Le lien entre énergie et PIB est un ordre de grandeur : il dépend des usages, et l'électrification permet de faire plus avec moins d'énergie primaire (voir <a href="#limites">Limites</a>, partie 6).</p>
+  <p class="muted" style="font-size:.84rem"><b>Pourquoi le capital pose problème</b> : chaque année, on épargne une partie du revenu (s), qui vient grossir le patrimoine. À long terme, le patrimoine se stabilise à <b>s ÷ g</b> années de revenu : avec 10 % d'épargne et 2 % de croissance, 5 ans de revenu. Si le capital rapporte r, il reçoit chaque année <b>r × patrimoine</b>, en part du revenu national. C'est le raisonnement de Thomas Piketty (<i>Le Capital au XXIe siècle</i>, 2013). Quand la croissance tend vers zéro, le patrimoine accumulé grossit sans limite, et un rendement fixe finirait par absorber tout le revenu : c'est impossible, donc quelque chose doit céder. En France, le patrimoine représente aujourd'hui environ 6 ans de revenu national, contre 2 à 3 ans en 1950.</p>
 
-  <h3>Quatre façons dont « quelque chose cède », toutes déjà vues</h3>
+  <h3 id="mo-7-3" class="li-sub">7.3 Si on ne fait rien : quatre ajustements subis</h3>
+  <p>Quand la croissance ne suffit plus à servir dettes et rendements, quelque chose cède. L'histoire montre quatre façons, toutes déjà vues. La partie 8 présente les moyens de les choisir et de les organiser, plutôt que de les subir.</p>
   <div class="in-need">
     <div><b>① Le capital prend une part plus grande</b><span>Les revenus du capital grossissent plus vite que les salaires : les inégalités de patrimoine montent, et la part des salaires dans la valeur ajoutée baisse ou stagne.</span></div>
     <div><b>② L'inflation ronge l'épargne</b><span>Des taux d'intérêt inférieurs à l'inflation : les épargnants perdent un peu chaque année, les dettes fondent. C'est la « répression financière ».</span></div>
@@ -907,7 +965,7 @@
   <div class="callout small">
     <ul>
       <li><b>① Le capital prend une part plus grande : la France depuis 1980.</b> Avec une croissance plus faible qu'avant 1975, le patrimoine des Français est passé d'environ 3 à environ 6 années de revenu, surtout par la hausse des prix de l'immobilier. Ceux qui possédaient se sont enrichis plus vite que ceux qui travaillaient : se loger coûte bien plus d'années de salaire qu'en 1980 (voir <a href="#logement">Logement</a>), et l'héritage pèse de nouveau autant qu'au début du XXe siècle (voir <a href="#capital">Capital</a>). La part des salaires dans la valeur ajoutée des entreprises a baissé au milieu des années 1980, puis est restée à peu près stable depuis.</li>
-      <li><b>② La répression financière : la France de 1945 à 1980.</b> L'État fixait les taux et orientait le crédit (le circuit du Trésor, partie 3). Résultat : de 1950 à 1979, l'épargne sans risque a perdu environ 0,6 % par an après inflation, et les obligations d'État 1,8 % (partie 6). Les épargnants ont payé, et les dettes héritées de la guerre ont fondu. On l'a revu en petit en 2022-2023 : le livret A rapportait 2 à 3 % quand les prix montaient de 5 à 6 %.</li>
+      <li><b>② La répression financière : la France de 1945 à 1980.</b> L'État fixait les taux et orientait le crédit (le circuit du Trésor, partie 3). Résultat : de 1950 à 1979, l'épargne sans risque a perdu environ 0,6 % par an après inflation, et les obligations d'État 1,8 % (partie 4). Les épargnants ont payé, et les dettes héritées de la guerre ont fondu. On l'a revu en petit en 2022-2023 : le livret A rapportait 2 à 3 % quand les prix montaient de 5 à 6 %.</li>
       <li><b>③ Les pertes brutales.</b> En 1990, la bulle japonaise éclate : les actions de Tokyo perdent environ 80 % en treize ans et ne retrouvent leur niveau de 1989 qu'en 2024 ; les prix des terrains baissent pendant près de quinze ans. En 2012, la Grèce efface environ la moitié de sa dette détenue par les investisseurs privés. En 2008, des banques font faillite et les États en sauvent d'autres. À chaque fois, c'est du capital qui exigeait un rendement et qui disparaît.</li>
       <li><b>④ Chercher la croissance ailleurs : le Japon encore.</b> Faute de rendement chez eux, les Japonais ont placé leur épargne à l'étranger : le Japon est le premier créancier net du monde depuis 1991, et ces placements lui rapportent chaque année plus que son commerce extérieur. Mais si le monde entier cesse de croître, il n'y a plus d'« ailleurs ».</li>
     </ul>
@@ -921,51 +979,27 @@
       <li><b>La société a tenu</b> : chômage bas, peu de violence sociale, mais des salaires qui stagnent depuis trente ans et une précarité croissante des jeunes. Le Japon montre qu'une économie riche peut vivre avec très peu de croissance, au prix d'un rendement du capital réduit et d'une épargne mal rémunérée.</li>
     </ul>
   </div>
-  <div class="callout small">
-    <p><b>Qui décide de la voie ?</b> Ce n'est pas automatique, ce sont des choix politiques :</p>
-    <ul>
-      <li><b>La fiscalité</b> : taxer plus ou moins les revenus du capital, les héritages, l'immobilier, change la part qui revient au capital (voie ①).</li>
-      <li><b>Les taux et l'épargne réglementée</b> : la banque centrale et l'État (qui fixe le taux du livret A) décident si l'épargne est rémunérée au-dessus ou en dessous de l'inflation (voie ②).</li>
-      <li><b>Les retraites</b> : un système par répartition (la France) dépend des salaires, un système par capitalisation dépend du rendement du capital. Plus on capitalise, plus on a besoin que le capital rapporte, donc de croissance.</li>
-      <li><b>Les règles financières</b> : laisser faire faillite ou sauver, restructurer les dettes ou non, encadrer le crédit (voie ③).</li>
-    </ul>
-    <p>Autrement dit : dette et rendement du capital sont liés, mais la façon de les accorder à une croissance faible se choisit. Les pistes de la partie 8 en sont des exemples.</p>
-  </div>
-
-  <h3 id="mo-p5" class="ag-part">8. Comment gérer la finance dans un monde où l'énergie stagne ou baisse ?</h3>
-  <p class="lead">Le système financier attend une croissance en euros de 3 à 4 % par an (2 % d'inflation, 1 à 2 % de croissance réelle) et un rendement du capital d'environ 4 % après inflation. Si l'énergie disponible stagne, ou baisse parce que le pétrole et le gaz déclinent (partie 7, et <a href="#limites">Limites à la croissance</a>), la croissance réelle ne peut venir que des gains d'efficacité : elle tombe vers zéro, voire devient négative. Comment éviter que cette rencontre se fasse par des crises ?</p>
+  <h3 id="mo-p5" class="ag-part">8. Comment s'y préparer ? Six leviers pour adapter la finance</h3>
+  <p class="lead">La partie 7 a montré le problème : si l'énergie stagne ou baisse, la croissance réelle tombe vers zéro, et dettes et rendements du capital ne peuvent plus être servis comme avant. Les ajustements se feront de toute façon ; la question est de savoir s'ils seront choisis et organisés, ou subis par des crises.</p>
   <nav class="li-toc"><b>Dans cette partie</b><ol>
-    <li><a href="#monnaie" data-to="mo-8-1">8.1 Le problème en chiffres : et si l'énergie baisse ?</a></li>
-    <li><a href="#monnaie" data-to="mo-8-2">8.2 Six leviers pour adapter la finance</a></li>
-    <li><a href="#monnaie" data-to="mo-8-3">8.3 Qui gagne, qui perd ?</a></li>
-    <li><a href="#monnaie" data-to="mo-8-4">8.4 Trois visions de l'avenir</a></li>
+    <li><a href="#monnaie" data-to="mo-8-1">8.1 Les six leviers, un par un</a></li>
+    <li><a href="#monnaie" data-to="mo-8-2">8.2 Qui gagne, qui perd ? Qui décide ?</a></li>
+    <li><a href="#monnaie" data-to="mo-8-3">8.3 Trois visions de l'avenir</a></li>
   </ol></nav>
 
-  <h3 id="mo-8-1" class="li-sub">8.1 Le problème en chiffres : et si l'énergie baisse ?</h3>
-  <p>Le PIB réel évolue à peu près comme l'énergie consommée, plus les gains d'efficacité (on produit chaque année un peu plus avec la même énergie, de l'ordre de 1 à 2 % par an dans le monde). Réglez l'évolution de l'énergie et l'efficacité : le calculateur en déduit la croissance, puis ce que cela implique pour la dette publique et pour le capital.</p>
-  <div class="in-sim">
-    <label class="ctl">Énergie disponible, par an <input type="range" id="mo-fe" min="-4" max="2" step="0.25" value="-1"><b id="mo-fe-v"></b></label>
-    <label class="ctl">Gains d'efficacité, par an <input type="range" id="mo-fx" min="0" max="3" step="0.25" value="1.5"><b id="mo-fx-v"></b></label>
-    <label class="ctl">Inflation <input type="range" id="mo-fp" min="0" max="6" step="0.25" value="2"><b id="mo-fp-v"></b></label>
-    <label class="ctl">Taux d'intérêt moyen de la dette publique <input type="range" id="mo-fr" min="0" max="6" step="0.25" value="3"><b id="mo-fr-v"></b></label>
-  </div>
-  <div class="ctl-row" id="mo-f-presets" style="margin-bottom:8px"></div>
-  <div id="mo-f-out"></div>
-  <p class="muted" style="font-size:.84rem"><b>Hypothèses</b> : dette publique de 115 % du PIB (la France aujourd'hui) ; épargne nette de 10 % du revenu ; rendement exigé du capital de 4 % après inflation. Le lien entre énergie et PIB est un ordre de grandeur : il dépend des usages, et l'électrification permet de faire plus avec moins d'énergie primaire (voir <a href="#limites">Limites</a>, partie 6).</p>
-
-  <h3 id="mo-8-2" class="li-sub">8.2 Six leviers pour adapter la finance</h3>
+  <h3 id="mo-8-1" class="li-sub">8.1 Les six leviers, un par un</h3>
   <div class="mo-lev">
     <details open><summary><b>① Faire baisser, en douceur, le rendement exigé</b></summary>
-      <p>Si l'économie ne croît plus, un rendement de 4 % après inflation n'est plus tenable (partie 7). Plutôt que d'attendre qu'il baisse par un krach, on peut le faire baisser progressivement : taux de la banque centrale durablement bas, épargne réglementée (livret A, assurance-vie) orientée vers des placements utiles mais peu rémunérés, inflation légèrement supérieure aux taux.</p>
+      <p>C'est la version choisie et progressive de l'ajustement ② de la partie 7.3. Si l'économie ne croît plus, un rendement de 4 % après inflation n'est plus tenable (7.2). Plutôt que d'attendre qu'il baisse par un krach, on peut le faire baisser progressivement : taux de la banque centrale durablement bas, épargne réglementée (livret A, assurance-vie) orientée vers des placements utiles mais peu rémunérés, inflation légèrement supérieure aux taux.</p>
       <p><b>Exemples</b> : la France de 1945 à 1980 (circuit du Trésor), le Japon depuis 1995. <b>Limite</b> : des taux très bas font monter le prix des actifs (immobilier, actions), ce qui enrichit ceux qui possèdent déjà ; et les épargnants, souvent retraités, y perdent.</p></details>
     <details open><summary><b>② Moins de dettes, plus de fonds propres</b></summary>
       <p>Une dette exige un remboursement fixe, quoi qu'il arrive : c'est elle qui transforme un ralentissement en crise. Un financement en fonds propres (des actions, des parts) partage au contraire les pertes : si l'entreprise gagne moins, l'actionnaire touche moins, mais personne ne fait faillite.</p>
       <p><b>Concrètement</b> : supprimer l'avantage fiscal des intérêts d'emprunt par rapport aux dividendes ; imposer aux banques beaucoup plus de fonds propres (20 à 30 % au lieu d'environ 10 %, comme le proposent les économistes Anat Admati et Martin Hellwig) ; encourager les prêts dont le remboursement suit les revenus (prêts étudiants indexés sur le salaire, prêts participatifs). <b>Limite</b> : le crédit devient plus cher, l'investissement plus lent.</p></details>
     <details open><summary><b>③ Restructurer les dettes de façon ordonnée, plutôt que subir les défauts</b></summary>
-      <p>L'histoire est pleine d'effacements de dettes : les « jubilés » de l'Antiquité, l'accord de Londres de 1953 qui efface la moitié de la dette allemande, la Grèce en 2012. Les faire avant la crise, selon des règles, coûte moins cher que de les subir. En 2021, une centaine d'économistes (dont Thomas Piketty) ont proposé que la BCE annule les dettes publiques qu'elle détient, en échange d'investissements dans la transition.</p>
+      <p>C'est la version organisée de l'ajustement ③ de la partie 7.3. L'histoire est pleine d'effacements de dettes : les « jubilés » de l'Antiquité, l'accord de Londres de 1953 qui efface la moitié de la dette allemande, la Grèce en 2012. Les faire avant la crise, selon des règles, coûte moins cher que de les subir. En 2021, une centaine d'économistes (dont Thomas Piketty) ont proposé que la BCE annule les dettes publiques qu'elle détient, en échange d'investissements dans la transition.</p>
       <p><b>Limite</b> : interdit par les traités européens ; et toute dette annulée est une perte pour quelqu'un (ici la banque centrale, donc indirectement les États).</p></details>
     <details open><summary><b>④ Partager le gâteau plutôt que l'agrandir</b></summary>
-      <p>Si le gâteau ne grossit plus, la question devient celle du partage. Plusieurs outils réduisent le besoin de croissance : taxer davantage les gros patrimoines et les héritages (l'épargne accumulée des plus riches est ce qui crée la pression, partie 4) ; garder des retraites par répartition, qui dépendent des salaires et non du rendement du capital ; partager le travail (temps de travail plus court) pour que les gains de productivité ne créent pas de chômage.</p>
+      <p>C'est la version choisie de l'ajustement ① de la partie 7.3 : si le gâteau ne grossit plus, la question devient celle du partage. Plusieurs outils réduisent le besoin de croissance : taxer davantage les gros patrimoines et les héritages (l'épargne accumulée des plus riches est ce qui crée la pression, partie 5) ; garder des retraites par répartition, qui dépendent des salaires et non du rendement du capital ; partager le travail (temps de travail plus court) pour que les gains de productivité ne créent pas de chômage.</p>
       <p><b>Limite</b> : c'est le levier le plus conflictuel, et les capitaux peuvent fuir vers les pays qui taxent moins si ces règles ne sont pas prises à plusieurs.</p></details>
     <details open><summary><b>⑤ Orienter la création monétaire vers la transition</b></summary>
       <p>Tant que l'énergie fossile est encore là, la meilleure façon de préparer sa baisse est d'investir massivement maintenant : rénovation des bâtiments, électrification des transports et de l'industrie, réseaux, production d'électricité bas carbone. Le rapport Pisani-Ferry et Mahfouz (2023) estime le besoin à environ 66 milliards d'euros d'investissements supplémentaires par an en France d'ici 2030.</p>
@@ -975,7 +1009,7 @@
       <p><b>Limite</b> : aucun pays riche n'a encore fait l'expérience volontaire d'une baisse durable de son PIB ; les seuls exemples sont subis (Grèce 2008-2016 : −25 %, Cuba après 1991).</p></details>
   </div>
 
-  <h3 id="mo-8-3" class="li-sub">8.3 Qui gagne, qui perd ?</h3>
+  <h3 id="mo-8-2" class="li-sub">8.2 Qui gagne, qui perd ? Qui décide ?</h3>
   <div class="table-scroll"><table class="mo-hist">
     <thead><tr><th>Levier</th><th>Qui y perd</th><th>Qui y gagne</th><th>Ce qu'il faut pour le faire</th></tr></thead>
     <tbody>
@@ -987,8 +1021,9 @@
       <tr><td><b>⑥ Système robuste</b></td><td>Peu de perdants directs, mais une croissance un peu plus lente</td><td>Tous, en cas de choc</td><td>Une vision de long terme partagée</td></tr>
     </tbody>
   </table></div>
+  <p class="muted" style="font-size:.84rem"><b>Qui décide ?</b> Aucun de ces choix n'est automatique : la fiscalité et les retraites relèvent du Parlement, les taux et le livret A de la BCE et du gouvernement, les règles des banques de l'Union européenne et du comité de Bâle, la dette détenue par la BCE des traités européens.</p>
 
-  <h3 id="mo-8-4" class="li-sub">8.4 Trois visions de l'avenir</h3>
+  <h3 id="mo-8-3" class="li-sub">8.3 Trois visions de l'avenir</h3>
   <div class="in-need">
     <div><b>La croissance verte</b><span>La position des gouvernements et de la plupart des économistes : la technique (électrification, renouvelables, nucléaire, efficacité) permettra de continuer à croître en baissant fortement l'énergie fossile et les matières. La finance n'a pas besoin de changer en profondeur, il faut l'orienter (⑤). <b>Pari</b> : un découplage beaucoup plus rapide que celui observé jusqu'ici.</span></div>
     <div><b>La post-croissance</b><span>Tim Jackson, Peter Victor, Éloi Laurent : on ne sait pas si la croissance continuera, donc il faut des institutions qui n'en dépendent plus (②, ④, ⑥), puis laisser le PIB faire ce qu'il fera. <b>Pari</b> : on peut réformer retraites, dettes et emploi avant d'y être contraint.</span></div>
@@ -1002,7 +1037,7 @@
 
 <section id="limites" class="panel">
   <div class="panel-head">
-    <h2>Les limites à la croissance : le modèle de 1972, les ressources, la sobriété <span class="geo-fixed">Monde</span></h2>
+    <h2>Les limites physiques à la croissance : le modèle de 1972, les ressources, la sobriété <span class="geo-fixed">Monde</span></h2>
   </div>
   <p class="lead">Le monde peut-il croître indéfiniment sur une planète finie ? Ce que prévoyait le rapport de 1972 et ce qu'il en est cinquante ans après, l'état réel des ressources en énergie et en métaux, et ce que proposent ceux qui misent sur la sobriété.</p>
   <nav class="li-toc" aria-label="Sommaire"><b>Sommaire</b><ol><li><a href="#limites" data-to="li-p1">Le modèle de 1972 : suit-on ses prédictions ?</a><ul><li><a href="#limites" data-to="li-1-1">1.1 Ce que dit le modèle</a></li><li><a href="#limites" data-to="li-1-2">1.2 Les deux scénarios recalculés ici</a></li></ul></li><li><a href="#limites" data-to="li-p2">Modèle et réalité, indicateur par indicateur</a></li><li><a href="#limites" data-to="li-p3">Ce que disent les études récentes</a></li><li><a href="#limites" data-to="li-p4">Ce qu'il faut retenir du modèle</a></li><li><a href="#limites" data-to="li-p5">Les ressources : quand atteint-on le pic ?</a><ul><li><a href="#limites" data-to="li-5-1">5.1 Pétrole, gaz, charbon : production mondiale depuis 1900</a></li><li><a href="#limites" data-to="li-5-2">5.2 Réserves et pic de production</a></li><li><a href="#limites" data-to="li-5-3">5.3 Et dans 50 ans ? Le pétrole qui reste</a></li><li><a href="#limites" data-to="li-5-4">5.4 Métaux : réserves et ressources</a></li><li><a href="#limites" data-to="li-5-5">5.5 Le recyclage peut-il prendre le relais ?</a></li><li><a href="#limites" data-to="li-5-6">5.6 Qui s'inquiète, et de quoi ?</a></li><li><a href="#limites" data-to="li-5-7">5.7 Et la France ?</a></li><li><a href="#limites" data-to="li-5-8">5.8 Ce qu'en disent le GIEC, le Shift Project, RTE et l'ADEME</a></li></ul></li><li><a href="#limites" data-to="li-p6">Électrifier : comment, et avec quels matériaux ?</a><ul><li><a href="#limites" data-to="li-6-1">6.1 Comment électrifier, usage par usage</a></li><li><a href="#limites" data-to="li-6-2">6.2 Quels matériaux pour quel équipement ?</a></li><li><a href="#limites" data-to="li-6-3">6.3 Quelques quantités, recyclage des batteries</a></li></ul></li><li><a href="#limites" data-to="li-p7">La sobriété et le scénario du Shift Project pour la France</a><ul><li><a href="#limites" data-to="li-7-1">7.1 Sobriété, efficacité, décarbonation</a></li><li><a href="#limites" data-to="li-7-2">7.2 Le plan du Shift (2022) : l'énergie divisée par deux</a></li><li><a href="#limites" data-to="li-7-3">7.3 Le Plan robuste (2026) : 20 chantiers et 6 enseignements</a></li><li><a href="#limites" data-to="li-7-4">7.4 Les chantiers en détail</a></li><li><a href="#limites" data-to="li-7-5">7.5 La critique du « bouclage » des scénarios du GIEC</a></li></ul></li></ol></nav>
@@ -2631,56 +2666,247 @@
   <p>Les fichiers bruts sont dans <code>data/sources/</code>. Pour actualiser : <code>bash scripts/fetch.sh</code> puis <code>python3 scripts/build.py</code>, qui regénère <code>data/finances.json</code>.</p>
   <p class="muted" id="gen-date"></p>
 </section>
+<section id="tableau" class="panel">
+  <div class="panel-head">
+    <h2>Le tableau périodique : comment il fonctionne <span class="geo-fixed">Science</span></h2>
+  </div>
+  <p class="lead">Tout ce qui nous entoure, l'air, l'eau, nos corps, nos téléphones, est fait d'une centaine d'éléments chimiques seulement. Le tableau périodique les range tous sur une seule page. Sa forme n'a rien d'arbitraire : elle découle de la façon dont les électrons s'organisent autour du noyau, et elle permet de prévoir comment chaque élément se comporte.</p>
+  <div class="kpis" id="tp-kpis"></div>
+  <nav class="li-toc"><b>Sommaire</b><ol>
+    <li><a href="#tableau" data-to="tp-p1">Le tableau interactif</a></li>
+    <li><a href="#tableau" data-to="tp-p2">Qu'est-ce qu'un atome ?</a></li>
+    <li><a href="#tableau" data-to="tp-p3">Pourquoi cette forme ? Couches et sous-couches</a></li>
+    <li><a href="#tableau" data-to="tp-p4">Les colonnes : des familles qui se ressemblent</a></li>
+    <li><a href="#tableau" data-to="tp-p5">Les tendances : ce qui change d'une case à l'autre</a></li>
+    <li><a href="#tableau" data-to="tp-p6">L'histoire : de Lavoisier à l'oganesson</a></li>
+    <li><a href="#tableau" data-to="tp-p7">D'où viennent les éléments ? La vallée de la stabilité</a></li>
+    <li><a href="#tableau" data-to="tp-p8">Le tableau et l'économie : les éléments critiques</a></li>
+  </ol></nav>
+
+  <h3 id="tp-p1" class="ag-part">1. Le tableau interactif</h3>
+  <p>Chaque case est un élément : son numéro (le nombre de protons), son symbole et son nom. Choisissez ce que les couleurs montrent, puis cliquez sur un élément pour voir sa fiche.</p>
+  <div class="tp-modes" id="tp-modes"></div>
+  <div class="legend-row" id="tp-legend"></div>
+  <div class="tp-scroll"><div id="tp-grid" class="tp-grid"></div></div>
+  <div id="tp-fiche" class="tp-fiche"></div>
+
+  <h3 id="tp-p2" class="ag-part">2. Qu'est-ce qu'un atome ?</h3>
+  <div class="in-need">
+    <div><b>Un noyau</b><span>Au centre, des <b>protons</b> (charge positive) et des <b>neutrons</b> (sans charge), collés par la force nucléaire. Le noyau contient presque toute la masse de l'atome.</span></div>
+    <div><b>Des électrons</b><span>Autour, des <b>électrons</b> (charge négative), aussi nombreux que les protons : l'atome est neutre. Ce sont eux qui font la chimie : ils forment les liaisons entre atomes.</span></div>
+    <div><b>Le numéro atomique</b><span>Le nombre de protons, noté Z, définit l'élément. 1 proton : hydrogène. 6 : carbone. 26 : fer. 79 : or. Changer le nombre de protons, c'est changer d'élément.</span></div>
+    <div><b>Les isotopes</b><span>Un même élément peut avoir plus ou moins de neutrons : ce sont ses isotopes. Le carbone 12 (6 neutrons) est stable ; le carbone 14 (8 neutrons) est radioactif et sert à dater les fossiles.</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Un atome est presque vide</b> : si le noyau avait la taille d'une bille au centre du Stade de France, les électrons tourneraient dans les tribunes. Entre les deux, rien.</li>
+      <li><b>La masse atomique</b> affichée dans le tableau est la moyenne des masses des isotopes, pondérée par leur abondance naturelle, en « unités de masse atomique » (environ la masse d'un proton). Le chlore pèse 35,45 parce qu'il est un mélange de chlore 35 (76 %) et de chlore 37 (24 %).</li>
+      <li><b>Les éléments lourds sont instables</b> : au-delà du bismuth (83), tous les éléments sont radioactifs. Leur noyau, trop chargé, finit par se casser ou par éjecter des particules. Les plus lourds, fabriqués en laboratoire, ne vivent que quelques millisecondes.</li>
+    </ul>
+  </div>
+
+  <h3 id="tp-p3" class="ag-part">3. Pourquoi cette forme ? Couches et sous-couches</h3>
+  <p>Les électrons ne se placent pas n'importe comment autour du noyau. Ils occupent des <b>couches</b> successives, de plus en plus éloignées et énergétiques. Chaque couche est divisée en <b>sous-couches</b>, de quatre types, qui ne contiennent qu'un nombre fixe d'électrons :</p>
+  <div class="tp-sub">
+    <div class="tp-sub-s"><b>s</b><span>2 électrons</span></div>
+    <div class="tp-sub-p"><b>p</b><span>6 électrons</span></div>
+    <div class="tp-sub-d"><b>d</b><span>10 électrons</span></div>
+    <div class="tp-sub-f"><b>f</b><span>14 électrons</span></div>
+  </div>
+  <ul class="mo-ul">
+    <li><b>C'est exactement la largeur des blocs du tableau</b> : 2 colonnes à gauche (bloc s), 6 à droite (bloc p), 10 au milieu (bloc d, les métaux de transition), et les 14 colonnes des deux lignes du bas (bloc f, lanthanides et actinides). Le tableau est une carte du remplissage des électrons. Choisissez <a href="#tableau" data-tp-mode="b">« Bloc (s, p, d, f) »</a> dans le tableau ci-dessus pour le voir.</li>
+    <li><b>Une ligne (période) = une nouvelle couche</b> : l'hydrogène et l'hélium n'ont qu'une couche ; le fer en a quatre ; l'or six. La longueur des lignes (2, 8, 8, 18, 18, 32, 32 éléments) correspond aux sous-couches qui se remplissent dans chaque période.</li>
+    <li><b>L'ordre de remplissage n'est pas tout à fait l'ordre des couches</b> : la sous-couche 4s se remplit avant la 3d, parce qu'elle est un peu moins énergétique. C'est la « règle de Klechkowski », qui explique pourquoi les métaux de transition apparaissent seulement à la 4ᵉ ligne.</li>
+  </ul>
+  <h3>Remplir les électrons, élément par élément</h3>
+  <p>Faites glisser le curseur : les électrons remplissent les sous-couches dans l'ordre, et l'élément correspondant s'allume.</p>
+  <div class="in-sim">
+    <label class="ctl">Numéro atomique (nombre d'électrons) <input type="range" id="tp-z" min="1" max="118" step="1" value="26"><b id="tp-z-v"></b></label>
+  </div>
+  <div id="tp-fill" class="tp-fill"></div>
+  <p class="muted" style="font-size:.84rem">Quelques éléments font exception à l'ordre de remplissage (le chrome, le cuivre, l'argent, l'or…) : un électron passe d'une sous-couche à l'autre parce qu'une sous-couche à moitié ou entièrement pleine est plus stable. Le curseur montre la configuration réelle, mesurée.</p>
+
+  <h3 id="tp-p4" class="ag-part">4. Les colonnes : des familles qui se ressemblent</h3>
+  <p>Les électrons de la dernière couche, appelés <b>électrons de valence</b>, sont ceux qui participent aux réactions chimiques. Les éléments d'une même colonne en ont le même nombre : ils se comportent de façon semblable. C'est la grande découverte de Mendeleïev, avant même qu'on connaisse les électrons.</p>
+  <div class="in-need tp-fam" id="tp-fam"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Tous les atomes « veulent » une couche externe pleine</b>, comme les gaz nobles. Le sodium (1 électron de valence) le perd facilement ; le chlore (7 électrons) en capte un : ils s'assemblent en sel, Na⁺Cl⁻. C'est la <b>liaison ionique</b>.</li>
+      <li><b>D'autres atomes partagent leurs électrons</b> : deux hydrogènes et un oxygène mettent en commun des paires d'électrons pour former l'eau. C'est la <b>liaison covalente</b>, celle de toute la chimie du vivant. Le carbone, avec 4 électrons de valence, peut former 4 liaisons : c'est pour cela qu'il construit des molécules aussi variées (sucres, protéines, ADN, plastiques).</li>
+      <li><b>Les métaux mettent leurs électrons en commun</b> dans tout le bloc de métal : ces électrons libres expliquent qu'ils conduisent l'électricité et la chaleur, et qu'ils brillent.</li>
+    </ul>
+  </div>
+
+  <h3 id="tp-p5" class="ag-part">5. Les tendances : ce qui change d'une case à l'autre</h3>
+  <p>Certaines propriétés varient régulièrement à travers le tableau, et reviennent de ligne en ligne : c'est la <b>périodicité</b> qui donne son nom au tableau. Le graphique suit une propriété du premier au dernier élément.</p>
+  <div class="tp-modes" id="tp-trend-modes"></div>
+  <div id="tp-trend" class="chart"></div>
+  <div class="callout small" id="tp-trend-txt"></div>
+  <div class="in-need">
+    <div><b>Le rayon de l'atome</b><span><b>Diminue de gauche à droite</b> (plus de protons attirent plus fort les électrons d'une même couche) et <b>augmente de haut en bas</b> (une couche de plus). Le plus gros : le césium ; le plus petit : l'hélium.</span></div>
+    <div><b>L'énergie d'ionisation</b><span>L'énergie qu'il faut pour arracher un électron. <b>Augmente de gauche à droite</b> et <b>diminue de haut en bas</b>. Maximale pour les gaz nobles (couche pleine, stable), minimale pour les alcalins (un électron seul, facile à perdre).</span></div>
+    <div><b>L'électronégativité</b><span>La force avec laquelle un atome attire les électrons d'une liaison. <b>Augmente vers le haut et la droite</b> : le fluor est le plus électronégatif (3,98), le césium le moins (0,79). Elle explique pourquoi l'eau est polaire, et donc pourquoi elle dissout le sel.</span></div>
+    <div><b>Le caractère métallique</b><span>Les métaux sont à gauche et en bas (trois éléments sur quatre), les non-métaux en haut à droite. Entre les deux, une diagonale de métalloïdes (bore, silicium, germanium, arsenic…), à moitié conducteurs : ce sont les semi-conducteurs de l'électronique.</span></div>
+  </div>
+
+  <h3 id="tp-p6" class="ag-part">6. L'histoire : de Lavoisier à l'oganesson</h3>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Date</th><th>Ce qui se passe</th></tr></thead>
+    <tbody>
+      <tr><td><b>Antiquité</b></td><td>Une dizaine d'éléments sont connus sans être compris comme tels : or, argent, cuivre, fer, plomb, étain, mercure, soufre, carbone.</td></tr>
+      <tr><td><b>1789</b></td><td>Antoine Lavoisier publie une liste de 33 « substances simples », qu'on ne peut pas décomposer : la première définition moderne d'un élément. Il y range aussi, à tort, la lumière et le « calorique ».</td></tr>
+      <tr><td><b>1869</b></td><td>Dmitri Mendeleïev, professeur à Saint-Pétersbourg, range les 63 éléments connus par masse croissante, en lignes, de façon que les éléments aux propriétés semblables tombent dans la même colonne. Son coup de génie : <b>laisser des cases vides</b> pour des éléments encore inconnus, et prédire leurs propriétés. Il inverse aussi le tellure et l'iode, contre l'ordre des masses, pour respecter les familles.</td></tr>
+      <tr><td><b>1875-1886</b></td><td>Les prédictions se vérifient : le gallium (« éka-aluminium ») est découvert par le Français Paul-Émile Lecoq de Boisbaudran en 1875, le scandium (« éka-bore ») en 1879, le germanium (« éka-silicium ») en 1886. Le tableau devient une loi de la nature.</td></tr>
+      <tr><td><b>1886</b></td><td>Henri Moissan isole le fluor, le plus réactif des éléments (prix Nobel 1906).</td></tr>
+      <tr><td><b>1894-1898</b></td><td>William Ramsay découvre les gaz nobles (argon, hélium, néon, krypton, xénon) : une colonne entière que Mendeleïev n'avait pas prévue, ajoutée à droite.</td></tr>
+      <tr><td><b>1898</b></td><td>Marie et Pierre Curie découvrent le polonium et le radium, en étudiant la radioactivité de la pechblende.</td></tr>
+      <tr><td><b>1913</b></td><td>Henry Moseley montre, par les rayons X, que le bon classement n'est pas la masse mais le <b>nombre de protons</b>. L'inversion tellure-iode de Mendeleïev était juste.</td></tr>
+      <tr><td><b>1920-1930</b></td><td>La mécanique quantique (Bohr, Pauli, Schrödinger) explique enfin la forme du tableau : couches, sous-couches, électrons de valence.</td></tr>
+      <tr><td><b>1937-1939</b></td><td>Le technétium, premier élément fabriqué artificiellement (1937). Marguerite Perey, au laboratoire Curie, découvre le francium (1939), dernier élément trouvé dans la nature.</td></tr>
+      <tr><td><b>1944</b></td><td>Glenn Seaborg propose de sortir les actinides (thorium, uranium, plutonium…) en une ligne séparée, sous les lanthanides : le tableau prend sa forme actuelle.</td></tr>
+      <tr><td><b>1950-2010</b></td><td>Les éléments 95 à 118 sont fabriqués dans des accélérateurs, aux États-Unis, en Russie, en Allemagne et au Japon, souvent quelques atomes à la fois.</td></tr>
+      <tr><td><b>2016</b></td><td>Les quatre derniers reçoivent leur nom : nihonium (113), moscovium (115), tennesse (117), oganesson (118). La septième ligne est complète.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout small">
+    <p><b>La prédiction du germanium (1871 et 1886)</b>, l'exemple qui a convaincu le monde :</p>
+    <div class="table-scroll"><table class="mo-hist" style="min-width:0">
+      <thead><tr><th>Propriété</th><th>Prédit par Mendeleïev (1871)</th><th>Mesuré par Winkler (1886)</th></tr></thead>
+      <tbody>
+        <tr><td>Masse atomique</td><td>72</td><td>72,6</td></tr>
+        <tr><td>Densité</td><td>5,5</td><td>5,35</td></tr>
+        <tr><td>Couleur</td><td>gris foncé</td><td>gris</td></tr>
+        <tr><td>Oxyde</td><td>formule XO₂, densité 4,7</td><td>GeO₂, densité 4,7</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <h3 id="tp-p7" class="ag-part">7. D'où viennent les éléments ?</h3>
+  <p>Aucun élément n'a toujours existé. Ils ont été fabriqués en plusieurs étapes, depuis le Big Bang jusqu'aux étoiles qui explosent. Choisissez <a href="#tableau" data-tp-mode="o">« Origine dans l'univers »</a> dans le tableau pour voir d'où vient chacun.</p>
+  <div class="in-need">
+    <div><b>Le Big Bang</b><span>Dans les premières minutes, il y a 13,8 milliards d'années : hydrogène, hélium, un peu de lithium. Aujourd'hui encore, ils forment 98 % de la matière ordinaire de l'univers.</span></div>
+    <div><b>Les étoiles</b><span>Dans leur cœur, la fusion assemble l'hydrogène en hélium, puis en carbone, oxygène, néon, silicium… jusqu'au fer.</span></div>
+    <div><b>Les géantes rouges et les supernovae</b><span>Au-delà du fer, les éléments se forment par capture de neutrons : lentement dans les étoiles géantes en fin de vie, ou brutalement quand une étoile massive explose.</span></div>
+    <div><b>Les collisions d'étoiles à neutrons</b><span>Une grande partie de l'or, du platine, de l'uranium vient de la fusion de deux étoiles à neutrons, observée pour la première fois en 2017.</span></div>
+    <div><b>Les laboratoires</b><span>Le technétium, le prométhium et tous les éléments après l'uranium (sauf des traces) sont fabriqués par l'homme.</span></div>
+  </div>
+
+  <h3 id="tp-7-1" class="li-sub">7.1 Les trois premières minutes : hydrogène, hélium, lithium… et rien d'autre</h3>
+  <ul class="mo-ul">
+    <li><b>Une seconde après le Big Bang</b>, l'univers est une soupe de protons, de neutrons et d'électrons, trop chaude pour que les noyaux tiennent. Entre 3 et 20 minutes environ, il s'est assez refroidi : protons et neutrons s'assemblent. D'abord le deutérium (1 proton + 1 neutron), puis l'hélium 4 (2 + 2), très stable.</li>
+    <li><b>Le bilan</b> : environ 75 % d'hydrogène et 25 % d'hélium (en masse), des traces de deutérium, d'hélium 3 et de lithium 7. C'est ce que mesurent aujourd'hui les astronomes dans les étoiles les plus anciennes : une des preuves du Big Bang.</li>
+    <li><b>Pourquoi ça s'arrête là ? Le « trou » des masses 5 et 8.</b> Il n'existe aucun noyau stable à 5 ou à 8 particules : ajouter un proton ou un neutron à l'hélium 4 donne un noyau qui se casse aussitôt, et deux hélium 4 collés (béryllium 8) se séparent en moins d'un millionième de milliardième de seconde. Le temps que l'univers trouve un détour, il s'était trop refroidi et dilué : la fabrication s'arrête au lithium.</li>
+    <li><b>Le béryllium et le bore ne viennent donc pas du Big Bang</b> (en gris dans le mode « Origine »). Ni des étoiles, qui les détruisent. Ils sont fabriqués dans l'espace par les <b>rayons cosmiques</b> : des protons très rapides qui frappent des atomes de carbone, d'azote et d'oxygène et les cassent en morceaux plus petits. C'est pour cela que ces trois éléments (lithium, béryllium, bore) sont si rares, alors qu'ils sont si légers.</li>
+  </ul>
+
+  <h3 id="tp-7-2" class="li-sub">7.2 Dans les étoiles : la chaîne de fusion, de l'hydrogène au fer</h3>
+  <p>Une étoile est un réacteur de fusion tenu par sa propre gravité. Quand un combustible s'épuise, le cœur se contracte, chauffe, et allume le suivant. Pour une étoile 25 fois plus massive que le Soleil :</p>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Étape</th><th>Combustible → produits</th><th>Température du cœur</th><th>Durée</th></tr></thead>
+    <tbody>
+      <tr><td><b>Hydrogène</b></td><td>4 hydrogènes → 1 hélium (chaîne proton-proton, ou cycle carbone-azote-oxygène dans les étoiles massives)</td><td>environ 40 millions de degrés</td><td>environ 7 millions d'années</td></tr>
+      <tr><td><b>Hélium</b></td><td>3 hélium → 1 carbone (« triple alpha ») ; carbone + hélium → oxygène. C'est le détour qui franchit le trou des masses 5 et 8 : trois noyaux d'hélium se rencontrent presque en même temps.</td><td>environ 200 millions</td><td>environ 800 000 ans</td></tr>
+      <tr><td><b>Carbone</b></td><td>carbone → néon, sodium, magnésium</td><td>environ 800 millions</td><td>environ 500 ans</td></tr>
+      <tr><td><b>Néon</b></td><td>néon → oxygène, magnésium</td><td>environ 1,5 milliard</td><td>environ 1 an</td></tr>
+      <tr><td><b>Oxygène</b></td><td>oxygène → silicium, soufre, phosphore</td><td>environ 2 milliards</td><td>environ 5 mois</td></tr>
+      <tr><td><b>Silicium</b></td><td>silicium → fer, nickel, cobalt (par ajouts successifs d'hélium)</td><td>environ 3,5 milliards</td><td>environ 1 jour</td></tr>
+      <tr><td><b>Fin</b></td><td>Le cœur de fer ne peut plus produire d'énergie : il s'effondre en une fraction de seconde, l'étoile explose en <b>supernova</b> et projette dans l'espace tout ce qu'elle a fabriqué.</td><td>plus de 10 milliards</td><td>quelques secondes</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:.84rem">Le Soleil, trop petit, s'arrêtera après l'hélium : il deviendra une géante rouge dans environ 5 milliards d'années, puis une naine blanche de carbone et d'oxygène. Les ordres de grandeur du tableau sont ceux des modèles d'évolution stellaire (Woosley, Heger et Weaver, 2002).</p>
+
+  <h3 id="tp-7-3" class="li-sub">7.3 Au-delà du fer : la capture de neutrons</h3>
+  <ul class="mo-ul">
+    <li><b>Pourquoi la fusion s'arrête au fer</b> : jusqu'au fer, assembler des noyaux libère de l'énergie ; au-delà, il faut en fournir (voir 7.5). Les noyaux plus lourds ne peuvent pas venir de la fusion.</li>
+    <li><b>Ils naissent en avalant des neutrons</b>, qui n'ont pas de charge et entrent donc facilement dans un noyau. Le noyau devient trop riche en neutrons, l'un d'eux se transforme en proton (désintégration bêta) : on passe à l'élément suivant.</li>
+    <li><b>Le processus lent (s)</b> : dans les géantes rouges en fin de vie, un neutron arrive tous les quelques années ; le noyau a le temps de se stabiliser entre deux captures. Il suit le fond de la vallée de stabilité (7.4), jusqu'au plomb et au bismuth. Il fabrique la moitié environ des éléments lourds : strontium, baryum, plomb…</li>
+    <li><b>Le processus rapide (r)</b> : lors des collisions d'étoiles à neutrons (et de certaines supernovae), les neutrons pleuvent par milliards de milliards en une seconde. Les noyaux en avalent des dizaines avant de pouvoir se désintégrer, puis retombent vers la vallée. C'est la seule façon de fabriquer l'or, le platine, l'uranium et le thorium. La collision observée en 2017 (GW170817) a produit plusieurs fois la masse de la Terre en or.</li>
+  </ul>
+
+  <h3 id="tp-7-4" class="li-sub">7.4 La vallée de la stabilité</h3>
+  <p>Tous les assemblages de protons et de neutrons ne tiennent pas. Le graphique place chaque élément selon son nombre de protons (horizontal) et le nombre de neutrons de son isotope le plus courant, ou le plus durable (vertical).</p>
+  <div id="tp-vallee" class="chart"></div><div class="legend-row" id="tp-vallee-legend"></div>
+  <ul class="mo-ul">
+    <li><b>Les noyaux stables forment une « vallée » étroite</b>. Pour les éléments légers, elle suit la diagonale : autant de neutrons que de protons (carbone 12 : 6 + 6 ; oxygène 16 : 8 + 8). Puis elle s'en écarte : les protons se repoussent (ils ont tous une charge positive), et il faut de plus en plus de neutrons, qui collent sans repousser, pour tenir le noyau. Le plomb 208 a 82 protons et 126 neutrons.</li>
+    <li><b>De part et d'autre, les noyaux sont radioactifs</b> et « roulent » vers le fond de la vallée. Trop de neutrons : un neutron se change en proton (bêta moins). Trop de protons : un proton se change en neutron (bêta plus). Trop lourd : le noyau éjecte un noyau d'hélium (alpha) ou se casse en deux (fission).</li>
+    <li><b>La vallée s'arrête au bismuth (83)</b> : au-delà, plus aucun noyau n'est vraiment stable. L'uranium et le thorium existent encore sur Terre parce qu'ils se désintègrent très lentement (le thorium 232 a une demi-vie de 14 milliards d'années, l'uranium 238 de 4,5 milliards).</li>
+    <li><b>L'« îlot de stabilité »</b> : la théorie prévoit que des noyaux super-lourds, autour de 114 protons et 184 neutrons, pourraient vivre plus longtemps que leurs voisins (minutes, voire années). On ne l'a pas encore atteint : les éléments fabriqués ont trop peu de neutrons.</li>
+  </ul>
+
+  <h3 id="tp-7-5" class="li-sub">7.5 L'énergie de liaison : pourquoi le fer est le bout de la chaîne</h3>
+  <p>Assembler des protons et des neutrons libère de l'énergie : c'est l'<b>énergie de liaison</b>. Le graphique montre combien chaque particule du noyau en a libéré, selon la taille du noyau.</p>
+  <div id="tp-liaison" class="chart"></div>
+  <ul class="mo-ul">
+    <li><b>Le sommet est autour du fer et du nickel</b> (56 à 62 particules) : ce sont les noyaux les plus solidement liés de la nature.</li>
+    <li><b>À gauche du sommet, fusionner libère de l'énergie</b> : c'est ce qui fait briller les étoiles, et ce que cherchent à reproduire les réacteurs de fusion comme ITER, en construction à Cadarache. Le saut le plus spectaculaire est celui de l'hydrogène vers l'hélium.</li>
+    <li><b>À droite du sommet, c'est casser qui libère de l'énergie</b> : la fission de l'uranium 235 en deux noyaux moyens, dans les centrales nucléaires (voir <a href="#nucleaire">Nucléaire</a>). Les deux technologies exploitent la même courbe, par ses deux côtés.</li>
+    <li><b>Des ordres de grandeur</b> : un gramme d'uranium fissionné libère autant d'énergie qu'environ deux tonnes de pétrole ; un gramme d'hydrogène fusionné en hélium, plus encore. La chimie (brûler du pétrole) ne réarrange que les électrons, et libère environ un million de fois moins d'énergie par atome.</li>
+  </ul>
+  <p class="callout small"><b>Nous sommes faits de poussière d'étoiles</b> : le carbone de nos cellules, l'oxygène que nous respirons, le fer de notre sang ont été fabriqués dans des étoiles mortes avant la naissance du Soleil, il y a 4,6 milliards d'années. Seul l'hydrogène (dans l'eau) date du Big Bang.</p>
+
+  <h3 id="tp-p8" class="ag-part">8. Le tableau et l'économie : les éléments critiques</h3>
+  <p>L'économie moderne utilise presque tout le tableau : un téléphone contient une soixantaine d'éléments, une voiture électrique des dizaines de kilos de métaux rares. Choisissez <a href="#tableau" data-tp-mode="k">« Critiques pour l'Union européenne »</a> dans le tableau : en surbrillance, les éléments que l'UE juge à la fois indispensables et à risque d'approvisionnement (liste de 2023).</p>
+  <div class="callout small">
+    <ul>
+      <li><b>Les « terres rares »</b> sont les 15 lanthanides, plus le scandium et l'yttrium. Elles ne sont pas si rares dans la croûte terrestre, mais rarement concentrées, difficiles à séparer les unes des autres (elles se ressemblent chimiquement, puisqu'elles remplissent la même sous-couche 4f), et produites à plus de 60 % en Chine, qui en raffine environ 90 %.</li>
+      <li><b>Les batteries</b> mobilisent le lithium, le cobalt, le nickel, le manganèse, le graphite (carbone), le cuivre, l'aluminium ; les aimants des moteurs électriques et des éoliennes, le néodyme, le praséodyme et le dysprosium.</li>
+      <li><b>La France en produit très peu</b> (voir <a href="#limites">Limites physiques à la croissance</a>, chapitre 5). Le recyclage des éléments rares reste faible, souvent moins de 1 %, parce qu'ils sont dispersés en petites quantités dans des objets complexes.</li>
+    </ul>
+  </div>
+  <p class="muted" style="font-size:.78rem">Sources : données des éléments d'après Wikipédia, compilées par le projet Periodic-Table-JSON (masses, configurations électroniques, électronégativité de Pauling, énergies de première ionisation, rayons atomiques calculés, densités, températures de fusion et d'ébullition) ; Commission européenne, liste 2023 des matières premières critiques ; origine des éléments simplifiée d'après Jennifer Johnson (Ohio State University, 2019). Les propriétés des éléments au-delà du fermium sont en partie prédites.</p>
+</section>
+
 </main>
 
 <div id="tip" class="tip" role="tooltip" hidden></div>
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123p"></script>
-<script src="app.js?v=20261123p"></script>
-<script src="energie.js?v=20261123p"></script>
-<script src="matieres.js?v=20261123p"></script>
-<script src="territoire.js?v=20261123p"></script>
-<script src="themes.js?v=20261123p"></script>
-<script src="societe.js?v=20261123p"></script>
-<script src="eco2.js?v=20261123p"></script>
-<script src="empreinte.js?v=20261123p"></script>
-<script src="argentprive.js?v=20261123p"></script>
-<script src="repartition.js?v=20261123p"></script>
-<script src="patrimoine.js?v=20261123p"></script>
-<script src="prelevements.js?v=20261123p"></script>
-<script src="travailvie.js?v=20261123p"></script>
-<script src="niveauvie.js?v=20261123p"></script>
-<script src="prosperite.js?v=20261123p"></script>
-<script src="exterieur.js?v=20261123p"></script>
-<script src="desindus.js?v=20261123p"></script>
-<script src="retraites.js?v=20261123p"></script>
-<script src="energiecout.js?v=20261123p"></script>
-<script src="energieformation.js?v=20261123p"></script>
-<script src="nucleaire.js?v=20261123p"></script>
-<script src="logementeco.js?v=20261123p"></script>
-<script src="competences.js?v=20261123p"></script>
-<script src="justicedroit.js?v=20261123p"></script>
-<script src="fonctionnaires.js?v=20261123p"></script>
-<script src="couper.js?v=20261123p"></script>
-<script src="seuilpays.js?v=20261123p"></script>
-<script src="logement.js?v=20261123p"></script>
-<script src="env.js?v=20261123p"></script>
-<script src="agriculture.js?v=20261123p"></script>
-<script src="rendements.js?v=20261123p"></script>
-<script src="monnaie.js?v=20261123p"></script>
-<script src="limites.js?v=20261123p"></script>
-<script src="sociologie.js?v=20261123p"></script>
-<script src="chaine.js?v=20261123p"></script>
-<script src="patrimoinehist.js?v=20261123p"></script>
-<script src="innovation.js?v=20261123p"></script>
+<script src="kpi.js?v=20261123v"></script>
+<script src="app.js?v=20261123v"></script>
+<script src="energie.js?v=20261123v"></script>
+<script src="matieres.js?v=20261123v"></script>
+<script src="territoire.js?v=20261123v"></script>
+<script src="themes.js?v=20261123v"></script>
+<script src="societe.js?v=20261123v"></script>
+<script src="eco2.js?v=20261123v"></script>
+<script src="empreinte.js?v=20261123v"></script>
+<script src="argentprive.js?v=20261123v"></script>
+<script src="repartition.js?v=20261123v"></script>
+<script src="patrimoine.js?v=20261123v"></script>
+<script src="prelevements.js?v=20261123v"></script>
+<script src="travailvie.js?v=20261123v"></script>
+<script src="niveauvie.js?v=20261123v"></script>
+<script src="prosperite.js?v=20261123v"></script>
+<script src="exterieur.js?v=20261123v"></script>
+<script src="desindus.js?v=20261123v"></script>
+<script src="retraites.js?v=20261123v"></script>
+<script src="energiecout.js?v=20261123v"></script>
+<script src="energieformation.js?v=20261123v"></script>
+<script src="nucleaire.js?v=20261123v"></script>
+<script src="logementeco.js?v=20261123v"></script>
+<script src="competences.js?v=20261123v"></script>
+<script src="justicedroit.js?v=20261123v"></script>
+<script src="fonctionnaires.js?v=20261123v"></script>
+<script src="couper.js?v=20261123v"></script>
+<script src="seuilpays.js?v=20261123v"></script>
+<script src="logement.js?v=20261123v"></script>
+<script src="env.js?v=20261123v"></script>
+<script src="agriculture.js?v=20261123v"></script>
+<script src="rendements.js?v=20261123v"></script>
+<script src="monnaie.js?v=20261123v"></script>
+<script src="limites.js?v=20261123v"></script>
+<script src="sociologie.js?v=20261123v"></script>
+<script src="chaine.js?v=20261123v"></script>
+<script src="patrimoinehist.js?v=20261123v"></script>
+<script src="innovation.js?v=20261123v"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123p"></script>
-<script src="histoire.js?v=20261123p"></script>
-<script src="chomage.js?v=20261123p"></script>
-<script src="sources.js?v=20261123p"></script>
-<script src="nav.js?v=20261123p"></script>
+<script src="soussol.js?v=20261123v"></script>
+<script src="histoire.js?v=20261123v"></script>
+<script src="chomage.js?v=20261123v"></script>
+<script src="tableau.js?v=20261123v"></script>
+<script src="sources.js?v=20261123v"></script>
+<script src="nav.js?v=20261123v"></script>
 </body>
 </html>
