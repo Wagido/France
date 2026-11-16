@@ -1,0 +1,18 @@
+{
+ "source": "RTE, Futurs énergétiques 2050, principaux résultats (octobre 2021), enseignements n° 6 et 7 ; hypothèse centrale de coût des technologies, coût du capital 4 %, trajectoire de consommation de référence",
+ "url": "https://assets.rte-france.com/prod/public/2021-10/Futurs-Energetiques-2050-principaux-resultats_0.pdf",
+ "aujourdhui": 45,
+ "scenarios": [
+  {"id": "M0", "v": 77, "nom": "100 % renouvelable, sortie du nucléaire dès 2050", "nuc": "0 %"},
+  {"id": "M1", "v": 80, "nom": "100 % renouvelable, beaucoup de solaire sur toitures", "nuc": "0 % en 2060"},
+  {"id": "M23", "v": 71, "nom": "100 % renouvelable, grands parcs éoliens et solaires", "nuc": "0 % en 2060"},
+  {"id": "N1", "v": 66, "nom": "Renouvelables + 8 nouveaux réacteurs EPR2", "nuc": "~26 % en 2050"},
+  {"id": "N2", "v": 61, "nom": "Renouvelables + 14 nouveaux réacteurs EPR2", "nuc": "~36 % en 2050"},
+  {"id": "N03", "v": 59, "nom": "Renouvelables + 14 nouveaux réacteurs et petits réacteurs (SMR), réacteurs actuels prolongés", "nuc": "~50 % en 2050"}
+ ],
+ "mwh": [
+  {"l": "Nucléaire existant prolongé (grand carénage compris)", "v": "30 à 40 €/MWh"},
+  {"l": "Renouvelables, coût moyen de production en 2060", "v": "~46 €/MWh"},
+  {"l": "Nucléaire en 2060 (surtout de nouveaux réacteurs), coût moyen de production", "v": "~67 €/MWh"}
+ ]
+}

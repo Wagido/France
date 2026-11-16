@@ -36,6 +36,7 @@ function draw() {
   const d0 = DP.find(r => r.FR != null), dL = DP.at(-1);
   // générations (COR)
   const G = (R.generations || []).map(r => ({ annee: r.gen, ...r }));
+  // l'axe horizontal est l'année de naissance
   if (G.length) {
     const g1 = (el, k, c, fmt, nozero) => lineChart($(el), G, [{ k, l: "", c }], { h: 200, nozero, vfmt: fmt, yfmt: fmt, xticks: 6 });
     g1("#rt-g-cot", "cotisation", "#dc2626", v => nf(v, 0) + " %", true);
