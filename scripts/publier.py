@@ -3,13 +3,15 @@
 sauf les onglets qu'on a choisi d'en publier (PUBLIES).
 Le code reste complet dans le dépôt ; seule la copie mise en ligne (dossier _site) est allégée.
 Pour remettre toute une rubrique en ligne, la retirer de la liste NON_PUBLIE ;
-pour publier un seul onglet d'une rubrique non publiée, l'ajouter à PUBLIES.
+pour publier un seul onglet d'une rubrique non publiée, l'ajouter à PUBLIES ;
+pour retirer un onglet d'une rubrique publiée, l'ajouter à ONGLETS_NON_PUBLIES.
 Usage : python3 scripts/publier.py _site/index.html
 """
 import re, sys
 
 NON_PUBLIE = ["societe"]                 # valeurs data-group des rubriques à ne pas publier
 PUBLIES = {"societe": ["electorat"]}     # onglets publiés malgré tout dans ces rubriques
+ONGLETS_NON_PUBLIES = ["monnaie"]        # onglets retirés de la version publiée, dans des rubriques publiées
 
 p = sys.argv[1]
 t = open(p, encoding="utf-8").read()
@@ -39,5 +41,11 @@ for g in NON_PUBLIE:
     # les liens vers ces sections ailleurs dans la page deviennent du texte simple
     for i in ids:
         t = re.sub(r'<a href="#%s"[^>]*>(.*?)</a>' % re.escape(i), r"\1", t)
+for i in ONGLETS_NON_PUBLIES:
+    t = re.sub(r'\s*<a href="#%s">[^<]*</a>' % re.escape(i), "", t, count=1)       # l'onglet dans le menu
+    t, n = re.subn(r'\s*<section id="%s" class="panel[^"]*">.*?</section>' % re.escape(i), "", t, flags=re.S)
+    if n:
+        retires.append(i)
+    t = re.sub(r'<a href="#%s"[^>]*>(.*?)</a>' % re.escape(i), r"\1", t)          # les liens vers lui deviennent du texte
 open(p, "w", encoding="utf-8").write(t)
 print("Rubriques non publiées :", ", ".join(NON_PUBLIE), "| onglets publiés malgré tout :", PUBLIES, "| sections retirées :", ", ".join(retires))

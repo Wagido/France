@@ -10,6 +10,7 @@ const sg = v => (v > 0 ? "+" : v < 0 ? "−" : "") + f2(Math.abs(v));
 
 async function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
+  if (!$("#mo-credit")) return;   // article non publié dans cette version du site
   try { M = await fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
