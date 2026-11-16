@@ -23,9 +23,9 @@ function draw() {
   const men = menL + D.prestations, prive = laisse + redis;
   kpis("#rp-kpis", [
     [md(R.pib), [`richesse produite en France en ${R.annee}`], "PIB"],
-    [md(R.po), [`impôts et cotisations : ${pp(R.po)}`, `laissé au privé : ${md(laisse)}`], "Prélèvements"],
-    [md(R.te), [`recettes : ${md(R.tr)} (prélèvements ${md(R.po)} + autres ${md(R.autres_recettes)})`, `emprunt : ${md(R.emprunt)}`, `dépensé : <b style="color:#dc2626">${pp(R.te)}</b>`], "Argent public"],
-    [md(prive), [`ménages : ${md(men)}`, `entreprises : ${md(entG)}`, `prêteurs, associations, Europe : ${md(autres)}`], "Argent privé"],
+    [md(R.po), [`soit <b>${pp(R.po)}</b>, prélevés en impôts (TVA, impôt sur le revenu…) et en cotisations sociales`, `il reste ${md(laisse)} (${pp(laisse)}) aux ménages et aux entreprises`], "Prélèvements obligatoires"],
+    [md(R.te), [`soit <b style="color:#dc2626">${pp(R.te)}</b>, dépensés par l'État, les collectivités et la Sécurité sociale`, `financés par les prélèvements (${md(R.po)}), d'autres recettes (${md(R.autres_recettes)}) et l'emprunt (${md(R.emprunt)})`], "Dépense publique"],
+    [md(prive), [`ce que gardent ménages et entreprises (${md(laisse)}) + ce que l'argent public leur reverse : pensions, allocations, aides, intérêts (${md(redis)})`, `ménages : ${md(men)} · entreprises : ${md(entG)} · prêteurs, associations, Europe : ${md(autres)}`], "Argent privé"],
   ]);
   const det = (...a) => a.map(([l, v]) => `${l} : ${md(v)}`).join("<br>");
   const nodes = [
