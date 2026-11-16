@@ -18,8 +18,9 @@ const METIERS = [
 ];
 async function init() {
   if (!window.TH || !$("#nv-pa")) { setTimeout(init, 100); return; }
-  try { N = await fetch("data/niveau_vie.json").then(r => r.json()); } catch (e) { return; }
-  draw();
+  try { N = await fetch("data/niveau_vie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  if (!N.simu || !N.smic) { try { N = await fetch("data/niveau_vie.json?t=" + Date.now()).then(r => r.json()); } catch (e) { return; } }
+  try { draw(); } catch (e) { console.error("Vit-on mieux qu'avant ?", e); }
 }
 function draw() {
   const { kpis, lineChart, legend, esc } = window.TH;

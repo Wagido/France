@@ -17,14 +17,14 @@ const OWN = [
 let vue = "bien";
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { P = (await fetch("data/finances.json").then(r => r.json())).patrimoine; } catch (e) { return; }
+  try { P = (await fetch("data/finances.json", { cache: "no-cache" }).then(r => r.json())).patrimoine; } catch (e) { return; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   $("#pn-immo")?.addEventListener("input", sensib);
   document.querySelectorAll("#pn-vue button").forEach(bt => bt.onclick = () => {
     vue = bt.dataset.v; document.querySelectorAll("#pn-vue button").forEach(o => o.setAttribute("aria-pressed", o === bt)); draw();
   });
   draw(); dette();
-  try { etranger((await fetch("data/prelevements_pays.json").then(r => r.json())).pei); } catch (e) { /* facultatif */ }
+  try { etranger((await fetch("data/prelevements_pays.json", { cache: "no-cache" }).then(r => r.json())).pei); } catch (e) { /* facultatif */ }
 }
 /* position extérieure (balance des paiements) : transmise au bilan d'app.js, qui se redessine */
 function etranger(E) {

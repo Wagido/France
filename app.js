@@ -44,7 +44,7 @@ function barList(el, items, total, opts = {}) {
 let DATA, CMP, GEO = "FR";
 const CACHE = {};
 const C = () => CACHE[GEO];
-Promise.all([fetch("data/finances.json").then(r => r.json()), fetch("data/comparaison.json").then(r => r.json())])
+Promise.all([fetch("data/finances.json", { cache: "no-cache" }).then(r => r.json()), fetch("data/comparaison.json", { cache: "no-cache" }).then(r => r.json())])
   .then(([d, c]) => { DATA = d; CMP = c; CACHE.FR = { nom: "France", pib: d.pib, historique: d.historique, interets: d.interets, fonctions_hist: d.fonctions_hist, simulateur: d.simulateur }; init(); })
   .catch(e => { document.querySelector("main").insertAdjacentHTML("afterbegin", `<p class="panel">Impossible de charger les données (${esc(e.message)}).</p>`); });
 
@@ -69,7 +69,7 @@ function init() {
 
 async function setGeo(g) {
   if (!CACHE[g]) {
-    try { CACHE[g] = await fetch(`data/pays/${g}.json`).then(r => r.json()); }
+    try { CACHE[g] = await fetch(`data/pays/${g}.json`, { cache: "no-cache" }).then(r => r.json()); }
     catch (e) { return; }
   }
   GEO = g;

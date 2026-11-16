@@ -29,7 +29,7 @@ const EV = [
 ];
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { L = (await fetch("data/histoire.json").then(r => r.json())).longue; } catch (e) { return; }
+  try { L = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { return; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }

@@ -25,7 +25,7 @@ let INDEX = null, POP = {}, geo = "FR", unit = "twh", histKind = "primaire", loc
 
 async function load(g) {
   if (!CACHE[g]) {
-    try { CACHE[g] = await fetch(`data/energie/${g}.json`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+    try { CACHE[g] = await fetch(`data/energie/${g}.json`, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }); }
     catch (e) { CACHE[g] = null; }
   }
   return CACHE[g];
@@ -33,10 +33,10 @@ async function load(g) {
 
 async function init() {
   try {
-    INDEX = await fetch("data/energie/index.json").then(r => r.json());
-    const cmp = await fetch("data/comparaison.json").then(r => r.json());
+    INDEX = await fetch("data/energie/index.json", { cache: "no-cache" }).then(r => r.json());
+    const cmp = await fetch("data/comparaison.json", { cache: "no-cache" }).then(r => r.json());
     cmp.comparaison.forEach(c => { if (c.pib) POP[c.code] = c.pib.population; });
-    try { (await fetch("data/themes/index.json").then(r => r.json())).pays.forEach(p => { if (!POP[p.code] && p.demo?.population) POP[p.code] = p.demo.population; }); } catch (e) { /* facultatif */ }
+    try { (await fetch("data/themes/index.json", { cache: "no-cache" }).then(r => r.json())).pays.forEach(p => { if (!POP[p.code] && p.demo?.population) POP[p.code] = p.demo.population; }); } catch (e) { /* facultatif */ }
   } catch (e) { return; }
   document.querySelectorAll("#en-unit button").forEach(b => b.onclick = () => {
     unit = b.dataset.u; document.querySelectorAll("#en-unit button").forEach(o => o.setAttribute("aria-pressed", o === b)); draw();

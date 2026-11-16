@@ -19,14 +19,14 @@ const CAT = [
 
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { IDX = await fetch("data/eco2/index.json").then(r => r.json()); } catch (e) { return; }
+  try { IDX = await fetch("data/eco2/index.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   document.addEventListener("geochange", e => setGeo(e.detail));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 200); });
   await setGeo($("#geo")?.value || "FR");
 }
 async function setGeo(g) {
   geo = g;
-  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/eco2/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
+  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/eco2/${g}.json`, { cache: "no-cache" }).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
 function drawAll() { [qui, cycle, industrie, redis, origine, heritage].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }

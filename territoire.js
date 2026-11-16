@@ -33,7 +33,7 @@ function yearsWith(k) {
 }
 
 async function init() {
-  try { T = await fetch("data/territoire.json").then(r => r.json()); } catch (e) { return; }
+  try { T = await fetch("data/territoire.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   document.querySelectorAll("#tr-view button").forEach(b => b.onclick = () => {
     view = b.dataset.v; document.querySelectorAll("#tr-view button").forEach(o => o.setAttribute("aria-pressed", o === b));
     fillYears(); draw();

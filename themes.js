@@ -98,7 +98,7 @@ function table(el, key, cols, def) {
 const CACHE = {};
 let COM = null;
 async function load(g) {
-  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/themes/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
+  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/themes/${g}.json`, { cache: "no-cache" }).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   return CACHE[g];
 }
 const D = () => CACHE[geo];
@@ -106,8 +106,8 @@ const popOf = y => { const s = D()?.demographie?.serie; if (!s) return null; con
 const empty = (sel, msg = "Données non publiées pour ce pays.") => { const e = $(sel); if (e) e.innerHTML = `<p class="empty">${msg}</p>`; };
 
 async function init() {
-  try { IDX = await fetch("data/themes/index.json").then(r => r.json()); } catch (e) { return; }
-  try { COM = await fetch("data/themes/commerce_FR.json").then(r => r.json()); } catch (e) { COM = null; }
+  try { IDX = await fetch("data/themes/index.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  try { COM = await fetch("data/themes/commerce_FR.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { COM = null; }
   document.addEventListener("geochange", e => setGeo(e.detail));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 200); });
   $("#al-year").onchange = drawAlim;

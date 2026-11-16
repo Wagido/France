@@ -5,7 +5,7 @@ let V = null;
 const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { V = await fetch("data/travail_vie.json").then(r => r.json()); } catch (e) { return; }
+  try { V = await fetch("data/travail_vie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   draw();
 }
 function draw() {

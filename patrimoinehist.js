@@ -5,7 +5,7 @@ let P = null;
 const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { P = await fetch("data/patrimoine_hist.json").then(r => r.json()); } catch (e) { return; }
+  try { P = await fetch("data/patrimoine_hist.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   draw();
 }
 const f1 = v => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });

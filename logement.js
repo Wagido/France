@@ -6,7 +6,7 @@ const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
   try {
-    [L, B] = await Promise.all([fetch("data/logement.json").then(r => r.json()), fetch("data/finances.json").then(r => r.json()).catch(() => null)]);
+    [L, B] = await Promise.all([fetch("data/logement.json", { cache: "no-cache" }).then(r => r.json()), fetch("data/finances.json", { cache: "no-cache" }).then(r => r.json()).catch(() => null)]);
   } catch (e) { return; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();

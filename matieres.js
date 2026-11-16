@@ -25,14 +25,14 @@ let INDEX = null, geo = "FR", locked = null;
 
 async function load(g) {
   if (!(g in CACHE)) {
-    try { CACHE[g] = await fetch(`data/matieres/${g}.json`).then(r => { if (!r.ok) throw 0; return r.json(); }); }
+    try { CACHE[g] = await fetch(`data/matieres/${g}.json`, { cache: "no-cache" }).then(r => { if (!r.ok) throw 0; return r.json(); }); }
     catch (e) { CACHE[g] = null; }
   }
   return CACHE[g];
 }
 
 async function init() {
-  try { INDEX = await fetch("data/matieres/index.json").then(r => r.json()); } catch (e) { return; }
+  try { INDEX = await fetch("data/matieres/index.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   $("#mt-year").onchange = () => { locked = null; draw(); };
   document.addEventListener("geochange", e => setGeo(e.detail));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { draw(); drawHist(); }, 150); });

@@ -10,7 +10,7 @@ const ql = t => `${["1er", "2e", "3e", "4e"][+t.slice(-1) - 1]} trimestre ${t.sl
 
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { D = await fetch("data/chomage.json").then(r => r.json()); } catch (e) { return; }
+  try { D = await fetch("data/chomage.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }

@@ -5,8 +5,8 @@ const $ = s => document.querySelector(s);
 let A = null;
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { A = await fetch("data/argent_prive.json").then(r => r.json()); } catch (e) { return; }
-  try { A.rep = await fetch("data/repartition.json").then(r => r.json()); } catch (e) { A.rep = null; }
+  try { A = await fetch("data/argent_prive.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  try { A.rep = await fetch("data/repartition.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { A.rep = null; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }

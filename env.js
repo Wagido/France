@@ -5,7 +5,7 @@ let E = null;
 const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { E = await fetch("data/environnement.json").then(r => r.json()); } catch (e) { return; }
+  try { E = await fetch("data/environnement.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }

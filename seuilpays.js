@@ -6,7 +6,7 @@ const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
   try {
-    const [cmp, pre] = await Promise.all([fetch("data/comparaison.json").then(r => r.json()), fetch("data/prelevements_pays.json").then(r => r.json())]);
+    const [cmp, pre] = await Promise.all([fetch("data/comparaison.json", { cache: "no-cache" }).then(r => r.json()), fetch("data/prelevements_pays.json", { cache: "no-cache" }).then(r => r.json())]);
     const tx = Object.fromEntries(pre.pays.map(r => [r.code, r.prelevements]));
     P = cmp.comparaison.filter(r => r.apu?.dette_pct != null && tx[r.code] != null)
       .map(r => ({ code: r.code, nom: r.nom, dette: r.apu.dette_pct, tx: tx[r.code], an: r.apu.annee }));

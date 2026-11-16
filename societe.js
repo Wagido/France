@@ -24,14 +24,14 @@ function table(el, key, cols, def) {
 
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { IDX = await fetch("data/societe/index.json").then(r => r.json()); } catch (e) { return; }
+  try { IDX = await fetch("data/societe/index.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   document.addEventListener("geochange", e => setGeo(e.detail));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 200); });
   await setGeo($("#geo")?.value || "FR");
 }
 async function setGeo(g) {
   geo = g;
-  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/societe/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
+  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/societe/${g}.json`, { cache: "no-cache" }).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   drawAll();
 }
 function drawAll() { [sante, education, logement, transports, emploi, inegalites, dechets, capital, reduction].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } }); }

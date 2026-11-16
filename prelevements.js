@@ -5,7 +5,7 @@ let C = null;
 const $ = s => document.querySelector(s);
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { C = await fetch("data/prelevements_pays.json").then(r => r.json()); } catch (e) { return; }
+  try { C = await fetch("data/prelevements_pays.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   draw();
 }
 function draw() {

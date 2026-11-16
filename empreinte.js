@@ -11,14 +11,14 @@ const POSTE_L = { "Déplacements": "Transports (voiture, avion, livraisons…)",
 
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { IDX = await fetch("data/empreinte/index.json").then(r => r.json()); } catch (e) { return; }
+  try { IDX = await fetch("data/empreinte/index.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   document.addEventListener("geochange", e => setGeo(e.detail));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   await setGeo(document.querySelector("#geo")?.value || "FR");
 }
 async function setGeo(g) {
   geo = g;
-  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/empreinte/${g}.json`).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
+  if (!(g in CACHE)) { try { CACHE[g] = await fetch(`data/empreinte/${g}.json`, { cache: "no-cache" }).then(r => r.json()); } catch (e) { CACHE[g] = null; } }
   draw();
 }
 

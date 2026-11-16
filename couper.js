@@ -21,7 +21,7 @@ const GROUPES = [
 const sim = Object.fromEntries(GROUPES.map(([k]) => [k, 0]));
 async function init() {
   if (!window.TH) { setTimeout(init, 100); return; }
-  try { C = await fetch("data/couper.json").then(r => r.json()); } catch (e) { return; }
+  try { C = await fetch("data/couper.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   const sel = $("#cp-ref");
   sel.innerHTML = Object.entries(C.pays).filter(([g]) => g !== "FR").map(([g, n]) => `<option value="${g}">${n}</option>`).join("");
   sel.value = ref; sel.onchange = () => { ref = sel.value; chart(); };
