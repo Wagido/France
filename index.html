@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261120j">
+<link rel="stylesheet" href="style.css?v=20261120l">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1195,6 +1195,13 @@
   <h3>La chaîne pénale : des mises en cause aux condamnations</h3>
   <div id="ju-chaine" class="chart"></div>
   <p class="muted" style="font-size:.86rem" id="ju-chaine-note"></p>
+  <h3>Qui juge quoi ? L'organisation de la justice</h3>
+  <div class="table-scroll" id="jd-orga"></div>
+  <div class="callout small" id="jd-orga-txt"></div>
+  <h3>Le droit et la justice : normes en vigueur et moyens comparés en Europe</h3>
+  <div class="table-scroll" id="jd-cepej"></div>
+  <div class="callout small" id="jd-txt"></div>
+  <p class="muted" style="font-size:.8rem">Sources : Secrétariat général du gouvernement, <a href="https://data.gouv.fr/en/datasets/indicateurs-de-suivi-de-lactivite-normative" target="_blank" rel="noopener">indicateurs de suivi de l'activité normative</a> ; Conseil d'État, étude annuelle 2016 ; CEPEJ (Conseil de l'Europe), <a href="https://rm.coe.int/cepej-rapport-evaluation/1680b1f9d5" target="_blank" rel="noopener">rapport d'évaluation 2024</a>, données 2022 (chiffres allemands repris d'une note de l'Union syndicale des magistrats citant la CEPEJ, à vérifier).</p>
   <h3>Comparer les pays</h3><div id="ju-cmp" class="chart"></div>
 </section>
 
@@ -1388,42 +1395,43 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261120j"></script>
-<script src="app.js?v=20261120j"></script>
-<script src="energie.js?v=20261120j"></script>
-<script src="matieres.js?v=20261120j"></script>
-<script src="territoire.js?v=20261120j"></script>
-<script src="themes.js?v=20261120j"></script>
-<script src="societe.js?v=20261120j"></script>
-<script src="eco2.js?v=20261120j"></script>
-<script src="empreinte.js?v=20261120j"></script>
-<script src="argentprive.js?v=20261120j"></script>
-<script src="repartition.js?v=20261120j"></script>
-<script src="patrimoine.js?v=20261120j"></script>
-<script src="prelevements.js?v=20261120j"></script>
-<script src="travailvie.js?v=20261120j"></script>
-<script src="niveauvie.js?v=20261120j"></script>
-<script src="prosperite.js?v=20261120j"></script>
-<script src="exterieur.js?v=20261120j"></script>
-<script src="desindus.js?v=20261120j"></script>
-<script src="retraites.js?v=20261120j"></script>
-<script src="energiecout.js?v=20261120j"></script>
-<script src="logementeco.js?v=20261120j"></script>
-<script src="competences.js?v=20261120j"></script>
-<script src="couper.js?v=20261120j"></script>
-<script src="seuilpays.js?v=20261120j"></script>
-<script src="logement.js?v=20261120j"></script>
-<script src="env.js?v=20261120j"></script>
-<script src="agriculture.js?v=20261120j"></script>
-<script src="chaine.js?v=20261120j"></script>
-<script src="patrimoinehist.js?v=20261120j"></script>
-<script src="innovation.js?v=20261120j"></script>
+<script src="kpi.js?v=20261120l"></script>
+<script src="app.js?v=20261120l"></script>
+<script src="energie.js?v=20261120l"></script>
+<script src="matieres.js?v=20261120l"></script>
+<script src="territoire.js?v=20261120l"></script>
+<script src="themes.js?v=20261120l"></script>
+<script src="societe.js?v=20261120l"></script>
+<script src="eco2.js?v=20261120l"></script>
+<script src="empreinte.js?v=20261120l"></script>
+<script src="argentprive.js?v=20261120l"></script>
+<script src="repartition.js?v=20261120l"></script>
+<script src="patrimoine.js?v=20261120l"></script>
+<script src="prelevements.js?v=20261120l"></script>
+<script src="travailvie.js?v=20261120l"></script>
+<script src="niveauvie.js?v=20261120l"></script>
+<script src="prosperite.js?v=20261120l"></script>
+<script src="exterieur.js?v=20261120l"></script>
+<script src="desindus.js?v=20261120l"></script>
+<script src="retraites.js?v=20261120l"></script>
+<script src="energiecout.js?v=20261120l"></script>
+<script src="logementeco.js?v=20261120l"></script>
+<script src="competences.js?v=20261120l"></script>
+<script src="justicedroit.js?v=20261120l"></script>
+<script src="couper.js?v=20261120l"></script>
+<script src="seuilpays.js?v=20261120l"></script>
+<script src="logement.js?v=20261120l"></script>
+<script src="env.js?v=20261120l"></script>
+<script src="agriculture.js?v=20261120l"></script>
+<script src="chaine.js?v=20261120l"></script>
+<script src="patrimoinehist.js?v=20261120l"></script>
+<script src="innovation.js?v=20261120l"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261120j"></script>
-<script src="histoire.js?v=20261120j"></script>
-<script src="chomage.js?v=20261120j"></script>
-<script src="sources.js?v=20261120j"></script>
-<script src="nav.js?v=20261120j"></script>
+<script src="soussol.js?v=20261120l"></script>
+<script src="histoire.js?v=20261120l"></script>
+<script src="chomage.js?v=20261120l"></script>
+<script src="sources.js?v=20261120l"></script>
+<script src="nav.js?v=20261120l"></script>
 </body>
 </html>

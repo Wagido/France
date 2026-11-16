@@ -1,0 +1,17 @@
+{
+ "normes": {
+  "source": "Secrétariat général du gouvernement, indicateurs de suivi de l'activité normative (Légifrance, data.gouv.fr)",
+  "url": "https://data.gouv.fr/en/datasets/indicateurs-de-suivi-de-lactivite-normative",
+  "edition_2022": {"legislatifs": 93899, "reglementaires": 253118, "mots_millions": 45},
+  "edition_2026": {"total": 366999, "mots_millions": 48.8}
+ },
+ "cepej": {
+  "source": "Commission européenne pour l'efficacité de la justice (CEPEJ, Conseil de l'Europe), rapport d'évaluation 2024, données 2022 ; chiffres allemands cités par l'Union syndicale des magistrats d'après la CEPEJ",
+  "url": "https://rm.coe.int/cepej-rapport-evaluation/1680b1f9d5",
+  "lignes": [
+   {"l": "Budget de la justice par habitant", "fr": "77 €", "med": "85 €", "de": "~136 €"},
+   {"l": "Budget de la justice en % du PIB", "fr": "0,20 %", "med": "0,31 %", "de": "~0,21 %"},
+   {"l": "Juges professionnels pour 100 000 habitants", "fr": "11,3", "med": "17,6", "de": "~24,7"}
+  ]
+ }
+}
