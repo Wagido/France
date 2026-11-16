@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261122t">
+<link rel="stylesheet" href="style.css?v=20261122u">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -483,7 +483,7 @@
     <h2>La monnaie et la dette obligent-elles à croître ? <em class="en-constr">(en construction)</em> <span class="geo-fixed">France</span></h2>
   </div>
   <p class="lead">Une idée revient souvent : la monnaie naît de la dette, il faut toujours de nouveaux crédits pour rembourser les anciens et leurs intérêts, donc l'économie est condamnée à croître sans fin dans un monde physique fini. Qu'en est-il vraiment ?</p>
-  <p class="muted" style="margin:0 0 8px">Six parties : <a href="#monnaie" data-to="mo-p1">1. comment naît la monnaie</a> · <a href="#monnaie" data-to="mo-p6">2. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">3. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">4. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p4">5. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">6. les pistes</a></p>
+  <p class="muted" style="margin:0 0 8px">Sept parties : <a href="#monnaie" data-to="mo-p1">1. comment naît la monnaie</a> · <a href="#monnaie" data-to="mo-p6">2. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">3. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">4. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p7">5. le rendement du capital : taux sans risque, bêta, alpha</a> · <a href="#monnaie" data-to="mo-p4">6. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">7. les pistes</a></p>
   <div class="kpis" id="mo-kpis"></div>
 
   <h3 id="mo-p1" class="ag-part">1. Comment naît la monnaie</h3>
@@ -586,13 +586,35 @@
     <ul>
       <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec un taux de 3 %, une dette de 115 % du PIB et 2 % d'inflation, il faut dégager chaque année environ 1 % du PIB pour la stabiliser. Sans inflation non plus, plus de 3 %. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est le scénario redouté par les banques centrales, qui visent 2 % d'inflation pour cette raison aussi.</li>
       <li><b>Les « Trente Glorieuses » ont été faciles</b> : la croissance en valeur dépassait le taux d'intérêt, les dettes fondaient d'elles-mêmes. De 1986 à 2007, c'est l'inverse : les taux réels élevés ont fait grossir les dettes publiques. Depuis 2014, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
-      <li><b>Le rendement attendu du capital</b> : les épargnants, les fonds de pension et les actionnaires attendent 3 à 7 % par an. Dans une économie qui ne croît plus, ce rendement ne peut plus venir d'un gâteau plus grand, seulement d'une part plus grande prise sur les salaires ou sur les autres. C'est une tension politique, pas une impossibilité comptable.</li>
+      <li><b>Le rendement attendu du capital</b> (voir la partie 5) : les épargnants, les fonds de pension et les actionnaires attendent 3 à 7 % par an. Dans une économie qui ne croît plus, ce rendement ne peut plus venir d'un gâteau plus grand, seulement d'une part plus grande prise sur les salaires ou sur les autres. C'est une tension politique, pas une impossibilité comptable.</li>
       <li><b>L'emploi</b> : les gains de productivité (de l'ordre de 1 % par an en moyenne en France depuis 2000, moins depuis 2019) suppriment des heures de travail. Sans croissance, il faut partager le travail (temps de travail plus court) pour éviter le chômage.</li>
       <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée, la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, ce qui pousse les gouvernements et les banques centrales à relancer à chaque fois.</li>
     </ul>
   </div>
 
-  <h3 id="mo-p4" class="ag-part">5. Un monde physique fini</h3>
+  <h3 id="mo-p7" class="ag-part">5. Le rendement du capital : comment se calcule-t-il ?</h3>
+  <p class="lead">Les épargnants et les actionnaires attendent un rendement. Ce rendement n'est pas fixé au hasard : il se calcule <b>à partir du taux auquel l'État emprunte</b>, le taux « sans risque », auquel on ajoute des primes pour chaque risque pris. Toute l'échelle des rendements du capital est donc accrochée au taux de la dette publique, lui-même guidé par la banque centrale.</p>
+  <div class="in-need">
+    <div><b>① Le taux sans risque</b><span>C'est le taux des emprunts de l'État (en France, les OAT ; en zone euro, on prend souvent le Bund allemand) : on considère que l'État remboursera toujours. Il dépend du taux directeur de la BCE, de l'inflation attendue et de la confiance des prêteurs. À court terme, on prend le taux du marché monétaire ; à long terme, celui des obligations à 10 ans.</span></div>
+    <div><b>② Les primes de risque</b><span>On ajoute une prime pour chaque risque : une <b>prime de terme</b> pour prêter longtemps, une <b>prime de crédit</b> si l'emprunteur peut faire défaut (une entreprise paie plus cher que l'État), une <b>prime de liquidité</b> si le placement est difficile à revendre, et une <b>prime de risque actions</b> pour le risque de perte d'une action, estimée en général à 4 à 6 points par an.</span></div>
+    <div><b>③ Le modèle du bêta (MEDAF)</b><span>La formule classique d'évaluation des actifs financiers (MEDAF, ou CAPM en anglais) : <b>rendement exigé = taux sans risque + β × prime de risque du marché</b>. Le <b>bêta</b> mesure la sensibilité d'une action aux mouvements de la Bourse : β = 1, elle suit le marché ; β = 1,5, elle monte et baisse 1,5 fois plus fort, on exige donc plus ; β = 0,5, elle est plus stable, on exige moins.</span></div>
+    <div><b>④ L'alpha</b><span>L'<b>alpha</b> est ce qu'un placement rapporte <i>en plus</i> de ce que prévoit la formule. Un alpha positif signifie qu'un gérant a fait mieux que le risque pris ne le justifiait. C'est rare et peu durable : sur 10 à 15 ans, la grande majorité des fonds gérés activement font moins bien que les indices boursiers, une fois leurs frais déduits.</span></div>
+    <div><b>⑤ Le coût du capital des entreprises</b><span>Une entreprise se finance par dette et par actions. Son <b>coût moyen du capital</b> mélange le taux de ses emprunts et le rendement exigé par ses actionnaires (souvent 7 à 10 % par an pour une grande entreprise). Un investissement n'est lancé que s'il rapporte davantage : c'est ce seuil qui pousse à chercher toujours plus de croissance des profits.</span></div>
+    <div><b>⑥ Le prix des actifs</b><span>Le prix d'une action ou d'un logement est la valeur actuelle des revenus futurs (dividendes, loyers), « actualisés » au rendement exigé. Quand le taux sans risque baisse, le rendement exigé baisse et les prix montent : c'est ce qui s'est passé entre 2014 et 2021, avec des taux proches de zéro, pour les actions comme pour l'immobilier. Quand les taux remontent, comme en 2022-2023, les prix baissent.</span></div>
+  </div>
+  <h3>Le calculateur du rendement exigé</h3>
+  <div class="in-sim">
+    <label class="ctl">Taux sans risque (emprunt d'État à 10 ans) <input type="range" id="mo-rf" min="0" max="8" step="0.25" value="3.25"><b id="mo-rf-v"></b></label>
+    <label class="ctl">Prime de risque du marché des actions <input type="range" id="mo-erp" min="2" max="8" step="0.25" value="5"><b id="mo-erp-v"></b></label>
+    <label class="ctl">Bêta de l'action <input type="range" id="mo-beta" min="0" max="2" step="0.1" value="1"><b id="mo-beta-v"></b></label>
+    <label class="ctl">Rendement réellement obtenu <input type="range" id="mo-obt" min="-5" max="20" step="0.5" value="9"><b id="mo-obt-v"></b></label>
+  </div>
+  <div id="mo-capm-out"></div>
+  <h3>Ce que le capital a vraiment rapporté en France (rendement réel par an, après inflation)</h3>
+  <div id="mo-rend"></div><div class="legend-row" id="mo-rend-legend"></div>
+  <div class="callout small" id="mo-rend-txt"></div>
+
+  <h3 id="mo-p4" class="ag-part">6. Un monde physique fini</h3>
   <div class="callout small">
     <ul>
       <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
@@ -604,7 +626,7 @@
     </ul>
   </div>
 
-  <h3 id="mo-p5" class="ag-part">6. Les pistes proposées</h3>
+  <h3 id="mo-p5" class="ag-part">7. Les pistes proposées</h3>
   <div class="in-need">
     <div><b>La monnaie « pleine » ou 100 %</b><span>Les banques ne créent plus de monnaie : elles ne prêtent que l'épargne qu'on leur confie, et seule la banque centrale émet la monnaie. Proposé par Irving Fisher et les économistes de Chicago dans les années 1930, repris par deux économistes du FMI en 2012 (Benes et Kumhof, « The Chicago Plan Revisited » ; voir la partie 2). Les Suisses l'ont rejeté par référendum le 10 juin 2018, à 75,7 %.</span></div>
     <div><b>Une économie de post-croissance</b><span>Réduire la dépendance à la croissance plutôt que la monnaie : partage du temps de travail, retraites par répartition plutôt que par capitalisation, limites aux rendements et aux dettes, fiscalité qui fait redépenser les revenus accumulés. C'est la voie étudiée par Tim Jackson et Peter Victor.</span></div>
@@ -2254,50 +2276,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261122t"></script>
-<script src="app.js?v=20261122t"></script>
-<script src="energie.js?v=20261122t"></script>
-<script src="matieres.js?v=20261122t"></script>
-<script src="territoire.js?v=20261122t"></script>
-<script src="themes.js?v=20261122t"></script>
-<script src="societe.js?v=20261122t"></script>
-<script src="eco2.js?v=20261122t"></script>
-<script src="empreinte.js?v=20261122t"></script>
-<script src="argentprive.js?v=20261122t"></script>
-<script src="repartition.js?v=20261122t"></script>
-<script src="patrimoine.js?v=20261122t"></script>
-<script src="prelevements.js?v=20261122t"></script>
-<script src="travailvie.js?v=20261122t"></script>
-<script src="niveauvie.js?v=20261122t"></script>
-<script src="prosperite.js?v=20261122t"></script>
-<script src="exterieur.js?v=20261122t"></script>
-<script src="desindus.js?v=20261122t"></script>
-<script src="retraites.js?v=20261122t"></script>
-<script src="energiecout.js?v=20261122t"></script>
-<script src="energieformation.js?v=20261122t"></script>
-<script src="nucleaire.js?v=20261122t"></script>
-<script src="logementeco.js?v=20261122t"></script>
-<script src="competences.js?v=20261122t"></script>
-<script src="justicedroit.js?v=20261122t"></script>
-<script src="fonctionnaires.js?v=20261122t"></script>
-<script src="couper.js?v=20261122t"></script>
-<script src="seuilpays.js?v=20261122t"></script>
-<script src="logement.js?v=20261122t"></script>
-<script src="env.js?v=20261122t"></script>
-<script src="agriculture.js?v=20261122t"></script>
-<script src="rendements.js?v=20261122t"></script>
-<script src="monnaie.js?v=20261122t"></script>
-<script src="limites.js?v=20261122t"></script>
-<script src="sociologie.js?v=20261122t"></script>
-<script src="chaine.js?v=20261122t"></script>
-<script src="patrimoinehist.js?v=20261122t"></script>
-<script src="innovation.js?v=20261122t"></script>
+<script src="kpi.js?v=20261122u"></script>
+<script src="app.js?v=20261122u"></script>
+<script src="energie.js?v=20261122u"></script>
+<script src="matieres.js?v=20261122u"></script>
+<script src="territoire.js?v=20261122u"></script>
+<script src="themes.js?v=20261122u"></script>
+<script src="societe.js?v=20261122u"></script>
+<script src="eco2.js?v=20261122u"></script>
+<script src="empreinte.js?v=20261122u"></script>
+<script src="argentprive.js?v=20261122u"></script>
+<script src="repartition.js?v=20261122u"></script>
+<script src="patrimoine.js?v=20261122u"></script>
+<script src="prelevements.js?v=20261122u"></script>
+<script src="travailvie.js?v=20261122u"></script>
+<script src="niveauvie.js?v=20261122u"></script>
+<script src="prosperite.js?v=20261122u"></script>
+<script src="exterieur.js?v=20261122u"></script>
+<script src="desindus.js?v=20261122u"></script>
+<script src="retraites.js?v=20261122u"></script>
+<script src="energiecout.js?v=20261122u"></script>
+<script src="energieformation.js?v=20261122u"></script>
+<script src="nucleaire.js?v=20261122u"></script>
+<script src="logementeco.js?v=20261122u"></script>
+<script src="competences.js?v=20261122u"></script>
+<script src="justicedroit.js?v=20261122u"></script>
+<script src="fonctionnaires.js?v=20261122u"></script>
+<script src="couper.js?v=20261122u"></script>
+<script src="seuilpays.js?v=20261122u"></script>
+<script src="logement.js?v=20261122u"></script>
+<script src="env.js?v=20261122u"></script>
+<script src="agriculture.js?v=20261122u"></script>
+<script src="rendements.js?v=20261122u"></script>
+<script src="monnaie.js?v=20261122u"></script>
+<script src="limites.js?v=20261122u"></script>
+<script src="sociologie.js?v=20261122u"></script>
+<script src="chaine.js?v=20261122u"></script>
+<script src="patrimoinehist.js?v=20261122u"></script>
+<script src="innovation.js?v=20261122u"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261122t"></script>
-<script src="histoire.js?v=20261122t"></script>
-<script src="chomage.js?v=20261122t"></script>
-<script src="sources.js?v=20261122t"></script>
-<script src="nav.js?v=20261122t"></script>
+<script src="soussol.js?v=20261122u"></script>
+<script src="histoire.js?v=20261122u"></script>
+<script src="chomage.js?v=20261122u"></script>
+<script src="sources.js?v=20261122u"></script>
+<script src="nav.js?v=20261122u"></script>
 </body>
 </html>

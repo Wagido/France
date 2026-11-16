@@ -14,6 +14,7 @@ async function init() {
   try { M = await fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
+  ["mo-rf", "mo-erp", "mo-beta", "mo-obt"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", capm));
   ["mo-d", "mo-r", "mo-g", "mo-p", "mo-s"].forEach(id => $("#" + id).addEventListener("input", snow));
   presets();
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
@@ -95,6 +96,36 @@ function drawInfl() {
   el.replaceChildren(svg.node());
 }
 
+/* rendement exigé (MEDAF) : taux sans risque + bêta × prime de risque ; alpha = obtenu − exigé */
+function capm() {
+  if (!$("#mo-rf")) return;
+  const rf = +$("#mo-rf").value, erp = +$("#mo-erp").value, be = +$("#mo-beta").value, ob = +$("#mo-obt").value;
+  $("#mo-rf-v").textContent = f2(rf) + " %"; $("#mo-erp-v").textContent = f2(erp) + " pts"; $("#mo-beta-v").textContent = be.toLocaleString("fr-FR", { minimumFractionDigits: 1 }); $("#mo-obt-v").textContent = f1(ob) + " %";
+  const ex = rf + be * erp, al = ob - ex, dbl = ex > 0 ? Math.log(2) / Math.log(1 + ex / 100) : null;
+  const last = M.serie.at(-1), p5 = M.serie.slice(-5), gN = p5.reduce((a, x) => a + x.nominal, 0) / p5.length;
+  const bar = (l, v, c) => `<div class="in-sbar"><span class="lab">${l}</span><span class="tr"><span style="width:${Math.max(0, Math.min(100, v * 5))}%;background:${c}"></span></span><b>${f1(v)} %</b><small></small></div>`;
+  $("#mo-capm-out").innerHTML = bar("Taux sans risque (dette de l'État)", rf, "#64748b") + bar(`+ ${be.toLocaleString("fr-FR")} × prime de risque`, be * erp, "#93c5fd") + bar("= Rendement exigé", ex, "#2563eb") + bar("Rendement obtenu", ob, ob >= ex ? "#16a34a" : "#dc2626") +
+    `<p class="in-verdict">Rendement exigé : <b>${f1(ex)} % par an</b>${dbl ? ` (le capital double en ${n0(dbl)} ans)` : ""}. Alpha : <b style="color:${al >= 0 ? "var(--pos)" : "var(--neg)"}">${sg(Math.round(al * 10) / 10)} point${Math.abs(al) >= 2 ? "s" : ""}</b> ${al > 0 ? "(surperformance)" : al < 0 ? "(sous-performance)" : ""}. À comparer à la croissance de l'économie française en valeur : ${f1(gN)} % par an en moyenne sur ${p5[0].annee}-${last.annee}.</p>`;
+}
+
+/* rendements réels du capital en France par période */
+function rendements() {
+  const { legend } = window.TH, P = M.rendements_periodes; if (!P || !$("#mo-rend")) return;
+  const K = [["actions", "Actions (dividendes compris)", "#2563eb"], ["logement", "Logement (loyers compris)", "#f59e0b"], ["obligations", "Obligations d'État à long terme", "#16a34a"], ["monetaire", "Placements sans risque à court terme", "#94a3b8"]];
+  const mx = Math.max(...P.flatMap(p => K.map(k => Math.abs(p[k[0]] || 0))));
+  $("#mo-rend").innerHTML = `<div class="mo-rend">` + P.map(p => `<div class="mo-rend-p"><b>${p.l}</b><small class="muted">inflation ${f1(p.inflation)} %/an</small>${K.map(k => { const v = p[k[0]];
+    return `<div class="mo-rend-r"><span class="mo-rend-t"><i class="${v < 0 ? "neg" : ""}" style="width:${(50 * Math.abs(v) / mx).toFixed(1)}%;background:${k[2]}"></i></span><em>${sg(v)} %</em></div>`; }).join("")}</div>`).join("") + `</div>`;
+  legend("#mo-rend-legend", K.map(k => [k[1], k[2]]));
+  const L = P.at(-1), g = M.serie.filter(x => x.annee >= 1950 && x.annee <= 2020), gr = g.reduce((a, x) => a + x.reel, 0) / g.length, a = P[1], b = P[2];
+  $("#mo-rend-txt").innerHTML = `<ul>
+    <li><b>Sur 1950-2020, les actions ont rapporté ${f1(L.actions)} % par an après inflation</b>, le logement ${f1(L.logement)} % (loyers compris, avant frais et impôts), les obligations d'État ${f1(L.obligations)} %, les placements sans risque à court terme ${f1(L.monetaire)} %. L'écart entre les actions et le sans risque, environ ${f1(L.actions - L.monetaire)} points, est la prime de risque effectivement obtenue sur la période.</li>
+    <li><b>Le capital a rapporté plus que la croissance</b> : l'économie française a crû de ${f1(gr)} % par an en volume sur la même période. C'est l'inégalité « r > g » de Thomas Piketty : quand le rendement du capital dépasse la croissance, les patrimoines grossissent plus vite que les revenus du travail.</li>
+    <li><b>Mais ce n'est pas une loi</b> : de 1950 à 1979, les placements sans risque ont rapporté ${f1(a.monetaire)} % et les obligations ${f1(a.obligations)} % par an après inflation. L'inflation et des taux bas, encadrés par l'État (le « circuit du Trésor », voir la partie 2), ont fait payer les détenteurs d'épargne et fondre les dettes, pendant les années de croissance les plus fortes. De 1980 à 2007, c'est l'inverse : taux élevés, inflation maîtrisée, ${f1(b.obligations)} % par an pour les obligations, et dettes qui gonflent.</li>
+    <li><b>Dette et rendement du capital sont donc liés</b> : le taux de la dette publique est le plancher de tous les rendements. Dans une économie qui croît peu, un rendement élevé du capital fait grossir les dettes et les patrimoines plus vite que les revenus ; pour en sortir, l'histoire montre trois voies, déjà évoquées : la croissance, l'inflation avec des taux maintenus bas (« répression financière »), ou les pertes (défauts, faillites, krachs). Le niveau des taux n'est pas une loi de la nature : il dépend de la banque centrale, de la réglementation de l'épargne et des choix politiques.</li>
+  </ul>
+  <p class="muted" style="font-size:.78rem">Jordà, Knoll, Kuvshinov, Schularick et Taylor, « The Rate of Return on Everything, 1870-2015 », <i>Quarterly Journal of Economics</i> (2019), Macrohistory Database ; moyennes arithmétiques des rendements annuels réels (rendement nominal total déflaté par les prix à la consommation). Croissance : INSEE.</p>`;
+}
+
 function draw() {
   if (!M || !$("#mo-credit")) return;
   const { kpis, lineChart, legend, esc } = window.TH;
@@ -143,7 +174,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow();
+  drawInfl(); mini(); snow(); capm(); rendements();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

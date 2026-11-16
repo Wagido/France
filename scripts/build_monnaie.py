@@ -87,6 +87,28 @@ for y in sorted(A):
     agregats.append(row)
 dern = sorted(r["TIME_PERIOD"] for r in csv.DictReader(open(os.path.join(SRC, "monnaie", "ecb_agregats.csv"), encoding="utf-8")))[-1]
 
-out = {"agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
+# rendements du capital en France (Jordà, Schularick, Taylor, Knoll, Kuvshinov, « The Rate of Return on Everything », Macrohistory Database) :
+# rendements nominaux annuels (dividendes ou loyers compris) déflatés par les prix à la consommation
+wb2 = openpyxl.load_workbook(os.path.join(SRC, "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
+rr = wb2[wb2.sheetnames[0]].iter_rows(values_only=True); hh = next(rr)
+J = {k: hh.index(k) for k in ("year", "iso", "eq_tr", "housing_tr", "bond_tr", "bill_rate", "cpi", "gdp")}
+fra = {r[J["year"]]: r for r in rr if r[J["iso"]] == "FRA"}
+rend = []
+for y in sorted(fra):
+    r, p_ = fra[y], fra.get(y - 1)
+    if not p_ or not r[J["cpi"]] or not p_[J["cpi"]]:
+        continue
+    infl = r[J["cpi"]] / p_[J["cpi"]] - 1
+    reel = lambda k: None if r[J[k]] is None else round(100 * ((1 + r[J[k]]) / (1 + infl) - 1), 2)
+    ng = round(100 * (r[J["gdp"]] / p_[J["gdp"]] - 1), 2) if r[J["gdp"]] and p_[J["gdp"]] else None
+    rend.append({"annee": y, "actions": reel("eq_tr"), "logement": reel("housing_tr"), "obligations": reel("bond_tr"), "monetaire": reel("bill_rate"),
+                 "inflation": round(100 * infl, 2), "pib_nominal": ng})
+def moy_r(a, b, k):
+    v = [x[k] for x in rend if a <= x["annee"] <= b and x[k] is not None]
+    return round(sum(v) / len(v), 1) if v else None
+periodes_r = [{"l": f"{a}-{b}", **{k: moy_r(a, b, k) for k in ("actions", "logement", "obligations", "monetaire", "inflation")}}
+              for a, b in ((1900, 1949), (1950, 1979), (1980, 2007), (2008, 2020), (1950, 2020))]
+
+out = {"rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
 json.dump(out, open(os.path.join(HERE, "..", "data", "monnaie.json"), "w"), ensure_ascii=False, indent=1)
 print(agregats[0], agregats[-1], dern, serie[0], serie[-1], credit[0], credit[-1], periodes, sep="\n")

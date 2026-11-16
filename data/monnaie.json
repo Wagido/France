@@ -1,4 +1,1398 @@
 {
+ "rendements": [
+  {
+   "annee": 1871,
+   "actions": 16.99,
+   "logement": -6.97,
+   "obligations": 4.96,
+   "monetaire": 1.06,
+   "inflation": 4.4,
+   "pib_nominal": -1.16
+  },
+  {
+   "annee": 1872,
+   "actions": 12.94,
+   "logement": 4.42,
+   "obligations": 0.23,
+   "monetaire": 6.12,
+   "inflation": -1.05,
+   "pib_nominal": 5.38
+  },
+  {
+   "annee": 1873,
+   "actions": 7.77,
+   "logement": 2.71,
+   "obligations": 16.24,
+   "monetaire": 4.75,
+   "inflation": 0.0,
+   "pib_nominal": -2.95
+  },
+  {
+   "annee": 1874,
+   "actions": 9.58,
+   "logement": -5.13,
+   "obligations": 12.15,
+   "monetaire": 3.5,
+   "inflation": 0.0,
+   "pib_nominal": 7.32
+  },
+  {
+   "annee": 1875,
+   "actions": 18.33,
+   "logement": 12.51,
+   "obligations": 13.26,
+   "monetaire": 5.49,
+   "inflation": -2.13,
+   "pib_nominal": 0.94
+  },
+  {
+   "annee": 1876,
+   "actions": 3.46,
+   "logement": 9.29,
+   "obligations": 6.88,
+   "monetaire": -0.74,
+   "inflation": 3.26,
+   "pib_nominal": -6.22
+  },
+  {
+   "annee": 1877,
+   "actions": 5.25,
+   "logement": 13.08,
+   "obligations": 8.82,
+   "monetaire": 2.0,
+   "inflation": 0.0,
+   "pib_nominal": 4.14
+  },
+  {
+   "annee": 1878,
+   "actions": 11.48,
+   "logement": 13.23,
+   "obligations": 11.95,
+   "monetaire": 5.22,
+   "inflation": -2.11,
+   "pib_nominal": -2.57
+  },
+  {
+   "annee": 1879,
+   "actions": 11.77,
+   "logement": 20.33,
+   "obligations": 10.68,
+   "monetaire": 2.88,
+   "inflation": 0.0,
+   "pib_nominal": -8.08
+  },
+  {
+   "annee": 1880,
+   "actions": 21.34,
+   "logement": 13.16,
+   "obligations": 6.46,
+   "monetaire": 1.43,
+   "inflation": 1.08,
+   "pib_nominal": 10.73
+  },
+  {
+   "annee": 1881,
+   "actions": 27.96,
+   "logement": 12.43,
+   "obligations": 5.08,
+   "monetaire": 4.79,
+   "inflation": -1.06,
+   "pib_nominal": 4.27
+  },
+  {
+   "annee": 1882,
+   "actions": -17.0,
+   "logement": 2.13,
+   "obligations": -3.29,
+   "monetaire": 3.41,
+   "inflation": 0.0,
+   "pib_nominal": 5.12
+  },
+  {
+   "annee": 1883,
+   "actions": -5.68,
+   "logement": 5.15,
+   "obligations": -1.9,
+   "monetaire": 0.51,
+   "inflation": 2.15,
+   "pib_nominal": -2.18
+  },
+  {
+   "annee": 1884,
+   "actions": 5.14,
+   "logement": -0.46,
+   "obligations": 6.58,
+   "monetaire": 2.48,
+   "inflation": 0.0,
+   "pib_nominal": -4.45
+  },
+  {
+   "annee": 1885,
+   "actions": 4.43,
+   "logement": 7.84,
+   "obligations": 7.58,
+   "monetaire": 4.65,
+   "inflation": -2.11,
+   "pib_nominal": -3.58
+  },
+  {
+   "annee": 1886,
+   "actions": 4.12,
+   "logement": 4.24,
+   "obligations": 7.77,
+   "monetaire": 2.2,
+   "inflation": 0.0,
+   "pib_nominal": 0.5
+  },
+  {
+   "annee": 1887,
+   "actions": 3.41,
+   "logement": 7.24,
+   "obligations": 2.38,
+   "monetaire": 3.53,
+   "inflation": -1.08,
+   "pib_nominal": -0.33
+  },
+  {
+   "annee": 1888,
+   "actions": 2.68,
+   "logement": 3.71,
+   "obligations": 4.2,
+   "monetaire": 1.63,
+   "inflation": 1.09,
+   "pib_nominal": 2.15
+  },
+  {
+   "annee": 1889,
+   "actions": 6.84,
+   "logement": 11.25,
+   "obligations": 10.35,
+   "monetaire": 3.65,
+   "inflation": -1.08,
+   "pib_nominal": 6.78
+  },
+  {
+   "annee": 1890,
+   "actions": 9.97,
+   "logement": 6.52,
+   "obligations": 12.22,
+   "monetaire": 2.62,
+   "inflation": 0.0,
+   "pib_nominal": 5.48
+  },
+  {
+   "annee": 1891,
+   "actions": 1.16,
+   "logement": 3.6,
+   "obligations": 2.49,
+   "monetaire": 1.41,
+   "inflation": 1.09,
+   "pib_nominal": 1.39
+  },
+  {
+   "annee": 1892,
+   "actions": 1.17,
+   "logement": 6.24,
+   "obligations": 8.07,
+   "monetaire": 2.92,
+   "inflation": -1.08,
+   "pib_nominal": -2.16
+  },
+  {
+   "annee": 1893,
+   "actions": 9.61,
+   "logement": 9.46,
+   "obligations": 4.25,
+   "monetaire": 3.34,
+   "inflation": -1.09,
+   "pib_nominal": -1.91
+  },
+  {
+   "annee": 1894,
+   "actions": -2.03,
+   "logement": 1.38,
+   "obligations": 4.93,
+   "monetaire": 0.68,
+   "inflation": 1.1,
+   "pib_nominal": 0.91
+  },
+  {
+   "annee": 1895,
+   "actions": 4.06,
+   "logement": 2.35,
+   "obligations": 3.23,
+   "monetaire": 2.75,
+   "inflation": -1.09,
+   "pib_nominal": -4.37
+  },
+  {
+   "annee": 1896,
+   "actions": 8.52,
+   "logement": 5.92,
+   "obligations": 4.57,
+   "monetaire": 1.71,
+   "inflation": 0.0,
+   "pib_nominal": 5.86
+  },
+  {
+   "annee": 1897,
+   "actions": 12.77,
+   "logement": 10.19,
+   "obligations": 5.84,
+   "monetaire": 4.11,
+   "inflation": -2.2,
+   "pib_nominal": 5.78
+  },
+  {
+   "annee": 1898,
+   "actions": 3.14,
+   "logement": 3.89,
+   "obligations": 0.52,
+   "monetaire": 0.86,
+   "inflation": 1.12,
+   "pib_nominal": 4.87
+  },
+  {
+   "annee": 1899,
+   "actions": 3.55,
+   "logement": 8.89,
+   "obligations": 0.86,
+   "monetaire": 2.84,
+   "inflation": 0.0,
+   "pib_nominal": 2.1
+  },
+  {
+   "annee": 1900,
+   "actions": 2.83,
+   "logement": 9.14,
+   "obligations": 2.92,
+   "monetaire": 1.91,
+   "inflation": 1.11,
+   "pib_nominal": 0.72
+  },
+  {
+   "annee": 1901,
+   "actions": -5.44,
+   "logement": 4.62,
+   "obligations": 2.98,
+   "monetaire": 2.41,
+   "inflation": 0.0,
+   "pib_nominal": -5.69
+  },
+  {
+   "annee": 1902,
+   "actions": 0.74,
+   "logement": 5.22,
+   "obligations": 1.48,
+   "monetaire": 2.39,
+   "inflation": 0.0,
+   "pib_nominal": 3.04
+  },
+  {
+   "annee": 1903,
+   "actions": 3.95,
+   "logement": 7.44,
+   "obligations": 2.45,
+   "monetaire": 3.84,
+   "inflation": -1.1,
+   "pib_nominal": 6.31
+  },
+  {
+   "annee": 1904,
+   "actions": 6.29,
+   "logement": 3.99,
+   "obligations": -2.39,
+   "monetaire": 2.14,
+   "inflation": 0.0,
+   "pib_nominal": -2.42
+  },
+  {
+   "annee": 1905,
+   "actions": 5.4,
+   "logement": 3.3,
+   "obligations": 10.57,
+   "monetaire": 2.11,
+   "inflation": 0.0,
+   "pib_nominal": 0.44
+  },
+  {
+   "annee": 1906,
+   "actions": 1.76,
+   "logement": 4.58,
+   "obligations": -2.18,
+   "monetaire": 1.55,
+   "inflation": 1.11,
+   "pib_nominal": 7.23
+  },
+  {
+   "annee": 1907,
+   "actions": 0.64,
+   "logement": 4.41,
+   "obligations": 1.9,
+   "monetaire": 2.23,
+   "inflation": 1.1,
+   "pib_nominal": 8.78
+  },
+  {
+   "annee": 1908,
+   "actions": 5.16,
+   "logement": 4.49,
+   "obligations": 3.4,
+   "monetaire": 1.04,
+   "inflation": 1.09,
+   "pib_nominal": -3.65
+  },
+  {
+   "annee": 1909,
+   "actions": 9.49,
+   "logement": 6.63,
+   "obligations": 4.9,
+   "monetaire": 1.75,
+   "inflation": 0.0,
+   "pib_nominal": 7.43
+  },
+  {
+   "annee": 1910,
+   "actions": 2.25,
+   "logement": 8.06,
+   "obligations": 0.95,
+   "monetaire": 1.3,
+   "inflation": 1.08,
+   "pib_nominal": 2.03
+  },
+  {
+   "annee": 1911,
+   "actions": 3.3,
+   "logement": 2.95,
+   "obligations": -3.5,
+   "monetaire": -1.58,
+   "inflation": 4.26,
+   "pib_nominal": 10.2
+  },
+  {
+   "annee": 1912,
+   "actions": 6.3,
+   "logement": 5.18,
+   "obligations": -1.95,
+   "monetaire": 3.12,
+   "inflation": 0.0,
+   "pib_nominal": 9.47
+  },
+  {
+   "annee": 1913,
+   "actions": 0.24,
+   "logement": 5.11,
+   "obligations": -2.02,
+   "monetaire": 3.82,
+   "inflation": 0.0,
+   "pib_nominal": 0.43
+  },
+  {
+   "annee": 1914,
+   "actions": -12.83,
+   "logement": 5.05,
+   "obligations": -15.95,
+   "monetaire": 0.81,
+   "inflation": 2.04,
+   "pib_nominal": -5.2
+  },
+  {
+   "annee": 1915,
+   "actions": -23.11,
+   "logement": -6.8,
+   "obligations": -19.13,
+   "monetaire": null,
+   "inflation": 17.65,
+   "pib_nominal": 15.24
+  },
+  {
+   "annee": 1916,
+   "actions": 0.54,
+   "logement": 0.22,
+   "obligations": -13.88,
+   "monetaire": null,
+   "inflation": 15.0,
+   "pib_nominal": 20.81
+  },
+  {
+   "annee": 1917,
+   "actions": -10.6,
+   "logement": -16.17,
+   "obligations": -12.96,
+   "monetaire": null,
+   "inflation": 17.39,
+   "pib_nominal": -0.54
+  },
+  {
+   "annee": 1918,
+   "actions": -14.88,
+   "logement": -21.89,
+   "obligations": -14.67,
+   "monetaire": null,
+   "inflation": 29.63,
+   "pib_nominal": 2.26
+  },
+  {
+   "annee": 1919,
+   "actions": -14.02,
+   "logement": -16.65,
+   "obligations": -20.1,
+   "monetaire": null,
+   "inflation": 25.71,
+   "pib_nominal": 48.14
+  },
+  {
+   "annee": 1920,
+   "actions": -32.68,
+   "logement": -25.56,
+   "obligations": -28.75,
+   "monetaire": null,
+   "inflation": 38.64,
+   "pib_nominal": 77.89
+  },
+  {
+   "annee": 1921,
+   "actions": 9.86,
+   "logement": 27.33,
+   "obligations": 17.91,
+   "monetaire": null,
+   "inflation": -13.11,
+   "pib_nominal": -23.75
+  },
+  {
+   "annee": 1922,
+   "actions": 28.17,
+   "logement": 19.51,
+   "obligations": 18.13,
+   "monetaire": 8.38,
+   "inflation": -3.77,
+   "pib_nominal": 16.38
+  },
+  {
+   "annee": 1923,
+   "actions": 13.02,
+   "logement": 8.1,
+   "obligations": -11.84,
+   "monetaire": -6.6,
+   "inflation": 11.76,
+   "pib_nominal": 21.41
+  },
+  {
+   "annee": 1924,
+   "actions": -9.31,
+   "logement": 0.59,
+   "obligations": -15.36,
+   "monetaire": -7.74,
+   "inflation": 14.04,
+   "pib_nominal": 14.99
+  },
+  {
+   "annee": 1925,
+   "actions": 8.45,
+   "logement": 10.7,
+   "obligations": -7.7,
+   "monetaire": -0.44,
+   "inflation": 6.15,
+   "pib_nominal": 14.11
+  },
+  {
+   "annee": 1926,
+   "actions": -4.55,
+   "logement": -11.14,
+   "obligations": -13.47,
+   "monetaire": -18.99,
+   "inflation": 30.43,
+   "pib_nominal": 30.58
+  },
+  {
+   "annee": 1927,
+   "actions": 20.08,
+   "logement": 5.24,
+   "obligations": 17.21,
+   "monetaire": -1.47,
+   "inflation": 4.44,
+   "pib_nominal": -5.95
+  },
+  {
+   "annee": 1928,
+   "actions": 48.36,
+   "logement": 6.38,
+   "obligations": 17.71,
+   "monetaire": 3.02,
+   "inflation": 0.0,
+   "pib_nominal": 8.49
+  },
+  {
+   "annee": 1929,
+   "actions": -5.92,
+   "logement": 3.67,
+   "obligations": 21.98,
+   "monetaire": -2.74,
+   "inflation": 6.38,
+   "pib_nominal": 4.86
+  },
+  {
+   "annee": 1930,
+   "actions": -27.51,
+   "logement": 19.72,
+   "obligations": 9.3,
+   "monetaire": 1.34,
+   "inflation": 1.0,
+   "pib_nominal": -3.56
+  },
+  {
+   "annee": 1931,
+   "actions": -29.1,
+   "logement": 15.6,
+   "obligations": 3.6,
+   "monetaire": 5.75,
+   "inflation": -3.96,
+   "pib_nominal": -10.57
+  },
+  {
+   "annee": 1932,
+   "actions": 36.6,
+   "logement": 20.4,
+   "obligations": 5.81,
+   "monetaire": 11.66,
+   "inflation": -9.28,
+   "pib_nominal": -10.9
+  },
+  {
+   "annee": 1933,
+   "actions": 4.75,
+   "logement": 7.7,
+   "obligations": -6.51,
+   "monetaire": 5.22,
+   "inflation": -3.41,
+   "pib_nominal": -6.57
+  },
+  {
+   "annee": 1934,
+   "actions": -3.99,
+   "logement": 6.54,
+   "obligations": 24.93,
+   "monetaire": 5.75,
+   "inflation": -3.53,
+   "pib_nominal": -7.54
+  },
+  {
+   "annee": 1935,
+   "actions": 10.1,
+   "logement": 8.99,
+   "obligations": 9.73,
+   "monetaire": 12.88,
+   "inflation": -8.54,
+   "pib_nominal": -11.12
+  },
+  {
+   "annee": 1936,
+   "actions": 10.28,
+   "logement": -5.87,
+   "obligations": 0.74,
+   "monetaire": -2.8,
+   "inflation": 6.67,
+   "pib_nominal": 20.5
+  },
+  {
+   "annee": 1937,
+   "actions": -24.97,
+   "logement": -0.94,
+   "obligations": -23.77,
+   "monetaire": -17.76,
+   "inflation": 26.25,
+   "pib_nominal": 40.78
+  },
+  {
+   "annee": 1938,
+   "actions": -7.0,
+   "logement": -11.1,
+   "obligations": 5.13,
+   "monetaire": -9.75,
+   "inflation": 13.86,
+   "pib_nominal": 19.38
+  },
+  {
+   "annee": 1939,
+   "actions": 9.77,
+   "logement": -4.77,
+   "obligations": -13.36,
+   "monetaire": -3.81,
+   "inflation": 6.09,
+   "pib_nominal": 13.69
+  },
+  {
+   "annee": 1940,
+   "actions": 24.02,
+   "logement": -7.04,
+   "obligations": 4.02,
+   "monetaire": -14.41,
+   "inflation": 18.85,
+   "pib_nominal": -1.93
+  },
+  {
+   "annee": 1941,
+   "actions": 30.41,
+   "logement": -3.36,
+   "obligations": -1.88,
+   "monetaire": -13.28,
+   "inflation": 17.24,
+   "pib_nominal": -7.29
+  },
+  {
+   "annee": 1942,
+   "actions": 27.4,
+   "logement": 16.53,
+   "obligations": -13.47,
+   "monetaire": -15.73,
+   "inflation": 20.59,
+   "pib_nominal": 8.09
+  },
+  {
+   "annee": 1943,
+   "actions": -33.57,
+   "logement": 24.89,
+   "obligations": -17.51,
+   "monetaire": -17.96,
+   "inflation": 23.9,
+   "pib_nominal": 17.65
+  },
+  {
+   "annee": 1944,
+   "actions": -27.87,
+   "logement": -0.01,
+   "obligations": -11.54,
+   "monetaire": -16.99,
+   "inflation": 22.44,
+   "pib_nominal": 3.41
+  },
+  {
+   "annee": 1945,
+   "actions": -46.07,
+   "logement": -23.69,
+   "obligations": -31.3,
+   "monetaire": -31.61,
+   "inflation": 48.23,
+   "pib_nominal": 60.74
+  },
+  {
+   "annee": 1946,
+   "actions": -16.51,
+   "logement": -14.64,
+   "obligations": -38.16,
+   "monetaire": -33.56,
+   "inflation": 52.49,
+   "pib_nominal": 131.87
+  },
+  {
+   "annee": 1947,
+   "actions": -45.35,
+   "logement": -13.95,
+   "obligations": -47.2,
+   "monetaire": -31.93,
+   "inflation": 49.22,
+   "pib_nominal": 61.71
+  },
+  {
+   "annee": 1948,
+   "actions": -43.73,
+   "logement": -17.63,
+   "obligations": -40.49,
+   "monetaire": -35.64,
+   "inflation": 58.63,
+   "pib_nominal": 70.2
+  },
+  {
+   "annee": 1949,
+   "actions": -25.27,
+   "logement": 17.27,
+   "obligations": -8.72,
+   "monetaire": -9.03,
+   "inflation": 12.7,
+   "pib_nominal": 52.62
+  },
+  {
+   "annee": 1950,
+   "actions": -22.7,
+   "logement": 3.34,
+   "obligations": -11.3,
+   "monetaire": -6.76,
+   "inflation": 9.86,
+   "pib_nominal": 15.5
+  },
+  {
+   "annee": 1951,
+   "actions": 23.68,
+   "logement": 3.14,
+   "obligations": -21.34,
+   "monetaire": -11.97,
+   "inflation": 16.67,
+   "pib_nominal": 25.97
+  },
+  {
+   "annee": 1952,
+   "actions": 1.66,
+   "logement": 12.95,
+   "obligations": 13.46,
+   "monetaire": -7.47,
+   "inflation": 12.09,
+   "pib_nominal": 16.52
+  },
+  {
+   "annee": 1953,
+   "actions": 25.62,
+   "logement": 22.57,
+   "obligations": 1.93,
+   "monetaire": 6.12,
+   "inflation": -1.96,
+   "pib_nominal": 3.71
+  },
+  {
+   "annee": 1954,
+   "actions": 115.86,
+   "logement": 20.7,
+   "obligations": 9.0,
+   "monetaire": 3.59,
+   "inflation": 0.0,
+   "pib_nominal": 6.21
+  },
+  {
+   "annee": 1955,
+   "actions": -4.62,
+   "logement": 27.28,
+   "obligations": 6.47,
+   "monetaire": 2.14,
+   "inflation": 1.0,
+   "pib_nominal": 7.48
+  },
+  {
+   "annee": 1956,
+   "actions": 0.18,
+   "logement": 32.74,
+   "obligations": -6.14,
+   "monetaire": 0.21,
+   "inflation": 2.97,
+   "pib_nominal": 10.22
+  },
+  {
+   "annee": 1957,
+   "actions": 9.05,
+   "logement": 25.64,
+   "obligations": -1.49,
+   "monetaire": 0.52,
+   "inflation": 4.81,
+   "pib_nominal": 12.89
+  },
+  {
+   "annee": 1958,
+   "actions": -20.23,
+   "logement": 13.47,
+   "obligations": -2.65,
+   "monetaire": -7.14,
+   "inflation": 14.68,
+   "pib_nominal": 15.45
+  },
+  {
+   "annee": 1959,
+   "actions": 19.12,
+   "logement": 20.7,
+   "obligations": 7.86,
+   "monetaire": -2.19,
+   "inflation": 6.4,
+   "pib_nominal": 9.12
+  },
+  {
+   "annee": 1960,
+   "actions": -10.54,
+   "logement": 24.89,
+   "obligations": 0.68,
+   "monetaire": 0.31,
+   "inflation": 3.76,
+   "pib_nominal": 10.82
+  },
+  {
+   "annee": 1961,
+   "actions": 1.95,
+   "logement": 18.04,
+   "obligations": 2.82,
+   "monetaire": 0.73,
+   "inflation": 2.9,
+   "pib_nominal": 8.41
+  },
+  {
+   "annee": 1962,
+   "actions": -14.79,
+   "logement": 17.22,
+   "obligations": 1.78,
+   "monetaire": -1.26,
+   "inflation": 4.93,
+   "pib_nominal": 12.07
+  },
+  {
+   "annee": 1963,
+   "actions": -21.93,
+   "logement": 24.61,
+   "obligations": -1.51,
+   "monetaire": -0.69,
+   "inflation": 4.7,
+   "pib_nominal": 12.1
+  },
+  {
+   "annee": 1964,
+   "actions": -10.84,
+   "logement": 26.23,
+   "obligations": 1.14,
+   "monetaire": 1.49,
+   "inflation": 3.21,
+   "pib_nominal": 10.91
+  },
+  {
+   "annee": 1965,
+   "actions": -7.65,
+   "logement": 23.87,
+   "obligations": 1.01,
+   "monetaire": 1.07,
+   "inflation": 3.11,
+   "pib_nominal": 8.01
+  },
+  {
+   "annee": 1966,
+   "actions": -19.55,
+   "logement": 12.93,
+   "obligations": -5.72,
+   "monetaire": 1.76,
+   "inflation": 2.97,
+   "pib_nominal": 8.38
+  },
+  {
+   "annee": 1967,
+   "actions": -4.85,
+   "logement": 8.71,
+   "obligations": 2.78,
+   "monetaire": 1.95,
+   "inflation": 2.79,
+   "pib_nominal": 8.11
+  },
+  {
+   "annee": 1968,
+   "actions": 12.29,
+   "logement": 8.74,
+   "obligations": -3.29,
+   "monetaire": 1.54,
+   "inflation": 4.54,
+   "pib_nominal": 9.09
+  },
+  {
+   "annee": 1969,
+   "actions": 16.61,
+   "logement": 10.04,
+   "obligations": -8.75,
+   "monetaire": 2.75,
+   "inflation": 6.05,
+   "pib_nominal": 15.03
+  },
+  {
+   "annee": 1970,
+   "actions": -13.35,
+   "logement": 4.62,
+   "obligations": -14.23,
+   "monetaire": 3.21,
+   "inflation": 5.3,
+   "pib_nominal": 11.86
+  },
+  {
+   "annee": 1971,
+   "actions": -10.51,
+   "logement": 6.36,
+   "obligations": -1.01,
+   "monetaire": 0.42,
+   "inflation": 5.4,
+   "pib_nominal": 11.53
+  },
+  {
+   "annee": 1972,
+   "actions": 10.27,
+   "logement": 8.56,
+   "obligations": 2.76,
+   "monetaire": -1.05,
+   "inflation": 6.06,
+   "pib_nominal": 11.62
+  },
+  {
+   "annee": 1973,
+   "actions": -9.83,
+   "logement": 8.58,
+   "obligations": -8.28,
+   "monetaire": 1.42,
+   "inflation": 7.38,
+   "pib_nominal": 14.7
+  },
+  {
+   "annee": 1974,
+   "actions": -35.89,
+   "logement": 6.13,
+   "obligations": -14.54,
+   "monetaire": -0.65,
+   "inflation": 13.65,
+   "pib_nominal": 16.64
+  },
+  {
+   "annee": 1975,
+   "actions": 18.14,
+   "logement": 5.19,
+   "obligations": 8.23,
+   "monetaire": -3.37,
+   "inflation": 11.69,
+   "pib_nominal": 12.66
+  },
+  {
+   "annee": 1976,
+   "actions": -19.08,
+   "logement": 10.69,
+   "obligations": -4.9,
+   "monetaire": -0.97,
+   "inflation": 9.63,
+   "pib_nominal": 15.57
+  },
+  {
+   "annee": 1977,
+   "actions": -24.02,
+   "logement": 9.92,
+   "obligations": -0.53,
+   "monetaire": -0.39,
+   "inflation": 9.49,
+   "pib_nominal": 12.54
+  },
+  {
+   "annee": 1978,
+   "actions": 48.37,
+   "logement": 6.6,
+   "obligations": 6.46,
+   "monetaire": -1.16,
+   "inflation": 9.25,
+   "pib_nominal": 13.63
+  },
+  {
+   "annee": 1979,
+   "actions": -1.48,
+   "logement": 6.53,
+   "obligations": -15.18,
+   "monetaire": -1.45,
+   "inflation": 10.65,
+   "pib_nominal": 14.23
+  },
+  {
+   "annee": 1980,
+   "actions": -4.19,
+   "logement": 9.66,
+   "obligations": -13.69,
+   "monetaire": -1.51,
+   "inflation": 13.56,
+   "pib_nominal": 13.45
+  },
+  {
+   "annee": 1981,
+   "actions": -21.6,
+   "logement": 1.88,
+   "obligations": -10.99,
+   "monetaire": 1.75,
+   "inflation": 13.31,
+   "pib_nominal": 12.89
+  },
+  {
+   "annee": 1982,
+   "actions": -1.41,
+   "logement": -1.77,
+   "obligations": 8.62,
+   "monetaire": 2.58,
+   "inflation": 11.98,
+   "pib_nominal": 14.9
+  },
+  {
+   "annee": 1983,
+   "actions": 44.96,
+   "logement": 0.19,
+   "obligations": 13.21,
+   "monetaire": 2.81,
+   "inflation": 9.46,
+   "pib_nominal": 11.01
+  },
+  {
+   "annee": 1984,
+   "actions": 6.32,
+   "logement": 0.84,
+   "obligations": 13.14,
+   "monetaire": 3.78,
+   "inflation": 7.67,
+   "pib_nominal": 8.69
+  },
+  {
+   "annee": 1985,
+   "actions": 29.55,
+   "logement": 2.13,
+   "obligations": 14.23,
+   "monetaire": 3.88,
+   "inflation": 5.83,
+   "pib_nominal": 7.17
+  },
+  {
+   "annee": 1986,
+   "actions": 34.82,
+   "logement": 6.82,
+   "obligations": 19.01,
+   "monetaire": 5.08,
+   "inflation": 2.54,
+   "pib_nominal": 7.51
+  },
+  {
+   "annee": 1987,
+   "actions": -26.19,
+   "logement": 8.48,
+   "obligations": -3.35,
+   "monetaire": 4.54,
+   "inflation": 3.29,
+   "pib_nominal": 5.08
+  },
+  {
+   "annee": 1988,
+   "actions": 58.08,
+   "logement": 12.66,
+   "obligations": 15.27,
+   "monetaire": 4.7,
+   "inflation": 2.7,
+   "pib_nominal": 8.09
+  },
+  {
+   "annee": 1989,
+   "actions": 26.44,
+   "logement": 12.79,
+   "obligations": 2.0,
+   "monetaire": 5.38,
+   "inflation": 3.5,
+   "pib_nominal": 7.77
+  },
+  {
+   "annee": 1990,
+   "actions": -24.38,
+   "logement": 9.68,
+   "obligations": 0.35,
+   "monetaire": 6.45,
+   "inflation": 3.19,
+   "pib_nominal": 5.66
+  },
+  {
+   "annee": 1991,
+   "actions": 13.0,
+   "logement": 6.02,
+   "obligations": 13.66,
+   "monetaire": 6.08,
+   "inflation": 3.21,
+   "pib_nominal": 3.62
+  },
+  {
+   "annee": 1992,
+   "actions": 2.34,
+   "logement": -0.5,
+   "obligations": 5.74,
+   "monetaire": 7.8,
+   "inflation": 2.36,
+   "pib_nominal": 3.6
+  },
+  {
+   "annee": 1993,
+   "actions": 33.63,
+   "logement": 0.94,
+   "obligations": 31.06,
+   "monetaire": 6.51,
+   "inflation": 2.1,
+   "pib_nominal": 0.98
+  },
+  {
+   "annee": 1994,
+   "actions": -15.71,
+   "logement": 2.81,
+   "obligations": -13.77,
+   "monetaire": 3.97,
+   "inflation": 1.66,
+   "pib_nominal": 3.31
+  },
+  {
+   "annee": 1995,
+   "actions": 0.09,
+   "logement": 2.08,
+   "obligations": 15.05,
+   "monetaire": 4.48,
+   "inflation": 1.8,
+   "pib_nominal": 3.26
+  },
+  {
+   "annee": 1996,
+   "actions": 28.06,
+   "logement": 3.8,
+   "obligations": 15.3,
+   "monetaire": 1.71,
+   "inflation": 1.98,
+   "pib_nominal": 2.79
+  },
+  {
+   "annee": 1997,
+   "actions": 26.25,
+   "logement": 3.29,
+   "obligations": 16.29,
+   "monetaire": 2.01,
+   "inflation": 1.2,
+   "pib_nominal": 3.24
+  },
+  {
+   "annee": 1998,
+   "actions": 30.45,
+   "logement": 6.55,
+   "obligations": 22.08,
+   "monetaire": 2.72,
+   "inflation": 0.65,
+   "pib_nominal": 4.57
+  },
+  {
+   "annee": 1999,
+   "actions": 54.8,
+   "logement": 11.31,
+   "obligations": -9.76,
+   "monetaire": 2.18,
+   "inflation": 0.54,
+   "pib_nominal": 3.63
+  },
+  {
+   "annee": 2000,
+   "actions": -1.12,
+   "logement": 11.75,
+   "obligations": 7.08,
+   "monetaire": 2.52,
+   "inflation": 1.68,
+   "pib_nominal": 5.54
+  },
+  {
+   "annee": 2001,
+   "actions": -20.54,
+   "logement": 10.52,
+   "obligations": 5.88,
+   "monetaire": 2.58,
+   "inflation": 1.63,
+   "pib_nominal": 4.03
+  },
+  {
+   "annee": 2002,
+   "actions": -30.61,
+   "logement": 10.78,
+   "obligations": 7.29,
+   "monetaire": 1.35,
+   "inflation": 1.92,
+   "pib_nominal": 3.23
+  },
+  {
+   "annee": 2003,
+   "actions": 18.73,
+   "logement": 13.4,
+   "obligations": 3.16,
+   "monetaire": 0.17,
+   "inflation": 2.1,
+   "pib_nominal": 2.7
+  },
+  {
+   "annee": 2004,
+   "actions": 10.63,
+   "logement": 16.28,
+   "obligations": 12.08,
+   "monetaire": -0.11,
+   "inflation": 2.14,
+   "pib_nominal": 4.5
+  },
+  {
+   "annee": 2005,
+   "actions": 26.23,
+   "logement": 16.65,
+   "obligations": 12.52,
+   "monetaire": 0.32,
+   "inflation": 1.75,
+   "pib_nominal": 3.63
+  },
+  {
+   "annee": 2006,
+   "actions": 20.54,
+   "logement": 13.09,
+   "obligations": 0.27,
+   "monetaire": 1.19,
+   "inflation": 1.68,
+   "pib_nominal": 4.66
+  },
+  {
+   "annee": 2007,
+   "actions": 1.55,
+   "logement": 7.67,
+   "obligations": -10.99,
+   "monetaire": 2.34,
+   "inflation": 1.49,
+   "pib_nominal": 5.04
+  },
+  {
+   "annee": 2008,
+   "actions": -42.51,
+   "logement": 0.6,
+   "obligations": 18.79,
+   "monetaire": 0.78,
+   "inflation": 2.81,
+   "pib_nominal": 2.63
+  },
+  {
+   "annee": 2009,
+   "actions": 28.92,
+   "logement": -4.56,
+   "obligations": -6.49,
+   "monetaire": 0.56,
+   "inflation": 0.09,
+   "pib_nominal": -2.81
+  },
+  {
+   "annee": 2010,
+   "actions": 2.62,
+   "logement": 6.37,
+   "obligations": 7.74,
+   "monetaire": -1.14,
+   "inflation": 1.53,
+   "pib_nominal": 3.04
+  },
+  {
+   "annee": 2011,
+   "actions": -15.18,
+   "logement": 6.46,
+   "obligations": -1.85,
+   "monetaire": -1.39,
+   "inflation": 2.11,
+   "pib_nominal": 3.16
+  },
+  {
+   "annee": 2012,
+   "actions": 18.06,
+   "logement": 0.25,
+   "obligations": 16.63,
+   "monetaire": -1.87,
+   "inflation": 1.95,
+   "pib_nominal": 1.48
+  },
+  {
+   "annee": 2013,
+   "actions": 21.17,
+   "logement": -0.27,
+   "obligations": -4.69,
+   "monetaire": -0.81,
+   "inflation": 0.86,
+   "pib_nominal": 1.36
+  },
+  {
+   "annee": 2014,
+   "actions": 2.19,
+   "logement": 0.51,
+   "obligations": 31.71,
+   "monetaire": -0.45,
+   "inflation": 0.51,
+   "pib_nominal": 1.54
+  },
+  {
+   "annee": 2015,
+   "actions": 11.9,
+   "logement": 1.03,
+   "obligations": -0.02,
+   "monetaire": -0.24,
+   "inflation": 0.04,
+   "pib_nominal": 2.26
+  },
+  {
+   "annee": 2016,
+   "actions": 8.74,
+   "logement": 3.62,
+   "obligations": 3.34,
+   "monetaire": -0.5,
+   "inflation": 0.18,
+   "pib_nominal": 1.62
+  },
+  {
+   "annee": 2017,
+   "actions": 17.3,
+   "logement": 4.81,
+   "obligations": 2.53,
+   "monetaire": -1.37,
+   "inflation": 1.03,
+   "pib_nominal": 2.82
+  },
+  {
+   "annee": 2018,
+   "actions": -9.13,
+   "logement": 3.95,
+   "obligations": -0.87,
+   "monetaire": -2.17,
+   "inflation": 1.85,
+   "pib_nominal": 2.88
+  },
+  {
+   "annee": 2019,
+   "actions": 26.96,
+   "logement": 4.78,
+   "obligations": 6.56,
+   "monetaire": -1.48,
+   "inflation": 1.11,
+   "pib_nominal": 3.15
+  },
+  {
+   "annee": 2020,
+   "actions": -1.31,
+   "logement": 7.69,
+   "obligations": 3.44,
+   "monetaire": -0.97,
+   "inflation": 0.48,
+   "pib_nominal": -5.53
+  }
+ ],
+ "rendements_periodes": [
+  {
+   "l": "1900-1949",
+   "actions": -2.7,
+   "logement": 2.0,
+   "obligations": -5.0,
+   "monetaire": -4.9,
+   "inflation": 11.2
+  },
+  {
+   "l": "1950-1979",
+   "actions": 1.7,
+   "logement": 14.4,
+   "obligations": -1.8,
+   "monetaire": -0.6,
+   "inflation": 6.5
+  },
+  {
+   "l": "1980-2007",
+   "actions": 11.5,
+   "logement": 7.1,
+   "obligations": 6.8,
+   "monetaire": 3.1,
+   "inflation": 3.8
+  },
+  {
+   "l": "2008-2020",
+   "actions": 5.4,
+   "logement": 2.7,
+   "obligations": 5.9,
+   "monetaire": -0.9,
+   "inflation": 1.1
+  },
+  {
+   "l": "1950-2020",
+   "actions": 6.2,
+   "logement": 9.4,
+   "obligations": 3.0,
+   "monetaire": 0.8,
+   "inflation": 4.4
+  }
+ ],
  "agregats": [
   {
    "annee": 1980,
