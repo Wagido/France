@@ -1,0 +1,14 @@
+{
+ "sources": {
+  "cpi": "Transparency International, indice de perception de la corruption 2025 (0 = très corrompu, 100 = très intègre), pages pays https://www.transparency.org/en/countries/…, 182 pays",
+  "wjp": "World Justice Project, Rule of Law Index 2025 (0 à 1), https://worldjusticeproject.org/rule-of-law-index/downloads/WJPIndex2025.pdf, 143 pays"
+ },
+ "pays": {
+  "FRA": {"cpi": 66, "cpi_rang": 27, "wjp": 0.72, "wjp_rang": 22},
+  "USA": {"cpi": 64, "cpi_rang": 29, "wjp": 0.68, "wjp_rang": 27},
+  "DEU": {"cpi": 77, "cpi_rang": 10, "wjp": 0.83, "wjp_rang": 6},
+  "BRA": {"cpi": 35, "cpi_rang": 107, "wjp": 0.50, "wjp_rang": 78},
+  "IND": {"cpi": 39, "cpi_rang": 91, "wjp": 0.49, "wjp_rang": 86},
+  "NGA": {"cpi": 26, "cpi_rang": 142, "wjp": 0.41, "wjp_rang": 120}
+ }
+}

@@ -26,7 +26,11 @@
    "idh": 0.92,
    "rang_idh": 26,
    "idh_ajuste": 0.836,
-   "perte_inegalites": 9.1
+   "perte_inegalites": 9.1,
+   "cpi": 66,
+   "cpi_rang": 27,
+   "wjp": 0.72,
+   "wjp_rang": 22
   },
   {
    "code": "USA",
@@ -52,7 +56,11 @@
    "idh": 0.938,
    "rang_idh": 17,
    "idh_ajuste": 0.832,
-   "perte_inegalites": 11.3
+   "perte_inegalites": 11.3,
+   "cpi": 64,
+   "cpi_rang": 29,
+   "wjp": 0.68,
+   "wjp_rang": 27
   },
   {
    "code": "DEU",
@@ -78,7 +86,11 @@
    "idh": 0.959,
    "rang_idh": 5,
    "idh_ajuste": 0.89,
-   "perte_inegalites": 7.2
+   "perte_inegalites": 7.2,
+   "cpi": 77,
+   "cpi_rang": 10,
+   "wjp": 0.83,
+   "wjp_rang": 6
   },
   {
    "code": "BRA",
@@ -104,7 +116,11 @@
    "idh": 0.786,
    "rang_idh": 84,
    "idh_ajuste": 0.594,
-   "perte_inegalites": 24.4
+   "perte_inegalites": 24.4,
+   "cpi": 35,
+   "cpi_rang": 107,
+   "wjp": 0.5,
+   "wjp_rang": 78
   },
   {
    "code": "IND",
@@ -130,7 +146,11 @@
    "idh": 0.685,
    "rang_idh": 130,
    "idh_ajuste": 0.475,
-   "perte_inegalites": 30.7
+   "perte_inegalites": 30.7,
+   "cpi": 39,
+   "cpi_rang": 91,
+   "wjp": 0.49,
+   "wjp_rang": 86
   },
   {
    "code": "NGA",
@@ -156,7 +176,11 @@
    "idh": 0.56,
    "rang_idh": 164,
    "idh_ajuste": 0.379,
-   "perte_inegalites": 32.3
+   "perte_inegalites": 32.3,
+   "cpi": 26,
+   "cpi_rang": 142,
+   "wjp": 0.41,
+   "wjp_rang": 120
   }
  ]
 }

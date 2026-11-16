@@ -29,6 +29,10 @@ const BLOCS = {
     ["Inflation (%)", "inflation", 1, -1, "FMI"],
     ["CO₂ émis par habitant (tonnes)", "co2", 1, -1, "Global Carbon Project"],
   ],
+  institutions: [
+    ["Corruption perçue (0 = très corrompu, 100 = intègre)", "cpi", 0, 1, "Transparency International, 2025"],
+    ["État de droit (0 à 1) : justice, contrôle du pouvoir, droits", "wjp", 2, 1, "World Justice Project, 2025"],
+  ],
   vie: [
     ["Espérance de vie à la naissance (ans)", "esperance_vie", 1, 1, "PNUD"],
     ["Années d'études des adultes (moyenne)", "annees_etudes", 1, 1, "PNUD"],
@@ -43,7 +47,7 @@ function table(sel, rows) {
       const vals = P.map(p => p[k]).filter(v => v != null), best = sens > 0 ? Math.max(...vals) : Math.min(...vals), mx = Math.max(...vals.map(Math.abs));
       return `<tr><td class="lab">${esc(l)} <small class="muted">${esc(src)}</small></td>` + P.map(p => {
         const v = p[k], w = v == null ? 0 : 100 * Math.abs(v) / mx;
-        return `<td class="${p.code === "FRA" ? "fr" : ""}${v === best ? " best" : ""}"><b>${k === "rang_idh" ? v + "<sup>e</sup>" : nf(v, d)}</b>${k === "idh" ? ` <small class="muted">(${p.rang_idh}<sup>e</sup>)</small>` : ""}<span class="pr-bar"><i style="width:${w.toFixed(1)}%"></i></span></td>`;
+        return `<td class="${p.code === "FRA" ? "fr" : ""}${v === best ? " best" : ""}"><b>${k === "rang_idh" ? v + "<sup>e</sup>" : nf(v, d)}</b>${k === "idh" ? ` <small class="muted">(${p.rang_idh}<sup>e</sup>)</small>` : k === "cpi" ? ` <small class="muted">(${p.cpi_rang}<sup>e</sup>)</small>` : k === "wjp" ? ` <small class="muted">(${p.wjp_rang}<sup>e</sup>)</small>` : ""}<span class="pr-bar"><i style="width:${w.toFixed(1)}%"></i></span></td>`;
       }).join("") + `</tr>`;
     }).join("") + `</tbody></table>`;
 }
@@ -56,7 +60,7 @@ function draw() {
     [nf(fr.dette) + " %", ["dette publique en % du PIB", `56 % de la dette de l'État détenue à l'étranger`, `énergie : ${nf(fr.energie)} % produite sur place`], "Résilience"],
     [nf(fr.esperance_vie, 1) + " ans", ["espérance de vie, la plus longue des six", `mais IDH ${fr.rang_idh}e au monde`], "Bien-être"],
   ]);
-  table("#pr-richesse", BLOCS.richesse); table("#pr-partage", BLOCS.partage); table("#pr-durable", BLOCS.durable); table("#pr-vie", BLOCS.vie);
+  table("#pr-richesse", BLOCS.richesse); table("#pr-partage", BLOCS.partage); table("#pr-durable", BLOCS.durable); table("#pr-vie", BLOCS.vie); table("#pr-inst", BLOCS.institutions);
   $("#pr-richesse-txt").innerHTML = `<ul>
     <li><b>La France est un pays riche</b> : ${nf(fr.pib_hab)} dollars par habitant en parité de pouvoir d'achat, ${Math.round(fr.pib_hab / P.IND.pib_hab)} fois plus qu'en Inde et ${Math.round(fr.pib_hab / P.NGA.pib_hab)} fois plus qu'au Nigeria.</li>
     <li><b>Mais elle est en retrait des pays riches comparables</b> : ${pc(fr.pib_hab, de.pib_hab)} % de moins que l'Allemagne, ${pc(fr.pib_hab, us.pib_hab)} % de moins que les États-Unis. L'écart vient surtout du nombre d'heures travaillées sur une vie et du chômage (${nf(fr.chomage, 1)} %, contre ${nf(de.chomage, 1)} % en Allemagne), pas de la productivité par heure, qui est élevée (voir l'onglet <a href="#travail">Temps de travail</a>).</li>
@@ -74,6 +78,13 @@ function draw() {
     <li><b>Stabilité des prix</b> : ${nf(fr.inflation, 1)} % d'inflation en ${D.annee_fmi}, la plus basse des six ; ${nf(P.NGA.inflation)} % au Nigeria, où l'épargne fond chaque année.</li>
     <li><b>Climat</b> : avec ${nf(fr.co2, 1)} tonnes de CO₂ par habitant émises sur le territoire, contre ${nf(de.co2, 1)} en Allemagne et ${nf(us.co2, 1)} aux États-Unis, la France est peu exposée au coût futur des émissions ; ses importations en contiennent cependant beaucoup (voir l'onglet <a href="#empreinte">Empreinte carbone</a>).</li>
     <li><b>Ce que ces chiffres ne montrent pas</b> : la dépendance industrielle (médicaments, composants électroniques, terres rares, voir les onglets <a href="#industrie">Industrie et innovation</a> et <a href="#soussol">Sous-sol</a>), la capacité de défense et l'autonomie alimentaire, où la France est exportatrice (voir l'onglet <a href="#agriculture">Agriculture</a>).</li>
+  </ul>`;
+  $("#pr-inst-txt").innerHTML = `<ul>
+    <li><b>Ce sont les institutions qui expliquent le mieux pourquoi un pays devient riche et le reste</b> : quand les contrats sont respectés, la justice prévisible et le pouvoir contrôlé, on ose investir, innover et entreprendre. Le classement des six pays est presque le même que pour la richesse.</li>
+    <li><b>La France est solide, sans être en tête</b> : ${fr.cpi_rang}<sup>e</sup> sur 182 pour la corruption (${fr.cpi}/100, contre ${de.cpi} pour l'Allemagne, ${de.cpi_rang}<sup>e</sup>) et ${fr.wjp_rang}<sup>e</sup> sur 143 pour l'État de droit. Elle a toutefois perdu 4 points en un an à l'indice de corruption.</li>
+    <li><b>Les États-Unis reculent</b> : leur score de corruption est le plus bas depuis la création de l'indice, et leur État de droit a connu l'une des plus fortes baisses du monde en 2025.</li>
+    <li><b>Au Brésil, en Inde et au Nigeria</b>, corruption et justice faible freinent l'investissement : c'est l'une des raisons pour lesquelles ces pays, riches en ressources et en population, peinent à rattraper les pays riches.</li>
+    <li><b>Ces indices sont des perceptions</b>, construites à partir d'enquêtes auprès d'experts et d'entreprises (corruption) ou d'habitants et de juristes (État de droit) : des ordres de grandeur, pas des mesures exactes.</li>
   </ul>`;
   $("#pr-vie-txt").innerHTML = `<ul>
     <li><b>Les Français vivent le plus longtemps</b> des six pays : ${nf(fr.esperance_vie, 1)} ans, contre ${nf(us.esperance_vie, 1)} aux États-Unis, malgré un revenu plus bas. Un système de santé accessible compte autant que la richesse.</li>

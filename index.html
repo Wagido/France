@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261119g">
+<link rel="stylesheet" href="style.css?v=20261119h">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
@@ -146,7 +146,7 @@
       <li><b>La richesse produite par habitant = part de la population qui travaille × heures travaillées × production par heure.</b> À long terme, c'est surtout la production par heure qui sépare pays riches et pays pauvres.</li>
       <li><b>Elle dépend de quelques moteurs qui se cumulent</b> : le capital (machines, infrastructures), les compétences (éducation et sa qualité), la technologie (recherche, diffusion des innovations), l'ouverture au commerce, la stabilité (inflation, dette, banques).</li>
       <li><b>Et surtout des institutions</b> : État de droit, contrats respectés, peu de corruption, concurrence ouverte, confiance. C'est ce qui explique le mieux les écarts durables entre pays (travaux d'Acemoglu, Johnson et Robinson, prix Nobel 2024). Les ressources naturelles, seules, enrichissent rarement un pays.</li>
-      <li><b>Pour juger un pays, on pose quatre questions</b> : quelle richesse ? est-elle partagée ? est-elle durable et résiliente face aux chocs ? vit-on bien ? Les tableaux ci-dessous y répondent, avec les indicateurs les plus utilisés. La meilleure valeur de chaque ligne est encadrée.</li>
+      <li><b>Pour juger un pays, on pose cinq questions</b> : quelle richesse ? est-elle partagée ? est-elle durable et résiliente face aux chocs ? vit-on bien ? et les institutions sont-elles solides, puisque c'est d'elles que dépend tout le reste ? Les tableaux ci-dessous y répondent, avec les indicateurs les plus utilisés. La meilleure valeur de chaque ligne est encadrée.</li>
     </ul>
   </div>
   <h3>1. Quelle richesse ?</h3>
@@ -161,7 +161,10 @@
   <h3>4. Vit-on bien ? Les indicateurs composites</h3>
   <div class="table-scroll" id="pr-vie"></div>
   <div class="callout small" id="pr-vie-txt"></div>
-  <p class="muted" style="font-size:.8rem">Sources : <a href="https://www.imf.org/external/datamapper/datasets/WEO" target="_blank" rel="noopener">FMI, World Economic Outlook</a> (PIB par habitant en parité de pouvoir d'achat, chômage, dette et solde publics, 2025) ; <a href="https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Statistical_Annex_Tables_1-7.pdf" target="_blank" rel="noopener">PNUD, Rapport sur le développement humain 2025</a> (IDH, espérance de vie, années d'études, Gini, parts de revenu, IDH corrigé des inégalités, données 2023) ; <a href="https://data.worldbank.org/indicator/SI.POV.DDAY" target="_blank" rel="noopener">Banque mondiale</a> (moins de 3 dollars par jour en PPA 2021, dernière année disponible, 2022 à 2024) ; <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">Global Carbon Project, via Our World in Data</a> (CO₂ émis sur le territoire, 2024) ; Energy Institute via Our World in Data (indépendance énergétique = production nationale d'énergie primaire, nucléaire compris, rapportée à la consommation, 2024 ; 2023 pour le Nigeria) ; FMI (balance courante et inflation, 2025). Le Gini de l'Inde porte sur la consommation, celui des autres pays sur le revenu. Le score de bonheur (World Happiness Report) n'est pas repris : les chiffres trouvés divergent selon les sources.</p>
+  <h3>5. Les institutions sont-elles solides ? Le socle de tout le reste</h3>
+  <div class="table-scroll" id="pr-inst"></div>
+  <div class="callout small" id="pr-inst-txt"></div>
+  <p class="muted" style="font-size:.8rem">Sources : <a href="https://www.imf.org/external/datamapper/datasets/WEO" target="_blank" rel="noopener">FMI, World Economic Outlook</a> (PIB par habitant en parité de pouvoir d'achat, chômage, dette et solde publics, 2025) ; <a href="https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Statistical_Annex_Tables_1-7.pdf" target="_blank" rel="noopener">PNUD, Rapport sur le développement humain 2025</a> (IDH, espérance de vie, années d'études, Gini, parts de revenu, IDH corrigé des inégalités, données 2023) ; <a href="https://data.worldbank.org/indicator/SI.POV.DDAY" target="_blank" rel="noopener">Banque mondiale</a> (moins de 3 dollars par jour en PPA 2021, dernière année disponible, 2022 à 2024) ; <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">Global Carbon Project, via Our World in Data</a> (CO₂ émis sur le territoire, 2024) ; Energy Institute via Our World in Data (indépendance énergétique = production nationale d'énergie primaire, nucléaire compris, rapportée à la consommation, 2024 ; 2023 pour le Nigeria) ; FMI (balance courante et inflation, 2025). Le Gini de l'Inde porte sur la consommation, celui des autres pays sur le revenu. <a href="https://www.transparency.org/en/cpi/2025" target="_blank" rel="noopener">Transparency International</a> (indice de perception de la corruption 2025, 182 pays) ; <a href="https://worldjusticeproject.org/rule-of-law-index/downloads/WJPIndex2025.pdf" target="_blank" rel="noopener">World Justice Project</a> (indice de l'État de droit 2025, 143 pays). Le score de bonheur (World Happiness Report) n'est pas repris : les chiffres trouvés divergent selon les sources.</p>
 </section>
 
 <section id="population" class="panel">
@@ -1297,37 +1300,37 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261119g"></script>
-<script src="app.js?v=20261119g"></script>
-<script src="energie.js?v=20261119g"></script>
-<script src="matieres.js?v=20261119g"></script>
-<script src="territoire.js?v=20261119g"></script>
-<script src="themes.js?v=20261119g"></script>
-<script src="societe.js?v=20261119g"></script>
-<script src="eco2.js?v=20261119g"></script>
-<script src="empreinte.js?v=20261119g"></script>
-<script src="argentprive.js?v=20261119g"></script>
-<script src="repartition.js?v=20261119g"></script>
-<script src="patrimoine.js?v=20261119g"></script>
-<script src="prelevements.js?v=20261119g"></script>
-<script src="travailvie.js?v=20261119g"></script>
-<script src="niveauvie.js?v=20261119g"></script>
-<script src="prosperite.js?v=20261119g"></script>
-<script src="exterieur.js?v=20261119g"></script>
-<script src="couper.js?v=20261119g"></script>
-<script src="seuilpays.js?v=20261119g"></script>
-<script src="logement.js?v=20261119g"></script>
-<script src="env.js?v=20261119g"></script>
-<script src="agriculture.js?v=20261119g"></script>
-<script src="chaine.js?v=20261119g"></script>
-<script src="patrimoinehist.js?v=20261119g"></script>
-<script src="innovation.js?v=20261119g"></script>
+<script src="kpi.js?v=20261119h"></script>
+<script src="app.js?v=20261119h"></script>
+<script src="energie.js?v=20261119h"></script>
+<script src="matieres.js?v=20261119h"></script>
+<script src="territoire.js?v=20261119h"></script>
+<script src="themes.js?v=20261119h"></script>
+<script src="societe.js?v=20261119h"></script>
+<script src="eco2.js?v=20261119h"></script>
+<script src="empreinte.js?v=20261119h"></script>
+<script src="argentprive.js?v=20261119h"></script>
+<script src="repartition.js?v=20261119h"></script>
+<script src="patrimoine.js?v=20261119h"></script>
+<script src="prelevements.js?v=20261119h"></script>
+<script src="travailvie.js?v=20261119h"></script>
+<script src="niveauvie.js?v=20261119h"></script>
+<script src="prosperite.js?v=20261119h"></script>
+<script src="exterieur.js?v=20261119h"></script>
+<script src="couper.js?v=20261119h"></script>
+<script src="seuilpays.js?v=20261119h"></script>
+<script src="logement.js?v=20261119h"></script>
+<script src="env.js?v=20261119h"></script>
+<script src="agriculture.js?v=20261119h"></script>
+<script src="chaine.js?v=20261119h"></script>
+<script src="patrimoinehist.js?v=20261119h"></script>
+<script src="innovation.js?v=20261119h"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261119g"></script>
-<script src="histoire.js?v=20261119g"></script>
-<script src="chomage.js?v=20261119g"></script>
-<script src="sources.js?v=20261119g"></script>
-<script src="nav.js?v=20261119g"></script>
+<script src="soussol.js?v=20261119h"></script>
+<script src="histoire.js?v=20261119h"></script>
+<script src="chomage.js?v=20261119h"></script>
+<script src="sources.js?v=20261119h"></script>
+<script src="nav.js?v=20261119h"></script>
 </body>
 </html>
