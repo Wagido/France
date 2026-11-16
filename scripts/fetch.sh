@@ -32,6 +32,8 @@ get agri/cult_pays.json "$E/apro_cpsh1?strucpro=MAR_THS_HA&sinceTimePeriod=2022&
 # Monnaie et croissance : agrégats monétaires M1, M2, M3 et billets de la zone euro (BCE), PIB de la zone euro
 mkdir -p monnaie
 get monnaie/ecb_agregats.csv "https://data-api.ecb.europa.eu/service/data/BSI/M.U2.Y.V.M10+M20+M30+L10.X.1.U2.2300.Z01.E?format=csvdata&detail=dataonly"
+get monnaie/ecb_target2.csv "https://data-api.ecb.europa.eu/service/data/TGB/M.DE+FR+IT+ES+NL+GR.N.A094T.U2.EUR.E?format=csvdata&detail=dataonly"
+get monnaie/ecb_taux.csv "https://data-api.ecb.europa.eu/service/data/FM/B.U2.EUR.4F.KR.DFR+MRR_FR.LEV?format=csvdata&detail=dataonly"
 get monnaie/pib_zone_euro.json "$E/nama_10_gdp?geo=EA20&unit=CP_MEUR&na_item=B1GQ"
 # Limites à la croissance : séries mondiales (Banque mondiale, Our World in Data, lignes « World » seulement)
 mkdir -p limites

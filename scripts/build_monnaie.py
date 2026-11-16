@@ -120,6 +120,21 @@ c13 = next(r[J["cpi"]] for r in H if r[J["year"]] == 1913)
 histoire = [{"annee": r[J["year"]], "monnaie": round(100 * r[J["money"]] / r[J["gdp"]], 1) if r[J["money"]] and r[J["gdp"]] else None,
              "prix": round(r[J["cpi"]] / c13, 4) if r[J["cpi"]] else None} for r in H]
 histoire = [x for x in histoire if x["monnaie"] is not None or x["prix"] is not None]
-out = {"histoire": histoire, "rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
+
+# soldes TARGET entre banques centrales nationales (BCE, milliards d'euros, décembre de chaque année + dernier mois)
+T = {}
+with open(os.path.join(SRC, "monnaie", "ecb_target2.csv"), encoding="utf-8") as fh:
+    for r in csv.DictReader(fh):
+        if r["OBS_VALUE"]:
+            T.setdefault(r["TIME_PERIOD"], {})[r["REF_AREA"]] = round(float(r["OBS_VALUE"]) / 1000)
+mois = sorted(T)
+target = [{"annee": int(m[:4]), **{k.lower(): v for k, v in T[m].items()}} for m in mois if m.endswith("-12") or m == mois[-1]]
+# taux directeurs de la BCE (changements)
+taux_bce = {}
+with open(os.path.join(SRC, "monnaie", "ecb_taux.csv"), encoding="utf-8") as fh:
+    for r in csv.DictReader(fh):
+        if r["OBS_VALUE"]:
+            taux_bce.setdefault("depot" if "DFR" in r["KEY"] else "refi", []).append([r["TIME_PERIOD"], float(r["OBS_VALUE"])])
+out = {"target": target, "target_mois": mois[-1], "taux_bce": taux_bce, "histoire": histoire, "rendements": rend, "rendements_periodes": periodes_r, "agregats": agregats, "agregats_dernier_mois": dern, "serie": serie, "credit": credit, "periodes": periodes, "annee": serie[-1]["annee"], "annee_credit": credit[-1]["annee"]}
 json.dump(out, open(os.path.join(HERE, "..", "data", "monnaie.json"), "w"), ensure_ascii=False, indent=1)
 print(agregats[0], agregats[-1], dern, serie[0], serie[-1], credit[0], credit[-1], periodes, sep="\n")

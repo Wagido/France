@@ -96,6 +96,47 @@ function drawInfl() {
   el.replaceChildren(svg.node());
 }
 
+/* taux de dépôt de la BCE (en marches d'escalier) */
+function tauxBce() {
+  const el = $("#mo-tbce"), T = M.taux_bce && M.taux_bce.depot; if (!el || !T || !el.clientWidth) return;
+  const { showTip, hideTip, css } = window.TH, P = d3.timeParse("%Y-%m-%d");
+  const D = T.map(([d, v]) => ({ d: P(d), v })).filter((x, i, a) => i === 0 || x.v !== a[i - 1].v); const now = new Date(); D.push({ d: now, v: D.at(-1).v });
+  const w = Math.max(320, el.clientWidth), h = 250, m = { t: 14, r: 14, b: 26, l: 40 };
+  const x = d3.scaleTime([D[0].d, now], [m.l, w - m.r]), y = d3.scaleLinear([-1, d3.max(D, d => d.v) + .5], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--muted"));
+  svg.append("path").attr("fill", "none").attr("stroke", "#2563eb").attr("stroke-width", 2).attr("d", d3.line().curve(d3.curveStepAfter).x(d => x(d.d)).y(d => y(d.v))(D));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(w < 560 ? 5 : 10));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => v + " %")).call(s => s.select(".domain").remove());
+  const bis = d3.bisector(d => d.d).right, F = d3.timeFormat("%d/%m/%Y");
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = D[Math.max(0, bis(D, x.invert(d3.pointer(ev)[0])) - 1)]; showTip(`Depuis le <b>${F(d.d)}</b> : ${f2(d.v)} %`, ev); }).on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
+  const L = D.at(-2), neg = D.filter(d => d.v < 0), n0d = neg[0], n1d = D.find(d => d.d > n0d.d && d.v >= 0), mx = D.filter(d => d.d.getFullYear() >= 2022).reduce((a, d) => d.v > a.v ? d : a);
+  $("#mo-tbce-txt").innerHTML = `<ul>
+    <li><b>Aujourd'hui : ${f2(L.v)} %</b>, depuis le ${F(L.d)}. C'est ce que rapporte aux banques l'argent laissé à la BCE, et le plancher de tous les taux de la zone euro.</li>
+    <li><b>De ${n0d.d.getFullYear()} à ${n1d.d.getFullYear()}, le taux a été négatif</b> (jusqu'à −0,50 %) : les banques payaient pour garder des réserves, afin de les pousser à prêter et de relancer une inflation trop faible.</li>
+    <li><b>En 2022-2023, la BCE l'a remonté jusqu'à ${f2(mx.v)} %</b> pour combattre l'inflation qui avait suivi le Covid et la guerre en Ukraine, la hausse la plus rapide de son histoire. Les crédits immobiliers sont passés d'environ 1 % à plus de 4 %, et la production de crédit s'est effondrée : c'est le frein monétaire en action.</li>
+  </ul>`;
+}
+
+/* soldes TARGET entre banques centrales */
+function target() {
+  const el = $("#mo-target"), T = M.target; if (!el || !T || !el.clientWidth) return;
+  const { lineChart, legend } = window.TH;
+  const K = [{ k: "de", l: "Allemagne", c: "#111827" }, { k: "nl", l: "Pays-Bas", c: "#f97316" }, { k: "fr", l: "France", c: "#2563eb" }, { k: "es", l: "Espagne", c: "#eab308" }, { k: "it", l: "Italie", c: "#16a34a" }, { k: "gr", l: "Grèce", c: "#06b6d4" }];
+  lineChart(el, T, K, { vfmt: v => sg(v).replace(",00", "") + " Mds €", yfmt: v => n0(v), h: 280 });
+  legend("#mo-target-legend", K.map(k => [k.l, k.c]));
+  const L = T.at(-1), pk = (k, s) => T.reduce((a, d) => (s * d[k] > s * a[k] ? d : a)), de = pk("de", 1), it = pk("it", -1), mm = M.target_mois.split("-");
+  $("#mo-target-txt").innerHTML = `<ul>
+    <li><b>Comment lire</b> : quand un épargnant italien transfère ses euros vers une banque allemande, ou qu'une entreprise allemande est payée par un client espagnol, des réserves passent de la Banque d'Italie (ou d'Espagne) à la Bundesbank. Elles ne voyagent pas vraiment : la Banque d'Italie se retrouve devoir cette somme à l'Eurosystème, et la Bundesbank détient une créance sur lui. Ces soldes s'accumulent depuis la crise de 2008.</li>
+    <li><b>En ${["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"][+mm[1] - 1]} ${mm[0]}, la Bundesbank détient ${n0(L.de)} milliards d'euros de créances</b> sur le reste de l'Eurosystème (record : ${n0(de.de)} milliards en ${de.annee}). La Banque d'Italie en doit ${n0(-L.it)} milliards (${n0(-it.it)} au plus haut en ${it.annee}), la Banque d'Espagne ${n0(-L.es)}, la Banque de France ${n0(-L.fr)}.</li>
+    <li><b>Tant que l'euro existe, ces soldes ne posent pas de problème</b> : ce sont des écritures internes, comme entre les agences d'une même banque. Mais si un pays quittait l'euro, sa banque centrale devrait une somme énorme qu'elle ne pourrait sans doute pas rembourser. C'est un indicateur de la confiance : quand on craint pour un pays, l'argent fuit ses banques vers l'Allemagne, et son solde se creuse (Grèce et Espagne en 2012, Italie en 2018-2022).</li>
+    <li><b>Conclusion</b> : un euro est un euro tant que tout le monde croit que la zone euro tiendra. La monnaie de banque centrale est unique ; la monnaie de nos comptes, elle, garde une nationalité, celle de la banque et de l'État qui la garantissent.</li>
+  </ul>`;
+}
+
 /* histoire longue : monnaie/PIB et prix, avec les grandes époques monétaires */
 function hist() {
   const H = M.histoire; if (!H || !$("#mo-hmon") || !$("#mo-hmon").clientWidth) return;
@@ -210,7 +251,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow(); capm(); rendements(); hist();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
