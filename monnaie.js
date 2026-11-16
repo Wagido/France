@@ -14,6 +14,8 @@ async function init() {
   try { M = await fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
+  if ($("#mo-st-prev")) { $("#mo-st-prev").onclick = () => { stI = Math.max(0, stI - 1); stepper(); }; $("#mo-st-next").onclick = () => { stI = Math.min(ST.length - 1, stI + 1); stepper(); }; }
+  ["mo-k", "mo-pond"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", bale));
   ["mo-rf", "mo-erp", "mo-beta", "mo-obt"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", capm));
   ["mo-d", "mo-r", "mo-g", "mo-p", "mo-s"].forEach(id => $("#" + id).addEventListener("input", snow));
   presets();
@@ -33,15 +35,15 @@ function mini() {
     if (m < int && crise == null) crise = t;
     m -= int * (1 - b); h += int * (1 - b);
   }
-  lineChart($("#mo-mini"), rows, [{ k: "m", l: "Monnaie entre les mains des emprunteurs et de l'économie", c: "#2563eb" }, { k: "h", l: "Monnaie gardée par la banque (non redépensée)", c: "#dc2626" },
-    { k: "paye", l: "Intérêts payés depuis le début (cumul)", c: "#16a34a", dash: "4 3" }], { vfmt: v => n0(v), yfmt: v => v, h: 240, xticks: 8 });
+  lineChart($("#mo-mini"), rows, [{ k: "m", l: "Argent qui circule sur l'île", c: "#2563eb" }, { k: "h", l: "Argent gardé par la banque, non redépensé", c: "#dc2626" },
+    { k: "paye", l: "Intérêts payés depuis le début (cumul)", c: "#16a34a", dash: "4 3" }], { vfmt: v => n0(v) + " €", yfmt: v => v + " €", h: 240, xticks: 8 });
   // l'axe des x affiche des années depuis le début
   $("#mo-mini").querySelectorAll("g.axis")[0]?.querySelectorAll("text").forEach(t => t.textContent = "an " + t.textContent);
-  legend("#mo-mini-legend", [["Monnaie en circulation dans l'économie", "#2563eb"], ["Gardée par la banque, non redépensée", "#dc2626"], ["Intérêts payés depuis le début (cumul)", "#16a34a", 1]]);
+  legend("#mo-mini-legend", [["Argent qui circule sur l'île", "#2563eb"], ["Gardé par la banque, non redépensé", "#dc2626"], ["Intérêts payés depuis le début (cumul)", "#16a34a", 1]]);
   const tot = Math.round(40 * i * D);
   $("#mo-mini-out").innerHTML = i === 0 ? `Sans intérêts, la question ne se pose pas.` : b >= 1
-    ? `<span style="color:var(--pos)">En 40 ans, les emprunteurs ont payé <b>${n0(tot)}</b> d'intérêts pour 100 de monnaie créée, sans un euro de croissance ni de nouveau crédit : la même monnaie tourne, parce que la banque la redépense.</span>`
-    : `<span style="color:var(--neg)">${crise != null ? `Dès l'année <b>${crise}</b>, il n'y a plus assez de monnaie en circulation pour payer les intérêts` : `La monnaie en circulation baisse chaque année`}</span> : ce que la banque garde sans le dépenser manque aux emprunteurs. Il faut alors de nouveaux crédits, ou des défauts de paiement.`;
+    ? `<span style="color:var(--pos)">En 40 ans, les emprunteurs ont payé <b>${n0(tot)} €</b> d'intérêts avec les mêmes 100 €, sans un euro de croissance ni de dette en plus : l'argent tourne, parce que la banque le redépense.</span>`
+    : `<span style="color:var(--neg)">${crise != null ? `Dès l'année <b>${crise}</b>, il n'y a plus assez d'argent en circulation pour payer les intérêts` : `La monnaie en circulation baisse chaque année`}</span> : ce que la banque garde sans le dépenser manque aux emprunteurs. Il faut alors de nouveaux crédits, ou des défauts de paiement.`;
 }
 
 function presets() {
@@ -94,6 +96,50 @@ function drawInfl() {
   svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
     .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b><br>Hausse des prix : ${f1(d.inflation)} %`, ev); }).on("pointerleave", hideTip);
   el.replaceChildren(svg.node());
+}
+
+/* un crédit pas à pas : bilans de vous, banque A, banque B, banque centrale (milliers d'euros) */
+const ST = [
+  { t: "<b>Au départ.</b> Vous n'avez rien. Votre banque (A) a 50 000 € de fonds propres, placés en réserves à la banque centrale, et votre employeur y a un compte de 16 000 €. La banque du vendeur de la maison (B) a aussi 50 000 € de fonds propres en réserves. La banque centrale doit ces réserves aux banques ; en face, elle détient des titres.",
+    b: { v: [[], []], a: [[["Réserves à la banque centrale", 66]], [["Dépôt de votre employeur", 16], ["Fonds propres", 50]]], b: [[["Réserves", 50]], [["Fonds propres", 50]]], c: [[["Titres", 116]], [["Réserves de A", 66], ["Réserves de B", 50]]] }, m: 16 },
+  { t: "<b>① La banque vous prête 200 000 €.</b> Elle écrit 200 000 € sur votre compte (une dette envers vous) et inscrit votre promesse de rembourser à son actif. Personne ne s'est privé de rien : <b>200 000 € de monnaie viennent d'être créés</b>, par deux lignes d'écriture.",
+    b: { v: [[["Dépôt à la banque A", 200, 1]], [["Dette envers la banque A", 200, 1]]], a: [[["Réserves à la banque centrale", 66], ["Prêt immobilier (vous)", 200, 1]], [["Votre dépôt", 200, 1], ["Dépôt de votre employeur", 16], ["Fonds propres", 50]]], b: [[["Réserves", 50]], [["Fonds propres", 50]]], c: [[["Titres", 116]], [["Réserves de A", 66], ["Réserves de B", 50]]] }, m: 216 },
+  { t: "<b>② Vous payez le vendeur</b>, client de la banque B. Votre dépôt passe sur son compte. Mais la banque A doit transférer 200 000 € de <b>réserves</b> à la banque B ; elle n'en a que 66 000. Elle emprunte les 134 000 € manquants à la banque centrale, en donnant des créances en garantie, au taux directeur. La monnaie détenue par le public ne change pas : elle a seulement changé de banque.",
+    b: { v: [[["Maison", 200, 1]], [["Dette envers la banque A", 200]]], a: [[["Réserves à la banque centrale", 0, 1], ["Prêt immobilier (vous)", 200]], [["Dépôt de votre employeur", 16], ["Emprunt à la banque centrale", 134, 1], ["Fonds propres", 50]]], b: [[["Réserves", 250, 1]], [["Dépôt du vendeur", 200, 1], ["Fonds propres", 50]]], c: [[["Titres", 116], ["Prêt à la banque A", 134, 1]], [["Réserves de A", 0, 1], ["Réserves de B", 250, 1]]] }, m: 216 },
+  { t: "<b>③ Votre salaire arrive</b> : votre employeur vous verse 16 000 € (cumul de quelques mois, pour simplifier). Les deux comptes sont dans la même banque : un simple jeu d'écritures, sans réserves à transférer.",
+    b: { v: [[["Maison", 200], ["Dépôt à la banque A", 16, 1]], [["Dette envers la banque A", 200]]], a: [[["Réserves à la banque centrale", 0], ["Prêt immobilier (vous)", 200]], [["Votre dépôt", 16, 1], ["Dépôt de votre employeur", 0, 1], ["Emprunt à la banque centrale", 134], ["Fonds propres", 50]]], b: [[["Réserves", 250]], [["Dépôt du vendeur", 200], ["Fonds propres", 50]]], c: [[["Titres", 116], ["Prêt à la banque A", 134]], [["Réserves de A", 0], ["Réserves de B", 250]]] }, m: 216 },
+  { t: "<b>④ Vous remboursez 10 000 € de capital et payez 6 000 € d'intérêts.</b> Le capital remboursé efface à la fois votre dépôt et la créance de la banque : <b>10 000 € de monnaie sont détruits</b>. Les intérêts, eux, ne sont pas détruits : ils deviennent un bénéfice de la banque, qui grossit ses fonds propres.",
+    b: { v: [[["Maison", 200], ["Dépôt à la banque A", 0, 1]], [["Dette envers la banque A", 190, 1]]], a: [[["Réserves à la banque centrale", 0], ["Prêt immobilier (vous)", 190, 1]], [["Votre dépôt", 0, 1], ["Emprunt à la banque centrale", 134], ["Fonds propres", 56, 1]]], b: [[["Réserves", 250]], [["Dépôt du vendeur", 200], ["Fonds propres", 50]]], c: [[["Titres", 116], ["Prêt à la banque A", 134]], [["Réserves de A", 0], ["Réserves de B", 250]]] }, m: 200 },
+  { t: "<b>⑤ La banque dépense ses intérêts</b> : elle verse 6 000 € de salaires à ses employés, clients chez elle. Ses fonds propres reviennent à 50 000 €, et les 6 000 € redeviennent de la monnaie dans l'économie. Il reste 190 000 € à rembourser : à mesure que vous le ferez, la monnaie créée au départ disparaîtra.",
+    b: { v: [[["Maison", 200], ["Dépôt à la banque A", 0]], [["Dette envers la banque A", 190]]], a: [[["Réserves à la banque centrale", 0], ["Prêt immobilier (vous)", 190]], [["Dépôts des salariés de la banque", 6, 1], ["Emprunt à la banque centrale", 134], ["Fonds propres", 50, 1]]], b: [[["Réserves", 250]], [["Dépôt du vendeur", 200], ["Fonds propres", 50]]], c: [[["Titres", 116], ["Prêt à la banque A", 134]], [["Réserves de A", 0], ["Réserves de B", 250]]] }, m: 206 },
+];
+let stI = 0;
+function stepper() {
+  if (!$("#mo-st-bil")) return;
+  const S = ST[stI], P = ST[stI - 1], k = v => (v * 1000).toLocaleString("fr-FR") + " €";
+  const col = rows => rows.map(([l, v, ch]) => `<div class="${ch ? "ch" : ""}"><span>${l}</span><b>${k(v)}</b></div>`).join("") || `<div class="vide">rien</div>`;
+  const tot = rows => rows.reduce((a, r) => a + r[1], 0);
+  const box = (id, nom) => { const [ac, pa] = S.b[id]; return `<div class="mo-bil-c"><h4>${nom}</h4><div class="mo-bil-g"><div><small>Actif : ce qu'il possède</small>${col(ac)}</div><div><small>Passif : ce qu'il doit, et ce qui est à lui</small>${col(id === "v" && ac.length ? [...pa, ["Ce qui est à vous (patrimoine net)", tot(ac) - tot(pa)]] : pa)}</div></div></div>`; };
+  $("#mo-st-txt").innerHTML = S.t;
+  $("#mo-st-bil").innerHTML = box("v", "Vous") + box("a", "Votre banque (A)") + box("b", "La banque du vendeur (B)") + box("c", "La banque centrale");
+  const d = P ? S.m - P.m : 0;
+  $("#mo-st-m").innerHTML = `Monnaie détenue par le public (les dépôts) : <b>${k(S.m)}</b>${d ? ` <span style="color:${d > 0 ? "var(--pos)" : "var(--neg)"}">(${d > 0 ? "+" : "−"}${k(Math.abs(d))} : ${d > 0 ? "création" : "destruction"})</span>` : P ? " (inchangée)" : ""}`;
+  $("#mo-st-dots").innerHTML = ST.map((_, i) => `<i class="${i === stI ? "on" : ""}" data-i="${i}"></i>`).join("");
+  $("#mo-st-dots").querySelectorAll("i").forEach(x => x.onclick = () => { stI = +x.dataset.i; stepper(); });
+  $("#mo-st-prev").disabled = stI === 0; $("#mo-st-next").disabled = stI === ST.length - 1;
+}
+
+/* calculateur des fonds propres (Bâle) */
+function bale() {
+  if (!$("#mo-k")) return;
+  const k = +$("#mo-k").value, p = +$("#mo-pond").value;
+  $("#mo-k-v").textContent = f1(k) + " % des prêts pondérés";
+  const mult = p ? 100 / (k * p / 100) : null;
+  $("#mo-k-out").innerHTML = p ? `<p style="margin:0">Avec <b>1 € de fonds propres</b>, la banque peut prêter <b>${f1(mult)} €</b> de ce type de crédit. Avec 50 000 € (la banque A de l'exemple), ${n0(50000 * mult)} €.</p>
+    <ul><li><b>Comment c'est calculé</b> : chaque prêt est compté selon son risque (sa « pondération ») : 1 € de crédit immobilier compte pour environ 0,25 €, 1 € prêté à une grande entreprise pour 1 €. La banque doit avoir des fonds propres égaux à au moins ${f1(k)} % de ce total. Le minimum réglementaire est de 10,5 % (8 % plus un « coussin » de 2,5 %) ; les grandes banques françaises en ont de l'ordre de 13 à 16 %, car les autorités leur imposent des coussins supplémentaires.</li>
+    <li><b>Ce qui en découle</b> : pour prêter davantage, une banque doit gagner de l'argent (les bénéfices non distribués grossissent ses fonds propres) ou lever du capital auprès d'actionnaires, qui exigent un rendement (voir la partie 6). C'est un frein réel, mais qui se desserre à mesure que la banque fait des bénéfices.</li></ul>`
+    : `<p style="margin:0"><b>Aucune limite</b> : la dette des États de la zone euro, dans leur propre monnaie, est pondérée à 0 %. Une banque peut en acheter autant qu'elle veut sans fonds propres supplémentaires.</p>
+    <ul><li><b>C'est un choix politique</b> : on considère que l'État ne peut pas faire défaut. La Grèce a pourtant restructuré sa dette en 2012, et les banques grecques, qui en détenaient beaucoup, ont dû être sauvées par l'État… grec. Ce lien entre les banques et leur État, qui se soutiennent mutuellement, est ce qu'on appelle la « boucle fatale » entre États et banques.</li></ul>`;
 }
 
 /* taux de dépôt de la BCE (en marches d'escalier) */
@@ -251,7 +297,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

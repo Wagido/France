@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123f">
+<link rel="stylesheet" href="style.css?v=20261123i">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -64,7 +64,6 @@
       <a href="#transports">Transports</a>
       <span class="tab-sep">Climat</span>
       <a href="#climat">Climat</a>
-      <a href="#empreinte">Empreinte carbone</a>
       <a href="#catastrophes">Catastrophes climatiques</a>
       <a href="#transition">Qui paie la transition ?</a>
       <span class="tab-sep">Terres et matières</span>
@@ -372,7 +371,7 @@
     <tr><td><b>Retraités</b></td><td><b>31 %</b></td><td>20 %</td><td>29 %</td><td>13 %</td><td>79 %</td></tr>
     <tr><td><b>Ensemble</b></td><td>34 %</td><td>28 %</td><td>20 %</td><td>10 %</td><td>66 %</td></tr>
   </tbody></table></div>
-  <p class="muted" style="font-size:.78rem;margin-top:2px">Législatives anticipées de 2024, premier tour (30 juin). Enquête Ipsos-Talan auprès de 10 286 inscrits (27-28 juin 2024), en % des suffrages exprimés de chaque groupe ; « Ont voté » : part des inscrits. Le rapport d'Ipsos détaille aussi le vote par profession, diplôme, revenu et taille de commune.</p>
+  <p class="muted" style="font-size:.78rem;margin-top:2px">Législatives anticipées de 2024, premier tour (30 juin). Enquête Ipsos-Talan auprès de 10 286 inscrits (27-28 juin 2024), en % des suffrages exprimés de chaque groupe ; « Ont voté » : part des inscrits. Détail par profession, diplôme, revenu et commune dans l'onglet <a href="#electorat">Sociologie électorale</a>.</p>
   <div class="callout small">
     <ul>
       <li><b>Les plus âgés votent davantage pour le camp présidentiel et la droite</b> : aux législatives de 2024, Ensemble arrive en tête chez les 70 ans et plus (32 %), alors qu'il ne recueille que 9 % chez les 18-24 ans. À la présidentielle de 2022, Emmanuel Macron obtenait 41 % des voix des plus de 70 ans au premier tour, contre 13 % pour Marine Le Pen ; il devançait Marine Le Pen seulement à partir de 60 ans <a href="https://www.ipsos.com/fr-fr/presidentielle-2022/1er-tour-abstentionnistes-sociologie-electorat" target="_blank" rel="noopener">[Ipsos, 2022]</a>.</li>
@@ -591,18 +590,97 @@
   <p>La partie suivante détaille comment la monnaie est créée aujourd'hui, qui la détient et combien il y en a.</p>
 
   <h3 id="mo-p1" class="ag-part">2. Comment naît la monnaie aujourd'hui</h3>
-  <div class="in-need">
-    <div><b>① Un prêt</b><span>Vous empruntez 200 000 € pour une maison. La banque n'a pas besoin d'avoir cet argent en caisse : elle inscrit 200 000 € sur votre compte, et 200 000 € de créance à son actif.</span></div>
-    <div><b>② La monnaie circule</b><span>Vous payez le vendeur : l'argent passe sur son compte, dans une autre banque peut-être. Les banques règlent entre elles leurs soldes avec de la monnaie de banque centrale, dont elles ont besoin en petite quantité.</span></div>
-    <div><b>③ Le remboursement la détruit</b><span>Chaque fois que vous remboursez du capital, la monnaie correspondante disparaît des comptes. Les intérêts, eux, ne disparaissent pas : ils deviennent un revenu de la banque.</span></div>
+  <p class="lead">Environ neuf euros sur dix n'existent que sous forme de chiffres sur des comptes bancaires. Ils sont créés par les banques quand elles prêtent, et détruits quand on rembourse. Cette partie montre comment, pas à pas, puis ce qui freine cette création, combien de monnaie existe, et pourquoi un euro sur un compte français n'est pas tout à fait un euro sur un compte allemand.</p>
+  <nav class="li-toc"><b>Dans cette partie</b><ol>
+    <li><a href="#monnaie" data-to="mo-2-1">2.1 Un crédit, pas à pas</a></li>
+    <li><a href="#monnaie" data-to="mo-2-2">2.2 Banque centrale et banques privées</a></li>
+    <li><a href="#monnaie" data-to="mo-2-3">2.3 Tous les robinets : ce qui crée et ce qui détruit la monnaie</a></li>
+    <li><a href="#monnaie" data-to="mo-2-4">2.4 Pourquoi les banques ne créent-elles pas de la monnaie sans limite ?</a></li>
+    <li><a href="#monnaie" data-to="mo-2-5">2.5 Combien de monnaie ? M1, M2, M3</a></li>
+    <li><a href="#monnaie" data-to="mo-2-6">2.6 Un euro français est-il un euro allemand ?</a></li>
+  </ol></nav>
+
+  <h3 id="mo-2-1" class="li-sub">2.1 Un crédit, pas à pas</h3>
+  <p>Suivons un prêt immobilier de 200 000 €, en regardant à chaque étape le <b>bilan</b> de chacun : à gauche ce qu'il possède (l'<i>actif</i>), à droite ce qu'il doit et ce qui lui appartient en propre (le <i>passif</i>). Les deux colonnes sont toujours égales. Les lignes qui changent sont surlignées.</p>
+  <div class="mo-step">
+    <div class="mo-step-nav"><button type="button" id="mo-st-prev">← Précédent</button><span id="mo-st-dots"></span><button type="button" id="mo-st-next">Suivant →</button></div>
+    <p id="mo-st-txt" class="mo-st-txt"></p>
+    <div id="mo-st-bil" class="mo-bil"></div>
+    <p id="mo-st-m" class="mo-st-m"></p>
   </div>
   <div class="callout small">
     <ul>
-      <li><b>Environ neuf euros sur dix sont de la monnaie de banque</b> (les dépôts), créée par le crédit ; le reste, ce sont les billets et pièces. C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
-      <li><b>Le « multiplicateur » des réserves fractionnaires ne décrit plus la réalité.</b> Les manuels racontaient que la banque prête un multiple de ses dépôts, limité par une réserve obligatoire. Dans la zone euro, cette réserve n'est que de 1 % des dépôts depuis 2012. Ce qui freine vraiment le crédit, ce sont les fonds propres que les banques doivent détenir (règles de Bâle), le taux d'intérêt fixé par la banque centrale, et tout simplement la demande d'emprunt des ménages et des entreprises.</li>
-      <li><b>La banque centrale crée aussi de la monnaie</b>, en prêtant aux banques ou en achetant des obligations (de 2015 à 2022, la BCE a ainsi acheté une grande partie de la dette publique française sur les marchés). Mais elle n'a pas le droit de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
+      <li><b>À retenir</b> : la banque n'a prêté l'argent de personne. Elle a créé un dépôt en face d'une créance. La monnaie est née d'une promesse : la vôtre, de rembourser.</li>
+      <li><b>Les réserves ne sont qu'un problème de règlement entre banques</b> : la banque A en a eu besoin seulement parce que l'argent est parti vers la banque B. Dans la réalité, des millions de paiements vont dans les deux sens chaque jour et se compensent en grande partie : une banque n'a besoin d'emprunter que le solde.</li>
+      <li><b>Les intérêts ne sont pas détruits</b> : ils deviennent un revenu de la banque, qui le redépense (salaires, impôts, dividendes) et le remet ainsi en circulation. C'est pourquoi l'argent des intérêts ne « manque » pas forcément (voir la partie 4).</li>
+      <li>C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
     </ul>
   </div>
+
+  <h3 id="mo-2-2" class="li-sub">2.2 Banque centrale et banques privées : comment les deux étages s'emboîtent</h3>
+  <p class="lead">Il y a deux monnaies (voir l'encadré « Un billet, une dette ? » de la partie 1). <b>La monnaie scripturale</b> (« écrite » : des chiffres sur des comptes), environ 90 % de la monnaie, est créée par les banques quand elles prêtent. <b>La monnaie de banque centrale</b> (les billets, et les comptes des banques à la banque centrale, appelés « réserves ») est créée par la seule banque centrale. Le public n'utilise que la première, à part les billets ; les banques, elles, se paient entre elles avec la seconde.</p>
+  <div class="in-need">
+    <div><b>① Chaque banque a un compte à la banque centrale</b><span>Comme vous avez un compte dans votre banque, votre banque a un compte à la Banque de France. L'argent qui y est s'appelle les « réserves ». Seules les banques peuvent en détenir.</span></div>
+    <div><b>② Un virement entre banques déplace des réserves</b><span>Vous payez 1 000 € à quelqu'un qui est dans une autre banque : votre compte baisse de 1 000 €, le sien monte de 1 000 €, et votre banque transfère 1 000 € de réserves à la sienne, sur le système de paiement de l'Eurosystème (T2). Chaque jour, des milliards se compensent ainsi.</span></div>
+    <div><b>③ Une banque à court de réserves emprunte</b><span>Si elle prête beaucoup et voit partir l'argent vers d'autres banques, elle emprunte des réserves à une autre banque ou à la banque centrale, en donnant des garanties (des obligations, des créances). La banque centrale lui en fournit toujours, au prix qu'elle a fixé : son taux directeur.</span></div>
+    <div><b>④ Le taux directeur pilote tous les autres</b><span>Les réserves en trop sont rémunérées par la BCE au taux de la « facilité de dépôt ». Aucune banque ne prêtera à une autre en dessous de ce taux : il devient le plancher des taux du marché, puis des crédits immobiliers, des prêts aux entreprises, des livrets.</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Les banques ne prêtent pas les réserves</b> : les réserves ne sortent jamais du circuit des banques. Une banque ne « prête » pas ses réserves à un client ; elle crée un dépôt, puis s'assure d'avoir assez de réserves pour faire face aux virements et aux retraits. La banque prête d'abord, et cherche les réserves ensuite (voir 2.4).</li>
+      <li><b>Comment la banque centrale freine ou accélère le crédit</b> : en montant son taux, elle rend les réserves plus chères, donc le crédit plus cher. Les ménages et les entreprises empruntent moins, moins de monnaie est créée, la demande et l'inflation ralentissent. En le baissant, elle fait l'inverse. Elle agit sur le prix de la monnaie, pas sur sa quantité.</li>
+      <li><b>Les rachats de titres (2015-2022)</b> ont noyé les banques de réserves : quand la Banque de France rachète une obligation à un assureur, elle crédite le compte de la banque de cet assureur. Les réserves ont atteint plus de 4 000 milliards d'euros dans la zone euro en 2022, bien au-delà des 1 % obligatoires. Depuis, la BCE ne rachète plus et les laisse décroître.</li>
+      <li><b>L'Eurosystème, ce n'est pas seulement la BCE</b> : c'est la BCE à Francfort plus les banques centrales nationales des pays de la zone euro, dont la Banque de France. La BCE décide (son conseil réunit les gouverneurs nationaux et six membres du directoire) ; ce sont les banques centrales nationales qui tiennent les comptes des banques de leur pays, leur prêtent et rachètent les titres.</li>
+    </ul>
+  </div>
+  <h3>Le taux directeur de la BCE depuis 1999 (taux de la facilité de dépôt)</h3>
+  <div id="mo-tbce" class="chart"></div>
+  <div class="callout small" id="mo-tbce-txt"></div>
+
+
+  <h3 id="mo-2-3" class="li-sub">2.3 Tous les robinets : ce qui crée et ce qui détruit la monnaie</h3>
+  <p>Le crédit n'est pas le seul robinet. La règle générale est simple : <b>de la monnaie est créée chaque fois qu'une banque (ou la banque centrale) achète quelque chose ou prête à quelqu'un qui n'est pas une banque</b>, et détruite chaque fois qu'elle est payée par lui.</p>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Ce qui crée de la monnaie</th><th>Ce qui en détruit</th></tr></thead>
+    <tbody>
+      <tr><td><b>Un crédit</b> à un ménage ou à une entreprise : la banque crédite son compte.</td><td><b>Le remboursement du capital</b> : le dépôt et la créance disparaissent ensemble.</td></tr>
+      <tr><td><b>Une banque achète une obligation</b> (de l'État, d'une entreprise) à un épargnant : elle paie en créditant son compte. Quand une banque prête à l'État, elle crée donc de la monnaie, que l'État dépense ensuite.</td><td><b>Un client achète un titre à sa banque</b> (une obligation, une action de la banque) : il paie avec son dépôt, qui disparaît.</td></tr>
+      <tr><td><b>La banque centrale rachète des titres</b> à un assureur ou à un fonds (« assouplissement quantitatif », 2015-2022) : elle crée des réserves pour la banque de l'assureur, qui crédite son compte.</td><td><b>La banque centrale laisse ses titres arriver à échéance</b> sans les remplacer (« resserrement quantitatif », depuis 2023) : l'État rembourse, et la monnaie correspondante disparaît.</td></tr>
+      <tr><td><b>Un exportateur change ses dollars</b> en euros auprès de sa banque.</td><td><b>Un importateur achète des dollars</b> avec ses euros.</td></tr>
+      <tr><td><b>La banque dépense</b> : salaires de ses employés, fournisseurs, dividendes.</td><td><b>On paie la banque</b> : intérêts, frais. La monnaie revient quand elle la redépense.</td></tr>
+      <tr><td><b>L'État dépense</b> l'argent de son compte au Trésor.</td><td><b>On paie ses impôts</b> : l'argent quitte les comptes du public pour le compte du Trésor à la Banque de France, hors de la masse monétaire, jusqu'à ce que l'État le dépense.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Épargner ne détruit pas de monnaie</b> : mettre de l'argent sur un livret A le fait passer de M1 à M2 (voir 2.5), sans le détruire. Mais l'acheter en assurance-vie, qui place en obligations, le fait sortir de la masse monétaire.</li>
+      <li><b>L'État et la monnaie</b> : quand l'État emprunte à des épargnants (assureurs, fonds), il ne crée pas de monnaie, il déplace de l'épargne existante. Quand il emprunte à des banques, ou que la banque centrale rachète sa dette, de la monnaie nouvelle apparaît (voir la partie 3).</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-2-4" class="li-sub">2.4 Pourquoi les banques ne créent-elles pas de la monnaie sans limite ?</h3>
+  <p>Si un prêt se fait par une écriture, qu'est-ce qui empêche une banque de prêter des milliards ? Pas les réserves (1 % des dépôts dans la zone euro, et la banque centrale en fournit toujours). Le « multiplicateur » des manuels, où la banque prête un multiple de ses dépôts, décrit mal la réalité. Les vrais freins sont au nombre de cinq.</p>
+  <div class="in-need">
+    <div><b>① Les fonds propres</b><span>L'argent qui appartient aux actionnaires de la banque, et qui encaisse les pertes. Les règles de Bâle imposent d'en avoir au moins 10,5 % de ses prêts, pondérés selon leur risque (voir le calculateur). C'est le frein principal.</span></div>
+    <div><b>② La liquidité</b><span>Quand l'argent prêté part vers d'autres banques, il faut des réserves pour payer. La banque doit garder assez d'actifs faciles à vendre pour tenir 30 jours de retraits (règle « LCR »). Elle peut emprunter à la banque centrale, mais contre des garanties, et en payant le taux directeur.</span></div>
+    <div><b>③ Le taux de la banque centrale</b><span>Il fixe le coût de l'argent pour les banques, donc le taux des crédits. Plus il est élevé, moins on emprunte (voir 2.2).</span></div>
+    <div><b>④ La demande et le risque</b><span>Il faut des emprunteurs qui veulent et peuvent rembourser. Un prêt non remboursé est une perte pour la banque, prise sur ses fonds propres.</span></div>
+    <div><b>⑤ Les règles de prudence</b><span>En France, le Haut Conseil de stabilité financière limite depuis 2022 les crédits immobiliers : mensualités de 35 % des revenus au plus, durée de 25 ans au plus (avec une petite part de dérogations).</span></div>
+  </div>
+  <h3>Le calculateur des fonds propres : combien une banque peut-elle prêter ?</h3>
+  <div class="mo-calc">
+    <label>Fonds propres exigés <input type="range" id="mo-k" min="8" max="16" step="0.5" value="12"> <b id="mo-k-v"></b></label>
+    <label>Type de prêt <select id="mo-pond">
+      <option value="25">Crédit immobilier (pondération ≈ 25 %)</option>
+      <option value="75">Prêt à une PME (75 %)</option>
+      <option value="100" selected>Prêt à une grande entreprise (100 %)</option>
+      <option value="150">Prêt risqué (150 %)</option>
+      <option value="0">Dette d'un État de la zone euro (0 %)</option>
+    </select></label>
+  </div>
+  <div id="mo-k-out" class="callout small"></div>
+
+  <h3 id="mo-2-5" class="li-sub">2.5 Combien de monnaie ?</h3>
   <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
   <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
   <div class="callout small" id="mo-credit-txt"></div>
@@ -614,27 +692,7 @@
   </div>
   <div class="callout small" id="mo-m-txt"></div>
 
-  <h3>Banque centrale et banques privées : comment les deux étages s'emboîtent</h3>
-  <p class="lead">Il y a deux monnaies (voir l'encadré « Un billet, une dette ? » de la partie 1). <b>La monnaie scripturale</b> (« écrite » : des chiffres sur des comptes), environ 90 % de la monnaie, est créée par les banques quand elles prêtent. <b>La monnaie de banque centrale</b> (les billets, et les comptes des banques à la banque centrale, appelés « réserves ») est créée par la seule banque centrale. Le public n'utilise que la première, à part les billets ; les banques, elles, se paient entre elles avec la seconde.</p>
-  <div class="in-need">
-    <div><b>① Chaque banque a un compte à la banque centrale</b><span>Comme vous avez un compte dans votre banque, votre banque a un compte à la Banque de France. L'argent qui y est s'appelle les « réserves ». Seules les banques peuvent en détenir.</span></div>
-    <div><b>② Un virement entre banques déplace des réserves</b><span>Vous payez 1 000 € à quelqu'un qui est dans une autre banque : votre compte baisse de 1 000 €, le sien monte de 1 000 €, et votre banque transfère 1 000 € de réserves à la sienne, sur le système de paiement de l'Eurosystème (T2). Chaque jour, des milliards se compensent ainsi.</span></div>
-    <div><b>③ Une banque à court de réserves emprunte</b><span>Si elle prête beaucoup et voit partir l'argent vers d'autres banques, elle emprunte des réserves à une autre banque ou à la banque centrale, en donnant des garanties (des obligations, des créances). La banque centrale lui en fournit toujours, au prix qu'elle a fixé : son taux directeur.</span></div>
-    <div><b>④ Le taux directeur pilote tous les autres</b><span>Les réserves en trop sont rémunérées par la BCE au taux de la « facilité de dépôt ». Aucune banque ne prêtera à une autre en dessous de ce taux : il devient le plancher des taux du marché, puis des crédits immobiliers, des prêts aux entreprises, des livrets.</span></div>
-  </div>
-  <div class="callout small">
-    <ul>
-      <li><b>Les banques ne prêtent pas les réserves</b> : les réserves ne sortent jamais du circuit des banques. Une banque ne « prête » pas ses réserves à un client ; elle crée un dépôt, puis s'assure d'avoir assez de réserves pour faire face aux virements et aux retraits. C'est pourquoi le multiplicateur des manuels décrit mal la réalité : la banque prête d'abord, et cherche les réserves ensuite.</li>
-      <li><b>Comment la banque centrale freine ou accélère le crédit</b> : en montant son taux, elle rend les réserves plus chères, donc le crédit plus cher. Les ménages et les entreprises empruntent moins, moins de monnaie est créée, la demande et l'inflation ralentissent. En le baissant, elle fait l'inverse. Elle agit sur le prix de la monnaie, pas sur sa quantité.</li>
-      <li><b>Les rachats de titres (2015-2022)</b> ont noyé les banques de réserves : quand la Banque de France rachète une obligation à un assureur, elle crédite le compte de la banque de cet assureur. Les réserves ont atteint plus de 4 000 milliards d'euros dans la zone euro en 2022, bien au-delà des 1 % obligatoires. Depuis, la BCE ne rachète plus et les laisse décroître.</li>
-      <li><b>L'Eurosystème, ce n'est pas seulement la BCE</b> : c'est la BCE à Francfort plus les banques centrales nationales des pays de la zone euro, dont la Banque de France. La BCE décide (son conseil réunit les gouverneurs nationaux et six membres du directoire) ; ce sont les banques centrales nationales qui tiennent les comptes des banques de leur pays, leur prêtent et rachètent les titres.</li>
-    </ul>
-  </div>
-  <h3>Le taux directeur de la BCE depuis 1999 (taux de la facilité de dépôt)</h3>
-  <div id="mo-tbce" class="chart"></div>
-  <div class="callout small" id="mo-tbce-txt"></div>
-
-  <h3>Un euro français est-il un euro allemand ?</h3>
+  <h3 id="mo-2-6" class="li-sub">2.6 Un euro français est-il un euro allemand ?</h3>
   <p class="lead">En droit, oui : un euro est un euro dans toute la zone. Pour les billets et les réserves, c'est vrai aussi. Mais pour la monnaie scripturale, celle de nos comptes, c'est moins simple : elle reste une dette d'une banque nationale, garantie par un système national, dans un pays dont l'État peut être plus ou moins solide.</p>
   <div class="callout small">
     <ul>
@@ -689,32 +747,67 @@
   </div>
 
   <h3 id="mo-p2" class="ag-part">4. L'argent des intérêts manque-t-il ?</h3>
-  <p class="lead">L'argument : la banque crée les 200 000 € du prêt, mais pas les intérêts. Il faudrait donc toujours un nouveau crédit, quelque part, pour trouver l'argent des intérêts. Testons-le sur une économie miniature, sans aucune croissance : une banque, des emprunteurs, un stock de dettes constant (chaque prêt remboursé est remplacé par un nouveau, de même montant).</p>
+  <p class="lead">C'est l'argument central de ceux qui disent que la monnaie-dette oblige à croître. Il se comprend avec une petite histoire.</p>
+  <div class="callout small">
+    <p><b>Le paradoxe de l'île</b></p>
+    <p>Sur une île, il n'y a pas de monnaie. Une banque prête <b>100 €</b> à un pêcheur, à 10 % d'intérêt. Ce sont les seuls euros de l'île. Dans un an, le pêcheur devra rendre <b>110 €</b>. Mais il n'existe que 100 € sur l'île : <b>où trouvera-t-il les 10 € d'intérêts ?</b> Il faudrait, dit l'argument, que la banque prête 10 € de plus à quelqu'un, puis encore plus l'année suivante… La dette devrait grossir sans fin, et l'économie avec.</p>
+  </div>
+  <h3>La réponse : la banque dépense ce qu'elle gagne</h3>
+  <div class="mo-loop">
+    <div><b>Le pêcheur</b><span>paie 10 € d'intérêts</span></div><i>→</i>
+    <div><b>La banque</b><span>paie 10 € de salaire à son employée</span></div><i>→</i>
+    <div><b>L'employée</b><span>achète 10 € de poisson</span></div><i>→</i>
+    <div><b>Le pêcheur</b><span>a retrouvé ses 10 €, et peut payer les intérêts de l'année suivante</span></div>
+  </div>
+  <ul class="mo-ul">
+    <li><b>Les 10 € d'intérêts n'ont pas besoin d'exister en plus des 100 €.</b> Les mêmes billets font le tour chaque année : la banque ne garde pas les intérêts, elle les dépense (salaires, loyer, impôts, dividendes de ses actionnaires). Ils reviennent ainsi dans l'économie, où le pêcheur peut les regagner en vendant son travail.</li>
+    <li><b>Ce qu'il faut financer, c'est un flux, pas un stock</b> : un même euro peut payer un salaire, puis des courses, puis des intérêts, dans la même année.</li>
+    <li><b>Et les 100 € du capital ?</b> Le pêcheur les rembourse un jour : ils disparaissent, en même temps que sa dette. Il n'y a rien à trouver en plus.</li>
+  </ul>
+  <h3>Le simulateur : l'île pendant 40 ans, sans aucune croissance</h3>
+  <p>La banque a prêté 100 € ; chaque prêt remboursé est remplacé par un nouveau du même montant, donc la dette totale reste à 100 € et il n'y a aucune croissance. Faites varier le taux et la part des intérêts que la banque redépense.</p>
   <div class="in-sim">
-    <label class="ctl">Taux d'intérêt <input type="range" id="mo-i" min="0" max="10" step=".5" value="4"><b id="mo-i-v"></b></label>
-    <label class="ctl">Part de ses revenus d'intérêts que la banque redépense (salaires, loyers, fournisseurs, dividendes, impôts) <input type="range" id="mo-b" min="0" max="100" step="5" value="100"><b id="mo-b-v"></b></label>
+    <label class="ctl">Taux d'intérêt <input type="range" id="mo-i" min="0" max="10" step=".5" value="10"><b id="mo-i-v"></b></label>
+    <label class="ctl">Part de ses intérêts que la banque redépense <input type="range" id="mo-b" min="0" max="100" step="5" value="100"><b id="mo-b-v"></b></label>
   </div>
   <div id="mo-mini" class="chart"></div><div class="legend-row" id="mo-mini-legend"></div>
   <p class="in-verdict" id="mo-mini-out"></p>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : la courbe bleue est l'argent qui circule sur l'île, avec lequel on paie les intérêts. À 100 % redépensés, elle reste à 100 € pour toujours, et la courbe verte montre tout ce qui a été payé en intérêts. Baissez la part redépensée : la courbe rouge (l'argent que la banque garde) monte, la bleue descend, et au bout d'un moment il ne reste plus assez d'argent pour payer.</p>
   <div class="callout small">
+    <p><b>En résumé</b></p>
     <ul>
-      <li><b>L'argument oublie que la banque dépense ce qu'elle gagne.</b> Les intérêts paient les salaires de ses employés, ses loyers, ses informaticiens, ses impôts et les dividendes de ses actionnaires. Cet argent revient dans l'économie, où il sert à payer les intérêts suivants. Si la banque redépense tout, la monnaie en circulation ne baisse pas : on peut payer des intérêts sans fin, sans aucune croissance.</li>
-      <li><b>La même monnaie sert plusieurs fois</b> : un euro peut payer un salaire, puis des courses, puis des intérêts, dans la même année. Ce qui doit être financé, c'est un flux annuel, pas un stock.</li>
-      <li><b>Le problème apparaît si les revenus du crédit sont thésaurisés</b> : si la banque ou ses actionnaires accumulent leurs gains au lieu de les dépenser, la monnaie en circulation fond, les emprunteurs ne peuvent plus payer, et il faut de nouveaux crédits. C'est le vrai point faible : non pas l'intérêt lui-même, mais l'épargne qui s'accumule sans être redépensée ni prêtée.</li>
-      <li><b>Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion</b> : une économie stationnaire, avec de la monnaie créée par le crédit et des intérêts positifs, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015). La monnaie-dette n'impose pas mathématiquement la croissance.</li>
+      <li><b>L'intérêt, à lui seul, n'oblige pas à croître.</b> Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion : une économie sans croissance, avec de la monnaie créée par le crédit et des intérêts, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015).</li>
+      <li><b>Le vrai problème, c'est l'argent qui s'accumule sans être redépensé.</b> Si les gagnants (la banque, ses actionnaires, les plus riches) épargnent une grande partie de ce qu'ils reçoivent, cet argent manque aux autres pour payer leurs dettes. Il faut alors de nouveaux crédits pour que l'économie continue de tourner, ou bien des défauts de paiement. Or dans la réalité, l'épargne s'accumule bien : c'est par là que la pression à croître revient, comme le montre la partie suivante.</li>
     </ul>
   </div>
 
   <h3 id="mo-p3" class="ag-part">5. Ce qui pousse vraiment à croître</h3>
-  <p class="lead">Si ce n'est pas la mécanique monétaire, d'où vient la pression ? D'abord d'une règle simple : une dette reste supportable si les revenus de l'emprunteur augmentent au moins aussi vite que les intérêts courent.</p>
-  <h3>Croissance du PIB en valeur et taux d'intérêt à long terme de l'État</h3>
+  <p class="lead">La mécanique de la monnaie n'impose pas la croissance. Mais l'économie actuelle fonctionne beaucoup mieux avec elle, pour cinq raisons. La première, le poids des dettes, se mesure avec une règle simple ; les quatre autres suivent.</p>
+  <div class="in-need">
+    <div><b>① Les dettes s'allègent avec la croissance</b><span>Une dette pèse moins lourd quand les revenus augmentent. Sans croissance, il faut la rembourser en se privant (5.1).</span></div>
+    <div><b>② Le capital attend un rendement</b><span>Épargnants, retraites par capitalisation, actionnaires attendent 3 à 7 % par an. Sans croissance, ce rendement se prend sur la part des autres (5.2 et partie 6).</span></div>
+    <div><b>③ La productivité supprime des emplois</b><span>On produit chaque année un peu plus par heure travaillée. Sans croissance, il faut moins d'heures : chômage, ou partage du travail (5.2).</span></div>
+    <div><b>④ L'épargne s'accumule</b><span>Ce qui est épargné sans être prêté ni dépensé manque à la demande ; il faut de nouveaux crédits pour compenser (partie 4).</span></div>
+    <div><b>⑤ Le crédit avance par vagues</b><span>Quand tout le monde rembourse en même temps, la monnaie disparaît et c'est la crise. Les États relancent à chaque fois (5.2).</span></div>
+  </div>
+
+  <h3 id="mo-5-1" class="li-sub">5.1 Les dettes et la croissance : la règle « r contre g »</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Un exemple</b> : vous devez 100 000 € à 3 %, soit 3 000 € d'intérêts par an, et vous gagnez 50 000 € par an. Si votre revenu augmente de 3 % par an, votre dette pèse le même poids chaque année sans que vous ayez rien à rembourser : vous pouvez même emprunter de quoi payer les intérêts. S'il n'augmente pas, il faut prendre les 3 000 € sur votre revenu, chaque année, juste pour que la dette ne grossisse pas.</li>
+      <li><b>C'est la règle « r contre g »</b> : <b>r</b> est le taux d'intérêt, <b>g</b> la croissance des revenus <i>en euros</i>, c'est-à-dire la croissance réelle plus l'inflation (on parle de croissance « en valeur »). Si g est plus grand que r, les dettes fondent d'elles-mêmes. Si r est plus grand que g, elles grossissent toutes seules, et il faut un effort pour les contenir.</li>
+      <li><b>Pour un pays, c'est pareil</b> : la dette publique se mesure en % du PIB, c'est-à-dire par rapport aux revenus de tout le pays. La même règle vaut pour les dettes des entreprises et des ménages.</li>
+    </ul>
+  </div>
+  <h3>En France : la croissance en valeur (g) et le taux d'intérêt de l'État (r)</h3>
   <div id="mo-rg" class="chart"></div><div class="legend-row" id="mo-rg-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : quand la courbe bleue est au-dessus de la rouge, les dettes fondent d'elles-mêmes (les Trente Glorieuses) ; quand la rouge passe au-dessus (1986-2007), elles grossissent toutes seules.</p>
   <div id="mo-periodes"></div>
   <h3>Le simulateur de la « boule de neige »</h3>
-  <p class="lead">Une dette égale à un pourcentage du PIB, un taux d'intérêt, une croissance en valeur (croissance réelle + inflation) : combien faut-il dégager chaque année, sur ses revenus, pour que le poids de la dette ne grossisse pas ?</p>
+  <p>Choisissez une dette (en % du PIB), un taux, une croissance et une inflation. Le simulateur calcule combien il faut rembourser chaque année, en prélevant sur les revenus, pour que le poids de la dette ne grossisse pas. Essayez les situations proposées.</p>
   <div class="in-sim">
     <label class="ctl">Dette de départ (% du PIB) <input type="range" id="mo-d" min="20" max="250" step="5" value="115"><b id="mo-d-v"></b></label>
-    <label class="ctl">Taux d'intérêt moyen <input type="range" id="mo-r" min="0" max="8" step=".25" value="3"><b id="mo-r-v"></b></label>
+    <label class="ctl">Taux d'intérêt moyen (r) <input type="range" id="mo-r" min="0" max="8" step=".25" value="3"><b id="mo-r-v"></b></label>
     <label class="ctl">Croissance réelle <input type="range" id="mo-g" min="-2" max="5" step=".25" value="0"><b id="mo-g-v"></b></label>
     <label class="ctl">Inflation <input type="range" id="mo-p" min="-2" max="8" step=".25" value="2"><b id="mo-p-v"></b></label>
     <label class="ctl">Remboursement net chaque année (% du PIB) <input type="range" id="mo-s" min="-5" max="6" step=".25" value="0"><b id="mo-s-v"></b></label>
@@ -724,11 +817,18 @@
   <p class="in-verdict" id="mo-snow-out"></p>
   <div class="callout small">
     <ul>
-      <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec un taux de 3 %, une dette de 115 % du PIB et 2 % d'inflation, il faut dégager chaque année environ 1 % du PIB pour la stabiliser. Sans inflation non plus, plus de 3 %. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est le scénario redouté par les banques centrales, qui visent 2 % d'inflation pour cette raison aussi.</li>
-      <li><b>Les « Trente Glorieuses » ont été faciles</b> : la croissance en valeur dépassait le taux d'intérêt, les dettes fondaient d'elles-mêmes. De 1986 à 2007, c'est l'inverse : les taux réels élevés ont fait grossir les dettes publiques. Depuis 2014, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
-      <li><b>Le rendement attendu du capital</b> (voir la partie 6) : les épargnants, les fonds de pension et les actionnaires attendent 3 à 7 % par an. Dans une économie qui ne croît plus, ce rendement ne peut plus venir d'un gâteau plus grand, seulement d'une part plus grande prise sur les salaires ou sur les autres. C'est une tension politique, pas une impossibilité comptable.</li>
-      <li><b>L'emploi</b> : les gains de productivité (de l'ordre de 1 % par an en moyenne en France depuis 2000, moins depuis 2019) suppriment des heures de travail. Sans croissance, il faut partager le travail (temps de travail plus court) pour éviter le chômage.</li>
-      <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée, la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, ce qui pousse les gouvernements et les banques centrales à relancer à chaque fois.</li>
+      <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec une dette de 115 % du PIB, un taux de 3 % et 2 % d'inflation, il faut rembourser chaque année environ 1 % du PIB pour la stabiliser. Sans inflation, environ 3,5 %, soit une centaine de milliards d'euros par an pour la France. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est pour cela aussi que les banques centrales visent 2 % d'inflation, pas 0 %.</li>
+      <li><b>L'histoire française</b> : pendant les Trente Glorieuses, la croissance en valeur dépassait largement le taux, les dettes fondaient. De 1986 à 2007, c'est l'inverse : taux élevés, inflation faible, les dettes publiques grossissent. De 2014 à 2021, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-5-2" class="li-sub">5.2 Les autres forces</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Le rendement du capital</b> : les épargnants, les fonds de retraite et les actionnaires attendent 3 à 7 % par an (la partie 6 explique comment ce chiffre est fixé). Dans une économie qui grossit, ce rendement vient d'un gâteau plus grand. Dans une économie qui ne croît plus, il ne peut venir que d'une part plus grande prise sur les salaires ou sur les autres. Ce n'est pas impossible, mais c'est une source de conflit politique.</li>
+      <li><b>L'emploi</b> : chaque année, on produit un peu plus par heure de travail (de l'ordre de 1 % par an en France depuis 2000, moins depuis 2019). Pour produire la même quantité, il faut donc moins d'heures. Sans croissance, soit le chômage monte, soit on réduit le temps de travail de chacun.</li>
+      <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée (voir 2.3), la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, et les gouvernements comme les banques centrales relancent à chaque fois.</li>
+      <li><b>En résumé</b> : rien dans la monnaie n'interdit une économie sans croissance. Mais nos institutions (dettes élevées, retraites, emploi, rendement attendu du capital) ont été construites pendant des décennies de croissance, et supposent qu'elle continue. S'en passer demande de les changer, ce que discute la partie 8.</li>
     </ul>
   </div>
 
@@ -755,6 +855,7 @@
   <div class="callout small" id="mo-rend-txt"></div>
 
   <h3 id="mo-p4" class="ag-part">7. Un monde physique fini</h3>
+  <p class="lead">Jusqu'ici, on n'a parlé que d'euros : la monnaie naît du crédit, la dette et le capital réclament un rendement, et ce rendement est plus facile à servir quand l'économie grossit. Reste la question de départ : une croissance <i>en euros</i> oblige-t-elle à consommer toujours plus d'énergie et de matières ? C'est là que l'économie rencontre la physique.</p>
   <div class="callout small">
     <ul>
       <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
@@ -1728,8 +1829,8 @@
   <div class="panel-head">
     <h2>Agriculture : peut-on être autonome sans intrants ? <span class="geo-fixed">France</span></h2>
   </div>
-  <p class="muted" style="margin:0 0 8px">Six parties : <a href="#agriculture" data-to="ag-p1">1. ce qu'on cultive</a> · <a href="#agriculture" data-to="in-p1">2. ce qui fait pousser une plante</a> · <a href="#agriculture" data-to="in-p2">3. les rendements</a> · <a href="#agriculture" data-to="in-p3">4. les intrants</a> · <a href="#agriculture" data-to="in-p4">5. et en bio ?</a> · <a href="#agriculture" data-to="in-p5">6. nourrir la France sans intrants ?</a></p>
-  <div class="kpis" id="in-kpis"></div>
+  <p class="muted" style="margin:0 0 8px">Six parties : <a href="#agriculture" data-to="ag-p1">1. ce qu'on cultive</a> · <a href="#agriculture" data-to="agr-p1">2. ce qui fait pousser une plante</a> · <a href="#agriculture" data-to="agr-p2">3. les rendements</a> · <a href="#agriculture" data-to="agr-p3">4. les intrants</a> · <a href="#agriculture" data-to="agr-p4">5. et en bio ?</a> · <a href="#agriculture" data-to="agr-p5">6. nourrir la France sans intrants ?</a></p>
+  <div class="kpis" id="agr-kpis"></div>
 
   <h3 id="ag-p1" class="ag-part">1. Ce qu'on cultive</h3>
   <div class="kpis" id="agriculture-kpis"></div>
@@ -1738,7 +1839,7 @@
   <h3>Surfaces depuis 2000 (millions d'hectares)</h3><div id="ag-evol" class="chart"></div><div class="legend-row" id="ag-evol-legend"></div>
   <div class="callout small" id="agriculture-txt"></div>
 
-  <h3 id="in-p1" class="ag-part">2. Ce qui fait pousser une plante</h3>
+  <h3 id="agr-p1" class="ag-part">2. Ce qui fait pousser une plante</h3>
   <p class="lead">Une plante fabrique sa matière avec la lumière, l'air et l'eau. Le sol ne fournit qu'une petite partie de sa masse, mais c'est souvent cette petite partie qui limite la récolte.</p>
   <div class="in-need">
     <div><b>Lumière et CO₂</b><span>Par la photosynthèse, la plante transforme le gaz carbonique de l'air et l'eau en sucres. Le carbone, l'oxygène et l'hydrogène font environ 95 % de la matière sèche d'une plante : elle vient de l'air et de l'eau, pas du sol.</span></div>
@@ -1753,37 +1854,37 @@
     <p><b>Toute récolte exporte le sol</b> : le grain vendu emporte l'azote, le phosphore et le potassium qu'il contient. Autrefois, ils revenaient en partie au champ par le fumier et les excréments humains. Aujourd'hui, les grains partent vers les villes, les élevages et l'étranger : sans apports extérieurs, la fertilité baisse. C'est tout le sujet de la suite.</p>
   </div>
 
-  <h3 id="in-p2" class="ag-part">3. Les rendements</h3>
+  <h3 id="agr-p2" class="ag-part">3. Les rendements</h3>
   <h3>Le blé depuis 1815</h3>
   <p class="lead">Quintaux de blé par hectare (1 quintal = 100 kg). Avant 1961 : repères historiques publiés (ordres de grandeur, avec leur fourchette) ; depuis 1961 : série annuelle de la FAO.</p>
-  <div id="in-ble" class="chart"></div>
-  <div class="legend-row" id="in-ble-legend"></div>
-  <div class="callout small" id="in-ble-txt"></div>
+  <div id="agr-ble" class="chart"></div>
+  <div class="legend-row" id="agr-ble-legend"></div>
+  <div class="callout small" id="agr-ble-txt"></div>
 
   <h3>Le rendement par type de culture depuis 1961</h3>
   <p class="lead">Moyenne des cinq premières années (1961-1965) et des cinq dernières, et meilleure moyenne sur cinq ans. Quintaux par hectare pour les grains, tonnes par hectare pour les pommes de terre et les betteraves.</p>
-  <div id="in-cult" class="in-mini"></div>
-  <div class="callout small" id="in-cult-txt"></div>
+  <div id="agr-cult" class="in-mini"></div>
+  <div class="callout small" id="agr-cult-txt"></div>
 
-  <h3 id="in-p3" class="ag-part"><span id="intrants"></span>4. Les intrants : engrais et pesticides</h3>
+  <h3 id="agr-p3" class="ag-part"><span id="intrants"></span>4. Les intrants : engrais et pesticides</h3>
   <p class="lead">Les « intrants » sont ce que l'agriculteur achète hors de sa ferme pour produire : engrais, produits phytosanitaires, semences, carburant, aliments du bétail. Les deux qui comptent le plus pour le rendement sont les engrais et les pesticides.</p>
   <div class="grid2">
-    <div><h3>Engrais minéraux par hectare cultivé (kg d'éléments nutritifs)</h3><div id="in-engrais" class="chart"></div><div class="legend-row" id="in-engrais-legend"></div></div>
-    <div><h3>Pesticides vendus (tonnes de substances actives)</h3><div id="in-pest" class="chart"></div><div class="legend-row" id="in-pest-legend"></div></div>
+    <div><h3>Engrais minéraux par hectare cultivé (kg d'éléments nutritifs)</h3><div id="agr-engrais" class="chart"></div><div class="legend-row" id="agr-engrais-legend"></div></div>
+    <div><h3>Pesticides vendus (tonnes de substances actives)</h3><div id="agr-pest" class="chart"></div><div class="legend-row" id="agr-pest-legend"></div></div>
   </div>
   <h3>Les engrais : la France dépend de l'étranger</h3>
   <p class="lead">Utilisation par l'agriculture et production en France, en milliers de tonnes d'éléments nutritifs.</p>
-  <div id="in-dep"></div>
-  <div class="callout small" id="in-intrants-txt"></div>
+  <div id="agr-dep"></div>
+  <div class="callout small" id="agr-intrants-txt"></div>
 
   <h3 id="pesticides">Risque lié aux pesticides (indice 100 en 2011-2013)</h3><div id="pe-fr" class="chart"></div><div class="legend-row" id="pe-fr-legend"></div>
   <div class="callout small" id="pesticides-txt"></div>
 
-  <h3 id="in-p4" class="ag-part">5. Et en bio ?</h3>
+  <h3 id="agr-p4" class="ag-part">5. Et en bio ?</h3>
   <p class="lead">L'agriculture biologique n'utilise ni engrais azotés de synthèse ni pesticides de synthèse. Ce n'est pas une agriculture sans intrants : elle apporte du fumier, des composts, des engrais organiques, et emploie des produits autorisés (cuivre, soufre, insecticides naturels).</p>
   <h3>La part du bio depuis 2012</h3><div id="ag-bio" class="chart"></div><div class="legend-row" id="ag-bio-legend"></div>
   <h3>Le rendement en bio</h3>
-  <div id="in-bio"></div>
+  <div id="agr-bio"></div>
   <div class="callout small">
     <ul>
       <li><b>En France, le blé bio rend environ deux fois moins</b> que le blé conventionnel : −55 % en moyenne sur 2018-2022, −57 % en 2022, selon l'enquête Terres labourables du ministère de l'Agriculture. L'écart est de −47 % pour l'orge d'hiver et de −28 % seulement pour le tournesol, une culture peu gourmande en azote. Il varie selon les régions (−38 % pour le blé en Auvergne-Rhône-Alpes, −58 % dans le Grand Est) et reste stable d'une année à l'autre <a href="https://agreste.agriculture.gouv.fr/agreste-web/disaron/Pri2308/detail/" target="_blank" rel="noopener">[Agreste Primeur n° 8, 2023]</a>.</li>
@@ -1795,19 +1896,19 @@
     </ul>
   </div>
 
-  <h3 id="in-p5" class="ag-part">6. Nourrir la France sans intrants ? Le simulateur des céréales</h3>
+  <h3 id="agr-p5" class="ag-part">6. Nourrir la France sans intrants ? Le simulateur des céréales</h3>
   <p class="lead">Les céréales sont la base de tout : pain, pâtes, mais aussi alimentation des animaux. La France en produit environ deux fois ce qu'elle consomme. Que se passe-t-il si on les cultive sans engrais ni pesticides de synthèse ?</p>
-  <div class="ctl-row" id="in-presets" style="margin-bottom:8px"></div>
+  <div class="ctl-row" id="agr-presets" style="margin-bottom:8px"></div>
   <div class="in-sim">
-    <label class="ctl">Part des céréales cultivées sans intrants de synthèse <input type="range" id="in-s" min="0" max="100" step="5" value="100"><b id="in-s-v"></b></label>
-    <label class="ctl">Perte de rendement <input type="range" id="in-g" min="0" max="90" step="1" value="50"><b id="in-g-v"></b></label>
-    <label class="ctl">Part de ces terres en légumineuses pour fournir l'azote <input type="range" id="in-r" min="0" max="50" step="5" value="25"><b id="in-r-v"></b></label>
-    <label class="ctl">Baisse des céréales données aux animaux (moins de viande, de lait, d'œufs) <input type="range" id="in-m" min="0" max="100" step="5" value="0"><b id="in-m-v"></b></label>
+    <label class="ctl">Part des céréales cultivées sans intrants de synthèse <input type="range" id="agr-s" min="0" max="100" step="5" value="100"><b id="agr-s-v"></b></label>
+    <label class="ctl">Perte de rendement <input type="range" id="agr-g" min="0" max="90" step="1" value="50"><b id="agr-g-v"></b></label>
+    <label class="ctl">Part de ces terres en légumineuses pour fournir l'azote <input type="range" id="agr-r" min="0" max="50" step="5" value="25"><b id="agr-r-v"></b></label>
+    <label class="ctl">Baisse des céréales données aux animaux (moins de viande, de lait, d'œufs) <input type="range" id="agr-m" min="0" max="100" step="5" value="0"><b id="agr-m-v"></b></label>
   </div>
-  <div id="in-sim-out"></div>
-  <div class="callout small" id="in-sim-txt"></div>
+  <div id="agr-sim-out"></div>
+  <div class="callout small" id="agr-sim-txt"></div>
 
-  <div class="callout small" id="in-concl"></div>
+  <div class="callout small" id="agr-concl"></div>
   <p class="muted" style="font-size:.78rem">Sources : FAOSTAT (rendements des cultures 1961-2024, engrais minéraux par élément nutritif, pesticides par catégorie, bilans alimentaires) ; Agreste, enquête Terres labourables (rendements bio et conventionnels 2018-2022) ; repères historiques du rendement du blé : Académie d'agriculture de France, <a href="https://www.academie-agriculture.fr/publications/encyclopedie/reperes/0102r02-evolution-du-rendement-moyen-annuel-du-ble-france-entiere" target="_blank" rel="noopener">évolution du rendement moyen du blé de 1815 à 2024</a>, statistique agricole décennale de 1892 et presse agricole. Les valeurs agronomiques (besoins en azote, en eau, fixation par les légumineuses) sont des ordres de grandeur usuels. Le simulateur est un calcul simple, pas un modèle : il ne tient compte ni des autres cultures, ni des changements de rotation, ni du climat.</p>
 </section>
 
@@ -1872,44 +1973,6 @@
     </ul>
     <p class="muted" style="font-size:.78rem">Agreste, recensement agricole 2020 (<a href="https://draaf.centre-val-de-loire.agriculture.gouv.fr/IMG/pdf/ra_etude_circuit_court_no5_.pdf" target="_blank" rel="noopener">Agreste Primeur n° 5, mars 2023, repris par la DRAAF Centre-Val de Loire</a>).</p>
   </div>
-</section>
-
-<section id="climat" class="panel">
-  <div class="panel-head">
-    <h2>Climat : les émissions de gaz à effet de serre <span class="geo-tag"></span></h2>
-  </div>
-  <div class="kpis" id="cl-kpis"></div>
-  <p class="lead">En millions de tonnes d'équivalent CO₂ (chaque gaz est converti selon son effet sur le réchauffement). Ce sont les émissions produites sur le territoire. Celles des produits importés (l'« empreinte carbone ») n'y sont pas, et celles des forêts et des sols sont montrées à part, sous zéro quand elles absorbent du CO₂.</p>
-  <div id="cl-chart" class="chart"></div><div class="legend-row" id="cl-legend"></div>
-  <div class="grid2">
-    <div><h3>Par gaz (dernière année)</h3><div id="cl-gaz" class="chart"></div></div>
-    <div><h3>Comparer les pays</h3><div id="cl-cmp" class="chart"></div></div>
-  </div>
-</section>
-
-<section id="empreinte" class="panel">
-  <div class="panel-head">
-    <h2>Empreinte carbone : ce que pèse notre consommation <span class="geo-tag"></span></h2>
-  </div>
-  <div class="kpis" id="ec-kpis"></div>
-  <p class="lead">L'empreinte compte tous les gaz à effet de serre émis pour satisfaire la consommation des habitants, où qu'ils soient émis : en France, mais aussi en Chine pour un téléphone ou au Brésil pour du soja. À la différence des émissions « du territoire » (onglet Climat), elle ajoute les importations et retire les exportations.</p>
-  <div id="ec-fr">
-    <h3>Les grands postes de consommation (France)</h3>
-    <div id="ec-postes" class="chart"></div>
-    <p class="muted" id="ec-postes-note" style="font-size:.85rem"></p>
-    <div class="grid2">
-      <div><h3>Depuis 1990</h3><div id="ec-serie" class="chart"></div><div class="legend-row" id="ec-serie-legend"></div></div>
-      <div><h3>Où ces gaz sont-ils émis ?</h3><div id="ec-orig" class="chart"></div></div>
-    </div>
-    <div class="callout small" id="ec-txt"></div>
-    <h3>La France dans le monde (tonnes par habitant)</h3>
-    <div id="ec-monde" class="chart"></div>
-  </div>
-  <h3 id="ec-usage-h">Qui consomme : ménages, services publics, investissements</h3>
-  <div id="ec-usage" class="chart"></div><div class="legend-row" id="ec-usage-legend"></div>
-  <p class="muted" id="ec-usage-note" style="font-size:.85rem"></p>
-  <h3>Comparer les pays</h3><div id="ec-cmp" class="chart"></div>
-  <p class="muted" style="font-size:.84rem">Eurostat, modèle entrées-sorties mondial FIGARO (env_ac_ghgfp), émissions directes des ménages comprises. Pour la France, le SDES et l'INSEE publient leur propre calcul, très proche (8,2 t contre 8,1 t par habitant en 2024).</p>
 </section>
 
 <section id="dechets" class="panel">
@@ -1992,6 +2055,42 @@
   <h3>Décès prématurés dus aux particules fines (PM2,5) en France</h3><div id="air-fr" class="chart"></div><div class="legend-row" id="air-fr-legend"></div>
   <h3>Décès prématurés pour 100 000 habitants : la France et les autres pays</h3><div id="air-pays"></div>
   <div class="callout small" id="air-txt"></div>
+</section>
+
+<section id="climat" class="panel">
+  <div class="panel-head">
+    <h2>Climat : nos émissions et notre empreinte carbone <span class="geo-tag"></span></h2>
+  </div>
+  <p class="muted" style="margin:0 0 8px">Deux façons de compter : <a href="#climat" data-to="cl-p1">1. les gaz émis sur le territoire</a> · <a href="#climat" data-to="empreinte">2. l'empreinte carbone, qui ajoute ce que nous importons et retire ce que nous exportons</a></p>
+  <h3 id="cl-p1" class="ag-part">1. Ce qui est émis en France</h3>
+  <div class="kpis" id="cl-kpis"></div>
+  <p class="lead">En millions de tonnes d'équivalent CO₂ (chaque gaz est converti selon son effet sur le réchauffement). Ce sont les émissions produites sur le territoire. Celles des produits importés n'y sont pas (voir la partie 2, l'empreinte carbone), et celles des forêts et des sols sont montrées à part, sous zéro quand elles absorbent du CO₂.</p>
+  <div id="cl-chart" class="chart"></div><div class="legend-row" id="cl-legend"></div>
+  <div class="grid2">
+    <div><h3>Par gaz (dernière année)</h3><div id="cl-gaz" class="chart"></div></div>
+    <div><h3>Comparer les pays : les émissions du territoire</h3><div id="cl-cmp" class="chart"></div></div>
+  </div>
+
+  <h3 id="empreinte" class="ag-part">2. L'empreinte carbone : ce que pèse notre consommation</h3>
+  <div class="kpis" id="ec-kpis"></div>
+  <p class="lead">L'empreinte compte tous les gaz à effet de serre émis pour satisfaire la consommation des habitants, où qu'ils soient émis : en France, mais aussi en Chine pour un téléphone ou au Brésil pour du soja. À la différence des émissions « du territoire » (partie 1), elle ajoute les importations et retire les exportations.</p>
+  <div id="ec-fr">
+    <h3>Les grands postes de consommation (France)</h3>
+    <div id="ec-postes" class="chart"></div>
+    <p class="muted" id="ec-postes-note" style="font-size:.85rem"></p>
+    <div class="grid2">
+      <div><h3>Depuis 1990</h3><div id="ec-serie" class="chart"></div><div class="legend-row" id="ec-serie-legend"></div></div>
+      <div><h3>Où ces gaz sont-ils émis ?</h3><div id="ec-orig" class="chart"></div></div>
+    </div>
+    <div class="callout small" id="ec-txt"></div>
+    <h3>La France dans le monde (tonnes par habitant)</h3>
+    <div id="ec-monde" class="chart"></div>
+  </div>
+  <h3 id="ec-usage-h">Qui consomme : ménages, services publics, investissements</h3>
+  <div id="ec-usage" class="chart"></div><div class="legend-row" id="ec-usage-legend"></div>
+  <p class="muted" id="ec-usage-note" style="font-size:.85rem"></p>
+  <h3>Comparer les pays : l'empreinte</h3><div id="ec-cmp" class="chart"></div>
+  <p class="muted" style="font-size:.84rem">Eurostat, modèle entrées-sorties mondial FIGARO (env_ac_ghgfp), émissions directes des ménages comprises. Pour la France, le SDES et l'INSEE publient leur propre calcul, très proche (8,2 t contre 8,1 t par habitant en 2024).</p>
 </section>
 
 <section id="catastrophes" class="panel">
@@ -2418,50 +2517,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123f"></script>
-<script src="app.js?v=20261123f"></script>
-<script src="energie.js?v=20261123f"></script>
-<script src="matieres.js?v=20261123f"></script>
-<script src="territoire.js?v=20261123f"></script>
-<script src="themes.js?v=20261123f"></script>
-<script src="societe.js?v=20261123f"></script>
-<script src="eco2.js?v=20261123f"></script>
-<script src="empreinte.js?v=20261123f"></script>
-<script src="argentprive.js?v=20261123f"></script>
-<script src="repartition.js?v=20261123f"></script>
-<script src="patrimoine.js?v=20261123f"></script>
-<script src="prelevements.js?v=20261123f"></script>
-<script src="travailvie.js?v=20261123f"></script>
-<script src="niveauvie.js?v=20261123f"></script>
-<script src="prosperite.js?v=20261123f"></script>
-<script src="exterieur.js?v=20261123f"></script>
-<script src="desindus.js?v=20261123f"></script>
-<script src="retraites.js?v=20261123f"></script>
-<script src="energiecout.js?v=20261123f"></script>
-<script src="energieformation.js?v=20261123f"></script>
-<script src="nucleaire.js?v=20261123f"></script>
-<script src="logementeco.js?v=20261123f"></script>
-<script src="competences.js?v=20261123f"></script>
-<script src="justicedroit.js?v=20261123f"></script>
-<script src="fonctionnaires.js?v=20261123f"></script>
-<script src="couper.js?v=20261123f"></script>
-<script src="seuilpays.js?v=20261123f"></script>
-<script src="logement.js?v=20261123f"></script>
-<script src="env.js?v=20261123f"></script>
-<script src="agriculture.js?v=20261123f"></script>
-<script src="rendements.js?v=20261123f"></script>
-<script src="chaine.js?v=20261123f"></script>
-<script src="patrimoinehist.js?v=20261123f"></script>
-<script src="innovation.js?v=20261123f"></script>
+<script src="kpi.js?v=20261123i"></script>
+<script src="app.js?v=20261123i"></script>
+<script src="energie.js?v=20261123i"></script>
+<script src="matieres.js?v=20261123i"></script>
+<script src="territoire.js?v=20261123i"></script>
+<script src="themes.js?v=20261123i"></script>
+<script src="societe.js?v=20261123i"></script>
+<script src="eco2.js?v=20261123i"></script>
+<script src="empreinte.js?v=20261123i"></script>
+<script src="argentprive.js?v=20261123i"></script>
+<script src="repartition.js?v=20261123i"></script>
+<script src="patrimoine.js?v=20261123i"></script>
+<script src="prelevements.js?v=20261123i"></script>
+<script src="travailvie.js?v=20261123i"></script>
+<script src="niveauvie.js?v=20261123i"></script>
+<script src="prosperite.js?v=20261123i"></script>
+<script src="exterieur.js?v=20261123i"></script>
+<script src="desindus.js?v=20261123i"></script>
+<script src="retraites.js?v=20261123i"></script>
+<script src="energiecout.js?v=20261123i"></script>
+<script src="energieformation.js?v=20261123i"></script>
+<script src="nucleaire.js?v=20261123i"></script>
+<script src="logementeco.js?v=20261123i"></script>
+<script src="competences.js?v=20261123i"></script>
+<script src="justicedroit.js?v=20261123i"></script>
+<script src="fonctionnaires.js?v=20261123i"></script>
+<script src="couper.js?v=20261123i"></script>
+<script src="seuilpays.js?v=20261123i"></script>
+<script src="logement.js?v=20261123i"></script>
+<script src="env.js?v=20261123i"></script>
+<script src="agriculture.js?v=20261123i"></script>
+<script src="rendements.js?v=20261123i"></script>
+<script src="monnaie.js?v=20261123i"></script>
+<script src="limites.js?v=20261123i"></script>
+<script src="sociologie.js?v=20261123i"></script>
+<script src="chaine.js?v=20261123i"></script>
+<script src="patrimoinehist.js?v=20261123i"></script>
+<script src="innovation.js?v=20261123i"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123f"></script>
-<script src="histoire.js?v=20261123f"></script>
-<script src="chomage.js?v=20261123f"></script>
-<script src="sources.js?v=20261123f"></script>
-<script src="monnaie.js?v=20261123f"></script>
-<script src="limites.js?v=20261123f"></script>
-<script src="sociologie.js?v=20261123f"></script>
-<script src="nav.js?v=20261123f"></script>
+<script src="soussol.js?v=20261123i"></script>
+<script src="histoire.js?v=20261123i"></script>
+<script src="chomage.js?v=20261123i"></script>
+<script src="sources.js?v=20261123i"></script>
+<script src="nav.js?v=20261123i"></script>
 </body>
 </html>
