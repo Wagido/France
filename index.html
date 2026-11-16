@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121d">
+<link rel="stylesheet" href="style.css?v=20261121e">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -833,13 +833,15 @@
   <div id="ff-flex"></div>
   <div class="callout small" id="ff-sys-txt"></div>
 
-  <p class="muted" style="margin:14px 0 2px"><b>6. À comparer avec les prix actuels</b></p>
-  <div class="table-scroll" id="ff-prix"></div>
+  <p class="muted" style="margin:14px 0 2px"><b>6. Ce que ça coûte de produire, et le prix auquel ça se vend</b></p>
+  <div id="ff-prix"></div>
   <div class="callout small"><ul>
-    <li><b>Le prix de marché n'est pas le coût de production</b> : il est fixé chaque heure par la dernière centrale nécessaire (souvent une centrale à gaz en Europe). Pour un ruban livré toute l'année, il valait en moyenne 103 €/MWh pour 2025 (cotations encore marquées par la crise énergétique), 64 €/MWh pour 2026, et 50 €/MWh lors des cotations de décembre 2025.</li>
-    <li><b>Le nucléaire existant coûte environ 60 €/MWh</b> selon la CRE, marge de l'investisseur comprise : autour du prix de marché actuel. Le nouveau nucléaire (69 €/MWh à 4 %, bien plus si le taux monte) et l'éolien en mer coûteront plus cher que le parc actuel ; le solaire au sol et l'éolien terrestre, moins cher par MWh, mais sans compter le stockage et les réseaux qu'ils rendent nécessaires.</li>
-    <li><b>Le particulier paie bien plus que le coût de production</b> : à l'énergie s'ajoutent le réseau (transport et distribution), les frais du fournisseur, l'accise (30,85 €/MWh en 2026) et la TVA à 20 %.</li>
-    <li><b>Fin de l'ARENH</b> : jusqu'en 2025, les fournisseurs pouvaient acheter une partie du nucléaire d'EDF à 42 €/MWh, prix inchangé depuis 2012. Depuis 2026, tout s'achète sur le marché, et un mécanisme de redistribution (« versement nucléaire universel ») prélève une partie des revenus d'EDF si les prix dépassent certains seuils fixés à partir du coût évalué par la CRE.</li>
+    <li><b>Lecture</b> : en bleu, ce que coûte la production d'un MWh ; en orange, le prix auquel EDF et les autres producteurs le vendent aux fournisseurs (EDF, Engie, TotalEnergies…), qui le revendent ensuite aux clients.</li>
+    <li><b>Aujourd'hui, le nucléaire existant coûte 60 € et se vend 64 €</b> : EDF couvre ses coûts, rémunération de ses investissements comprise.</li>
+    <li><b>En 2025, le MWh se vendait 103 €</b>, bien au-dessus du coût de production : gains pour les producteurs, factures hautes pour les clients. C'est l'effet de la crise de l'énergie de 2022, encore visible dans les prix.</li>
+    <li><b>Pourquoi le prix n'est pas égal au coût ?</b> Sur le marché européen, le prix est fixé à chaque instant par la dernière centrale dont on a besoin, souvent une centrale à gaz, plus chère. Jusqu'en 2025, l'État obligeait EDF à vendre une partie de son nucléaire à 42 € (l'ARENH) pour protéger les clients ; ce système a pris fin.</li>
+    <li><b>Pour l'avenir</b> : le solaire et l'éolien terrestre neufs produiront moins cher que le nucléaire, mais ces chiffres ne comptent pas le stockage et les réseaux qu'ils rendent nécessaires (voir le point 5). Le nouveau nucléaire coûtera plus cher que le parc actuel.</li>
+    <li><b>Le particulier paie bien plus</b> : au prix de l'énergie s'ajoutent le réseau (transport et distribution), les frais du fournisseur, la taxe sur l'électricité (accise, 30,85 € par MWh en 2026) et la TVA à 20 %.</li>
   </ul></div>
   <p class="muted" style="font-size:.8rem">Sources : RTE, <a href="https://assets.rte-france.com/prod/public/2022-02/BP50_Principaux%20re%CC%81sultats_fev2022_Chap11_analyse%20economique.pdf" target="_blank" rel="noopener"><i>Futurs énergétiques 2050</i>, rapport complet, chapitre 11 « Analyse économique »</a> (février 2022) ; RTE, <a href="https://assets.rte-france.com/prod/public/2026-04/RTE-Reactualisation-FE-2050-consultation-publique-2026-propositions-detaillees.pdf" target="_blank" rel="noopener">réactualisation, consultation publique</a> (avril 2026) ; CRE, <a href="https://www.vie-publique.fr/files/rapport/pdf/300538.pdf" target="_blank" rel="noopener">coûts complets du nucléaire historique 2026-2028</a> (septembre 2025) ; CRE, <a href="https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260114_2026-06_TRVE_2026.pdf" target="_blank" rel="noopener">délibération TRVE n° 2026-06</a> (janvier 2026). Les valeurs RTE sont extraites des tracés vectoriels des graphiques du rapport (précision de l'ordre de 1 %), sauf mention dans le texte.</p>
   <h3>Comparer les pays (dernière année publiée)</h3>
@@ -1467,45 +1469,45 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121d"></script>
-<script src="app.js?v=20261121d"></script>
-<script src="energie.js?v=20261121d"></script>
-<script src="matieres.js?v=20261121d"></script>
-<script src="territoire.js?v=20261121d"></script>
-<script src="themes.js?v=20261121d"></script>
-<script src="societe.js?v=20261121d"></script>
-<script src="eco2.js?v=20261121d"></script>
-<script src="empreinte.js?v=20261121d"></script>
-<script src="argentprive.js?v=20261121d"></script>
-<script src="repartition.js?v=20261121d"></script>
-<script src="patrimoine.js?v=20261121d"></script>
-<script src="prelevements.js?v=20261121d"></script>
-<script src="travailvie.js?v=20261121d"></script>
-<script src="niveauvie.js?v=20261121d"></script>
-<script src="prosperite.js?v=20261121d"></script>
-<script src="exterieur.js?v=20261121d"></script>
-<script src="desindus.js?v=20261121d"></script>
-<script src="retraites.js?v=20261121d"></script>
-<script src="energiecout.js?v=20261121d"></script>
-<script src="energieformation.js?v=20261121d"></script>
-<script src="logementeco.js?v=20261121d"></script>
-<script src="competences.js?v=20261121d"></script>
-<script src="justicedroit.js?v=20261121d"></script>
-<script src="fonctionnaires.js?v=20261121d"></script>
-<script src="couper.js?v=20261121d"></script>
-<script src="seuilpays.js?v=20261121d"></script>
-<script src="logement.js?v=20261121d"></script>
-<script src="env.js?v=20261121d"></script>
-<script src="agriculture.js?v=20261121d"></script>
-<script src="chaine.js?v=20261121d"></script>
-<script src="patrimoinehist.js?v=20261121d"></script>
-<script src="innovation.js?v=20261121d"></script>
+<script src="kpi.js?v=20261121e"></script>
+<script src="app.js?v=20261121e"></script>
+<script src="energie.js?v=20261121e"></script>
+<script src="matieres.js?v=20261121e"></script>
+<script src="territoire.js?v=20261121e"></script>
+<script src="themes.js?v=20261121e"></script>
+<script src="societe.js?v=20261121e"></script>
+<script src="eco2.js?v=20261121e"></script>
+<script src="empreinte.js?v=20261121e"></script>
+<script src="argentprive.js?v=20261121e"></script>
+<script src="repartition.js?v=20261121e"></script>
+<script src="patrimoine.js?v=20261121e"></script>
+<script src="prelevements.js?v=20261121e"></script>
+<script src="travailvie.js?v=20261121e"></script>
+<script src="niveauvie.js?v=20261121e"></script>
+<script src="prosperite.js?v=20261121e"></script>
+<script src="exterieur.js?v=20261121e"></script>
+<script src="desindus.js?v=20261121e"></script>
+<script src="retraites.js?v=20261121e"></script>
+<script src="energiecout.js?v=20261121e"></script>
+<script src="energieformation.js?v=20261121e"></script>
+<script src="logementeco.js?v=20261121e"></script>
+<script src="competences.js?v=20261121e"></script>
+<script src="justicedroit.js?v=20261121e"></script>
+<script src="fonctionnaires.js?v=20261121e"></script>
+<script src="couper.js?v=20261121e"></script>
+<script src="seuilpays.js?v=20261121e"></script>
+<script src="logement.js?v=20261121e"></script>
+<script src="env.js?v=20261121e"></script>
+<script src="agriculture.js?v=20261121e"></script>
+<script src="chaine.js?v=20261121e"></script>
+<script src="patrimoinehist.js?v=20261121e"></script>
+<script src="innovation.js?v=20261121e"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121d"></script>
-<script src="histoire.js?v=20261121d"></script>
-<script src="chomage.js?v=20261121d"></script>
-<script src="sources.js?v=20261121d"></script>
-<script src="nav.js?v=20261121d"></script>
+<script src="soussol.js?v=20261121e"></script>
+<script src="histoire.js?v=20261121e"></script>
+<script src="chomage.js?v=20261121e"></script>
+<script src="sources.js?v=20261121e"></script>
+<script src="nav.js?v=20261121e"></script>
 </body>
 </html>

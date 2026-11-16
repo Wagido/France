@@ -71,8 +71,12 @@ async function init() {
     <li><b>Total</b> : ${f1(t(m23))} Md€/an pour M23, ${f1(t(n2))} pour N2, soit environ ${f0(t(m23) - t(n2))} Md€ d'écart par an. Rapporté à l'électricité consommée, RTE estime le coût complet du système à environ 90 € par MWh aujourd'hui (2020-2021) et entre 92 et 119 € par MWh en 2060 selon les scénarios, soit une hausse médiane d'environ 15 % (figure 11.28), réseaux compris, hors taxes.</li>
   </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">${esc(Y.note)} Source : ${src("rte")}.</p>`;
 
-  /* 6. prix actuels */
-  $("#ff-prix").innerHTML = `<table class="pr-t"><thead><tr><th>Repère</th><th>€ par MWh</th></tr></thead><tbody>${D.prix.rows.map(r => `<tr><td class="lab">${esc(r.l)} <small class="muted">(<a href="${S[r.s].u}" target="_blank" rel="noopener">source</a>)</small></td><td><b>${esc(r.v)}</b></td></tr>`).join("")}</tbody></table>`;
+  /* 6. coûts vs prix */
+  const PR = D.prix.rows;
+  const blk = (t, titre, c) => `<p style="margin:8px 0 2px"><b>${titre}</b></p><div class="ff-pr-${t}"></div>`;
+  $("#ff-prix").innerHTML = blk("cout", "Ce que coûte la production d'un MWh") + blk("prix", "Le prix auquel un MWh se vend aux fournisseurs");
+  ["cout", "prix"].forEach(t => window.TH.bars($("#ff-prix .ff-pr-" + t), PR.filter(r => r.t === t).map(r => ({ l: r.l, v: r.v, t: f1(r.v) + " €", c: t === "cout" ? "#3b6fd6" : "#f97316" })), { max: 105 }));
+  $("#ff-prix").insertAdjacentHTML("beforeend", `<p class="muted" style="font-size:.8rem;margin:4px 0 0">En euros par MWh, hors taxes. ${esc(D.prix.note)}</p>`);
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
