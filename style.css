@@ -361,3 +361,4 @@ h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-l
 .ff-t td, .ff-t th { white-space: normal; }
 .ff-bar { display: inline-block; height: 10px; border-radius: 3px; vertical-align: middle; }
 @media (max-width: 640px) { .fs-row { grid-template-columns: 1fr 70px; } .fs-lab { grid-column: 1 / -1; } }
+.en-part { margin-top: 28px; padding-top: 14px; border-top: 2px solid var(--line, #e5e7eb); }

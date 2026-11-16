@@ -455,5 +455,96 @@
     "s": "cre_trve"
    }
   ]
+ },
+ "duree": {
+  "note": "Sources : RTE, Futurs énergétiques 2050, rapport complet, chapitre 11 (§ 11.4 : durée de vie normative de 20 à 30 ans pour l'éolien et le solaire ; § 11.3 : batteries, 15 ans, perte d'environ 20 % de capacité ; § 11.6.8 : nouveau nucléaire, construction de 10 à 15 ans et 60 ans d'exploitation) ; CRE (prolongation du parc historique à 60 ans).",
+  "rows": [
+   {
+    "f": "Nouveau nucléaire (EPR2)",
+    "construction": "10 à 15 ans",
+    "vie": "60 ans",
+    "fam": "nuc",
+    "n": 60
+   },
+   {
+    "f": "Nucléaire existant",
+    "construction": "(déjà construit)",
+    "vie": "conçu pour 40 ans, prolongé à 60 ans ; au-delà, incertain",
+    "fam": "nuc",
+    "n": 60
+   },
+   {
+    "f": "Éolien et solaire",
+    "construction": null,
+    "vie": "20 à 30 ans",
+    "fam": "eol",
+    "n": 25
+   },
+   {
+    "f": "Batteries",
+    "construction": null,
+    "vie": "environ 15 ans (et ~20 % de capacité perdue)",
+    "fam": "flex",
+    "n": 15
+   }
+  ]
+ },
+ "fig112": {
+  "note": "Exemple fictif de RTE (figure 11.2), sans durée de construction : même coût d'exploitation et même amortissement par MWh, seules changent la durée de vie et le CAPEX.",
+  "postes": [
+   "Exploitation",
+   "Remboursement de l'investissement",
+   "Financement"
+  ],
+  "rows": [
+   {
+    "l": "40 ans, 4 Md€/GW · capital 1 %",
+    "v": [
+     19,
+     19,
+     4
+    ]
+   },
+   {
+    "l": "40 ans · capital 4 %",
+    "v": [
+     19,
+     19,
+     19
+    ]
+   },
+   {
+    "l": "40 ans · capital 7 %",
+    "v": [
+     19,
+     19,
+     38
+    ]
+   },
+   {
+    "l": "20 ans, 2 Md€/GW · capital 1 %",
+    "v": [
+     19,
+     19,
+     2
+    ]
+   },
+   {
+    "l": "20 ans · capital 4 %",
+    "v": [
+     19,
+     19,
+     9
+    ]
+   },
+   {
+    "l": "20 ans · capital 7 %",
+    "v": [
+     19,
+     19,
+     17
+    ]
+   }
+  ]
  }
 }

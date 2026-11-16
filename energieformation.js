@@ -22,6 +22,11 @@ function stack(el, rows, postes, cols, opts = {}) {
   }).join("")}</div><div class="legend-row">${postes.map((p, k) => `<span><i style="border-top-color:${cols[k]};opacity:1;border-top-width:10px;width:14px"></i>${p}</span>`).join("")}</div>`;
 }
 
+document.addEventListener("click", e => {
+  const a = e.target.closest?.("a[data-to]"); if (!a) return;
+  const t = document.getElementById(a.dataset.to); if (!t) return;
+  e.preventDefault(); e.stopPropagation(); t.scrollIntoView({ behavior: "smooth", block: "start" });
+}, true);
 async function init() {
   if (!window.TH || !$("#ff-capex")) { setTimeout(init, 100); return; }
   let D; try { D = await fetch("data/energie_formation.json", { cache: "no-cache" }).then(r => r.json()); }
@@ -35,6 +40,25 @@ async function init() {
     <td>${r.c2020 ? f0(r.c2020) : "–"}</td><td>${r.c2030 ? f0(r.c2030) : "–"}</td><td><b>${f0(r.c2050)}</b></td>
     <td><span class="ff-bar" style="width:${(100 * r.c2050 / maxC).toFixed(1)}%;background:${FAM[r.fam]}"></span> <small>${f1(r.c2050 / 1000)} M€</small></td></tr>`).join("")}</tbody></table>
     <p class="muted" style="font-size:.8rem;margin:4px 0 0">En euros par kW installé (1 000 €/kW = 1 million d'euros par MW). ${esc(D.capex.note)} Source : ${src("rte")}.</p>`;
+
+  /* durée de vie */
+  const DU = D.duree;
+  if ($("#ff-duree")) $("#ff-duree").innerHTML = `<table class="pr-t ff-t"><thead><tr><th>Installation</th><th>Construction</th><th>Durée d'exploitation</th><th style="width:30%">Sur 60 ans</th></tr></thead><tbody>${DU.rows.map(r => `<tr><td class="lab">${esc(r.f)}</td><td>${r.construction ? esc(r.construction) : "–"}</td><td><b>${esc(r.vie)}</b></td>
+    <td><span class="ff-bar" style="width:${(100 * r.n / 60).toFixed(0)}%;background:${FAM[r.fam]}"></span> <small>${r.n >= 60 ? "construit une fois" : r.n >= 25 ? "reconstruit 2 à 3 fois" : "remplacé environ 4 fois"}</small></td></tr>`).join("")}</tbody></table>
+    <p class="muted" style="font-size:.8rem;margin:4px 0 0">${esc(DU.note)}</p>`;
+  if ($("#ff-vie")) stack($("#ff-vie"), D.fig112.rows, D.fig112.postes, ["#5eead4", "#1e3a8a", "#f97316"], { unit: "€/MWh" });
+
+  /* souveraineté */
+  let P = null; try { P = await fetch("data/prosperite.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) {}
+  const pf = c => P && P.pays.find(p => p.code === c);
+  const fr = pf("FRA"), de = pf("DEU");
+  if ($("#ff-souv")) $("#ff-souv").innerHTML = `<ul>
+    <li><b>La France produit sur place un peu plus de la moitié de l'énergie qu'elle consomme</b>${fr ? ` : ${fr.energie} % en ${fr.energie_annee}, contre ${de ? de.energie + " % pour l'Allemagne" : "moins pour l'Allemagne"}` : ""} (Energy Institute, via Our World in Data). Par convention, ce chiffre compte le nucléaire comme une production nationale, alors que l'uranium est importé.</li>
+    <li><b>La vraie dépendance, c'est le pétrole et le gaz</b>, presque entièrement importés : selon RTE, le pétrole coûte au pays 20 à 55 milliards d'euros par an et le gaz 10 à 20 milliards, selon les cours. Cette facture énergétique (30 à 75 milliards par an) est, avec la désindustrialisation, l'une des deux grandes causes du déficit commercial (voir l'onglet <a href="#patrimoine">Patrimoine</a>). Électrifier les voitures, le chauffage et l'industrie la réduit.</li>
+    <li><b>Le nucléaire : un combustible importé mais bon marché et stockable</b>. L'uranium vient de l'étranger, mais il pèse peu dans le coût (environ 8 € par MWh, combustible compris, selon la CRE) : quand ses prix ont fortement monté entre 2023 et 2025 (+39 % pour l'uranium, +30 % pour l'enrichissement), le coût du combustible d'EDF n'a augmenté que d'environ 14 %, grâce à des contrats de 5 à 15 ans et à des stocks. La France maîtrise le reste de la chaîne (enrichissement, fabrication du combustible, retraitement à La Hague), et EDF prévoit d'utiliser davantage d'uranium recyclé d'ici 2034, notamment pour réduire sa dépendance depuis la guerre en Ukraine.</li>
+    <li><b>Les renouvelables : pas de combustible, mais du matériel importé</b>. Une fois installés, le vent et le soleil sont gratuits et nationaux. Mais les panneaux, les éoliennes, les batteries et les métaux nécessaires (cuivre, lithium, cobalt, nickel, terres rares) sont pour la plupart importés, et il faut les remplacer tous les 20 à 30 ans. L'Union européenne vise 40 % de production européenne de ces technologies en 2030 (règlement « Net Zero Industry Act »). Pour le cuivre, l'Observatoire français des ressources minérales prévoit un manque mondial de 15 % de la demande en 2035.</li>
+    <li><b>En résumé, deux dépendances différentes</b> : celle aux combustibles fossiles se paie chaque année et expose aux crises de prix (2022) ; celle aux équipements se paie surtout au moment de construire ou de renouveler. Le nucléaire est entre les deux : combustible importé mais bon marché, et filière industrielle en France.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Sources : ${src("rte")} (§ 11.5, facture énergétique) ; ${src("cre_nuc")} (§ 7.2, combustible) ; ${src("rte26")} (contexte et matières critiques) ; Energy Institute, <i>Statistical Review of World Energy</i>, via <a href="https://ourworldindata.org/energy" target="_blank" rel="noopener">Our World in Data</a> (indépendance énergétique).</p>`;
 
   /* 2. formule + nucléaire neuf selon le coût du capital */
   const N = D.nucneuf;
