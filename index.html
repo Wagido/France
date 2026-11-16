@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123g">
+<link rel="stylesheet" href="style.css?v=20261123h">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -747,32 +747,67 @@
   </div>
 
   <h3 id="mo-p2" class="ag-part">4. L'argent des intérêts manque-t-il ?</h3>
-  <p class="lead">L'argument : la banque crée les 200 000 € du prêt, mais pas les intérêts. Il faudrait donc toujours un nouveau crédit, quelque part, pour trouver l'argent des intérêts. Testons-le sur une économie miniature, sans aucune croissance : une banque, des emprunteurs, un stock de dettes constant (chaque prêt remboursé est remplacé par un nouveau, de même montant).</p>
+  <p class="lead">C'est l'argument central de ceux qui disent que la monnaie-dette oblige à croître. Il se comprend avec une petite histoire.</p>
+  <div class="callout small">
+    <p><b>Le paradoxe de l'île</b></p>
+    <p>Sur une île, il n'y a pas de monnaie. Une banque prête <b>100 €</b> à un pêcheur, à 10 % d'intérêt. Ce sont les seuls euros de l'île. Dans un an, le pêcheur devra rendre <b>110 €</b>. Mais il n'existe que 100 € sur l'île : <b>où trouvera-t-il les 10 € d'intérêts ?</b> Il faudrait, dit l'argument, que la banque prête 10 € de plus à quelqu'un, puis encore plus l'année suivante… La dette devrait grossir sans fin, et l'économie avec.</p>
+  </div>
+  <h3>La réponse : la banque dépense ce qu'elle gagne</h3>
+  <div class="mo-loop">
+    <div><b>Le pêcheur</b><span>paie 10 € d'intérêts</span></div><i>→</i>
+    <div><b>La banque</b><span>paie 10 € de salaire à son employée</span></div><i>→</i>
+    <div><b>L'employée</b><span>achète 10 € de poisson</span></div><i>→</i>
+    <div><b>Le pêcheur</b><span>a retrouvé ses 10 €, et peut payer les intérêts de l'année suivante</span></div>
+  </div>
+  <ul class="mo-ul">
+    <li><b>Les 10 € d'intérêts n'ont pas besoin d'exister en plus des 100 €.</b> Les mêmes billets font le tour chaque année : la banque ne garde pas les intérêts, elle les dépense (salaires, loyer, impôts, dividendes de ses actionnaires). Ils reviennent ainsi dans l'économie, où le pêcheur peut les regagner en vendant son travail.</li>
+    <li><b>Ce qu'il faut financer, c'est un flux, pas un stock</b> : un même euro peut payer un salaire, puis des courses, puis des intérêts, dans la même année.</li>
+    <li><b>Et les 100 € du capital ?</b> Le pêcheur les rembourse un jour : ils disparaissent, en même temps que sa dette. Il n'y a rien à trouver en plus.</li>
+  </ul>
+  <h3>Le simulateur : l'île pendant 40 ans, sans aucune croissance</h3>
+  <p>La banque a prêté 100 € ; chaque prêt remboursé est remplacé par un nouveau du même montant, donc la dette totale reste à 100 € et il n'y a aucune croissance. Faites varier le taux et la part des intérêts que la banque redépense.</p>
   <div class="in-sim">
-    <label class="ctl">Taux d'intérêt <input type="range" id="mo-i" min="0" max="10" step=".5" value="4"><b id="mo-i-v"></b></label>
-    <label class="ctl">Part de ses revenus d'intérêts que la banque redépense (salaires, loyers, fournisseurs, dividendes, impôts) <input type="range" id="mo-b" min="0" max="100" step="5" value="100"><b id="mo-b-v"></b></label>
+    <label class="ctl">Taux d'intérêt <input type="range" id="mo-i" min="0" max="10" step=".5" value="10"><b id="mo-i-v"></b></label>
+    <label class="ctl">Part de ses intérêts que la banque redépense <input type="range" id="mo-b" min="0" max="100" step="5" value="100"><b id="mo-b-v"></b></label>
   </div>
   <div id="mo-mini" class="chart"></div><div class="legend-row" id="mo-mini-legend"></div>
   <p class="in-verdict" id="mo-mini-out"></p>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : la courbe bleue est l'argent qui circule sur l'île, avec lequel on paie les intérêts. À 100 % redépensés, elle reste à 100 € pour toujours, et la courbe verte montre tout ce qui a été payé en intérêts. Baissez la part redépensée : la courbe rouge (l'argent que la banque garde) monte, la bleue descend, et au bout d'un moment il ne reste plus assez d'argent pour payer.</p>
   <div class="callout small">
+    <p><b>En résumé</b></p>
     <ul>
-      <li><b>L'argument oublie que la banque dépense ce qu'elle gagne.</b> Les intérêts paient les salaires de ses employés, ses loyers, ses informaticiens, ses impôts et les dividendes de ses actionnaires. Cet argent revient dans l'économie, où il sert à payer les intérêts suivants. Si la banque redépense tout, la monnaie en circulation ne baisse pas : on peut payer des intérêts sans fin, sans aucune croissance.</li>
-      <li><b>La même monnaie sert plusieurs fois</b> : un euro peut payer un salaire, puis des courses, puis des intérêts, dans la même année. Ce qui doit être financé, c'est un flux annuel, pas un stock.</li>
-      <li><b>Le problème apparaît si les revenus du crédit sont thésaurisés</b> : si la banque ou ses actionnaires accumulent leurs gains au lieu de les dépenser, la monnaie en circulation fond, les emprunteurs ne peuvent plus payer, et il faut de nouveaux crédits. C'est le vrai point faible : non pas l'intérêt lui-même, mais l'épargne qui s'accumule sans être redépensée ni prêtée.</li>
-      <li><b>Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion</b> : une économie stationnaire, avec de la monnaie créée par le crédit et des intérêts positifs, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015). La monnaie-dette n'impose pas mathématiquement la croissance.</li>
+      <li><b>L'intérêt, à lui seul, n'oblige pas à croître.</b> Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion : une économie sans croissance, avec de la monnaie créée par le crédit et des intérêts, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015).</li>
+      <li><b>Le vrai problème, c'est l'argent qui s'accumule sans être redépensé.</b> Si les gagnants (la banque, ses actionnaires, les plus riches) épargnent une grande partie de ce qu'ils reçoivent, cet argent manque aux autres pour payer leurs dettes. Il faut alors de nouveaux crédits pour que l'économie continue de tourner, ou bien des défauts de paiement. Or dans la réalité, l'épargne s'accumule bien : c'est par là que la pression à croître revient, comme le montre la partie suivante.</li>
     </ul>
   </div>
 
   <h3 id="mo-p3" class="ag-part">5. Ce qui pousse vraiment à croître</h3>
-  <p class="lead">Si ce n'est pas la mécanique monétaire, d'où vient la pression ? D'abord d'une règle simple : une dette reste supportable si les revenus de l'emprunteur augmentent au moins aussi vite que les intérêts courent.</p>
-  <h3>Croissance du PIB en valeur et taux d'intérêt à long terme de l'État</h3>
+  <p class="lead">La mécanique de la monnaie n'impose pas la croissance. Mais l'économie actuelle fonctionne beaucoup mieux avec elle, pour cinq raisons. La première, le poids des dettes, se mesure avec une règle simple ; les quatre autres suivent.</p>
+  <div class="in-need">
+    <div><b>① Les dettes s'allègent avec la croissance</b><span>Une dette pèse moins lourd quand les revenus augmentent. Sans croissance, il faut la rembourser en se privant (5.1).</span></div>
+    <div><b>② Le capital attend un rendement</b><span>Épargnants, retraites par capitalisation, actionnaires attendent 3 à 7 % par an. Sans croissance, ce rendement se prend sur la part des autres (5.2 et partie 6).</span></div>
+    <div><b>③ La productivité supprime des emplois</b><span>On produit chaque année un peu plus par heure travaillée. Sans croissance, il faut moins d'heures : chômage, ou partage du travail (5.2).</span></div>
+    <div><b>④ L'épargne s'accumule</b><span>Ce qui est épargné sans être prêté ni dépensé manque à la demande ; il faut de nouveaux crédits pour compenser (partie 4).</span></div>
+    <div><b>⑤ Le crédit avance par vagues</b><span>Quand tout le monde rembourse en même temps, la monnaie disparaît et c'est la crise. Les États relancent à chaque fois (5.2).</span></div>
+  </div>
+
+  <h3 id="mo-5-1" class="li-sub">5.1 Les dettes et la croissance : la règle « r contre g »</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Un exemple</b> : vous devez 100 000 € à 3 %, soit 3 000 € d'intérêts par an, et vous gagnez 50 000 € par an. Si votre revenu augmente de 3 % par an, votre dette pèse le même poids chaque année sans que vous ayez rien à rembourser : vous pouvez même emprunter de quoi payer les intérêts. S'il n'augmente pas, il faut prendre les 3 000 € sur votre revenu, chaque année, juste pour que la dette ne grossisse pas.</li>
+      <li><b>C'est la règle « r contre g »</b> : <b>r</b> est le taux d'intérêt, <b>g</b> la croissance des revenus <i>en euros</i>, c'est-à-dire la croissance réelle plus l'inflation (on parle de croissance « en valeur »). Si g est plus grand que r, les dettes fondent d'elles-mêmes. Si r est plus grand que g, elles grossissent toutes seules, et il faut un effort pour les contenir.</li>
+      <li><b>Pour un pays, c'est pareil</b> : la dette publique se mesure en % du PIB, c'est-à-dire par rapport aux revenus de tout le pays. La même règle vaut pour les dettes des entreprises et des ménages.</li>
+    </ul>
+  </div>
+  <h3>En France : la croissance en valeur (g) et le taux d'intérêt de l'État (r)</h3>
   <div id="mo-rg" class="chart"></div><div class="legend-row" id="mo-rg-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : quand la courbe bleue est au-dessus de la rouge, les dettes fondent d'elles-mêmes (les Trente Glorieuses) ; quand la rouge passe au-dessus (1986-2007), elles grossissent toutes seules.</p>
   <div id="mo-periodes"></div>
   <h3>Le simulateur de la « boule de neige »</h3>
-  <p class="lead">Une dette égale à un pourcentage du PIB, un taux d'intérêt, une croissance en valeur (croissance réelle + inflation) : combien faut-il dégager chaque année, sur ses revenus, pour que le poids de la dette ne grossisse pas ?</p>
+  <p>Choisissez une dette (en % du PIB), un taux, une croissance et une inflation. Le simulateur calcule combien il faut rembourser chaque année, en prélevant sur les revenus, pour que le poids de la dette ne grossisse pas. Essayez les situations proposées.</p>
   <div class="in-sim">
     <label class="ctl">Dette de départ (% du PIB) <input type="range" id="mo-d" min="20" max="250" step="5" value="115"><b id="mo-d-v"></b></label>
-    <label class="ctl">Taux d'intérêt moyen <input type="range" id="mo-r" min="0" max="8" step=".25" value="3"><b id="mo-r-v"></b></label>
+    <label class="ctl">Taux d'intérêt moyen (r) <input type="range" id="mo-r" min="0" max="8" step=".25" value="3"><b id="mo-r-v"></b></label>
     <label class="ctl">Croissance réelle <input type="range" id="mo-g" min="-2" max="5" step=".25" value="0"><b id="mo-g-v"></b></label>
     <label class="ctl">Inflation <input type="range" id="mo-p" min="-2" max="8" step=".25" value="2"><b id="mo-p-v"></b></label>
     <label class="ctl">Remboursement net chaque année (% du PIB) <input type="range" id="mo-s" min="-5" max="6" step=".25" value="0"><b id="mo-s-v"></b></label>
@@ -782,11 +817,18 @@
   <p class="in-verdict" id="mo-snow-out"></p>
   <div class="callout small">
     <ul>
-      <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec un taux de 3 %, une dette de 115 % du PIB et 2 % d'inflation, il faut dégager chaque année environ 1 % du PIB pour la stabiliser. Sans inflation non plus, plus de 3 %. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est le scénario redouté par les banques centrales, qui visent 2 % d'inflation pour cette raison aussi.</li>
-      <li><b>Les « Trente Glorieuses » ont été faciles</b> : la croissance en valeur dépassait le taux d'intérêt, les dettes fondaient d'elles-mêmes. De 1986 à 2007, c'est l'inverse : les taux réels élevés ont fait grossir les dettes publiques. Depuis 2014, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
-      <li><b>Le rendement attendu du capital</b> (voir la partie 6) : les épargnants, les fonds de pension et les actionnaires attendent 3 à 7 % par an. Dans une économie qui ne croît plus, ce rendement ne peut plus venir d'un gâteau plus grand, seulement d'une part plus grande prise sur les salaires ou sur les autres. C'est une tension politique, pas une impossibilité comptable.</li>
-      <li><b>L'emploi</b> : les gains de productivité (de l'ordre de 1 % par an en moyenne en France depuis 2000, moins depuis 2019) suppriment des heures de travail. Sans croissance, il faut partager le travail (temps de travail plus court) pour éviter le chômage.</li>
-      <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée, la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, ce qui pousse les gouvernements et les banques centrales à relancer à chaque fois.</li>
+      <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec une dette de 115 % du PIB, un taux de 3 % et 2 % d'inflation, il faut rembourser chaque année environ 1 % du PIB pour la stabiliser. Sans inflation, environ 3,5 %, soit une centaine de milliards d'euros par an pour la France. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est pour cela aussi que les banques centrales visent 2 % d'inflation, pas 0 %.</li>
+      <li><b>L'histoire française</b> : pendant les Trente Glorieuses, la croissance en valeur dépassait largement le taux, les dettes fondaient. De 1986 à 2007, c'est l'inverse : taux élevés, inflation faible, les dettes publiques grossissent. De 2014 à 2021, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-5-2" class="li-sub">5.2 Les autres forces</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Le rendement du capital</b> : les épargnants, les fonds de retraite et les actionnaires attendent 3 à 7 % par an (la partie 6 explique comment ce chiffre est fixé). Dans une économie qui grossit, ce rendement vient d'un gâteau plus grand. Dans une économie qui ne croît plus, il ne peut venir que d'une part plus grande prise sur les salaires ou sur les autres. Ce n'est pas impossible, mais c'est une source de conflit politique.</li>
+      <li><b>L'emploi</b> : chaque année, on produit un peu plus par heure de travail (de l'ordre de 1 % par an en France depuis 2000, moins depuis 2019). Pour produire la même quantité, il faut donc moins d'heures. Sans croissance, soit le chômage monte, soit on réduit le temps de travail de chacun.</li>
+      <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée (voir 2.3), la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, et les gouvernements comme les banques centrales relancent à chaque fois.</li>
+      <li><b>En résumé</b> : rien dans la monnaie n'interdit une économie sans croissance. Mais nos institutions (dettes élevées, retraites, emploi, rendement attendu du capital) ont été construites pendant des décennies de croissance, et supposent qu'elle continue. S'en passer demande de les changer, ce que discute la partie 8.</li>
     </ul>
   </div>
 
@@ -2475,50 +2517,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123g"></script>
-<script src="app.js?v=20261123g"></script>
-<script src="energie.js?v=20261123g"></script>
-<script src="matieres.js?v=20261123g"></script>
-<script src="territoire.js?v=20261123g"></script>
-<script src="themes.js?v=20261123g"></script>
-<script src="societe.js?v=20261123g"></script>
-<script src="eco2.js?v=20261123g"></script>
-<script src="empreinte.js?v=20261123g"></script>
-<script src="argentprive.js?v=20261123g"></script>
-<script src="repartition.js?v=20261123g"></script>
-<script src="patrimoine.js?v=20261123g"></script>
-<script src="prelevements.js?v=20261123g"></script>
-<script src="travailvie.js?v=20261123g"></script>
-<script src="niveauvie.js?v=20261123g"></script>
-<script src="prosperite.js?v=20261123g"></script>
-<script src="exterieur.js?v=20261123g"></script>
-<script src="desindus.js?v=20261123g"></script>
-<script src="retraites.js?v=20261123g"></script>
-<script src="energiecout.js?v=20261123g"></script>
-<script src="energieformation.js?v=20261123g"></script>
-<script src="nucleaire.js?v=20261123g"></script>
-<script src="logementeco.js?v=20261123g"></script>
-<script src="competences.js?v=20261123g"></script>
-<script src="justicedroit.js?v=20261123g"></script>
-<script src="fonctionnaires.js?v=20261123g"></script>
-<script src="couper.js?v=20261123g"></script>
-<script src="seuilpays.js?v=20261123g"></script>
-<script src="logement.js?v=20261123g"></script>
-<script src="env.js?v=20261123g"></script>
-<script src="agriculture.js?v=20261123g"></script>
-<script src="rendements.js?v=20261123g"></script>
-<script src="monnaie.js?v=20261123g"></script>
-<script src="limites.js?v=20261123g"></script>
-<script src="sociologie.js?v=20261123g"></script>
-<script src="chaine.js?v=20261123g"></script>
-<script src="patrimoinehist.js?v=20261123g"></script>
-<script src="innovation.js?v=20261123g"></script>
+<script src="kpi.js?v=20261123h"></script>
+<script src="app.js?v=20261123h"></script>
+<script src="energie.js?v=20261123h"></script>
+<script src="matieres.js?v=20261123h"></script>
+<script src="territoire.js?v=20261123h"></script>
+<script src="themes.js?v=20261123h"></script>
+<script src="societe.js?v=20261123h"></script>
+<script src="eco2.js?v=20261123h"></script>
+<script src="empreinte.js?v=20261123h"></script>
+<script src="argentprive.js?v=20261123h"></script>
+<script src="repartition.js?v=20261123h"></script>
+<script src="patrimoine.js?v=20261123h"></script>
+<script src="prelevements.js?v=20261123h"></script>
+<script src="travailvie.js?v=20261123h"></script>
+<script src="niveauvie.js?v=20261123h"></script>
+<script src="prosperite.js?v=20261123h"></script>
+<script src="exterieur.js?v=20261123h"></script>
+<script src="desindus.js?v=20261123h"></script>
+<script src="retraites.js?v=20261123h"></script>
+<script src="energiecout.js?v=20261123h"></script>
+<script src="energieformation.js?v=20261123h"></script>
+<script src="nucleaire.js?v=20261123h"></script>
+<script src="logementeco.js?v=20261123h"></script>
+<script src="competences.js?v=20261123h"></script>
+<script src="justicedroit.js?v=20261123h"></script>
+<script src="fonctionnaires.js?v=20261123h"></script>
+<script src="couper.js?v=20261123h"></script>
+<script src="seuilpays.js?v=20261123h"></script>
+<script src="logement.js?v=20261123h"></script>
+<script src="env.js?v=20261123h"></script>
+<script src="agriculture.js?v=20261123h"></script>
+<script src="rendements.js?v=20261123h"></script>
+<script src="monnaie.js?v=20261123h"></script>
+<script src="limites.js?v=20261123h"></script>
+<script src="sociologie.js?v=20261123h"></script>
+<script src="chaine.js?v=20261123h"></script>
+<script src="patrimoinehist.js?v=20261123h"></script>
+<script src="innovation.js?v=20261123h"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123g"></script>
-<script src="histoire.js?v=20261123g"></script>
-<script src="chomage.js?v=20261123g"></script>
-<script src="sources.js?v=20261123g"></script>
-<script src="nav.js?v=20261123g"></script>
+<script src="soussol.js?v=20261123h"></script>
+<script src="histoire.js?v=20261123h"></script>
+<script src="chomage.js?v=20261123h"></script>
+<script src="sources.js?v=20261123h"></script>
+<script src="nav.js?v=20261123h"></script>
 </body>
 </html>

@@ -35,15 +35,15 @@ function mini() {
     if (m < int && crise == null) crise = t;
     m -= int * (1 - b); h += int * (1 - b);
   }
-  lineChart($("#mo-mini"), rows, [{ k: "m", l: "Monnaie entre les mains des emprunteurs et de l'économie", c: "#2563eb" }, { k: "h", l: "Monnaie gardée par la banque (non redépensée)", c: "#dc2626" },
-    { k: "paye", l: "Intérêts payés depuis le début (cumul)", c: "#16a34a", dash: "4 3" }], { vfmt: v => n0(v), yfmt: v => v, h: 240, xticks: 8 });
+  lineChart($("#mo-mini"), rows, [{ k: "m", l: "Argent qui circule sur l'île", c: "#2563eb" }, { k: "h", l: "Argent gardé par la banque, non redépensé", c: "#dc2626" },
+    { k: "paye", l: "Intérêts payés depuis le début (cumul)", c: "#16a34a", dash: "4 3" }], { vfmt: v => n0(v) + " €", yfmt: v => v + " €", h: 240, xticks: 8 });
   // l'axe des x affiche des années depuis le début
   $("#mo-mini").querySelectorAll("g.axis")[0]?.querySelectorAll("text").forEach(t => t.textContent = "an " + t.textContent);
-  legend("#mo-mini-legend", [["Monnaie en circulation dans l'économie", "#2563eb"], ["Gardée par la banque, non redépensée", "#dc2626"], ["Intérêts payés depuis le début (cumul)", "#16a34a", 1]]);
+  legend("#mo-mini-legend", [["Argent qui circule sur l'île", "#2563eb"], ["Gardé par la banque, non redépensé", "#dc2626"], ["Intérêts payés depuis le début (cumul)", "#16a34a", 1]]);
   const tot = Math.round(40 * i * D);
   $("#mo-mini-out").innerHTML = i === 0 ? `Sans intérêts, la question ne se pose pas.` : b >= 1
-    ? `<span style="color:var(--pos)">En 40 ans, les emprunteurs ont payé <b>${n0(tot)}</b> d'intérêts pour 100 de monnaie créée, sans un euro de croissance ni de nouveau crédit : la même monnaie tourne, parce que la banque la redépense.</span>`
-    : `<span style="color:var(--neg)">${crise != null ? `Dès l'année <b>${crise}</b>, il n'y a plus assez de monnaie en circulation pour payer les intérêts` : `La monnaie en circulation baisse chaque année`}</span> : ce que la banque garde sans le dépenser manque aux emprunteurs. Il faut alors de nouveaux crédits, ou des défauts de paiement.`;
+    ? `<span style="color:var(--pos)">En 40 ans, les emprunteurs ont payé <b>${n0(tot)} €</b> d'intérêts avec les mêmes 100 €, sans un euro de croissance ni de dette en plus : l'argent tourne, parce que la banque le redépense.</span>`
+    : `<span style="color:var(--neg)">${crise != null ? `Dès l'année <b>${crise}</b>, il n'y a plus assez d'argent en circulation pour payer les intérêts` : `La monnaie en circulation baisse chaque année`}</span> : ce que la banque garde sans le dépenser manque aux emprunteurs. Il faut alors de nouveaux crédits, ou des défauts de paiement.`;
 }
 
 function presets() {

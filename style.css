@@ -513,3 +513,11 @@ table.cmp-t.li-mx { min-width: 980px; }
 .mo-calc select { font: inherit; font-size: .85rem; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); max-width: 100%; }
 .mo-step-nav button { white-space: nowrap; }
 @media (max-width: 480px) { .mo-step-nav button { padding: 6px 8px; font-size: .8rem; } .mo-bil-g { font-size: .74rem; } }
+.mo-loop { display: flex; flex-wrap: wrap; align-items: stretch; gap: 6px; margin: 8px 0; }
+.mo-loop > div { flex: 1 1 140px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: .84rem; }
+.mo-loop > div b { display: block; }
+.mo-loop > div span { color: var(--muted); }
+.mo-loop > i { align-self: center; font-style: normal; color: var(--muted); font-size: 1.1rem; }
+@media (max-width: 560px) { .mo-loop { flex-direction: column; } .mo-loop > div { flex: none; } .mo-loop > i { transform: rotate(90deg); align-self: center; } }
+.mo-ul { font-size: .9rem; padding-left: 20px; }
+.mo-ul li { margin: 4px 0; }
