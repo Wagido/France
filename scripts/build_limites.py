@@ -65,7 +65,11 @@ for sk, sc in W["scenarios"].items():
     pics[sk]["pop_2025"] = round(next(r["pop"] for r in S if r["annee"] == 2025) / 1e9, 2)
     pics[sk]["le_2025"] = round(next(r["le"] for r in S if r["annee"] == 2025), 1)
     pics[sk]["le_2050"] = round(next(r["le"] for r in S if r["annee"] == 2050), 1)
-out = {"base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
+# production mondiale d'énergies fossiles (Our World in Data, d'après l'Energy Institute et Shift Data Portal), TWh
+F = {k: owid("owid_energy_monde.csv", k + "_production") for k in ("oil", "gas", "coal")}
+fossiles = [{"annee": y, "petrole": round(F["oil"].get(y, 0)), "gaz": round(F["gas"].get(y, 0)), "charbon": round(F["coal"].get(y, 0))} for y in sorted(F["oil"]) if y >= 1900]
+pic_nrur = {sk: max(sc["serie"], key=lambda r: r["nrur"] or 0)["annee"] for sk, sc in W["scenarios"].items()}
+out = {"fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
 json.dump(out, open(os.path.join(HERE, "..", "data", "limites.json"), "w"), ensure_ascii=False)
 for i in ind:
     print(i["k"], i["ecart"], i["dernier"])
