@@ -95,7 +95,13 @@ METAUX = [  # nom, production 2025, réserves, ressources identifiées (ou None)
 ]
 metaux = [{"l": m[0], "prod": m[1], "res": m[2], "ress": m[3], "usage": m[5], "prod1": m[6], "ans": round(m[2] / m[1]), "ans_ress": round(m[3] / m[1]) if m[3] else None} for m in METAUX]
 metaux.sort(key=lambda x: x["ans"])
-out = {"metaux": metaux, "fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
+# recyclage : part du métal recyclé dans la consommation des États-Unis en 2025 (USGS, Mineral Commodity Summaries 2026, rubrique « Recycling »)
+recyclage = [["Plomb", 70, "batteries au plomb, presque toutes recyclées"], ["Or", 60, "bijoux, électronique"], ["Nickel", 60, "surtout les déchets d'acier inoxydable"],
+             ["Cuivre", 30, "dont l'essentiel vient des chutes de fabrication"], ["Molybdène", 30, "jusqu'à 30 %, dans les aciers et catalyseurs"],
+             ["Aluminium", 28, "à partir des produits en fin de vie (canettes, voitures)"], ["Cobalt", 25, "alliages, batteries"], ["Étain", 22, "soudures, fer-blanc"],
+             ["Argent", 11, "photographie, électronique"], ["Lithium", 0, "usines de recyclage de batteries en construction"],
+             ["Terres rares", 0, "quantités limitées (aimants, lampes)"], ["Gallium", 0, "aucun recyclage des produits en fin de vie"]]
+out = {"recyclage": [{"l": l, "v": v, "note": n} for l, v, n in recyclage], "metaux": metaux, "fossiles": fossiles, "pic_nrur": pic_nrur, "base": BASE, "scenarios": {k: v["l"] for k, v in W["scenarios"].items()}, "indicateurs": ind, "pics": pics}
 json.dump(out, open(os.path.join(HERE, "..", "data", "limites.json"), "w"), ensure_ascii=False)
 for i in ind:
     print(i["k"], i["ecart"], i["dernier"])

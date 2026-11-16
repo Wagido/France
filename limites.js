@@ -12,6 +12,7 @@ async function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { L = await fetch("data/limites.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
   $("#li-g") && ($("#li-g").onchange = metaux);
+  ["li-rg", "li-rl", "li-rr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", recyclage));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
@@ -53,7 +54,7 @@ function draw() {
       <div class="in-card-n muted" style="font-size:.78rem">${esc(i.l.includes("(") ? "(" + i.l.split(" (").slice(1).join(" (") : "")}</div>
       <div class="chart" id="li-c-${k}"></div>
       <div class="in-card-bio" style="color:var(--muted)">Écart moyen depuis 2000 : <b style="color:${COL.bau}">${f1(e.bau)} %</b> avec le scénario de 1972, <b style="color:#b45309">${f1(e.bau2)} %</b> avec « ressources doublées » → plus proche : <b>${COURT[best].toLowerCase()}</b></div></div>`; }).join("");
-  drawRes(); metaux();
+  drawRes(); metaux(); recyclage();
   ordre.forEach(k => { lineChart($("#li-c-" + k), merge(I[k]), lines, { vfmt: v => n0(v), yfmt: v => v, h: 170, xticks: 4 }); today($("#li-c-" + k)); });
   legend("#li-legend2", [[COURT.bau, COL.bau], [COURT.bau2, COL.bau2], ["Données observées", COL.obs]]);
   const nb2 = ordre.filter(k => I[k].ecart.bau2 < I[k].ecart.bau).length;
@@ -98,6 +99,17 @@ function metaux() {
     <li><b>La transition énergétique fait exploser la demande</b> : selon la Banque mondiale (2020), la production de graphite, de lithium et de cobalt devrait augmenter de près de 500 % d'ici 2050 pour les technologies bas carbone. Le géologue Simon Michaux (Service géologique de Finlande, 2021) va plus loin : remplacer tout le système fossile par l'électricité et les batteries demanderait plus de certains métaux que les réserves connues. Ses calculs sont contestés (ils supposent de tout stocker en batteries, sans recyclage ni changement de technologie), mais ils montrent l'ordre de grandeur du défi.</li>
     <li><b>La grande différence avec le pétrole</b> : un métal ne disparaît pas quand on l'utilise. Le cuivre, l'acier, l'aluminium sont déjà recyclés en grande partie ; plus la quantité de métal en circulation augmente, plus le recyclage peut couvrir une part des besoins. C'est la seule voie pour s'affranchir à terme des mines, mais elle demande du temps et beaucoup d'énergie.</li>
   </ul>`;
+}
+
+/* recyclage : part recyclée (USGS) et calcul de la part maximale couverte par le recyclage */
+function recyclage() {
+  const { esc } = window.TH, R = L.recyclage; if (!R || !$("#li-recy")) return;
+  $("#li-recy").innerHTML = R.map(r => `<div class="in-sbar"><span class="lab">${esc(r.l)}</span><span class="tr"><span style="width:${Math.max(1, r.v)}%;background:${r.v >= 50 ? "#16a34a" : r.v >= 20 ? "#f59e0b" : "#dc2626"}"></span></span><b>${r.v ? n0(r.v) + " %" : "≈ 0"}</b><small class="muted">${esc(r.note)}</small></div>`).join("");
+  const g = +$("#li-rg").value / 100, l = +$("#li-rl").value, r = +$("#li-rr").value / 100;
+  $("#li-rg-v").textContent = "+" + f1(g * 100) + " %"; $("#li-rl-v").textContent = l + " ans"; $("#li-rr-v").textContent = n0(r * 100) + " %";
+  const part = r / (1 + g) ** l;
+  $("#li-recy-out").innerHTML = `Le recyclage peut couvrir au plus <b>${n0(100 * part)} %</b> des besoins ; il faut extraire les <b>${n0(100 * (1 - part))} %</b> restants des mines.` +
+    (g > 0 ? ` <span class="muted" style="font-size:.85rem">Avec une consommation stable (0 %), ce serait ${n0(100 * r)} %.</span>` : "");
 }
 
 /* ressources : production d'énergies fossiles depuis 1900 */

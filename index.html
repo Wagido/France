@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261122b">
+<link rel="stylesheet" href="style.css?v=20261122h">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -681,6 +681,83 @@
   </div>
   <div class="callout small" id="li-res-txt"></div>
   <div class="callout small" id="li-met-txt"></div>
+  <h3>Le recyclage peut-il prendre le relais ?</h3>
+  <div class="grid2">
+    <div>
+      <p class="lead" style="margin-top:0">Part du métal recyclé dans la consommation des États-Unis en 2025 (USGS). Il n'existe pas de chiffre mondial aussi récent ; pour la France et l'Europe, les ordres de grandeur sont proches.</p>
+      <div id="li-recy"></div>
+    </div>
+    <div>
+      <p class="lead" style="margin-top:0"><b>Le calcul qui fâche</b> : un métal recyclé aujourd'hui a été consommé il y a des années, quand on en utilisait moins. Même en recyclant presque tout, le recyclage ne peut couvrir qu'une partie des besoins tant que la consommation augmente.</p>
+      <div class="in-sim" style="grid-template-columns:1fr">
+        <label class="ctl">Hausse de la consommation chaque année <input type="range" id="li-rg" min="0" max="6" step="0.5" value="3"><b id="li-rg-v"></b></label>
+        <label class="ctl">Durée de vie des objets (câbles, bâtiments, voitures…) <input type="range" id="li-rl" min="5" max="50" step="5" value="25"><b id="li-rl-v"></b></label>
+        <label class="ctl">Part du métal récupéré en fin de vie <input type="range" id="li-rr" min="0" max="100" step="5" value="60"><b id="li-rr-v"></b></label>
+      </div>
+      <p class="in-verdict" id="li-recy-out"></p>
+    </div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Les métaux de base se recyclent bien</b> : plus de la moitié de l'acier, de l'aluminium, du cuivre, du plomb, de l'or et du nickel en fin de vie est récupérée dans le monde, selon le Programme des Nations unies pour l'environnement (2011). Recycler de l'aluminium demande environ 95 % d'énergie en moins que de le produire à partir de bauxite.</li>
+      <li><b>Les métaux de la transition se recyclent très mal</b> : selon la même étude, 34 métaux sur 60 étaient recyclés à moins de 1 %, dont le lithium, les terres rares, le gallium, l'indium, le germanium. Ils sont utilisés en petites quantités, mélangés à d'autres dans des alliages ou des composants, ce qui rend leur récupération difficile et chère.</li>
+      <li><b>Certaines utilisations sont « dispersives »</b> : le métal se disperse et ne peut plus être récupéré (pigments, engrais, additifs, usure des pneus et des freins, électronique jetée dans la nature). L'ingénieur Philippe Bihouix (<i>L'Âge des low tech</i>, 2014) en tire une conclusion : sans réduire la consommation, le recyclage ne fait que retarder l'épuisement.</li>
+    </ul>
+  </div>
+
+  <h3>Qui s'inquiète ? Presque tout le monde</h3>
+  <div class="in-need">
+    <div><b>L'Agence internationale de l'énergie</b><span>Elle publie chaque année depuis 2021 un rapport sur les « minerais critiques ». Elle alerte sur la concentration de la production et du raffinage, et sur le décalage entre la demande de la transition et les projets de mines annoncés, en particulier pour le cuivre et le lithium.</span></div>
+    <div><b>L'Union européenne</b><span>Le règlement sur les matières premières critiques (2024) liste 34 matières critiques et fixe des objectifs pour 2030 : extraire en Europe 10 % de sa consommation, en raffiner 40 %, en recycler 25 %, et ne dépendre d'aucun pays pour plus de 65 % d'une matière.</span></div>
+    <div><b>La France</b><span>Le rapport Varin (2022) a conduit à créer un observatoire des ressources minérales (OFREMI) et un fonds d'investissement dans les métaux critiques. Le BRGM a relancé en 2025 l'inventaire minier du pays, le premier depuis les années 1990 (voir <a href="#soussol">Sous-sol</a>).</span></div>
+    <div><b>La Chine</b><span>Elle a montré qu'elle pouvait s'en servir comme d'une arme : restrictions d'exportation du gallium et du germanium (2023), du graphite (2023), de l'antimoine (2024), puis de plusieurs terres rares (2025), qui ont désorganisé des usines automobiles en Europe et aux États-Unis.</span></div>
+    <div><b>Les États-Unis</b><span>Stocks stratégiques pour la défense, aides à l'ouverture de mines et de raffineries, accords avec des pays producteurs, et en 2025 un décret pour accélérer l'exploitation minière des grands fonds marins, à laquelle la France s'oppose.</span></div>
+    <div><b>Les chercheurs</b><span>Le géologue Olivier Vidal (CNRS) estime qu'il faudra extraire dans les prochaines décennies autant de métaux que depuis le début de l'humanité pour construire les infrastructures bas carbone. Aurore Stéphant (association SystExt) documente les dégâts des mines : eau, déchets toxiques, déforestation, conditions de travail.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>Alors, faut-il s'inquiéter ?</b> Personne de sérieux ne prévoit une « fin des métaux » dans quelques décennies : les ressources dans le sol sont bien plus grandes que les réserves, et le recyclage progresse. Mais trois risques font consensus : des métaux de plus en plus chers à extraire, en énergie, en eau et en dégâts environnementaux ; des pénuries temporaires et des hausses de prix, parce que les mines s'ouvrent beaucoup plus lentement que la demande n'augmente ; et une dépendance géopolitique, surtout envers la Chine. La réponse la plus sûre combine les trois leviers : recycler beaucoup plus, concevoir des objets réparables et faciles à démonter, et consommer moins de métal (voitures plus petites et moins nombreuses, objets qui durent).</p>
+  </div>
+
+  <h3>Et la France ? Pas de pétrole, pas de métaux… mais ça va ?</h3>
+  <div class="grid2">
+    <div class="callout small" style="margin-top:0">
+      <p><b>Ce qui inquiète</b></p>
+      <ul>
+        <li><b>Presque tout est importé</b> : le pétrole et le gaz (la production française couvre moins de 1 % des besoins), l'uranium (dernière mine fermée en 2001), et la quasi-totalité des métaux : il n'y a plus de mine de métaux en activité en métropole depuis la fermeture de la mine d'or de Salsigne en 2004.</li>
+        <li><b>La facture peut exploser</b> : la France a payé 116 milliards d'euros d'énergie importée en 2022, un record, avec la flambée des prix du gaz et du pétrole.</li>
+        <li><b>Les transports dépendent du pétrole à plus de 90 %</b>, l'agriculture des engrais importés (voir <a href="#agriculture">Agriculture</a>), l'industrie de métaux transformés en Chine.</li>
+        <li><b>Les fournisseurs peuvent changer de camp</b> : la Russie (gaz, uranium enrichi) depuis 2022, le Niger, dont la junte a pris le contrôle de la principale mine d'uranium exploitée par l'entreprise française Orano en 2025.</li>
+      </ul>
+    </div>
+    <div class="callout small" style="margin-top:0">
+      <p><b>Ce qui rassure (un peu)</b></p>
+      <ul>
+        <li><b>Une électricité presque sans fossiles</b> : nucléaire, hydraulique et renouvelables fournissent plus de 90 % de l'électricité. Chaque usage qui passe du pétrole à l'électricité réduit la dépendance (voir <a href="#energie">Énergie</a> et <a href="#nucleaire">Nucléaire</a>).</li>
+        <li><b>L'uranium se stocke</b> : quelques tonnes suffisent à faire tourner un réacteur, la France garde plusieurs années de réserves et achète à plusieurs pays (Kazakhstan, Ouzbékistan, Australie, Canada, Niger). Elle détient aussi des centaines de milliers de tonnes d'uranium appauvri, utilisables un jour par des réacteurs à neutrons rapides.</li>
+        <li><b>Du nickel en Nouvelle-Calédonie</b> : environ 5 % des réserves mondiales et 140 000 tonnes produites en 2025, mais une filière en crise (usines fermées ou en difficulté face au nickel indonésien).</li>
+        <li><b>Des projets</b> : la mine de lithium de l'Allier, le lithium géothermal d'Alsace, le nouvel inventaire minier du BRGM, et une industrie du recyclage développée (acier, aluminium, cuivre).</li>
+      </ul>
+    </div>
+  </div>
+  <p class="lead"><b>En résumé</b> : la France n'est pas plus mal lotie que ses voisins européens, qui importent aussi l'essentiel de leurs ressources, et mieux que beaucoup pour l'électricité. Mais elle est très exposée aux chocs de prix et aux décisions des pays producteurs. Sa marge de manœuvre tient à trois choses : électrifier, consommer moins de pétrole et de métal, et recycler.</p>
+
+  <h3>Que disent le GIEC et le Shift Project ?</h3>
+  <div class="in-need">
+    <div><b>Le GIEC</b><span>Son rôle est d'évaluer le climat et les moyens de limiter le réchauffement, pas de faire l'inventaire des ressources. Dans son rapport de 2022 sur les solutions, il cite les minerais critiques comme un risque pour le rythme de la transition (concentration de la production, délais d'ouverture des mines, impacts environnementaux) et recommande le recyclage, la sobriété et la diversification. Mais la plupart des modèles économiques qu'il utilise ne représentent pas les limites de métaux ou de pétrole : c'est précisément la critique du « bouclage » ci-dessous.</span></div>
+    <div><b>Le Shift Project</b><span>Ce groupe de réflexion fondé par Jean-Marc Jancovici rappelle que 70 % de l'énergie à laquelle l'économie française est exposée (y compris celle contenue dans ce qu'elle importe) est d'origine fossile. Il anticipe une baisse de 10 à 20 % de la production de pétrole des principaux fournisseurs de l'Union européenne dans la décennie 2030. En 2026, il a lancé avec le soutien du ministère des Armées un programme sur les approvisionnements en énergie et en matériaux de la défense (« Énergie, ressources, climat : une défense sous contraintes physiques »).</span></div>
+    <div><b>RTE et l'ADEME</b><span>Les scénarios de RTE (<i>Futurs énergétiques 2050</i>, 2021) ont évalué les besoins en métaux d'un système électrique sans fossiles : importants, notamment en cuivre, mais compatibles avec les ressources si le recyclage se développe. L'ADEME (<i>Transition(s) 2050</i>) compare quatre chemins pour la neutralité carbone : ceux qui misent sur la sobriété consomment beaucoup moins de matières que ceux qui misent sur la technologie.</span></div>
+  </div>
+
+  <h3>La sobriété et les plans du Shift Project</h3>
+  <div class="in-need">
+    <div><b>Sobriété, efficacité, décarbonation</b><span>Trois leviers différents. L'<b>efficacité</b> fait la même chose avec moins d'énergie (isolation, moteur électrique). La <b>décarbonation</b> remplace les fossiles par de l'électricité bas carbone ou de la biomasse. La <b>sobriété</b> réduit le besoin lui-même : moins de kilomètres, des logements moins grands ou mieux partagés, des objets qui durent, moins de viande. L'association négaWatt a popularisé ce triptyque.</span></div>
+    <div><b>Pourquoi la sobriété est incontournable</b><span>La production d'énergie bas carbone (électricité, biomasse) ne pourra pas remplacer à temps tout le pétrole et le gaz : les surfaces agricoles, les métaux et le rythme de construction des centrales limitent l'offre. Le Shift Project en conclut qu'il faut une « sobriété structurelle, collective et individuelle ». Le GIEC estime que les mesures sur la demande (sobriété et efficacité) pourraient réduire de 40 à 70 % les émissions des secteurs d'utilisation finale d'ici 2050.</span></div>
+    <div><b>Le Plan de transformation de l'économie française (2022)</b><span>Le premier plan du Shift Project propose de réduire les émissions françaises de 5 % par an, secteur par secteur, sans miser sur la croissance économique ni sur des technologies pas encore éprouvées. Sa particularité : le « bouclage » entre secteurs, c'est-à-dire la cohérence entre l'énergie bas carbone disponible, les matières, les emplois et la baisse des émissions.</span></div>
+    <div><b>Le Plan robuste pour l'économie française (2026)</b><span>Financé par plus de 30 000 donateurs, son premier volet (« Réussir la transition dans l'incertitude », avril 2026) reprend le plan de 2022 en supposant que tout ne se passera pas comme prévu : crises énergétiques, chocs climatiques, retards. Il propose 20 « chantiers » pour que la sortie des énergies fossiles tienne malgré les chocs ; un livre de synthèse est paru en octobre 2026.</span></div>
+    <div><b>Les scénarios de l'ADEME et de RTE</b><span>L'ADEME (<i>Transition(s) 2050</i>, 2021) compare quatre chemins vers la neutralité carbone, de la « génération frugale » au « pari réparateur » misant sur la technologie ; RTE (<i>Futurs énergétiques 2050</i>) a étudié une variante « sobriété ». Le site Comprendre2050.fr, réalisé par le Shift Project, l'ADEME et négaWatt, résume et compare ces scénarios en 150 fiches.</span></div>
+    <div><b>La sobriété, un choix politique difficile</b><span>Le plan de sobriété énergétique de l'automne 2022 visait −10 % de consommation d'énergie en deux ans (chauffage à 19 °C, éclairage, télétravail). La baisse a surtout été obtenue sous la contrainte des prix. Toute la question est de savoir si la sobriété peut être choisie, organisée et juste (sans peser d'abord sur les plus modestes), plutôt que subie lors des crises.</span></div>
+  </div>
+
   <h3>Les scénarios du GIEC tiennent-ils ? La critique du « bouclage »</h3>
   <div class="callout small">
     <ul>
@@ -694,7 +771,7 @@
   <div class="callout small">
     <ul>
       <li><b>Le monde ne « tombe pas en panne » dans 50 ans</b> : les réserves ne sont pas un stock qui s'épuise d'un coup, mais une production qui décline, gisement par gisement, de plus en plus chère. Ce qui change, c'est la quantité disponible chaque année, et son prix.</li>
-      <li><b>Le déclin pour l'Europe pourrait venir bien avant</b> : Jean-Marc Jancovici et The Shift Project, qui ont étudié en 2020-2021 les réserves et la production des principaux fournisseurs de pétrole de l'Union européenne (Russie, Norvège, Kazakhstan, Nigeria, Libye, Algérie, Arabie saoudite, Irak…), estiment que les volumes que l'Europe pourra acheter vont baisser dès la décennie 2030, et pourraient être divisés par deux environ d'ici 2050. Plusieurs de ces pays ont déjà passé leur pic de production (Norvège, Royaume-Uni, Algérie, Nigeria), et la Russie est sous sanctions depuis 2022.</li>
+      <li><b>Le déclin pour l'Europe pourrait venir bien avant</b> : The Shift Project, qui a étudié en 2020-2021 les réserves et la production des principaux fournisseurs de pétrole de l'Union européenne (Russie, Norvège, Kazakhstan, Nigeria, Libye, Algérie, Arabie saoudite, Irak…), anticipe une baisse de 10 à 20 % de leur production au cours de la décennie 2030 par rapport à 2019. Jean-Marc Jancovici évoque dans ses conférences une division par deux environ du pétrole disponible pour l'Europe d'ici 2050. Plusieurs de ces pays ont déjà passé leur pic de production (Norvège, Royaume-Uni, Algérie, Nigeria), et la Russie est sous sanctions depuis 2022.</li>
       <li><b>Les pays producteurs garderont d'abord pour eux</b> : c'est ce qu'on appelle l'« effet du pays exportateur ». Leur population et leur consommation augmentent (Arabie saoudite, Iran, Algérie, Nigeria, Égypte, devenue importatrice nette de gaz) : à production égale ou en baisse, il reste moins à exporter. L'Indonésie, ancien membre de l'OPEP, importe du pétrole depuis le début des années 2000. Et entre les acheteurs, l'Asie, en croissance, paie souvent plus cher que l'Europe.</li>
       <li><b>Ce n'est pas une prévision unanime</b> : l'Agence internationale de l'énergie prévoit plutôt une offre abondante jusqu'en 2030, avec le pétrole de schiste américain, le Brésil et le Guyana. Mais les deux lectures mènent au même endroit : pour tenir ses objectifs climatiques (neutralité carbone en 2050), l'Europe doit de toute façon diviser sa consommation de pétrole par plus de deux d'ici 2050. La seule question est de savoir si elle le choisit, en s'y préparant, ou si elle le subit, par les prix et les pénuries.</li>
       <li><b>La France est particulièrement exposée</b> : elle importe la quasi-totalité de son pétrole (voir <a href="#soussol">Sous-sol</a>), et les transports en dépendent à plus de 90 %. Son atout est une électricité déjà presque sans carbone (nucléaire et hydraulique) : chaque usage qui passe du pétrole à l'électricité réduit cette dépendance (voir <a href="#energie">Énergie</a>).</li>
@@ -708,7 +785,7 @@
       <li><b>Garder le pétrole pour ce qui n'a pas de substitut</b> : chimie, plastiques techniques, médicaments, une partie de l'aviation et de l'agriculture (voir <a href="#agriculture">Agriculture</a>).</li>
     </ul>
   </div>
-  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf" target="_blank" rel="noopener"><i>Mineral Commodity Summaries 2026</i></a> (production minière 2025, réserves et ressources identifiées) ; Banque mondiale, <i>Minerals for Climate Action</i> (2020) ; GIEC, sixième rapport, groupe III (2022). Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
+  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf" target="_blank" rel="noopener"><i>Mineral Commodity Summaries 2026</i></a> (production minière 2025, réserves et ressources identifiées) ; Banque mondiale, <i>Minerals for Climate Action</i> (2020) ; PNUE, <i>Recycling Rates of Metals</i> (2011) ; The Shift Project, <a href="https://theshiftproject.org/thematiques/energie/" target="_blank" rel="noopener">énergie</a> et <a href="https://theshiftproject.org/publications/reussir-la-transition-dans-lincertitude/" target="_blank" rel="noopener">Plan robuste pour l'économie française</a> (2026) ; règlement européen 2024/1252 sur les matières premières critiques ; GIEC, sixième rapport, groupe III (2022). Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
 </section>
 
 <section id="simulateur" class="panel">
@@ -1918,9 +1995,11 @@
   <div class="callout small" id="el-bars-txt"></div>
 
   <h3 id="el-p3" class="ag-part">3. Diplôme et revenu : la carte des électorats</h3>
-  <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? L'écart est rapporté au score national du parti : +50 % veut dire qu'il fait 50 % de son score national de plus dans le groupe du haut que dans celui du bas. La taille de la bulle est le score national.</p>
-  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label></div>
+  <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? Par défaut, l'écart est en points : −12 veut dire que le parti fait 12 points de moins chez les aisés que chez les modestes. La taille de la bulle est le score national. <b>La carte montre des différences, pas des niveaux</b> : le tableau en dessous donne les scores réels.</p>
+  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label><label class="ctl">Mesure <select id="el-carte-mode"><option value="points">écart en points</option><option value="relatif">écart rapporté au score national</option></select></label></div>
   <div id="el-carte" class="chart"></div>
+  <h3>Les scores réels, selon le revenu et le diplôme</h3>
+  <div id="el-niveaux"></div>
   <div class="callout small" id="el-carte-txt"></div>
 
   <h3 id="el-p6" class="ag-part">4. Hommes et femmes</h3>
@@ -1935,8 +2014,26 @@
   <div class="legend-row" id="el-sexe-pays-legend"></div>
   <div class="callout small" id="el-sexe-txt"></div>
 
-  <h3 id="el-p7" class="ag-part">5. Le grand renversement depuis 70 ans</h3>
+  <h3 id="el-p7" class="ag-part">5. La gauche a-t-elle perdu les ouvriers ? Le grand renversement depuis 70 ans</h3>
   <p class="lead">Écart de vote pour la gauche entre les 10 % les plus diplômés (ou les plus riches) et les 90 % restants, en points. Au-dessus de zéro, la gauche fait mieux chez les plus diplômés (ou les plus riches) ; en dessous, chez les autres.</p>
+  <div class="callout small" style="margin-top:4px">
+    <p><b>En clair : oui, la gauche a perdu une grande partie du vote ouvrier, et gagné les diplômés des grandes villes.</b> Le graphique ci-dessous le montre de façon indirecte (par le diplôme et le revenu) ; ce tableau le montre directement.</p>
+  </div>
+  <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Élection</th><th>Ouvriers : gauche</th><th>Ouvriers : extrême droite</th><th>Cadres : gauche</th><th>Cadres : extrême droite</th><th>Grandes villes : gauche</th><th>Petites communes : gauche</th></tr></thead><tbody>
+    <tr><td><b>1988</b>, 2<sup>nd</sup> tour de la présidentielle (Mitterrand contre Chirac)</td><td><b>68 %</b></td><td>–</td><td>43 % (classes moyennes et supérieures)</td><td>–</td><td colspan="2" class="muted">non disponible</td></tr>
+    <tr><td><b>2022</b>, 1<sup>er</sup> tour de la présidentielle</td><td>31 %</td><td><b>44 %</b> (Le Pen 35, Zemmour 9)</td><td><b>38 %</b></td><td>16 %</td><td>34 %</td><td>33 %</td></tr>
+    <tr><td><b>2024</b>, 1<sup>er</sup> tour des législatives</td><td>21 %</td><td><b>57 %</b></td><td><b>34 %</b></td><td>21 %</td><td><b>33 %</b></td><td>23 %</td></tr>
+  </tbody></table></div>
+  <p class="muted" style="font-size:.78rem;margin-top:2px">1988 : base WPID (enquête électorale française), « classe ouvrière » contre « classes moyennes et supérieures ». 2022 et 2024 : Ipsos ; « gauche » = Mélenchon, Roussel, Jadot, Hidalgo et l'extrême gauche (2022), Nouveau Front populaire (2024) ; grandes villes = plus de 200 000 habitants, petites communes = moins de 2 000 habitants. Les sources et les tours de scrutin diffèrent : ce sont des ordres de grandeur.</p>
+  <div class="callout small">
+    <ul>
+      <li><b>Les ouvriers</b> votaient massivement à gauche dans les années 1970-1980 (le Parti communiste était alors le premier parti ouvrier). Aujourd'hui, ils votent d'abord pour l'extrême droite : 57 % pour le RN aux législatives de 2024, contre 21 % pour la gauche. Beaucoup s'abstiennent aussi (46 % des ouvriers n'ont pas voté en 2024).</li>
+      <li><b>Les cadres et les diplômés</b> votaient plutôt à droite ; ils votent aujourd'hui davantage à gauche et au centre, et très peu pour l'extrême droite (21 % des cadres pour le RN).</li>
+      <li><b>Les grandes villes et les petites communes</b> votaient à peu près pareil dans les années 1950. En 2024, la gauche fait 33 % dans les villes de plus de 200 000 habitants, 23 % dans les communes de moins de 2 000 habitants, où le RN fait 40 %.</li>
+      <li><b>Pourquoi ?</b> Les explications avancées : la désindustrialisation et la fin des grands bastions ouvriers (voir <a href="#industrie">Industrie et innovation</a>), une gauche devenue le parti des enseignants, des fonctionnaires et des diplômés, l'importance croissante de l'immigration et de la sécurité dans les choix de vote, et le sentiment d'abandon des territoires périurbains et ruraux.</li>
+    </ul>
+  </div>
+  <h3>Le diplôme et le revenu depuis 1956</h3>
   <div id="el-long" class="chart"></div><div class="legend-row" id="el-long-legend"></div>
   <h3>Le même renversement dans 21 démocraties : vote de gauche des 10 % les plus diplômés moins celui des autres (points)</h3>
   <p class="lead"><b>Comment lire</b> : même principe. Point gris avant 1980, point rose depuis 2000. À gauche du trait, la gauche fait mieux chez les moins diplômés ; à droite, chez les plus diplômés. Presque tous les points sont passés de gauche à droite du trait.</p>
@@ -2063,50 +2160,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261122b"></script>
-<script src="app.js?v=20261122b"></script>
-<script src="energie.js?v=20261122b"></script>
-<script src="matieres.js?v=20261122b"></script>
-<script src="territoire.js?v=20261122b"></script>
-<script src="themes.js?v=20261122b"></script>
-<script src="societe.js?v=20261122b"></script>
-<script src="eco2.js?v=20261122b"></script>
-<script src="empreinte.js?v=20261122b"></script>
-<script src="argentprive.js?v=20261122b"></script>
-<script src="repartition.js?v=20261122b"></script>
-<script src="patrimoine.js?v=20261122b"></script>
-<script src="prelevements.js?v=20261122b"></script>
-<script src="travailvie.js?v=20261122b"></script>
-<script src="niveauvie.js?v=20261122b"></script>
-<script src="prosperite.js?v=20261122b"></script>
-<script src="exterieur.js?v=20261122b"></script>
-<script src="desindus.js?v=20261122b"></script>
-<script src="retraites.js?v=20261122b"></script>
-<script src="energiecout.js?v=20261122b"></script>
-<script src="energieformation.js?v=20261122b"></script>
-<script src="nucleaire.js?v=20261122b"></script>
-<script src="logementeco.js?v=20261122b"></script>
-<script src="competences.js?v=20261122b"></script>
-<script src="justicedroit.js?v=20261122b"></script>
-<script src="fonctionnaires.js?v=20261122b"></script>
-<script src="couper.js?v=20261122b"></script>
-<script src="seuilpays.js?v=20261122b"></script>
-<script src="logement.js?v=20261122b"></script>
-<script src="env.js?v=20261122b"></script>
-<script src="agriculture.js?v=20261122b"></script>
-<script src="rendements.js?v=20261122b"></script>
-<script src="chaine.js?v=20261122b"></script>
-<script src="patrimoinehist.js?v=20261122b"></script>
-<script src="innovation.js?v=20261122b"></script>
+<script src="kpi.js?v=20261122h"></script>
+<script src="app.js?v=20261122h"></script>
+<script src="energie.js?v=20261122h"></script>
+<script src="matieres.js?v=20261122h"></script>
+<script src="territoire.js?v=20261122h"></script>
+<script src="themes.js?v=20261122h"></script>
+<script src="societe.js?v=20261122h"></script>
+<script src="eco2.js?v=20261122h"></script>
+<script src="empreinte.js?v=20261122h"></script>
+<script src="argentprive.js?v=20261122h"></script>
+<script src="repartition.js?v=20261122h"></script>
+<script src="patrimoine.js?v=20261122h"></script>
+<script src="prelevements.js?v=20261122h"></script>
+<script src="travailvie.js?v=20261122h"></script>
+<script src="niveauvie.js?v=20261122h"></script>
+<script src="prosperite.js?v=20261122h"></script>
+<script src="exterieur.js?v=20261122h"></script>
+<script src="desindus.js?v=20261122h"></script>
+<script src="retraites.js?v=20261122h"></script>
+<script src="energiecout.js?v=20261122h"></script>
+<script src="energieformation.js?v=20261122h"></script>
+<script src="nucleaire.js?v=20261122h"></script>
+<script src="logementeco.js?v=20261122h"></script>
+<script src="competences.js?v=20261122h"></script>
+<script src="justicedroit.js?v=20261122h"></script>
+<script src="fonctionnaires.js?v=20261122h"></script>
+<script src="couper.js?v=20261122h"></script>
+<script src="seuilpays.js?v=20261122h"></script>
+<script src="logement.js?v=20261122h"></script>
+<script src="env.js?v=20261122h"></script>
+<script src="agriculture.js?v=20261122h"></script>
+<script src="rendements.js?v=20261122h"></script>
+<script src="chaine.js?v=20261122h"></script>
+<script src="patrimoinehist.js?v=20261122h"></script>
+<script src="innovation.js?v=20261122h"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261122b"></script>
-<script src="histoire.js?v=20261122b"></script>
-<script src="chomage.js?v=20261122b"></script>
-<script src="sources.js?v=20261122b"></script>
-<script src="monnaie.js?v=20261122b"></script>
-<script src="limites.js?v=20261122b"></script>
-<script src="sociologie.js?v=20261122b"></script>
-<script src="nav.js?v=20261122b"></script>
+<script src="soussol.js?v=20261122h"></script>
+<script src="histoire.js?v=20261122h"></script>
+<script src="chomage.js?v=20261122h"></script>
+<script src="sources.js?v=20261122h"></script>
+<script src="monnaie.js?v=20261122h"></script>
+<script src="limites.js?v=20261122h"></script>
+<script src="sociologie.js?v=20261122h"></script>
+<script src="nav.js?v=20261122h"></script>
 </body>
 </html>
