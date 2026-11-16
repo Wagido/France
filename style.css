@@ -521,3 +521,4 @@ table.cmp-t.li-mx { min-width: 980px; }
 @media (max-width: 560px) { .mo-loop { flex-direction: column; } .mo-loop > div { flex: none; } .mo-loop > i { transform: rotate(90deg); align-self: center; } }
 .mo-ul { font-size: .9rem; padding-left: 20px; }
 .mo-ul li { margin: 4px 0; }
+.mo-hist td, .mo-hist th { border-bottom: 1px solid var(--line); padding: 6px 6px; text-align: left; }
