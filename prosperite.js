@@ -126,7 +126,14 @@ function draw() {
       <li><b>Ce que disent les études récentes</b> : les régions protestantes de Prusse étaient bien plus riches au XIX<sup>e</sup> siècle, mais l'écart s'explique presque entièrement par l'alphabétisation (Becker et Woessmann, 2009). Luther voulait que chacun lise la Bible : les protestants ont appris à lire plus tôt, et c'est cette instruction qui les a enrichis, plus qu'une morale du travail.</li>
       <li><b>Pas d'effet direct sur la croissance</b> : dans les villes allemandes de 1300 à 1900, être passé au protestantisme n'a pas accéléré la croissance (Cantoni, 2015).</li>
       <li><b>Un effet sur la démocratie</b> : dans les anciennes colonies, là où des missionnaires protestants ont ouvert des écoles, imprimé des livres et créé des associations, la démocratie est aujourd'hui plus solide (Woodberry, 2012).</li>
-      <li><b>En clair</b> : ce n'est pas tant la foi qui a compté que l'école qu'elle a apportée. C'est encore l'éducation, comme dans la thèse de la modernisation.</li>
+      <li><b>Mais l'école pour tous est surtout venue des États</b> : la Prusse au XVIII<sup>e</sup> siècle, la France de Jules Ferry (1881-1882), le Japon de l'ère Meiji, la Corée du Sud après 1950. À chaque fois, un État a voulu former des citoyens, des soldats ou des ouvriers, et les régions en retard ont rattrapé leur écart dès que l'école est devenue publique et obligatoire.</li>
+      <li><b>En clair</b> :
+        <ul>
+          <li>le vrai fil rouge, c'est l'éducation : elle enrichit, nourrit la demande de libertés et renforce les institutions ;</li>
+          <li>la religion a été l'un de ses premiers vecteurs, parfois décisif, comme le protestantisme en Europe du Nord ;</li>
+          <li>ce n'est pas la doctrine qui compte, mais le fait de faire lire tout le monde : quand l'État a pris le relais, l'effet propre de la religion s'est effacé.</li>
+        </ul>
+      </li>
     </ul>
     <p style="margin-bottom:2px"><b>5. La réponse la plus solide : une cause commune</b></p>
     <ul>
