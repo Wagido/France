@@ -273,4 +273,11 @@ get themes/comext_historique.json "$C?reporter=FR&freq=A&sinceTimePeriod=2002&fl
 TMPZ=$(mktemp)
 get "$TMPZ" "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_Europe.zip"
 python3 "$SCRIPTS/filter_fao.py" "$TMPZ" themes/fao_fbs.csv && rm -f "$TMPZ"
+# Vit-on mieux qu'avant ? (pouvoir d'achat, dépenses pré-engagées, SMIC, comparaisons en PPA)
+get prc_ppp_ind_aic.json "$E/prc_ppp_ind?na_item=VI_PPS_EU27_2020_HAB&ppp_cat=A01&ppp_cat=GDP"
+get nama_10_pc_p41.json "$E/nama_10_pc?na_item=P41&unit=CLV10_EUR_HAB&unit=CLV20_EUR_HAB"
+get tec00113.json "$E/tec00113"
+get insee_pouvoir_achat.html "https://www.insee.fr/fr/statistiques/8612564"
+get insee_preengagees.html "https://www.insee.fr/fr/statistiques/8612566"
+get insee_smic_horaire.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/000822484?startPeriod=1951-01"
 echo "OK"

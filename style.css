@@ -321,3 +321,8 @@ main.wrap { position: relative; overflow: hidden; }
 .ss-pin span { display: block; width: 14px; height: 14px; border-radius: 50%; background: #dc2626; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
 .ss-t { table-layout: fixed; width: 100%; } .ss-t th, .ss-t td { text-align: left !important; white-space: normal !important; vertical-align: top; font-size: .84rem; line-height: 1.4; padding: 8px 8px; } .ss-t th:nth-child(1) { width: 13%; } .ss-t th:nth-child(2) { width: 22%; } .ss-t th:nth-child(3) { width: 20%; } .ss-t th:nth-child(4) { width: 22%; } .ss-t th:nth-child(5) { width: 9%; } .ss-t th:nth-child(6) { width: 14%; } .ss-tag { color: #fff; font-size: .72rem; font-weight: 650; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
 .dv-t { table-layout: fixed; width: 100%; max-width: 1040px; } .dv-t th, .dv-t td { text-align: left !important; white-space: normal !important; vertical-align: top; font-size: .84rem; line-height: 1.4; padding: 8px; }
+/* Vit-on mieux qu'avant ? */
+.tv-row.nv-row { grid-template-columns: 170px 1.3fr 1fr 80px; }
+@media (max-width: 640px) { .tv-row.nv-row { grid-template-columns: 80px 1fr 1fr 44px; } }
+.nv-t td { vertical-align: top; } .nv-t td:first-child { min-width: 170px; } .nv-pt { white-space: nowrap; }
+.nv-pt small { color: var(--muted); }

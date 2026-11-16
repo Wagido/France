@@ -45,6 +45,7 @@ jobs:
           python3 scripts/build_repartition.py
           python3 scripts/build_prelevements.py
           python3 scripts/build_travail_vie.py
+          python3 scripts/build_niveau_vie.py
           python3 scripts/build_couper.py
           python3 scripts/build_logement.py
           python3 scripts/build_environnement.py

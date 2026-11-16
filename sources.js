@@ -53,6 +53,12 @@ const S = [
   ["Alimentation", "fao", "Bilans alimentaires (FBS)", "Production, échanges, usages et calories par produit", "https://www.fao.org/faostat/fr/#data/FBS", "annuel"],
   ["Empreinte carbone", "sdes", "L'empreinte carbone de la France (SDES et INSEE)", "Empreinte par poste de consommation, série depuis 1990, origine des émissions, comparaison internationale", "https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2024", "annuel (octobre)"],
   ["Empreinte carbone", "eurostat", "env_ac_ghgfp / env_ac_ainah_r2", "Empreinte carbone de tous les pays par usage final et pays d'origine (modèle FIGARO), émissions directes des ménages", null, "annuel"],
+  ["Vit-on mieux", "insee", "Pouvoir d'achat du revenu disponible brut", "Pouvoir d'achat total et par unité de consommation, depuis 1960", "https://www.insee.fr/fr/statistiques/8612564", "annuel"],
+  ["Vit-on mieux", "insee", "Dépenses pré-engagées", "Part des dépenses pré-engagées dans le revenu disponible, depuis 1960", "https://www.insee.fr/fr/statistiques/8612566", "annuel"],
+  ["Vit-on mieux", "insee", "Série 000822484", "SMIC horaire brut depuis 1951", "https://www.insee.fr/fr/statistiques/serie/000822484", "à chaque revalorisation"],
+  ["Vit-on mieux", "eurostat", "prc_ppp_ind", "Consommation individuelle effective par habitant en standards de pouvoir d'achat (UE = 100)", null, "annuel"],
+  ["Vit-on mieux", "eurostat", "nama_10_pc", "Consommation individuelle effective par habitant en volume", null, "annuel"],
+  ["Vit-on mieux", "eurostat", "tec00113", "Revenu disponible brut ajusté des ménages par habitant en PPA", null, "annuel"],
   ["Temps de travail", "eurostat", "lfsi_dwl_a", "Durée de la vie active, par pays", null, "annuel"],
   ["Temps de travail", "eurostat", "lfsa_eppga / lfsa_eppgai / lfsa_ewhan2", "Temps partiel (dont subi), heures hebdomadaires à temps plein et partiel", null, "annuel"],
   ["Climat", "eurostat", "env_air_gge", "Émissions de gaz à effet de serre par secteur (inventaire national)", null, "annuel (juin)"],
@@ -114,7 +120,7 @@ function render() {
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
 // en bas de chaque article, ses sources en petit
-const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
+const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], couper: ["Couper où"], patrimoine: ["Patrimoine"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"],
   biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture"], champ: ["Du champ au caddie"], pesticides: ["Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation"], climat: ["Climat"], empreinte: ["Empreinte carbone"], dechets: ["Déchets"],
