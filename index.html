@@ -45,6 +45,7 @@
       <a href="#cycle-vie">La vie en euros</a>
       <a href="#retraites">Retraites</a>
       <a href="#duree">Dette sur 30 ans</a>
+      <a href="#monnaie">Monnaie et croissance</a>
       <a href="#simulateur">Couper la dépense ?</a>
       <a href="#couper">Couper où ?</a>
       <a href="#population">Qui fait quoi</a>
@@ -361,6 +362,98 @@
 
 
 <!-- =============================================================== SIMULATEUR -->
+<section id="monnaie" class="panel">
+  <div class="panel-head">
+    <h2>La monnaie et la dette obligent-elles à croître ? <span class="geo-fixed">France</span></h2>
+  </div>
+  <p class="lead">Une idée revient souvent : la monnaie naît de la dette, il faut toujours de nouveaux crédits pour rembourser les anciens et leurs intérêts, donc l'économie est condamnée à croître sans fin dans un monde physique fini. Qu'en est-il vraiment ?</p>
+  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#monnaie" data-to="mo-p1">1. comment naît la monnaie</a> · <a href="#monnaie" data-to="mo-p2">2. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">3. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p4">4. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">5. les pistes</a></p>
+  <div class="kpis" id="mo-kpis"></div>
+
+  <h3 id="mo-p1" class="ag-part">1. Comment naît la monnaie</h3>
+  <div class="in-need">
+    <div><b>① Un prêt</b><span>Vous empruntez 200 000 € pour une maison. La banque n'a pas besoin d'avoir cet argent en caisse : elle inscrit 200 000 € sur votre compte, et 200 000 € de créance à son actif.</span></div>
+    <div><b>② La monnaie circule</b><span>Vous payez le vendeur : l'argent passe sur son compte, dans une autre banque peut-être. Les banques règlent entre elles leurs soldes avec de la monnaie de banque centrale, dont elles ont besoin en petite quantité.</span></div>
+    <div><b>③ Le remboursement la détruit</b><span>Chaque fois que vous remboursez du capital, la monnaie correspondante disparaît des comptes. Les intérêts, eux, ne disparaissent pas : ils deviennent un revenu de la banque.</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Environ neuf euros sur dix sont de la monnaie de banque</b> (les dépôts), créée par le crédit ; le reste, ce sont les billets et pièces. C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
+      <li><b>Le « multiplicateur » des réserves fractionnaires ne décrit plus la réalité.</b> Les manuels racontaient que la banque prête un multiple de ses dépôts, limité par une réserve obligatoire. Dans la zone euro, cette réserve n'est que de 1 % des dépôts depuis 2012. Ce qui freine vraiment le crédit, ce sont les fonds propres que les banques doivent détenir (règles de Bâle), le taux d'intérêt fixé par la banque centrale, et tout simplement la demande d'emprunt des ménages et des entreprises.</li>
+      <li><b>La banque centrale crée aussi de la monnaie</b>, en prêtant aux banques ou en achetant des obligations (de 2015 à 2022, la BCE a ainsi acheté une grande partie de la dette publique française sur les marchés). Mais elle n'a pas le droit de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
+    </ul>
+  </div>
+  <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
+  <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
+  <div class="callout small" id="mo-credit-txt"></div>
+
+  <h3 id="mo-p2" class="ag-part">2. L'argent des intérêts manque-t-il ?</h3>
+  <p class="lead">L'argument : la banque crée les 200 000 € du prêt, mais pas les intérêts. Il faudrait donc toujours un nouveau crédit, quelque part, pour trouver l'argent des intérêts. Testons-le sur une économie miniature, sans aucune croissance : une banque, des emprunteurs, un stock de dettes constant (chaque prêt remboursé est remplacé par un nouveau, de même montant).</p>
+  <div class="in-sim">
+    <label class="ctl">Taux d'intérêt <input type="range" id="mo-i" min="0" max="10" step=".5" value="4"><b id="mo-i-v"></b></label>
+    <label class="ctl">Part de ses revenus d'intérêts que la banque redépense (salaires, loyers, fournisseurs, dividendes, impôts) <input type="range" id="mo-b" min="0" max="100" step="5" value="100"><b id="mo-b-v"></b></label>
+  </div>
+  <div id="mo-mini" class="chart"></div><div class="legend-row" id="mo-mini-legend"></div>
+  <p class="in-verdict" id="mo-mini-out"></p>
+  <div class="callout small">
+    <ul>
+      <li><b>L'argument oublie que la banque dépense ce qu'elle gagne.</b> Les intérêts paient les salaires de ses employés, ses loyers, ses informaticiens, ses impôts et les dividendes de ses actionnaires. Cet argent revient dans l'économie, où il sert à payer les intérêts suivants. Si la banque redépense tout, la monnaie en circulation ne baisse pas : on peut payer des intérêts sans fin, sans aucune croissance.</li>
+      <li><b>La même monnaie sert plusieurs fois</b> : un euro peut payer un salaire, puis des courses, puis des intérêts, dans la même année. Ce qui doit être financé, c'est un flux annuel, pas un stock.</li>
+      <li><b>Le problème apparaît si les revenus du crédit sont thésaurisés</b> : si la banque ou ses actionnaires accumulent leurs gains au lieu de les dépenser, la monnaie en circulation fond, les emprunteurs ne peuvent plus payer, et il faut de nouveaux crédits. C'est le vrai point faible : non pas l'intérêt lui-même, mais l'épargne qui s'accumule sans être redépensée ni prêtée.</li>
+      <li><b>Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion</b> : une économie stationnaire, avec de la monnaie créée par le crédit et des intérêts positifs, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015). La monnaie-dette n'impose pas mathématiquement la croissance.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p3" class="ag-part">3. Ce qui pousse vraiment à croître</h3>
+  <p class="lead">Si ce n'est pas la mécanique monétaire, d'où vient la pression ? D'abord d'une règle simple : une dette reste supportable si les revenus de l'emprunteur augmentent au moins aussi vite que les intérêts courent.</p>
+  <h3>Croissance du PIB en valeur et taux d'intérêt à long terme de l'État</h3>
+  <div id="mo-rg" class="chart"></div><div class="legend-row" id="mo-rg-legend"></div>
+  <div id="mo-periodes"></div>
+  <h3>Le simulateur de la « boule de neige »</h3>
+  <p class="lead">Une dette égale à un pourcentage du PIB, un taux d'intérêt, une croissance en valeur (croissance réelle + inflation) : combien faut-il dégager chaque année, sur ses revenus, pour que le poids de la dette ne grossisse pas ?</p>
+  <div class="in-sim">
+    <label class="ctl">Dette de départ (% du PIB) <input type="range" id="mo-d" min="20" max="250" step="5" value="115"><b id="mo-d-v"></b></label>
+    <label class="ctl">Taux d'intérêt moyen <input type="range" id="mo-r" min="0" max="8" step=".25" value="3"><b id="mo-r-v"></b></label>
+    <label class="ctl">Croissance réelle <input type="range" id="mo-g" min="-2" max="5" step=".25" value="0"><b id="mo-g-v"></b></label>
+    <label class="ctl">Inflation <input type="range" id="mo-p" min="-2" max="8" step=".25" value="2"><b id="mo-p-v"></b></label>
+    <label class="ctl">Remboursement net chaque année (% du PIB) <input type="range" id="mo-s" min="-5" max="6" step=".25" value="0"><b id="mo-s-v"></b></label>
+  </div>
+  <div class="ctl-row" id="mo-presets" style="margin-bottom:8px"></div>
+  <div id="mo-snow" class="chart"></div>
+  <p class="in-verdict" id="mo-snow-out"></p>
+  <div class="callout small">
+    <ul>
+      <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec un taux de 3 %, une dette de 115 % du PIB et 2 % d'inflation, il faut dégager chaque année environ 1 % du PIB pour la stabiliser. Sans inflation non plus, plus de 3 %. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est le scénario redouté par les banques centrales, qui visent 2 % d'inflation pour cette raison aussi.</li>
+      <li><b>Les « Trente Glorieuses » ont été faciles</b> : la croissance en valeur dépassait le taux d'intérêt, les dettes fondaient d'elles-mêmes. De 1986 à 2007, c'est l'inverse : les taux réels élevés ont fait grossir les dettes publiques. Depuis 2014, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
+      <li><b>Le rendement attendu du capital</b> : les épargnants, les fonds de pension et les actionnaires attendent 3 à 7 % par an. Dans une économie qui ne croît plus, ce rendement ne peut plus venir d'un gâteau plus grand, seulement d'une part plus grande prise sur les salaires ou sur les autres. C'est une tension politique, pas une impossibilité comptable.</li>
+      <li><b>L'emploi</b> : les gains de productivité (de l'ordre de 1 % par an en moyenne en France depuis 2000, moins depuis 2019) suppriment des heures de travail. Sans croissance, il faut partager le travail (temps de travail plus court) pour éviter le chômage.</li>
+      <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée, la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, ce qui pousse les gouvernements et les banques centrales à relancer à chaque fois.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p4" class="ag-part">4. Un monde physique fini</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
+      <li><b>Mais le « découplage » reste partiel.</b> En France, les émissions de gaz à effet de serre sur le territoire baissent alors que le PIB augmente. L'empreinte carbone, qui compte ce que nous importons, baisse beaucoup moins vite, et la consommation de matières reste élevée (voir <a href="#climat">Climat</a> et <a href="#matieres">Matières</a>). À l'échelle du monde, la consommation d'énergie et de matières continue d'augmenter avec le PIB.</li>
+      <li><b>Le conflit est donc réel</b> : une économie dont la stabilité repose sur 2 % de croissance par an pour toujours dépend, en pratique, d'une hausse de l'usage des ressources, tant que le découplage n'est pas beaucoup plus rapide. 2 % par an, c'est un PIB multiplié par 7 en un siècle.</li>
+      <li><b>Et les ressources elles-mêmes peuvent freiner la croissance</b> : énergie plus chère, sols moins productifs, climat qui coûte (voir <a href="#agriculture">Agriculture</a> et <a href="#catastrophes">Catastrophes climatiques</a>). Une croissance faible rendrait alors les dettes plus lourdes : c'est le scénario qui inquiète.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p5" class="ag-part">5. Les pistes proposées</h3>
+  <div class="in-need">
+    <div><b>La monnaie « pleine » ou 100 %</b><span>Les banques ne créent plus de monnaie : elles ne prêtent que l'épargne qu'on leur confie, et seule la banque centrale émet la monnaie. Proposé par Irving Fisher et les économistes de Chicago dans les années 1930, repris par deux économistes du FMI en 2012 (Benes et Kumhof, « The Chicago Plan Revisited »). Les Suisses l'ont rejeté par référendum le 10 juin 2018, à 75,7 %.</span></div>
+    <div><b>Une économie de post-croissance</b><span>Réduire la dépendance à la croissance plutôt que la monnaie : partage du temps de travail, retraites par répartition plutôt que par capitalisation, limites aux rendements et aux dettes, fiscalité qui fait redépenser les revenus accumulés. C'est la voie étudiée par Tim Jackson et Peter Victor.</span></div>
+    <div><b>Des crédits orientés</b><span>Faire que la création monétaire finance la sobriété et la transition (rénovation, transports, énergie) plutôt que la spéculation immobilière : taux différenciés de la banque centrale, règles de fonds propres selon l'usage du crédit.</span></div>
+    <div><b>L'inflation et l'annulation</b><span>Les solutions historiques : une inflation un peu plus forte allège les dettes (au détriment des épargnants) ; les annulations ou restructurations de dettes, fréquentes dans l'histoire, remettent les compteurs à zéro, avec des perdants.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>En résumé</b> : la monnaie créée par le crédit n'oblige pas, à elle seule, à croître sans fin ; l'argent des intérêts revient dans l'économie quand ceux qui les touchent le dépensent. Ce qui rend notre système dépendant de la croissance, c'est la combinaison des dettes à intérêt positif, de l'attente de rendement du capital, du besoin d'emplois et de la fragilité du crédit. Rien de tout cela n'est une loi physique : ce sont des règles, qui peuvent changer, mais qui n'ont jamais été conçues pour une économie stationnaire.</p>
+  </div>
+  <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
+</section>
+
 <section id="simulateur" class="panel">
   <div class="panel-head">
     <h2>Couper la dépense fait-il baisser la dette ? <span class="geo-tag"></span></h2>
@@ -1658,6 +1751,7 @@
 <script src="env.js?v=20261121n"></script>
 <script src="agriculture.js?v=20261121n"></script>
 <script src="rendements.js?v=20261121n"></script>
+<script src="monnaie.js?v=20261121n"></script>
 <script src="chaine.js?v=20261121n"></script>
 <script src="patrimoinehist.js?v=20261121n"></script>
 <script src="innovation.js?v=20261121n"></script>

@@ -56,6 +56,7 @@ jobs:
           python3 scripts/build_environnement.py
           python3 scripts/build_agriculture.py
           python3 scripts/build_rendements.py
+          python3 scripts/build_monnaie.py
           python3 scripts/build_patrimoine_hist.py
           python3 scripts/build_innovation.py
       - name: Enregistrement si les données ont changé

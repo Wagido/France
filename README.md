@@ -17,7 +17,8 @@ Site : https://wagido.github.io/france/ (une fois GitHub Pages activé : Setting
 1. **Le PIB** : ses trois optiques (production, demande, revenus), la valeur ajoutée par activité, et une cascade qui sépare ce qui est vendu à des clients de ce qui est compté par convention (services publics au coût, loyers imputés, impôts sur les produits, amortissement).
 2. **L'argent public** : diagramme de flux en cinq colonnes (qui paie → comment → quelle administration → pour quoi → qui reçoit), par tranche de niveau de vie.
 3. **Couper la dépense ?** : simulateur du seuil de multiplicateur au-delà duquel une baisse de dépense fait monter le ratio dette/PIB la première année (m* = 1 / (dette/PIB + taux de prélèvements)).
-4. **Sur 30 ans** : charge d'intérêts de la dette et dépenses par fonction depuis 1995.
+4. **Monnaie et croissance** : la monnaie créée par le crédit oblige-t-elle à croître ? crédit et monnaie depuis 1900, croissance en valeur contre taux d'intérêt, deux simulateurs (`scripts/build_monnaie.py`, `monnaie.js`).
+5. **Sur 30 ans** : charge d'intérêts de la dette et dépenses par fonction depuis 1995.
 5. **Comparer les pays** : 30 pays Eurostat (composition du PIB, dépenses par fonction, dette et intérêts, actifs et passifs).
 6. **Énergie** : diagramme de flux du bilan énergétique (Eurostat), séries depuis 1965 (Our World in Data), électricité française en direct (RTE éCO2mix via ODRÉ), comparaison européenne.
 7. **Matières, territoire, commerce, climat, eau, sols, alimentation, démographie, immigration, temps de travail, justice** : voir `scripts/build_matieres.py`, `build_territoire.py`, `build_themes.py` et les fichiers `matieres.js`, `territoire.js`, `themes.js`.
@@ -46,6 +47,7 @@ python3 scripts/fetch_regions.py   # électricité par région (ODRÉ), environ 
 python3 scripts/build_territoire.py
 python3 scripts/build_themes.py
 python3 scripts/build_rendements.py
+python3 scripts/build_monnaie.py
 ```
 
 Pour voir la page en local : `python3 -m http.server` dans ce dossier, puis ouvrir http://localhost:8000.

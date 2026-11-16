@@ -1,0 +1,1550 @@
+{
+ "serie": [
+  {
+   "annee": 1950,
+   "nominal": 17.2,
+   "reel": 8.6,
+   "prix": 8.7,
+   "taux": 7.8
+  },
+  {
+   "annee": 1951,
+   "nominal": 25.9,
+   "reel": 5.7,
+   "prix": 20.3,
+   "taux": 7.83
+  },
+  {
+   "annee": 1952,
+   "nominal": 16.6,
+   "reel": 3.1,
+   "prix": 13.5,
+   "taux": 6.7
+  },
+  {
+   "annee": 1953,
+   "nominal": 3.6,
+   "reel": 3.4,
+   "prix": 0.2,
+   "taux": 6.48
+  },
+  {
+   "annee": 1954,
+   "nominal": 6.3,
+   "reel": 5.7,
+   "prix": 0.6,
+   "taux": 6.44
+  },
+  {
+   "annee": 1955,
+   "nominal": 7.6,
+   "reel": 5.4,
+   "prix": 2.2,
+   "taux": 6.24
+  },
+  {
+   "annee": 1956,
+   "nominal": 10.2,
+   "reel": 5.0,
+   "prix": 5.2,
+   "taux": 6.44
+  },
+  {
+   "annee": 1957,
+   "nominal": 13.0,
+   "reel": 5.6,
+   "prix": 7.4,
+   "taux": 7.07
+  },
+  {
+   "annee": 1958,
+   "nominal": 15.4,
+   "reel": 2.8,
+   "prix": 12.6,
+   "taux": 6.84
+  },
+  {
+   "annee": 1959,
+   "nominal": 9.3,
+   "reel": 2.8,
+   "prix": 6.5,
+   "taux": 6.32
+  },
+  {
+   "annee": 1960,
+   "nominal": 10.8,
+   "reel": 8.0,
+   "prix": 2.8,
+   "taux": 6.16
+  },
+  {
+   "annee": 1961,
+   "nominal": 8.4,
+   "reel": 4.9,
+   "prix": 3.4,
+   "taux": 6.07
+  },
+  {
+   "annee": 1962,
+   "nominal": 12.0,
+   "reel": 6.9,
+   "prix": 5.1,
+   "taux": 6.01
+  },
+  {
+   "annee": 1963,
+   "nominal": 12.0,
+   "reel": 6.1,
+   "prix": 5.9,
+   "taux": 5.95
+  },
+  {
+   "annee": 1964,
+   "nominal": 10.9,
+   "reel": 6.6,
+   "prix": 4.3,
+   "taux": 6.08
+  },
+  {
+   "annee": 1965,
+   "nominal": 8.0,
+   "reel": 4.8,
+   "prix": 3.2,
+   "taux": 6.31
+  },
+  {
+   "annee": 1966,
+   "nominal": 8.3,
+   "reel": 5.2,
+   "prix": 3.1,
+   "taux": 6.46
+  },
+  {
+   "annee": 1967,
+   "nominal": 8.0,
+   "reel": 4.8,
+   "prix": 3.2,
+   "taux": 6.78
+  },
+  {
+   "annee": 1968,
+   "nominal": 9.0,
+   "reel": 4.5,
+   "prix": 4.5,
+   "taux": 7.01
+  },
+  {
+   "annee": 1969,
+   "nominal": 15.0,
+   "reel": 7.1,
+   "prix": 7.9,
+   "taux": 7.7
+  },
+  {
+   "annee": 1970,
+   "nominal": 12.0,
+   "reel": 6.2,
+   "prix": 5.8,
+   "taux": 8.04
+  },
+  {
+   "annee": 1971,
+   "nominal": 11.5,
+   "reel": 5.3,
+   "prix": 6.2,
+   "taux": 7.75
+  },
+  {
+   "annee": 1972,
+   "nominal": 11.5,
+   "reel": 4.5,
+   "prix": 7.0,
+   "taux": 7.35
+  },
+  {
+   "annee": 1973,
+   "nominal": 14.6,
+   "reel": 6.2,
+   "prix": 8.4,
+   "taux": 8.29
+  },
+  {
+   "annee": 1974,
+   "nominal": 16.6,
+   "reel": 4.4,
+   "prix": 12.2,
+   "taux": 10.45
+  },
+  {
+   "annee": 1975,
+   "nominal": 12.7,
+   "reel": -0.9,
+   "prix": 13.6,
+   "taux": 9.52
+  },
+  {
+   "annee": 1976,
+   "nominal": 15.5,
+   "reel": 4.3,
+   "prix": 11.1,
+   "taux": 9.33
+  },
+  {
+   "annee": 1977,
+   "nominal": 12.7,
+   "reel": 3.6,
+   "prix": 9.1,
+   "taux": 9.87
+  },
+  {
+   "annee": 1978,
+   "nominal": 13.6,
+   "reel": 3.9,
+   "prix": 9.6,
+   "taux": 9.5
+  },
+  {
+   "annee": 1979,
+   "nominal": 14.3,
+   "reel": 3.7,
+   "prix": 10.6,
+   "taux": 9.89
+  },
+  {
+   "annee": 1980,
+   "nominal": 13.4,
+   "reel": 1.7,
+   "prix": 11.7,
+   "taux": 13.13
+  },
+  {
+   "annee": 1981,
+   "nominal": 12.8,
+   "reel": 1.2,
+   "prix": 11.6,
+   "taux": 15.85
+  },
+  {
+   "annee": 1982,
+   "nominal": 14.8,
+   "reel": 2.4,
+   "prix": 12.3,
+   "taux": 15.65
+  },
+  {
+   "annee": 1983,
+   "nominal": 11.0,
+   "reel": 1.3,
+   "prix": 9.7,
+   "taux": 13.59
+  },
+  {
+   "annee": 1984,
+   "nominal": 8.8,
+   "reel": 1.6,
+   "prix": 7.2,
+   "taux": 12.49
+  },
+  {
+   "annee": 1985,
+   "nominal": 7.2,
+   "reel": 1.6,
+   "prix": 5.6,
+   "taux": 11.12
+  },
+  {
+   "annee": 1986,
+   "nominal": 7.8,
+   "reel": 2.4,
+   "prix": 5.4,
+   "taux": 8.54
+  },
+  {
+   "annee": 1987,
+   "nominal": 5.1,
+   "reel": 2.6,
+   "prix": 2.5,
+   "taux": 9.5
+  },
+  {
+   "annee": 1988,
+   "nominal": 8.1,
+   "reel": 4.8,
+   "prix": 3.3,
+   "taux": 9.08
+  },
+  {
+   "annee": 1989,
+   "nominal": 7.7,
+   "reel": 4.4,
+   "prix": 3.3,
+   "taux": 8.79
+  },
+  {
+   "annee": 1990,
+   "nominal": 5.6,
+   "reel": 2.8,
+   "prix": 2.7,
+   "taux": 9.94
+  },
+  {
+   "annee": 1991,
+   "nominal": 3.7,
+   "reel": 1.2,
+   "prix": 2.5,
+   "taux": 9.05
+  },
+  {
+   "annee": 1992,
+   "nominal": 3.6,
+   "reel": 1.5,
+   "prix": 2.1,
+   "taux": 8.59
+  },
+  {
+   "annee": 1993,
+   "nominal": 1.2,
+   "reel": -0.4,
+   "prix": 1.6,
+   "taux": 6.78
+  },
+  {
+   "annee": 1994,
+   "nominal": 3.4,
+   "reel": 2.4,
+   "prix": 1.0,
+   "taux": 7.22
+  },
+  {
+   "annee": 1995,
+   "nominal": 3.5,
+   "reel": 2.3,
+   "prix": 1.2,
+   "taux": 7.54
+  },
+  {
+   "annee": 1996,
+   "nominal": 2.7,
+   "reel": 1.4,
+   "prix": 1.3,
+   "taux": 6.31
+  },
+  {
+   "annee": 1997,
+   "nominal": 3.4,
+   "reel": 2.5,
+   "prix": 0.9,
+   "taux": 5.58
+  },
+  {
+   "annee": 1998,
+   "nominal": 4.4,
+   "reel": 3.5,
+   "prix": 0.9,
+   "taux": 4.64
+  },
+  {
+   "annee": 1999,
+   "nominal": 3.6,
+   "reel": 3.4,
+   "prix": 0.2,
+   "taux": 4.61
+  },
+  {
+   "annee": 2000,
+   "nominal": 5.6,
+   "reel": 4.1,
+   "prix": 1.5,
+   "taux": 5.39
+  },
+  {
+   "annee": 2001,
+   "nominal": 3.8,
+   "reel": 1.9,
+   "prix": 1.9,
+   "taux": 4.94
+  },
+  {
+   "annee": 2002,
+   "nominal": 3.2,
+   "reel": 1.1,
+   "prix": 2.1,
+   "taux": 4.86
+  },
+  {
+   "annee": 2003,
+   "nominal": 2.8,
+   "reel": 1.0,
+   "prix": 1.8,
+   "taux": 4.13
+  },
+  {
+   "annee": 2004,
+   "nominal": 4.5,
+   "reel": 2.9,
+   "prix": 1.7,
+   "taux": 4.1
+  },
+  {
+   "annee": 2005,
+   "nominal": 3.9,
+   "reel": 1.9,
+   "prix": 2.0,
+   "taux": 3.41
+  },
+  {
+   "annee": 2006,
+   "nominal": 4.8,
+   "reel": 2.7,
+   "prix": 2.1,
+   "taux": 3.8
+  },
+  {
+   "annee": 2007,
+   "nominal": 5.0,
+   "reel": 2.5,
+   "prix": 2.4,
+   "taux": 4.3
+  },
+  {
+   "annee": 2008,
+   "nominal": 2.7,
+   "reel": 0.4,
+   "prix": 2.3,
+   "taux": 4.23
+  },
+  {
+   "annee": 2009,
+   "nominal": -2.7,
+   "reel": -2.8,
+   "prix": 0.1,
+   "taux": 3.65
+  },
+  {
+   "annee": 2010,
+   "nominal": 3.1,
+   "reel": 2.0,
+   "prix": 1.1,
+   "taux": 3.12
+  },
+  {
+   "annee": 2011,
+   "nominal": 3.3,
+   "reel": 2.4,
+   "prix": 0.9,
+   "taux": 3.32
+  },
+  {
+   "annee": 2012,
+   "nominal": 1.3,
+   "reel": 0.2,
+   "prix": 1.1,
+   "taux": 2.54
+  },
+  {
+   "annee": 2013,
+   "nominal": 1.5,
+   "reel": 0.8,
+   "prix": 0.8,
+   "taux": 2.2
+  },
+  {
+   "annee": 2014,
+   "nominal": 1.6,
+   "reel": 1.0,
+   "prix": 0.6,
+   "taux": 1.67
+  },
+  {
+   "annee": 2015,
+   "nominal": 2.2,
+   "reel": 1.1,
+   "prix": 1.1,
+   "taux": 0.84
+  },
+  {
+   "annee": 2016,
+   "nominal": 1.4,
+   "reel": 0.9,
+   "prix": 0.5,
+   "taux": 0.47
+  },
+  {
+   "annee": 2017,
+   "nominal": 2.7,
+   "reel": 2.1,
+   "prix": 0.6,
+   "taux": 0.81
+  },
+  {
+   "annee": 2018,
+   "nominal": 2.8,
+   "reel": 1.6,
+   "prix": 1.1,
+   "taux": 0.78
+  },
+  {
+   "annee": 2019,
+   "nominal": 3.3,
+   "reel": 2.0,
+   "prix": 1.2,
+   "taux": 0.13
+  },
+  {
+   "annee": 2020,
+   "nominal": -4.7,
+   "reel": -7.4,
+   "prix": 2.8,
+   "taux": -0.15
+  },
+  {
+   "annee": 2021,
+   "nominal": 8.2,
+   "reel": 6.9,
+   "prix": 1.3,
+   "taux": 0.01
+  },
+  {
+   "annee": 2022,
+   "nominal": 5.8,
+   "reel": 2.7,
+   "prix": 3.1,
+   "taux": 1.7
+  },
+  {
+   "annee": 2023,
+   "nominal": 6.8,
+   "reel": 1.6,
+   "prix": 5.1,
+   "taux": 2.99
+  },
+  {
+   "annee": 2024,
+   "nominal": 3.6,
+   "reel": 1.5,
+   "prix": 2.1,
+   "taux": 2.97
+  },
+  {
+   "annee": 2025,
+   "nominal": 1.9,
+   "reel": 0.8,
+   "prix": 1.1,
+   "taux": 3.35
+  }
+ ],
+ "credit": [
+  {
+   "annee": 1900,
+   "credit": 13.4,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 63.4,
+   "dette_publique": 91.7
+  },
+  {
+   "annee": 1901,
+   "credit": 14.9,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 70.1,
+   "dette_publique": 98.1
+  },
+  {
+   "annee": 1902,
+   "credit": 15.7,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 67.1,
+   "dette_publique": 95.2
+  },
+  {
+   "annee": 1903,
+   "credit": 15.9,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 65.5,
+   "dette_publique": 89.6
+  },
+  {
+   "annee": 1904,
+   "credit": 19.4,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 71.4,
+   "dette_publique": 92.1
+  },
+  {
+   "annee": 1905,
+   "credit": 18.1,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 73.5,
+   "dette_publique": 92.4
+  },
+  {
+   "annee": 1906,
+   "credit": 20.2,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 71.6,
+   "dette_publique": 85.2
+  },
+  {
+   "annee": 1907,
+   "credit": 16.5,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 66.9,
+   "dette_publique": 77.8
+  },
+  {
+   "annee": 1908,
+   "credit": 19.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 74.5,
+   "dette_publique": 81.4
+  },
+  {
+   "annee": 1909,
+   "credit": 20.9,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 72.6,
+   "dette_publique": 82.0
+  },
+  {
+   "annee": 1910,
+   "credit": 25.4,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 73.1,
+   "dette_publique": 79.6
+  },
+  {
+   "annee": 1911,
+   "credit": 25.2,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 67.9,
+   "dette_publique": 72.6
+  },
+  {
+   "annee": 1912,
+   "credit": 24.7,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 62.6,
+   "dette_publique": 66.6
+  },
+  {
+   "annee": 1913,
+   "credit": 25.0,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 60.3,
+   "dette_publique": 66.3
+  },
+  {
+   "annee": 1914,
+   "credit": 23.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": null,
+   "dette_publique": null
+  },
+  {
+   "annee": 1915,
+   "credit": 19.3,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": null,
+   "dette_publique": null
+  },
+  {
+   "annee": 1916,
+   "credit": 16.9,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": null,
+   "dette_publique": null
+  },
+  {
+   "annee": 1917,
+   "credit": 19.9,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": null,
+   "dette_publique": null
+  },
+  {
+   "annee": 1918,
+   "credit": 22.7,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": null,
+   "dette_publique": null
+  },
+  {
+   "annee": 1919,
+   "credit": 26.5,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": null,
+   "dette_publique": null
+  },
+  {
+   "annee": 1920,
+   "credit": 13.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 42.8,
+   "dette_publique": 169.6
+  },
+  {
+   "annee": 1921,
+   "credit": 17.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 59.0,
+   "dette_publique": 237.0
+  },
+  {
+   "annee": 1922,
+   "credit": 16.3,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 51.0,
+   "dette_publique": 235.9
+  },
+  {
+   "annee": 1923,
+   "credit": 15.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 43.9,
+   "dette_publique": 216.8
+  },
+  {
+   "annee": 1924,
+   "credit": 14.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 39.3,
+   "dette_publique": 192.4
+  },
+  {
+   "annee": 1925,
+   "credit": 16.2,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 42.2,
+   "dette_publique": 197.2
+  },
+  {
+   "annee": 1926,
+   "credit": 14.3,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 38.4,
+   "dette_publique": 144.7
+  },
+  {
+   "annee": 1927,
+   "credit": 14.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 46.9,
+   "dette_publique": 157.5
+  },
+  {
+   "annee": 1928,
+   "credit": 25.0,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 52.0,
+   "dette_publique": 142.3
+  },
+  {
+   "annee": 1929,
+   "credit": 27.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 52.2,
+   "dette_publique": 138.6
+  },
+  {
+   "annee": 1930,
+   "credit": 27.0,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 60.8,
+   "dette_publique": 143.8
+  },
+  {
+   "annee": 1931,
+   "credit": 24.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 78.3,
+   "dette_publique": 161.0
+  },
+  {
+   "annee": 1932,
+   "credit": 24.2,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 88.6,
+   "dette_publique": 103.7
+  },
+  {
+   "annee": 1933,
+   "credit": 22.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 90.1,
+   "dette_publique": 122.0
+  },
+  {
+   "annee": 1934,
+   "credit": 23.0,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 96.5,
+   "dette_publique": 140.9
+  },
+  {
+   "annee": 1935,
+   "credit": 21.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 103.2,
+   "dette_publique": 167.0
+  },
+  {
+   "annee": 1936,
+   "credit": 23.2,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 88.1,
+   "dette_publique": 141.2
+  },
+  {
+   "annee": 1937,
+   "credit": 17.2,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 68.1,
+   "dette_publique": 106.8
+  },
+  {
+   "annee": 1938,
+   "credit": 15.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 64.5,
+   "dette_publique": 101.6
+  },
+  {
+   "annee": 1939,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 65.7,
+   "dette_publique": null
+  },
+  {
+   "annee": 1940,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 89.7,
+   "dette_publique": null
+  },
+  {
+   "annee": 1941,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 135.1,
+   "dette_publique": null
+  },
+  {
+   "annee": 1942,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 143.1,
+   "dette_publique": null
+  },
+  {
+   "annee": 1943,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 158.9,
+   "dette_publique": null
+  },
+  {
+   "annee": 1944,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 198.1,
+   "dette_publique": null
+  },
+  {
+   "annee": 1945,
+   "credit": null,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 137.6,
+   "dette_publique": null
+  },
+  {
+   "annee": 1946,
+   "credit": 37.5,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 73.7,
+   "dette_publique": null
+  },
+  {
+   "annee": 1947,
+   "credit": 36.7,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 55.3,
+   "dette_publique": null
+  },
+  {
+   "annee": 1948,
+   "credit": 35.3,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 42.0,
+   "dette_publique": null
+  },
+  {
+   "annee": 1949,
+   "credit": 29.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 36.3,
+   "dette_publique": 44.3
+  },
+  {
+   "annee": 1950,
+   "credit": 31.3,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 31.3,
+   "dette_publique": 40.0
+  },
+  {
+   "annee": 1951,
+   "credit": 28.5,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 29.4,
+   "dette_publique": 33.9
+  },
+  {
+   "annee": 1952,
+   "credit": 27.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 28.7,
+   "dette_publique": 32.9
+  },
+  {
+   "annee": 1953,
+   "credit": 31.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 30.9,
+   "dette_publique": 35.0
+  },
+  {
+   "annee": 1954,
+   "credit": 34.6,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 33.2,
+   "dette_publique": 34.4
+  },
+  {
+   "annee": 1955,
+   "credit": 38.4,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 34.9,
+   "dette_publique": 33.3
+  },
+  {
+   "annee": 1956,
+   "credit": 36.8,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 35.0,
+   "dette_publique": 33.0
+  },
+  {
+   "annee": 1957,
+   "credit": 38.7,
+   "menages": null,
+   "entreprises": null,
+   "monnaie": 34.2,
+   "dette_publique": 32.6
+  },
+  {
+   "annee": 1958,
+   "credit": 36.2,
+   "menages": 8.1,
+   "entreprises": 28.2,
+   "monnaie": 31.5,
+   "dette_publique": 32.0
+  },
+  {
+   "annee": 1959,
+   "credit": 39.3,
+   "menages": 10.5,
+   "entreprises": 28.8,
+   "monnaie": 32.7,
+   "dette_publique": 31.5
+  },
+  {
+   "annee": 1960,
+   "credit": 42.3,
+   "menages": 12.5,
+   "entreprises": 29.8,
+   "monnaie": 34.5,
+   "dette_publique": 28.5
+  },
+  {
+   "annee": 1961,
+   "credit": 46.0,
+   "menages": 14.3,
+   "entreprises": 31.7,
+   "monnaie": 37.2,
+   "dette_publique": 26.3
+  },
+  {
+   "annee": 1962,
+   "credit": 47.3,
+   "menages": 14.6,
+   "entreprises": 32.7,
+   "monnaie": 39.4,
+   "dette_publique": 23.6
+  },
+  {
+   "annee": 1963,
+   "credit": 42.0,
+   "menages": 10.7,
+   "entreprises": 31.3,
+   "monnaie": 40.1,
+   "dette_publique": 22.2
+  },
+  {
+   "annee": 1964,
+   "credit": 43.8,
+   "menages": 11.7,
+   "entreprises": 32.1,
+   "monnaie": 39.6,
+   "dette_publique": 19.6
+  },
+  {
+   "annee": 1965,
+   "credit": 46.0,
+   "menages": 12.4,
+   "entreprises": 33.6,
+   "monnaie": 40.7,
+   "dette_publique": 17.6
+  },
+  {
+   "annee": 1966,
+   "credit": 48.9,
+   "menages": 13.8,
+   "entreprises": 35.0,
+   "monnaie": 41.6,
+   "dette_publique": 15.3
+  },
+  {
+   "annee": 1967,
+   "credit": 52.5,
+   "menages": 13.9,
+   "entreprises": 38.6,
+   "monnaie": 43.6,
+   "dette_publique": 16.1
+  },
+  {
+   "annee": 1968,
+   "credit": 55.3,
+   "menages": 13.5,
+   "entreprises": 41.7,
+   "monnaie": 44.5,
+   "dette_publique": 15.8
+  },
+  {
+   "annee": 1969,
+   "credit": 54.3,
+   "menages": 12.8,
+   "entreprises": 41.5,
+   "monnaie": 40.7,
+   "dette_publique": 14.4
+  },
+  {
+   "annee": 1970,
+   "credit": 56.4,
+   "menages": 13.8,
+   "entreprises": 42.6,
+   "monnaie": 41.7,
+   "dette_publique": 21.0
+  },
+  {
+   "annee": 1971,
+   "credit": 60.3,
+   "menages": 16.9,
+   "entreprises": 43.4,
+   "monnaie": 44.3,
+   "dette_publique": 20.1
+  },
+  {
+   "annee": 1972,
+   "credit": 64.6,
+   "menages": 20.7,
+   "entreprises": 43.9,
+   "monnaie": 47.2,
+   "dette_publique": 17.7
+  },
+  {
+   "annee": 1973,
+   "credit": 65.5,
+   "menages": 25.3,
+   "entreprises": 40.2,
+   "monnaie": 47.1,
+   "dette_publique": 15.8
+  },
+  {
+   "annee": 1974,
+   "credit": 64.9,
+   "menages": 24.0,
+   "entreprises": 40.9,
+   "monnaie": 47.6,
+   "dette_publique": 15.4
+  },
+  {
+   "annee": 1975,
+   "credit": 72.7,
+   "menages": 31.9,
+   "entreprises": 40.8,
+   "monnaie": 48.9,
+   "dette_publique": 16.1
+  },
+  {
+   "annee": 1976,
+   "credit": 72.9,
+   "menages": 32.7,
+   "entreprises": 40.2,
+   "monnaie": 47.5,
+   "dette_publique": 15.1
+  },
+  {
+   "annee": 1977,
+   "credit": 71.9,
+   "menages": 24.1,
+   "entreprises": 36.4,
+   "monnaie": 48.4,
+   "dette_publique": 15.0
+  },
+  {
+   "annee": 1978,
+   "credit": 71.0,
+   "menages": 22.0,
+   "entreprises": 34.0,
+   "monnaie": 73.5,
+   "dette_publique": 17.2
+  },
+  {
+   "annee": 1979,
+   "credit": 70.8,
+   "menages": 23.2,
+   "entreprises": 32.2,
+   "monnaie": 73.6,
+   "dette_publique": 19.8
+  },
+  {
+   "annee": 1980,
+   "credit": 62.8,
+   "menages": 24.3,
+   "entreprises": 38.4,
+   "monnaie": 65.6,
+   "dette_publique": 21.0
+  },
+  {
+   "annee": 1981,
+   "credit": 63.3,
+   "menages": 24.9,
+   "entreprises": 38.4,
+   "monnaie": 64.8,
+   "dette_publique": 22.2
+  },
+  {
+   "annee": 1982,
+   "credit": 63.2,
+   "menages": 24.7,
+   "entreprises": 38.5,
+   "monnaie": 62.6,
+   "dette_publique": 25.6
+  },
+  {
+   "annee": 1983,
+   "credit": 64.4,
+   "menages": 25.2,
+   "entreprises": 39.3,
+   "monnaie": 62.5,
+   "dette_publique": 26.9
+  },
+  {
+   "annee": 1984,
+   "credit": 66.0,
+   "menages": 25.6,
+   "entreprises": 40.4,
+   "monnaie": 62.4,
+   "dette_publique": 29.3
+  },
+  {
+   "annee": 1985,
+   "credit": 68.0,
+   "menages": 26.5,
+   "entreprises": 41.5,
+   "monnaie": 60.2,
+   "dette_publique": 31.0
+  },
+  {
+   "annee": 1986,
+   "credit": 67.8,
+   "menages": 28.6,
+   "entreprises": 39.2,
+   "monnaie": 57.9,
+   "dette_publique": 31.5
+  },
+  {
+   "annee": 1987,
+   "credit": 70.1,
+   "menages": 31.2,
+   "entreprises": 38.9,
+   "monnaie": 57.6,
+   "dette_publique": 33.8
+  },
+  {
+   "annee": 1988,
+   "credit": 72.3,
+   "menages": 33.2,
+   "entreprises": 39.1,
+   "monnaie": 55.2,
+   "dette_publique": 33.7
+  },
+  {
+   "annee": 1989,
+   "credit": 75.1,
+   "menages": 34.0,
+   "entreprises": 41.1,
+   "monnaie": 54.0,
+   "dette_publique": 34.4
+  },
+  {
+   "annee": 1990,
+   "credit": 76.9,
+   "menages": 34.6,
+   "entreprises": 42.3,
+   "monnaie": 51.5,
+   "dette_publique": 35.6
+  },
+  {
+   "annee": 1991,
+   "credit": 76.0,
+   "menages": 34.2,
+   "entreprises": 41.8,
+   "monnaie": 48.6,
+   "dette_publique": 36.3
+  },
+  {
+   "annee": 1992,
+   "credit": 74.2,
+   "menages": 33.3,
+   "entreprises": 40.9,
+   "monnaie": 46.4,
+   "dette_publique": 40.1
+  },
+  {
+   "annee": 1993,
+   "credit": 73.7,
+   "menages": 33.7,
+   "entreprises": 40.0,
+   "monnaie": 45.6,
+   "dette_publique": 46.5
+  },
+  {
+   "annee": 1994,
+   "credit": 70.3,
+   "menages": 32.9,
+   "entreprises": 37.4,
+   "monnaie": 46.0,
+   "dette_publique": 49.8
+  },
+  {
+   "annee": 1995,
+   "credit": 68.5,
+   "menages": 32.0,
+   "entreprises": 36.5,
+   "monnaie": 48.4,
+   "dette_publique": 56.1
+  },
+  {
+   "annee": 1996,
+   "credit": 67.0,
+   "menages": 32.1,
+   "entreprises": 34.9,
+   "monnaie": 47.0,
+   "dette_publique": 60.0
+  },
+  {
+   "annee": 1997,
+   "credit": 65.5,
+   "menages": 32.3,
+   "entreprises": 33.2,
+   "monnaie": 48.8,
+   "dette_publique": 61.4
+  },
+  {
+   "annee": 1998,
+   "credit": 65.2,
+   "menages": 31.9,
+   "entreprises": 33.3,
+   "monnaie": 48.4,
+   "dette_publique": 61.3
+  },
+  {
+   "annee": 1999,
+   "credit": 66.1,
+   "menages": 33.0,
+   "entreprises": 33.1,
+   "monnaie": 49.1,
+   "dette_publique": 60.5
+  },
+  {
+   "annee": 2000,
+   "credit": 68.1,
+   "menages": 33.2,
+   "entreprises": 34.9,
+   "monnaie": 49.3,
+   "dette_publique": 58.9
+  },
+  {
+   "annee": 2001,
+   "credit": 71.0,
+   "menages": 33.6,
+   "entreprises": 37.4,
+   "monnaie": 50.7,
+   "dette_publique": 58.3
+  },
+  {
+   "annee": 2002,
+   "credit": 71.5,
+   "menages": 34.7,
+   "entreprises": 36.8,
+   "monnaie": 53.1,
+   "dette_publique": 60.3
+  },
+  {
+   "annee": 2003,
+   "credit": 71.0,
+   "menages": 36.2,
+   "entreprises": 34.9,
+   "monnaie": 54.0,
+   "dette_publique": 64.4
+  },
+  {
+   "annee": 2004,
+   "credit": 71.8,
+   "menages": 38.1,
+   "entreprises": 33.7,
+   "monnaie": 55.3,
+   "dette_publique": 65.9
+  },
+  {
+   "annee": 2005,
+   "credit": 74.8,
+   "menages": 41.0,
+   "entreprises": 33.8,
+   "monnaie": 57.9,
+   "dette_publique": 67.4
+  },
+  {
+   "annee": 2006,
+   "credit": 79.6,
+   "menages": 43.5,
+   "entreprises": 36.1,
+   "monnaie": 59.8,
+   "dette_publique": 64.6
+  },
+  {
+   "annee": 2007,
+   "credit": 84.8,
+   "menages": 45.8,
+   "entreprises": 38.9,
+   "monnaie": 64.7,
+   "dette_publique": 64.5
+  },
+  {
+   "annee": 2008,
+   "credit": 91.2,
+   "menages": 47.8,
+   "entreprises": 43.4,
+   "monnaie": 68.1,
+   "dette_publique": 68.8
+  },
+  {
+   "annee": 2009,
+   "credit": 94.6,
+   "menages": 51.1,
+   "entreprises": 43.5,
+   "monnaie": 69.9,
+   "dette_publique": 83.0
+  },
+  {
+   "annee": 2010,
+   "credit": 94.7,
+   "menages": 52.6,
+   "entreprises": 42.0,
+   "monnaie": 73.0,
+   "dette_publique": 85.3
+  },
+  {
+   "annee": 2011,
+   "credit": 97.7,
+   "menages": 53.5,
+   "entreprises": 44.2,
+   "monnaie": 73.6,
+   "dette_publique": 87.8
+  },
+  {
+   "annee": 2012,
+   "credit": 97.7,
+   "menages": 53.9,
+   "entreprises": 43.8,
+   "monnaie": 76.6,
+   "dette_publique": 90.6
+  },
+  {
+   "annee": 2013,
+   "credit": 98.0,
+   "menages": 54.6,
+   "entreprises": 43.3,
+   "monnaie": 77.7,
+   "dette_publique": 93.4
+  },
+  {
+   "annee": 2014,
+   "credit": 100.8,
+   "menages": 54.8,
+   "entreprises": 46.0,
+   "monnaie": 79.4,
+   "dette_publique": 94.9
+  },
+  {
+   "annee": 2015,
+   "credit": 101.4,
+   "menages": 55.4,
+   "entreprises": 46.0,
+   "monnaie": 81.3,
+   "dette_publique": 95.6
+  },
+  {
+   "annee": 2016,
+   "credit": 104.0,
+   "menages": 56.3,
+   "entreprises": 47.7,
+   "monnaie": 84.2,
+   "dette_publique": 98.0
+  },
+  {
+   "annee": 2017,
+   "credit": 106.0,
+   "menages": 57.8,
+   "entreprises": 48.2,
+   "monnaie": 89.1,
+   "dette_publique": 98.1
+  },
+  {
+   "annee": 2018,
+   "credit": 109.3,
+   "menages": 59.2,
+   "entreprises": 50.1,
+   "monnaie": 91.5,
+   "dette_publique": 97.8
+  },
+  {
+   "annee": 2019,
+   "credit": 111.8,
+   "menages": 60.8,
+   "entreprises": 51.0,
+   "monnaie": 95.3,
+   "dette_publique": 97.5
+  },
+  {
+   "annee": 2020,
+   "credit": 127.7,
+   "menages": 67.4,
+   "entreprises": 60.3,
+   "monnaie": 117.0,
+   "dette_publique": 115.0
+  }
+ ],
+ "periodes": [
+  {
+   "l": "1950-1973",
+   "a": 1950,
+   "b": 1973,
+   "nominal": 11.5,
+   "reel": 5.4,
+   "taux": 6.8
+  },
+  {
+   "l": "1974-1985",
+   "a": 1974,
+   "b": 1985,
+   "nominal": 12.8,
+   "reel": 2.4,
+   "taux": 11.7
+  },
+  {
+   "l": "1986-2007",
+   "a": 1986,
+   "b": 2007,
+   "nominal": 4.4,
+   "reel": 2.4,
+   "taux": 6.4
+  },
+  {
+   "l": "2008-2019",
+   "a": 2008,
+   "b": 2019,
+   "nominal": 1.9,
+   "reel": 1.0,
+   "taux": 2.0
+  },
+  {
+   "l": "2020-2025",
+   "a": 2020,
+   "b": 2025,
+   "nominal": 3.6,
+   "reel": 1.0,
+   "taux": 1.8
+  }
+ ],
+ "annee": 2025,
+ "annee_credit": 2020
+}
