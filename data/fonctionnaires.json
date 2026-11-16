@@ -1,0 +1,40 @@
+{
+ "annee": 2024,
+ "source": "DGAFP, L'état de la fonction publique, chiffres clés 2026 (Siasp, Insee), effectifs au 31 décembre 2024, hors contrats aidés, France hors Mayotte",
+ "url": "https://www.fonction-publique.gouv.fr/files/files/publications/publications-dgafp/cc-2026-web.pdf",
+ "total": 5848.3,
+ "pour_1000_hab": 77,
+ "versants": [
+  {"id": "fpe", "nom": "Fonction publique de l'État", "total": 2581.9, "postes": [
+    ["Éducation nationale, Jeunesse et Sports, Enseignement supérieur et Recherche", 1142.5],
+    ["Intérieur et Outre-mer (police, préfectures)", 299.7],
+    ["Armées", 278.9],
+    ["Ministères économiques et financiers (impôts, douanes)", 130.2],
+    ["Justice", 94.5],
+    ["Transition écologique et Cohésion des territoires", 45.6],
+    ["Agriculture", 29.7],
+    ["Autres ministères (Premier ministre, sociaux, Culture, Affaires étrangères)", 37.4],
+    ["Établissements publics nationaux (universités, France Travail, CNRS…)", 523.3]]},
+  {"id": "fpt", "nom": "Fonction publique territoriale", "total": 2017.8, "postes": [
+    ["Communes", 1041.3],
+    ["Départements", 286.8],
+    ["Régions", 98.9],
+    ["Établissements publics locaux (intercommunalités, centres communaux d'action sociale, pompiers…)", 590.8]]},
+  {"id": "fph", "nom": "Fonction publique hospitalière", "total": 1248.6, "postes": [
+    ["Hôpitaux (y compris leurs maisons de retraite)", 1118.6],
+    ["Maisons de retraite publiques autonomes (EHPA)", 92.5],
+    ["Autres établissements médico-sociaux", 37.5]]}
+ ],
+ "statut": {
+  "source": "Insee Première n° 2094 (février 2026), fin 2024, en % des agents, y compris contrats aidés",
+  "lignes": [
+   ["Fonctionnaires", 58.1, 69.5, 66.2, 63.8],
+   ["Contractuels", 23.2, 26.4, 21.7, 24.0],
+   ["Militaires", 12.1, null, null, 5.3],
+   ["Autres (médecins hospitaliers, ouvriers d'État, contrats aidés…)", 6.6, 4.0, 12.2, 6.9],
+   ["Catégorie A (conception, encadrement)", 54.5, 13.1, 46.1, 38.4],
+   ["Catégorie B (application, maîtrise)", 24.9, 14.9, 28.3, 22.1],
+   ["Catégorie C (exécution)", 17.9, 70.0, 24.8, 37.4]
+  ]
+ }
+}

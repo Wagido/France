@@ -347,3 +347,6 @@ h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-l
 .qui-t td { text-align: left; font-size: .78rem; vertical-align: top; }
 .qui-t th { text-align: left; }
 .qui-t td.on { background: #f3eefc; } :root[data-theme="dark"] .qui-t td.on { background: #241d36; }
+.fp-stack { display: flex; height: 34px; border-radius: 6px; overflow: hidden; font-size: .78rem; color: #fff; }
+.fp-stack span { display: flex; align-items: center; justify-content: center; padding: 0 6px; white-space: nowrap; overflow: hidden; }
+.fp-stack b { margin-right: 4px; }

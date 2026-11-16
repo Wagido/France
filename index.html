@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261120l">
+<link rel="stylesheet" href="style.css?v=20261120m">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -254,6 +254,13 @@
   <div class="table-scroll" id="cmp-qui"></div>
   <div class="callout small" id="cmp-txt"></div>
   <p class="muted" style="font-size:.8rem">Répartition simplifiée, d'après la Direction générale des collectivités locales (<a href="https://www.collectivites-locales.gouv.fr" target="_blank" rel="noopener">collectivites-locales.gouv.fr</a>) et <a href="https://www.vie-publique.fr" target="_blank" rel="noopener">vie-publique.fr</a> : de nombreuses compétences sont partagées, et les métropoles exercent en plus certaines compétences des départements.</p>
+  <h3>Qui travaille pour la puissance publique ? Les agents publics par niveau et par employeur</h3>
+  <div class="kpis" id="fp-kpis"></div>
+  <div id="fp-chart"></div>
+  <h4 style="margin:14px 0 4px">Statut et catégorie</h4>
+  <div class="table-scroll" id="fp-statut"></div>
+  <div class="callout small" id="fp-txt"></div>
+  <p class="muted" style="font-size:.8rem">Sources : DGAFP, <a href="https://www.fonction-publique.gouv.fr/files/files/publications/publications-dgafp/cc-2026-web.pdf" target="_blank" rel="noopener"><i>L'état de la fonction publique, chiffres clés 2026</i></a> (effectifs au 31 décembre 2024, hors contrats aidés, d'après le système d'information Siasp de l'Insee) ; Insee, <a href="https://www.insee.fr/fr/statistiques/8732435" target="_blank" rel="noopener">Insee Première n° 2094</a> (statuts et catégories, y compris contrats aidés). Les « autres ministères » regroupent les services du Premier ministre, les ministères sociaux, la Culture et les Affaires étrangères.</p>
   <h3>Les prélèvements en France et chez nos voisins</h3>
   <div id="pp-cmp"></div>
   <div class="callout small" id="pp-txt"></div>
@@ -1395,43 +1402,44 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261120l"></script>
-<script src="app.js?v=20261120l"></script>
-<script src="energie.js?v=20261120l"></script>
-<script src="matieres.js?v=20261120l"></script>
-<script src="territoire.js?v=20261120l"></script>
-<script src="themes.js?v=20261120l"></script>
-<script src="societe.js?v=20261120l"></script>
-<script src="eco2.js?v=20261120l"></script>
-<script src="empreinte.js?v=20261120l"></script>
-<script src="argentprive.js?v=20261120l"></script>
-<script src="repartition.js?v=20261120l"></script>
-<script src="patrimoine.js?v=20261120l"></script>
-<script src="prelevements.js?v=20261120l"></script>
-<script src="travailvie.js?v=20261120l"></script>
-<script src="niveauvie.js?v=20261120l"></script>
-<script src="prosperite.js?v=20261120l"></script>
-<script src="exterieur.js?v=20261120l"></script>
-<script src="desindus.js?v=20261120l"></script>
-<script src="retraites.js?v=20261120l"></script>
-<script src="energiecout.js?v=20261120l"></script>
-<script src="logementeco.js?v=20261120l"></script>
-<script src="competences.js?v=20261120l"></script>
-<script src="justicedroit.js?v=20261120l"></script>
-<script src="couper.js?v=20261120l"></script>
-<script src="seuilpays.js?v=20261120l"></script>
-<script src="logement.js?v=20261120l"></script>
-<script src="env.js?v=20261120l"></script>
-<script src="agriculture.js?v=20261120l"></script>
-<script src="chaine.js?v=20261120l"></script>
-<script src="patrimoinehist.js?v=20261120l"></script>
-<script src="innovation.js?v=20261120l"></script>
+<script src="kpi.js?v=20261120m"></script>
+<script src="app.js?v=20261120m"></script>
+<script src="energie.js?v=20261120m"></script>
+<script src="matieres.js?v=20261120m"></script>
+<script src="territoire.js?v=20261120m"></script>
+<script src="themes.js?v=20261120m"></script>
+<script src="societe.js?v=20261120m"></script>
+<script src="eco2.js?v=20261120m"></script>
+<script src="empreinte.js?v=20261120m"></script>
+<script src="argentprive.js?v=20261120m"></script>
+<script src="repartition.js?v=20261120m"></script>
+<script src="patrimoine.js?v=20261120m"></script>
+<script src="prelevements.js?v=20261120m"></script>
+<script src="travailvie.js?v=20261120m"></script>
+<script src="niveauvie.js?v=20261120m"></script>
+<script src="prosperite.js?v=20261120m"></script>
+<script src="exterieur.js?v=20261120m"></script>
+<script src="desindus.js?v=20261120m"></script>
+<script src="retraites.js?v=20261120m"></script>
+<script src="energiecout.js?v=20261120m"></script>
+<script src="logementeco.js?v=20261120m"></script>
+<script src="competences.js?v=20261120m"></script>
+<script src="justicedroit.js?v=20261120m"></script>
+<script src="fonctionnaires.js?v=20261120m"></script>
+<script src="couper.js?v=20261120m"></script>
+<script src="seuilpays.js?v=20261120m"></script>
+<script src="logement.js?v=20261120m"></script>
+<script src="env.js?v=20261120m"></script>
+<script src="agriculture.js?v=20261120m"></script>
+<script src="chaine.js?v=20261120m"></script>
+<script src="patrimoinehist.js?v=20261120m"></script>
+<script src="innovation.js?v=20261120m"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261120l"></script>
-<script src="histoire.js?v=20261120l"></script>
-<script src="chomage.js?v=20261120l"></script>
-<script src="sources.js?v=20261120l"></script>
-<script src="nav.js?v=20261120l"></script>
+<script src="soussol.js?v=20261120m"></script>
+<script src="histoire.js?v=20261120m"></script>
+<script src="chomage.js?v=20261120m"></script>
+<script src="sources.js?v=20261120m"></script>
+<script src="nav.js?v=20261120m"></script>
 </body>
 </html>
