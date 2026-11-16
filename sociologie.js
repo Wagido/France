@@ -140,7 +140,7 @@ function renversement() {
     <li><b>Le revenu, lui, n'a pas changé de camp</b> : les plus riches votent toujours moins à gauche que les autres (${sg(b.revenu)} points en ${b.annee}), même si l'écart s'est réduit.</li>
     <li><b>C'est ce que Thomas Piketty appelle la « gauche brahmane » face à la « droite marchande »</b> : les partis de gauche attirent les diplômés (le capital culturel), les partis de droite les hauts revenus et les patrimoines (le capital économique). Les catégories populaires, ni très diplômées ni riches, ne se reconnaissent plus dans aucun des deux, et se tournent vers l'abstention ou les partis nationalistes. Le même renversement s'observe dans ${up} des ${n} démocraties étudiées (Gethin, Martínez-Toledano et Piketty, <i>Quarterly Journal of Economics</i>, 2022).</li>
   </ul>
-  <p class="muted" style="font-size:.78rem">Calcul du site à partir de la base WPID : part du vote de gauche chez les 10 % les plus diplômés (ou aux plus hauts revenus), moins la moyenne des 90 % restants. Écarts bruts, sans contrôle des autres variables ; dernière élection disponible : ${b.annee}.</p>`;
+  <p class="muted" style="font-size:.78rem">Calcul du site à partir de la base WPID : part du vote de gauche chez les 10 % les plus diplômés (ou aux plus hauts revenus), moins la moyenne des 90 % restants. Écarts bruts, sans contrôle des autres variables ; dernière élection disponible : ${b.annee}. <b>Attention</b> : selon les années, la base retient le premier ou le second tour (1988 et 2012 : second tour, la gauche face à la droite), et pour 2017 elle range le vote Emmanuel Macron avec la gauche ; la forte hausse de 2017 chez les diplômés vient donc en partie du vote Macron.</p>`;
 }
 
 /* carte des départements et sièges */

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261122d">
+<link rel="stylesheet" href="style.css?v=20261122e">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1999,8 +1999,26 @@
   <div class="legend-row" id="el-sexe-pays-legend"></div>
   <div class="callout small" id="el-sexe-txt"></div>
 
-  <h3 id="el-p7" class="ag-part">5. Le grand renversement depuis 70 ans</h3>
+  <h3 id="el-p7" class="ag-part">5. La gauche a-t-elle perdu les ouvriers ? Le grand renversement depuis 70 ans</h3>
   <p class="lead">Écart de vote pour la gauche entre les 10 % les plus diplômés (ou les plus riches) et les 90 % restants, en points. Au-dessus de zéro, la gauche fait mieux chez les plus diplômés (ou les plus riches) ; en dessous, chez les autres.</p>
+  <div class="callout small" style="margin-top:4px">
+    <p><b>En clair : oui, la gauche a perdu une grande partie du vote ouvrier, et gagné les diplômés des grandes villes.</b> Le graphique ci-dessous le montre de façon indirecte (par le diplôme et le revenu) ; ce tableau le montre directement.</p>
+  </div>
+  <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Élection</th><th>Ouvriers : gauche</th><th>Ouvriers : extrême droite</th><th>Cadres : gauche</th><th>Cadres : extrême droite</th><th>Grandes villes : gauche</th><th>Petites communes : gauche</th></tr></thead><tbody>
+    <tr><td><b>1988</b>, 2<sup>nd</sup> tour de la présidentielle (Mitterrand contre Chirac)</td><td><b>68 %</b></td><td>–</td><td>43 % (classes moyennes et supérieures)</td><td>–</td><td colspan="2" class="muted">non disponible</td></tr>
+    <tr><td><b>2022</b>, 1<sup>er</sup> tour de la présidentielle</td><td>31 %</td><td><b>44 %</b> (Le Pen 35, Zemmour 9)</td><td><b>38 %</b></td><td>16 %</td><td>34 %</td><td>33 %</td></tr>
+    <tr><td><b>2024</b>, 1<sup>er</sup> tour des législatives</td><td>21 %</td><td><b>57 %</b></td><td><b>34 %</b></td><td>21 %</td><td><b>33 %</b></td><td>23 %</td></tr>
+  </tbody></table></div>
+  <p class="muted" style="font-size:.78rem;margin-top:2px">1988 : base WPID (enquête électorale française), « classe ouvrière » contre « classes moyennes et supérieures ». 2022 et 2024 : Ipsos ; « gauche » = Mélenchon, Roussel, Jadot, Hidalgo et l'extrême gauche (2022), Nouveau Front populaire (2024) ; grandes villes = plus de 200 000 habitants, petites communes = moins de 2 000 habitants. Les sources et les tours de scrutin diffèrent : ce sont des ordres de grandeur.</p>
+  <div class="callout small">
+    <ul>
+      <li><b>Les ouvriers</b> votaient massivement à gauche dans les années 1970-1980 (le Parti communiste était alors le premier parti ouvrier). Aujourd'hui, ils votent d'abord pour l'extrême droite : 57 % pour le RN aux législatives de 2024, contre 21 % pour la gauche. Beaucoup s'abstiennent aussi (46 % des ouvriers n'ont pas voté en 2024).</li>
+      <li><b>Les cadres et les diplômés</b> votaient plutôt à droite ; ils votent aujourd'hui davantage à gauche et au centre, et très peu pour l'extrême droite (21 % des cadres pour le RN).</li>
+      <li><b>Les grandes villes et les petites communes</b> votaient à peu près pareil dans les années 1950. En 2024, la gauche fait 33 % dans les villes de plus de 200 000 habitants, 23 % dans les communes de moins de 2 000 habitants, où le RN fait 40 %.</li>
+      <li><b>Pourquoi ?</b> Les explications avancées : la désindustrialisation et la fin des grands bastions ouvriers (voir <a href="#industrie">Industrie et innovation</a>), une gauche devenue le parti des enseignants, des fonctionnaires et des diplômés, l'importance croissante de l'immigration et de la sécurité dans les choix de vote, et le sentiment d'abandon des territoires périurbains et ruraux.</li>
+    </ul>
+  </div>
+  <h3>Le diplôme et le revenu depuis 1956</h3>
   <div id="el-long" class="chart"></div><div class="legend-row" id="el-long-legend"></div>
   <h3>Le même renversement dans 21 démocraties : vote de gauche des 10 % les plus diplômés moins celui des autres (points)</h3>
   <p class="lead"><b>Comment lire</b> : même principe. Point gris avant 1980, point rose depuis 2000. À gauche du trait, la gauche fait mieux chez les moins diplômés ; à droite, chez les plus diplômés. Presque tous les points sont passés de gauche à droite du trait.</p>
@@ -2127,50 +2145,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261122d"></script>
-<script src="app.js?v=20261122d"></script>
-<script src="energie.js?v=20261122d"></script>
-<script src="matieres.js?v=20261122d"></script>
-<script src="territoire.js?v=20261122d"></script>
-<script src="themes.js?v=20261122d"></script>
-<script src="societe.js?v=20261122d"></script>
-<script src="eco2.js?v=20261122d"></script>
-<script src="empreinte.js?v=20261122d"></script>
-<script src="argentprive.js?v=20261122d"></script>
-<script src="repartition.js?v=20261122d"></script>
-<script src="patrimoine.js?v=20261122d"></script>
-<script src="prelevements.js?v=20261122d"></script>
-<script src="travailvie.js?v=20261122d"></script>
-<script src="niveauvie.js?v=20261122d"></script>
-<script src="prosperite.js?v=20261122d"></script>
-<script src="exterieur.js?v=20261122d"></script>
-<script src="desindus.js?v=20261122d"></script>
-<script src="retraites.js?v=20261122d"></script>
-<script src="energiecout.js?v=20261122d"></script>
-<script src="energieformation.js?v=20261122d"></script>
-<script src="nucleaire.js?v=20261122d"></script>
-<script src="logementeco.js?v=20261122d"></script>
-<script src="competences.js?v=20261122d"></script>
-<script src="justicedroit.js?v=20261122d"></script>
-<script src="fonctionnaires.js?v=20261122d"></script>
-<script src="couper.js?v=20261122d"></script>
-<script src="seuilpays.js?v=20261122d"></script>
-<script src="logement.js?v=20261122d"></script>
-<script src="env.js?v=20261122d"></script>
-<script src="agriculture.js?v=20261122d"></script>
-<script src="rendements.js?v=20261122d"></script>
-<script src="monnaie.js?v=20261122d"></script>
-<script src="limites.js?v=20261122d"></script>
-<script src="sociologie.js?v=20261122d"></script>
-<script src="chaine.js?v=20261122d"></script>
-<script src="patrimoinehist.js?v=20261122d"></script>
-<script src="innovation.js?v=20261122d"></script>
+<script src="kpi.js?v=20261122e"></script>
+<script src="app.js?v=20261122e"></script>
+<script src="energie.js?v=20261122e"></script>
+<script src="matieres.js?v=20261122e"></script>
+<script src="territoire.js?v=20261122e"></script>
+<script src="themes.js?v=20261122e"></script>
+<script src="societe.js?v=20261122e"></script>
+<script src="eco2.js?v=20261122e"></script>
+<script src="empreinte.js?v=20261122e"></script>
+<script src="argentprive.js?v=20261122e"></script>
+<script src="repartition.js?v=20261122e"></script>
+<script src="patrimoine.js?v=20261122e"></script>
+<script src="prelevements.js?v=20261122e"></script>
+<script src="travailvie.js?v=20261122e"></script>
+<script src="niveauvie.js?v=20261122e"></script>
+<script src="prosperite.js?v=20261122e"></script>
+<script src="exterieur.js?v=20261122e"></script>
+<script src="desindus.js?v=20261122e"></script>
+<script src="retraites.js?v=20261122e"></script>
+<script src="energiecout.js?v=20261122e"></script>
+<script src="energieformation.js?v=20261122e"></script>
+<script src="nucleaire.js?v=20261122e"></script>
+<script src="logementeco.js?v=20261122e"></script>
+<script src="competences.js?v=20261122e"></script>
+<script src="justicedroit.js?v=20261122e"></script>
+<script src="fonctionnaires.js?v=20261122e"></script>
+<script src="couper.js?v=20261122e"></script>
+<script src="seuilpays.js?v=20261122e"></script>
+<script src="logement.js?v=20261122e"></script>
+<script src="env.js?v=20261122e"></script>
+<script src="agriculture.js?v=20261122e"></script>
+<script src="rendements.js?v=20261122e"></script>
+<script src="monnaie.js?v=20261122e"></script>
+<script src="limites.js?v=20261122e"></script>
+<script src="sociologie.js?v=20261122e"></script>
+<script src="chaine.js?v=20261122e"></script>
+<script src="patrimoinehist.js?v=20261122e"></script>
+<script src="innovation.js?v=20261122e"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261122d"></script>
-<script src="histoire.js?v=20261122d"></script>
-<script src="chomage.js?v=20261122d"></script>
-<script src="sources.js?v=20261122d"></script>
-<script src="nav.js?v=20261122d"></script>
+<script src="soussol.js?v=20261122e"></script>
+<script src="histoire.js?v=20261122e"></script>
+<script src="chomage.js?v=20261122e"></script>
+<script src="sources.js?v=20261122e"></script>
+<script src="nav.js?v=20261122e"></script>
 </body>
 </html>
