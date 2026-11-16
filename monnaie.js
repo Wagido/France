@@ -15,6 +15,7 @@ async function init() {
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
   if ($("#mo-st-prev")) { $("#mo-st-prev").onclick = () => { stI = Math.max(0, stI - 1); stepper(); }; $("#mo-st-next").onclick = () => { stI = Math.min(ST.length - 1, stI + 1); stepper(); }; }
+  ["mo-c1", "mo-c2", "mo-c3", "mo-c4", "mo-cm", "mo-cd"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", credit));
   ["mo-fe", "mo-fx", "mo-fp", "mo-fr", "mo-fs", "mo-fk"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", futur));
   ["mo-sg", "mo-ss", "mo-sr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", stag));
   ["mo-k", "mo-pond"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", bale));
@@ -107,6 +108,25 @@ function fpresets() {
   el.querySelectorAll("button").forEach(btn => btn.onclick = () => { const q = P[+btn.dataset.k]; ["mo-fe", "mo-fx", "mo-fp", "mo-fr"].forEach((id, j) => $("#" + id).value = q[j + 1]); futur(); });
 }
 
+/* taux d'un crédit : addition des composantes, mensualité, coût total, part des intérêts */
+function credit() {
+  if (!$("#mo-c1")) return;
+  const c = [1, 2, 3, 4].map(i => +$("#mo-c" + i).value), M = +$("#mo-cm").value, Y = +$("#mo-cd").value;
+  c.forEach((v, i) => $("#mo-c" + (i + 1) + "-v").textContent = f2(v) + " %");
+  $("#mo-cm-v").textContent = n0(M) + " €"; $("#mo-cd-v").textContent = Y + " ans";
+  const taux = c.reduce((a, b) => a + b, 0), t = taux / 1200, n = Y * 12;
+  const men = t ? M * t / (1 - Math.pow(1 + t, -n)) : M / n, tot = men * n - M, i1 = M * t, i_last = (men - men / (1 + t)) ;
+  const L = ["Coût de l'argent", "Risque", "Frais", "Marge"], C = ["#64748b", "#f59e0b", "#93c5fd", "#2563eb"];
+  $("#mo-cred-out").innerHTML = `<div class="mo-stack">${c.map((v, i) => v > 0 ? `<span style="flex:${v};background:${C[i]}" title="${L[i]} : ${f2(v)} %">${v / taux > .12 ? L[i] + " " + f2(v) + " %" : ""}</span>` : "").join("")}</div>
+    <div class="mo-f">
+      <div class="mo-f-r"><span>Taux du crédit (hors assurance)</span><b>${f2(taux)} % par an</b></div>
+      <div class="mo-f-r"><span>Mensualité</span><b>${n0(men)} € pendant ${Y} ans</b></div>
+      <div class="mo-f-r"><span>Total des intérêts payés</span><b style="color:var(--neg)">${n0(tot)} € (${n0(100 * tot / M)} % du montant emprunté)</b></div>
+      <div class="mo-f-r"><span>Part des intérêts dans la première mensualité</span><b>${n0(i1)} € sur ${n0(men)} € (${n0(100 * i1 / men)} %)</b></div>
+      <div class="mo-f-r"><span>… et dans la dernière</span><b>${n0(i_last)} € (${n0(100 * i_last / men)} %)</b></div>
+    </div>`;
+}
+
 /* finance et énergie : croissance réelle ≈ énergie + efficacité ; effort sur la dette ; part du capital */
 function futur() {
   if (!$("#mo-fe")) return;
@@ -186,7 +206,7 @@ function bale() {
   const mult = p ? 100 / (k * p / 100) : null;
   $("#mo-k-out").innerHTML = p ? `<p style="margin:0">Avec <b>1 € de fonds propres</b>, la banque peut prêter <b>${f1(mult)} €</b> de ce type de crédit. Avec 50 000 € (la banque A de l'exemple), ${n0(50000 * mult)} €.</p>
     <ul><li><b>Comment c'est calculé</b> : chaque prêt est compté selon son risque (sa « pondération ») : 1 € de crédit immobilier compte pour environ 0,25 €, 1 € prêté à une grande entreprise pour 1 €. La banque doit avoir des fonds propres égaux à au moins ${f1(k)} % de ce total. Le minimum réglementaire est de 10,5 % (8 % plus un « coussin » de 2,5 %) ; les grandes banques françaises en ont de l'ordre de 13 à 16 %, car les autorités leur imposent des coussins supplémentaires.</li>
-    <li><b>Ce qui en découle</b> : pour prêter davantage, une banque doit gagner de l'argent (les bénéfices non distribués grossissent ses fonds propres) ou lever du capital auprès d'actionnaires, qui exigent un rendement (voir la partie 6). C'est un frein réel, mais qui se desserre à mesure que la banque fait des bénéfices.</li></ul>`
+    <li><b>Ce qui en découle</b> : pour prêter davantage, une banque doit gagner de l'argent (les bénéfices non distribués grossissent ses fonds propres) ou lever du capital auprès d'actionnaires, qui exigent un rendement (voir la partie 4). C'est un frein réel, mais qui se desserre à mesure que la banque fait des bénéfices.</li></ul>`
     : `<p style="margin:0"><b>Aucune limite</b> : la dette des États de la zone euro, dans leur propre monnaie, est pondérée à 0 %. Une banque peut en acheter autant qu'elle veut sans fonds propres supplémentaires.</p>
     <ul><li><b>C'est un choix politique</b> : on considère que l'État ne peut pas faire défaut. La Grèce a pourtant restructuré sa dette en 2012, et les banques grecques, qui en détenaient beaucoup, ont dû être sauvées par l'État… grec. Ce lien entre les banques et leur État, qui se soutiennent mutuellement, est ce qu'on appelle la « boucle fatale » entre États et banques.</li></ul>`;
 }
@@ -346,7 +366,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale(); stag(); futur(); fpresets();
+  drawInfl(); mini(); snow(); capm(); rendements(); hist(); tauxBce(); target(); stepper(); bale(); stag(); futur(); fpresets(); credit();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
