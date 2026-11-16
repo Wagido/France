@@ -350,3 +350,14 @@ h2.nv-part { font-size: 1.15rem; margin: 34px 0 6px; padding: 8px 12px; border-l
 .fp-stack { display: flex; height: 34px; border-radius: 6px; overflow: hidden; font-size: .78rem; color: #fff; }
 .fp-stack span { display: flex; align-items: center; justify-content: center; padding: 0 6px; white-space: nowrap; overflow: hidden; }
 .fp-stack b { margin-right: 4px; }
+
+/* barres empilées (énergie : formation des coûts) */
+.fs-stack { display: flex; flex-direction: column; gap: 6px; margin: 6px 0; }
+.fs-row { display: grid; grid-template-columns: minmax(120px, 30%) 1fr 90px; gap: 8px; align-items: center; font-size: .85rem; }
+.fs-track { position: relative; height: 22px; background: var(--grid, #f1f5f9); border-radius: 4px; overflow: hidden; }
+.fs-track span { position: absolute; top: 0; bottom: 0; color: #fff; font-size: .72rem; line-height: 22px; text-align: center; overflow: hidden; white-space: nowrap; text-shadow: 0 0 2px rgba(0,0,0,.45); }
+.fs-zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: #334155; z-index: 1; }
+.fs-tot { font-weight: 600; text-align: right; }
+.ff-t td, .ff-t th { white-space: normal; }
+.ff-bar { display: inline-block; height: 10px; border-radius: 3px; vertical-align: middle; }
+@media (max-width: 640px) { .fs-row { grid-template-columns: 1fr 70px; } .fs-lab { grid-column: 1 / -1; } }

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121b">
+<link rel="stylesheet" href="style.css?v=20261121c">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -678,10 +678,10 @@
     <div><p class="muted" style="margin-top:0">Position extérieure nette : ce que le pays possède à l'étranger moins ce qu'il lui doit, en % du PIB</p><div id="ext-position" class="chart"></div><div class="legend-row" id="ext-position-legend"></div></div>
   </div>
   <div class="callout small" id="ext-txt"></div>
-  <p class="muted" style="margin:10px 0 0">La dette publique : l'État emprunte-t-il pour investir ? Déficit public et investissement public, en % du PIB</p>
+  <p class="muted" style="margin:10px 0 0">La dette publique : l'État emprunte-t-il pour investir ? Déficit public, investissement public brut et net (après usure des équipements existants), en % du PIB</p>
   <div id="ext-public" class="chart"></div><div class="legend-row" id="ext-public-legend"></div>
-  <details class="muted" style="font-size:.85rem;margin:4px 0 8px"><summary><b>Qu'est-ce qu'on compte dans l'« investissement public » ?</b></summary>
-  <ul style="margin:6px 0 0">
+  <div class="callout small" style="margin:6px 0 10px"><p style="margin:0 0 4px"><b>Qu'est-ce qu'on compte dans l'« investissement public » ?</b></p>
+  <ul style="margin:0">
     <li><b>Définition</b> : la « formation brute de capital fixe » des administrations publiques (Eurostat, P51G), c'est-à-dire ce qu'elles achètent ou construisent et qui sert plusieurs années.</li>
     <li><b>Qui</b> : l'État, les collectivités locales (qui en font la majorité), la Sécurité sociale (hôpitaux publics) et les organismes publics (universités, agences). Pas les entreprises publiques comme EDF ou la SNCF.</li>
     <li><b>Inclus</b> : constructions (routes, ponts, écoles, hôpitaux, réseaux d'eau), équipements (véhicules, informatique), matériel militaire, recherche publique et logiciels.</li>
@@ -689,7 +689,7 @@
     <li><b>Exclus</b> : achats de terrains, aides à l'investissement versées à d'autres (entreprises, ménages), et l'usure des équipements existants n'est pas retirée : c'est un montant « brut ».</li>
     <li><b>L'usure (la « dépréciation »)</b> : chaque année, routes, bâtiments et équipements perdent de la valeur parce qu'ils vieillissent. Les comptables l'appellent « consommation de capital fixe » : c'est une estimation de ce qu'il faudrait dépenser juste pour maintenir le patrimoine en l'état. Investissement net = investissement brut − usure. Si l'investissement net est nul, le patrimoine public ne grandit pas, il est seulement entretenu.</li>
   </ul>
-  <p style="margin:4px 0 0">Source : <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">Eurostat, gov_10a_main</a> (P51G pour l'investissement brut, P51C pour l'usure) ; règles du système européen des comptes (SEC 2010), où les « améliorations importantes » d'un bien existant sont de la formation de capital et l'entretien et les réparations courantes une consommation intermédiaire.</p></details>
+  <p class="muted" style="margin:4px 0 0;font-size:.8rem">Source : <a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">Eurostat, gov_10a_main</a> (P51G pour l'investissement brut, P51C pour l'usure) ; règles du système européen des comptes (SEC 2010), où les « améliorations importantes » d'un bien existant sont de la formation de capital et l'entretien et les réparations courantes une consommation intermédiaire.</p></div>
   <div class="callout small" id="ext-jum"></div>
   <p class="muted" style="font-size:.8rem">Sources : <a href="https://www.imf.org/external/datamapper/BCA_NGDPD@WEO" target="_blank" rel="noopener">FMI, World Economic Outlook</a> (balance courante, 2025 estimé) ; INSEE (solde commercial des biens et services) ; Eurostat, investissement et solde publics (<a href="https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table" target="_blank" rel="noopener">gov_10a_main</a>) ; Eurostat, position extérieure nette (<a href="https://ec.europa.eu/eurostat/databrowser/view/tipsii10/default/table" target="_blank" rel="noopener">tipsii10</a>, pays de l'Union européenne seulement). Le cumul des déficits est la somme des soldes annuels en % du PIB.</p>
   <h3>Et si l'État ne pouvait plus emprunter ?</h3>
@@ -798,6 +798,49 @@
   <div class="table-scroll" id="cout-mwh" style="margin-top:10px"></div>
   <div class="callout small" id="cout-txt"></div>
   <p class="muted" style="font-size:.8rem">Source : RTE, <a href="https://assets.rte-france.com/prod/public/2021-10/Futurs-Energetiques-2050-principaux-resultats_0.pdf" target="_blank" rel="noopener"><i>Futurs énergétiques 2050</i>, principaux résultats</a> (octobre 2021), hypothèses centrales (coût du capital 4 %, consommation de référence). Valeurs lues sur les graphiques de RTE, arrondies.</p>
+
+  <h3>Comment se forme le coût d'un MWh ? Investissement, exploitation, financement</h3>
+  <div class="callout small"><ul>
+    <li><b>Le coût d'un MWh, c'est le coût d'une centrale divisé par ce qu'elle produit sur sa vie.</b> On additionne chaque année : le remboursement de l'investissement (CAPEX) étalé sur la durée de vie, la rémunération de l'argent immobilisé (coût du capital), les frais fixes d'exploitation (personnel, maintenance) et les frais variables (combustible). Puis on divise par les MWh produits dans l'année.</li>
+    <li><b>Formule (« LCOE »)</b> : coût par MWh = (CAPEX × facteur d'annuité + OPEX fixes) ÷ production annuelle + OPEX variables. Le facteur d'annuité dépend du taux du capital <i>r</i> et de la durée de vie <i>n</i> : <i>r</i> ÷ (1 − (1 + <i>r</i>)<sup>−n</sup>). À 4 % sur 60 ans, il vaut environ 4,4 % par an ; à 7 %, environ 7,1 %.</li>
+    <li><b>Ce qui fait la différence entre filières</b> : le nucléaire coûte cher à construire mais produit beaucoup et longtemps ; l'éolien et le solaire coûtent moins cher par kW mais produisent moins d'heures dans l'année. Les deux n'ont presque pas de combustible : leur coût dépend surtout du CAPEX et du taux d'intérêt.</li>
+  </ul></div>
+
+  <p class="muted" style="margin:10px 0 2px"><b>1. Combien coûte 1 MW installé ?</b> Coût d'investissement en euros par kW, trajectoire de référence de RTE</p>
+  <div class="table-scroll" id="ff-capex"></div>
+
+  <p class="muted" style="margin:14px 0 2px"><b>2. Du MW au MWh : l'exemple du nouveau nucléaire.</b> Coût complet en €/MWh, décomposé, selon le taux du capital et le temps de fonctionnement</p>
+  <div id="ff-nuc"></div>
+  <div class="callout small"><ul>
+    <li><b>À 4 %, le financement pèse à lui seul 31 € sur 69 €/MWh</b>, plus que la construction elle-même (13 €, remboursement de l'investissement) : un réacteur met 10 à 15 ans à se construire et sert 60 ans, l'argent est donc immobilisé très longtemps.</li>
+    <li><b>Le taux d'intérêt change tout</b> : le même réacteur revient à 44 €/MWh si l'argent coûte 1 % (financement public très bon marché) et à 108 €/MWh s'il coûte 7 % (financement privé risqué). C'est pourquoi le mode de financement des EPR2 (prêt de l'État, contrat à prix garanti) est aussi important que leur coût de construction.</li>
+    <li><b>Le combustible ne compte que pour 10 €/MWh environ</b> : le prix de l'uranium pèse peu.</li>
+    <li><b>Attention</b> : dans sa réactualisation de 2026, RTE propose de passer le taux de référence de 4 % à 6 % (fourchette 2 à 10 %), car les taux d'intérêt ont monté de 2 à 3 points depuis 2021. Toutes les filières en seront renchéries, le nucléaire plus que les autres.</li>
+  </ul></div>
+
+  <p class="muted" style="margin:14px 0 2px"><b>3. Le coût du MWh par filière</b>, installations mises en service vers 2050, capital à 4 %, hors taxes (le raccordement n'est compté que pour l'éolien en mer)</p>
+  <div id="ff-lcoe"></div>
+  <p class="muted" style="font-size:.8rem;margin:2px 0 0">Fourchettes données par RTE : 25 à 55 €/MWh pour les grands parcs renouvelables, 60 à 75 €/MWh pour le nouveau nucléaire. Source : RTE, <i>Futurs énergétiques 2050</i>, rapport complet, chapitre 11, figure 11.13 et § 11.3.4 (valeurs extraites du graphique).</p>
+
+  <p class="muted" style="margin:14px 0 2px"><b>4. Et aujourd'hui ? Le coût du parc nucléaire existant</b>, en €/MWh, moyenne 2026-2028</p>
+  <div id="ff-exist"></div>
+  <div class="callout small" id="ff-exist-txt"></div>
+
+  <p class="muted" style="margin:14px 0 2px"><b>5. Comment on assemble un scénario complet</b> : coût du système électrique en 2060, en milliards d'euros par an, par poste</p>
+  <div id="ff-sys"></div>
+  <p class="muted" style="margin:10px 0 2px">Détail du poste « flexibilités » (ce qu'il faut pour équilibrer le réseau quand le vent et le soleil manquent), en milliards d'euros par an</p>
+  <div id="ff-flex"></div>
+  <div class="callout small" id="ff-sys-txt"></div>
+
+  <p class="muted" style="margin:14px 0 2px"><b>6. À comparer avec les prix actuels</b></p>
+  <div class="table-scroll" id="ff-prix"></div>
+  <div class="callout small"><ul>
+    <li><b>Le prix de marché n'est pas le coût de production</b> : il est fixé chaque heure par la dernière centrale nécessaire (souvent une centrale à gaz en Europe). Pour un ruban livré toute l'année, il valait en moyenne 103 €/MWh pour 2025 (cotations encore marquées par la crise énergétique), 64 €/MWh pour 2026, et 50 €/MWh lors des cotations de décembre 2025.</li>
+    <li><b>Le nucléaire existant coûte environ 60 €/MWh</b> selon la CRE, marge de l'investisseur comprise : autour du prix de marché actuel. Le nouveau nucléaire (69 €/MWh à 4 %, bien plus si le taux monte) et l'éolien en mer coûteront plus cher que le parc actuel ; le solaire au sol et l'éolien terrestre, moins cher par MWh, mais sans compter le stockage et les réseaux qu'ils rendent nécessaires.</li>
+    <li><b>Le particulier paie bien plus que le coût de production</b> : à l'énergie s'ajoutent le réseau (transport et distribution), les frais du fournisseur, l'accise (30,85 €/MWh en 2026) et la TVA à 20 %.</li>
+    <li><b>Fin de l'ARENH</b> : jusqu'en 2025, les fournisseurs pouvaient acheter une partie du nucléaire d'EDF à 42 €/MWh, prix inchangé depuis 2012. Depuis 2026, tout s'achète sur le marché, et un mécanisme de redistribution (« versement nucléaire universel ») prélève une partie des revenus d'EDF si les prix dépassent certains seuils fixés à partir du coût évalué par la CRE.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.8rem">Sources : RTE, <a href="https://assets.rte-france.com/prod/public/2022-02/BP50_Principaux%20re%CC%81sultats_fev2022_Chap11_analyse%20economique.pdf" target="_blank" rel="noopener"><i>Futurs énergétiques 2050</i>, rapport complet, chapitre 11 « Analyse économique »</a> (février 2022) ; RTE, <a href="https://assets.rte-france.com/prod/public/2026-04/RTE-Reactualisation-FE-2050-consultation-publique-2026-propositions-detaillees.pdf" target="_blank" rel="noopener">réactualisation, consultation publique</a> (avril 2026) ; CRE, <a href="https://www.vie-publique.fr/files/rapport/pdf/300538.pdf" target="_blank" rel="noopener">coûts complets du nucléaire historique 2026-2028</a> (septembre 2025) ; CRE, <a href="https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260114_2026-06_TRVE_2026.pdf" target="_blank" rel="noopener">délibération TRVE n° 2026-06</a> (janvier 2026). Les valeurs RTE sont extraites des tracés vectoriels des graphiques du rapport (précision de l'ordre de 1 %), sauf mention dans le texte.</p>
   <h3>Comparer les pays (dernière année publiée)</h3>
   <div id="en-cmp" class="chart"></div>
   <div class="callout small">
@@ -1423,44 +1466,45 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121b"></script>
-<script src="app.js?v=20261121b"></script>
-<script src="energie.js?v=20261121b"></script>
-<script src="matieres.js?v=20261121b"></script>
-<script src="territoire.js?v=20261121b"></script>
-<script src="themes.js?v=20261121b"></script>
-<script src="societe.js?v=20261121b"></script>
-<script src="eco2.js?v=20261121b"></script>
-<script src="empreinte.js?v=20261121b"></script>
-<script src="argentprive.js?v=20261121b"></script>
-<script src="repartition.js?v=20261121b"></script>
-<script src="patrimoine.js?v=20261121b"></script>
-<script src="prelevements.js?v=20261121b"></script>
-<script src="travailvie.js?v=20261121b"></script>
-<script src="niveauvie.js?v=20261121b"></script>
-<script src="prosperite.js?v=20261121b"></script>
-<script src="exterieur.js?v=20261121b"></script>
-<script src="desindus.js?v=20261121b"></script>
-<script src="retraites.js?v=20261121b"></script>
-<script src="energiecout.js?v=20261121b"></script>
-<script src="logementeco.js?v=20261121b"></script>
-<script src="competences.js?v=20261121b"></script>
-<script src="justicedroit.js?v=20261121b"></script>
-<script src="fonctionnaires.js?v=20261121b"></script>
-<script src="couper.js?v=20261121b"></script>
-<script src="seuilpays.js?v=20261121b"></script>
-<script src="logement.js?v=20261121b"></script>
-<script src="env.js?v=20261121b"></script>
-<script src="agriculture.js?v=20261121b"></script>
-<script src="chaine.js?v=20261121b"></script>
-<script src="patrimoinehist.js?v=20261121b"></script>
-<script src="innovation.js?v=20261121b"></script>
+<script src="kpi.js?v=20261121c"></script>
+<script src="app.js?v=20261121c"></script>
+<script src="energie.js?v=20261121c"></script>
+<script src="matieres.js?v=20261121c"></script>
+<script src="territoire.js?v=20261121c"></script>
+<script src="themes.js?v=20261121c"></script>
+<script src="societe.js?v=20261121c"></script>
+<script src="eco2.js?v=20261121c"></script>
+<script src="empreinte.js?v=20261121c"></script>
+<script src="argentprive.js?v=20261121c"></script>
+<script src="repartition.js?v=20261121c"></script>
+<script src="patrimoine.js?v=20261121c"></script>
+<script src="prelevements.js?v=20261121c"></script>
+<script src="travailvie.js?v=20261121c"></script>
+<script src="niveauvie.js?v=20261121c"></script>
+<script src="prosperite.js?v=20261121c"></script>
+<script src="exterieur.js?v=20261121c"></script>
+<script src="desindus.js?v=20261121c"></script>
+<script src="retraites.js?v=20261121c"></script>
+<script src="energiecout.js?v=20261121c"></script>
+<script src="energieformation.js?v=20261121c"></script>
+<script src="logementeco.js?v=20261121c"></script>
+<script src="competences.js?v=20261121c"></script>
+<script src="justicedroit.js?v=20261121c"></script>
+<script src="fonctionnaires.js?v=20261121c"></script>
+<script src="couper.js?v=20261121c"></script>
+<script src="seuilpays.js?v=20261121c"></script>
+<script src="logement.js?v=20261121c"></script>
+<script src="env.js?v=20261121c"></script>
+<script src="agriculture.js?v=20261121c"></script>
+<script src="chaine.js?v=20261121c"></script>
+<script src="patrimoinehist.js?v=20261121c"></script>
+<script src="innovation.js?v=20261121c"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121b"></script>
-<script src="histoire.js?v=20261121b"></script>
-<script src="chomage.js?v=20261121b"></script>
-<script src="sources.js?v=20261121b"></script>
-<script src="nav.js?v=20261121b"></script>
+<script src="soussol.js?v=20261121c"></script>
+<script src="histoire.js?v=20261121c"></script>
+<script src="chomage.js?v=20261121c"></script>
+<script src="sources.js?v=20261121c"></script>
+<script src="nav.js?v=20261121c"></script>
 </body>
 </html>

@@ -1,0 +1,93 @@
+{
+ "sources": {
+  "rte": {"l": "RTE, Futurs énergétiques 2050, rapport complet, chapitre 11 « Analyse économique » (février 2022)", "u": "https://assets.rte-france.com/prod/public/2022-02/BP50_Principaux%20re%CC%81sultats_fev2022_Chap11_analyse%20economique.pdf"},
+  "rte26": {"l": "RTE, Réactualisation des Futurs énergétiques 2050, consultation publique, propositions détaillées (avril 2026), § 8.1", "u": "https://assets.rte-france.com/prod/public/2026-04/RTE-Reactualisation-FE-2050-consultation-publique-2026-propositions-detaillees.pdf"},
+  "cre_nuc": {"l": "CRE, Évaluation des coûts complets de production des centrales électronucléaires historiques pour 2026-2028 (rapport du 22 septembre 2025, version non confidentielle)", "u": "https://www.vie-publique.fr/files/rapport/pdf/300538.pdf"},
+  "cre_trve": {"l": "CRE, délibération n° 2026-06 du 14 janvier 2026 portant proposition des tarifs réglementés de vente d'électricité", "u": "https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260114_2026-06_TRVE_2026.pdf"}
+ },
+ "capex": {
+  "note": "Coût d'investissement par kW installé, trajectoire de référence RTE, euros constants, hors raccordement (sauf mention). Valeurs extraites des figures 11.5, 11.9, 11.10, 11.11 et 11.19 du chapitre 11 (lecture des tracés vectoriels, arrondie à 10 €/kW) et du texte pour le nucléaire, les STEP et le thermique.",
+  "rows": [
+   {"f": "Photovoltaïque au sol", "fam": "sol", "c2020": 750, "c2030": 600, "c2050": 480},
+   {"f": "Photovoltaïque sur grande toiture", "fam": "sol", "c2020": 1070, "c2030": 870, "c2050": 680},
+   {"f": "Photovoltaïque sur petite toiture", "fam": "sol", "c2020": 2370, "c2030": 1930, "c2050": 1490},
+   {"f": "Éolien terrestre", "fam": "eol", "c2020": 1300, "c2030": 1200, "c2050": 900},
+   {"f": "Éolien en mer posé (hors raccordement)", "fam": "eol", "c2020": 2600, "c2030": 1730, "c2050": 1300},
+   {"f": "Éolien en mer flottant (hors raccordement)", "fam": "eol", "c2020": 3100, "c2030": 2520, "c2050": 1880},
+   {"f": "Nouveau nucléaire EPR2 (développement et démantèlement compris)", "fam": "nuc", "c2020": null, "c2030": null, "c2050": 4500, "txt": "5 400 €/kW pour la première paire (mise en service vers 2035), 4 500 €/kW pour les suivantes"},
+   {"f": "Prolonger un réacteur existant (grand carénage)", "fam": "nuc", "c2020": null, "c2030": 650, "c2050": 440, "txt": "environ 650 €/kW sur 2020-2035, puis 440 €/kW pour les prolongations suivantes"},
+   {"f": "Station de pompage (STEP)", "fam": "flex", "c2020": null, "c2030": null, "c2050": 1000, "txt": "autour de 1 000 €/kW"},
+   {"f": "Turbine à combustion (TAC), gaz ou hydrogène", "fam": "flex", "c2020": null, "c2030": null, "c2050": 700, "txt": "600 €/kW (méthane) à 800 €/kW (hydrogène)"},
+   {"f": "Cycle combiné gaz (CCG), gaz ou hydrogène", "fam": "flex", "c2020": null, "c2030": null, "c2050": 1000, "txt": "900 €/kW (méthane) à 1 100 €/kW (hydrogène)"}
+  ]
+ },
+ "lcoe2050": {
+  "note": "Coût de production rapporté à l'énergie produite, installations mises en service vers 2050, coût du capital 4 %/an, hors taxes ; raccordement compris seulement pour l'éolien en mer. Figure 11.13 (valeurs centrales extraites du graphique) ; fourchettes : texte § 11.3.4 (25 à 55 €/MWh pour les grands parcs renouvelables, 60 à 75 €/MWh pour le nouveau nucléaire).",
+  "rows": [
+   {"f": "Photovoltaïque au sol", "v": 29, "r": 0, "fam": "sol"},
+   {"f": "Éolien terrestre", "v": 38, "r": 0, "fam": "eol"},
+   {"f": "Éolien en mer posé", "v": 31, "r": 12, "fam": "eol"},
+   {"f": "Photovoltaïque sur grande toiture", "v": 44, "r": 0, "fam": "sol"},
+   {"f": "Éolien en mer flottant", "v": 44, "r": 12, "fam": "eol"},
+   {"f": "Nouveau nucléaire (EPR2)", "v": 69, "r": 0, "fam": "nuc"},
+   {"f": "Photovoltaïque sur petite toiture", "v": 111, "r": 0, "fam": "sol"}
+  ]
+ },
+ "nucneuf": {
+  "note": "Coût complet de production du nouveau nucléaire en €/MWh selon le coût du capital (CMPC) et le facteur de charge. Figure 11.7 (valeurs extraites du graphique).",
+  "postes": ["Amortissement de l'investissement", "OPEX fixes", "OPEX variables (combustible…)", "Coût de financement"],
+  "rows": [
+   {"l": "Référence (capital à 4 %)", "v": [13.0, 15.2, 10.0, 31.0]},
+   {"l": "Capital à 1 %", "v": [13.0, 15.2, 10.0, 5.5]},
+   {"l": "Capital à 7 %", "v": [13.0, 15.2, 10.0, 69.5]},
+   {"l": "Construction plus chère (capital 4 %)", "v": [14.1, 15.2, 10.0, 33.9]},
+   {"l": "Réacteurs à 70 % du temps (capital 4 %)", "v": [13.9, 16.3, 10.0, 33.2]},
+   {"l": "Réacteurs à 80 % du temps (capital 4 %)", "v": [12.1, 14.3, 10.0, 29.1]}
+  ]
+ },
+ "nucexistant": {
+  "note": "Coût complet du parc nucléaire historique d'EDF retenu par la CRE, moyenne 2026-2028, en €2026/MWh, pour 362 TWh par an. Rémunération du capital calculée avec un CMPC de 9,1 % (nominal, avant impôt).",
+  "total": 60.3,
+  "rows": [
+   {"l": "Combustible (uranium, enrichissement, retraitement, déchets)", "g": "OPEX", "v": 8.1},
+   {"l": "Achats et sous-traitance", "g": "OPEX", "v": 9.5},
+   {"l": "Personnel", "g": "OPEX", "v": 10.4},
+   {"l": "Autres charges d'exploitation (impôts, taxes…)", "g": "OPEX", "v": 2.6},
+   {"l": "Remboursement de l'investissement (amortissements)", "g": "Capital", "v": 11.7},
+   {"l": "Rémunération du capital investi (la « marge » de l'investisseur)", "g": "Capital", "v": 13.8},
+   {"l": "Coût de portage des stocks", "g": "Capital", "v": 2.7},
+   {"l": "Rattrapage de la réforme des retraites de 2004", "g": "Autre", "v": 1.4}
+  ]
+ },
+ "systeme2060": {
+  "note": "Coût complet annualisé du système électrique en 2060, en milliards d'euros par an (Md€/an), hypothèses de référence (capital 4 %). Figures 11.30 à 11.33 (valeurs extraites des graphiques). Les exports sont une recette : ils viennent en déduction.",
+  "postes": ["Production nucléaire", "Production renouvelable (éolien, solaire, hydraulique…)", "Flexibilités (stockage, centrales de secours, imports)", "Réseau de transport (RTE)", "Réseau de distribution (Enedis…)", "Recettes d'exportation"],
+  "rows": [
+   {"id": "M0", "v": [0.1, 34.5, 16.5, 10.3, 18.6, -3.5]},
+   {"id": "M1", "v": [1.2, 37.2, 16.5, 9.7, 19.2, -3.4]},
+   {"id": "M23", "v": [1.2, 31.5, 14.0, 10.6, 17.3, -3.8]},
+   {"id": "N1", "v": [10.1, 24.4, 9.4, 9.0, 16.6, -4.0]},
+   {"id": "N2", "v": [17.0, 19.2, 5.2, 7.9, 16.1, -3.9]},
+   {"id": "N03", "v": [22.1, 15.3, 2.7, 7.2, 15.6, -4.6]}
+  ],
+  "flex_postes": ["Imports d'électricité", "Centrales thermiques décarbonées (hydrogène)", "Batteries", "Autres (STEP, effacements…)"],
+  "flex": [
+   {"id": "M0", "v": [6.3, 5.9, 3.4, 1.1]},
+   {"id": "M1", "v": [5.8, 6.0, 3.7, 1.0]},
+   {"id": "M23", "v": [6.3, 5.0, 1.9, 1.0]},
+   {"id": "N1", "v": [4.4, 3.1, 1.0, 0.9]},
+   {"id": "N2", "v": [3.5, 0.7, 0.1, 0.8]},
+   {"id": "N03", "v": [2.0, 0.0, 0.0, 0.7]}
+  ]
+ },
+ "prix": {
+  "rows": [
+   {"l": "Ancien prix régulé du nucléaire existant (ARENH, 2012-2025)", "v": "42 €/MWh", "s": "cre_trve"},
+   {"l": "Coût complet du parc nucléaire existant, 2026-2028 (CRE)", "v": "60,3 €/MWh", "s": "cre_nuc"},
+   {"l": "Prix de marché de gros : électricité livrée en ruban toute l'année 2026 (moyenne des cotations 2024-2025 retenue par la CRE)", "v": "63,9 €/MWh", "s": "cre_trve"},
+   {"l": "Même produit, cotation de décembre 2025", "v": "49,5 €/MWh", "s": "cre_trve"},
+   {"l": "Même produit l'année précédente (pour 2025)", "v": "103,0 €/MWh", "s": "cre_trve"},
+   {"l": "Taxe (accise) ajoutée à la facture d'un particulier, avant TVA, février 2026", "v": "30,85 €/MWh", "s": "cre_trve"}
+  ]
+ }
+}
