@@ -28,7 +28,7 @@ function draw() {
       <li>L'industrie manufacturière représentait ${f1(v0.FR)} % de la valeur ajoutée en ${v0.annee}, ${f1(v00.FR)} % en 2000, et <b>${f1(vL.FR)} % en ${vL.annee}</b>, contre ${f1(vL.DE)} % en Allemagne et ${f1(vL.IT)} % en Italie. Le rapport Gallois (2012) classait déjà la France 15<sup>e</sup> sur 17 pays de la zone euro.</li>
       <li>Les emplois industriels sont passés de ${f1(e0.v)} millions en ${e0.annee} à <b>${f1(eL.v)} millions</b> en ${eL.annee}, dont ${f1(e80.v - e07.v)} millions perdus entre 1980 et 2007.</li>
     </ul>
-    <p style="margin-bottom:2px"><b>2. Le pari de « l'entreprise sans usines » : Serge Tchuruk et Alcatel</b></p><ul>
+    <p style="margin-bottom:2px"><b>2. L'idée géniale de « l'entreprise sans usines » : Serge Tchuruk et Alcatel</b></p><ul>
       <li><b>Juin 2001</b> : Serge Tchuruk, patron d'Alcatel, alors champion mondial des équipements de télécommunications, annonce au <i>Wall Street Journal</i> : « Nous allons très bientôt être une entreprise sans usines » (<i>fabless</i>). Le groupe veut passer d'environ 120 usines à une douzaine au plus.</li>
       <li><b>L'idée, à la mode à l'époque</b> : garder ce qui rapporte le plus (la conception, la recherche, la marque, la vente) et confier la fabrication, jugée sans valeur, à des sous-traitants, surtout en Asie. C'est le modèle de Nike ou d'Apple.</li>
       <li><b>Le résultat</b> : Alcatel fusionne avec l'américain Lucent en 2006, accumule les pertes, et finit racheté par le finlandais Nokia en 2016. Pendant ce temps, le chinois Huawei, qui fabriquait lui-même une grande partie de ses équipements, devient numéro un mondial du secteur.</li>
