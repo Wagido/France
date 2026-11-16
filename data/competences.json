@@ -1,0 +1,80 @@
+{
+ "annee": 2024,
+ "fonctions": [
+  {
+   "code": "GF10",
+   "l": "Protection sociale (retraites, famille, chômage, RSA, autonomie)",
+   "etat": 143.5,
+   "local": 59.4,
+   "secu": 519.4
+  },
+  {
+   "code": "GF07",
+   "l": "Santé",
+   "etat": 13.9,
+   "local": 2.4,
+   "secu": 250.6
+  },
+  {
+   "code": "GF01",
+   "l": "Services généraux (administration, intérêts de la dette, transferts entre administrations)",
+   "etat": 160.0,
+   "local": 62.9,
+   "secu": 7.9
+  },
+  {
+   "code": "GF04",
+   "l": "Affaires économiques (transports, aides aux entreprises, énergie)",
+   "etat": 123.8,
+   "local": 56.4,
+   "secu": 0.6
+  },
+  {
+   "code": "GF09",
+   "l": "Enseignement",
+   "etat": 106.1,
+   "local": 46.0,
+   "secu": 0.0
+  },
+  {
+   "code": "GF02",
+   "l": "Défense",
+   "etat": 54.2,
+   "local": 0.0,
+   "secu": 0.0
+  },
+  {
+   "code": "GF03",
+   "l": "Ordre et sécurité (police, justice, pompiers)",
+   "etat": 42.2,
+   "local": 10.3,
+   "secu": 0.0
+  },
+  {
+   "code": "GF08",
+   "l": "Loisirs, culture, sport",
+   "etat": 13.8,
+   "local": 30.0,
+   "secu": 0.0
+  },
+  {
+   "code": "GF06",
+   "l": "Logement et équipements collectifs (eau, éclairage, urbanisme)",
+   "etat": 7.3,
+   "local": 36.4,
+   "secu": 0.0
+  },
+  {
+   "code": "GF05",
+   "l": "Environnement (déchets, eaux usées)",
+   "etat": 5.5,
+   "local": 26.0,
+   "secu": 0.0
+  }
+ ],
+ "totaux": {
+  "etat": 670.3,
+  "local": 329.7,
+  "secu": 778.4
+ }
+}

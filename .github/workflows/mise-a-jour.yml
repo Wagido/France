@@ -50,6 +50,7 @@ jobs:
           python3 scripts/build_exterieur.py
           python3 scripts/build_desindustrialisation.py
           python3 scripts/build_retraites.py
+          python3 scripts/build_competences.py
           python3 scripts/build_couper.py
           python3 scripts/build_logement.py
           python3 scripts/build_environnement.py
