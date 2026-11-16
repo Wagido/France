@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123a">
+<link rel="stylesheet" href="style.css?v=20261123b">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -483,34 +483,10 @@
     <h2>La monnaie et la dette obligent-elles à croître ? <em class="en-constr">(en construction)</em> <span class="geo-fixed">France</span></h2>
   </div>
   <p class="lead">Une idée revient souvent : la monnaie naît de la dette, il faut toujours de nouveaux crédits pour rembourser les anciens et leurs intérêts, donc l'économie est condamnée à croître sans fin dans un monde physique fini. Qu'en est-il vraiment ?</p>
-  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#monnaie" data-to="mo-p1">1. comment naît la monnaie</a> · <a href="#monnaie" data-to="mo-p8">2. petite histoire de la monnaie, des orfèvres à l'euro</a> · <a href="#monnaie" data-to="mo-p6">3. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">4. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">5. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p7">6. le rendement du capital : taux sans risque, bêta, alpha</a> · <a href="#monnaie" data-to="mo-p4">7. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">8. les pistes</a></p>
+  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#monnaie" data-to="mo-p8">1. petite histoire de la monnaie, des orfèvres à l'euro</a> · <a href="#monnaie" data-to="mo-p1">2. comment naît la monnaie aujourd'hui</a> · <a href="#monnaie" data-to="mo-p6">3. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">4. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">5. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p7">6. le rendement du capital : taux sans risque, bêta, alpha</a> · <a href="#monnaie" data-to="mo-p4">7. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">8. les pistes</a></p>
   <div class="kpis" id="mo-kpis"></div>
 
-  <h3 id="mo-p1" class="ag-part">1. Comment naît la monnaie</h3>
-  <div class="in-need">
-    <div><b>① Un prêt</b><span>Vous empruntez 200 000 € pour une maison. La banque n'a pas besoin d'avoir cet argent en caisse : elle inscrit 200 000 € sur votre compte, et 200 000 € de créance à son actif.</span></div>
-    <div><b>② La monnaie circule</b><span>Vous payez le vendeur : l'argent passe sur son compte, dans une autre banque peut-être. Les banques règlent entre elles leurs soldes avec de la monnaie de banque centrale, dont elles ont besoin en petite quantité.</span></div>
-    <div><b>③ Le remboursement la détruit</b><span>Chaque fois que vous remboursez du capital, la monnaie correspondante disparaît des comptes. Les intérêts, eux, ne disparaissent pas : ils deviennent un revenu de la banque.</span></div>
-  </div>
-  <div class="callout small">
-    <ul>
-      <li><b>Environ neuf euros sur dix sont de la monnaie de banque</b> (les dépôts), créée par le crédit ; le reste, ce sont les billets et pièces. C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
-      <li><b>Le « multiplicateur » des réserves fractionnaires ne décrit plus la réalité.</b> Les manuels racontaient que la banque prête un multiple de ses dépôts, limité par une réserve obligatoire. Dans la zone euro, cette réserve n'est que de 1 % des dépôts depuis 2012. Ce qui freine vraiment le crédit, ce sont les fonds propres que les banques doivent détenir (règles de Bâle), le taux d'intérêt fixé par la banque centrale, et tout simplement la demande d'emprunt des ménages et des entreprises.</li>
-      <li><b>La banque centrale crée aussi de la monnaie</b>, en prêtant aux banques ou en achetant des obligations (de 2015 à 2022, la BCE a ainsi acheté une grande partie de la dette publique française sur les marchés). Mais elle n'a pas le droit de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
-    </ul>
-  </div>
-  <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
-  <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
-  <div class="callout small" id="mo-credit-txt"></div>
-  <h3>Les masses monétaires M1, M2, M3 de la zone euro (milliards d'euros, fin d'année)</h3>
-  <p class="lead">Depuis l'euro, la France n'a plus de masse monétaire propre : ce sont celles de la zone euro, publiées par la BCE. Chaque agrégat englobe le précédent, de la monnaie la plus « liquide » (utilisable tout de suite) à la moins liquide.</p>
-  <div class="grid2">
-    <div><div id="mo-m" class="chart"></div><div class="legend-row" id="mo-m-legend"></div></div>
-    <div><h3 style="margin-top:0">En % du PIB de la zone euro, et croissance annuelle de M3</h3><div id="mo-mpib" class="chart"></div><div class="legend-row" id="mo-mpib-legend"></div></div>
-  </div>
-  <div class="callout small" id="mo-m-txt"></div>
-
-  <h3 id="mo-p8" class="ag-part">2. Petite histoire de la monnaie : de l'or des orfèvres à l'euro</h3>
+  <h3 id="mo-p8" class="ag-part">1. Petite histoire de la monnaie : de l'or des orfèvres à l'euro</h3>
   <p class="lead">La création de monnaie par le crédit n'est pas une invention récente. Elle existe depuis le XVIIe siècle. Ce qui a changé au fil des siècles, c'est ce qui la garantit et ce qui la freine : l'or, puis le dollar, puis les règles imposées aux banques et le taux de la banque centrale.</p>
   <div class="callout small">
     <p><b>« La monnaie, c'est de la confiance transmise dans l'espace et dans le temps »</b></p>
@@ -592,6 +568,31 @@
   </div>
   <div id="mo-hist-txt" class="callout small"></div>
   <p class="muted" style="font-size:.78rem">Sources : Jordà, Schularick et Taylor, Macrohistory Database (masse monétaire au sens large, PIB et prix à la consommation pour la France). Histoire : Charles Kindleberger, <i>Histoire financière de l'Europe occidentale</i> ; Barry Eichengreen, <i>L'expansion du capital</i> ; Michel Aglietta et André Orléan, <i>La monnaie entre violence et confiance</i> ; Banque d'Angleterre, « Money creation in the modern economy » (2014).</p>
+  <p>La partie suivante détaille comment la monnaie est créée aujourd'hui, qui la détient et combien il y en a.</p>
+
+  <h3 id="mo-p1" class="ag-part">2. Comment naît la monnaie aujourd'hui</h3>
+  <div class="in-need">
+    <div><b>① Un prêt</b><span>Vous empruntez 200 000 € pour une maison. La banque n'a pas besoin d'avoir cet argent en caisse : elle inscrit 200 000 € sur votre compte, et 200 000 € de créance à son actif.</span></div>
+    <div><b>② La monnaie circule</b><span>Vous payez le vendeur : l'argent passe sur son compte, dans une autre banque peut-être. Les banques règlent entre elles leurs soldes avec de la monnaie de banque centrale, dont elles ont besoin en petite quantité.</span></div>
+    <div><b>③ Le remboursement la détruit</b><span>Chaque fois que vous remboursez du capital, la monnaie correspondante disparaît des comptes. Les intérêts, eux, ne disparaissent pas : ils deviennent un revenu de la banque.</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Environ neuf euros sur dix sont de la monnaie de banque</b> (les dépôts), créée par le crédit ; le reste, ce sont les billets et pièces. C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
+      <li><b>Le « multiplicateur » des réserves fractionnaires ne décrit plus la réalité.</b> Les manuels racontaient que la banque prête un multiple de ses dépôts, limité par une réserve obligatoire. Dans la zone euro, cette réserve n'est que de 1 % des dépôts depuis 2012. Ce qui freine vraiment le crédit, ce sont les fonds propres que les banques doivent détenir (règles de Bâle), le taux d'intérêt fixé par la banque centrale, et tout simplement la demande d'emprunt des ménages et des entreprises.</li>
+      <li><b>La banque centrale crée aussi de la monnaie</b>, en prêtant aux banques ou en achetant des obligations (de 2015 à 2022, la BCE a ainsi acheté une grande partie de la dette publique française sur les marchés). Mais elle n'a pas le droit de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
+    </ul>
+  </div>
+  <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
+  <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
+  <div class="callout small" id="mo-credit-txt"></div>
+  <h3>Les masses monétaires M1, M2, M3 de la zone euro (milliards d'euros, fin d'année)</h3>
+  <p class="lead">Depuis l'euro, la France n'a plus de masse monétaire propre : ce sont celles de la zone euro, publiées par la BCE. Chaque agrégat englobe le précédent, de la monnaie la plus « liquide » (utilisable tout de suite) à la moins liquide.</p>
+  <div class="grid2">
+    <div><div id="mo-m" class="chart"></div><div class="legend-row" id="mo-m-legend"></div></div>
+    <div><h3 style="margin-top:0">En % du PIB de la zone euro, et croissance annuelle de M3</h3><div id="mo-mpib" class="chart"></div><div class="legend-row" id="mo-mpib-legend"></div></div>
+  </div>
+  <div class="callout small" id="mo-m-txt"></div>
 
   <h3 id="mo-p6" class="ag-part">3. Pourquoi rembourser des banques privées ? L'État ne pourrait-il pas créer sa monnaie ?</h3>
   <p class="lead">Si la monnaie est créée à partir de rien par un jeu d'écritures, pourquoi faudrait-il la rembourser, avec intérêts, à des banques privées ou aux marchés financiers ? L'État ne pourrait-il pas créer lui-même la monnaie dont il a besoin, à hauteur des richesses produites ? Il l'a fait, et ailleurs aussi : voici ce que l'histoire en dit.</p>
@@ -2359,50 +2360,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261123a"></script>
-<script src="app.js?v=20261123a"></script>
-<script src="energie.js?v=20261123a"></script>
-<script src="matieres.js?v=20261123a"></script>
-<script src="territoire.js?v=20261123a"></script>
-<script src="themes.js?v=20261123a"></script>
-<script src="societe.js?v=20261123a"></script>
-<script src="eco2.js?v=20261123a"></script>
-<script src="empreinte.js?v=20261123a"></script>
-<script src="argentprive.js?v=20261123a"></script>
-<script src="repartition.js?v=20261123a"></script>
-<script src="patrimoine.js?v=20261123a"></script>
-<script src="prelevements.js?v=20261123a"></script>
-<script src="travailvie.js?v=20261123a"></script>
-<script src="niveauvie.js?v=20261123a"></script>
-<script src="prosperite.js?v=20261123a"></script>
-<script src="exterieur.js?v=20261123a"></script>
-<script src="desindus.js?v=20261123a"></script>
-<script src="retraites.js?v=20261123a"></script>
-<script src="energiecout.js?v=20261123a"></script>
-<script src="energieformation.js?v=20261123a"></script>
-<script src="nucleaire.js?v=20261123a"></script>
-<script src="logementeco.js?v=20261123a"></script>
-<script src="competences.js?v=20261123a"></script>
-<script src="justicedroit.js?v=20261123a"></script>
-<script src="fonctionnaires.js?v=20261123a"></script>
-<script src="couper.js?v=20261123a"></script>
-<script src="seuilpays.js?v=20261123a"></script>
-<script src="logement.js?v=20261123a"></script>
-<script src="env.js?v=20261123a"></script>
-<script src="agriculture.js?v=20261123a"></script>
-<script src="rendements.js?v=20261123a"></script>
-<script src="monnaie.js?v=20261123a"></script>
-<script src="limites.js?v=20261123a"></script>
-<script src="sociologie.js?v=20261123a"></script>
-<script src="chaine.js?v=20261123a"></script>
-<script src="patrimoinehist.js?v=20261123a"></script>
-<script src="innovation.js?v=20261123a"></script>
+<script src="kpi.js?v=20261123b"></script>
+<script src="app.js?v=20261123b"></script>
+<script src="energie.js?v=20261123b"></script>
+<script src="matieres.js?v=20261123b"></script>
+<script src="territoire.js?v=20261123b"></script>
+<script src="themes.js?v=20261123b"></script>
+<script src="societe.js?v=20261123b"></script>
+<script src="eco2.js?v=20261123b"></script>
+<script src="empreinte.js?v=20261123b"></script>
+<script src="argentprive.js?v=20261123b"></script>
+<script src="repartition.js?v=20261123b"></script>
+<script src="patrimoine.js?v=20261123b"></script>
+<script src="prelevements.js?v=20261123b"></script>
+<script src="travailvie.js?v=20261123b"></script>
+<script src="niveauvie.js?v=20261123b"></script>
+<script src="prosperite.js?v=20261123b"></script>
+<script src="exterieur.js?v=20261123b"></script>
+<script src="desindus.js?v=20261123b"></script>
+<script src="retraites.js?v=20261123b"></script>
+<script src="energiecout.js?v=20261123b"></script>
+<script src="energieformation.js?v=20261123b"></script>
+<script src="nucleaire.js?v=20261123b"></script>
+<script src="logementeco.js?v=20261123b"></script>
+<script src="competences.js?v=20261123b"></script>
+<script src="justicedroit.js?v=20261123b"></script>
+<script src="fonctionnaires.js?v=20261123b"></script>
+<script src="couper.js?v=20261123b"></script>
+<script src="seuilpays.js?v=20261123b"></script>
+<script src="logement.js?v=20261123b"></script>
+<script src="env.js?v=20261123b"></script>
+<script src="agriculture.js?v=20261123b"></script>
+<script src="rendements.js?v=20261123b"></script>
+<script src="monnaie.js?v=20261123b"></script>
+<script src="limites.js?v=20261123b"></script>
+<script src="sociologie.js?v=20261123b"></script>
+<script src="chaine.js?v=20261123b"></script>
+<script src="patrimoinehist.js?v=20261123b"></script>
+<script src="innovation.js?v=20261123b"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261123a"></script>
-<script src="histoire.js?v=20261123a"></script>
-<script src="chomage.js?v=20261123a"></script>
-<script src="sources.js?v=20261123a"></script>
-<script src="nav.js?v=20261123a"></script>
+<script src="soussol.js?v=20261123b"></script>
+<script src="histoire.js?v=20261123b"></script>
+<script src="chomage.js?v=20261123b"></script>
+<script src="sources.js?v=20261123b"></script>
+<script src="nav.js?v=20261123b"></script>
 </body>
 </html>
