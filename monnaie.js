@@ -15,7 +15,7 @@ async function init() {
   try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
   if ($("#mo-st-prev")) { $("#mo-st-prev").onclick = () => { stI = Math.max(0, stI - 1); stepper(); }; $("#mo-st-next").onclick = () => { stI = Math.min(ST.length - 1, stI + 1); stepper(); }; }
-  ["mo-fe", "mo-fx", "mo-fp", "mo-fr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", futur));
+  ["mo-fe", "mo-fx", "mo-fp", "mo-fr", "mo-fs", "mo-fk"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", futur));
   ["mo-sg", "mo-ss", "mo-sr"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", stag));
   ["mo-k", "mo-pond"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", bale));
   ["mo-rf", "mo-erp", "mo-beta", "mo-obt"].forEach(id => $("#" + id) && $("#" + id).addEventListener("input", capm));
@@ -110,10 +110,11 @@ function fpresets() {
 /* finance et énergie : croissance réelle ≈ énergie + efficacité ; effort sur la dette ; part du capital */
 function futur() {
   if (!$("#mo-fe")) return;
-  const e = +$("#mo-fe").value, x = +$("#mo-fx").value, p = +$("#mo-fp").value, r = +$("#mo-fr").value;
+  const e = +$("#mo-fe").value, x = +$("#mo-fx").value, p = +$("#mo-fp").value, r = +$("#mo-fr").value, sv = +$("#mo-fs").value, k = +$("#mo-fk").value;
+  $("#mo-fs-v").textContent = sv + " %"; $("#mo-fk-v").textContent = f2(k) + " %";
   $("#mo-fe-v").textContent = sg(e) + " %"; $("#mo-fx-v").textContent = "+" + f2(x) + " %"; $("#mo-fp-v").textContent = f2(p) + " %"; $("#mo-fr-v").textContent = f2(r) + " %";
   const g = ((1 + e / 100) * (1 + x / 100) - 1) * 100, n = ((1 + g / 100) * (1 + p / 100) - 1) * 100, d = 115;
-  const effort = d * (r - n) / (100 + n), pib25 = 100 * Math.pow(1 + g / 100, 25), beta = g > 0 ? 10 / g : Infinity, alpha = 4 * beta;
+  const effort = d * (r - n) / (100 + n), pib25 = 100 * Math.pow(1 + g / 100, 25), beta = g > 0 ? sv / g : Infinity, alpha = k * beta;
   const row = (l, v, c) => `<div class="mo-f-r"><span>${l}</span><b style="color:${c || "inherit"}">${v}</b></div>`;
   const col = v => v >= 0 ? "var(--pos)" : "var(--neg)";
   $("#mo-f-out").innerHTML = `<div class="mo-f">` +
@@ -121,12 +122,13 @@ function futur() {
     row("Croissance en euros (avec l'inflation)", sg(Math.round(n * 100) / 100) + " % par an", col(n - r)) +
     row("Production dans 25 ans", n0(pib25) + " (aujourd'hui = 100)", col(g)) +
     row("Effort annuel pour stabiliser la dette publique", effort > 0.05 ? f1(effort) + " % du PIB, soit environ " + n0(effort * 29) + " milliards d'euros" : "aucun : elle fond d'elle-même", effort > 0.05 ? "var(--neg)" : "var(--pos)") +
-    row("Part du revenu réclamée à long terme par le capital (rendement de 4 %)", isFinite(alpha) ? n0(alpha) + " %" + (alpha > 100 ? " : impossible" : "") : "sans limite : impossible", isFinite(alpha) && alpha <= 32 ? "var(--pos)" : "var(--neg)") + `</div>` +
+    row("Patrimoine à long terme", isFinite(beta) ? f1(beta) + " années de revenu (France aujourd'hui : environ 6)" : "grossit sans limite", isFinite(beta) && beta <= 8 ? "inherit" : "var(--neg)") +
+    row(`Part du revenu réclamée à long terme par le capital (rendement de ${f2(k)} %)`, isFinite(alpha) ? n0(alpha) + " %" + (alpha > 100 ? " : impossible" : "") : "sans limite : impossible", isFinite(alpha) && alpha <= 32 ? "var(--pos)" : "var(--neg)") + `</div>` +
     `<p class="in-verdict">${g >= 2 ? "Une croissance solide : le système actuel tient sans difficulté, si ce découplage entre énergie et production se réalise vraiment, ce qui n'a jamais été observé à ce rythme."
       : g >= 1 ? "Une croissance modeste mais réelle : le système actuel tient, à condition que l'efficacité progresse vraiment à ce rythme."
-      : g > 0 ? "Une croissance très faible : les dettes demandent un effort, et le rendement exigé du capital devient trop élevé. Il faudra qu'il baisse (levier ①) ou que sa part grandisse (inégalités)."
+      : g > 0 ? "Une croissance très faible : les dettes demandent un effort, et le rendement exigé du capital devient trop élevé. Il faudra qu'il baisse (partie 8, levier ①) ou que sa part grandisse (inégalités)."
       : effort <= 0.05 ? "<span style=\"color:var(--neg)\">La production baisse</span>, mais l'inflation fait fondre la dette publique : ce sont les épargnants qui paient, par une perte de pouvoir d'achat de leur épargne. C'est la voie ② de la partie 7, subie plutôt que choisie, et le rendement du capital ne peut pas être tenu."
-      : "<span style=\"color:var(--neg)\">La production baisse</span> : avec les règles actuelles, dettes et rendement du capital ne peuvent plus être honorés. Sans les leviers ci-dessous, ils s'ajusteront par l'inflation, les défauts ou les krachs."}</p>`;
+      : "<span style=\"color:var(--neg)\">La production baisse</span> : avec les règles actuelles, dettes et rendement du capital ne peuvent plus être honorés. Sans les leviers de la partie 8, ils s'ajusteront par l'inflation, les défauts ou les krachs."}</p>`;
 }
 
 /* rendement du capital et croissance : patrimoine d'équilibre s/g et part du capital r × s/g */
