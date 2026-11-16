@@ -1,0 +1,756 @@
+{
+ "sources": {
+  "wna_types": {
+   "l": "World Nuclear Association, « Nuclear Power Reactors » (mise à jour du 5 août 2026), à partir de la base PRIS de l'AIEA",
+   "u": "https://world-nuclear.org/information-library/nuclear-power-reactors/overview/nuclear-power-reactors"
+  },
+  "wna_adv": {
+   "l": "World Nuclear Association, « Advanced Nuclear Power Reactors » (9 novembre 2026)",
+   "u": "https://world-nuclear.org/information-library/nuclear-power-reactors/other/advanced-nuclear-power-reactors"
+  },
+  "wna_fr": {
+   "l": "World Nuclear Association, « Nuclear Power in France » (1er avril 2026)",
+   "u": "https://world-nuclear.org/information-library/country-profiles/countries-a-f/france"
+  },
+  "wna_cn": {
+   "l": "World Nuclear Association, « Nuclear Power in China » (13 novembre 2026)",
+   "u": "https://world-nuclear.org/information-library/country-profiles/countries-a-f/china-nuclear-power"
+  },
+  "wna_plans": {
+   "l": "World Nuclear Association, « Plans for New Reactors Worldwide » (16 novembre 2026)",
+   "u": "https://world-nuclear.org/information-library/current-and-future-generation/plans-for-new-reactors-worldwide"
+  },
+  "wna_smr": {
+   "l": "World Nuclear Association, « Small Modular Reactors » et base de données des SMR (octobre-novembre 2026)",
+   "u": "https://world-nuclear.org/information-library/nuclear-power-reactors/small-modular-reactors/small-modular-reactor-smr-design-database"
+  },
+  "wna_fnr": {
+   "l": "World Nuclear Association, « Fast Neutron Reactors »",
+   "u": "https://world-nuclear.org/information-library/current-and-future-generation/fast-neutron-reactors"
+  },
+  "wna_gen4": {
+   "l": "World Nuclear Association, « Generation IV Nuclear Reactors » (21 novembre 2025)",
+   "u": "https://world-nuclear.org/information-library/nuclear-power-reactors/other/generation-iv-nuclear-reactors"
+  },
+  "ccomptes": {
+   "l": "Cour des comptes, « La filière EPR : une dynamique nouvelle, des risques persistants » (janvier 2025)",
+   "u": "https://www.vie-publique.fr/files/rapport/pdf/296839.pdf"
+  },
+  "rte": {
+   "l": "RTE, Futurs énergétiques 2050, rapport complet, chapitre 11 (février 2022)",
+   "u": "https://assets.rte-france.com/prod/public/2022-02/BP50_Principaux%20re%CC%81sultats_fev2022_Chap11_analyse%20economique.pdf"
+  }
+ },
+ "monde": {
+  "operables": 440,
+  "gwe": 400,
+  "twh2025": 2702,
+  "part": 9,
+  "pays": 31,
+  "construction": 80,
+  "pays_construction": 15
+ },
+ "types": [
+  {
+   "t": "REP / PWR (eau sous pression)",
+   "pays": "États-Unis, France, Japon, Russie, Chine, Corée",
+   "n": 316,
+   "gw": 306.2,
+   "comb": "UO₂ enrichi",
+   "calo": "eau",
+   "mod": "eau",
+   "s": "wna_types"
+  },
+  {
+   "t": "REB / BWR (eau bouillante)",
+   "pays": "États-Unis, Japon, Suède",
+   "n": 60,
+   "gw": 61.0,
+   "comb": "UO₂ enrichi",
+   "calo": "eau",
+   "mod": "eau"
+  },
+  {
+   "t": "PHWR / CANDU (eau lourde)",
+   "pays": "Canada, Inde",
+   "n": 47,
+   "gw": 24.5,
+   "comb": "UO₂ naturel",
+   "calo": "eau lourde",
+   "mod": "eau lourde"
+  },
+  {
+   "t": "AGR (gaz-graphite avancé)",
+   "pays": "Royaume-Uni",
+   "n": 8,
+   "gw": 4.7,
+   "comb": "UO₂ enrichi",
+   "calo": "CO₂",
+   "mod": "graphite"
+  },
+  {
+   "t": "RBMK / LWGR (eau-graphite)",
+   "pays": "Russie",
+   "n": 7,
+   "gw": 6.5,
+   "comb": "UO₂ enrichi",
+   "calo": "eau",
+   "mod": "graphite"
+  },
+  {
+   "t": "RNR / FNR (neutrons rapides)",
+   "pays": "Russie",
+   "n": 2,
+   "gw": 1.4,
+   "comb": "PuO₂ + UO₂",
+   "calo": "sodium liquide",
+   "mod": "aucun"
+  },
+  {
+   "t": "HTR / HTGR (haute température)",
+   "pays": "Chine",
+   "n": 1,
+   "gw": 0.2,
+   "comb": "UO₂ enrichi (particules TRISO)",
+   "calo": "hélium",
+   "mod": "graphite"
+  }
+ ],
+ "gen3": [
+  {
+   "r": "EPR",
+   "dev": "Framatome (France), avec Siemens",
+   "mwt": 4590,
+   "mwe": "1 750 brut / 1 630 net",
+   "boucles": 4,
+   "ac": "",
+   "bu": "65",
+   "eff": "37 % brut, 36 % net",
+   "surete": "Actif : 4 trains redondants séparés en 4 bâtiments ; double enceinte ; récupérateur de corium ; coque avion sur 2 bâtiments",
+   "seisme": "600 Gal",
+   "vie": "60 ans",
+   "statut": "En service : Taishan 1-2 (Chine), Olkiluoto 3 (Finlande), Flamanville 3 (France) ; en construction : Hinkley Point C (2 unités) ; décidé : Sizewell C"
+  },
+  {
+   "r": "EPR2",
+   "dev": "EDF / Framatome",
+   "mwt": null,
+   "mwe": "~1 650 (mêmes caractéristiques que l'EPR)",
+   "boucles": 4,
+   "ac": "",
+   "bu": "",
+   "eff": "",
+   "surete": "Conception simplifiée pour la construction ; refroidissement de secours du cœur différent de l'EPR",
+   "seisme": "",
+   "vie": "60 ans",
+   "statut": "6 unités prévues, par paires, à Penly, Gravelines et Bugey ; travaux préparatoires à Penly depuis 2024 ; première mise en service visée en 2038"
+  },
+  {
+   "r": "AP1000 / CAP1000",
+   "dev": "Westinghouse (États-Unis) ; version chinoise SNPTC",
+   "mwt": 3415,
+   "mwe": "1 250 brut / 1 110-1 170 net",
+   "boucles": 2,
+   "ac": "",
+   "bu": "",
+   "eff": "",
+   "surete": "Passif : évacuation de la puissance résiduelle par convection, refroidissement passif de l'enceinte, rétention du corium en cuve ; aucune pompe de sûreté",
+   "seisme": "",
+   "vie": "60 ans",
+   "statut": "4 en Chine, 2 aux États-Unis (Vogtle 3-4, 2023-2024) ; 13 CAP1000 en construction en Chine"
+  },
+  {
+   "r": "CAP1400 / Guohe One",
+   "dev": "SNPTC / SNERDI (Chine), dérivé de l'AP1000",
+   "mwt": 4040,
+   "mwe": "1 500",
+   "boucles": 2,
+   "ac": "193",
+   "bu": "~50 (max 59,5)",
+   "eff": "",
+   "surete": "Passif ; 72 h sans intervention ; sortie cœur 323 °C",
+   "seisme": "300 Gal",
+   "vie": "60 ans",
+   "statut": "2 unités à Shidaowan (réseau 2024 et 2025) ; 2 approuvées à Laiyang (2026) ; propriété intellectuelle chinoise au-delà de 1 350 MWe"
+  },
+  {
+   "r": "Hualong One / HPR1000",
+   "dev": "CNNC et CGN (Chine), issu de l'héritage du M310 français",
+   "mwt": 3050,
+   "mwe": "1 170 brut / 1 090 net",
+   "boucles": 3,
+   "ac": "177 (3,66 m)",
+   "bu": "45",
+   "eff": "36 %",
+   "surete": "Actif avec quelques éléments passifs ; double enceinte ; cycle de 18-24 mois",
+   "seisme": "300 Gal",
+   "vie": "60 ans",
+   "statut": "En service : Fuqing 5-6, Fangchenggang 3-4 (Chine), 2 unités à Karachi (Pakistan) ; 20 en construction"
+  },
+  {
+   "r": "VVER-1200 (AES-2006)",
+   "dev": "Rosatom / Gidropress (Russie)",
+   "mwt": 3212,
+   "mwe": "~1 200 brut / 1 085-1 114 net",
+   "boucles": 4,
+   "ac": "163 (UO₂ à 4,95 %)",
+   "bu": "60",
+   "eff": "34,8 % net",
+   "surete": "Actif et passif selon les versions ; double enceinte ; récupérateur de corium ; sortie cœur 329 °C",
+   "seisme": "",
+   "vie": "60 ans",
+   "statut": "En service : Novovoronej II, Leningrad II, Ostrovets (Biélorussie), Tianwan 7 ; 16 en construction (Turquie, Égypte, Bangladesh, Chine…)"
+  },
+  {
+   "r": "APR1400",
+   "dev": "KHNP (Corée du Sud), dérivé du System 80+",
+   "mwt": 3983,
+   "mwe": "1 455 brut / 1 350-1 400 net",
+   "boucles": 2,
+   "ac": "241",
+   "bu": "55",
+   "eff": "",
+   "surete": "Actif ; suivi de charge 100-50-100 % en 2 h ; version européenne avec double enceinte et récupérateur de corium",
+   "seisme": "300 Gal",
+   "vie": "60 ans",
+   "statut": "En service : Shin Kori 3-4, Shin Hanul 1-2 (Corée), Barakah 1-4 (Émirats) ; 4 en construction"
+  },
+  {
+   "r": "ABWR",
+   "dev": "GE Hitachi, Toshiba (États-Unis, Japon)",
+   "mwt": null,
+   "mwe": "1 380 brut",
+   "boucles": "– (eau bouillante)",
+   "ac": "",
+   "bu": "",
+   "eff": "",
+   "surete": "Actif",
+   "seisme": "",
+   "vie": "",
+   "statut": "En service au Japon depuis 1996-1997"
+  }
+ ],
+ "chantiers": {
+  "note": "Durée entre le premier béton (ou début de construction) et le raccordement au réseau ou la mise en service, en mois, d'après les dates publiées par les sources ; prévision initiale quand elle est connue.",
+  "rows": [
+   {
+    "l": "Fuqing 5 (Hualong One, Chine)",
+    "prevu": null,
+    "reel": 68,
+    "txt": "mai 2015 → mise en service commerciale janvier 2021",
+    "s": "wna_adv"
+   },
+   {
+    "l": "Fangchenggang 3 (Hualong One, Chine)",
+    "prevu": null,
+    "reel": 85,
+    "txt": "décembre 2015 → réseau janvier 2023",
+    "s": "wna_cn"
+   },
+   {
+    "l": "Premiers AP1000 (Chine)",
+    "prevu": 57,
+    "reel": 110,
+    "txt": "57 mois prévus, environ 110 réalisés (pompes primaires à reconcevoir)",
+    "s": "wna_adv"
+   },
+   {
+    "l": "Hinkley Point C (EPR, Royaume-Uni)",
+    "prevu": 78,
+    "reel": 132,
+    "txt": "78 mois prévus à la décision d'investissement ; 120 à 144 mois désormais estimés après le radier",
+    "s": "ccomptes"
+   },
+   {
+    "l": "Flamanville 3 (EPR, France)",
+    "prevu": 54,
+    "reel": 204,
+    "txt": "premier béton décembre 2007, 54 mois prévus ; raccordé au réseau en décembre 2024",
+    "s": "wna_fr"
+   }
+  ]
+ },
+ "epr": [
+  {
+   "p": "Taishan 1-2 (Chine)",
+   "debut": "premier béton octobre 2009",
+   "mes": "2018 et 2019",
+   "cout": "Participation d'EDF : 30 % (8,6 Md de yuans)",
+   "rex": "Premier EPR au monde en service. Réacteur 1 arrêté un an (juillet 2021 - août 2022) pour un défaut de gaines de combustible, faible production jusqu'en 2023.",
+   "s": "ccomptes"
+  },
+  {
+   "p": "Olkiluoto 3 (Finlande)",
+   "debut": "estimation initiale de 2003",
+   "mes": "production régulière avril 2023, 13 ans de retard",
+   "cout": "2,3 Md€ prévus en 2003 → 9,5 Md€ (constructeurs, hors frais financiers)",
+   "rex": "Contrat clé en main d'Areva et Siemens ; les difficultés ont contribué au démantèlement d'Areva. Couvre environ 14 % de la consommation finlandaise.",
+   "s": "ccomptes"
+  },
+  {
+   "p": "Flamanville 3 (France)",
+   "debut": "premier béton décembre 2007",
+   "mes": "raccordé au réseau en décembre 2024, 12 ans de retard",
+   "cout": "3,3 Md€₂₀₀₅ prévus → 13,2 Md€₂₀₁₅ de construction ; coût total 23,7 Md€₂₀₂₃ avec intérêts intercalaires",
+   "rex": "Défauts de l'acier de la cuve (Creusot Forge), soudures du circuit secondaire. Selon la Cour, il faudrait un prix de vente de 122 €₂₀₂₃/MWh pour une rentabilité de 4 % (176 € pour 7 %), avec un facteur de charge de 85 %.",
+   "s": "ccomptes"
+  },
+  {
+   "p": "Hinkley Point C (Royaume-Uni, 2 EPR)",
+   "debut": "en construction (dôme de l'unité 1 posé fin 2023)",
+   "mes": "visée 2029-2031 (initialement 2025)",
+   "cout": "21,5-22,5 Md£₂₀₁₅ estimés en 2019 → 31-34 Md£₂₀₁₅ en 2024 ; prix garanti 92,50 £₂₀₁₂/MWh indexé",
+   "rex": "Dépréciation de 11,5 Md€ dans les comptes 2023 d'EDF ; financement alourdi par le retrait du co-actionnaire chinois CGN.",
+   "s": "ccomptes"
+  },
+  {
+   "p": "Programme EPR2 (France, 3 paires)",
+   "debut": "travaux préparatoires à Penly depuis 2024",
+   "mes": "première unité visée 2038",
+   "cout": "51,7 Md€₂₀₂₀ estimés en 2022 → 67,4 Md€₂₀₂₀ (79,9 Md€₂₀₂₃) hors financement, +30 %",
+   "rex": "La Cour recommande de ne prendre la décision d'investissement qu'une fois le financement sécurisé et la conception détaillée suffisamment avancée ; elle juge qu'une accumulation de risques pourrait conduire à l'échec du programme. EDF a remis un nouveau devis fin 2025, audité par l'État (RTE, 2026).",
+   "s": "ccomptes"
+  }
+ ],
+ "construction_modeles": [
+  {
+   "m": "Hualong One",
+   "n": 20,
+   "l": "Hualong One (Chine, REP)"
+  },
+  {
+   "m": "VVER-1200",
+   "n": 16,
+   "l": "VVER-1200 (Russie, REP)"
+  },
+  {
+   "m": "CAP1000",
+   "n": 13,
+   "l": "CAP1000 / AP1000 (Chine, REP passif)"
+  },
+  {
+   "m": "VVER-1000",
+   "n": 5,
+   "l": "VVER-1000 (Russie, REP)"
+  },
+  {
+   "m": "APR1400",
+   "n": 4,
+   "l": "APR1400 (Corée, REP)"
+  },
+  {
+   "m": "CFR600",
+   "n": 2,
+   "l": "CFR-600 (Chine, neutrons rapides sodium)"
+  },
+  {
+   "m": "VVER-TOI",
+   "n": 2,
+   "l": "VVER-TOI (Russie, REP)"
+  },
+  {
+   "m": "RITM-200S",
+   "n": 2,
+   "l": "RITM-200S (Russie, petit REP flottant)"
+  },
+  {
+   "m": "EPR",
+   "n": 2,
+   "l": "EPR (France, REP)"
+  },
+  {
+   "m": "ACP100",
+   "n": 1,
+   "l": "ACP100 Linglong One (Chine, SMR REP)"
+  },
+  {
+   "m": "FBR",
+   "n": 1,
+   "l": "PFBR (Inde, neutrons rapides sodium)"
+  },
+  {
+   "m": "PHWR-700",
+   "n": 1,
+   "l": "PHWR-700 (Inde, eau lourde)"
+  },
+  {
+   "m": "BREST-300",
+   "n": 1,
+   "l": "BREST-OD-300 (Russie, neutrons rapides plomb)"
+  },
+  {
+   "m": "BWRX-300",
+   "n": 1,
+   "l": "BWRX-300 (États-Unis/Japon, SMR REB)"
+  },
+  {
+   "m": "HTR-PM600",
+   "n": 1,
+   "l": "HTR-PM600 (Chine, haute température)"
+  }
+ ],
+ "construction_pays": [
+  {
+   "p": "Chine",
+   "n": 39
+  },
+  {
+   "p": "Russie",
+   "n": 7
+  },
+  {
+   "p": "Inde",
+   "n": 6
+  },
+  {
+   "p": "Corée du Sud",
+   "n": 4
+  },
+  {
+   "p": "Turquie",
+   "n": 4
+  },
+  {
+   "p": "Égypte",
+   "n": 4
+  },
+  {
+   "p": "Bangladesh",
+   "n": 2
+  },
+  {
+   "p": "Royaume-Uni",
+   "n": 2
+  },
+  {
+   "p": "Iran",
+   "n": 1
+  },
+  {
+   "p": "Canada",
+   "n": 1
+  },
+  {
+   "p": "Pakistan",
+   "n": 1
+  },
+  {
+   "p": "Hongrie",
+   "n": 1
+  }
+ ],
+ "chine": {
+  "operables": 65,
+  "mw_op": 65085,
+  "construction": 41,
+  "mw_cons": 42633
+ },
+ "smr": {
+  "n": 147,
+  "types": [
+   {
+    "t": "Eau (légère ou lourde)",
+    "n": 50
+   },
+   {
+    "t": "Gaz (hélium)",
+    "n": 39
+   },
+   {
+    "t": "Métal liquide (sodium, plomb)",
+    "n": 28
+   },
+   {
+    "t": "Sels fondus",
+    "n": 27
+   },
+   {
+    "t": "Caloducs",
+    "n": 3
+   }
+  ],
+  "pays": [
+   {
+    "p": "États-Unis",
+    "n": 54
+   },
+   {
+    "p": "Russie",
+    "n": 18
+   },
+   {
+    "p": "Chine",
+    "n": 12
+   },
+   {
+    "p": "France",
+    "n": 12
+   },
+   {
+    "p": "Japon",
+    "n": 11
+   },
+   {
+    "p": "Canada",
+    "n": 6
+   },
+   {
+    "p": "Corée du Sud",
+    "n": 5
+   },
+   {
+    "p": "Royaume-Uni",
+    "n": 5
+   }
+  ],
+  "fiches": [
+   {
+    "n": "BWRX-300",
+    "dev": "GE Hitachi",
+    "pays": "États-Unis",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 300,
+    "mwt": 870,
+    "t": 288,
+    "enr": "<5%",
+    "statut": "en construction",
+    "note": "premier chantier à Darlington (Ontario) : radier posé en avril 2026 ; permis de construire américain (Clinch River) en septembre 2026"
+   },
+   {
+    "n": "NUWARD SM400",
+    "dev": "EDF",
+    "pays": "France",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 400,
+    "mwt": null,
+    "t": null,
+    "enr": "<5%",
+    "statut": "en conception",
+    "note": "refondu en 2025 : un seul REP de 400 MWe ; premier chantier visé en 2030"
+   },
+   {
+    "n": "NuScale Power Module",
+    "dev": "NuScale Power",
+    "pays": "États-Unis",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 77,
+    "mwt": 250,
+    "t": 316,
+    "enr": "<5%",
+    "statut": "en conception"
+   },
+   {
+    "n": "Rolls-Royce SMR",
+    "dev": "Rolls-Royce",
+    "pays": "Royaume-Uni",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 470,
+    "mwt": 1358,
+    "t": 322,
+    "enr": "<5%",
+    "statut": "en conception"
+   },
+   {
+    "n": "ACP100",
+    "dev": "CNNC (NPIC)",
+    "pays": "Chine",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 125,
+    "mwt": 385,
+    "t": 320,
+    "enr": "<5%",
+    "statut": "en construction",
+    "note": "Linglong One à Hainan : essais à chaud en cours fin 2026"
+   },
+   {
+    "n": "KLT-40S",
+    "dev": "OKBM Afrikantov",
+    "pays": "Russie",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 35,
+    "mwt": 150,
+    "t": 316,
+    "enr": "5-20%",
+    "statut": "en service",
+    "note": "centrale flottante Akademik Lomonossov (2 réacteurs)"
+   },
+   {
+    "n": "RITM-200S",
+    "dev": "OKBM Afrikantov",
+    "pays": "Russie",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 50,
+    "mwt": 198,
+    "t": 321,
+    "enr": "5-20%",
+    "statut": "en construction"
+   },
+   {
+    "n": "HTR-PM",
+    "dev": "INET/Tsinghua University",
+    "pays": "Chine",
+    "type": "Gaz (hélium)",
+    "spectre": "thermique",
+    "mwe": 105,
+    "mwt": 250,
+    "t": 750,
+    "enr": "5-20%",
+    "statut": "en service",
+    "note": "Shidaowan, en service commercial depuis décembre 2023 (2 modules, 1 turbine)"
+   },
+   {
+    "n": "BREST-OD-300",
+    "dev": "NIKIET",
+    "pays": "Russie",
+    "type": "Métal liquide (sodium, plomb)",
+    "spectre": "rapide",
+    "mwe": 300,
+    "mwt": 700,
+    "t": 535,
+    "enr": "5-20%",
+    "statut": "en construction",
+    "note": "Seversk, avec usine de combustible nitrure et retraitement sur site (cycle fermé)"
+   },
+   {
+    "n": "CAREM25",
+    "dev": "CNEA",
+    "pays": "Argentine",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": 32,
+    "mwt": 100,
+    "t": 326,
+    "enr": "<5%",
+    "statut": "en construction"
+   },
+   {
+    "n": "Natrium",
+    "dev": "TerraPower",
+    "pays": "États-Unis",
+    "type": "Métal liquide (sodium, plomb)",
+    "spectre": "rapide",
+    "mwe": 345,
+    "mwt": 840,
+    "t": 500,
+    "enr": "5-20%",
+    "statut": "en conception"
+   },
+   {
+    "n": "Xe-100",
+    "dev": "X-energy",
+    "pays": "États-Unis",
+    "type": "Gaz (hélium)",
+    "spectre": "thermique",
+    "mwe": 80,
+    "mwt": 200,
+    "t": 750,
+    "enr": "5-20%",
+    "statut": "en conception"
+   },
+   {
+    "n": "Hermes 1&2",
+    "dev": "Kairos Power",
+    "pays": "États-Unis",
+    "type": "Sels fondus",
+    "spectre": "thermique",
+    "mwe": 20,
+    "mwt": 35,
+    "t": 650,
+    "enr": "5-20%",
+    "statut": "en construction"
+   },
+   {
+    "n": "LFR-AS-200",
+    "dev": "newcleo",
+    "pays": "France",
+    "type": "Métal liquide (sodium, plomb)",
+    "spectre": "rapide",
+    "mwe": 200,
+    "mwt": 480,
+    "t": 530,
+    "enr": "",
+    "statut": "en conception"
+   },
+   {
+    "n": "XAMR",
+    "dev": "Naarea",
+    "pays": "France",
+    "type": "Sels fondus",
+    "spectre": "rapide",
+    "mwe": 40,
+    "mwt": 80,
+    "t": 625,
+    "enr": "",
+    "statut": "en conception"
+   },
+   {
+    "n": "HEXANA",
+    "dev": "HEXANA",
+    "pays": "France",
+    "type": "Sels fondus",
+    "spectre": "rapide",
+    "mwe": 150,
+    "mwt": 400,
+    "t": 530,
+    "enr": "",
+    "statut": "en conception"
+   },
+   {
+    "n": "Stellarium",
+    "dev": "Stellaria",
+    "pays": "France",
+    "type": "Sels fondus",
+    "spectre": "rapide",
+    "mwe": 250,
+    "mwt": 540,
+    "t": 750,
+    "enr": "5-20%",
+    "statut": "en conception"
+   },
+   {
+    "n": "Blue Capsule",
+    "dev": "Blue Capsule Technology",
+    "pays": "France",
+    "type": "Métal liquide (sodium, plomb)",
+    "spectre": "thermique",
+    "mwe": 50,
+    "mwt": 150,
+    "t": 750,
+    "enr": "5-20%",
+    "statut": "en conception"
+   },
+   {
+    "n": "CAL-30",
+    "dev": "Calogena",
+    "pays": "France",
+    "type": "Eau (légère ou lourde)",
+    "spectre": "thermique",
+    "mwe": "chaleur seule",
+    "mwt": 30,
+    "t": 110,
+    "enr": "<5%",
+    "statut": "en conception"
+   },
+   {
+    "n": "Otrera",
+    "dev": "Otrera New Energy",
+    "pays": "France",
+    "type": "Sels fondus",
+    "spectre": "rapide",
+    "mwe": 110,
+    "mwt": 300,
+    "t": 550,
+    "enr": "5-20%",
+    "statut": "en conception"
+   }
+  ]
+ },
+ "construction_suspendus": 5
+}

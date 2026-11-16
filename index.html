@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121h">
+<link rel="stylesheet" href="style.css?v=20261121i">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -58,6 +58,7 @@
     <nav class="tabs" data-group="ressources" aria-label="Ressources" hidden>
       <span class="tab-sep">Énergie</span>
       <a href="#energie">Énergie</a>
+      <a href="#nucleaire">Nucléaire</a>
       <a href="#territoire">Territoire</a>
       <a href="#transports">Transports</a>
       <span class="tab-sep">Climat</span>
@@ -860,6 +861,100 @@
   <p class="muted" style="font-size:.8rem">Sources : RTE, <a href="https://assets.rte-france.com/prod/public/2022-02/BP50_Principaux%20re%CC%81sultats_fev2022_Chap11_analyse%20economique.pdf" target="_blank" rel="noopener"><i>Futurs énergétiques 2050</i>, rapport complet, chapitre 11 « Analyse économique »</a> (février 2022) ; RTE, <a href="https://assets.rte-france.com/prod/public/2026-04/RTE-Reactualisation-FE-2050-consultation-publique-2026-propositions-detaillees.pdf" target="_blank" rel="noopener">réactualisation, consultation publique</a> (avril 2026) ; CRE, <a href="https://www.vie-publique.fr/files/rapport/pdf/300538.pdf" target="_blank" rel="noopener">coûts complets du nucléaire historique 2026-2028</a> (septembre 2025) ; CRE, <a href="https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260114_2026-06_TRVE_2026.pdf" target="_blank" rel="noopener">délibération TRVE n° 2026-06</a> (janvier 2026). Les valeurs RTE sont extraites des tracés vectoriels des graphiques du rapport (précision de l'ordre de 1 %), sauf mention dans le texte.</p>
 </section>
 
+
+<section id="nucleaire" class="panel">
+  <div class="panel-head">
+    <h2>Le nucléaire : le choix technologique de la France face aux autres filières</h2>
+  </div>
+  <div class="kpis" id="nu-kpis"></div>
+  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#nucleaire" data-to="nu-p1">1. les filières</a> · <a href="#nucleaire" data-to="nu-p2">2. le choix français</a> · <a href="#nucleaire" data-to="nu-p3">3. la génération III+</a> · <a href="#nucleaire" data-to="nu-p4">4. l'EPR à l'épreuve des chantiers</a> · <a href="#nucleaire" data-to="nu-p5">5. ce qui se construit</a> · <a href="#nucleaire" data-to="nu-p6">6. la Chine</a> · <a href="#nucleaire" data-to="nu-p7">7. les SMR</a> · <a href="#nucleaire" data-to="nu-p8">8. neutrons rapides et génération IV</a></p>
+
+  <h3 class="en-part" id="nu-p1">1. Les grandes filières de réacteurs</h3>
+  <div class="callout small"><ul>
+    <li><b>Trois choix de conception définissent une filière</b> : le <b>combustible</b> (uranium naturel ou enrichi, plutonium), le <b>caloporteur</b> qui évacue la chaleur du cœur (eau, eau lourde, gaz, sodium, plomb, sels fondus) et le <b>modérateur</b> qui ralentit les neutrons pour entretenir la réaction (eau, eau lourde, graphite, ou aucun pour les réacteurs à neutrons rapides).</li>
+    <li><b>L'eau ordinaire a gagné</b> : les réacteurs dérivés de la propulsion des sous-marins et des navires produisent environ 85 % de l'électricité nucléaire mondiale. Dans un réacteur à eau sous pression (REP), l'eau du circuit primaire reste liquide à plus de 300 °C grâce à une très forte pression ; elle transmet sa chaleur, par des générateurs de vapeur, à un circuit secondaire qui fait tourner la turbine. Dans un réacteur à eau bouillante (REB), un seul circuit : l'eau bout dans le cœur vers 285 °C et la vapeur va directement à la turbine.</li>
+    <li><b>L'eau lourde (CANDU)</b> ralentit les neutrons en en absorbant moins : elle permet d'utiliser de l'uranium naturel, sans enrichissement, et de recharger le combustible en marche. <b>Le graphite</b> (britanniques AGR, soviétiques RBMK de type Tchernobyl, anciens UNGG français) a été largement abandonné. <b>Les neutrons rapides</b> n'ont pas de modérateur : ils tirent plus de 60 fois plus d'énergie de l'uranium extrait, mais seuls deux tournent aujourd'hui, en Russie.</li>
+  </ul></div>
+  <div class="table-scroll" id="nu-types"></div>
+
+  <h3 class="en-part" id="nu-p2">2. Le choix français : un seul modèle, décliné en séries</h3>
+  <div class="callout small"><ul>
+    <li><b>Les débuts : le graphite-gaz national (UNGG)</b>. Les neuf premiers réacteurs de puissance, conçus par le CEA, fonctionnaient à l'uranium naturel, modérés au graphite et refroidis au CO₂, proches des Magnox britanniques. EDF a ensuite choisi l'eau sous pression, avec une usine d'enrichissement nationale et une fabrication entièrement française. Les projets de réacteurs à eau bouillante n'ont pas abouti.</li>
+    <li><b>1974 : le plan nucléaire</b>. Juste après le premier choc pétrolier, le gouvernement décide une montée en puissance rapide sur technologie Westinghouse : la France avait une solide industrie lourde mais peu de ressources énergétiques, et le combustible pèse peu dans le coût du nucléaire.</li>
+    <li><b>Une standardisation unique au monde</b> : tous les réacteurs actuels sont des REP de Framatome, en trois paliers : <b>32 de 900 MWe</b> (trois boucles), <b>20 de 1 300 MWe</b> (paliers P4 et P'4, quatre boucles) et <b>4 de 1 450 MWe</b> (palier N4). La contrepartie de la standardisation : un défaut se retrouve sur toute une série, comme la corrosion sous contrainte découverte fin 2021 sur les tuyauteries d'injection de sûreté des paliers N4 et P'4, qui a conduit à l'arrêt de nombreux réacteurs en 2022.</li>
+    <li><b>Un parc qui module</b> : le nucléaire représentant l'essentiel de la production d'EDF, les réacteurs français suivent la demande (barres de commande dites « grises », moins absorbantes, depuis 1981). Un réacteur peut passer de 100 % à 30 % de sa puissance en 30 minutes en début de cycle. D'où un facteur de charge d'environ 70 %, bas par rapport aux standards mondiaux.</li>
+    <li><b>Le recyclage</b> : la France retraite son combustible usé à La Hague et fabrique du combustible MOX (uranium et plutonium) à l'usine Melox (150 tonnes par an) ; environ 17 % de son électricité provient de combustible recyclé.</li>
+    <li><b>La suite : l'EPR</b>, développé par Framatome et Siemens à partir du N4 français et du Konvoi allemand, adopté en 1995 comme nouveau standard, puis l'<b>EPR2</b>, version simplifiée pour la construction, qui doit remplacer le parc à partir de 2038.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : World Nuclear Association, <a href="https://world-nuclear.org/information-library/country-profiles/countries-a-f/france" target="_blank" rel="noopener">Nuclear Power in France</a> (avril 2026) et <a href="https://world-nuclear.org/information-library/nuclear-power-reactors/overview/nuclear-power-reactors" target="_blank" rel="noopener">Nuclear Power Reactors</a>.</p></div>
+
+  <h3 class="en-part" id="nu-p3">3. La génération III+ : comparaison technique des grands réacteurs</h3>
+  <div class="callout small"><ul>
+    <li><b>Ce qui change par rapport à la génération II</b> (le parc français actuel) : durée de vie de 60 ans au lieu de 30 à 40, probabilité de fusion du cœur environ dix fois plus faible, meilleure résistance à la chute d'avion, taux de combustion plus élevé, et suivi de charge prévu dès la conception (entre 50 et 100 % selon les exigences européennes).</li>
+    <li><b>Deux philosophies de sûreté</b> : l'<b>EPR</b> multiplie les systèmes actifs (pompes, diesels) redondants et séparés physiquement, et ajoute un récupérateur de corium sous la cuve ; l'<b>AP1000</b> américain et ses dérivés chinois misent sur la sûreté passive (gravité, convection naturelle), sans pompe de sûreté, et sur la rétention du cœur fondu dans la cuve. Les modèles chinois, russes et coréens se situent entre les deux.</li>
+    <li><b>Une question de taille</b> : avec 1 650 MWe nets, l'EPR est le plus puissant ; c'est aussi le plus complexe à construire. L'AP1000 utilise environ 90 m³ de béton par MWe, et ses modules préfabriqués dépassent 100 tonnes.</li>
+  </ul></div>
+  <div class="table-scroll" id="nu-gen3"></div>
+
+  <h3 class="en-part" id="nu-p4">4. L'EPR à l'épreuve des chantiers</h3>
+  <p class="muted" style="margin-top:0">Durée de construction des premiers réacteurs de génération III+, en mois (trait noir : durée prévue au lancement)</p>
+  <div id="nu-chantiers"></div>
+  <div class="table-scroll" id="nu-epr" style="margin-top:10px"></div>
+  <div class="callout small"><ul>
+    <li><b>Les premiers exemplaires coûtent toujours plus cher</b>, mais l'écart est ici exceptionnel : Flamanville 3 a pris 17 ans au lieu de 4 et demi, Olkiluoto 3 treize ans de retard. Les causes relevées par la Cour des comptes et la World Nuclear Association : coûts et délais sous-estimés au départ, perte de compétences techniques et de « culture qualité » dans la filière, défauts de fabrication (acier de la cuve, soudures du circuit secondaire), organisation insuffisante du suivi par EDF, et adaptations demandées par chaque autorité de sûreté nationale.</li>
+    <li><b>Ailleurs, des séries plus rapides</b> : la Chine construit ses Hualong One en 5 à 7 ans ; même ses premiers AP1000, pourtant très en retard, ont pris environ 9 ans. Les deux EPR de Taishan, construits en Chine, ont été les premiers EPR mis en service au monde (2018-2019).</li>
+    <li><b>Le coût du capital domine</b> : selon la Cour des comptes, Flamanville 3 devrait vendre son électricité 122 €₂₀₂₃ par MWh pour rapporter 4 % par an, et 176 € pour 7 %. C'est tout l'enjeu du financement de l'EPR2 (voir l'onglet <a href="#energie">Énergie</a>, partie 2).</li>
+  </ul></div>
+
+  <h3 class="en-part" id="nu-p5">5. Ce qui se construit dans le monde</h3>
+  <div class="grid2">
+    <div><p class="muted" style="margin-top:0">Réacteurs en construction par modèle</p><div id="nu-modeles"></div></div>
+    <div><p class="muted" style="margin-top:0">Réacteurs en construction par pays (hors 5 chantiers suspendus)</p><div id="nu-pays"></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Le marché mondial est dominé par trois modèles</b> : le Hualong One chinois, le VVER-1200 russe et le CAP1000 (AP1000 chinois). La Russie construit à l'étranger : Turquie, Égypte, Bangladesh, Hongrie, Iran, Chine. La Corée exporte l'APR1400 (Émirats arabes unis, puis République tchèque avec l'APR1000).</li>
+    <li><b>L'EPR ne se construit plus qu'au Royaume-Uni</b> (Hinkley Point C, puis Sizewell C) en attendant l'EPR2 en France.</li>
+    <li><b>Sur 20 ans, autant de fermetures que de mises en service</b> : 111 réacteurs arrêtés pour 101 démarrés ; la croissance vient presque entièrement d'Asie.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : World Nuclear Association, <a href="https://world-nuclear.org/information-library/current-and-future-generation/plans-for-new-reactors-worldwide" target="_blank" rel="noopener">Plans for New Reactors Worldwide</a> (16 novembre 2026). Le profil Chine de la même source compte 41 chantiers chinois (date de mise à jour différente).</p></div>
+
+  <h3 class="en-part" id="nu-p6">6. La Chine : apprendre de tous, puis construire en série</h3>
+  <div class="callout small"><ul>
+    <li><b>Une technologie importée puis assimilée</b> : la Chine a puisé chez les Français (base de ses premiers grands réacteurs, issus du M310 de Framatome, dont une trentaine en ACPR-1000), les Canadiens (CANDU), les Russes (VVER) et les Américains (AP1000 de Westinghouse, avec transfert de technologie en 34 lots). Elle a fusionné ses deux variantes nationales en un modèle unique, le <b>Hualong One</b>, et dérivé de l'AP1000 le <b>CAP1400 (Guohe One)</b>, dont elle détient la propriété intellectuelle.</li>
+    <li><b>Des coûts annoncés bas</b> : environ 17 000 yuans par kW pour le Hualong One (environ 2 600 $), 13 000 visés pour le Hualong Two avec une construction ramenée de cinq à quatre ans. Une autre estimation de la même source situe le Hualong One à 3 500 $ par kW. À comparer aux 67,4 Md€ annoncés pour 6 EPR2, soit environ 6 800 € par kW (hors financement).</li>
+    <li><b>Toutes les filières en parallèle</b> : premier réacteur à haute température commercial au monde (HTR-PM, 2023, sortie à 750 °C), petit réacteur modulaire Linglong One en essais, réacteurs à neutrons rapides refroidis au sodium (CFR-600) en construction, et objectif de cycle du combustible fermé.</li>
+    <li><b>Un tissu industriel complet</b> : la source considère la chaîne d'approvisionnement comme la principale force de la Chine par rapport au reste du monde ; les cuves et générateurs de vapeur de Taishan 2 ont été entièrement fabriqués en Chine, alors que ceux de Taishan 1 venaient du Japon et de France.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : World Nuclear Association, <a href="https://world-nuclear.org/information-library/country-profiles/countries-a-f/china-nuclear-power" target="_blank" rel="noopener">Nuclear Power in China</a> (novembre 2026) et <a href="https://world-nuclear.org/information-library/nuclear-power-reactors/other/advanced-nuclear-power-reactors" target="_blank" rel="noopener">Advanced Nuclear Power Reactors</a>. Coût EPR2 : Cour des comptes (2025), 67,4 Md€₂₀₂₀ pour environ 9,9 GW (6 × ~1 650 MWe).</p></div>
+
+  <h3 class="en-part" id="nu-p7">7. Les petits réacteurs modulaires (SMR)</h3>
+  <div class="callout small"><ul>
+    <li><b>Définition</b> : réacteurs de moins de 300 MWe (parfois jusqu'à 600), conçus pour être fabriqués en usine par modules et en série, puis assemblés sur site. L'idée : remplacer les économies d'échelle (un très gros réacteur) par des économies de série (beaucoup de petits), réduire l'investissement unitaire et la durée des chantiers, et viser de nouveaux usages : chaleur industrielle, réseaux isolés, remplacement de centrales à charbon.</li>
+    <li><b>La plupart restent sur le papier</b> : sur plus de 140 conceptions recensées, une dizaine seulement sont en service ou en construction, surtout en Russie et en Chine. Les projets les plus proches du marché sont des réacteurs à eau légère, la technologie la moins risquée.</li>
+    <li><b>La France</b> : EDF a remplacé début 2025 sa première version de NUWARD (deux réacteurs de 170 MWe) par un REP unique de 400 MWe ; premier chantier visé en 2030. Une douzaine de conceptions françaises (dont newcleo, Naarea, Hexana, Stellaria, Blue Capsule, Calogena, Otrera) développent d'autres concepts, surtout à neutrons rapides ou à sels fondus.</li>
+    <li><b>Le pari économique n'est pas encore démontré</b> : un petit réacteur perd les économies d'échelle ; il ne devient compétitif que si la production en série démarre vraiment.</li>
+  </ul></div>
+  <div class="grid2">
+    <div><p class="muted" style="margin-top:0">Conceptions de SMR par technologie</p><div id="nu-smr-types"></div></div>
+    <div><p class="muted" style="margin-top:0">Conceptions de SMR par pays du concepteur</p><div id="nu-smr-pays"></div></div>
+  </div>
+  <div class="table-scroll" id="nu-smr" style="margin-top:10px"></div>
+
+  <h3 class="en-part" id="nu-p8">8. Neutrons rapides et génération IV : la France a ouvert la voie, puis s'est arrêtée</h3>
+  <div class="callout small"><ul>
+    <li><b>L'intérêt</b> : un réacteur à neutrons rapides peut brûler l'uranium 238, qui forme 99,3 % de l'uranium naturel, et le plutonium du combustible usé, et ainsi tirer plus de 60 fois plus d'énergie de l'uranium extrait. La France disposera vers 2050 d'environ un demi-million de tonnes d'uranium appauvri, reste de l'enrichissement : avec ces réacteurs, ce stock deviendrait un combustible.</li>
+    <li><b>Phénix (1973-2009)</b>, prototype de 233 MWe à Marcoule, a démontré le cycle fermé : le plutonium produit a été retraité et réutilisé plusieurs fois, avec un taux de surgénération mesuré de 1,16 (16 % de matière fissile créée en plus de celle consommée). <b>Superphénix</b> (environ 1 200 MWe, Creys-Malville) a été fermé en 1998 pour des raisons politiques, après très peu de fonctionnement en 13 ans.</li>
+    <li><b>ASTRID</b>, prototype de 600 MWe refroidi au sodium, devait préparer une série commerciale vers 2050 ; après environ 1 milliard d'euros de crédits publics et une phase d'avant-projet menée jusqu'en 2019, le CEA a renoncé en août 2019 à le construire à court ou moyen terme.</li>
+    <li><b>Pendant ce temps</b> : la Russie exploite les BN-600 et BN-800 (sodium) et construit BREST-OD-300 (plomb, combustible nitrure, retraitement sur site) ; la Chine construit deux CFR-600 ; l'Inde achève son prototype PFBR de 500 MWe.</li>
+    <li><b>La génération IV</b> : le Forum international (GIF) a retenu six filières, dont quatre à neutrons rapides : sodium (SFR), plomb (LFR), gaz (GFR), sels fondus (MSR), ainsi que le réacteur à très haute température (VHTR) et le réacteur à eau supercritique. Toutes fonctionnent plus chaud que les réacteurs actuels, plusieurs à pression atmosphérique, ce qui est un avantage de sûreté.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Sources : World Nuclear Association, <a href="https://world-nuclear.org/information-library/current-and-future-generation/fast-neutron-reactors" target="_blank" rel="noopener">Fast Neutron Reactors</a>, <a href="https://world-nuclear.org/information-library/nuclear-power-reactors/other/generation-iv-nuclear-reactors" target="_blank" rel="noopener">Generation IV Nuclear Reactors</a> et <a href="https://world-nuclear.org/information-library/country-profiles/countries-a-f/france" target="_blank" rel="noopener">Nuclear Power in France</a>.</p></div>
+
+  <h3 class="en-part">En résumé, pour la France</h3>
+  <div class="callout small"><ul>
+    <li><b>Les forces</b> : un parc standardisé et amorti, qui produit une électricité bas carbone à environ 60 €/MWh (CRE), capable de moduler ; une maîtrise de tout le cycle du combustible, recyclage compris ; une industrie qui conçoit et fabrique ses propres réacteurs.</li>
+    <li><b>Les faiblesses révélées par l'EPR</b> : perte de compétences et de culture qualité relevée par la Cour des comptes ; un premier EPR français dont le coût de construction a plus que triplé en euros constants (3,3 Md€ de 2005 prévus, 13,2 Md€ de 2015) et qui a pris 17 ans. Pendant ce temps, la Chine, la Russie et la Corée construisent en série, plus vite et, selon les coûts annoncés, moins cher.</li>
+    <li><b>Les choix devant nous</b> : réussir l'EPR2 (coût, délai, financement), ce qui suppose de construire en série sans changer de conception ; décider de la place des SMR ; et dire si la France relance un jour les neutrons rapides qu'elle a été parmi les premières à maîtriser.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.8rem" id="nu-sources"></p>
+</section>
+
 <!-- =============================================================== MATIERES -->
 <section id="matieres" class="panel">
   <div class="panel-head">
@@ -1478,45 +1573,46 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121h"></script>
-<script src="app.js?v=20261121h"></script>
-<script src="energie.js?v=20261121h"></script>
-<script src="matieres.js?v=20261121h"></script>
-<script src="territoire.js?v=20261121h"></script>
-<script src="themes.js?v=20261121h"></script>
-<script src="societe.js?v=20261121h"></script>
-<script src="eco2.js?v=20261121h"></script>
-<script src="empreinte.js?v=20261121h"></script>
-<script src="argentprive.js?v=20261121h"></script>
-<script src="repartition.js?v=20261121h"></script>
-<script src="patrimoine.js?v=20261121h"></script>
-<script src="prelevements.js?v=20261121h"></script>
-<script src="travailvie.js?v=20261121h"></script>
-<script src="niveauvie.js?v=20261121h"></script>
-<script src="prosperite.js?v=20261121h"></script>
-<script src="exterieur.js?v=20261121h"></script>
-<script src="desindus.js?v=20261121h"></script>
-<script src="retraites.js?v=20261121h"></script>
-<script src="energiecout.js?v=20261121h"></script>
-<script src="energieformation.js?v=20261121h"></script>
-<script src="logementeco.js?v=20261121h"></script>
-<script src="competences.js?v=20261121h"></script>
-<script src="justicedroit.js?v=20261121h"></script>
-<script src="fonctionnaires.js?v=20261121h"></script>
-<script src="couper.js?v=20261121h"></script>
-<script src="seuilpays.js?v=20261121h"></script>
-<script src="logement.js?v=20261121h"></script>
-<script src="env.js?v=20261121h"></script>
-<script src="agriculture.js?v=20261121h"></script>
-<script src="chaine.js?v=20261121h"></script>
-<script src="patrimoinehist.js?v=20261121h"></script>
-<script src="innovation.js?v=20261121h"></script>
+<script src="kpi.js?v=20261121i"></script>
+<script src="app.js?v=20261121i"></script>
+<script src="energie.js?v=20261121i"></script>
+<script src="matieres.js?v=20261121i"></script>
+<script src="territoire.js?v=20261121i"></script>
+<script src="themes.js?v=20261121i"></script>
+<script src="societe.js?v=20261121i"></script>
+<script src="eco2.js?v=20261121i"></script>
+<script src="empreinte.js?v=20261121i"></script>
+<script src="argentprive.js?v=20261121i"></script>
+<script src="repartition.js?v=20261121i"></script>
+<script src="patrimoine.js?v=20261121i"></script>
+<script src="prelevements.js?v=20261121i"></script>
+<script src="travailvie.js?v=20261121i"></script>
+<script src="niveauvie.js?v=20261121i"></script>
+<script src="prosperite.js?v=20261121i"></script>
+<script src="exterieur.js?v=20261121i"></script>
+<script src="desindus.js?v=20261121i"></script>
+<script src="retraites.js?v=20261121i"></script>
+<script src="energiecout.js?v=20261121i"></script>
+<script src="energieformation.js?v=20261121i"></script>
+<script src="nucleaire.js?v=20261121i"></script>
+<script src="logementeco.js?v=20261121i"></script>
+<script src="competences.js?v=20261121i"></script>
+<script src="justicedroit.js?v=20261121i"></script>
+<script src="fonctionnaires.js?v=20261121i"></script>
+<script src="couper.js?v=20261121i"></script>
+<script src="seuilpays.js?v=20261121i"></script>
+<script src="logement.js?v=20261121i"></script>
+<script src="env.js?v=20261121i"></script>
+<script src="agriculture.js?v=20261121i"></script>
+<script src="chaine.js?v=20261121i"></script>
+<script src="patrimoinehist.js?v=20261121i"></script>
+<script src="innovation.js?v=20261121i"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121h"></script>
-<script src="histoire.js?v=20261121h"></script>
-<script src="chomage.js?v=20261121h"></script>
-<script src="sources.js?v=20261121h"></script>
-<script src="nav.js?v=20261121h"></script>
+<script src="soussol.js?v=20261121i"></script>
+<script src="histoire.js?v=20261121i"></script>
+<script src="chomage.js?v=20261121i"></script>
+<script src="sources.js?v=20261121i"></script>
+<script src="nav.js?v=20261121i"></script>
 </body>
 </html>
