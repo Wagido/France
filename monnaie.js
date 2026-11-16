@@ -11,6 +11,7 @@ const sg = v => (v > 0 ? "+" : v < 0 ? "−" : "") + f2(Math.abs(v));
 async function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { M = await fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()); } catch (e) { return; }
+  try { M.longue = (await fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())).longue; } catch (e) { M.longue = null; }
   ["mo-i", "mo-b"].forEach(id => $("#" + id).addEventListener("input", mini));
   ["mo-d", "mo-r", "mo-g", "mo-p", "mo-s"].forEach(id => $("#" + id).addEventListener("input", snow));
   presets();
@@ -68,6 +69,31 @@ function snow() {
     ` Dans 40 ans, avec ces réglages : <b style="color:${dF > d0 * 1.02 ? "var(--neg)" : "var(--pos)"}">${n0(dF)} % du PIB</b>.`;
 }
 
+/* inflation depuis 1900, avec les grandes périodes du financement de l'État */
+function drawInfl() {
+  const el = $("#mo-infl"); if (!el || !M.longue || !el.clientWidth) return;
+  const { showTip, hideTip, css } = window.TH;
+  const D = M.longue.filter(r => r.inflation != null), y1 = D.at(-1).annee;
+  const w = Math.max(320, el.clientWidth), h = 300, m = { t: 30, r: 14, b: 26, l: 44 };
+  const x = d3.scaleLinear([1900, y1], [m.l, w - m.r]), y = d3.scaleLinear([-15, 60], [h - m.b, m.t]);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  const P = [[1914, 1928, "Avances de la Banque de France", "#dc2626"], [1945, 1973, "Circuit du Trésor", "#f59e0b"], [1973, 1985, "Sortie du circuit", "#a3a3a3"],
+    [1985, 1999, "Marchés financiers", "#2563eb"], [1999, y1, "Euro, BCE", "#7c3aed"]];
+  P.forEach(([a, b, l, c], i) => {
+    svg.append("rect").attr("x", x(a)).attr("width", x(b) - x(a)).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", c).attr("opacity", .1);
+    svg.append("text").attr("x", (x(a) + x(b)) / 2).attr("y", m.t - (i % 2 ? 4 : 16)).attr("text-anchor", "middle").attr("font-size", w < 560 ? 8.5 : 10.5).attr("fill", c).text(l);
+  });
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--muted"));
+  svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).attr("stroke-width", 1.8).attr("d", d3.line().x(d => x(d.annee)).y(d => y(d.inflation))(D));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(w < 560 ? 5 : 12));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => v + " %")).call(s => s.select(".domain").remove());
+  const bis = d3.bisector(d => d.annee).center;
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = D[bis(D, x.invert(d3.pointer(ev)[0]))]; if (d) showTip(`<b>${d.annee}</b><br>Hausse des prix : ${f1(d.inflation)} %`, ev); }).on("pointerleave", hideTip);
+  el.replaceChildren(svg.node());
+}
+
 function draw() {
   if (!M || !$("#mo-credit")) return;
   const { kpis, lineChart, legend, esc } = window.TH;
@@ -116,7 +142,7 @@ function draw() {
       return `<div class="in-dep-row mo-per"><span class="lab">${p.l}</span><span class="tr in-two"><span style="width:${(100 * p.nominal / mx).toFixed(1)}%;background:#2563eb"></span><b>${f1(p.nominal)} %</b><span style="width:${(100 * p.taux / mx).toFixed(1)}%;background:#dc2626"></span><b>${f1(p.taux)} %</b></span>
         <span class="num" style="color:${ok ? "var(--pos)" : "var(--neg)"}"><b>${ok ? "elles fondent" : "boule de neige"}</b><br><small class="muted">écart ${sg(Math.round(10 * (p.nominal - p.taux)) / 10)} point${Math.abs(p.nominal - p.taux) >= 2 ? "s" : ""}</small></span></div>`; }).join("") +
     `<p class="muted" style="font-size:.78rem;margin:4px 0 0">INSEE, PIB en valeur et en volume (comptes nationaux base 2020) ; taux de rendement des emprunts d'État à long terme : Eurostat depuis 1970, Macrohistory Database avant. Le taux des nouveaux emprunts n'est pas le taux moyen payé sur toute la dette, qui suit avec retard.</p>`;
-  mini(); snow();
+  drawInfl(); mini(); snow();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
