@@ -481,3 +481,10 @@ table.cmp-t.li-mx { min-width: 980px; }
 .mo-hist { font-size: .84rem; min-width: 720px; }
 .mo-hist td, .mo-hist th { vertical-align: top; }
 .mo-hist td:first-child { min-width: 130px; }
+.mo-pyr { display: flex; flex-direction: column; align-items: center; gap: 2px; margin: 8px 0 10px; }
+.mo-pyr > div { width: min(100%, 560px); background: var(--surface); border: 1px solid var(--line); border-left: 4px solid #2563eb; border-radius: 8px; padding: 7px 10px; font-size: .85rem; }
+.mo-pyr > div:nth-of-type(2) { border-left-color: #7c3aed; width: min(92%, 500px); }
+.mo-pyr > div.or { border-left-color: #ca8a04; width: min(80%, 420px); opacity: .75; }
+.mo-pyr > div span { display: block; color: var(--muted); font-size: .8rem; margin-top: 2px; }
+.mo-pyr > i { font-size: .76rem; color: var(--muted); }
+.mo-pyr > i::before { content: "↓ "; }
