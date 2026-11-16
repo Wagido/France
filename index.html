@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261121y">
+<link rel="stylesheet" href="style.css?v=20261122b">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -31,6 +31,7 @@
     <nav class="groups" aria-label="Thèmes">
       <button type="button" data-group="economie">Économie</button>
       <button type="button" data-group="ressources">Ressources</button>
+      <button type="button" data-group="croissance">Croissance</button>
       <button type="button" data-group="societe">Société</button>
       <button type="button" data-group="sources-g">Sources</button>
     </nav>
@@ -80,6 +81,10 @@
       <a href="#agriculture">Agriculture</a>
       <a href="#alimentation">Alimentation</a>
     </nav>
+    <nav class="tabs" data-group="croissance" aria-label="Croissance" hidden>
+      <a href="#monnaie">Monnaie et croissance</a>
+      <a href="#limites">Limites à la croissance</a>
+    </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
       <a href="#immigration">Immigration</a>
@@ -89,6 +94,7 @@
       <a href="#logement">Logement</a>
       <a href="#inegalites">Inégalités</a>
       <a href="#capital">Capital social et culturel</a>
+      <a href="#electorat">Sociologie électorale</a>
       <a href="#patrimoine-hist">Patrimoine historique</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
@@ -473,6 +479,238 @@
 
 
 <!-- =============================================================== SIMULATEUR -->
+<section id="monnaie" class="panel">
+  <div class="panel-head">
+    <h2>La monnaie et la dette obligent-elles à croître ? <span class="geo-fixed">France</span></h2>
+  </div>
+  <p class="lead">Une idée revient souvent : la monnaie naît de la dette, il faut toujours de nouveaux crédits pour rembourser les anciens et leurs intérêts, donc l'économie est condamnée à croître sans fin dans un monde physique fini. Qu'en est-il vraiment ?</p>
+  <p class="muted" style="margin:0 0 8px">Six parties : <a href="#monnaie" data-to="mo-p1">1. comment naît la monnaie</a> · <a href="#monnaie" data-to="mo-p6">2. pourquoi rembourser des banques privées ? l'État pourrait-il créer sa monnaie ?</a> · <a href="#monnaie" data-to="mo-p2">3. l'argent des intérêts manque-t-il ?</a> · <a href="#monnaie" data-to="mo-p3">4. ce qui pousse vraiment à croître</a> · <a href="#monnaie" data-to="mo-p4">5. un monde fini</a> · <a href="#monnaie" data-to="mo-p5">6. les pistes</a></p>
+  <div class="kpis" id="mo-kpis"></div>
+
+  <h3 id="mo-p1" class="ag-part">1. Comment naît la monnaie</h3>
+  <div class="in-need">
+    <div><b>① Un prêt</b><span>Vous empruntez 200 000 € pour une maison. La banque n'a pas besoin d'avoir cet argent en caisse : elle inscrit 200 000 € sur votre compte, et 200 000 € de créance à son actif.</span></div>
+    <div><b>② La monnaie circule</b><span>Vous payez le vendeur : l'argent passe sur son compte, dans une autre banque peut-être. Les banques règlent entre elles leurs soldes avec de la monnaie de banque centrale, dont elles ont besoin en petite quantité.</span></div>
+    <div><b>③ Le remboursement la détruit</b><span>Chaque fois que vous remboursez du capital, la monnaie correspondante disparaît des comptes. Les intérêts, eux, ne disparaissent pas : ils deviennent un revenu de la banque.</span></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Environ neuf euros sur dix sont de la monnaie de banque</b> (les dépôts), créée par le crédit ; le reste, ce sont les billets et pièces. C'est ce qu'expliquait la Banque d'Angleterre en 2014 dans un article resté célèbre, « Money creation in the modern economy » <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy" target="_blank" rel="noopener">[Banque d'Angleterre]</a>.</li>
+      <li><b>Le « multiplicateur » des réserves fractionnaires ne décrit plus la réalité.</b> Les manuels racontaient que la banque prête un multiple de ses dépôts, limité par une réserve obligatoire. Dans la zone euro, cette réserve n'est que de 1 % des dépôts depuis 2012. Ce qui freine vraiment le crédit, ce sont les fonds propres que les banques doivent détenir (règles de Bâle), le taux d'intérêt fixé par la banque centrale, et tout simplement la demande d'emprunt des ménages et des entreprises.</li>
+      <li><b>La banque centrale crée aussi de la monnaie</b>, en prêtant aux banques ou en achetant des obligations (de 2015 à 2022, la BCE a ainsi acheté une grande partie de la dette publique française sur les marchés). Mais elle n'a pas le droit de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
+    </ul>
+  </div>
+  <h3>Crédit et monnaie depuis 1900, en % du PIB</h3>
+  <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
+  <div class="callout small" id="mo-credit-txt"></div>
+  <h3>Les masses monétaires M1, M2, M3 de la zone euro (milliards d'euros, fin d'année)</h3>
+  <p class="lead">Depuis l'euro, la France n'a plus de masse monétaire propre : ce sont celles de la zone euro, publiées par la BCE. Chaque agrégat englobe le précédent, de la monnaie la plus « liquide » (utilisable tout de suite) à la moins liquide.</p>
+  <div class="grid2">
+    <div><div id="mo-m" class="chart"></div><div class="legend-row" id="mo-m-legend"></div></div>
+    <div><h3 style="margin-top:0">En % du PIB de la zone euro, et croissance annuelle de M3</h3><div id="mo-mpib" class="chart"></div><div class="legend-row" id="mo-mpib-legend"></div></div>
+  </div>
+  <div class="callout small" id="mo-m-txt"></div>
+
+  <h3 id="mo-p6" class="ag-part">2. Pourquoi rembourser des banques privées ? L'État ne pourrait-il pas créer sa monnaie ?</h3>
+  <p class="lead">Si la monnaie est créée à partir de rien par un jeu d'écritures, pourquoi faudrait-il la rembourser, avec intérêts, à des banques privées ou aux marchés financiers ? L'État ne pourrait-il pas créer lui-même la monnaie dont il a besoin, à hauteur des richesses produites ? Il l'a fait, et ailleurs aussi : voici ce que l'histoire en dit.</p>
+  <div class="callout small">
+    <p><b>Pourquoi rembourse-t-on une monnaie « créée à partir de rien » ?</b></p>
+    <ul>
+      <li><b>Créée à partir de rien, mais pas sans contrepartie</b> : la monnaie du prêt sert à acheter des choses bien réelles (une maison, une machine, du travail). L'emprunteur s'engage à produire de quoi rendre l'équivalent. Si personne ne remboursait, la monnaie s'accumulerait sans que la production suive, et les prix monteraient : le remboursement détruit la monnaie qui n'a plus de contrepartie.</li>
+      <li><b>La banque prend un risque</b> : si l'emprunteur ne rembourse pas, c'est elle qui perd, sur ses fonds propres. Les intérêts paient ce risque, son fonctionnement et la rémunération des épargnants. Les faillites bancaires de 1930 ou de 2008 rappellent que ce risque est réel.</li>
+      <li><b>L'État, lui, n'emprunte pas de la monnaie créée pour lui</b> : quand il vend des obligations, il emprunte de l'épargne qui existe déjà, celle des assureurs (l'assurance-vie des Français), des banques, des fonds et des investisseurs étrangers, qui détiennent un peu plus de la moitié de la dette négociable de l'État. Et les intérêts payés sur les titres achetés par la Banque de France reviennent en grande partie à l'État, sous forme de dividendes et d'impôts versés par la Banque de France.</li>
+    </ul>
+  </div>
+  <h3>Inflation en France depuis 1900, et la façon dont l'État se finançait</h3>
+  <div id="mo-infl" class="chart"></div>
+  <div class="callout small">
+    <p><b>Oui, le monde fonctionnait sans les marchés financiers</b>, et la France aussi :</p>
+    <ul>
+      <li><b>1914-1928</b> : la guerre est financée en grande partie par les avances de la Banque de France à l'État, c'est-à-dire par création monétaire. Résultat : forte inflation après la guerre (près de 40 % en 1920) et un franc qui perd les quatre cinquièmes de sa valeur en or, jusqu'à la stabilisation de Poincaré (1926-1928).</li>
+      <li><b>1945-1973, le « circuit du Trésor »</b> : les banques, la Caisse des dépôts et les chèques postaux sont obligés de placer une partie de leurs dépôts en bons du Trésor, et la Banque de France fait des avances à l'État. L'État se finance hors des marchés, et le crédit est orienté vers la reconstruction et l'industrie. C'est la période de croissance la plus forte de l'histoire de France, mais aussi d'une inflation forte (les prix multipliés par environ 7 entre 1945 et 1958) et de dévaluations à répétition.</li>
+      <li><b>1973-1985, la sortie du circuit</b> : la loi de 1973 encadre les avances de la Banque de France sans les supprimer ; c'est en 1985 que l'État se met à emprunter sur les marchés, par adjudications ouvertes à tous, pour casser l'inflation des années 1970. Depuis le traité de Maastricht (1992), il est interdit à la banque centrale de prêter directement à l'État (voir <a href="#duree">Dette sur 30 ans</a>).</li>
+    </ul>
+  </div>
+  <h3>L'exemple américain : Roosevelt, l'or et le New Deal</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>La confiscation de l'or (5 avril 1933)</b> : le décret 6102 oblige les Américains à remettre leurs pièces et lingots d'or à la Réserve fédérale, au prix de 20,67 dollars l'once (bijoux, pièces de collection et petites quantités exceptés). Puis le <i>Gold Reserve Act</i> (janvier 1934) fixe l'once à 35 dollars : le dollar est dévalué d'environ 40 % par rapport à l'or. L'État réalise un gain d'environ 2,8 milliards de dollars sur l'or récupéré, dont 2 milliards servent à créer un fonds de stabilisation des changes.</li>
+      <li><b>Ce n'est pas la planche à billets qui a financé le New Deal</b> : les grands travaux ont été payés surtout par l'emprunt (la dette fédérale a presque doublé entre 1933 et 1939). Mais la dévaluation a attiré l'or du monde entier, en particulier d'une Europe inquiète de la montée des tensions, et cet or a fait gonfler la masse monétaire. Pour l'économiste Christina Romer (1992), c'est cette expansion monétaire, plus que les dépenses du New Deal, qui a sorti les États-Unis de la Grande Dépression. Quand la Réserve fédérale et le Trésor ont freiné en 1936-1937, l'économie est retombée en récession.</li>
+      <li><b>D'autres États ont créé leur propre monnaie</b> : les <i>greenbacks</i> de Lincoln, environ 450 millions de dollars émis par le Trésor pendant la guerre de Sécession ; le Japon de Takahashi Korekiyo, dont la banque centrale achète directement la dette de l'État à partir de 1932 : la reprise est rapide, mais après son assassinat (1936) les militaires utilisent le même outil pour financer la guerre, et l'inflation s'envole. L'Allemagne de 1923 et le Zimbabwe de 2008 montrent l'issue quand l'État crée de la monnaie alors que la production s'effondre.</li>
+    </ul>
+  </div>
+  <div class="callout small">
+    <p><b>Créer la monnaie « en proportion des richesses créées » : une idée sérieuse</b></p>
+    <ul>
+      <li><b>C'est exactement l'idée de la « monnaie pleine »</b> (Irving Fisher, 1930 ; Benes et Kumhof, FMI, 2012) : la banque centrale, publique, crée chaque année la monnaie nécessaire à la croissance de l'économie et la remet à l'État, qui la dépense ou la distribue. Milton Friedman proposait lui aussi une règle simple : augmenter la masse monétaire d'un pourcentage fixe chaque année. Le gain de la création monétaire, le « seigneuriage », irait alors à la collectivité plutôt qu'aux banques.</li>
+      <li><b>La théorie monétaire moderne</b> (Stephanie Kelton, <i>Le mythe du déficit</i>, 2020) va plus loin : un État qui émet sa propre monnaie ne peut pas faire faillite dans cette monnaie ; sa vraie limite n'est pas l'argent mais les ressources réelles (travail, énergie, matières). S'il dépense au-delà, c'est l'inflation, à corriger par l'impôt.</li>
+      <li><b>La difficulté</b> : savoir combien de richesses « seront » créées, et résister à la tentation de créer plus de monnaie avant une élection ou pendant une crise. C'est pour éviter cette tentation qu'on a rendu les banques centrales indépendantes. Et dans la zone euro, un pays seul ne peut pas créer d'euros : il faudrait l'accord des autres, qui paieraient une partie de l'inflation.</li>
+      <li><b>La création monétaire publique existe déjà, par un détour</b> : de 2015 à 2022, la BCE a acheté sur les marchés une grande partie des dettes publiques émises, et la Banque de France détient une part importante de la dette française. Les intérêts qu'elle touche reviennent en grande partie à l'État. La différence avec la planche à billets tient surtout au détour par les marchés, et au fait que la BCE peut revendre ces titres.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p2" class="ag-part">3. L'argent des intérêts manque-t-il ?</h3>
+  <p class="lead">L'argument : la banque crée les 200 000 € du prêt, mais pas les intérêts. Il faudrait donc toujours un nouveau crédit, quelque part, pour trouver l'argent des intérêts. Testons-le sur une économie miniature, sans aucune croissance : une banque, des emprunteurs, un stock de dettes constant (chaque prêt remboursé est remplacé par un nouveau, de même montant).</p>
+  <div class="in-sim">
+    <label class="ctl">Taux d'intérêt <input type="range" id="mo-i" min="0" max="10" step=".5" value="4"><b id="mo-i-v"></b></label>
+    <label class="ctl">Part de ses revenus d'intérêts que la banque redépense (salaires, loyers, fournisseurs, dividendes, impôts) <input type="range" id="mo-b" min="0" max="100" step="5" value="100"><b id="mo-b-v"></b></label>
+  </div>
+  <div id="mo-mini" class="chart"></div><div class="legend-row" id="mo-mini-legend"></div>
+  <p class="in-verdict" id="mo-mini-out"></p>
+  <div class="callout small">
+    <ul>
+      <li><b>L'argument oublie que la banque dépense ce qu'elle gagne.</b> Les intérêts paient les salaires de ses employés, ses loyers, ses informaticiens, ses impôts et les dividendes de ses actionnaires. Cet argent revient dans l'économie, où il sert à payer les intérêts suivants. Si la banque redépense tout, la monnaie en circulation ne baisse pas : on peut payer des intérêts sans fin, sans aucune croissance.</li>
+      <li><b>La même monnaie sert plusieurs fois</b> : un euro peut payer un salaire, puis des courses, puis des intérêts, dans la même année. Ce qui doit être financé, c'est un flux annuel, pas un stock.</li>
+      <li><b>Le problème apparaît si les revenus du crédit sont thésaurisés</b> : si la banque ou ses actionnaires accumulent leurs gains au lieu de les dépenser, la monnaie en circulation fond, les emprunteurs ne peuvent plus payer, et il faut de nouveaux crédits. C'est le vrai point faible : non pas l'intérêt lui-même, mais l'épargne qui s'accumule sans être redépensée ni prêtée.</li>
+      <li><b>Les économistes qui ont construit ces modèles en détail arrivent à la même conclusion</b> : une économie stationnaire, avec de la monnaie créée par le crédit et des intérêts positifs, peut être stable (Jackson et Victor, « Does credit create a growth imperative? », <i>Ecological Economics</i>, 2015). La monnaie-dette n'impose pas mathématiquement la croissance.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p3" class="ag-part">4. Ce qui pousse vraiment à croître</h3>
+  <p class="lead">Si ce n'est pas la mécanique monétaire, d'où vient la pression ? D'abord d'une règle simple : une dette reste supportable si les revenus de l'emprunteur augmentent au moins aussi vite que les intérêts courent.</p>
+  <h3>Croissance du PIB en valeur et taux d'intérêt à long terme de l'État</h3>
+  <div id="mo-rg" class="chart"></div><div class="legend-row" id="mo-rg-legend"></div>
+  <div id="mo-periodes"></div>
+  <h3>Le simulateur de la « boule de neige »</h3>
+  <p class="lead">Une dette égale à un pourcentage du PIB, un taux d'intérêt, une croissance en valeur (croissance réelle + inflation) : combien faut-il dégager chaque année, sur ses revenus, pour que le poids de la dette ne grossisse pas ?</p>
+  <div class="in-sim">
+    <label class="ctl">Dette de départ (% du PIB) <input type="range" id="mo-d" min="20" max="250" step="5" value="115"><b id="mo-d-v"></b></label>
+    <label class="ctl">Taux d'intérêt moyen <input type="range" id="mo-r" min="0" max="8" step=".25" value="3"><b id="mo-r-v"></b></label>
+    <label class="ctl">Croissance réelle <input type="range" id="mo-g" min="-2" max="5" step=".25" value="0"><b id="mo-g-v"></b></label>
+    <label class="ctl">Inflation <input type="range" id="mo-p" min="-2" max="8" step=".25" value="2"><b id="mo-p-v"></b></label>
+    <label class="ctl">Remboursement net chaque année (% du PIB) <input type="range" id="mo-s" min="-5" max="6" step=".25" value="0"><b id="mo-s-v"></b></label>
+  </div>
+  <div class="ctl-row" id="mo-presets" style="margin-bottom:8px"></div>
+  <div id="mo-snow" class="chart"></div>
+  <p class="in-verdict" id="mo-snow-out"></p>
+  <div class="callout small">
+    <ul>
+      <li><b>Sans croissance, il faut de l'inflation ou un effort permanent.</b> Avec un taux de 3 %, une dette de 115 % du PIB et 2 % d'inflation, il faut dégager chaque année environ 1 % du PIB pour la stabiliser. Sans inflation non plus, plus de 3 %. Et si les prix baissent (déflation), la dette s'alourdit d'elle-même : c'est le scénario redouté par les banques centrales, qui visent 2 % d'inflation pour cette raison aussi.</li>
+      <li><b>Les « Trente Glorieuses » ont été faciles</b> : la croissance en valeur dépassait le taux d'intérêt, les dettes fondaient d'elles-mêmes. De 1986 à 2007, c'est l'inverse : les taux réels élevés ont fait grossir les dettes publiques. Depuis 2014, les taux très bas ont de nouveau allégé la charge, jusqu'à leur remontée en 2022.</li>
+      <li><b>Le rendement attendu du capital</b> : les épargnants, les fonds de pension et les actionnaires attendent 3 à 7 % par an. Dans une économie qui ne croît plus, ce rendement ne peut plus venir d'un gâteau plus grand, seulement d'une part plus grande prise sur les salaires ou sur les autres. C'est une tension politique, pas une impossibilité comptable.</li>
+      <li><b>L'emploi</b> : les gains de productivité (de l'ordre de 1 % par an en moyenne en France depuis 2000, moins depuis 2019) suppriment des heures de travail. Sans croissance, il faut partager le travail (temps de travail plus court) pour éviter le chômage.</li>
+      <li><b>La stabilité financière</b> : le crédit avance par vagues. Quand tout le monde veut rembourser en même temps, la monnaie disparaît plus vite qu'elle n'est créée, la demande s'effondre : c'est la crise (1930, 2008). Le système supporte mal les ralentissements brusques, ce qui pousse les gouvernements et les banques centrales à relancer à chaque fois.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p4" class="ag-part">5. Un monde physique fini</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>La croissance qu'exige la dette est une croissance en euros</b>, pas en tonnes. Elle peut venir de l'inflation, ou d'activités qui consomment peu de matière : soins, éducation, culture, logiciels.</li>
+      <li><b>Mais le « découplage » reste partiel.</b> En France, les émissions de gaz à effet de serre sur le territoire baissent alors que le PIB augmente. L'empreinte carbone, qui compte ce que nous importons, baisse beaucoup moins vite, et la consommation de matières reste élevée (voir <a href="#climat">Climat</a> et <a href="#matieres">Matières</a>). À l'échelle du monde, la consommation d'énergie et de matières continue d'augmenter avec le PIB.</li>
+      <li><b>Le conflit est donc réel</b> : une économie dont la stabilité repose sur 2 % de croissance par an pour toujours dépend, en pratique, d'une hausse de l'usage des ressources, tant que le découplage n'est pas beaucoup plus rapide. 2 % par an, c'est un PIB multiplié par 7 en un siècle.</li>
+      <li><b>Et si l'énergie cesse d'augmenter ?</b> Le PIB et l'énergie ont longtemps crû ensemble, mais pas au même rythme : dans le monde, la quantité d'énergie par euro de PIB baisse d'environ 1 à 2 % par an. Une énergie stable laisse donc encore une croissance de cet ordre, si l'efficacité continue de progresser. En France, la consommation d'énergie baisse depuis le milieu des années 2000 alors que le PIB a continué d'augmenter, en partie parce que des productions énergivores sont parties à l'étranger. Une baisse forte et durable de l'énergie disponible, en revanche, se traduirait très probablement par une baisse de la production : on ne sait pas produire sans énergie.</li>
+      <li><b>Une économie qui stagne n'arrête pas d'elle-même d'exiger du rendement</b> : le rendement baisse, ou il se prend sur les autres. Trois voies, toutes observées : le capital prend une part plus grande du revenu (les salaires stagnent, les inégalités montent) ; l'inflation et des taux plus bas que l'inflation rongent l'épargne et les dettes, comme en France de 1945 à 1980 ; ou les pertes se réalisent brutalement, par faillites, défauts et krachs. Le Japon, en quasi-stagnation depuis les années 1990, a vu ses taux tomber à zéro : le rendement exigé a baissé, il n'a pas disparu. Choisir l'une ou l'autre de ces voies est une décision politique (fiscalité, retraites, règles financières), pas une conséquence automatique.</li>
+      <li><b>Et les ressources elles-mêmes peuvent freiner la croissance</b> : énergie plus chère, sols moins productifs, climat qui coûte (voir <a href="#agriculture">Agriculture</a> et <a href="#catastrophes">Catastrophes climatiques</a>). Une croissance faible rendrait alors les dettes plus lourdes : c'est le scénario qui inquiète.</li>
+    </ul>
+  </div>
+
+  <h3 id="mo-p5" class="ag-part">6. Les pistes proposées</h3>
+  <div class="in-need">
+    <div><b>La monnaie « pleine » ou 100 %</b><span>Les banques ne créent plus de monnaie : elles ne prêtent que l'épargne qu'on leur confie, et seule la banque centrale émet la monnaie. Proposé par Irving Fisher et les économistes de Chicago dans les années 1930, repris par deux économistes du FMI en 2012 (Benes et Kumhof, « The Chicago Plan Revisited » ; voir la partie 2). Les Suisses l'ont rejeté par référendum le 10 juin 2018, à 75,7 %.</span></div>
+    <div><b>Une économie de post-croissance</b><span>Réduire la dépendance à la croissance plutôt que la monnaie : partage du temps de travail, retraites par répartition plutôt que par capitalisation, limites aux rendements et aux dettes, fiscalité qui fait redépenser les revenus accumulés. C'est la voie étudiée par Tim Jackson et Peter Victor.</span></div>
+    <div><b>Des crédits orientés</b><span>Faire que la création monétaire finance la sobriété et la transition (rénovation, transports, énergie) plutôt que la spéculation immobilière : taux différenciés de la banque centrale, règles de fonds propres selon l'usage du crédit.</span></div>
+    <div><b>L'inflation et l'annulation</b><span>Les solutions historiques : une inflation un peu plus forte allège les dettes (au détriment des épargnants) ; les annulations ou restructurations de dettes, fréquentes dans l'histoire, remettent les compteurs à zéro, avec des perdants.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>En résumé</b> : la monnaie créée par le crédit n'oblige pas, à elle seule, à croître sans fin ; l'argent des intérêts revient dans l'économie quand ceux qui les touchent le dépensent. Ce qui rend notre système dépendant de la croissance, c'est la combinaison des dettes à intérêt positif, de l'attente de rendement du capital, du besoin d'emplois et de la fragilité du crédit. Rien de tout cela n'est une loi physique : ce sont des règles, qui peuvent changer, mais qui n'ont jamais été conçues pour une économie stationnaire.</p>
+  </div>
+  <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; BCE, statistiques monétaires (agrégats M1, M2, M3 de la zone euro) et Eurostat (PIB de la zone euro) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
+</section>
+
+<section id="limites" class="panel">
+  <div class="panel-head">
+    <h2>Les limites à la croissance (1972) : suit-on les prédictions ? <span class="geo-fixed">Monde</span></h2>
+  </div>
+  <p class="lead">En 1972, une équipe du MIT publie <i>The Limits to Growth</i> (« Halte à la croissance ? » en français), commandé par le Club de Rome. Son modèle informatique, World3, simule l'évolution du monde jusqu'en 2100. Dans son scénario de référence, la croissance de la population et de la production s'arrête au XXI<sup>e</sup> siècle, puis décline brutalement. Cinquante ans plus tard, que disent les données ?</p>
+  <p class="muted" style="margin:0 0 8px">Cinq parties : <a href="#limites" data-to="li-p1">1. ce que dit le modèle</a> · <a href="#limites" data-to="li-p2">2. modèle et réalité, indicateur par indicateur</a> · <a href="#limites" data-to="li-p3">3. ce que disent les études récentes</a> · <a href="#limites" data-to="li-p4">4. ce qu'il faut en retenir</a> · <a href="#limites" data-to="li-p5">5. les ressources : quand le pic ?</a></p>
+  <div class="kpis" id="li-kpis"></div>
+
+  <h3 id="li-p1" class="ag-part">1. Ce que dit le modèle</h3>
+  <div class="in-need">
+    <div><b>Un modèle, pas une prophétie</b><span>World3 relie cinq grands ensembles : population, production industrielle, nourriture, ressources non renouvelables, pollution. Les auteurs (Donella et Dennis Meadows, Jørgen Randers, William Behrens) ont calculé une douzaine de scénarios. Ils les présentaient comme des tendances possibles, « si rien ne change », pas comme des prévisions datées.</span></div>
+    <div><b>Le mécanisme : dépassement puis effondrement</b><span>La production croît, consomme des ressources et pollue. Les réactions arrivent avec retard : quand les ressources deviennent difficiles à extraire, il faut y consacrer de plus en plus de capital, qui manque ailleurs (agriculture, services, santé). La production industrielle baisse, puis la nourriture, puis la population.</span></div>
+    <div><b>Une idée reçue</b><span>On lit souvent que le livre annonçait la fin du pétrole en 2000. C'est faux : un tableau calculait combien d'années dureraient les réserves connues au rythme de consommation de l'époque, pour montrer justement que ce calcul « statique » est trompeur. Ce n'étaient pas des prévisions.</span></div>
+    <div><b>Les mises à jour</b><span>Les auteurs ont publié deux mises à jour : <i>Beyond the Limits</i> (1992) et <i>The 30-Year Update</i> (2004), avec une version révisée du modèle, World3-03. Leurs conclusions n'ont pas changé : sans changement de cap, le monde dépasse ses limites au XXI<sup>e</sup> siècle.</span></div>
+  </div>
+  <h3>Les deux scénarios recalculés ici</h3>
+  <p class="lead">Calculés avec pyworld3, une reproduction libre de World3. <b>Scénario de référence</b> : les hypothèses de 1972. <b>Ressources doublées</b> : deux fois plus de ressources non renouvelables au départ (l'équivalent du scénario « BAU2 » de la mise à jour de 2004).</p>
+  <div class="grid2">
+    <div><h3>Population mondiale (milliards)</h3><div id="li-pop" class="chart"></div></div>
+    <div><h3>Production industrielle par habitant (unités du modèle)</h3><div id="li-io" class="chart"></div></div>
+  </div>
+  <div class="legend-row" id="li-legend"></div>
+
+  <h3 id="li-p2" class="ag-part">2. Modèle et réalité, indicateur par indicateur</h3>
+  <p class="lead">Chaque graphique compare les deux scénarios (lignes de couleur) aux données mondiales observées (en noir). Comme le modèle ne parle pas dans les mêmes unités que les statistiques, tout est en indice, base 100 en 2000 : on compare l'allure des courbes, comme le font les études publiées. L'écart indiqué est l'écart moyen entre la réalité et le scénario depuis 2000.</p>
+  <div id="li-grid" class="in-mini"></div>
+  <div class="legend-row" id="li-legend2"></div>
+  <div class="callout small" id="li-txt"></div>
+
+  <h3 id="li-p3" class="ag-part">3. Ce que disent les études récentes</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Graham Turner (2008, 2014)</b>, chercheur australien (CSIRO, puis université de Melbourne), a comparé les données de 1970 à 2000, puis jusqu'en 2010, aux scénarios de 1972 : elles suivent de près le scénario de référence, plus que les scénarios optimistes.</li>
+      <li><b>Gaya Herrington (2021)</b>, dans le <i>Journal of Industrial Ecology</i>, a comparé dix variables aux quatre scénarios de la mise à jour de 2004 : population, natalité, mortalité, production industrielle, nourriture, services, ressources, pollution, bien-être et empreinte écologique. Les données suivent le mieux deux scénarios : « ressources doublées » (BAU2) et « technologie généralisée » (CT). Les deux montrent un arrêt de la croissance de la production industrielle, de la nourriture et du bien-être dans les années 2030 ou 2040. BAU2 aboutit ensuite à un effondrement ; CT à un déclin plus doux. Le scénario le plus optimiste, le « monde stabilisé » (SW), est celui qui colle le moins aux données <a href="https://econpapers.repec.org/RePEc:bla:inecol:v:25:y:2021:i:3:p:614-626" target="_blank" rel="noopener">[Herrington, 2021]</a>.</li>
+      <li><b>Arjuna Nebel et ses coauteurs (2023)</b> ont recalé les paramètres du modèle World3-03 sur les données récentes. Le modèle recalé montre le même dépassement suivi d'un effondrement que le scénario de référence, avec des pics un peu plus hauts et décalés de quelques années <a href="https://econpapers.repec.org/RePEc:bla:inecol:v:28:y:2024:i:1:p:87-99" target="_blank" rel="noopener">[Nebel et al., 2023]</a>.</li>
+      <li><b>Notre propre comparaison</b>, plus simple (modèle de 1974, deux scénarios, indicateurs approchés), va dans le même sens : sur la plupart des indicateurs, la réalité est plus proche du scénario « ressources doublées » que du scénario de 1972. Le monde a repoussé la limite des ressources, mais il suit encore une trajectoire de croissance que le modèle mène au dépassement.</li>
+    </ul>
+  </div>
+
+  <h3 id="li-p4" class="ag-part">4. Ce qu'il faut en retenir</h3>
+  <div class="callout small" id="li-concl"></div>
+  <h3 id="li-p5" class="ag-part">5. Les ressources : pétrole, gaz, charbon, minerais. Quand atteint-on le pic ?</h3>
+  <p class="lead">Dans World3, ce sont les ressources non renouvelables qui déclenchent le déclin : quand elles deviennent plus difficiles à extraire, l'économie doit y consacrer de plus en plus de capital. Où en est-on vraiment ?</p>
+  <h3>Production mondiale d'énergies fossiles depuis 1900 (milliers de TWh par an)</h3>
+  <div id="li-fos" class="chart"></div><div class="legend-row" id="li-fos-legend"></div>
+  <div>
+    <div>
+      <h3>Énergies : réserves prouvées et années de production</h3>
+      <div class="table-scroll"><table class="cmp-t rt-cmp"><thead><tr><th>Ressource</th><th>Réserves prouvées</th><th>Années au rythme actuel</th><th>Pic de production ?</th></tr></thead><tbody>
+        <tr><td><b>Pétrole</b></td><td>≈ 1 700 milliards de barils</td><td>≈ 50 ans</td><td>Pétrole conventionnel : vers 2006. Total (avec schiste et sables bitumineux) : pas encore, record en <span class="li-y"></span></td></tr>
+        <tr><td><b>Gaz</b></td><td>≈ 190 000 milliards de m³</td><td>≈ 50 ans</td><td>Pas encore : la production augmente de près de 2 % par an</td></tr>
+        <tr><td><b>Charbon</b></td><td>≈ 1 000 milliards de tonnes</td><td>≈ 140 ans</td><td>Pas encore : record en <span class="li-y"></span>, porté par la Chine et l'Inde</td></tr>
+        <tr><td><b>Uranium</b></td><td>≈ 6 à 8 millions de tonnes (ressources identifiées)</td><td>≈ 100 ans</td><td>Non ; bien plus avec des réacteurs à neutrons rapides</td></tr>
+      </tbody></table></div>
+    </div>
+    <div>
+      <h3>Métaux : réserves, ressources et années de production (USGS 2026)</h3>
+      <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Si la production augmente chaque année de <select id="li-g"><option value="0">0 % (rythme actuel)</option><option value="0.02">2 %</option><option value="0.03" selected>3 % (rythme des dernières décennies)</option><option value="0.05">5 %</option></select></label></div>
+      <div id="li-metaux"></div>
+    </div>
+  </div>
+  <div class="callout small" id="li-res-txt"></div>
+  <div class="callout small" id="li-met-txt"></div>
+  <h3>Les scénarios du GIEC tiennent-ils ? La critique du « bouclage »</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Ce que dit Jean-Marc Jancovici</b> : les scénarios utilisés par le GIEC ne sont pas « bouclés ». Ils partent d'une croissance économique décidée à l'avance (le PIB mondial continue d'augmenter tout au long du siècle dans tous les grands scénarios socio-économiques, dits SSP), puis calculent l'énergie et les émissions qui vont avec. La disponibilité de l'énergie et des matières n'y freine jamais l'économie. Or, pour lui, l'histoire montre que le PIB suit l'énergie : si le pétrole et le gaz disponibles baissent, la production baissera aussi, quel que soit le scénario climatique choisi.</li>
+      <li><b>Ce que disent les modèles</b> : dans les scénarios compatibles avec 2 °C, le rapport du GIEC de 2022 estime que le PIB mondial de 2050 serait seulement de 1,3 à 2,7 % plus bas que sans politique climatique, c'est-à-dire qu'il continuerait de croître. Ces scénarios reposent aussi sur un retrait massif de CO₂ de l'atmosphère (bioénergie avec captage, forêts, captage direct dans l'air) à des échelles qui n'existent pas aujourd'hui.</li>
+      <li><b>Les critiques viennent des deux côtés</b> : des chercheurs (Keyßer et Lenzen, <i>Nature Communications</i>, 2021) regrettent que le GIEC n'étudie presque jamais de scénarios de décroissance ou de sobriété forte, qui demanderaient moins de technologies non éprouvées. Mais d'autres (Hausfather et Peters, <i>Nature</i>, 2020) ont montré que le scénario le plus pessimiste du GIEC (RCP8.5) suppose de brûler plus de charbon qu'il n'est plausible : sur ce point, le GIEC surestimait plutôt les fossiles disponibles.</li>
+      <li><b>Ce qu'on peut en retenir</b> : les modèles climatiques décrivent bien la physique du climat ; ce sont les hypothèses économiques (croissance, technologies futures, prix) qui sont fragiles. Une croissance continue avec moins d'énergie fossile suppose que l'électricité bas carbone, l'efficacité et les métaux suivent au bon rythme. Si ce n'est pas le cas, le PIB ralentira de lui-même, ce qui rejoint le message de <i>Limits to Growth</i> : la vraie question est de savoir si on organise ce ralentissement, ou si on le subit.</li>
+    </ul>
+  </div>
+  <h3>Et dans 50 ans ? Le pétrole qui reste, et qui le garde</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Le monde ne « tombe pas en panne » dans 50 ans</b> : les réserves ne sont pas un stock qui s'épuise d'un coup, mais une production qui décline, gisement par gisement, de plus en plus chère. Ce qui change, c'est la quantité disponible chaque année, et son prix.</li>
+      <li><b>Le déclin pour l'Europe pourrait venir bien avant</b> : Jean-Marc Jancovici et The Shift Project, qui ont étudié en 2020-2021 les réserves et la production des principaux fournisseurs de pétrole de l'Union européenne (Russie, Norvège, Kazakhstan, Nigeria, Libye, Algérie, Arabie saoudite, Irak…), estiment que les volumes que l'Europe pourra acheter vont baisser dès la décennie 2030, et pourraient être divisés par deux environ d'ici 2050. Plusieurs de ces pays ont déjà passé leur pic de production (Norvège, Royaume-Uni, Algérie, Nigeria), et la Russie est sous sanctions depuis 2022.</li>
+      <li><b>Les pays producteurs garderont d'abord pour eux</b> : c'est ce qu'on appelle l'« effet du pays exportateur ». Leur population et leur consommation augmentent (Arabie saoudite, Iran, Algérie, Nigeria, Égypte, devenue importatrice nette de gaz) : à production égale ou en baisse, il reste moins à exporter. L'Indonésie, ancien membre de l'OPEP, importe du pétrole depuis le début des années 2000. Et entre les acheteurs, l'Asie, en croissance, paie souvent plus cher que l'Europe.</li>
+      <li><b>Ce n'est pas une prévision unanime</b> : l'Agence internationale de l'énergie prévoit plutôt une offre abondante jusqu'en 2030, avec le pétrole de schiste américain, le Brésil et le Guyana. Mais les deux lectures mènent au même endroit : pour tenir ses objectifs climatiques (neutralité carbone en 2050), l'Europe doit de toute façon diviser sa consommation de pétrole par plus de deux d'ici 2050. La seule question est de savoir si elle le choisit, en s'y préparant, ou si elle le subit, par les prix et les pénuries.</li>
+      <li><b>La France est particulièrement exposée</b> : elle importe la quasi-totalité de son pétrole (voir <a href="#soussol">Sous-sol</a>), et les transports en dépendent à plus de 90 %. Son atout est une électricité déjà presque sans carbone (nucléaire et hydraulique) : chaque usage qui passe du pétrole à l'électricité réduit cette dépendance (voir <a href="#energie">Énergie</a>).</li>
+    </ul>
+    <p><b>Alors, que fait-on ?</b> Les leviers sont connus, et se combinent :</p>
+    <ul>
+      <li><b>Électrifier</b> les transports, le chauffage et l'industrie, avec une électricité bas carbone (nucléaire, renouvelables, réseaux et stockage).</li>
+      <li><b>Consommer moins</b> : sobriété (moins de voiture individuelle, logements mieux isolés, moins d'avion) et efficacité. C'est le levier le plus rapide et le moins cher, mais le plus difficile politiquement.</li>
+      <li><b>Recycler les métaux</b> : contrairement au pétrole, qui disparaît quand on le brûle, un métal reste. Le cuivre, l'acier, l'aluminium sont déjà largement recyclés ; les batteries commencent à l'être. Une économie qui tourne en boucle a beaucoup moins besoin de nouvelles mines.</li>
+      <li><b>Remplacer les matériaux rares</b> : batteries au sodium plutôt qu'au lithium, moteurs sans terres rares.</li>
+      <li><b>Garder le pétrole pour ce qui n'a pas de substitut</b> : chimie, plastiques techniques, médicaments, une partie de l'aviation et de l'agriculture (voir <a href="#agriculture">Agriculture</a>).</li>
+    </ul>
+  </div>
+  <p class="muted" style="font-size:.78rem">Modèle : pyworld3 (C. Vanwynsberghe), reproduction en Python de World3 tel que décrit dans <i>Dynamics of Growth in a Finite World</i> (Meadows et al., 1974) ; ce n'est pas la version World3-03 de 2004 utilisée par Herrington et Nebel. Données : Banque mondiale (population, natalité, mortalité, espérance de vie, valeur ajoutée de l'industrie et des services en volume, indice de production alimentaire de la FAO) ; Our World in Data (CO₂ émis cumulé, d'après le Global Carbon Project ; production et consommation d'énergies fossiles, d'après l'Energy Institute). Réserves d'énergie : Energy Institute (ex-BP), <i>Statistical Review of World Energy</i>, réserves prouvées fin 2020, dernière année publiée ; uranium : AEN et AIEA, « Red Book ». Métaux : U.S. Geological Survey, <a href="https://pubs.usgs.gov/periodicals/mcs2026/mcs2026.pdf" target="_blank" rel="noopener"><i>Mineral Commodity Summaries 2026</i></a> (production minière 2025, réserves et ressources identifiées) ; Banque mondiale, <i>Minerals for Climate Action</i> (2020) ; GIEC, sixième rapport, groupe III (2022). Pic du pétrole conventionnel : Agence internationale de l'énergie, <i>World Energy Outlook</i> 2010. La pollution persistante du modèle est approchée par le CO₂ cumulé, et la consommation de ressources non renouvelables par celle des énergies fossiles : ce sont des approximations.</p>
+</section>
+
 <section id="simulateur" class="panel">
   <div class="panel-head">
     <h2>Couper la dépense fait-il baisser la dette ? <span class="geo-tag"></span></h2>
@@ -1653,6 +1891,91 @@
 </section>
 
 <!-- =============================================================== METHODE -->
+<section id="electorat" class="panel">
+  <div class="panel-head">
+    <h2>Sociologie électorale : qui vote, et pour qui ? <span class="geo-fixed">France</span></h2>
+  </div>
+  <p class="lead">Le vote est secret : pour savoir comment votent les jeunes, les ouvriers ou les diplômés, il faut interroger des milliers d'électeurs. Ces enquêtes d'Ipsos, faites juste avant ou le jour du vote, sont les plus détaillées dont on dispose. Elles donnent une image fiable des grandes tendances, avec une marge d'erreur de quelques points.</p>
+  <p class="muted" style="margin:0 0 8px">Huit parties : <a href="#electorat" data-to="el-p1">1. qui vote ?</a> · <a href="#electorat" data-to="el-p2">2. qui vote pour qui ?</a> · <a href="#electorat" data-to="el-p3">3. diplôme et revenu</a> · <a href="#electorat" data-to="el-p6">4. hommes et femmes</a> · <a href="#electorat" data-to="el-p7">5. le grand renversement depuis 70 ans</a> · <a href="#electorat" data-to="el-p8">6. la carte et le second tour</a> · <a href="#electorat" data-to="el-p4">7. les grands clivages</a> · <a href="#electorat" data-to="el-p5">8. les limites</a></p>
+  <div class="kpis" id="el-kpis"></div>
+
+  <h3 id="el-p1" class="ag-part">1. Qui vote ?</h3>
+  <p class="lead">Aux élections de 2022 (présidentielle et législatives, quatre tours), part des inscrits de chaque âge qui ont voté à tous les tours, à certains, ou à aucun (Insee).</p>
+  <div id="el-insee"></div>
+  <div class="legend-row" id="el-insee-legend"></div>
+  <h3>Part des inscrits qui ont voté, selon l'âge, la profession et le revenu (Ipsos)</h3>
+  <div id="el-part"></div>
+  <div class="callout small" id="el-part-txt"></div>
+
+  <h3 id="el-p2" class="ag-part">2. Qui vote pour qui ?</h3>
+  <div class="ctl-row" style="margin-bottom:8px">
+    <label class="ctl">Élection <select id="el-elec"><option value="legislatives2024">Législatives 2024, 1er tour</option><option value="presidentielle2022">Présidentielle 2022, 1er tour</option></select></label>
+    <label class="ctl">Selon <select id="el-crit"></select></label>
+  </div>
+  <div id="el-bars"></div>
+  <div class="legend-row" id="el-bars-legend"></div>
+  <p class="muted" style="font-size:.78rem" id="el-bars-src"></p>
+  <div class="callout small" id="el-bars-txt"></div>
+
+  <h3 id="el-p3" class="ag-part">3. Diplôme et revenu : la carte des électorats</h3>
+  <p class="lead">Chaque parti est placé selon deux questions. <b>Vers le haut</b> : vote-t-il davantage chez les diplômés du supérieur (bac +3) que chez les non-bacheliers ? <b>Vers la droite</b> : davantage dans les foyers aisés (plus de 3 000 € par mois) que dans les foyers modestes (moins de 1 250 €) ? L'écart est rapporté au score national du parti : +50 % veut dire qu'il fait 50 % de son score national de plus dans le groupe du haut que dans celui du bas. La taille de la bulle est le score national.</p>
+  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Élection <select id="el-carte-elec"><option value="presidentielle2022">Présidentielle 2022 (candidats)</option><option value="legislatives2024">Législatives 2024 (blocs)</option></select></label></div>
+  <div id="el-carte" class="chart"></div>
+  <div class="callout small" id="el-carte-txt"></div>
+
+  <h3 id="el-p6" class="ag-part">4. Hommes et femmes</h3>
+  <p class="lead">Les femmes votent-elles plus à gauche que les hommes ? Aujourd'hui, dans beaucoup de démocraties, oui. Mais c'est récent : pendant longtemps, c'était l'inverse.</p>
+  <div class="grid2">
+    <div><h3>En France aujourd'hui : vote selon le sexe (Ipsos)</h3><div id="el-sexe"></div><div class="legend-row" id="el-sexe-legend"></div></div>
+    <div><h3>En France depuis 1956 : vote de gauche des femmes moins celui des hommes (points)</h3><div id="el-sexe-long" class="chart"></div></div>
+  </div>
+  <h3>Dans 21 démocraties : écart de vote de gauche entre femmes et hommes, avant 1980 et depuis 2000 (points)</h3>
+  <p class="lead"><b>Comment lire</b> : chaque ligne est un pays. On calcule la part des femmes qui votent à gauche moins la part des hommes qui votent à gauche. <b>Point gris</b> : cet écart en moyenne avant 1980 ; <b>point rose</b> : depuis 2000. À droite du trait vertical, les femmes votent plus à gauche que les hommes ; à gauche du trait, moins. Exemple : en France, l'écart est passé de −10 points (les femmes votaient nettement moins à gauche) à 0 (autant que les hommes) ; en Islande, de 0 à +13.</p>
+  <div id="el-sexe-pays"></div>
+  <div class="legend-row" id="el-sexe-pays-legend"></div>
+  <div class="callout small" id="el-sexe-txt"></div>
+
+  <h3 id="el-p7" class="ag-part">5. Le grand renversement depuis 70 ans</h3>
+  <p class="lead">Écart de vote pour la gauche entre les 10 % les plus diplômés (ou les plus riches) et les 90 % restants, en points. Au-dessus de zéro, la gauche fait mieux chez les plus diplômés (ou les plus riches) ; en dessous, chez les autres.</p>
+  <div id="el-long" class="chart"></div><div class="legend-row" id="el-long-legend"></div>
+  <h3>Le même renversement dans 21 démocraties : vote de gauche des 10 % les plus diplômés moins celui des autres (points)</h3>
+  <p class="lead"><b>Comment lire</b> : même principe. Point gris avant 1980, point rose depuis 2000. À gauche du trait, la gauche fait mieux chez les moins diplômés ; à droite, chez les plus diplômés. Presque tous les points sont passés de gauche à droite du trait.</p>
+  <div id="el-dip-pays"></div>
+  <div class="callout small" id="el-long-txt"></div>
+
+  <h3 id="el-p8" class="ag-part">6. La carte et le second tour (législatives 2024, résultats officiels)</h3>
+  <div class="ctl-row" style="margin-bottom:6px"><label class="ctl">Afficher <select id="el-map-sel"><option value="tete">le bloc arrivé en tête</option><option value="extd">la part de l'extrême droite</option><option value="gauche">la part de la gauche</option><option value="centre">la part du centre</option><option value="droite">la part de la droite</option><option value="participation">la participation</option></select></label></div>
+  <div class="grid2">
+    <div><div id="el-map" class="chart"></div><div class="legend-row" id="el-map-legend"></div></div>
+    <div><h3 style="margin-top:0">Voix au 1<sup>er</sup> tour et sièges obtenus</h3><div id="el-sieges"></div><div class="callout small" id="el-sieges-txt"></div></div>
+  </div>
+  <div class="callout small" id="el-map-txt"></div>
+
+  <h3 id="el-p4" class="ag-part">7. Les grands clivages</h3>
+  <div class="in-need">
+    <div><b>L'âge</b><span>Le clivage le plus fort aujourd'hui. Les jeunes votent d'abord à gauche, les 35-69 ans d'abord pour le Rassemblement national, les plus de 70 ans d'abord pour le camp présidentiel. Et les plus âgés votent deux fois plus souvent que les jeunes aux législatives.</span></div>
+    <div><b>Le diplôme</b><span>Le capital culturel sépare désormais plus les électorats que le revenu : les diplômés du supérieur votent à gauche et au centre, les non-bacheliers d'abord pour le Rassemblement national (49 % aux législatives de 2024).</span></div>
+    <div><b>La classe sociale et le revenu</b><span>Les ouvriers votent à 57 % pour le RN en 2024, les cadres à 21 %. Les foyers aisés votent au centre et à droite ; les plus modestes se partagent entre la gauche et le RN.</span></div>
+    <div><b>Le territoire</b><span>Le RN est en tête dans les villages et petites villes (40 % dans les communes de moins de 2 000 habitants), la gauche dans les grandes villes (33 % au-delà de 200 000 habitants).</span></div>
+    <div><b>La religion</b><span>Les catholiques pratiquants votent davantage à droite (LR, Zemmour), les personnes sans religion à gauche ; les personnes d'une autre religion (en majorité musulmane) votaient d'abord à gauche en 2022 (Mélenchon 38 %) ; en 2024, l'enquête les montre partagées entre la gauche (34 %) et le RN (39 %), à lire avec prudence vu la petite taille du groupe.</span></div>
+    <div><b>Le sentiment de sa situation</b><span>Plus encore que le revenu, le fait de « boucler juste » son budget ou de ne pas être satisfait de sa vie distingue le vote RN : 61 % chez les personnes pas du tout satisfaites de leur vie, 15 % chez les très satisfaites.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>Une France en trois blocs</b> : la plupart des politistes décrivent aujourd'hui un paysage en trois blocs de poids comparables. Un bloc de gauche, jeune, diplômé et urbain ; un bloc central-libéral, âgé, aisé et diplômé ; un bloc national, populaire, moins diplômé et plus rural ou périurbain. Thomas Piketty et Julia Cagé (<i>Une histoire du conflit politique</i>, 2023) y voient un retour à la « tripartition » du début du XX<sup>e</sup> siècle, où le clivage entre villes et campagnes comptait autant que celui entre classes sociales. Les retraités, qui votent le plus, sont la base du bloc central (voir <a href="#retraites">Retraites</a>).</p>
+    <p><b>Le capital social</b>, au sens de Bourdieu (le réseau de relations, l'appartenance à des groupes), n'est pas mesuré par ces enquêtes. Les indicateurs les plus proches sont le « milieu social » que chacun déclare et la satisfaction à l'égard de sa vie, disponibles dans le sélecteur de la partie 2. L'onglet <a href="#capital">Capital social et culturel</a> montre les pratiques culturelles et les liens sociaux, mais sans lien avec le vote.</p>
+  </div>
+
+  <h3 id="el-p5" class="ag-part">8. Les limites</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Ce sont des sondages</b> : 10 286 personnes en 2024, 4 000 en 2022, interrogées par internet selon la méthode des quotas (sexe, âge, profession, région, taille de commune). La marge d'erreur est de 1 à 2 points pour l'ensemble, mais de 3 à 5 points pour un petit groupe (les 18-24 ans, les chômeurs, les personnes d'une autre religion).</li>
+      <li><b>Le vote est déclaré</b> : certains ne disent pas la vérité, ou oublient. Les enquêtes sont redressées pour coller aux résultats réels.</li>
+      <li><b>Pas de causalité</b> : les catégories se recoupent. Les retraités sont âgés, les ouvriers peu diplômés : chaque tableau montre une association, pas la cause du vote.</li>
+    </ul>
+    <p class="muted" style="font-size:.78rem">Sources : Ipsos-Talan pour France Télévisions, Radio France et Public Sénat, <a href="https://www.ipsos.com/fr-fr/legislatives-2024/sociologie-des-electorats-legislatives-2024" target="_blank" rel="noopener">sociologie des électorats, législatives 2024</a> ; Ipsos-Sopra Steria, <a href="https://www.ipsos.com/fr-fr/presidentielle-2022/1er-tour-abstentionnistes-sociologie-electorat" target="_blank" rel="noopener">sociologie des électorats, présidentielle 2022</a> ; Insee, <a href="https://www.insee.fr/fr/statistiques/6658145" target="_blank" rel="noopener">enquête sur la participation électorale 2022</a> (Insee Première n° 1928) ; ministère de l'Intérieur, <a href="https://www.data.gouv.fr/fr/datasets/elections-legislatives-des-30-juin-et-7-juillet-2024-resultats-definitifs-du-1er-tour/" target="_blank" rel="noopener">résultats officiels des législatives 2024</a> (data.gouv.fr) ; Gethin, Martínez-Toledano et Piketty, <a href="https://wpid.world" target="_blank" rel="noopener">World Political Cleavages and Inequality Database</a> (enquêtes électorales nationales, 1948-2020 ; « gauche » = partis de gauche, sociaux-démocrates et écologistes de chaque pays) ; fond de carte : IGN Admin Express simplifié (G. David).</p>
+  </div>
+</section>
+
 <section id="patrimoine-hist" class="panel">
   <div class="panel-head">
     <h2>Patrimoine historique : la France et les autres pays <span class="geo-fixed">France</span></h2>
@@ -1740,47 +2063,50 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261121y"></script>
-<script src="app.js?v=20261121y"></script>
-<script src="energie.js?v=20261121y"></script>
-<script src="matieres.js?v=20261121y"></script>
-<script src="territoire.js?v=20261121y"></script>
-<script src="themes.js?v=20261121y"></script>
-<script src="societe.js?v=20261121y"></script>
-<script src="eco2.js?v=20261121y"></script>
-<script src="empreinte.js?v=20261121y"></script>
-<script src="argentprive.js?v=20261121y"></script>
-<script src="repartition.js?v=20261121y"></script>
-<script src="patrimoine.js?v=20261121y"></script>
-<script src="prelevements.js?v=20261121y"></script>
-<script src="travailvie.js?v=20261121y"></script>
-<script src="niveauvie.js?v=20261121y"></script>
-<script src="prosperite.js?v=20261121y"></script>
-<script src="exterieur.js?v=20261121y"></script>
-<script src="desindus.js?v=20261121y"></script>
-<script src="retraites.js?v=20261121y"></script>
-<script src="energiecout.js?v=20261121y"></script>
-<script src="energieformation.js?v=20261121y"></script>
-<script src="nucleaire.js?v=20261121y"></script>
-<script src="logementeco.js?v=20261121y"></script>
-<script src="competences.js?v=20261121y"></script>
-<script src="justicedroit.js?v=20261121y"></script>
-<script src="fonctionnaires.js?v=20261121y"></script>
-<script src="couper.js?v=20261121y"></script>
-<script src="seuilpays.js?v=20261121y"></script>
-<script src="logement.js?v=20261121y"></script>
-<script src="env.js?v=20261121y"></script>
-<script src="agriculture.js?v=20261121y"></script>
-<script src="rendements.js?v=20261121y"></script>
-<script src="chaine.js?v=20261121y"></script>
-<script src="patrimoinehist.js?v=20261121y"></script>
-<script src="innovation.js?v=20261121y"></script>
+<script src="kpi.js?v=20261122b"></script>
+<script src="app.js?v=20261122b"></script>
+<script src="energie.js?v=20261122b"></script>
+<script src="matieres.js?v=20261122b"></script>
+<script src="territoire.js?v=20261122b"></script>
+<script src="themes.js?v=20261122b"></script>
+<script src="societe.js?v=20261122b"></script>
+<script src="eco2.js?v=20261122b"></script>
+<script src="empreinte.js?v=20261122b"></script>
+<script src="argentprive.js?v=20261122b"></script>
+<script src="repartition.js?v=20261122b"></script>
+<script src="patrimoine.js?v=20261122b"></script>
+<script src="prelevements.js?v=20261122b"></script>
+<script src="travailvie.js?v=20261122b"></script>
+<script src="niveauvie.js?v=20261122b"></script>
+<script src="prosperite.js?v=20261122b"></script>
+<script src="exterieur.js?v=20261122b"></script>
+<script src="desindus.js?v=20261122b"></script>
+<script src="retraites.js?v=20261122b"></script>
+<script src="energiecout.js?v=20261122b"></script>
+<script src="energieformation.js?v=20261122b"></script>
+<script src="nucleaire.js?v=20261122b"></script>
+<script src="logementeco.js?v=20261122b"></script>
+<script src="competences.js?v=20261122b"></script>
+<script src="justicedroit.js?v=20261122b"></script>
+<script src="fonctionnaires.js?v=20261122b"></script>
+<script src="couper.js?v=20261122b"></script>
+<script src="seuilpays.js?v=20261122b"></script>
+<script src="logement.js?v=20261122b"></script>
+<script src="env.js?v=20261122b"></script>
+<script src="agriculture.js?v=20261122b"></script>
+<script src="rendements.js?v=20261122b"></script>
+<script src="chaine.js?v=20261122b"></script>
+<script src="patrimoinehist.js?v=20261122b"></script>
+<script src="innovation.js?v=20261122b"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261121y"></script>
-<script src="histoire.js?v=20261121y"></script>
-<script src="chomage.js?v=20261121y"></script>
-<script src="sources.js?v=20261121y"></script>
-<script src="nav.js?v=20261121y"></script>
+<script src="soussol.js?v=20261122b"></script>
+<script src="histoire.js?v=20261122b"></script>
+<script src="chomage.js?v=20261122b"></script>
+<script src="sources.js?v=20261122b"></script>
+<script src="monnaie.js?v=20261122b"></script>
+<script src="limites.js?v=20261122b"></script>
+<script src="sociologie.js?v=20261122b"></script>
+<script src="nav.js?v=20261122b"></script>
 </body>
 </html>

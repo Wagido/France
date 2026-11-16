@@ -29,6 +29,26 @@ get agri/cultures.json "$E/apro_cpsh1?geo=FR&strucpro=MAR_THS_HA&sinceTimePeriod
 get agri/cultures_ar.json "$E/apro_cpsh1?geo=FR&strucpro=AR_THS_HA&sinceTimePeriod=2000$CR"
 get agri/bio.json "$E/org_cropar?geo=FR&unit=HA&agprdmet=TOTAL&sinceTimePeriod=2012"
 get agri/cult_pays.json "$E/apro_cpsh1?strucpro=MAR_THS_HA&sinceTimePeriod=2022&crops=UAA&crops=C0000&crops=J0000"
+# Monnaie et croissance : agrégats monétaires M1, M2, M3 et billets de la zone euro (BCE), PIB de la zone euro
+mkdir -p monnaie
+get monnaie/ecb_agregats.csv "https://data-api.ecb.europa.eu/service/data/BSI/M.U2.Y.V.M10+M20+M30+L10.X.1.U2.2300.Z01.E?format=csvdata&detail=dataonly"
+get monnaie/pib_zone_euro.json "$E/nama_10_gdp?geo=EA20&unit=CP_MEUR&na_item=B1GQ"
+# Limites à la croissance : séries mondiales (Banque mondiale, Our World in Data, lignes « World » seulement)
+mkdir -p limites
+for i in SP.POP.TOTL SP.DYN.CBRT.IN SP.DYN.CDRT.IN SP.DYN.LE00.IN NV.IND.TOTL.KD NV.SRV.TOTL.KD AG.PRD.FOOD.XD; do
+  get "limites/wb_$i.json" "https://api.worldbank.org/v2/country/WLD/indicator/$i?format=json&per_page=200"
+done
+for f in co2 energy; do
+  get "limites/owid_$f.csv" "https://raw.githubusercontent.com/owid/$f-data/master/owid-$f-data.csv"
+  python3 -c "import csv,sys; r=csv.DictReader(open(sys.argv[1])); w=csv.DictWriter(open(sys.argv[2],'w',newline=''),fieldnames=r.fieldnames); w.writeheader(); [w.writerow(x) for x in r if x['country']=='World']" "limites/owid_$f.csv" "limites/owid_${f}_monde.csv" && rm -f "limites/owid_$f.csv"
+done
+# Sociologie électorale : rapports Ipsos (PDF converti en texte ; les valeurs sont retranscrites dans scripts/build_sociologie.py)
+mkdir -p sociologie
+get sociologie/ipsos_legislatives_2024.pdf "https://www.ipsos.com/sites/default/files/ct/news/documents/2024-06/ipsos-talan-sociologie-electorats-legislatives-30-juin-rapport-complet.pdf" && pdftotext -layout sociologie/ipsos_legislatives_2024.pdf sociologie/ipsos_legislatives_2024.txt && rm -f sociologie/ipsos_legislatives_2024.pdf || true
+DG="https://static.data.gouv.fr/resources/elections-legislatives-des-30-juin-et-7-juillet-2024-resultats-definitifs"
+get sociologie/legislatives2024_t1_departements.csv "$DG-du-1er-tour/20240710-171330/resultats-definitifs-par-departements.csv"
+get sociologie/legislatives2024_t1_circonscriptions.csv "$DG-du-1er-tour/20240710-171413/resultats-definitifs-par-circonscriptions-legislatives.csv"
+get sociologie/legislatives2024_t2_circonscriptions.csv "$DG-du-2nd-tour/20240710-170728/resultats-definitifs-par-circonscription.csv"
 # Sans intrants ? rendements, engrais et pesticides de la France (FAOSTAT, fichiers complets filtrés)
 FB="https://bulks-faostat.fao.org/production"
 for z in "Production_Crops_Livestock_E_Europe:fao_rendements:rendements" "Inputs_FertilizersNutrient_E_Europe:fao_engrais_fr:france" "Inputs_Pesticides_Use_E_All_Data:fao_pesticides_fr:france"; do
