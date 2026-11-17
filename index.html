@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261124e">
+<link rel="stylesheet" href="style.css?v=20261124f">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1960,7 +1960,7 @@
   <p class="lead">La France a construit, entre 1970 et 2000, un parc nucléaire et hydraulique qui produit une électricité bon marché. Pourtant, en 2022-2023, les Français ont vu leurs factures exploser comme celles de leurs voisins qui brûlent du gaz. Comment le prix se forme-t-il, qu'a changé l'ouverture à la concurrence, et qu'avait prévu l'ancien patron d'EDF, Marcel Boiteux ?</p>
   <nav class="li-toc"><b>Dans cette partie</b><ol>
     <li><a href="#energie" data-to="mk-1">5.1 Comment se forme le prix : la dernière centrale appelée</a></li>
-    <li><a href="#energie" data-to="mk-6">5.2 Combien rapportent nos échanges avec les voisins ?</a></li>
+    <li><a href="#energie" data-to="mk-6">5.2 Combien rapportent nos échanges ? Et combien paient les Français ?</a></li>
     <li><a href="#energie" data-to="mk-2">5.3 De l'EDF monopole à la concurrence : les grandes dates</a></li>
     <li><a href="#energie" data-to="mk-3">5.4 L'ARENH : le nucléaire d'EDF vendu à ses concurrents</a></li>
     <li><a href="#energie" data-to="mk-7">5.5 Les offres « vertes » des fournisseurs alternatifs</a></li>
@@ -1985,11 +1985,24 @@
     </ul>
   </div>
 
-  <h3 id="mk-6" class="li-sub">5.2 Combien rapportent nos échanges d'électricité avec les voisins ?</h3>
+  <h3 id="mk-6" class="li-sub">5.2 Combien rapportent nos échanges d'électricité ? Et combien paient les Français ?</h3>
   <p>Oui, l'électricité exportée est vendue au prix du marché de l'heure où elle part, donc au prix fixé par la dernière centrale appelée (5.1), en France ou chez le voisin. Voici ce que la France a vendu et acheté chaque année, selon les douanes européennes.</p>
   <div id="mk-ech" class="chart"></div><div class="legend-row" id="mk-ech-legend"></div>
   <div id="mk-prix" class="chart"></div><div class="legend-row" id="mk-prix-legend"></div>
   <div class="callout small" id="mk-ech-txt"></div>
+
+  <h3>Mais alors, les Français paient-ils leur électricité plus cher ? Le bilan général</h3>
+  <p>Oui, c'est la contrepartie : si l'électricité exportée se vend au prix du marché, celle consommée en France (environ 450 TWh par an, quatre fois plus que les exportations) suit elle aussi ce prix, au moins en partie. Ce que gagnent les producteurs à l'export est petit à côté de ce qu'ils gagnent, ou perdent, sur le marché français.</p>
+  <h3>Prix de l'électricité pour un ménage (€ par kWh, toutes taxes comprises)</h3>
+  <div id="mk-men" class="chart"></div><div class="legend-row" id="mk-men-legend"></div>
+  <h3>Le calculateur : qui gagne quand le prix dépasse le coût ?</h3>
+  <div class="in-sim">
+    <label class="ctl">Prix de gros de l'électricité (moyenne annuelle) <input type="range" id="mk-bp" min="30" max="300" step="5" value="100"><b id="mk-bp-v"></b></label>
+    <label class="ctl">Coût moyen de production en France <input type="range" id="mk-bc" min="40" max="90" step="1" value="60"><b id="mk-bc-v"></b></label>
+    <label class="ctl">Part de la production française faite par EDF <input type="range" id="mk-be" min="50" max="90" step="1" value="75"><b id="mk-be-v"></b></label>
+  </div>
+  <div id="mk-bil-out"></div>
+  <div class="callout small" id="mk-bil-txt"></div>
 
   <h3 id="mk-2" class="li-sub">5.3 De l'EDF monopole à la concurrence : les grandes dates</h3>
   <div class="table-scroll"><table class="mo-hist">
@@ -3129,53 +3142,53 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261124e"></script>
-<script src="app.js?v=20261124e"></script>
-<script src="energie.js?v=20261124e"></script>
-<script src="matieres.js?v=20261124e"></script>
-<script src="territoire.js?v=20261124e"></script>
-<script src="themes.js?v=20261124e"></script>
-<script src="societe.js?v=20261124e"></script>
-<script src="eco2.js?v=20261124e"></script>
-<script src="empreinte.js?v=20261124e"></script>
-<script src="argentprive.js?v=20261124e"></script>
-<script src="repartition.js?v=20261124e"></script>
-<script src="patrimoine.js?v=20261124e"></script>
-<script src="prelevements.js?v=20261124e"></script>
-<script src="travailvie.js?v=20261124e"></script>
-<script src="niveauvie.js?v=20261124e"></script>
-<script src="prosperite.js?v=20261124e"></script>
-<script src="exterieur.js?v=20261124e"></script>
-<script src="desindus.js?v=20261124e"></script>
-<script src="retraites.js?v=20261124e"></script>
-<script src="energiecout.js?v=20261124e"></script>
-<script src="energieformation.js?v=20261124e"></script>
-<script src="nucleaire.js?v=20261124e"></script>
-<script src="logementeco.js?v=20261124e"></script>
-<script src="competences.js?v=20261124e"></script>
-<script src="justicedroit.js?v=20261124e"></script>
-<script src="fonctionnaires.js?v=20261124e"></script>
-<script src="couper.js?v=20261124e"></script>
-<script src="seuilpays.js?v=20261124e"></script>
-<script src="logement.js?v=20261124e"></script>
-<script src="env.js?v=20261124e"></script>
-<script src="agriculture.js?v=20261124e"></script>
-<script src="rendements.js?v=20261124e"></script>
-<script src="monnaie.js?v=20261124e"></script>
-<script src="limites.js?v=20261124e"></script>
-<script src="sociologie.js?v=20261124e"></script>
-<script src="chaine.js?v=20261124e"></script>
-<script src="patrimoinehist.js?v=20261124e"></script>
-<script src="innovation.js?v=20261124e"></script>
+<script src="kpi.js?v=20261124f"></script>
+<script src="app.js?v=20261124f"></script>
+<script src="energie.js?v=20261124f"></script>
+<script src="matieres.js?v=20261124f"></script>
+<script src="territoire.js?v=20261124f"></script>
+<script src="themes.js?v=20261124f"></script>
+<script src="societe.js?v=20261124f"></script>
+<script src="eco2.js?v=20261124f"></script>
+<script src="empreinte.js?v=20261124f"></script>
+<script src="argentprive.js?v=20261124f"></script>
+<script src="repartition.js?v=20261124f"></script>
+<script src="patrimoine.js?v=20261124f"></script>
+<script src="prelevements.js?v=20261124f"></script>
+<script src="travailvie.js?v=20261124f"></script>
+<script src="niveauvie.js?v=20261124f"></script>
+<script src="prosperite.js?v=20261124f"></script>
+<script src="exterieur.js?v=20261124f"></script>
+<script src="desindus.js?v=20261124f"></script>
+<script src="retraites.js?v=20261124f"></script>
+<script src="energiecout.js?v=20261124f"></script>
+<script src="energieformation.js?v=20261124f"></script>
+<script src="nucleaire.js?v=20261124f"></script>
+<script src="logementeco.js?v=20261124f"></script>
+<script src="competences.js?v=20261124f"></script>
+<script src="justicedroit.js?v=20261124f"></script>
+<script src="fonctionnaires.js?v=20261124f"></script>
+<script src="couper.js?v=20261124f"></script>
+<script src="seuilpays.js?v=20261124f"></script>
+<script src="logement.js?v=20261124f"></script>
+<script src="env.js?v=20261124f"></script>
+<script src="agriculture.js?v=20261124f"></script>
+<script src="rendements.js?v=20261124f"></script>
+<script src="monnaie.js?v=20261124f"></script>
+<script src="limites.js?v=20261124f"></script>
+<script src="sociologie.js?v=20261124f"></script>
+<script src="chaine.js?v=20261124f"></script>
+<script src="patrimoinehist.js?v=20261124f"></script>
+<script src="innovation.js?v=20261124f"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261124e"></script>
-<script src="histoire.js?v=20261124e"></script>
-<script src="chomage.js?v=20261124e"></script>
-<script src="refondation.js?v=20261124e"></script>
-<script src="marche.js?v=20261124e"></script>
-<script src="tableau.js?v=20261124e"></script>
-<script src="sources.js?v=20261124e"></script>
-<script src="nav.js?v=20261124e"></script>
+<script src="soussol.js?v=20261124f"></script>
+<script src="histoire.js?v=20261124f"></script>
+<script src="chomage.js?v=20261124f"></script>
+<script src="refondation.js?v=20261124f"></script>
+<script src="marche.js?v=20261124f"></script>
+<script src="tableau.js?v=20261124f"></script>
+<script src="sources.js?v=20261124f"></script>
+<script src="nav.js?v=20261124f"></script>
 </body>
 </html>

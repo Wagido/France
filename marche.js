@@ -84,6 +84,37 @@ async function echanges() {
     <li><b>Les exportations profitent aux producteurs</b>, EDF surtout, donc à l'État actionnaire : elles améliorent les comptes d'EDF et la balance commerciale, mais ne baissent pas directement la facture des ménages.</li>
   </ul>
   <p class="muted" style="font-size:.78rem">Sources : Eurostat, commerce extérieur (Comext, produit 2716 « énergie électrique », valeurs déclarées aux douanes) et bilan électrique (nrg_cb_e, importations et exportations brutes en GWh). Le prix moyen est la valeur divisée par le volume ; les échanges sous contrats de long terme sont valorisés au prix déclaré, pas forcément au prix de l'heure.</p>`;
+
+  // prix pour les ménages
+  let PM = null; try { PM = (await fetch("data/echanges_elec.json", { cache: "no-cache" }).then(r => r.json())).prix_menages; } catch (e) {}
+  if (PM && $("#mk-men")) {
+    const K = [["fr", "France", "#2563eb"], ["eu27", "Moyenne de l'UE", "#64748b"], ["de", "Allemagne", "#111827"], ["it", "Italie", "#16a34a"], ["es", "Espagne", "#f59e0b"]];
+    const drawM = () => lineChart($("#mk-men"), PM, K.map(([k, l, c]) => ({ k, l, c, dash: k === "eu27" ? "4 3" : null })), { vfmt: v => v.toLocaleString("fr-FR", { minimumFractionDigits: 3 }) + " €", yfmt: v => v.toLocaleString("fr-FR", { minimumFractionDigits: 2 }) + " €", h: 240, nozero: true });
+    drawM(); addEventListener("resize", () => setTimeout(drawM, 160));
+    legend("#mk-men-legend", K.map(k => [k[1], k[2], k[0] === "eu27" ? 1 : 0]));
+  }
+  const bil = () => {
+    const p = +$("#mk-bp").value, c = +$("#mk-bc").value, e = +$("#mk-be").value / 100, Q = 450;
+    $("#mk-bp-v").textContent = p + " €/MWh"; $("#mk-bc-v").textContent = c + " €/MWh"; $("#mk-be-v").textContent = Math.round(e * 100) + " %";
+    const ecart = (p - c) * Q / 1000, L = S.at(-1);
+    const row = (l, v, col) => `<div class="mo-f-r"><span>${l}</span><b style="color:${col || "inherit"}">${v}</b></div>`;
+    const md = v => (v >= 0 ? "" : "−") + fr(Math.abs(v)) + " Md€";
+    $("#mk-bil-out").innerHTML = `<div class="mo-f">` +
+      row(`Ce que paient les consommateurs français au-delà du coût de production (${Q} TWh × ${p - c} €)`, md(ecart), ecart > 0 ? "var(--neg)" : "var(--pos)") +
+      row("… dont reçu par EDF, donc par l'État actionnaire", md(ecart * e)) +
+      row("… dont reçu par les autres producteurs (Engie, renouvelables, centrales à gaz, en partie étrangers)", md(ecart * (1 - e))) +
+      row(`Pour comparer : solde des échanges avec l'étranger en ${L.annee}`, (L.solde_md > 0 ? "+" : "") + md(L.solde_md), "var(--pos)") + `</div>`;
+  };
+  ["mk-bp", "mk-bc", "mk-be"].forEach(id => $("#" + id).addEventListener("input", bil)); bil();
+  const P0 = PM && PM[0], PL = PM && PM.at(-1), P24 = PM && PM.find(d => d.periode === "2024-S2");
+  if (PM) $("#mk-bil-txt").innerHTML = `<ul>
+    <li><b>Les prix pour les ménages ont fortement augmenté</b> : ${fr(100 * P0.fr)} centimes le kWh, toutes taxes comprises, au premier semestre 2015, ${fr(100 * P24.fr)} centimes fin 2024 (+${Math.round(100 * (P24.fr / P0.fr - 1))} %), ${fr(100 * PL.fr)} centimes au premier semestre ${PL.periode.slice(0, 4)}. Hors taxes, le prix a doublé entre 2015 et 2024.</li>
+    <li><b>La France reste en général un peu moins chère que la moyenne européenne</b> : ${Math.round(100 * (1 - P0.fr / P0.eu27))} % de moins en 2015, ${P24.fr > P24.eu27 ? "et même légèrement plus chère" : "presque au même niveau"} fin 2024 (${fr(100 * P24.fr)} contre ${fr(100 * P24.eu27)} centimes), ${Math.round(100 * (1 - PL.fr / PL.eu27))} % de moins en ${PL.periode.slice(0, 4)}. L'avantage du nucléaire s'est donc fortement réduit : il existe encore, mais il ne profite plus pleinement aux ménages.</li>
+    <li><b>Pour le pays dans son ensemble, c'est surtout un transfert</b> : quand le prix dépasse le coût, l'argent payé en plus par les consommateurs ne sort pas de France ; il va aux producteurs, d'abord à EDF, donc à l'État. Ce transfert peut dépasser 15 milliards d'euros par an quand le prix de gros est autour de 100 €/MWh, bien plus que le gain des exportations. Il sert à rembourser la dette d'EDF (plus de 50 milliards d'euros) et à financer les nouveaux réacteurs ; une partie va aussi à des producteurs privés ou étrangers.</li>
+    <li><b>C'est une forme d'impôt caché</b> : payé selon sa consommation, il pèse plus lourd sur les ménages modestes, qui consacrent une plus grande part de leur budget à l'énergie, et sur l'industrie, qui perd l'avantage de compétitivité que lui donnait l'électricité nucléaire bon marché. Depuis 2026, le « versement nucléaire universel » doit en reverser une partie aux consommateurs quand les prix sont élevés.</li>
+    <li><b>Les années de crise, le transfert s'inverse</b> : en 2022, EDF a dû racheter de l'électricité très chère pour honorer ses contrats et l'ARENH, pendant que l'État payait le bouclier tarifaire. Ce sont alors les finances publiques qui ont payé, et l'étranger qui a encaissé (voir le graphique des échanges ci-dessus).</li>
+  </ul>
+  <p class="muted" style="font-size:.78rem">Sources : Eurostat, prix de l'électricité pour les ménages (nrg_pc_204, consommation de 2 500 à 5 000 kWh par an, toutes taxes et hors taxes). Le calculateur est une illustration : le prix réellement payé dépend des contrats à terme (achetés un à deux ans à l'avance), de l'ARENH jusqu'en 2025 et des tarifs réglementés, lissés sur deux ans ; la consommation de 450 TWh et la part d'EDF sont des ordres de grandeur.</p>`;
 }
 
 init();
