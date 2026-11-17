@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117b">
+<link rel="stylesheet" href="style.css?v=20261117d">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1700,6 +1700,19 @@
   <div class="panel-head"><h2>Industrie et innovation <span class="geo-tag"></span></h2></div>
   <div class="kpis" id="ind-kpis"></div>
   <div class="callout small">
+    <p style="margin:0 0 4px"><b>Primaire, secondaire, tertiaire : les trois étages de l'économie</b> (part de la richesse produite, valeur ajoutée, en 2025)</p>
+    <div class="in-need">
+      <div><b>① Primaire : extraire la matière · 1,7 %</b><span>Agriculture, pêche, forêt (1,6 %), mines, pétrole et gaz (0,1 %). La France a une grande agriculture, mais presque plus rien à extraire du sous-sol : plus de mine de métaux, presque pas de pétrole ni de gaz.</span></div>
+      <div><b>② Secondaire : transformer la matière en objets · 18,9 %</b><span>C'est l'industrie : usines (11,2 %, contre 20,6 % en 1980), production d'énergie, eau et déchets (2,1 %), construction (5,6 %).</span></div>
+      <div><b>③ Tertiaire : rendre des services · 79,4 %</b><span>Commerce, transport, banque, santé, enseignement, administration, informatique, conseil… Ces services utilisent les objets produits par le secondaire. Leur part est passée de 65 % en 1980 à près de 80 %.</span></div>
+    </div>
+    <ul style="margin:6px 0 0">
+      <li><b>Un choix fait par beaucoup de pays riches</b> : avec la mondialisation, la fabrication est partie là où elle coûtait moins cher, surtout en Asie, et les pays riches se sont spécialisés dans les services. Mais la France est allée plus loin que ses voisins : l'industrie manufacturière pèse 11,2 % de sa richesse, contre 19,4 % en Allemagne et 15,9 % en moyenne dans l'Union européenne (2024 pour l'UE).</li>
+      <li><b>Le revers</b> : un pays qui fabrique peu doit acheter ses objets à l'étranger, et les payer en vendant autre chose. C'est l'une des raisons du déficit commercial (voir <a href="#patrimoine">Patrimoine</a>), et c'est pourquoi l'industrie compte plus que son poids, comme l'explique l'encart suivant.</li>
+    </ul>
+    <p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Eurostat, valeur ajoutée brute par branche aux prix courants (<a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_a64/default/table" target="_blank" rel="noopener">nama_10_a64</a>) ; primaire = branches A et B, secondaire = branches C à F, tertiaire = le reste.</p>
+  </div>
+  <div class="callout small">
     <p><b>Pourquoi l'industrie compte</b> : elle ne pèse qu'environ 10 % de la richesse produite en France, mais son rôle dépasse de loin sa taille.</p>
     <div class="in-need">
       <div><b>① La productivité</b><span>C'est là que l'on produit chaque année plus avec autant de travail, grâce aux machines et à l'automatisation. La hausse de la productivité est ce qui permet, à terme, d'augmenter les salaires.</span></div>
@@ -3122,8 +3135,35 @@
   <ul class="mo-ul">
     <li><b>C'est exactement la largeur des blocs du tableau</b> : 2 colonnes à gauche (bloc s), 6 à droite (bloc p), 10 au milieu (bloc d, les métaux de transition), et les 14 colonnes des deux lignes du bas (bloc f, lanthanides et actinides). Le tableau est une carte du remplissage des électrons. Choisissez <a href="#tableau" data-tp-mode="b">« Bloc (s, p, d, f) »</a> dans le tableau ci-dessus pour le voir.</li>
     <li><b>Une ligne (période) = une nouvelle couche</b> : l'hydrogène et l'hélium n'ont qu'une couche ; le fer en a quatre ; l'or six. La longueur des lignes (2, 8, 8, 18, 18, 32, 32 éléments) correspond aux sous-couches qui se remplissent dans chaque période.</li>
-    <li><b>L'ordre de remplissage n'est pas tout à fait l'ordre des couches</b> : la sous-couche 4s se remplit avant la 3d, parce qu'elle est un peu moins énergétique. C'est la « règle de Klechkowski », qui explique pourquoi les métaux de transition apparaissent seulement à la 4ᵉ ligne.</li>
+    <li><b>L'ordre de remplissage n'est pas tout à fait l'ordre des couches</b> : la sous-couche 4s se remplit avant la 3d, parce qu'elle est un peu moins énergétique. C'est la « règle de Klechkowski », détaillée ci-dessous, qui explique pourquoi les métaux de transition apparaissent seulement à la 4ᵉ ligne.</li>
   </ul>
+
+  <h3>La règle de Klechkowski en détail</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>L'énoncé</b> : chaque sous-couche est repérée par deux nombres, le numéro de couche <b>n</b> (1, 2, 3…) et le type de sous-couche <b>ℓ</b> (0 pour s, 1 pour p, 2 pour d, 3 pour f). Les électrons remplissent les sous-couches <b>par valeur croissante de n + ℓ</b> ; à égalité, celle qui a le plus petit <b>n</b> passe d'abord.</li>
+      <li><b>Exemple</b> : 4s a n + ℓ = 4 + 0 = 4, et 3d a n + ℓ = 3 + 2 = 5. La 4s passe donc avant la 3d. Entre 3d, 4p et 5s, qui ont toutes n + ℓ = 5, l'ordre est celui de n : 3d, puis 4p, puis 5s.</li>
+      <li><b>Le moyen mnémotechnique</b> : on écrit les sous-couches en tableau, une couche par ligne, et on les lit en diagonale, de haut à droite vers bas à gauche. Le tableau ci-dessous donne le rang de chaque sous-couche dans l'ordre de remplissage.</li>
+    </ul>
+  </div>
+  <div>
+    <div class="table-scroll"><table class="cmp-t tp-kl"><thead><tr><th></th><th>s (ℓ = 0)<br><small>2 électrons</small></th><th>p (ℓ = 1)<br><small>6 électrons</small></th><th>d (ℓ = 2)<br><small>10 électrons</small></th><th>f (ℓ = 3)<br><small>14 électrons</small></th></tr></thead><tbody><tr><th>n = 1</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>1s</b><br><small>n+ℓ = 1 · <b>1ᵉ</b></small></td><td></td><td></td><td></td></tr><tr><th>n = 2</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>2s</b><br><small>n+ℓ = 2 · <b>2ᵉ</b></small></td><td style="background:#60a5fa33;border-left:4px solid #60a5fa"><b>2p</b><br><small>n+ℓ = 3 · <b>3ᵉ</b></small></td><td></td><td></td></tr><tr><th>n = 3</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>3s</b><br><small>n+ℓ = 3 · <b>4ᵉ</b></small></td><td style="background:#60a5fa33;border-left:4px solid #60a5fa"><b>3p</b><br><small>n+ℓ = 4 · <b>5ᵉ</b></small></td><td style="background:#facc1533;border-left:4px solid #facc15"><b>3d</b><br><small>n+ℓ = 5 · <b>7ᵉ</b></small></td><td></td></tr><tr><th>n = 4</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>4s</b><br><small>n+ℓ = 4 · <b>6ᵉ</b></small></td><td style="background:#60a5fa33;border-left:4px solid #60a5fa"><b>4p</b><br><small>n+ℓ = 5 · <b>8ᵉ</b></small></td><td style="background:#facc1533;border-left:4px solid #facc15"><b>4d</b><br><small>n+ℓ = 6 · <b>10ᵉ</b></small></td><td style="background:#f472b633;border-left:4px solid #f472b6"><b>4f</b><br><small>n+ℓ = 7 · <b>13ᵉ</b></small></td></tr><tr><th>n = 5</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>5s</b><br><small>n+ℓ = 5 · <b>9ᵉ</b></small></td><td style="background:#60a5fa33;border-left:4px solid #60a5fa"><b>5p</b><br><small>n+ℓ = 6 · <b>11ᵉ</b></small></td><td style="background:#facc1533;border-left:4px solid #facc15"><b>5d</b><br><small>n+ℓ = 7 · <b>14ᵉ</b></small></td><td style="background:#f472b633;border-left:4px solid #f472b6"><b>5f</b><br><small>n+ℓ = 8 · <b>17ᵉ</b></small></td></tr><tr><th>n = 6</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>6s</b><br><small>n+ℓ = 6 · <b>12ᵉ</b></small></td><td style="background:#60a5fa33;border-left:4px solid #60a5fa"><b>6p</b><br><small>n+ℓ = 7 · <b>15ᵉ</b></small></td><td style="background:#facc1533;border-left:4px solid #facc15"><b>6d</b><br><small>n+ℓ = 8 · <b>18ᵉ</b></small></td><td class="muted">–</td></tr><tr><th>n = 7</th><td style="background:#f8717133;border-left:4px solid #f87171"><b>7s</b><br><small>n+ℓ = 7 · <b>16ᵉ</b></small></td><td style="background:#60a5fa33;border-left:4px solid #60a5fa"><b>7p</b><br><small>n+ℓ = 8 · <b>19ᵉ</b></small></td><td class="muted">–</td><td class="muted">–</td></tr></tbody></table></div>
+    <div class="grid2" style="margin-top:8px"><div>
+      <p style="margin-top:0"><b>L'ordre complet</b> :</p>
+      <p style="line-height:2"><span style="border-bottom:3px solid #f87171">1s</span> → <span style="border-bottom:3px solid #f87171">2s</span> → <span style="border-bottom:3px solid #60a5fa">2p</span> → <span style="border-bottom:3px solid #f87171">3s</span> → <span style="border-bottom:3px solid #60a5fa">3p</span> → <span style="border-bottom:3px solid #f87171">4s</span> → <span style="border-bottom:3px solid #facc15">3d</span> → <span style="border-bottom:3px solid #60a5fa">4p</span> → <span style="border-bottom:3px solid #f87171">5s</span> → <span style="border-bottom:3px solid #facc15">4d</span> → <span style="border-bottom:3px solid #60a5fa">5p</span> → <span style="border-bottom:3px solid #f87171">6s</span> → <span style="border-bottom:3px solid #f472b6">4f</span> → <span style="border-bottom:3px solid #facc15">5d</span> → <span style="border-bottom:3px solid #60a5fa">6p</span> → <span style="border-bottom:3px solid #f87171">7s</span> → <span style="border-bottom:3px solid #f472b6">5f</span> → <span style="border-bottom:3px solid #facc15">6d</span> → <span style="border-bottom:3px solid #60a5fa">7p</span></p>
+      </div><div><p><b>D'où la longueur des lignes du tableau</b> : chaque période commence par une sous-couche s et se termine par une p.</p>
+      <div class="table-scroll"><table class="cmp-t"><thead><tr><th>Période</th><th>Sous-couches remplies</th><th>Éléments</th></tr></thead><tbody><tr><td>1</td><td>1s</td><td>2</td></tr><tr><td>2</td><td>2s 2p</td><td>8</td></tr><tr><td>3</td><td>3s 3p</td><td>8</td></tr><tr><td>4</td><td>4s 3d 4p</td><td>18</td></tr><tr><td>5</td><td>5s 4d 5p</td><td>18</td></tr><tr><td>6</td><td>6s 4f 5d 6p</td><td>32</td></tr><tr><td>7</td><td>7s 5f 6d 7p</td><td>32</td></tr></tbody></table></div>
+    </div></div>
+  </div>
+  <div class="callout small">
+    <ul>
+      <li><b>Pourquoi cet ordre ? La pénétration et l'écrantage</b>. Dans l'atome d'hydrogène, avec un seul électron, l'énergie ne dépend que de n : 3s, 3p et 3d ont la même énergie. Dès qu'il y a plusieurs électrons, les électrons des couches internes font écran entre le noyau et les électrons externes, qui ne « voient » qu'une partie de la charge du noyau (la charge effective). Or un électron s a une probabilité non nulle de se trouver tout près du noyau, à l'intérieur des couches internes : il <b>pénètre</b> l'écran, ressent une charge plus forte et se trouve plus bas en énergie. Un électron d ou f, au contraire, reste en moyenne loin du noyau et bien écranté. Plus ℓ est grand, moins la sous-couche pénètre, plus elle monte en énergie : c'est ce que résume n + ℓ.</li>
+      <li><b>Les conséquences dans le tableau</b> : les métaux de transition (bloc d) n'apparaissent qu'à la 4ᵉ ligne, parce que la 3d ne se remplit qu'après la 4s ; les lanthanides et actinides (bloc f) qu'à la 6ᵉ, parce que la 4f attend la 6s. Et comme la 3d se remplit sous une couche externe 4s déjà occupée, les métaux de transition se ressemblent beaucoup d'une colonne à l'autre ; c'est encore plus vrai pour les terres rares, dont la sous-couche 4f est enfouie, d'où la difficulté à les séparer.</li>
+      <li><b>Les limites de la règle</b>. C'est une règle empirique, qui marche pour la grande majorité des éléments neutres mais pas pour tous. Une vingtaine d'éléments font exception, parce qu'une sous-couche à moitié pleine ou pleine est particulièrement stable : le chrome est 3d⁵ 4s¹ (et non 3d⁴ 4s²), le cuivre 3d¹⁰ 4s¹ (et non 3d⁹ 4s²), de même que le molybdène, l'argent, l'or ; le palladium va jusqu'à 4d¹⁰ 5s⁰.</li>
+      <li><b>Elle décrit l'ordre de remplissage, pas l'ordre de départ</b> : quand le fer perd deux électrons pour devenir Fe²⁺, ce sont les deux électrons 4s qui partent, pas des 3d (Fe²⁺ = [Ar] 3d⁶). Une fois la 3d occupée, les niveaux se réarrangent et la 4s devient la plus haute en énergie. La règle n'est donc qu'une approximation commode d'un calcul quantique plus complexe.</li>
+      <li><b>Les noms</b> : formulée par le physicien allemand Erwin Madelung dans les années 1930 (« règle de Madelung » dans le monde anglophone), puis justifiée par le chimiste soviétique Vsevolod Klechkowski dans les années 1950 (« règle de Klechkowski » en France et en Russie).</li>
+    </ul>
+  </div>
   <h3>Remplir les électrons, élément par élément</h3>
   <p>Faites glisser le curseur : les électrons remplissent les sous-couches dans l'ordre, et l'élément correspondant s'allume.</p>
   <div class="in-sim">
@@ -3141,6 +3181,17 @@
       <li><b>D'autres atomes partagent leurs électrons</b> : deux hydrogènes et un oxygène mettent en commun des paires d'électrons pour former l'eau. C'est la <b>liaison covalente</b>, celle de toute la chimie du vivant. Le carbone, avec 4 électrons de valence, peut former 4 liaisons : c'est pour cela qu'il construit des molécules aussi variées (sucres, protéines, ADN, plastiques).</li>
       <li><b>Les métaux mettent leurs électrons en commun</b> dans tout le bloc de métal : ces électrons libres expliquent qu'ils conduisent l'électricité et la chaleur, et qu'ils brillent.</li>
     </ul>
+  </div>
+
+  <div class="callout small">
+    <p style="margin:0 0 4px"><b>Exemple : pourquoi le sel de cuisine est du chlorure de sodium, et pas de potassium ou de lithium ?</b></p>
+    <ul>
+      <li><b>La chimie ne fait pas de préférence</b> : tous les alcalins (colonne 1) cèdent leur unique électron externe au chlore (colonne 17) et forment un sel ionique : LiCl, NaCl, KCl, RbCl, CsCl existent tous et sont très stables. Le chlorure de potassium libère même un peu plus d'énergie en se formant (environ 437 kJ/mol) que le chlorure de sodium (environ 411 kJ/mol).</li>
+      <li><b>Ce qui change, c'est la taille de l'ion</b> : les petits ions (lithium, sodium) se rangent dans un cristal cubique où chaque ion a 6 voisins ; le gros ion césium s'entoure de 8 ions chlore. Le chlorure de lithium, lui, est si avide d'eau qu'il absorbe l'humidité de l'air.</li>
+      <li><b>Ce qui fait la différence, c'est la géologie</b>. Le chlore est l'ion négatif dominant de la mer : il a été rejeté par les volcans au cours des temps géologiques et ses sels sont très solubles. Le sodium et le potassium sont à peu près aussi abondants l'un que l'autre dans les roches, mais quand elles s'altèrent, le potassium est retenu par les argiles des sols et absorbé par les plantes (c'est un nutriment, d'où les engrais potassiques), tandis que le sodium reste dissous et rejoint la mer. Il y a ainsi environ 10,8 g de sodium par kilo d'eau de mer, contre 0,4 g de potassium. Le lithium, le rubidium et le césium sont beaucoup plus rares.</li>
+      <li><b>Résultat</b> : quand la mer s'évapore, c'est surtout du NaCl qui cristallise (marais salants, mines de sel gemme). Les autres chlorures existent aussi dans la nature : la sylvite (KCl), qui cristallise à la toute fin de l'évaporation et était extraite dans les mines de potasse d'Alsace, ou le chlorure de lithium des saumures des salars d'Amérique du Sud, source de lithium pour les batteries.</li>
+    </ul>
+    <p class="muted" style="font-size:.8rem;margin:4px 0 0">Enthalpies standard de formation : <i>CRC Handbook of Chemistry and Physics</i> ; composition de l'eau de mer : composition de référence de l'eau de mer standard (Millero et al., 2008, <i>Deep-Sea Research I</i>, 55).</p>
   </div>
 
   <h3 id="tp-p5" class="ag-part">5. Les tendances : ce qui change d'une case à l'autre</h3>
@@ -3284,53 +3335,53 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117b"></script>
-<script src="app.js?v=20261117b"></script>
-<script src="energie.js?v=20261117b"></script>
-<script src="matieres.js?v=20261117b"></script>
-<script src="territoire.js?v=20261117b"></script>
-<script src="themes.js?v=20261117b"></script>
-<script src="societe.js?v=20261117b"></script>
-<script src="eco2.js?v=20261117b"></script>
-<script src="empreinte.js?v=20261117b"></script>
-<script src="argentprive.js?v=20261117b"></script>
-<script src="repartition.js?v=20261117b"></script>
-<script src="patrimoine.js?v=20261117b"></script>
-<script src="prelevements.js?v=20261117b"></script>
-<script src="travailvie.js?v=20261117b"></script>
-<script src="niveauvie.js?v=20261117b"></script>
-<script src="prosperite.js?v=20261117b"></script>
-<script src="exterieur.js?v=20261117b"></script>
-<script src="desindus.js?v=20261117b"></script>
-<script src="retraites.js?v=20261117b"></script>
-<script src="energiecout.js?v=20261117b"></script>
-<script src="energieformation.js?v=20261117b"></script>
-<script src="nucleaire.js?v=20261117b"></script>
-<script src="logementeco.js?v=20261117b"></script>
-<script src="competences.js?v=20261117b"></script>
-<script src="justicedroit.js?v=20261117b"></script>
-<script src="fonctionnaires.js?v=20261117b"></script>
-<script src="couper.js?v=20261117b"></script>
-<script src="seuilpays.js?v=20261117b"></script>
-<script src="logement.js?v=20261117b"></script>
-<script src="env.js?v=20261117b"></script>
-<script src="agriculture.js?v=20261117b"></script>
-<script src="rendements.js?v=20261117b"></script>
-<script src="monnaie.js?v=20261117b"></script>
-<script src="limites.js?v=20261117b"></script>
-<script src="sociologie.js?v=20261117b"></script>
-<script src="chaine.js?v=20261117b"></script>
-<script src="patrimoinehist.js?v=20261117b"></script>
-<script src="innovation.js?v=20261117b"></script>
+<script src="kpi.js?v=20261117d"></script>
+<script src="app.js?v=20261117d"></script>
+<script src="energie.js?v=20261117d"></script>
+<script src="matieres.js?v=20261117d"></script>
+<script src="territoire.js?v=20261117d"></script>
+<script src="themes.js?v=20261117d"></script>
+<script src="societe.js?v=20261117d"></script>
+<script src="eco2.js?v=20261117d"></script>
+<script src="empreinte.js?v=20261117d"></script>
+<script src="argentprive.js?v=20261117d"></script>
+<script src="repartition.js?v=20261117d"></script>
+<script src="patrimoine.js?v=20261117d"></script>
+<script src="prelevements.js?v=20261117d"></script>
+<script src="travailvie.js?v=20261117d"></script>
+<script src="niveauvie.js?v=20261117d"></script>
+<script src="prosperite.js?v=20261117d"></script>
+<script src="exterieur.js?v=20261117d"></script>
+<script src="desindus.js?v=20261117d"></script>
+<script src="retraites.js?v=20261117d"></script>
+<script src="energiecout.js?v=20261117d"></script>
+<script src="energieformation.js?v=20261117d"></script>
+<script src="nucleaire.js?v=20261117d"></script>
+<script src="logementeco.js?v=20261117d"></script>
+<script src="competences.js?v=20261117d"></script>
+<script src="justicedroit.js?v=20261117d"></script>
+<script src="fonctionnaires.js?v=20261117d"></script>
+<script src="couper.js?v=20261117d"></script>
+<script src="seuilpays.js?v=20261117d"></script>
+<script src="logement.js?v=20261117d"></script>
+<script src="env.js?v=20261117d"></script>
+<script src="agriculture.js?v=20261117d"></script>
+<script src="rendements.js?v=20261117d"></script>
+<script src="monnaie.js?v=20261117d"></script>
+<script src="limites.js?v=20261117d"></script>
+<script src="sociologie.js?v=20261117d"></script>
+<script src="chaine.js?v=20261117d"></script>
+<script src="patrimoinehist.js?v=20261117d"></script>
+<script src="innovation.js?v=20261117d"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261117b"></script>
-<script src="histoire.js?v=20261117b"></script>
-<script src="chomage.js?v=20261117b"></script>
-<script src="refondation.js?v=20261117b"></script>
-<script src="marche.js?v=20261117b"></script>
-<script src="tableau.js?v=20261117b"></script>
-<script src="sources.js?v=20261117b"></script>
-<script src="nav.js?v=20261117b"></script>
+<script src="soussol.js?v=20261117d"></script>
+<script src="histoire.js?v=20261117d"></script>
+<script src="chomage.js?v=20261117d"></script>
+<script src="refondation.js?v=20261117d"></script>
+<script src="marche.js?v=20261117d"></script>
+<script src="tableau.js?v=20261117d"></script>
+<script src="sources.js?v=20261117d"></script>
+<script src="nav.js?v=20261117d"></script>
 </body>
 </html>

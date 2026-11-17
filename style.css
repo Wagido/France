@@ -580,3 +580,6 @@ table.cmp-t.li-mx { min-width: 980px; }
 .mo-bilan span.m { background: #16a34a; color: #fff; font-weight: 600; }
 .mo-bilan .eq { align-self: center; font-size: 1.6rem; color: var(--muted); }
 @media (max-width: 560px) { .mo-bilan { grid-template-columns: 1fr; } .mo-bilan .eq { justify-self: center; } }
+table.cmp-t.tp-kl { min-width: 0; width: 100%; table-layout: fixed; }
+.tp-kl td, .tp-kl th { text-align: center; padding: 6px 8px; }
+.tp-kl td small { color: var(--muted); }
