@@ -322,4 +322,8 @@ get ret_dependance.json "$E/demo_pjanind?indic_de=OLDDEP1&geo=FR&geo=DE&geo=IT&g
 get gov_p51g_b9.json "$E/gov_10a_main?unit=PC_GDP&sector=S13&na_item=P51G&na_item=B9&na_item=P51C&geo=FR&geo=DE&geo=EU27_2020&sinceTimePeriod=2010"
 get insee_prix_paris.xml "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/010567012?startPeriod=1990-Q1"
 get friggit_paris_1200_2012.xls "https://www.igedd.developpement-durable.gouv.fr/IMG/xls/prix-immo-paris-1200-2012_cle2f2d1a.xls"
+mkdir -p energie
+# échanges d'électricité de la France : valeurs (Comext, produit 2716) et volumes (bilan électrique)
+get energie/comext_2716.json "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-045409?reporter=FR&partner=WORLD&product=2716&flow=1&flow=2&indicators=VALUE_IN_EUROS&indicators=QUANTITY_IN_100KG&freq=A"
+get energie/nrg_cb_e_echanges.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?geo=FR&siec=E7000&nrg_bal=IMP&nrg_bal=EXP&unit=GWH"
 echo "OK"

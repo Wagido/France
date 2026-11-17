@@ -7,7 +7,7 @@ function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   ["mk-d", "mk-r", "mk-g"].forEach(id => $("#" + id).addEventListener("input", draw));
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
-  draw();
+  draw(); echanges();
 }
 function draw() {
   const el = $("#mk-chart"); if (!el.clientWidth) return;
@@ -46,5 +46,45 @@ function draw() {
   $("#mk-out").innerHTML = `<p class="in-verdict">La dernière centrale appelée est <b>${marg.l.toLowerCase()}</b> : le prix est de <b>${n0(prix)} €/MWh</b> pour toute l'électricité vendue à cette heure. Le nucléaire, qui coûte environ ${coutNuc} €/MWh tout compris (construction, entretien, combustible), reçoit ce prix : ${rente > 0 ? `soit <b>${n0(rente)} € de plus que son coût par MWh</b> (zone jaune hachurée).` : "c'est moins que son coût complet : les années de prix bas, les producteurs perdent de l'argent."}</p>
     <p class="muted" style="font-size:.8rem">Illustration simplifiée : capacités et coûts sont des ordres de grandeur pour la France, prix du CO₂ fixé à 70 €/t ; en réalité, le prix dépend aussi des voisins, des stocks d'eau des barrages et des offres des producteurs.</p>`;
 }
+/* échanges d'électricité : volumes, valeurs, prix moyen de vente et d'achat */
+async function echanges() {
+  const el = $("#mk-ech"); if (!el) return;
+  let S; try { S = (await fetch("data/echanges_elec.json", { cache: "no-cache" }).then(r => r.json())).serie; } catch (e) { return; }
+  const { showTip, hideTip, css, legend, lineChart } = window.TH;
+  const fr = v => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+  const draw1 = () => {
+    if (!el.clientWidth) return;
+    const w = Math.max(320, el.clientWidth), h = 280, m = { t: 14, r: 12, b: 26, l: 50 };
+    const x = d3.scaleBand(S.map(d => d.annee), [m.l, w - m.r]).padding(.18), y = d3.scaleLinear([Math.min(-8, -d3.max(S, d => d.imp_md)), Math.max(10, d3.max(S, d => d.exp_md))], [h - m.b, m.t]).nice();
+    const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+    const bw = x.bandwidth() / 2;
+    svg.append("g").selectAll("rect").data(S).join("rect").attr("x", d => x(d.annee)).attr("width", bw).attr("y", d => y(d.exp_md)).attr("height", d => y(0) - y(d.exp_md)).attr("fill", "#16a34a");
+    svg.append("g").selectAll("rect").data(S).join("rect").attr("x", d => x(d.annee) + bw).attr("width", bw).attr("y", y(0)).attr("height", d => y(-d.imp_md) - y(0)).attr("fill", "#dc2626");
+    svg.append("path").attr("fill", "none").attr("stroke", css("--ink")).attr("stroke-width", 2).attr("d", d3.line().x(d => x(d.annee) + bw).y(d => y(d.solde_md))(S));
+    svg.append("g").selectAll("circle").data(S).join("circle").attr("cx", d => x(d.annee) + bw).attr("cy", d => y(d.solde_md)).attr("r", 2.5).attr("fill", css("--ink"));
+    svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", css("--muted"));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickValues(S.map(d => d.annee).filter(a => a % (w < 560 ? 5 : 2) === 0)));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => v + " Md€")).call(s => s.select(".domain").remove());
+    svg.append("g").selectAll("rect.hit").data(S).join("rect").attr("x", d => x(d.annee)).attr("width", x.bandwidth()).attr("y", m.t).attr("height", h - m.t - m.b).attr("fill", "transparent")
+      .on("pointermove", (ev, d) => showTip(`<b>${d.annee}</b><br>Exportations : ${fr(d.exp_twh)} TWh, ${fr(d.exp_md)} Md€<br>Importations : ${fr(d.imp_twh)} TWh, ${fr(d.imp_md)} Md€<br><b>Solde : ${d.solde_md > 0 ? "+" : ""}${fr(d.solde_md)} Md€</b>`, ev)).on("pointerleave", hideTip);
+    el.replaceChildren(svg.node());
+    lineChart($("#mk-prix"), S, [{ k: "prix_exp", l: "Prix moyen de nos ventes", c: "#16a34a" }, { k: "prix_imp", l: "Prix moyen de nos achats", c: "#dc2626" }], { vfmt: v => Math.round(v) + " €/MWh", yfmt: v => v + " €", h: 220 });
+  };
+  draw1();
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw1, 150); });
+  legend("#mk-ech-legend", [["Ventes à l'étranger (Md€)", "#16a34a"], ["Achats à l'étranger (Md€)", "#dc2626"], ["Solde (Md€)", "#111827"]]);
+  legend("#mk-prix-legend", [["Prix moyen de l'électricité vendue (€/MWh)", "#16a34a"], ["Prix moyen de l'électricité achetée (€/MWh)", "#dc2626"]]);
+  const g = a => S.find(d => d.annee === a), L = S.at(-1), y22 = g(2022), y24 = g(2024);
+  const S0 = S.filter(d => d.annee >= 2000), tot = S0.reduce((a, d) => a + d.solde_md, 0);
+  $("#mk-ech-txt").innerHTML = `<ul>
+    <li><b>Une année normale, la France gagne de l'argent</b> : en ${L.annee}, elle a vendu ${fr(L.exp_twh)} TWh pour ${fr(L.exp_md)} milliards d'euros et acheté ${fr(L.imp_twh)} TWh pour ${fr(L.imp_md)} milliard${L.imp_md >= 2 ? "s" : ""}, soit un solde de <b>+${fr(L.solde_md)} milliards</b>. De 2000 à ${L.annee}, le solde cumulé est d'environ <b>${fr(tot)} milliards d'euros</b>.</li>
+    <li><b>2022 a coûté cher</b> : avec la moitié des réacteurs à l'arrêt, la France a acheté ${fr(y22.imp_twh)} TWh pour <b>${fr(y22.imp_md)} milliards</b>, à ${n0(y22.prix_imp)} €/MWh en moyenne, et vendu ${fr(y22.exp_twh)} TWh à ${n0(y22.prix_exp)} €/MWh : un déficit de ${fr(-y22.solde_md)} milliards en une seule année.</li>
+    <li><b>Nous vendons souvent moins cher que nous n'achetons</b> : la France exporte surtout quand sa production dépasse ses besoins (la nuit, les week-ends, les journées ventées et ensoleillées), quand les prix sont bas ; elle importe aux pointes, quand ils sont hauts. En ${y24.annee}, ses ventes se sont faites en moyenne à ${n0(y24.prix_exp)} €/MWh, à peine au-dessus du coût complet du nucléaire existant (environ 60 €).</li>
+    <li><b>Les exportations profitent aux producteurs</b>, EDF surtout, donc à l'État actionnaire : elles améliorent les comptes d'EDF et la balance commerciale, mais ne baissent pas directement la facture des ménages.</li>
+  </ul>
+  <p class="muted" style="font-size:.78rem">Sources : Eurostat, commerce extérieur (Comext, produit 2716 « énergie électrique », valeurs déclarées aux douanes) et bilan électrique (nrg_cb_e, importations et exportations brutes en GWh). Le prix moyen est la valeur divisée par le volume ; les échanges sous contrats de long terme sont valorisés au prix déclaré, pas forcément au prix de l'heure.</p>`;
+}
+
 init();
 })();
