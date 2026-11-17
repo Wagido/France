@@ -9,7 +9,7 @@ Usage : python3 scripts/publier.py _site/index.html
 """
 import re, sys
 
-NON_PUBLIE = ["societe", "science"]                 # valeurs data-group des rubriques à ne pas publier
+NON_PUBLIE = ["societe"]                 # valeurs data-group des rubriques à ne pas publier
 PUBLIES = {"societe": ["electorat"]}     # onglets publiés malgré tout dans ces rubriques
 ONGLETS_NON_PUBLIES = []        # onglets retirés de la version publiée, dans des rubriques publiées
 
