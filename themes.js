@@ -365,7 +365,10 @@ function drawTravail() {
   const moins = tv ? TV.filter(r => VOIS[r.code] && r.code !== geo && r.heures_an < tv.heures_an) : [];
   const plusVie = tv ? TV.filter(r => VOIS[r.code] && r.code !== geo && r.heures_vie > tv.heures_vie) : [];
   kpis("#tt-kpis", [
-    tv ? [n0(tv.heures_an) + " h", [`par personne en emploi`, moins.length ? `plus que ${moins.map(r => `${VOIS[r.code]} (${n0(r.heures_an)} h)`).join(", ")}` : `${rgAn}e sur ${N} pays européens`], geo === "FR" ? "Sur un an : autant ou plus" : "Sur un an"]
+    tv ? [n0(tv.heures_an) + " h", [`par personne en emploi, temps plein et temps partiel confondus`, moins.length ? `plus que ${moins.map(r => `${VOIS[r.code]} (${n0(r.heures_an)} h)`).join(", ")}` : `${rgAn}e sur ${N} pays européens`, ...(() => { const me = IDX?.pays.find(r => r.code === geo)?.travail, vs = (IDX?.pays || []).filter(r => moins.some(m => m.code === r.code) && r.travail?.h_plein);
+      const EN = { DE: "en Allemagne", NL: "aux Pays-Bas", DK: "au Danemark", SE: "en Suède", BE: "en Belgique" };
+      return me?.h_plein && vs.length ? [`à temps plein seulement : ${n1(me.h_plein)} h par semaine, contre ${vs.map(r => `${n1(r.travail.h_plein)} h ${EN[r.code]}`).join(", ")}`,
+        `l'écart vient surtout du temps partiel : ${n0(me.partiel)} % des emplois ici, contre ${vs.map(r => `${n0(r.travail.partiel)} % ${EN[r.code]}`).join(", ")}`] : []; })()], geo === "FR" ? "Sur un an : autant ou plus" : "Sur un an"]
        : last.emplois && [n0(last.heures / last.emplois) + " h", `par personne en emploi et par an`, "Sur un an"],
     tv && [n0(tv.heures_vie) + " h", [`sur toute une vie`, `${rgVie}e sur ${N} pays européens`, ...(plusVie.length ? [`moins que ${plusVie.map(r => VOIS[r.code]).join(", ")}`] : [])], geo === "FR" ? "Sur une vie : moins" : "Sur une vie"],
     tv && [n1(tv.vie_active) + " ans", [geo === "FR" ? `de vie active : on commence tard, on s'arrête tôt` : `de vie active`, ...(geo !== "DE" && de ? [`Allemagne : ${n1(de.vie_active)} ans`] : []), ...(geo !== "NL" && nl ? [`Pays-Bas : ${n1(nl.vie_active)} ans`] : [])], "Durée de la carrière"],
