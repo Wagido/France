@@ -364,6 +364,25 @@ function drawTravail() {
   const VOIS = { DE: "l'Allemagne", NL: "les Pays-Bas", DK: "le Danemark", SE: "la Suède", BE: "la Belgique" };
   const moins = tv ? TV.filter(r => VOIS[r.code] && r.code !== geo && r.heures_an < tv.heures_an) : [];
   const plusVie = tv ? TV.filter(r => VOIS[r.code] && r.code !== geo && r.heures_vie > tv.heures_vie) : [];
+  // encart : comment se calcule la moyenne annuelle, et ce qu'elle mélange
+  (() => {
+    const el = $("#tt-calc"); if (!el) return;
+    const me = IDX?.pays.find(r => r.code === geo), H0 = [...(T.partiel || [])].reverse().find(x => x.h_plein != null && x.h_tous != null);
+    if (!tv || !me?.travail || !H0) { el.innerHTML = ""; el.hidden = true; return; }
+    el.hidden = false;
+    const sem = tv.heures_an / H0.h_tous, plein = H0.h_plein * sem;
+    const cmp = ["FR", "DE", "DK", "NL", "BE", "SE"].filter(c => c !== geo).map(c => IDX.pays.find(r => r.code === c)).filter(r => r?.travail?.h_plein && TV.find(x => x.code === r.code));
+    const rows = [me, ...cmp].map(r => { const t = r.travail, v = TV.find(x => x.code === r.code); return `<tr${r.code === geo ? ' style="font-weight:600"' : ""}><td>${r.nom}</td><td class="num">${n1(t.h_plein)} h</td><td class="num">${n0(t.partiel)} %</td><td class="num">${n0(v.heures_an)} h</td></tr>`; }).join("");
+    el.innerHTML = `<p><b>Comment se calcule le nombre d'heures par an ?</b></p>
+      <ul>
+        <li><b>Le calcul</b> : toutes les heures réellement travaillées dans le pays pendant l'année (comptes nationaux), divisées par le nombre de personnes en emploi. <b>Tout le monde est mélangé</b> : temps plein, temps partiel, indépendants ; et les congés, jours fériés et arrêts maladie sont déjà déduits.</li>
+        <li><b>Ce que cela donne ici</b> : ${n0(tv.heures_an)} h par an, pour une moyenne de ${n1(H0.h_tous)} h par semaine travaillée (tous emplois confondus, enquête Emploi ${H0.annee}), soit l'équivalent d'environ ${n0(sem)} semaines pleines de travail dans l'année.</li>
+        <li><b>À temps plein seulement</b> : ${n1(H0.h_plein)} h par semaine, soit environ <b>${n0(Math.round(plein / 10) * 10)} h par an</b> avec le même nombre de semaines. C'est l'ordre de grandeur d'une année à temps plein.</li>
+        <li><b>Pourquoi la comparaison entre pays trompe</b> : un pays où beaucoup de gens travaillent à temps partiel (les Pays-Bas, l'Allemagne) a une moyenne annuelle plus basse, même si ses salariés à temps plein travaillent autant ou plus. Ce n'est pas qu'on y travaille moins, c'est qu'on y partage différemment le travail.</li>
+      </ul>
+      <div class="table-scroll"><table class="mo-hist cp-mes" style="min-width:0"><thead><tr><th>Pays</th><th class="num">Temps plein (h/semaine)</th><th class="num">Part du temps partiel</th><th class="num">Moyenne par an, tous emplois</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <p class="muted" style="font-size:.78rem">Eurostat : heures travaillées et emploi des comptes nationaux ; enquête sur les forces de travail (heures réellement travaillées par semaine dans l'emploi principal, part du temps partiel), ${H0.annee}. Le nombre de semaines est déduit du rapport entre les deux sources : c'est un ordre de grandeur.</p>`;
+  })();
   kpis("#tt-kpis", [
     tv ? [n0(tv.heures_an) + " h", [`par personne en emploi, temps plein et temps partiel confondus`, moins.length ? `plus que ${moins.map(r => `${VOIS[r.code]} (${n0(r.heures_an)} h)`).join(", ")}` : `${rgAn}e sur ${N} pays européens`, ...(() => { const me = IDX?.pays.find(r => r.code === geo)?.travail, vs = (IDX?.pays || []).filter(r => moins.some(m => m.code === r.code) && r.travail?.h_plein);
       const EN = { DE: "en Allemagne", NL: "aux Pays-Bas", DK: "au Danemark", SE: "en Suède", BE: "en Belgique" };
