@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261124d">
+<link rel="stylesheet" href="style.css?v=20261124g">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -55,6 +55,7 @@
       <a href="#chomage">Chômage</a>
       <a href="#commerce">Commerce extérieur</a>
       <a href="#industrie">Industrie et innovation</a>
+      <a href="#refondation">La refondation (1944-1974)</a>
       <a href="#comparer">Comparer les pays</a>
     </nav>
     <nav class="tabs" data-group="ressources" aria-label="Ressources" hidden>
@@ -1720,6 +1721,123 @@
   <h3>Comparer les pays</h3><div id="ind-cmp" class="chart"></div>
 </section>
 
+<section id="refondation" class="panel">
+  <div class="panel-head">
+    <h2>La refondation : du CNR à de Gaulle, et ce que sont devenus nos champions <span class="geo-fixed">France</span></h2>
+  </div>
+  <p class="lead">En quinze ans, de 1944 à 1958, la France ruinée par la guerre a posé presque toutes les bases de son modèle actuel : Sécurité sociale, EDF, CEA, ENA, Plan, grandes entreprises publiques. Puis de Gaulle a lancé les grands programmes qui ont fait naître des champions mondiaux : nucléaire, spatial, aéronautique, TGV. Comment cela a-t-il marché, et que sont devenus ces champions ?</p>
+  <div class="kpis" id="rf-kpis"></div>
+  <nav class="li-toc"><b>Sommaire</b><ol>
+    <li><a href="#refondation" data-to="rf-p1">Le programme du Conseil national de la Résistance (1944)</a></li>
+    <li><a href="#refondation" data-to="rf-p2">1944-1946 : poser les bases</a></li>
+    <li><a href="#refondation" data-to="rf-p3">La méthode : plan, protection, crédit dirigé, commande publique</a></li>
+    <li><a href="#refondation" data-to="rf-p4">1958 : de Gaulle, l'ouverture et les grands programmes</a></li>
+    <li><a href="#refondation" data-to="rf-p5">Que sont devenus les champions ?</a></li>
+    <li><a href="#refondation" data-to="rf-p6">Le cas Alstom</a></li>
+    <li><a href="#refondation" data-to="rf-p7">Pourquoi les a-t-on perdus ? Et aujourd'hui ?</a></li>
+  </ol></nav>
+
+  <h3 id="rf-p1" class="ag-part">1. Le programme du Conseil national de la Résistance (1944)</h3>
+  <p>Le 15 mars 1944, dans la clandestinité, le Conseil national de la Résistance (CNR) adopte un programme intitulé <i>Les Jours heureux</i>. Il réunit des mouvements de résistance, des syndicats et des partis allant des communistes à la droite républicaine. Sa partie économique et sociale annonce, entre autres :</p>
+  <div class="in-need">
+    <div><b>Un plan de sécurité sociale</b><span>« visant à assurer à tous les citoyens des moyens d'existence, dans tous les cas où ils sont incapables de se les procurer par le travail ».</span></div>
+    <div><b>Le retour à la nation des grands moyens de production</b><span>Nationaliser les sources d'énergie, les richesses du sous-sol, les compagnies d'assurance et les grandes banques, pour « l'éviction des grandes féodalités économiques et financières ».</span></div>
+    <div><b>Une économie organisée</b><span>« L'intensification de la production nationale selon les lignes d'un plan arrêté par l'État », après consultation des représentants de la production.</span></div>
+    <div><b>Des droits nouveaux</b><span>Participation des travailleurs à la direction de l'économie, syndicats indépendants, retraite permettant de « finir dignement ses jours », presse libérée des puissances d'argent.</span></div>
+  </div>
+
+  <h3 id="rf-p2" class="ag-part">2. 1944-1946 : poser les bases</h3>
+  <p>À la Libération, le gouvernement provisoire du général de Gaulle, avec les communistes, les socialistes et les démocrates-chrétiens, applique une grande partie de ce programme, en moins de deux ans :</p>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Date</th><th>Création</th><th>Ce que c'est devenu</th></tr></thead>
+    <tbody>
+      <tr><td><b>Déc. 1944 - janv. 1945</b></td><td>Nationalisation des Houillères du Nord-Pas-de-Calais ; Renault confisqué (collaboration de son dirigeant) et devenu la Régie Renault</td><td>Charbonnages de France (fermés en 2007, dernière mine en 2004) ; Renault privatisé en 1996</td></tr>
+      <tr><td><b>1945</b></td><td>Air France nationalisée ; Gnome et Rhône devient la SNECMA (moteurs d'avion)</td><td>Air France-KLM (privatisée en 2004) ; la SNECMA est aujourd'hui Safran, un des premiers motoristes mondiaux</td></tr>
+      <tr><td><b>Oct. 1945</b></td><td><b>Sécurité sociale</b> (ordonnances des 4 et 19 octobre, Pierre Laroque, puis Ambroise Croizat) ; <b>ENA</b> (Michel Debré) ; <b>CEA</b>, Commissariat à l'énergie atomique (de Gaulle, Frédéric Joliot-Curie, Raoul Dautry)</td><td>La Sécurité sociale, premier budget de la nation (voir <a href="#argent-public">Argent public</a>) ; l'ENA remplacée par l'INSP en 2022 ; le CEA, base du nucléaire civil et militaire</td></tr>
+      <tr><td><b>Déc. 1945</b></td><td>Nationalisation de la Banque de France et des quatre grandes banques de dépôt (Crédit lyonnais, Société générale, Comptoir national d'escompte, BNCI)</td><td>Toutes reprivatisées entre 1987 et 1999 ; le CNEP et la BNCI forment BNP en 1966</td></tr>
+      <tr><td><b>Janv. 1946</b></td><td><b>Commissariat général du Plan</b>, dirigé par Jean Monnet</td><td>Supprimé en 2006 ; un « Haut-commissariat au Plan » renaît en 2020</td></tr>
+      <tr><td><b>Avril 1946</b></td><td><b>EDF et GDF</b> : nationalisation de 1 450 entreprises d'électricité et de gaz (Marcel Paul)</td><td>EDF, de nouveau publique à 100 % depuis 2023 ; GDF devenu Engie, privatisé</td></tr>
+      <tr><td><b>1946</b></td><td>Nationalisation des grandes compagnies d'assurance ; Charbonnages de France ; INSEE ; ONERA (recherche aérospatiale) ; statut général des fonctionnaires</td><td>Les assureurs regroupés dans AGF, UAP, GAN, reprivatisés puis rachetés (AGF par Allianz, UAP par Axa)</td></tr>
+      <tr><td><b>1947-1952</b></td><td><b>Premier Plan</b> (plan Monnet) : priorité à six secteurs de base (charbon, électricité, acier, ciment, machines agricoles, transports), financé en partie par le plan Marshall américain</td><td>Cinq autres plans suivront jusqu'au début des années 1990</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="rf-p3" class="ag-part">3. La méthode : plan, protection, crédit dirigé, commande publique</h3>
+  <div class="in-need">
+    <div><b>Un plan indicatif</b><span>Le Commissariat au Plan réunit administrations, patrons et syndicats pour fixer des objectifs par secteur sur quatre ou cinq ans. Le plan n'est pas impératif comme en URSS, mais l'État dispose des moyens de le faire respecter : crédit, prix, commandes, entreprises publiques. De Gaulle parlait d'une « ardente obligation ».</span></div>
+    <div><b>Le crédit dirigé</b><span>L'État contrôle les banques et la Caisse des dépôts, fixe les taux et oriente l'épargne vers les secteurs prioritaires (le « circuit du Trésor », voir <a href="#monnaie">Monnaie et croissance</a>, partie 3). Une entreprise jugée stratégique obtient des prêts bonifiés.</span></div>
+    <div><b>La protection</b><span>Jusqu'à la fin des années 1950, des droits de douane élevés, des quotas d'importation et le contrôle des changes protègent l'industrie naissante. Les entreprises françaises grandissent d'abord sur le marché national avant d'affronter la concurrence.</span></div>
+    <div><b>La commande publique</b><span>L'État est le premier client : EDF commande des turbines et des réacteurs, les PTT des centraux téléphoniques, la SNCF des trains, l'armée des avions et des missiles. Ces commandes assurées sur dix ou vingt ans permettent d'investir, puis d'exporter.</span></div>
+    <div><b>Les champions nationaux</b><span>L'État pousse aux fusions pour atteindre une taille mondiale (dans la sidérurgie, la chimie, l'électronique), avec des patrons souvent issus des grands corps de l'État, passés par les cabinets ministériels.</span></div>
+  </div>
+  <h3>La croissance de l'économie française depuis 1950 (en volume, % par an)</h3>
+  <div id="rf-croiss" class="chart"></div>
+  <div class="callout small" id="rf-croiss-txt"></div>
+
+  <h3 id="rf-p4" class="ag-part">4. 1958 : de Gaulle, l'ouverture et les grands programmes</h3>
+  <ul class="mo-ul">
+    <li><b>L'assainissement</b> : revenu au pouvoir en 1958, de Gaulle applique le plan Rueff-Pinay : dévaluation de 17,5 %, nouveau franc (1<sup>er</sup> janvier 1960, 1 nouveau franc = 100 anciens), réduction du déficit, et surtout <b>ouverture des frontières</b> : la France applique le traité de Rome (1957) et entre dans le Marché commun. Les droits de douane entre les six pays fondateurs disparaissent progressivement jusqu'en 1968.</li>
+    <li><b>Le paradoxe</b> : protégées pendant quinze ans, les entreprises françaises affrontent la concurrence allemande et italienne, et la plupart y résistent. La protection a servi de tremplin, puis l'ouverture a forcé à devenir compétitif.</li>
+    <li><b>L'indépendance comme boussole</b> : de Gaulle veut que la France ne dépende de personne pour sa défense, son énergie et ses technologies clés. D'où une série de grands programmes, menés par l'État avec quelques entreprises choisies :</li>
+  </ul>
+  <div class="table-scroll"><table class="mo-hist">
+    <thead><tr><th>Programme</th><th>Dates clés</th><th>Résultat</th></tr></thead>
+    <tbody>
+      <tr><td><b>Dissuasion nucléaire</b></td><td>Première bombe en 1960, sous-marins lanceurs d'engins à partir de 1971</td><td>Autonomie stratégique, toujours en place ; base industrielle pour le nucléaire civil</td></tr>
+      <tr><td><b>Nucléaire civil</b></td><td>Réacteurs graphite-gaz français, puis choix de la technologie américaine sous licence Westinghouse (1969) ; plan Messmer (1974)</td><td>58 réacteurs en 25 ans, électricité bas carbone et bon marché (voir <a href="#nucleaire">Nucléaire</a>)</td></tr>
+      <tr><td><b>Spatial</b></td><td>CNES (1961), fusée Diamant (1965 : 3<sup>e</sup> puissance spatiale), Ariane (1979)</td><td>Arianespace, longtemps leader du lancement commercial, aujourd'hui concurrencé par SpaceX</td></tr>
+      <tr><td><b>Aéronautique</b></td><td>Caravelle (1955), Mirage, Concorde avec le Royaume-Uni (1969), Airbus avec l'Allemagne (1970)</td><td>Airbus, premier constructeur mondial d'avions de ligne ; Dassault, Safran, Thales</td></tr>
+      <tr><td><b>Informatique</b></td><td>Plan Calcul (1966), après le rachat de Bull par l'américain General Electric (1964)</td><td>Échec : la CII ne perce pas ; Bull, plusieurs fois sauvé, finit dans Atos</td></tr>
+      <tr><td><b>Pétrole</b></td><td>ERAP puis Elf (1966), à côté de la Compagnie française des pétroles (Total, 1924)</td><td>TotalEnergies, une des grandes compagnies mondiales</td></tr>
+      <tr><td><b>Téléphone</b></td><td>Plan de rattrapage des années 1970, centraux électroniques d'Alcatel, Minitel (1982)</td><td>On passe de 6 à plus de 20 millions de lignes en dix ans ; Alcatel devient un géant, avant de disparaître (voir ci-dessous)</td></tr>
+      <tr><td><b>TGV</b></td><td>Lancé en 1974, Paris-Lyon en 1981, avec Alsthom</td><td>Alstom, numéro deux mondial du ferroviaire</td></tr>
+    </tbody>
+  </table></div>
+  <p class="callout small"><b>Un échec notable aussi</b> : le Plan Calcul, et plus largement l'électronique grand public (Thomson), n'ont jamais atteint la taille des concurrents américains et japonais. L'État stratège réussit surtout là où il est lui-même le client : défense, énergie, transports, télécoms. Et la croissance des Trente Glorieuses n'est pas propre à la France : l'Allemagne et l'Italie, sans planification, croissent aussi vite, en rattrapant les États-Unis.</p>
+
+  <h3 id="rf-p5" class="ag-part">5. Que sont devenus les champions ?</h3>
+  <p>La frise montre, pour quelques grandes entreprises, qui les contrôlait au fil du temps. Survolez une période pour le détail.</p>
+  <div id="rf-frise" class="chart"></div><div class="legend-row" id="rf-frise-legend"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Ceux qui ont été vendus ou absorbés</b> : Pechiney (aluminium) racheté par le canadien Alcan en 2003, puis démantelé par Rio Tinto ; Arcelor (Usinor-Sacilor) pris par Mittal en 2006 après une offre hostile, et les hauts-fourneaux de Florange fermés ; Alcatel fusionné avec l'américain Lucent (2006) puis racheté par le finlandais Nokia (2016) ; la branche énergie d'Alstom vendue à General Electric (2014) ; Lafarge fusionné avec le suisse Holcim (2015) ; Technip fusionné avec l'américain FMC (2017) avant de se séparer ; Essilor marié à l'italien Luxottica (2018).</li>
+      <li><b>Ceux qui ont échoué ou été découpés</b> : Areva, né en 2001 de la fusion de la Cogema et de Framatome, est en quasi-faillite en 2016 (rachat d'Uramin, chantier de l'EPR finlandais) et découpé : Framatome passe à EDF, le cycle du combustible devient Orano. Bull, plusieurs fois sauvé par l'État, finit dans Atos, dont l'État rachète les activités stratégiques en 2024-2025.</li>
+      <li><b>Ceux qui sont restés des leaders</b> : Airbus, Safran, Dassault, Thales, TotalEnergies, Sanofi (héritier de Rhône-Poulenc), Air Liquide, Schneider, Michelin, Saint-Gobain, EDF. Beaucoup sont nés ou ont grandi avec l'État, comme client ou comme actionnaire.</li>
+      <li><b>Les rachats par l'État</b> : quand une activité jugée stratégique est menacée, l'État la rachète, souvent plus cher qu'il ne l'aurait conservée : les Chantiers de l'Atlantique (2017), EDF à 100 % (2023), Alcatel Submarine Networks (câbles sous-marins, racheté à Nokia en 2024), les turbines nucléaires d'Alstom (2024), les supercalculateurs d'Atos.</li>
+    </ul>
+  </div>
+
+  <h3 id="rf-p6" class="ag-part">6. Le cas Alstom</h3>
+  <ul class="mo-ul">
+    <li><b>Un champion de l'État</b> : Alsthom (né en 1928) fabrique les turbines des centrales électriques, dont les turbines Arabelle qui équipent les centrales nucléaires françaises, et les TGV. Sauvé de la faillite en 2004 par l'État, qui entre au capital avec l'accord de Bruxelles.</li>
+    <li><b>La vente de 2014</b> : en avril 2014, on apprend que la direction d'Alstom (Patrick Kron) négocie la vente de sa branche énergie, 70 % de l'activité, à l'américain General Electric. Le ministre de l'Économie, Arnaud Montebourg, tente d'imposer une alternative avec Siemens et Mitsubishi, puis obtient des coentreprises censées garder un contrôle français sur le nucléaire et un droit de veto de l'État. La vente est conclue pour environ 12 milliards d'euros ; Emmanuel Macron, ministre à partir d'août 2014, l'autorise.</li>
+    <li><b>Le contexte judiciaire</b> : au même moment, Alstom est poursuivi aux États-Unis pour corruption (loi américaine FCPA) ; un de ses cadres, Frédéric Pierucci, est arrêté en 2013 et incarcéré, et Alstom paie fin 2014 une amende de 772 millions de dollars. Pierucci (<i>Le Piège américain</i>, 2019) et une commission d'enquête parlementaire (2018) ont soutenu que cette pression a pesé sur la décision de vendre ; la direction d'Alstom l'a toujours contesté.</li>
+    <li><b>Après</b> : General Electric n'a pas tenu ses promesses d'emploi (1 000 créations promises, des suppressions à Belfort à la place) et a payé une pénalité. Les coentreprises ont été rachetées par GE en 2018. Puis, l'énergie fossile s'effondrant, GE a revendu en 2024 à EDF les activités nucléaires, dont les turbines Arabelle (devenues Arabelle Solutions), pour un prix non publié, présenté comme proche du milliard. La France a ainsi racheté une partie de ce qu'elle avait vendu.</li>
+    <li><b>Les brevets</b> : il a été rapporté que toute la propriété intellectuelle n'a pas suivi, certaines technologies restant chez GE ou sous licence, et que des activités de maintenance hors de France n'ont pas été reprises. Les détails exacts du contrat ne sont pas publics : ce point reste à vérifier.</li>
+    <li><b>Ce qu'il reste d'Alstom</b> : le ferroviaire, numéro deux mondial après le chinois CRRC, renforcé par le rachat du canadien Bombardier Transport (2021), après l'échec d'une fusion avec Siemens bloquée par la Commission européenne en 2019 au nom de la concurrence.</li>
+  </ul>
+
+  <h3 id="rf-p7" class="ag-part">7. Pourquoi les a-t-on perdus ? Et aujourd'hui ?</h3>
+  <div class="in-need">
+    <div><b>Les privatisations</b><span>1986-1988, puis 1993-2002 : l'État vend la plupart de ses participations, pour réduire la dette et parce que la gestion publique était jugée moins efficace. Les entreprises deviennent achetables.</span></div>
+    <div><b>Pas de grands investisseurs français</b><span>Avec des retraites par répartition, la France n'a pas de grands fonds de pension. Environ 40 % du capital des entreprises du CAC 40 est détenu par des investisseurs étrangers, souvent des fonds américains.</span></div>
+    <div><b>Les règles européennes</b><span>Interdiction des aides d'État et contrôle des fusions : Bruxelles a bloqué Alstom-Siemens en 2019 et encadré les sauvetages. L'Europe a longtemps pensé ses règles pour protéger le consommateur, pas pour faire naître des champions.</span></div>
+    <div><b>Le « fabless » et la finance</b><span>Dans les années 1990-2000, de grands patrons ont choisi de vendre ou délocaliser la production pour se concentrer sur la conception et la rentabilité (voir <a href="#industrie">Industrie et innovation</a>).</span></div>
+    <div><b>L'extraterritorialité américaine</b><span>Les lois américaines (corruption, embargos, exportations militaires) s'appliquent à toute entreprise utilisant le dollar ou des composants américains, et donnent un levier puissant aux autorités et aux concurrents américains.</span></div>
+  </div>
+  <div class="callout small">
+    <p><b>Le retour de l'État stratège ?</b></p>
+    <ul>
+      <li><b>Le contrôle des investissements étrangers</b> : le « décret Montebourg » de 2014 soumet à autorisation le rachat d'entreprises dans les secteurs stratégiques ; la liste a été élargie en 2019 et 2020, et le seuil abaissé à 10 % du capital pour les sociétés cotées.</li>
+      <li><b>Le plan France 2030</b> (2021) : environ 54 milliards d'euros pour le nucléaire, l'hydrogène, les batteries, les semi-conducteurs, la santé. Des usines de batteries s'installent dans les Hauts-de-France.</li>
+      <li><b>Les rachats et renationalisations</b> : EDF, les turbines Arabelle, les câbles sous-marins, les supercalculateurs.</li>
+      <li><b>La différence avec 1945-1975</b> : l'État n'a plus le crédit dirigé, ni la protection aux frontières, ni le droit d'aider librement ses entreprises ; il agit dans un marché européen ouvert, avec une dette publique de 115 % du PIB. La planification d'hier n'est pas reproductible telle quelle ; la question est de savoir ce qui peut l'être à l'échelle européenne.</li>
+    </ul>
+  </div>
+  <p class="muted" style="font-size:.78rem">Sources : programme du CNR (15 mars 1944) ; Commissariat général du Plan ; INSEE, comptes nationaux (croissance en volume) ; Assemblée nationale, commission d'enquête sur les décisions de l'État en matière de politique industrielle (2018) ; Frédéric Pierucci et Matthieu Aron, <i>Le Piège américain</i> (2019) ; Élie Cohen, <i>Le Colbertisme high-tech</i> (1992). Les dates et montants de cet article sont donnés de mémoire et doivent être revérifiés.</p>
+</section>
+
+
 <!-- =============================================================== COMPARER -->
 <section id="comparer" class="panel">
   <div class="panel-head">
@@ -1842,7 +1960,7 @@
   <p class="lead">La France a construit, entre 1970 et 2000, un parc nucléaire et hydraulique qui produit une électricité bon marché. Pourtant, en 2022-2023, les Français ont vu leurs factures exploser comme celles de leurs voisins qui brûlent du gaz. Comment le prix se forme-t-il, qu'a changé l'ouverture à la concurrence, et qu'avait prévu l'ancien patron d'EDF, Marcel Boiteux ?</p>
   <nav class="li-toc"><b>Dans cette partie</b><ol>
     <li><a href="#energie" data-to="mk-1">5.1 Comment se forme le prix : la dernière centrale appelée</a></li>
-    <li><a href="#energie" data-to="mk-6">5.2 Combien rapportent nos échanges avec les voisins ?</a></li>
+    <li><a href="#energie" data-to="mk-6">5.2 Combien rapportent nos échanges ? Et combien paient les Français ?</a></li>
     <li><a href="#energie" data-to="mk-2">5.3 De l'EDF monopole à la concurrence : les grandes dates</a></li>
     <li><a href="#energie" data-to="mk-3">5.4 L'ARENH : le nucléaire d'EDF vendu à ses concurrents</a></li>
     <li><a href="#energie" data-to="mk-7">5.5 Les offres « vertes » des fournisseurs alternatifs</a></li>
@@ -1867,11 +1985,24 @@
     </ul>
   </div>
 
-  <h3 id="mk-6" class="li-sub">5.2 Combien rapportent nos échanges d'électricité avec les voisins ?</h3>
+  <h3 id="mk-6" class="li-sub">5.2 Combien rapportent nos échanges d'électricité ? Et combien paient les Français ?</h3>
   <p>Oui, l'électricité exportée est vendue au prix du marché de l'heure où elle part, donc au prix fixé par la dernière centrale appelée (5.1), en France ou chez le voisin. Voici ce que la France a vendu et acheté chaque année, selon les douanes européennes.</p>
   <div id="mk-ech" class="chart"></div><div class="legend-row" id="mk-ech-legend"></div>
   <div id="mk-prix" class="chart"></div><div class="legend-row" id="mk-prix-legend"></div>
   <div class="callout small" id="mk-ech-txt"></div>
+
+  <h3>Mais alors, les Français paient-ils leur électricité plus cher ? Le bilan général</h3>
+  <p>Oui, c'est la contrepartie : si l'électricité exportée se vend au prix du marché, celle consommée en France (environ 450 TWh par an, quatre fois plus que les exportations) suit elle aussi ce prix, au moins en partie. Ce que gagnent les producteurs à l'export est petit à côté de ce qu'ils gagnent, ou perdent, sur le marché français.</p>
+  <h3>Prix de l'électricité pour un ménage (€ par kWh, toutes taxes comprises)</h3>
+  <div id="mk-men" class="chart"></div><div class="legend-row" id="mk-men-legend"></div>
+  <h3>Le calculateur : qui gagne quand le prix dépasse le coût ?</h3>
+  <div class="in-sim">
+    <label class="ctl">Prix de gros de l'électricité (moyenne annuelle) <input type="range" id="mk-bp" min="30" max="300" step="5" value="100"><b id="mk-bp-v"></b></label>
+    <label class="ctl">Coût moyen de production en France <input type="range" id="mk-bc" min="40" max="90" step="1" value="60"><b id="mk-bc-v"></b></label>
+    <label class="ctl">Part de la production française faite par EDF <input type="range" id="mk-be" min="50" max="90" step="1" value="75"><b id="mk-be-v"></b></label>
+  </div>
+  <div id="mk-bil-out"></div>
+  <div class="callout small" id="mk-bil-txt"></div>
 
   <h3 id="mk-2" class="li-sub">5.3 De l'EDF monopole à la concurrence : les grandes dates</h3>
   <div class="table-scroll"><table class="mo-hist">
@@ -3011,52 +3142,53 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261124d"></script>
-<script src="app.js?v=20261124d"></script>
-<script src="energie.js?v=20261124d"></script>
-<script src="matieres.js?v=20261124d"></script>
-<script src="territoire.js?v=20261124d"></script>
-<script src="themes.js?v=20261124d"></script>
-<script src="societe.js?v=20261124d"></script>
-<script src="eco2.js?v=20261124d"></script>
-<script src="empreinte.js?v=20261124d"></script>
-<script src="argentprive.js?v=20261124d"></script>
-<script src="repartition.js?v=20261124d"></script>
-<script src="patrimoine.js?v=20261124d"></script>
-<script src="prelevements.js?v=20261124d"></script>
-<script src="travailvie.js?v=20261124d"></script>
-<script src="niveauvie.js?v=20261124d"></script>
-<script src="prosperite.js?v=20261124d"></script>
-<script src="exterieur.js?v=20261124d"></script>
-<script src="desindus.js?v=20261124d"></script>
-<script src="retraites.js?v=20261124d"></script>
-<script src="energiecout.js?v=20261124d"></script>
-<script src="energieformation.js?v=20261124d"></script>
-<script src="nucleaire.js?v=20261124d"></script>
-<script src="logementeco.js?v=20261124d"></script>
-<script src="competences.js?v=20261124d"></script>
-<script src="justicedroit.js?v=20261124d"></script>
-<script src="fonctionnaires.js?v=20261124d"></script>
-<script src="couper.js?v=20261124d"></script>
-<script src="seuilpays.js?v=20261124d"></script>
-<script src="logement.js?v=20261124d"></script>
-<script src="env.js?v=20261124d"></script>
-<script src="agriculture.js?v=20261124d"></script>
-<script src="rendements.js?v=20261124d"></script>
-<script src="monnaie.js?v=20261124d"></script>
-<script src="limites.js?v=20261124d"></script>
-<script src="sociologie.js?v=20261124d"></script>
-<script src="chaine.js?v=20261124d"></script>
-<script src="patrimoinehist.js?v=20261124d"></script>
-<script src="innovation.js?v=20261124d"></script>
+<script src="kpi.js?v=20261124g"></script>
+<script src="app.js?v=20261124g"></script>
+<script src="energie.js?v=20261124g"></script>
+<script src="matieres.js?v=20261124g"></script>
+<script src="territoire.js?v=20261124g"></script>
+<script src="themes.js?v=20261124g"></script>
+<script src="societe.js?v=20261124g"></script>
+<script src="eco2.js?v=20261124g"></script>
+<script src="empreinte.js?v=20261124g"></script>
+<script src="argentprive.js?v=20261124g"></script>
+<script src="repartition.js?v=20261124g"></script>
+<script src="patrimoine.js?v=20261124g"></script>
+<script src="prelevements.js?v=20261124g"></script>
+<script src="travailvie.js?v=20261124g"></script>
+<script src="niveauvie.js?v=20261124g"></script>
+<script src="prosperite.js?v=20261124g"></script>
+<script src="exterieur.js?v=20261124g"></script>
+<script src="desindus.js?v=20261124g"></script>
+<script src="retraites.js?v=20261124g"></script>
+<script src="energiecout.js?v=20261124g"></script>
+<script src="energieformation.js?v=20261124g"></script>
+<script src="nucleaire.js?v=20261124g"></script>
+<script src="logementeco.js?v=20261124g"></script>
+<script src="competences.js?v=20261124g"></script>
+<script src="justicedroit.js?v=20261124g"></script>
+<script src="fonctionnaires.js?v=20261124g"></script>
+<script src="couper.js?v=20261124g"></script>
+<script src="seuilpays.js?v=20261124g"></script>
+<script src="logement.js?v=20261124g"></script>
+<script src="env.js?v=20261124g"></script>
+<script src="agriculture.js?v=20261124g"></script>
+<script src="rendements.js?v=20261124g"></script>
+<script src="monnaie.js?v=20261124g"></script>
+<script src="limites.js?v=20261124g"></script>
+<script src="sociologie.js?v=20261124g"></script>
+<script src="chaine.js?v=20261124g"></script>
+<script src="patrimoinehist.js?v=20261124g"></script>
+<script src="innovation.js?v=20261124g"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261124d"></script>
-<script src="histoire.js?v=20261124d"></script>
-<script src="chomage.js?v=20261124d"></script>
-<script src="marche.js?v=20261124d"></script>
-<script src="tableau.js?v=20261124d"></script>
-<script src="sources.js?v=20261124d"></script>
-<script src="nav.js?v=20261124d"></script>
+<script src="soussol.js?v=20261124g"></script>
+<script src="histoire.js?v=20261124g"></script>
+<script src="chomage.js?v=20261124g"></script>
+<script src="refondation.js?v=20261124g"></script>
+<script src="marche.js?v=20261124g"></script>
+<script src="tableau.js?v=20261124g"></script>
+<script src="sources.js?v=20261124g"></script>
+<script src="nav.js?v=20261124g"></script>
 </body>
 </html>

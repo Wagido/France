@@ -326,4 +326,5 @@ mkdir -p energie
 # échanges d'électricité de la France : valeurs (Comext, produit 2716) et volumes (bilan électrique)
 get energie/comext_2716.json "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-045409?reporter=FR&partner=WORLD&product=2716&flow=1&flow=2&indicators=VALUE_IN_EUROS&indicators=QUANTITY_IN_100KG&freq=A"
 get energie/nrg_cb_e_echanges.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?geo=FR&siec=E7000&nrg_bal=IMP&nrg_bal=EXP&unit=GWH"
+get energie/nrg_pc_204.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_204?geo=FR&geo=DE&geo=EU27_2020&geo=ES&geo=IT&nrg_cons=KWH2500-4999&tax=I_TAX&tax=X_TAX&currency=EUR&unit=KWH&sinceTimePeriod=2015-S1"
 echo "OK"
