@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261124s">
+<link rel="stylesheet" href="style.css?v=20261124t">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -1698,12 +1698,20 @@
 <section id="industrie" class="panel">
   <div class="panel-head"><h2>Industrie et innovation <span class="geo-tag"></span></h2></div>
   <div class="kpis" id="ind-kpis"></div>
+  <nav class="li-toc"><b>Sommaire</b><ol>
+    <li><a href="#industrie" data-to="ind-p1">L'industrie aujourd'hui : poids, production, recherche</a></li>
+    <li><a href="#industrie" data-to="ind-p2">La désindustrialisation : du « fabless » à l'arrêt de la chute</a></li>
+    <li><a href="#industrie" data-to="ind-reind">Comment réindustrialiser ? La méthode Montebourg, la politique de l'offre, les leviers</a></li>
+    <li><a href="#industrie" data-to="ind-p4">Innovation : brevets et recherche</a></li>
+    <li><a href="#industrie" data-to="ind-p5">Comparer les pays</a></li>
+  </ol></nav>
+  <h3 id="ind-p1" class="ag-part">1. L'industrie aujourd'hui : poids, production, recherche</h3>
   <div class="grid2">
     <div><h3>Le poids de l'industrie depuis 1995</h3><div id="ind-part" class="chart"></div><div class="legend-row" id="ind-part-legend"></div>
       <h3>Production manufacturière</h3><div id="ind-prod" class="chart"></div></div>
     <div><h3>Dépenses de recherche et développement (% du PIB)</h3><div id="ind-rd" class="chart"></div><div class="legend-row" id="ind-rd-legend"></div></div>
   </div>
-  <h3>La désindustrialisation : du « fabless » de Serge Tchuruk à la réindustrialisation</h3>
+  <h3 id="ind-p2" class="ag-part">2. La désindustrialisation : du « fabless » de Serge Tchuruk à l'arrêt de la chute</h3>
   <div class="kpis" id="di-kpis"></div>
   <div class="grid2">
     <div><p class="muted" style="margin-top:0">Part de l'industrie manufacturière dans la valeur ajoutée, en %</p><div id="di-va" class="chart"></div><div class="legend-row" id="di-va-legend"></div></div>
@@ -1711,10 +1719,10 @@
   </div>
   <div class="callout small" id="di-txt"></div>
   <p class="muted" style="font-size:.8rem">Sources : Eurostat, comptes nationaux par branche (<a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_a10/default/table" target="_blank" rel="noopener">nama_10_a10</a> et nama_10_a10_e ; industrie manufacturière = section C, hors énergie, mines et construction ; données depuis 1975 pour la France, 1991 ou 1995 pour les autres pays) ; <a href="http://news.bbc.co.uk/2/hi/business/1409787.stm" target="_blank" rel="noopener">BBC, juin 2001</a> (déclaration de Serge Tchuruk au <i>Wall Street Journal</i>) ; Louis Gallois, <i>Pacte pour la compétitivité de l'industrie française</i>, 2012 ; L. Demmou, « La désindustrialisation en France », <a href="https://www.tresor.economie.gouv.fr/Articles/40bd46a0-80ec-45ca-a6eb-8188b4511e54/files/607b4417-04f7-4095-a295-4dfab49fc167" target="_blank" rel="noopener">direction générale du Trésor</a>, 2010.</p>
-  <h3 id="ind-reind" class="ag-part">Comment réindustrialiser ?</h3>
+  <h3 id="ind-reind" class="ag-part">3. Comment réindustrialiser ?</h3>
   <p class="lead">Depuis 2012, tous les gouvernements disent vouloir réindustrialiser la France. Deux grandes méthodes se sont succédé : celle d'Arnaud Montebourg, ministre du Redressement productif de 2012 à 2014, fondée sur la protection et l'intervention de l'État ; puis celle d'Emmanuel Macron, fondée d'abord sur la baisse des coûts et l'attractivité, puis sur l'investissement public (France 2030). Ce qu'elles proposent, ce qu'elles ont donné, et les leviers possibles.</p>
 
-  <h3>La méthode Montebourg</h3>
+  <h3 id="ind-3-1" class="li-sub">3.1 La méthode Montebourg (2012-2014)</h3>
   <ul class="mo-ul">
     <li><b>Le diagnostic</b> : dans <i>Votez pour la démondialisation !</i> (2011), Arnaud Montebourg soutient que le libre-échange sans règles avec des pays à bas salaires et sans normes sociales ou environnementales détruit l'industrie française. Il faut donc des protections, d'abord à l'échelle européenne.</li>
     <li><b>Le « made in France »</b> : en octobre 2012, il pose en marinière bretonne et robot ménager français en couverture d'un magazine. Moqué, le geste installe pourtant l'idée que l'achat de produits fabriqués en France est un choix politique. Il défend aussi une préférence pour les produits français et européens dans les marchés publics.</li>
@@ -1724,7 +1732,7 @@
     <li><b>Le bilan</b> : peu de sites sauvés (Florange a fermé ses hauts-fourneaux, Aulnay a fermé), des plans de filière qui ont souvent manqué de moyens et de suivi. Montebourg quitte le gouvernement en août 2014, en désaccord avec la politique d'économies. Mais plusieurs de ses idées, jugées archaïques à l'époque, sont devenues la norme dix ans plus tard : souveraineté industrielle, contrôle des investissements étrangers, préférence européenne, protection face à la Chine.</li>
   </ul>
 
-  <h3>L'autre méthode : baisser les coûts, attirer, puis investir</h3>
+  <h3 id="ind-3-2" class="li-sub">3.2 L'autre méthode : baisser les coûts, attirer, puis investir</h3>
   <ul class="mo-ul">
     <li><b>Le « choc de compétitivité »</b> : le rapport de Louis Gallois (novembre 2012) estime que l'industrie française souffre surtout de coûts trop élevés et d'une montée en gamme insuffisante. Il en sort le CICE (2013), puis le pacte de responsabilité : environ 20 milliards d'euros par an de baisse du coût du travail.</li>
     <li><b>La politique de l'offre</b> (à partir de 2017) : baisse de l'impôt sur les sociétés (de 33 % à 25 %), baisse des impôts de production (10 milliards d'euros en 2021), réforme du marché du travail, et sommets « Choose France » pour attirer les investisseurs étrangers. La France devient le premier pays européen par le nombre de projets d'investissement étrangers.</li>
@@ -1732,7 +1740,7 @@
     <li><b>Le bilan</b> : la chute de l'emploi industriel s'arrête vers 2016, et entre 2017 et 2023 il s'ouvre plus d'usines qu'il n'en ferme, une première depuis des décennies (voir les graphiques ci-dessus). Mais la part de l'industrie dans l'économie ne remonte presque pas, les projets étrangers créent en moyenne peu d'emplois, et la hausse des prix de l'énergie et la concurrence chinoise font de nouveau passer les fermetures devant les ouvertures à partir de 2024.</li>
   </ul>
 
-  <h3>Les leviers possibles</h3>
+  <h3 id="ind-3-3" class="li-sub">3.3 Les leviers possibles</h3>
   <div class="in-need">
     <div><b>① Une énergie bon marché et stable</b><span>L'électricité nucléaire était l'avantage de l'industrie française ; le marché européen l'a en partie effacé (voir <a href="#energie">Énergie</a>, partie 5). Des contrats de long terme à prix proche du coût pour les industriels sont la première demande des usines électro-intensives.</span></div>
     <div><b>② Des coûts de production comparables</b><span>Impôts de production encore plus élevés qu'en Allemagne, coût du travail qualifié : les baisses ont réduit l'écart sans le supprimer.</span></div>
@@ -1747,14 +1755,14 @@
     <p><b>En résumé</b> : les deux méthodes, longtemps opposées, se sont rapprochées. Baisser les coûts est nécessaire mais ne suffit pas face à des concurrents subventionnés et protégés (Chine, États-Unis avec leur loi de 2022 sur la transition énergétique, l'Inflation Reduction Act) ; protéger sans être compétitif ne fait que retarder les fermetures. Réindustrialiser demande les deux à la fois, sur vingt ans, et surtout une énergie compétitive : c'est là que se joue une grande partie de la bataille.</p>
   </div>
 
-  <h3>Innovation : brevets et recherche</h3>
+  <h3 id="ind-p4" class="ag-part">4. Innovation : brevets et recherche</h3>
   <div class="grid2">
     <div><h3>Brevets européens par million d'habitants</h3><div id="in-brevets"></div></div>
     <div><h3>Brevets par million d'habitants depuis 2004</h3><div id="in-evol" class="chart"></div><div class="legend-row" id="in-evol-legend"></div>
       <h3>Recherche et développement : qui la fait ? (% du PIB)</h3><div id="in-rd"></div><div class="legend-row" id="in-rd-legend"></div></div>
   </div>
   <div class="callout small" id="in-txt"></div>
-  <h3>Comparer les pays</h3><div id="ind-cmp" class="chart"></div>
+  <h3 id="ind-p5" class="ag-part">5. Comparer les pays</h3><div id="ind-cmp" class="chart"></div>
 </section>
 
 <section id="refondation" class="panel">
@@ -3245,53 +3253,53 @@
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261124s"></script>
-<script src="app.js?v=20261124s"></script>
-<script src="energie.js?v=20261124s"></script>
-<script src="matieres.js?v=20261124s"></script>
-<script src="territoire.js?v=20261124s"></script>
-<script src="themes.js?v=20261124s"></script>
-<script src="societe.js?v=20261124s"></script>
-<script src="eco2.js?v=20261124s"></script>
-<script src="empreinte.js?v=20261124s"></script>
-<script src="argentprive.js?v=20261124s"></script>
-<script src="repartition.js?v=20261124s"></script>
-<script src="patrimoine.js?v=20261124s"></script>
-<script src="prelevements.js?v=20261124s"></script>
-<script src="travailvie.js?v=20261124s"></script>
-<script src="niveauvie.js?v=20261124s"></script>
-<script src="prosperite.js?v=20261124s"></script>
-<script src="exterieur.js?v=20261124s"></script>
-<script src="desindus.js?v=20261124s"></script>
-<script src="retraites.js?v=20261124s"></script>
-<script src="energiecout.js?v=20261124s"></script>
-<script src="energieformation.js?v=20261124s"></script>
-<script src="nucleaire.js?v=20261124s"></script>
-<script src="logementeco.js?v=20261124s"></script>
-<script src="competences.js?v=20261124s"></script>
-<script src="justicedroit.js?v=20261124s"></script>
-<script src="fonctionnaires.js?v=20261124s"></script>
-<script src="couper.js?v=20261124s"></script>
-<script src="seuilpays.js?v=20261124s"></script>
-<script src="logement.js?v=20261124s"></script>
-<script src="env.js?v=20261124s"></script>
-<script src="agriculture.js?v=20261124s"></script>
-<script src="rendements.js?v=20261124s"></script>
-<script src="monnaie.js?v=20261124s"></script>
-<script src="limites.js?v=20261124s"></script>
-<script src="sociologie.js?v=20261124s"></script>
-<script src="chaine.js?v=20261124s"></script>
-<script src="patrimoinehist.js?v=20261124s"></script>
-<script src="innovation.js?v=20261124s"></script>
+<script src="kpi.js?v=20261124t"></script>
+<script src="app.js?v=20261124t"></script>
+<script src="energie.js?v=20261124t"></script>
+<script src="matieres.js?v=20261124t"></script>
+<script src="territoire.js?v=20261124t"></script>
+<script src="themes.js?v=20261124t"></script>
+<script src="societe.js?v=20261124t"></script>
+<script src="eco2.js?v=20261124t"></script>
+<script src="empreinte.js?v=20261124t"></script>
+<script src="argentprive.js?v=20261124t"></script>
+<script src="repartition.js?v=20261124t"></script>
+<script src="patrimoine.js?v=20261124t"></script>
+<script src="prelevements.js?v=20261124t"></script>
+<script src="travailvie.js?v=20261124t"></script>
+<script src="niveauvie.js?v=20261124t"></script>
+<script src="prosperite.js?v=20261124t"></script>
+<script src="exterieur.js?v=20261124t"></script>
+<script src="desindus.js?v=20261124t"></script>
+<script src="retraites.js?v=20261124t"></script>
+<script src="energiecout.js?v=20261124t"></script>
+<script src="energieformation.js?v=20261124t"></script>
+<script src="nucleaire.js?v=20261124t"></script>
+<script src="logementeco.js?v=20261124t"></script>
+<script src="competences.js?v=20261124t"></script>
+<script src="justicedroit.js?v=20261124t"></script>
+<script src="fonctionnaires.js?v=20261124t"></script>
+<script src="couper.js?v=20261124t"></script>
+<script src="seuilpays.js?v=20261124t"></script>
+<script src="logement.js?v=20261124t"></script>
+<script src="env.js?v=20261124t"></script>
+<script src="agriculture.js?v=20261124t"></script>
+<script src="rendements.js?v=20261124t"></script>
+<script src="monnaie.js?v=20261124t"></script>
+<script src="limites.js?v=20261124t"></script>
+<script src="sociologie.js?v=20261124t"></script>
+<script src="chaine.js?v=20261124t"></script>
+<script src="patrimoinehist.js?v=20261124t"></script>
+<script src="innovation.js?v=20261124t"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261124s"></script>
-<script src="histoire.js?v=20261124s"></script>
-<script src="chomage.js?v=20261124s"></script>
-<script src="refondation.js?v=20261124s"></script>
-<script src="marche.js?v=20261124s"></script>
-<script src="tableau.js?v=20261124s"></script>
-<script src="sources.js?v=20261124s"></script>
-<script src="nav.js?v=20261124s"></script>
+<script src="soussol.js?v=20261124t"></script>
+<script src="histoire.js?v=20261124t"></script>
+<script src="chomage.js?v=20261124t"></script>
+<script src="refondation.js?v=20261124t"></script>
+<script src="marche.js?v=20261124t"></script>
+<script src="tableau.js?v=20261124t"></script>
+<script src="sources.js?v=20261124t"></script>
+<script src="nav.js?v=20261124t"></script>
 </body>
 </html>
