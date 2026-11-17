@@ -10,7 +10,7 @@ const CH = [
   ["Airbus", [[1970, 2000, "eu", "Groupement franco-allemand, avec l'Espagne et le Royaume-Uni"], [2000, 2026, "eu", "EADS puis Airbus, européen, coté"]]],
   ["Thomson / Thales", [[1982, 1997, "pub", "Nationalisé en 1982"], [1997, 2026, "fr", "Thales (défense), État à environ 26 % ; l'électronique grand public vendue (TCL, 2004)"]]],
   ["Rhône-Poulenc / Sanofi", [[1982, 1993, "pub", "Nationalisé en 1982"], [1993, 1999, "fr", "Privatisé"], [1999, 2004, "eu", "Aventis, avec l'allemand Hoechst"], [2004, 2026, "fr", "Absorbé par Sanofi"]]],
-  ["Alstom énergie", [[1982, 1987, "pub", "Dans la CGE nationalisée"], [1987, 2014, "fr", "Alsthom, puis Alstom ; État actionnaire de 2004 à 2006"], [2014, 2024, "etr", "Vendu à General Electric"], [2024, 2026, "pub", "Turbines nucléaires rachetées par EDF"]]],
+  ["Alstom énergie", [[1982, 1987, "pub", "Dans la CGE nationalisée"], [1987, 2014, "fr", "Alsthom, puis Alstom ; État actionnaire de 2004 à 2006"], [2014, 2024, "etr", "Vendu à General Electric"], [2024, 2026, "pub", "Turbines nucléaires Arabelle rachetées par EDF à GE (31 mai 2024, environ 1,2 milliard de dollars) : filiale Arabelle Solutions"]]],
   ["Alcatel", [[1982, 1987, "pub", "CGE nationalisée"], [1987, 2006, "fr", "Alcatel, géant des télécoms"], [2006, 2016, "etr", "Alcatel-Lucent, franco-américain"], [2016, 2026, "etr", "Racheté par Nokia (Finlande)"]]],
   ["Pechiney", [[1982, 1995, "pub", "Nationalisé en 1982"], [1995, 2003, "fr", "Privatisé"], [2003, 2026, "fin", "Racheté par Alcan, puis Rio Tinto : démantelé"]]],
   ["Usinor / Arcelor", [[1981, 1995, "pub", "Usinor-Sacilor, nationalisé"], [1995, 2002, "fr", "Privatisé"], [2002, 2006, "eu", "Arcelor, européen"], [2006, 2026, "etr", "ArcelorMittal, après une offre hostile"]]],
