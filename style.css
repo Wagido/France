@@ -583,3 +583,7 @@ table.cmp-t.li-mx { min-width: 980px; }
 table.cmp-t.tp-kl { min-width: 0; width: 100%; table-layout: fixed; }
 .tp-kl td, .tp-kl th { text-align: center; padding: 6px 8px; }
 .tp-kl td small { color: var(--muted); }
+.ro-stack { display: flex; height: 30px; border-radius: 6px; overflow: hidden; }
+.ro-stack span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: .75rem; font-weight: 600; white-space: nowrap; overflow: hidden; }
+.ro-cycle { width: 100%; height: auto; color: var(--ink); }
+.ro-t td { vertical-align: top; white-space: normal; }

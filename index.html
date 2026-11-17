@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117g">
+<link rel="stylesheet" href="style.css?v=20261117h">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -100,6 +100,7 @@
     </nav>
     <nav class="tabs" data-group="science" aria-label="Science" hidden>
       <a href="#tableau">Tableau périodique</a>
+      <a href="#roches">Roches</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
       <a href="#sources">Sources</a>
@@ -3415,59 +3416,168 @@
   <p class="muted" style="font-size:.78rem">Sources : données des éléments d'après Wikipédia, compilées par le projet Periodic-Table-JSON (masses, configurations électroniques, électronégativité de Pauling, énergies de première ionisation, rayons atomiques calculés, densités, températures de fusion et d'ébullition) ; Commission européenne, liste 2023 des matières premières critiques ; origine des éléments simplifiée d'après Jennifer Johnson (Ohio State University, 2019). Les propriétés des éléments au-delà du fermium sont en partie prédites.</p>
 </section>
 
+<section id="roches" class="panel">
+  <div class="panel-head">
+    <h2>Les roches : comment elles se forment, et ce que les humains en font <span class="geo-fixed">Science</span></h2>
+  </div>
+  <p class="lead">Sous nos pieds, tout est roche : le sol n'en est que la mince pellicule altérée. Les roches racontent 4,5 milliards d'années d'histoire de la Terre, et elles fournissent encore aujourd'hui l'essentiel, en poids, de ce que la France extrait et consomme : 63 % de tout ce qu'on extrait du territoire sont des sables, graviers et pierres.</p>
+  <ul class="mo-ul">
+    <li><a href="#roches" data-to="ro-p1">1. De quoi est faite une roche ?</a></li>
+    <li><a href="#roches" data-to="ro-p2">2. Le cycle des roches</a></li>
+    <li><a href="#roches" data-to="ro-p3">3. Les trois familles</a></li>
+    <li><a href="#roches" data-to="ro-p4">4. Le temps des roches</a></li>
+    <li><a href="#roches" data-to="ro-p5">5. La géologie de la France</a></li>
+    <li><a href="#roches" data-to="ro-p6">6. Les roches et les humains</a></li>
+    <li><a href="#roches" data-to="ro-p7">7. Ce que la France extrait aujourd'hui</a></li>
+  </ul>
+
+  <h3 id="ro-p1" class="ag-part">1. De quoi est faite une roche ?</h3>
+  <p>Une <b>roche</b> est un assemblage de <b>minéraux</b>, et un minéral est un cristal de composition chimique précise : le quartz (silice, SiO₂), les feldspaths (silicates d'aluminium avec du potassium, du sodium ou du calcium), les micas, la calcite (carbonate de calcium)… Le granite, par exemple, est fait de quartz, de feldspath et de mica, visibles à l'œil nu.</p>
+  <p class="muted" style="margin:10px 0 2px">Composition de la croûte terrestre, en % de la masse</p>
+  <div class="ro-stack"><span title="Oxygène : 46,1 %" style="width:46.1%;background:#ef4444">Oxygène</span><span title="Silicium : 28,2 %" style="width:28.2%;background:#3b82f6">Silicium</span><span title="Aluminium : 8,2 %" style="width:8.2%;background:#a3a3a3">Aluminium</span><span title="Fer : 5,6 %" style="width:5.6%;background:#b45309">Fer</span><span title="Calcium : 4,2 %" style="width:4.2%;background:#f59e0b">Calcium</span><span title="Sodium : 2,4 %" style="width:2.4%;background:#22c55e"></span><span title="Magnésium : 2,3 %" style="width:2.3%;background:#14b8a6"></span><span title="Potassium : 2,1 %" style="width:2.1%;background:#8b5cf6"></span><span title="Tous les autres : 1,0 %" style="width:1.0%;background:#cbd5e1"></span></div>
+  <p style="font-size:.85rem;line-height:1.9"><span style="border-bottom:3px solid #ef4444">Oxygène 46,1 %</span> · <span style="border-bottom:3px solid #3b82f6">Silicium 28,2 %</span> · <span style="border-bottom:3px solid #a3a3a3">Aluminium 8,2 %</span> · <span style="border-bottom:3px solid #b45309">Fer 5,6 %</span> · <span style="border-bottom:3px solid #f59e0b">Calcium 4,2 %</span> · <span style="border-bottom:3px solid #22c55e">Sodium 2,4 %</span> · <span style="border-bottom:3px solid #14b8a6">Magnésium 2,3 %</span> · <span style="border-bottom:3px solid #8b5cf6">Potassium 2,1 %</span> · <span style="border-bottom:3px solid #cbd5e1">Tous les autres 1,0 %</span></p>
+  <div class="callout small"><ul>
+    <li><b>Huit éléments font 99 % de la croûte</b>, et l'oxygène et le silicium à eux seuls les trois quarts. C'est pourquoi la grande majorité des minéraux sont des <b>silicates</b> : des charpentes de silicium et d'oxygène, dans lesquelles se logent l'aluminium, le fer, le calcium, le sodium, le potassium ou le magnésium (voir l'onglet <a href="#tableau">Tableau périodique</a>).</li>
+    <li><b>Les métaux qu'on utilise le plus sont rares</b> dans la croûte en moyenne (cuivre, zinc, plomb, étain, or : quelques grammes à quelques dizaines de grammes par tonne). On ne peut les exploiter que là où des phénomènes géologiques les ont concentrés : ce sont les <b>gisements</b> et les <b>minerais</b>.</li>
+  </ul></div>
+
+  <h3 id="ro-p2" class="ag-part">2. Le cycle des roches : rien ne se perd, tout se transforme</h3>
+  <div class="grid2">
+    <div><svg viewBox="0 0 640 360" class="ro-cycle" role="img" aria-label="Le cycle des roches">
+  <defs><marker id="ro-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs>
+  <g font-size="13" text-anchor="middle" fill="currentColor">
+    <rect x="230" y="10" width="180" height="56" rx="10" fill="#ef444433" stroke="#ef4444"/><text x="320" y="34" font-weight="700">Magma</text><text x="320" y="52">roche fondue, 700-1 200 °C</text>
+    <rect x="20" y="150" width="190" height="56" rx="10" fill="#f9731633" stroke="#f97316"/><text x="115" y="174" font-weight="700">Roches magmatiques</text><text x="115" y="192">granite, basalte</text>
+    <rect x="430" y="150" width="190" height="56" rx="10" fill="#8b5cf633" stroke="#8b5cf6"/><text x="525" y="174" font-weight="700">Roches métamorphiques</text><text x="525" y="192">ardoise, gneiss, marbre</text>
+    <rect x="200" y="290" width="240" height="56" rx="10" fill="#eab30833" stroke="#eab308"/><text x="320" y="314" font-weight="700">Roches sédimentaires</text><text x="320" y="332">calcaire, grès, argile</text>
+  </g>
+  <g stroke="currentColor" fill="none" stroke-width="1.6" marker-end="url(#ro-ar)" opacity=".75">
+    <path d="M250,66 Q140,90 120,148"/><path d="M110,208 Q150,290 198,312"/><path d="M440,312 Q520,290 530,208"/><path d="M525,148 Q500,80 412,50"/><path d="M210,170 L428,170"/><path d="M300,288 Q300,230 440,200"/>
+  </g>
+  <g font-size="11.5" text-anchor="middle" fill="currentColor">
+    <text x="150" y="98">refroidissement</text><text x="120" y="262">érosion, dépôt,</text><text x="120" y="276">compaction</text>
+    <text x="545" y="262">enfouissement :</text><text x="545" y="276">chaleur et pression</text><text x="505" y="96">fusion</text><text x="320" y="162">chaleur et pression</text>
+  </g>
+</svg></div>
+    <div class="callout small" style="margin-top:0"><ul>
+      <li><b>Le moteur : la chaleur interne de la Terre</b> et la <b>tectonique des plaques</b>. Les plaques s'écartent (dorsales océaniques, où naît la croûte océanique), plongent l'une sous l'autre (subduction, qui fond des roches et alimente les volcans) ou se heurtent (collision, qui forme les montagnes).</li>
+      <li><b>En surface, le soleil et l'eau</b> : la pluie, le gel, le vent, les rivières et les glaciers usent les roches. Les débris sont transportés puis déposés en couches, au fond des mers ou des lacs, où ils durcissent.</li>
+      <li><b>Un cycle sans fin, mais très lent</b> : une montagne s'élève de quelques millimètres par an, et s'use en dizaines de millions d'années. C'est pourquoi les plus vieilles roches sont rares : la plupart ont été recyclées.</li>
+    </ul></div>
+  </div>
+
+  <h3 id="ro-p3" class="ag-part">3. Les trois familles de roches</h3>
+  <div class="in-need">
+    <div><b>① Magmatiques : nées du feu</b><span>
+      Elles se forment par refroidissement d'un magma.<br>
+      <b>En profondeur (plutoniques)</b> : le magma refroidit lentement, sur des milliers d'années, et les cristaux ont le temps de grossir : <b>granite</b> (Bretagne, Massif central, Corse), gabbro. Grain visible à l'œil nu.<br>
+      <b>En surface (volcaniques)</b> : la lave refroidit en quelques heures ou jours, les cristaux restent microscopiques : <b>basalte</b> (la roche du plancher des océans et des coulées d'Auvergne), andésite, trachyte ; refroidie instantanément, elle donne un verre (obsidienne) ou une mousse (pierre ponce).</span></div>
+    <div><b>② Sédimentaires : nées de l'eau</b><span>
+      Elles se forment en surface, par dépôt puis durcissement de débris ou de précipités, en couches (strates).<br>
+      <b>Détritiques</b> : débris d'autres roches. Le sable cimenté donne le <b>grès</b>, la boue fine l'<b>argile</b>, les galets le conglomérat.<br>
+      <b>Biologiques et chimiques</b> : coquilles et squelettes calcaires de micro-organismes (<b>calcaire</b>, <b>craie</b>), sel et <b>gypse</b> déposés par l'évaporation de mers fermées.<br>
+      <b>Organiques</b> : restes de végétaux (<b>charbon</b>) ou de plancton (<b>pétrole</b>, <b>gaz</b>) enfouis et cuits lentement. Les sédimentaires couvrent environ les trois quarts des terres émergées, mais ne forment qu'une mince couche.</span></div>
+    <div><b>③ Métamorphiques : transformées</b><span>
+      Une roche enfouie en profondeur, chauffée et comprimée, recristallise sans fondre : ses minéraux changent et s'alignent.<br>
+      L'argile devient <b>ardoise</b> puis <b>schiste</b>, puis <b>gneiss</b> à plus haute température ; le calcaire devient <b>marbre</b> (Carrare, Pyrénées) ; le grès devient <b>quartzite</b>. On les trouve au cœur des chaînes de montagnes, anciennes ou récentes (Massif armoricain, Massif central, Alpes).</span></div>
+  </div>
+
+  <h3 id="ro-p4" class="ag-part">4. Le temps des roches</h3>
+  <div class="callout small"><ul>
+    <li><b>4,54 milliards d'années</b> : l'âge de la Terre, mesuré par la désintégration de l'uranium en plomb dans des météorites formées en même temps qu'elle.</li>
+    <li><b>4,4 milliards d'années</b> : les plus vieux minéraux connus, de minuscules cristaux de zircon d'Australie occidentale, retrouvés dans des roches plus récentes.</li>
+    <li><b>4,03 milliards d'années</b> : la plus vieille roche connue, les gneiss d'Acasta, au nord-ouest du Canada. Des roches de plus de 3,5 milliards d'années existent sur tous les continents.</li>
+    <li><b>Comment on date</b> : par la radioactivité naturelle. Certains éléments (uranium, potassium, rubidium…) se désintègrent à un rythme fixe ; la proportion entre l'élément de départ et ce qu'il est devenu donne l'âge de la roche, comme un sablier. Pour les couches sédimentaires, on utilise aussi les fossiles qu'elles contiennent.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : USGS, <a href="https://pubs.usgs.gov/gip/geotime/age.html" target="_blank" rel="noopener">« Age of the Earth »</a>.</p></div>
+
+  <h3 id="ro-p5" class="ag-part">5. La géologie de la France : trois grands ensembles</h3>
+  <div class="in-need">
+    <div><b>Les massifs anciens</b><span>Massif armoricain, Massif central, Vosges, Ardennes, Maures et Esterel, Corse : les racines usées d'une grande chaîne de montagnes formée il y a environ 300 millions d'années (chaîne hercynienne, ou varisque). Granites, gneiss, schistes et ardoises. Le socle granitique abrite les gisements d'uranium (Limousin, Vendée) et de kaolin (Limoges).</span></div>
+    <div><b>Les bassins sédimentaires</b><span>Bassin parisien, Bassin aquitain, Bassin du Sud-Est : des mers peu profondes ont recouvert la France pendant des dizaines de millions d'années et y ont déposé des couches de calcaire, de craie, d'argile, de sable et de gypse, comme une pile d'assiettes. Les falaises de craie d'Étretat, le calcaire des immeubles parisiens et le gypse du plâtre en viennent.</span></div>
+    <div><b>Les chaînes récentes et les volcans</b><span>Alpes, Pyrénées et Jura, nés de la collision de l'Afrique et de l'Europe depuis quelques dizaines de millions d'années, sont encore en mouvement : d'où les séismes. Le Massif central porte des volcans : la Chaîne des Puys, alignée sur une fracture du socle, a connu ses dernières éruptions il y a quelques milliers d'années seulement.</span></div>
+  </div>
+
+  <h3 id="ro-p6" class="ag-part">6. Les roches et les humains : une histoire aussi vieille que l'humanité</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Usage</th><th>Roche</th><th>Pourquoi elle</th><th>Exemples en France</th></tr></thead><tbody>
+    <tr><td><b>Outils (Préhistoire)</b></td><td>Silex</td><td>Silice presque pure, très dure, qui se casse en lames tranchantes</td><td>Outils paléolithiques, puis haches polies du Néolithique</td></tr>
+    <tr><td><b>Monuments</b></td><td>Granite</td><td>Très dur, résiste au temps</td><td>Menhirs et alignements de Carnac, maisons bretonnes</td></tr>
+    <tr><td><b>Pierre de taille</b></td><td>Calcaire, grès</td><td>Assez tendre pour être taillé, assez solide pour porter</td><td>Immeubles haussmanniens et cathédrales (calcaire), grès rose de Strasbourg</td></tr>
+    <tr><td><b>Toitures</b></td><td>Ardoise</td><td>Se débite en plaques fines et imperméables</td><td>Ardoises d'Angers (Trélazé)</td></tr>
+    <tr><td><b>Ciment et béton</b></td><td>Calcaire + argile</td><td>Cuits ensemble vers 1 450 °C, ils donnent le clinker, qui durcit avec l'eau</td><td>Cimenteries près des carrières de calcaire</td></tr>
+    <tr><td><b>Plâtre</b></td><td>Gypse</td><td>Chauffé, il perd son eau ; mélangé à l'eau, il durcit à nouveau</td><td>Le « plâtre de Paris » venait des carrières de gypse de Montmartre</td></tr>
+    <tr><td><b>Briques, tuiles, céramique</b></td><td>Argile, kaolin</td><td>Plastique quand elle est mouillée, dure une fois cuite</td><td>Porcelaine de Limoges (kaolin de Saint-Yrieix)</td></tr>
+    <tr><td><b>Verre</b></td><td>Sable siliceux</td><td>La silice fond vers 1 700 °C (moins avec de la soude) et se fige en verre</td><td>Sables de Fontainebleau</td></tr>
+    <tr><td><b>Routes, béton, voies ferrées</b></td><td>Granulats : sables, graviers, roches concassées</td><td>Abondants, bon marché, solides ; transportés sur de courtes distances</td><td>Près de 3 000 carrières (voir la partie 7)</td></tr>
+    <tr><td><b>Métaux</b></td><td>Minerais : bauxite, minerai de fer…</td><td>Roches où un métal est assez concentré pour être extrait</td><td>La bauxite tire son nom des Baux-de-Provence ; le minerai de fer de Lorraine</td></tr>
+    <tr><td><b>Énergie</b></td><td>Charbon, pétrole, gaz, uranium</td><td>Roches organiques riches en carbone ; roches contenant de l'uranium</td><td>Bassins houillers du Nord et de Lorraine, uranium du Limousin, aujourd'hui fermés</td></tr>
+    <tr><td><b>Sel</b></td><td>Sel gemme</td><td>Dépôt d'anciennes mers évaporées</td><td>Salines de Lorraine et du Jura</td></tr>
+  </tbody></table></div>
+
+  <h3 id="ro-p7" class="ag-part">7. Ce que la France extrait aujourd'hui</h3>
+  <div class="callout small"><ul>
+    <li><b>441 millions de tonnes de minéraux non métalliques</b> extraits en 2023 (graviers, sables, ardoises, grès, granit…), soit 63 % de tout ce que la France extrait de son territoire et <b>6,5 tonnes par habitant</b>. Près de 60 % des matières consommées par l'économie française sont des matériaux de construction.</li>
+    <li><b>2 995 carrières</b> en activité en 2023 (plus de 100 000 ont fermé au fil du temps). Plus des trois quarts produisent des <b>granulats</b> pour le bâtiment et les travaux publics : 351 millions de tonnes par an en moyenne sur 2010-2020, dont 55 % de roches massives concassées et 45 % de roches meubles, surtout les alluvions des rivières.</li>
+    <li><b>Environ 500 carrières</b> de pierres ornementales et de construction (plus de la moitié en calcaire, un cinquième en granite, le reste en marbre, grès, schiste, gneiss et lave) et <b>un peu plus de 500</b> de roches et minéraux industriels (argiles pour tuiles, briques et céramiques, carbonates…).</li>
+    <li><b>Presque plus de mines</b> en métropole : sur 123 mines actives, 102 sont en Guyane (or). Le pétrole et le gaz extraits en France couvrent environ 1 % de la consommation.</li>
+    <li><b>Le revers</b> : les carrières dégradent de façon irréversible les sols et le sous-sol, modifient les paysages et les milieux naturels, et produisent poussières, bruit et vibrations. Une partie des granulats vient désormais du recyclage des déchets du bâtiment.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Sources : SDES (ministère de la Transition écologique), <a href="https://www.statistiques.developpement-durable.gouv.fr/les-sites-dextraction-de-matieres-minerales-et-energetiques-en-france-pres-de-3-000-carrieres-123" target="_blank" rel="noopener">« Les sites d'extraction de matières minérales et énergétiques en France »</a> (2024) et <a href="https://www.statistiques.developpement-durable.gouv.fr/la-consommation-de-matieres-premieres-par-leconomie-francaise-en-2023" target="_blank" rel="noopener">« La consommation de matières premières par l'économie française en 2023 »</a>.</p></div>
+  <p class="muted" style="font-size:.78rem">Sources générales : composition de la croûte terrestre d'après le <i>CRC Handbook of Chemistry and Physics</i> (valeurs moyennes, arrondies) ; âges de la Terre et des plus vieilles roches : USGS ; carrières et extraction : SDES. La description des familles de roches, du cycle des roches et des grands ensembles géologiques de la France reprend les connaissances de base des manuels de géologie ; les exemples d'usages sont des exemples classiques, sans prétention d'exhaustivité.</p>
+</section>
+
+
 </main>
 
 <div id="tip" class="tip" role="tooltip" hidden></div>
 
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
-<script src="kpi.js?v=20261117g"></script>
-<script src="app.js?v=20261117g"></script>
-<script src="energie.js?v=20261117g"></script>
-<script src="matieres.js?v=20261117g"></script>
-<script src="territoire.js?v=20261117g"></script>
-<script src="themes.js?v=20261117g"></script>
-<script src="societe.js?v=20261117g"></script>
-<script src="eco2.js?v=20261117g"></script>
-<script src="empreinte.js?v=20261117g"></script>
-<script src="argentprive.js?v=20261117g"></script>
-<script src="repartition.js?v=20261117g"></script>
-<script src="patrimoine.js?v=20261117g"></script>
-<script src="prelevements.js?v=20261117g"></script>
-<script src="travailvie.js?v=20261117g"></script>
-<script src="niveauvie.js?v=20261117g"></script>
-<script src="prosperite.js?v=20261117g"></script>
-<script src="exterieur.js?v=20261117g"></script>
-<script src="desindus.js?v=20261117g"></script>
-<script src="retraites.js?v=20261117g"></script>
-<script src="energiecout.js?v=20261117g"></script>
-<script src="energieformation.js?v=20261117g"></script>
-<script src="nucleaire.js?v=20261117g"></script>
-<script src="logementeco.js?v=20261117g"></script>
-<script src="competences.js?v=20261117g"></script>
-<script src="justicedroit.js?v=20261117g"></script>
-<script src="fonctionnaires.js?v=20261117g"></script>
-<script src="couper.js?v=20261117g"></script>
-<script src="seuilpays.js?v=20261117g"></script>
-<script src="logement.js?v=20261117g"></script>
-<script src="env.js?v=20261117g"></script>
-<script src="agriculture.js?v=20261117g"></script>
-<script src="rendements.js?v=20261117g"></script>
-<script src="monnaie.js?v=20261117g"></script>
-<script src="limites.js?v=20261117g"></script>
-<script src="sociologie.js?v=20261117g"></script>
-<script src="chaine.js?v=20261117g"></script>
-<script src="patrimoinehist.js?v=20261117g"></script>
-<script src="innovation.js?v=20261117g"></script>
+<script src="kpi.js?v=20261117h"></script>
+<script src="app.js?v=20261117h"></script>
+<script src="energie.js?v=20261117h"></script>
+<script src="matieres.js?v=20261117h"></script>
+<script src="territoire.js?v=20261117h"></script>
+<script src="themes.js?v=20261117h"></script>
+<script src="societe.js?v=20261117h"></script>
+<script src="eco2.js?v=20261117h"></script>
+<script src="empreinte.js?v=20261117h"></script>
+<script src="argentprive.js?v=20261117h"></script>
+<script src="repartition.js?v=20261117h"></script>
+<script src="patrimoine.js?v=20261117h"></script>
+<script src="prelevements.js?v=20261117h"></script>
+<script src="travailvie.js?v=20261117h"></script>
+<script src="niveauvie.js?v=20261117h"></script>
+<script src="prosperite.js?v=20261117h"></script>
+<script src="exterieur.js?v=20261117h"></script>
+<script src="desindus.js?v=20261117h"></script>
+<script src="retraites.js?v=20261117h"></script>
+<script src="energiecout.js?v=20261117h"></script>
+<script src="energieformation.js?v=20261117h"></script>
+<script src="nucleaire.js?v=20261117h"></script>
+<script src="logementeco.js?v=20261117h"></script>
+<script src="competences.js?v=20261117h"></script>
+<script src="justicedroit.js?v=20261117h"></script>
+<script src="fonctionnaires.js?v=20261117h"></script>
+<script src="couper.js?v=20261117h"></script>
+<script src="seuilpays.js?v=20261117h"></script>
+<script src="logement.js?v=20261117h"></script>
+<script src="env.js?v=20261117h"></script>
+<script src="agriculture.js?v=20261117h"></script>
+<script src="rendements.js?v=20261117h"></script>
+<script src="monnaie.js?v=20261117h"></script>
+<script src="limites.js?v=20261117h"></script>
+<script src="sociologie.js?v=20261117h"></script>
+<script src="chaine.js?v=20261117h"></script>
+<script src="patrimoinehist.js?v=20261117h"></script>
+<script src="innovation.js?v=20261117h"></script>
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
-<script src="soussol.js?v=20261117g"></script>
-<script src="histoire.js?v=20261117g"></script>
-<script src="chomage.js?v=20261117g"></script>
-<script src="refondation.js?v=20261117g"></script>
-<script src="marche.js?v=20261117g"></script>
-<script src="tableau.js?v=20261117g"></script>
-<script src="sources.js?v=20261117g"></script>
-<script src="nav.js?v=20261117g"></script>
+<script src="soussol.js?v=20261117h"></script>
+<script src="histoire.js?v=20261117h"></script>
+<script src="chomage.js?v=20261117h"></script>
+<script src="refondation.js?v=20261117h"></script>
+<script src="marche.js?v=20261117h"></script>
+<script src="tableau.js?v=20261117h"></script>
+<script src="sources.js?v=20261117h"></script>
+<script src="nav.js?v=20261117h"></script>
 </body>
 </html>
