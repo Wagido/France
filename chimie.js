@@ -498,6 +498,7 @@ function fiche(A, B, c) {
     o += `<p style="margin:10px 0 2px"><b>Énergie en jeu</b> (enthalpie de réaction à 25 °C)</p><svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:560px;font-size:11px"><line x1="30" x2="200" y1="${y(0)}" y2="${y(0)}" stroke="#111827" stroke-width="4"/><text x="115" y="${y(0) - 6}" text-anchor="middle" font-weight="700">éléments séparés (0)</text><line x1="320" x2="490" y1="${y(dH)}" y2="${y(dH)}" stroke="${dH < 0 ? "#16a34a" : "#dc2626"}" stroke-width="4"/><text x="405" y="${y(dH) + (dH < 0 ? 16 : -6)}" text-anchor="middle" font-weight="700" style="fill:${dH < 0 ? "#16a34a" : "#dc2626"}">${eq.p > 1 ? eq.p + " " : ""}${c.f}</text><line x1="210" y1="${y(0)}" x2="310" y2="${y(dH)}" stroke="${dH < 0 ? "#16a34a" : "#dc2626"}" stroke-width="2" stroke-dasharray="5 4"/><text x="260" y="${(y(0) + y(dH)) / 2 - 8}" text-anchor="middle" font-weight="800" style="fill:${dH < 0 ? "#16a34a" : "#dc2626"}">ΔH = ${dH > 0 ? "+" : ""}${fr(dH)} kJ</text></svg>`;
     o += `<ul><li><b>${dH < 0 ? "Réaction exothermique" : "Réaction endothermique"}</b> : ${dH < 0 ? `elle libère ${fr(-dH)} kJ pour l'équation écrite, de quoi porter ${fr(litres, 1)} litre${litres >= 2 ? "s" : ""} d'eau de 20 à 100 °C. Le produit est plus stable que les éléments séparés.` : `il faut fournir ${fr(dH)} kJ : le composé est moins stable que les éléments, et on le prépare autrement.`}</li><li><b>Le composé</b> : ${K[0]} (ΔfH° = ${fr(K[1])} kJ/mol).</li>`;
   } else o += `<ul><li>Composé non répertorié dans la table du site : la formule est une prévision de la règle simple, et l'énergie n'est pas calculée.</li>`;
+  o += "</ul>" + bilanReaction(c, eq) + "<ul>";
   o += c.t === "ionique" ? `<li><b>Propriétés attendues</b> : solide cristallin dur et cassant, fondant à haute température, souvent soluble dans l'eau, conducteur une fois fondu ou dissous.</li>` : c.t === "polaire" ? `<li><b>Propriétés attendues</b> : molécule polaire ou solide covalent ; les petites molécules sont souvent des gaz ou des liquides (H₂O, NH₃, HCl).</li>` : `<li><b>Propriétés attendues</b> : liaisons peu polaires ; molécules (CH₄) ou réseaux solides très durs (SiC).</li>`;
   const viv = ["O", "Cl", "H"].includes(c.a.s) ? reactif(c.c, c.a.s) : ["O", "Cl", "H"].includes(c.c.s) ? reactif(c.a, c.c.s) : null;
   if (viv && viv[0] >= 0 && viv[1]) o += `<li><b>En pratique</b> : ${LV[viv[0]][1]} ; ${viv[1]}.</li>`;
@@ -607,6 +608,50 @@ function morse() {
   s += `<text x="${x(0.47)}" y="${y(2.4)}" style="fill:#475569">trop près : les noyaux se repoussent</text><text x="${x(2.2)}" y="${y(-0.6)}" style="fill:#475569">loin : deux atomes séparés</text><text x="${x(1.6)}" y="${y(-3)}" style="fill:#2563eb">la paire d'électrons partagée abaisse l'énergie</text>`;
   s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 1}" text-anchor="middle" style="fill:#64748b">distance entre les deux noyaux d'hydrogène</text>`;
   el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Énergie de la molécule H₂ selon la distance entre ses noyaux (courbe de Morse, paramètres usuels de H₂). Toutes les liaisons chimiques ont une courbe de ce type ; seules la profondeur et la position du creux changent.</p>`;
+}
+
+/* bilan : stabilité, équilibre, vitesse */
+function bilanReaction(c, eq) {
+  const K = c.known, X = c.c, Y = c.a;
+  const gas = e => e.e === "gaz";
+  const nx = c.nc ?? 1, ny = c.na ?? 1, p = eq.p;
+  // moles de gaz consommées par l'équation (éléments gazeux diatomiques ou non)
+  const coefX = DIAT.includes(X.s) ? nx * p / 2 : nx * p, coefY = DIAT.includes(Y.s) ? ny * p / 2 : ny * p;
+  const prodGaz = K && /gaz|vapeur/.test(K[0]) ? p : 0;
+  const dn = prodGaz - (gas(X) ? coefX : 0) - (gas(Y) ? coefY : 0);
+  // ΔS exact si les entropies sont dans la table, sinon estimation (≈ 180 J/K par mole de gaz)
+  const elKey = e => DIAT.includes(e.s) ? e.s + "₂(g)" : e.s === "C" ? "C(graphite)" : e.s + "(s)";
+  const prodKey = (isMetal(X) ? ["(s)", "(l)", "(g)"] : ["(l)", "(g)", "(s)"]).map(k => c.f + k).find(k => TD[k]);
+  const exact = prodKey && TD[elKey(X)] && TD[elKey(Y)];
+  const dS = exact ? p * TD[prodKey][1] - coefX * TD[elKey(X)][1] - coefY * TD[elKey(Y)][1] : dn * 180;
+  const card = (t, col, body) => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b><div style="margin-top:4px">${body}</div></div>`;
+  let stab, equi;
+  if (K) {
+    const dH = p * K[1], dG = dH - 298 * dS / 1000, lk = -dG * 1000 / (R * 298 * Math.LN10);
+    const Tinv = dS !== 0 ? dH * 1000 / dS - 273 : null;
+    stab = dG < 0 ? `ΔG ≈ ${fr(dG)} kJ &lt; 0 : le composé est <b>plus stable</b> que les éléments séparés à 25 °C ; il se forme spontanément (si la réaction peut démarrer).` : `ΔG ≈ +${fr(dG)} kJ &gt; 0 : le composé est <b>instable</b> par rapport aux éléments ; il ne se forme pas spontanément.`;
+    if (Tinv != null && dH < 0 && dS < 0 && Tinv > 0 && Tinv < 4000 && isMetal(X)) stab += ` À très haute température, l'équilibre s'inverse : il se <b>décompose</b> en ses éléments au-delà d'environ ${fr(Math.round(Tinv / 50) * 50)} °C (T = ΔH / ΔS${exact ? "" : ", estimation grossière"}).`;
+    else if (dH < 0) stab += " Il reste stable à toutes les températures usuelles.";
+    equi = lk > 6 ? `K ≈ 10^${fr(lk)} : réaction <b>totale</b>, il ne reste pratiquement rien des réactifs à l'équilibre.` : lk < -6 ? `K ≈ 10^${fr(lk)} : presque rien ne réagit.` : `K ≈ 10^${fr(lk, 1)} : équilibre partagé entre réactifs et produits.`;
+    equi += dn < 0 && dH < 0 ? " La réaction consomme du gaz et dégage de la chaleur : la pression la favorise, la chaleur la fait reculer (principe de Le Chatelier)." : dn > 0 ? " Elle libère du gaz : une basse pression la favorise." : "";
+  } else { stab = "Énergie de formation non répertoriée : stabilité non calculée."; equi = "Non calculé faute de données."; }
+  // vitesse : règles qualitatives
+  const metal = isMetal(X), fam = X.f, ys = Y.s;
+  let vit, bar;
+  if (ys === "N" || X.s === "N") { vit = "<b>Très lente</b> : la triple liaison de l'azote (945 kJ/mol) doit d'abord être cassée. Il faut chauffer fortement ou utiliser un catalyseur (comme pour l'ammoniac)."; bar = 3; }
+  else if (["alcalin", "alcalino"].includes(fam) && ["F", "Cl", "Br", "I", "O"].includes(ys)) { vit = "<b>Rapide</b>, dès la température ambiante : le métal cède très facilement son électron. Souvent violente."; bar = 1; }
+  else if (!metal && ys === "O") { vit = "<b>Bloquée à froid</b> : le mélange est stable tant qu'on n'apporte pas une flamme ou une étincelle (barrière d'activation). Une fois démarrée, la chaleur dégagée entretient la réaction : c'est une combustion."; bar = 2; }
+  else if (X.s === "H" && ["F"].includes(ys)) { vit = "<b>Explosive</b>, même au froid et dans le noir."; bar = 0; }
+  else if (X.s === "H" && ["Cl", "Br"].includes(ys)) { vit = "<b>Déclenchée par la lumière ou la chaleur</b>, puis très rapide (réaction en chaîne)."; bar = 2; }
+  else if (NOBLEM.includes(X.s)) { vit = "<b>Très lente ou nulle</b> : métal noble, à la fois peu réactif et protégé."; bar = 3; }
+  else if (metal && ys === "O") { vit = "<b>Lente à froid</b> en surface (souvent freinée par une couche d'oxyde protectrice), <b>rapide</b> à chaud ou si le métal est en poudre fine."; bar = 2; }
+  else if (metal) { vit = "<b>Lente à froid</b>, rapide à chaud : en pratique, on chauffe le métal dans le gaz ou on fait fondre les deux éléments ensemble."; bar = 2; }
+  else { vit = "<b>Variable</b> : la plupart des réactions entre non-métaux demandent de la chaleur ou un catalyseur."; bar = 2; }
+  // profil d'énergie qualitatif
+  const dHv = K ? p * K[1] : -100, Ea = [15, 40, 90, 160][bar], W = 300, H = 130, lo = Math.min(0, dHv) - 20, hi = Ea + 20, y = v => 10 + (hi - v) / (hi - lo) * (H - 30), x = t => 20 + t * (W - 40);
+  const prof = d3.range(0, 1.001, .02).map(t => [t, dHv * (3 * t * t - 2 * t * t * t) + (Ea - dHv / 2) * Math.sin(Math.PI * t) ** 2]);
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:9.5px"><polyline points="${prof.map(([t, v]) => `${x(t)},${y(Math.max(lo, Math.min(hi, v)))}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/><text x="${x(0)}" y="${y(0) - 4}" style="fill:#475569">éléments</text><text x="${x(1)}" y="${y(dHv) + 12}" text-anchor="end" style="fill:#475569">${c.f}</text><text x="${x(.5)}" y="${y(Ea) - 3}" text-anchor="middle" style="fill:#7c3aed">barrière ${["très faible", "faible", "moyenne", "élevée"][bar]}</text><text x="${x(.5)}" y="${H - 3}" text-anchor="middle" style="fill:#94a3b8">avancement →</text></svg>`;
+  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab)}${card("Équilibre", "#2563eb", equi)}${card("Vitesse (cinétique)", "#7c3aed", vit)}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div><p class="muted" style="font-size:.76rem;margin:4px 0 0">${exact ? "ΔG calculé avec les entropies standard de la table" : "ΔG estimé avec ΔS ≈ 180 J/K par mole de gaz consommée ou produite (ordre de grandeur)"}, à 25 °C ; vitesse : règles qualitatives (partie 9).</p>`;
 }
 
 function init() {
