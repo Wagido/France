@@ -340,7 +340,7 @@ const isMetal = e => ["alcalin", "alcalino", "transition", "pauvre", "lanthanide
 function compose(A, B) {
   if (A.z === B.z) { const di = ["H", "N", "O", "F", "Cl", "Br", "I"].includes(A.s); return { t: "meme", f: di ? A.s + "₂" : A.s, txt: di ? `molécule diatomique ${A.s}₂ (les atomes se lient entre eux)` : isMetal(A) ? "le métal pur (liaison métallique)" : A.f === "gaznoble" ? "gaz monoatomique : ne se lie pas" : "solide covalent ou molécules de l'élément pur" }; }
   if (A.f === "gaznoble" || B.f === "gaznoble") { const g = A.f === "gaznoble" ? A : B, o = A.f === "gaznoble" ? B : A; if (["Xe", "Kr"].includes(g.s) && ["F", "O"].includes(o.s)) return { t: "covalent", f: g.s === "Xe" ? (o.s === "F" ? "XeF₂, XeF₄, XeF₆" : "XeO₃ (explosif)") : "KrF₂", txt: "les gaz nobles lourds réagissent seulement avec le fluor (et l'oxygène pour le xénon), découverte de 1962" }; return { t: "rien", txt: `pas de réaction : ${g.n.toLowerCase()} est un gaz noble, sa couche électronique est complète` }; }
-  if (A.en == null || B.en == null) return { t: "inconnu", txt: "élément superlourd : chimie quasiment inconnue (quelques atomes produits)" };
+  if (A.en == null || B.en == null) return { t: "inconnu", txt: "élément superlourd (Z ≥ 104), fabriqué artificiellement : pas impossible à étudier, mais très difficile. Ces éléments sont produits quelques atomes à la fois, en bombardant des noyaux lourds dans un accélérateur, et ils se désintègrent en quelques secondes ou millisecondes. Leur chimie s'étudie donc « atome par atome », par exemple en mesurant la vitesse à laquelle un composé volatil traverse une colonne. Les rares expériences montrent que le rutherfordium se comporte comme le zirconium et le hafnium (sa colonne), que le hassium forme un tétroxyde volatil comme l'osmium (2001), et que le copernicium et le flérovium sont plus volatils et moins réactifs que prévu, à cause des effets de la relativité sur leurs électrons, qui tournent à une vitesse proche de celle de la lumière. Pour les autres, on ne sait presque rien." };
   if (isMetal(A) && isMetal(B)) return { t: "alliage", txt: `deux métaux : pas de composé ionique, mais un <b>alliage</b> ou un composé intermétallique (comme le laiton cuivre-zinc, le bronze cuivre-étain, l'acier fer-carbone)` };
   const [c, a] = A.en <= B.en ? [A, B] : [B, A];
   const pos = (OX[c.s] || [3]).find(o => o > 0), neg = (OX[a.s] || []).find(o => o < 0);
@@ -358,7 +358,7 @@ const POT = { Li: -3.04, K: -2.93, Rb: -2.98, Cs: -3.03, Ba: -2.91, Sr: -2.89, C
 const NOBLEM = ["Au", "Pt", "Ir", "Pd", "Rh", "Ru", "Os", "Ag"];
 function reactif(e, m) {   // retourne [niveau 0-3, texte]
   if (e.f === "gaznoble") return [0, "gaz noble : ne réagit pas"];
-  if (e.en == null) return [-1, "chimie inconnue"];
+  if (e.en == null) return [-1, "élément superlourd (Z ≥ 104), fabriqué artificiellement : pas impossible à étudier, mais très difficile. Ces éléments sont produits quelques atomes à la fois, en bombardant des noyaux lourds dans un accélérateur, et ils se désintègrent en quelques secondes ou millisecondes. Leur chimie s'étudie donc « atome par atome », par exemple en mesurant la vitesse à laquelle un composé volatil traverse une colonne. Les rares expériences montrent que le rutherfordium se comporte comme le zirconium et le hafnium (sa colonne), que le hassium forme un tétroxyde volatil comme l'osmium (2001), et que le copernicium et le flérovium sont plus volatils et moins réactifs que prévu, à cause des effets de la relativité sur leurs électrons, qui tournent à une vitesse proche de celle de la lumière. Pour les autres, on ne sait presque rien"];
   const p = POT[e.s], s = e.s, fam = e.f;
   if (m === "O") {
     if (NOBLEM.includes(s)) return [0, "métal noble : ne s'oxyde pas à l'air (d'où les bijoux)"];
@@ -377,7 +377,7 @@ function reactif(e, m) {   // retourne [niveau 0-3, texte]
   }
   if (m === "eau") {
     if (fam === "alcalin") return [3, `réagit violemment avec l'eau${["K", "Rb", "Cs"].includes(s) ? " (explosion, l'hydrogène s'enflamme)" : s === "Li" ? " (calmement pour le lithium)" : ""} : 2 ${s} + 2 H₂O → 2 ${s}OH + H₂`];
-    if (["Ca", "Sr", "Ba"].includes(s)) return [2, `réagit avec l'eau froide, en dégageant de l'hydrogène → ${s}(OH)₂`];
+    if (["Ca", "Sr", "Ba", "Ra"].includes(s)) return [2, `réagit avec l'eau froide, en dégageant de l'hydrogène → ${s}(OH)₂`];
     if (s === "Mg") return [1, "réagit avec l'eau chaude ou la vapeur (feux de magnésium : ne pas les éteindre à l'eau)"];
     if (s === "F") return [3, "décompose l'eau violemment, en libérant de l'oxygène"];
     if (s === "Cl") return [1, "se dissout et réagit en partie : acide hypochloreux, le désinfectant de l'eau des piscines"];
@@ -418,21 +418,22 @@ function drawPT() {
   const el = $("#ch-pt"); if (!el || !PT) return;
   const cw = 46, ch = 44, W = 18 * cw + 10, H = 10 * ch + 10;
   const A = PTsel[0] ? PT[PTsel[0]] : null;
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px;cursor:pointer;user-select:none">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px;cursor:pointer;user-select:none"><defs><pattern id="hach" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#f8fafc"/><line x1="0" y1="0" x2="0" y2="6" stroke="#cbd5e1" stroke-width="2"/></pattern></defs>`;
   Object.values(PT).forEach(e => {
     let col = "#fff", stroke = "#cbd5e1", txt = "";
     if (PTmode === "paire" && A) { const c = compose(A, e); col = COLT[c.t] || "#fff"; txt = c.f && c.f !== "?" && e.z !== A.z ? c.f : ""; }
-    if (PTmode !== "paire") { const [lv] = reactif(e, PTmode); col = lv < 0 ? "#fafafa" : LV[lv][0]; }
+    if (PTmode !== "paire") { const [lv] = reactif(e, PTmode); col = lv < 0 ? "url(#hach)" : LV[lv][0]; }
+    if (e.en == null && e.f !== "gaznoble") col = "url(#hach)";
     const sel = PTsel.includes(e.s), x = 5 + (e.x - 1) * cw, y = 5 + (e.y - 1) * ch - (e.y >= 9 ? -6 : 0);
     s += `<g data-s="${e.s}"><rect x="${x}" y="${y}" width="${cw - 3}" height="${ch - 3}" rx="4" fill="${col}" stroke="${sel ? "#111827" : stroke}" stroke-width="${sel ? 2.5 : 1}"/><text x="${x + 3}" y="${y + 10}" font-size="8" style="fill:#64748b">${e.z}</text><text x="${x + (cw - 3) / 2}" y="${y + 24}" text-anchor="middle" font-weight="800" font-size="14" style="fill:#111827">${e.s}</text>${txt ? `<text x="${x + (cw - 3) / 2}" y="${y + 37}" text-anchor="middle" font-size="8.5" style="fill:#111827">${txt.length > 9 ? "" : txt}</text>` : ""}</g>`;
   });
   el.innerHTML = s + "</svg>";
   el.querySelectorAll("g[data-s]").forEach(g => g.addEventListener("click", () => clickPT(g.dataset.s)));
-  $("#ch-pt-legend").innerHTML = PTmode === "paire" ? (A ? Object.entries(LABT).map(([k, l]) => `<span><i style="border-top-color:${COLT[k]};opacity:1;width:14px;border-top-width:12px;outline:1px solid #cbd5e1"></i>${l}</span>`).join("") : "") : LV.map(([c, l]) => `<span><i style="border-top-color:${c};opacity:1;width:14px;border-top-width:12px;outline:1px solid #cbd5e1"></i>${l}</span>`).join("");
+  $("#ch-pt-legend").innerHTML = PTmode === "paire" ? (A ? Object.entries(LABT).map(([k, l]) => `<span><i style="border-top-color:${COLT[k]};opacity:1;width:14px;border-top-width:12px;outline:1px solid #cbd5e1"></i>${l}</span>`).join("") : "") : LV.map(([c, l]) => `<span><i style="border-top-color:${c};opacity:1;width:14px;border-top-width:12px;outline:1px solid #cbd5e1"></i>${l}</span>`).join("") + `<span><i style="border-top-color:#cbd5e1;border-top-style:dotted;opacity:1;width:14px;border-top-width:12px"></i>hachuré : éléments superlourds, chimie presque inconnue</span>`;
 }
 function clickPT(sym) {
   const e = PT[sym];
-  if (PTmode !== "paire") { const [lv, t] = reactif(e, PTmode); const R = { O: "l'oxygène de l'air", eau: "l'eau", acide: "un acide dilué (acide chlorhydrique)", Cl: "le chlore", H: "l'hydrogène" }[PTmode]; PTsel = [sym]; drawPT(); $("#ch-pt-res").innerHTML = `<p><b>${e.n} (${e.s}) avec ${R}</b> : ${lv < 0 ? "" : "<b>" + LV[lv][1] + "</b>. "}${t}.</p><p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
+  if (PTmode !== "paire") { const [lv, t] = reactif(e, PTmode); const R = { O: "l'oxygène de l'air", eau: "l'eau", acide: "un acide dilué (acide chlorhydrique)", Cl: "le chlore", H: "l'hydrogène" }[PTmode]; PTsel = [sym]; drawPT(); $("#ch-pt-res").innerHTML = `<p><b>${e.n} (${e.s}) avec ${R}</b> : ${lv < 0 ? "<b>chimie presque inconnue</b>. " : "<b>" + LV[lv][1] + "</b>. "}${t}.</p><p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
   if (PTsel.length !== 1) PTsel = [sym]; else PTsel = [PTsel[0], sym];
   drawPT();
   const A = PT[PTsel[0]];
