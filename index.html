@@ -2989,12 +2989,79 @@
 
 <section id="eau" class="panel">
   <div class="panel-head">
-    <h2>Eau : ce qui est prélevé, et pour quoi <span class="geo-tag"></span></h2>
+    <h2>Eau : de la nappe au robinet, et retour à la rivière <span class="geo-tag"></span></h2>
   </div>
+  <p class="lead">D'où vient l'eau que nous prélevons, à quoi elle sert, comment elle arrive au robinet, dans quel état sont les canalisations, combien se perd en fuites, comment les eaux usées sont traitées, et combien tout cela coûte.</p>
+  <ul class="mo-ul cr-toc">
+    <li><a href="#eau" data-to="eau-p1">1. Ce qui est prélevé, et pour quoi</a></li>
+    <li><a href="#eau" data-to="eau-p2">2. Le parcours de l'eau potable : de la nappe au robinet</a></li>
+    <li><a href="#eau" data-to="eau-p3">3. Qui s'en occupe ? 23 000 services publics</a></li>
+    <li><a href="#eau" data-to="eau-p4">4. La qualité de l'eau du robinet</a></li>
+    <li><a href="#eau" data-to="eau-p5">5. Les canalisations : un litre sur cinq perdu en fuites</a></li>
+    <li><a href="#eau" data-to="eau-p6">6. L'assainissement : des égouts à la rivière</a></li>
+    <li><a href="#eau" data-to="eau-p7">7. Le prix de l'eau</a></li>
+  </ul>
+
+  <h3 id="eau-p1" class="ag-part">1. Ce qui est prélevé, et pour quoi</h3>
   <div class="kpis" id="eau-kpis"></div>
-  <p class="lead">Eau douce prélevée dans les rivières et les nappes, en milliards de m³ (km³). L'essentiel de l'eau de refroidissement des centrales est rendu aux rivières, réchauffé ; l'irrigation, elle, est en grande partie évaporée.</p>
+  <p>Eau douce prélevée dans les rivières et les nappes, en milliards de m³ (km³). L'essentiel de l'eau de refroidissement des centrales est rendu aux rivières, réchauffé ; l'irrigation, elle, est en grande partie évaporée. L'eau potable ne représente qu'une partie des prélèvements.</p>
   <div id="eau-chart" class="chart"></div><div class="legend-row" id="eau-legend"></div>
   <h3>Comparer les pays</h3><div id="eau-cmp" class="chart"></div>
+
+  <h3 id="eau-p2" class="ag-part">2. Le parcours de l'eau potable : de la nappe au robinet</h3>
+  <div id="eau-parcours" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>65 % de l'eau potable vient des nappes souterraines</b>, plus protégées et plus stables en qualité ; le reste est pompé dans les rivières, les lacs et les barrages. L'Île-de-France, la Bretagne, les Pays de la Loire et la plupart des outre-mer boivent surtout de l'eau de surface ; l'est, le nord et le nord-est, surtout de l'eau souterraine.</li>
+    <li><b>La protection des captages</b> (périmètres où certaines activités sont interdites ou limitées) est avancée à 79 % en moyenne.</li>
+    <li><b>Le traitement</b> dépend de la ressource : une eau de nappe peut ne demander qu'une désinfection ; une eau de rivière passe par plusieurs étapes (dégrillage, coagulation et décantation, filtration sur sable puis sur charbon actif, désinfection au chlore, à l'ozone ou aux ultraviolets).</li>
+    <li><b>Le stockage</b> dans des réservoirs et châteaux d'eau tient la pression et absorbe les pointes de consommation du matin et du soir.</li>
+    <li><b>La consommation</b> : 148 litres par habitant et par jour en moyenne (52 m³ par an), pour un usage domestique.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Office français de la biodiversité, observatoire des services publics d'eau et d'assainissement (SISPEA), <a href="https://www.services.eaufrance.fr/cms/uploads/Rapport_Sispea_2024_VF_0eed21316b.pdf" target="_blank" rel="noopener">rapport national 2024</a> (données 2024, publié en 2026).</p></div>
+
+  <h3 id="eau-p3" class="ag-part">3. Qui s'en occupe ? 23 000 services publics</h3>
+  <div class="in-need">
+    <div><b>Une compétence des communes</b><span>12 685 collectivités organisent 22 856 services : 9 623 d'eau potable, 11 085 d'assainissement collectif, 2 362 d'assainissement non collectif (fosses septiques). Un service d'eau potable dessert en moyenne 7 000 habitants.</span></div>
+    <div><b>Régie ou délégation</b><span>La collectivité gère elle-même (régie) ou confie l'exploitation à une entreprise (délégation de service public). Les petits services sont surtout en régie, les grands plus souvent en délégation. En assainissement, les trois quarts des services sont en régie, et ils desservent 62 % des usagers.</span></div>
+    <div><b>Le regroupement</b><span>La loi NOTRe (2015) prévoyait le transfert obligatoire de l'eau et de l'assainissement aux intercommunalités d'ici 2026 ; la loi du 12 avril 2025 a supprimé cette obligation. Beaucoup de petits services subsistent, souvent moins bien équipés pour connaître et entretenir leurs réseaux.</span></div>
+  </div>
+  <div id="eau-services" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Office français de la biodiversité, observatoire des services publics d'eau et d'assainissement (SISPEA), <a href="https://www.services.eaufrance.fr/cms/uploads/Rapport_Sispea_2024_VF_0eed21316b.pdf" target="_blank" rel="noopener">rapport national 2024</a> (données 2024, publié en 2026).</p>
+
+  <h3 id="eau-p4" class="ag-part">4. La qualité de l'eau du robinet</h3>
+  <div id="eau-qualite" class="kpis"></div>
+  <div class="callout small"><ul>
+    <li><b>Conformité microbiologique</b> (absence de bactéries indicatrices de contamination fécale) : 98,3 % des analyses.</li>
+    <li><b>Conformité physico-chimique</b> (nitrates, pesticides, métaux…) : 98,1 %. Les non-conformités concernent surtout de petites unités rurales, exposées aux pollutions agricoles.</li>
+    <li><b>Coupures d'eau</b> non programmées : 2,5 pour 1 000 abonnés par an.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Office français de la biodiversité, observatoire des services publics d'eau et d'assainissement (SISPEA), <a href="https://www.services.eaufrance.fr/cms/uploads/Rapport_Sispea_2024_VF_0eed21316b.pdf" target="_blank" rel="noopener">rapport national 2024</a> (données 2024, publié en 2026).</p></div>
+
+  <h3 id="eau-p5" class="ag-part">5. Les canalisations : un litre sur cinq perdu en fuites</h3>
+  <div id="eau-fuites" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Environ 980 000 km de canalisations d'eau potable</b> (estimation 2024), soit près de 25 fois le tour de la Terre. Plus de 60 % ont été posées après les années 1970.</li>
+    <li><b>Un rendement de 81,5 %</b>, stable depuis 2010 autour de 80 % : pour cinq litres mis en distribution, un litre retourne au milieu naturel sans arriver au consommateur. Les pertes représentent 3 m³ par km de réseau et par jour.</li>
+    <li><b>Un renouvellement très lent</b> : 0,61 % du réseau est remplacé chaque année (environ 6 000 km), ce qui correspondrait à un remplacement complet en 165 ans, bien plus que la durée de vie des canalisations. L'observatoire précise que ce chiffre n'a qu'une valeur indicative à l'échelle nationale : le bon rythme dépend de l'âge et de la nature de chaque tronçon.</li>
+    <li><b>La connaissance des réseaux progresse</b> : l'indice de connaissance et de gestion patrimoniale atteint 105 points sur 120 pour l'eau potable (90 en 2014). Mais 11 % des services, surtout de petites collectivités rurales, n'ont toujours pas le plan détaillé de leur réseau exigé depuis 2013 (« décret fuites »), et 19 % des services n'atteignent pas le rendement minimal réglementaire.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Office français de la biodiversité, observatoire des services publics d'eau et d'assainissement (SISPEA), <a href="https://www.services.eaufrance.fr/cms/uploads/Rapport_Sispea_2024_VF_0eed21316b.pdf" target="_blank" rel="noopener">rapport national 2024</a> (données 2024, publié en 2026) ; série 2010-2021 : <a href="https://www.services.eaufrance.fr/cms/uploads/Synthese_pluri_obs_SPEA_2010_2021_ca9c2d24f6.pdf" target="_blank" rel="noopener">synthèse pluriannuelle</a>. Voir aussi l'onglet <a href="#infrastructures">Infrastructures</a>.</p></div>
+
+  <h3 id="eau-p6" class="ag-part">6. L'assainissement : des égouts à la rivière</h3>
+  <div class="callout small"><ul>
+    <li><b>96,5 % des abonnés</b> des services d'assainissement collectif sont raccordés au réseau d'égouts ; les eaux usées vont en station d'épuration, où elles sont traitées avant d'être rendues aux rivières ou à la mer.</li>
+    <li><b>Les boues d'épuration</b> : 1,35 million de tonnes de matière sèche par an, conformes à 97 % aux normes d'épandage ou d'élimination.</li>
+    <li><b>Les réseaux d'égouts sont moins bien connus</b> que ceux d'eau potable (indice de 73 sur 120, contre 105) et renouvelés plus lentement (0,41 % par an).</li>
+    <li><b>L'assainissement non collectif</b> (fosses septiques, maisons isolées) : seulement 63 % des installations contrôlées sont conformes.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Office français de la biodiversité, observatoire des services publics d'eau et d'assainissement (SISPEA), <a href="https://www.services.eaufrance.fr/cms/uploads/Rapport_Sispea_2024_VF_0eed21316b.pdf" target="_blank" rel="noopener">rapport national 2024</a> (données 2024, publié en 2026).</p></div>
+
+  <h3 id="eau-p7" class="ag-part">7. Le prix de l'eau</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px">
+    <div><p class="muted" style="margin:0 0 4px"><b>Prix moyen TTC de l'eau</b> (€/m³, pour 120 m³ par an)</p><div id="eau-prix" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Où va une facture de 587 € par an</b> (2025)</p><div id="eau-facture" class="chart"></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>4,89 € le m³ au 1ᵉʳ janvier 2025</b> (2,50 € pour l'eau potable, 2,39 € pour l'assainissement), soit 587 € par an (49 € par mois) pour un ménage qui consomme 120 m³. Un litre coûte donc moins d'un demi-centime.</li>
+    <li><b>De forts écarts</b> : 80 % de la population paie l'eau potable entre 1,89 et 3,20 €/m³. Les collectivités moyennes (1 000 à 50 000 habitants) sont les plus chères ; les grandes villes profitent d'économies d'échelle (plus d'habitants par km de réseau).</li>
+    <li><b>Régie ou délégation</b> : 4,81 €/m³ en régie, 4,96 €/m³ en délégation, un écart de 3 % qui s'est fortement réduit.</li>
+  </ul><p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : Office français de la biodiversité, observatoire des services publics d'eau et d'assainissement (SISPEA), <a href="https://www.services.eaufrance.fr/cms/uploads/Rapport_Sispea_2024_VF_0eed21316b.pdf" target="_blank" rel="noopener">rapport national 2024</a> (données 2024, publié en 2026) ; 2011 et 2022 : synthèse pluriannuelle 2010-2021.</p></div>
 </section>
 
 <section id="sols" class="panel">
@@ -4767,6 +4834,7 @@
 <script src="sciences2.js?v=20261118f"></script>
 <script src="climatviz.js?v=20261118b"></script>
 <script src="chimie.js?v=20261118b"></script>
+<script src="eau2.js?v=20261118a"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
