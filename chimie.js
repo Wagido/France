@@ -433,7 +433,14 @@ function drawPT() {
 }
 function clickPT(sym) {
   const e = PT[sym];
-  if (PTmode !== "paire") { const [lv, t] = reactif(e, PTmode); const R = { O: "l'oxygène de l'air", eau: "l'eau", acide: "un acide dilué (acide chlorhydrique)", Cl: "le chlore", H: "l'hydrogène" }[PTmode]; PTsel = [sym]; drawPT(); $("#ch-pt-res").innerHTML = `<p><b>${e.n} (${e.s}) avec ${R}</b> : ${lv < 0 ? "<b>chimie presque inconnue</b>. " : "<b>" + LV[lv][1] + "</b>. "}${t}.</p><p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
+  if (PTmode !== "paire") { const [lv, t] = reactif(e, PTmode); const R = { O: "l'oxygène de l'air", eau: "l'eau", acide: "un acide dilué (acide chlorhydrique)", Cl: "le chlore", H: "l'hydrogène" }[PTmode]; PTsel = [sym]; drawPT();
+    let detail = "";
+    if (["O", "Cl", "H"].includes(PTmode) && lv > 0 && e.s !== PTmode) { const c = compose(e, PT[PTmode]); detail = fiche(e, PT[PTmode], c); }
+    else if (PTmode === "eau" && lv > 0) detail = ficheEau(e, lv);
+    else if (PTmode === "acide" && lv > 0) detail = ficheAcide(e, lv);
+    else if (lv === 0 && ["O", "Cl", "H"].includes(PTmode) && e.s !== PTmode) detail = `<p class="muted">Pas de réaction notable dans les conditions ordinaires. Cliquez sur « Deux éléments » pour voir ce que la règle simple prévoit quand même.</p>`;
+    $("#ch-pt-res").innerHTML = `<p style="font-size:1.05rem"><b>${e.n} (${e.s}) avec ${R}</b> : ${lv < 0 ? "<b>chimie presque inconnue</b>. " : "<b>" + LV[lv][1] + "</b>. "}${t}.</p>` + detail + `<p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
+  if (false) { const [lv, t] = [0, ""]; $("#ch-pt-res").innerHTML = `<p><b>${e.n} (${e.s}) avec</b> : ${lv < 0 ? "<b>chimie presque inconnue</b>. " : "<b>" + LV[lv][1] + "</b>. "}${t}.</p><p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
   if (PTsel.length !== 1) PTsel = [sym]; else PTsel = [PTsel[0], sym];
   drawPT();
   const A = PT[PTsel[0]];
@@ -652,6 +659,54 @@ function bilanReaction(c, eq) {
   const prof = d3.range(0, 1.001, .02).map(t => [t, dHv * (3 * t * t - 2 * t * t * t) + (Ea - dHv / 2) * Math.sin(Math.PI * t) ** 2]);
   const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:9.5px"><polyline points="${prof.map(([t, v]) => `${x(t)},${y(Math.max(lo, Math.min(hi, v)))}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/><text x="${x(0)}" y="${y(0) - 4}" style="fill:#475569">éléments</text><text x="${x(1)}" y="${y(dHv) + 12}" text-anchor="end" style="fill:#475569">${c.f}</text><text x="${x(.5)}" y="${y(Ea) - 3}" text-anchor="middle" style="fill:#7c3aed">barrière ${["très faible", "faible", "moyenne", "élevée"][bar]}</text><text x="${x(.5)}" y="${H - 3}" text-anchor="middle" style="fill:#94a3b8">avancement →</text></svg>`;
   return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab)}${card("Équilibre", "#2563eb", equi)}${card("Vitesse (cinétique)", "#7c3aed", vit)}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div><p class="muted" style="font-size:.76rem;margin:4px 0 0">${exact ? "ΔG calculé avec les entropies standard de la table" : "ΔG estimé avec ΔS ≈ 180 J/K par mole de gaz consommée ou produite (ordre de grandeur)"}, à 25 °C ; vitesse : règles qualitatives (partie 9).</p>`;
+}
+
+/* fiches spécifiques : métal + eau, métal + acide */
+const HYD = { Li: [1, -484.9], Na: [1, -425.6], K: [1, -424.7], Rb: [1, -418.2], Cs: [1, -416.2], Mg: [2, -924.5], Ca: [2, -986.1], Sr: [2, -959.0], Ba: [2, -944.7] };
+function cartes(stab, equi, vit, bar, dH, prodLab) {
+  const card = (t, col, body) => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b><div style="margin-top:4px">${body}</div></div>`;
+  const Ea = [15, 40, 90, 160][bar], W = 300, H = 130, lo = Math.min(0, dH) - 20, hi = Ea + 20, y = v => 10 + (hi - v) / (hi - lo) * (H - 30), x = t => 20 + t * (W - 40);
+  const prof = d3.range(0, 1.001, .02).map(t => [t, dH * (3 * t * t - 2 * t * t * t) + (Ea - dH / 2) * Math.sin(Math.PI * t) ** 2]);
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:9.5px"><polyline points="${prof.map(([t, v]) => `${x(t)},${y(Math.max(lo, Math.min(hi, v)))}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/><text x="${x(0)}" y="${y(0) - 4}" style="fill:#475569">réactifs</text><text x="${x(1)}" y="${y(dH) + 12}" text-anchor="end" style="fill:#475569">${prodLab}</text><text x="${x(.5)}" y="${y(Ea) - 3}" text-anchor="middle" style="fill:#7c3aed">barrière ${["très faible", "faible", "moyenne", "élevée"][bar]}</text></svg>`;
+  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab)}${card("Équilibre", "#2563eb", equi)}${card("Vitesse (cinétique)", "#7c3aed", vit)}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div>`;
+}
+function transfert(e, n, cible, prod) {
+  const W = 860, H = 150;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:12px"><defs><marker id="eaX" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#dc2626"/></marker></defs>`;
+  s += `<circle cx="90" cy="70" r="26" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/><text x="90" y="76" text-anchor="middle" font-size="17" font-weight="800">${e.s}</text><text x="90" y="118" text-anchor="middle" style="fill:#475569">métal</text>`;
+  s += `<path d="M120,52 Q190,10 260,52" fill="none" stroke="#dc2626" stroke-width="2.2" marker-end="url(#eaX)"/><text x="190" y="20" text-anchor="middle" font-weight="700" style="fill:#dc2626">cède ${n} e⁻</text>`;
+  s += `<rect x="262" y="44" width="110" height="52" rx="10" fill="#e0f2fe" stroke="#0ea5e9"/><text x="317" y="76" text-anchor="middle" font-weight="800">${cible}</text><text x="317" y="118" text-anchor="middle" style="fill:#475569">capte les électrons</text>`;
+  s += `<text x="400" y="78" font-size="26" style="fill:#64748b">→</text><circle cx="480" cy="70" r="26" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text x="480" y="76" text-anchor="middle" font-size="16" font-weight="800">${e.s}</text><text x="508" y="48" font-weight="800" style="fill:#2563eb">${n > 1 ? n : ""}+</text><text x="480" y="118" text-anchor="middle" style="fill:#475569">ion métallique</text>`;
+  s += `<text x="530" y="76" font-size="18" style="fill:#64748b">+</text><circle cx="580" cy="70" r="14" fill="#fff" stroke="#64748b"/><circle cx="604" cy="70" r="14" fill="#fff" stroke="#64748b"/><text x="592" y="75" text-anchor="middle" font-weight="800">H₂</text><text x="592" y="118" text-anchor="middle" style="fill:#475569">bulles d'hydrogène</text>`;
+  s += `<text x="650" y="62" font-weight="700">${prod}</text><text x="650" y="82" style="fill:#475569">oxydoréduction : le métal s'oxyde,</text><text x="650" y="100" style="fill:#475569">l'hydrogène de ${cible} est réduit</text>`;
+  return s + "</svg>";
+}
+function ficheEau(e, lv) {
+  const d = HYD[e.s];
+  if (!d) return `<p class="muted">Réaction lente ou de surface ; pas de fiche détaillée pour cet élément.</p>`;
+  const [n, dfH] = d, oh = n === 1 ? `${e.s}OH` : `${e.s}(OH)₂`;
+  const eq = n === 1 ? `2 ${e.s}(s) + 2 H₂O(l) → 2 ${oh} + H₂(g)` : `${e.s}(s) + 2 H₂O(l) → ${oh} + H₂(g)`;
+  const dH = n === 1 ? 2 * dfH - 2 * -285.8 : dfH - 2 * -285.8;
+  let o = `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px"><span style="background:#ede9fe;color:#5b21b6;border-radius:999px;padding:2px 10px;font-weight:700">Oxydoréduction : le métal réduit l'eau</span><span style="background:#fde68a;border-radius:999px;padding:2px 10px">produit une base (hydroxyde)</span></div>`;
+  o += `<p style="font-size:1.25rem;font-weight:800;margin:6px 0">${eq}</p><p class="muted" style="margin:0 0 6px">Le métal cède ses électrons à l'eau : il se forme l'ion ${e.s}${n > 1 ? "²" : ""}⁺, des ions hydroxyde OH⁻ (la solution devient basique : la phénolphtaléine vire au rose) et du dihydrogène.</p>`;
+  o += transfert(e, n, "H₂O", oh + " + H₂");
+  o += `<ul><li><b>Énergie</b> : ΔH ≈ ${fr(dH)} kJ pour l'équation écrite (hydroxyde solide) : la chaleur peut fondre le métal ou enflammer l'hydrogène.</li></ul>`;
+  const bar = lv === 3 ? 0 : lv === 2 ? 1 : 2;
+  o += cartes(`Le produit (hydroxyde + hydrogène) est beaucoup plus stable que le métal et l'eau : ΔG très négatif.`, `Réaction <b>totale</b> : l'hydrogène s'échappe, l'équilibre ne peut pas revenir en arrière.`, lv === 3 ? "<b>Instantanée</b> : aucune couche protectrice, le métal cède son électron immédiatement." : lv === 2 ? "<b>Rapide</b> à froid, accélérée à chaud." : "<b>Lente</b> à froid (couche d'hydroxyde peu soluble), rapide dans l'eau chaude ou la vapeur.", bar, dH, oh);
+  return o;
+}
+function ficheAcide(e, lv) {
+  const E = POT[e.s];
+  if (E == null || E >= 0) return "";
+  const n = (OX[e.s] || [2]).find(x => x > 0) || 2;
+  const eq = n === 1 ? `2 ${e.s}(s) + 2 H⁺(aq) → 2 ${e.s}⁺(aq) + H₂(g)` : n === 2 ? `${e.s}(s) + 2 H⁺(aq) → ${e.s}²⁺(aq) + H₂(g)` : `2 ${e.s}(s) + 6 H⁺(aq) → 2 ${e.s}³⁺(aq) + 3 H₂(g)`;
+  const dG = n * 96.485 * E, lk = -dG * 1000 / (R * 298 * Math.LN10);
+  let o = `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px"><span style="background:#ede9fe;color:#5b21b6;border-radius:999px;padding:2px 10px;font-weight:700">Oxydoréduction : le métal réduit les ions H⁺</span><span style="background:#e0f2fe;border-radius:999px;padding:2px 10px">dégagement d'hydrogène</span></div>`;
+  o += `<p style="font-size:1.25rem;font-weight:800;margin:6px 0">${eq}</p><p class="muted" style="margin:0 0 6px">L'acide apporte des ions H⁺ ; le métal, plus réducteur que l'hydrogène (potentiel ${fr(E, 2)} V &lt; 0), leur cède ses électrons. Les ions chlorure de l'acide restent spectateurs : on obtient une solution de chlorure de ${e.n.toLowerCase()}.</p>`;
+  o += transfert(e, n, "H⁺", `ion ${e.s} + H₂`);
+  o += `<ul><li><b>Énergie libre</b> : ΔG = n F E° = ${n} × 96 485 × (${fr(E, 2)} V) ≈ <b>${fr(dG)} kJ</b> par mole de métal (calcul par les potentiels standard, partie 12).</li></ul>`;
+  o += cartes(`ΔG ≈ ${fr(dG)} kJ/mol &lt; 0 : le métal dissous est plus stable que le métal au contact de l'acide.`, `K ≈ 10^${fr(lk)} : ${lk > 6 ? "réaction totale ; l'hydrogène s'échappe en bulles." : "réaction limitée ; elle s'arrête vite si l'hydrogène reste sur place."}`, lv === 3 ? "<b>Très vive</b>, parfois violente." : lv === 2 ? "<b>Visible</b> : bulles régulières, accélérées si l'on chauffe ou si l'acide est concentré." : "<b>Lente</b> : le potentiel est proche de celui de l'hydrogène, ou une couche d'oxyde gêne l'attaque.", lv === 3 ? 0 : lv === 2 ? 1 : 2, dG, `${e.s}${n > 1 ? n : ""}⁺ + H₂`);
+  return o;
 }
 
 function init() {
