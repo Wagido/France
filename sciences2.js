@@ -460,66 +460,91 @@ function meteo() {
 function meteo3d(box) {
   const T = window.THREE; box.innerHTML = "";
   const W = () => box.clientWidth, H = () => box.clientHeight;
-  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true }); renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.setSize(W(), H()); box.appendChild(renderer.domElement);
-  const scene = new T.Scene(), cam = new T.PerspectiveCamera(40, W() / H(), 0.1, 500);
-  scene.add(new T.HemisphereLight(0xffffff, 0x88aa88, 1.1)); const sun = new T.DirectionalLight(0xffffff, 0.9); sun.position.set(-20, 40, 20); scene.add(sun);
-  // sol : x vers l'est, z vers le sud
-  const ground = new T.Mesh(new T.PlaneGeometry(56, 56), new T.MeshLambertMaterial({ color: 0xb7d7b0 })); ground.rotation.x = -Math.PI / 2; scene.add(ground);
+  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true }); renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.setSize(W(), H()); renderer.localClippingEnabled = true; box.appendChild(renderer.domElement);
+  const scene = new T.Scene(), cam = new T.PerspectiveCamera(38, W() / H(), 0.1, 500);
+  scene.add(new T.HemisphereLight(0xffffff, 0x99aa99, 1.15)); const sun = new T.DirectionalLight(0xffffff, 0.8); sun.position.set(-20, 40, 25); scene.add(sun);
   const V = (x, y, z) => new T.Vector3(x, y, z);
-  // fronts au sol
-  const wf = [V(0, 0, 0), V(14, 0, 6)], cf = [V(0, 0, 0), V(-5, 0, 14)];
-  const tube = (a, b, c) => { const m = new T.Mesh(new T.CylinderGeometry(0.18, 0.18, a.distanceTo(b), 8), new T.MeshLambertMaterial({ color: c })); m.position.copy(a.clone().add(b).multiplyScalar(.5)); m.quaternion.setFromUnitVectors(V(0, 1, 0), b.clone().sub(a).normalize()); scene.add(m); };
-  tube(wf[0], wf[1], 0xdc2626); tube(cf[0], cf[1], 0x2563eb);
-  // surfaces frontales
-  const quad = (pts, color, op) => { const g = new T.BufferGeometry(); const p = [pts[0], pts[1], pts[2], pts[0], pts[2], pts[3]].flatMap(v => [v.x, v.y, v.z]); g.setAttribute("position", new T.Float32BufferAttribute(p, 3)); g.computeVertexNormals(); const m = new T.Mesh(g, new T.MeshLambertMaterial({ color, transparent: true, opacity: op, side: T.DoubleSide, depthWrite: false })); scene.add(m); return m; };
-  const nW = V(6, 0, -14).normalize(), nC = V(-14, 0, -5).normalize();
-  const wUp = (p, d, h) => p.clone().add(nW.clone().multiplyScalar(d)).add(V(0, h, 0)), cUp = (p, d, h) => p.clone().add(nC.clone().multiplyScalar(d)).add(V(0, h, 0));
-  quad([wf[0], wf[1], wUp(wf[1], 14, 7), wUp(wf[0], 14, 7)], 0xef4444, .28);       // front chaud : pente douce
-  quad([cf[0], cf[1], cUp(cf[1], 4, 8), cUp(cf[0], 4, 8)], 0x3b82f6, .32);         // front froid : pente raide
-  // masse d'air chaud (secteur chaud)
-  const warmS = new T.Mesh(new T.CylinderGeometry(12, 12, 3, 32, 1, false, Math.PI * 0.03, Math.PI * 0.47), new T.MeshLambertMaterial({ color: 0xf87171, transparent: true, opacity: .2, depthWrite: false }));
-  warmS.position.set(0, 1.5, 0); warmS.rotation.y = Math.PI * 0.62; scene.add(warmS);
-  // nuages
-  const cloudMat = c => new T.MeshLambertMaterial({ color: c, transparent: true, opacity: .92 });
-  const puff = (x, y, z, r, c = 0xffffff, n = 6) => { const g = new T.Group(); for (let i = 0; i < n; i++) { const s = new T.Mesh(new T.SphereGeometry(r * (0.6 + Math.random() * .5), 12, 10), cloudMat(c)); s.position.set((Math.random() - .5) * r * 1.6, (Math.random() - .3) * r * .6, (Math.random() - .5) * r * 1.6); g.add(s); } g.position.set(x, y, z); scene.add(g); return g; };
-  const slab = (x, y, z, sx, sy, sz, c, op = .85, rot = 0) => { const m = new T.Mesh(new T.BoxGeometry(sx, sy, sz), new T.MeshLambertMaterial({ color: c, transparent: true, opacity: op })); m.position.set(x, y, z); m.rotation.y = rot; scene.add(m); return m; };
-  const rotW = -Math.atan2(6, 14);
-  // le long du front chaud, de plus en plus haut vers l'avant (nord-est)
-  [[2, 1.2, 0x6b7280, 3.4, 1.4], [6, 3.4, 0x9ca3af, 3.4, .6], [10, 5.4, 0xe5e7eb, 3.4, .35], [13, 6.8, 0xf8fafc, 3.4, .15]].forEach(([d, h, c, w, th]) => { const p = wf[0].clone().lerp(wf[1], .5); const q = p.clone().add(nW.clone().multiplyScalar(d)); slab(q.x, h, q.z, 15, th, w, c, d > 9 ? .55 : .85, rotW); });
+  // repère : coordonnées du schéma « carte » (900 × 360 px) → monde (x vers l'est, z vers le sud), 20 px = 1 unité
+  const P2W = (px, py) => [(px - 450) / 20, (py - 180) / 20];
+  const bez = (p0, p1, p2, p3, t) => { const u = 1 - t; return [0, 1].map(k => u * u * u * p0[k] + 3 * u * u * t * p1[k] + 3 * u * t * t * p2[k] + t * t * t * p3[k]); };
+  const WF = [[360, 150], [430, 190], [520, 215], [640, 235]], CF = [[360, 150], [340, 210], [300, 270], [230, 340]];
+  const front = (C, t) => P2W(...bez(C[0], C[1], C[2], C[3], t));
+  const ZCUT = P2W(0, 222)[1];
+  const clip = new T.Plane(V(0, 0, -1), ZCUT); let clipOn = false;
+  const mat = (o) => { const m = new T.MeshLambertMaterial(Object.assign({ side: T.DoubleSide }, o)); m.clippingPlanes = []; return m; };
+  const mats = [];
+  const M = o => { const m = mat(o); mats.push(m); return m; };
+  // sol : la carte du schéma ①, peinte dans une texture
+  { const cv = document.createElement("canvas"); cv.width = 1800; cv.height = 720; const c = cv.getContext("2d"); c.scale(2, 2);
+    c.fillStyle = "#e7f0e3"; c.fillRect(0, 0, 900, 360);
+    c.fillStyle = "rgba(191,219,254,.55)"; c.fillRect(0, 0, 900, 360);
+    c.beginPath(); c.moveTo(360, 150); c.bezierCurveTo(430, 190, 520, 215, 640, 235); c.lineTo(560, 360); c.lineTo(230, 360); c.bezierCurveTo(300, 270, 340, 210, 360, 150); c.fillStyle = "rgba(252,165,165,.75)"; c.fill();
+    c.strokeStyle = "#64748b"; c.lineWidth = 1.2; for (let r = 50; r <= 330; r += 50) { c.beginPath(); c.ellipse(360 + r * .25, 150 + r * .1, r * 1.25, r * .8, 0, 0, 2 * Math.PI); c.stroke(); }
+    c.lineWidth = 6; c.strokeStyle = "#dc2626"; c.beginPath(); c.moveTo(360, 150); c.bezierCurveTo(430, 190, 520, 215, 640, 235); c.stroke();
+    c.fillStyle = "#dc2626"; [[420, 181], [480, 205], [540, 220], [600, 230]].forEach(([x, y]) => { c.beginPath(); c.arc(x, y, 9, 0, 2 * Math.PI); c.fill(); });
+    c.strokeStyle = "#2563eb"; c.beginPath(); c.moveTo(360, 150); c.bezierCurveTo(340, 210, 300, 270, 230, 340); c.stroke();
+    c.fillStyle = "#2563eb"; [[350, 190], [330, 235], [300, 280], [262, 318]].forEach(([x, y]) => { c.beginPath(); c.moveTo(x - 10, y - 7); c.lineTo(x + 8, y + 7); c.lineTo(x - 15, y + 13); c.fill(); });
+    c.setLineDash([12, 8]); c.lineWidth = 3; c.strokeStyle = "#111827"; c.beginPath(); c.moveTo(150, 222); c.lineTo(820, 222); c.stroke(); c.setLineDash([]);
+    c.font = "bold 30px sans-serif"; c.fillStyle = "#b91c1c"; c.fillText("D", 350, 162);
+    c.font = "bold 20px sans-serif"; c.fillStyle = "#111827"; c.fillText("A", 128, 229); c.fillText("B", 830, 229);
+    c.font = "bold 15px sans-serif"; c.fillStyle = "#1d4ed8"; c.fillText("AIR FROID", 110, 110); c.fillText("AIR FROID", 700, 120); c.fillStyle = "#b91c1c"; c.fillText("SECTEUR CHAUD", 410, 305);
+    const tex = new T.CanvasTexture(cv); tex.anisotropy = 4; if (T.SRGBColorSpace) tex.colorSpace = T.SRGBColorSpace;
+    const g = new T.Mesh(new T.PlaneGeometry(45, 18), M({ map: tex })); g.rotation.x = -Math.PI / 2; scene.add(g);
+    const base = new T.Mesh(new T.BoxGeometry(45, 0.4, 18), M({ color: 0x8b7d6b })); base.position.y = -0.21; scene.add(base); }
+  // surfaces frontales : construites à partir des tracés de la carte
+  const sectorC = P2W(470, 300);
+  const surf = (C, D, slope, color, op, off = 0, d0 = 0) => { const nt = 30, nd = 14, pos = [], idx = [];
+    for (let i = 0; i <= nt; i++) { const t = i / nt, p = front(C, t), q = front(C, Math.min(1, t + .01)), r = front(C, Math.max(0, t - .01)); let nx = -(q[1] - r[1]), nz = q[0] - r[0]; const L = Math.hypot(nx, nz); nx /= L; nz /= L;
+      if ((sectorC[0] - p[0]) * nx + (sectorC[1] - p[1]) * nz > 0) { nx = -nx; nz = -nz; }
+      for (let k = 0; k <= nd; k++) { const d = d0 + (D - d0) * k / nd; pos.push(p[0] + nx * d, d * slope + off, p[1] + nz * d); } }
+    for (let i = 0; i < nt; i++) for (let k = 0; k < nd; k++) { const a = i * (nd + 1) + k, b = a + nd + 1; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+    const g = new T.BufferGeometry(); g.setAttribute("position", new T.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+    const m = new T.Mesh(g, M({ color, transparent: true, opacity: op, depthWrite: false })); scene.add(m); return m; };
+  surf(WF, 9, 0.75, 0xef4444, .42);          // front chaud : pente douce, air chaud au-dessus
+  surf(CF, 3.2, 2.3, 0x3b82f6, .5);           // front froid : pente raide
+  // nuages du front chaud, posés sur la surface frontale (comme dans la coupe)
+  surf(WF, 2.2, 0.75, 0x6b7280, .95, 0.12, 0); surf(WF, 2.2, 0.75, 0x6b7280, .95, 2.2, 0);   // nimbostratus (dessus et dessous d'une couche épaisse)
+  surf(WF, 5, 0.75, 0xcbd5e1, .92, 0.45, 2.4);   // altostratus
+  surf(WF, 7.2, 0.75, 0xf1f5f9, .8, 0.3, 5.2); // cirrostratus
+  surf(WF, 9, 0.75, 0xffffff, .55, 0.2, 7.4); // cirrus
   // cumulonimbus le long du front froid
-  for (let i = 1; i <= 3; i++) { const p = cf[0].clone().lerp(cf[1], .3 + i / 5); const tower = new T.Mesh(new T.CylinderGeometry(0.7, 1.0, 6.5, 14), cloudMat(0xd1d5db)); tower.position.set(p.x - .6, 3.6, p.z); scene.add(tower); const anvil = new T.Mesh(new T.CylinderGeometry(1.7, 0.8, .6, 16), cloudMat(0xf3f4f6)); anvil.position.set(p.x - .2, 7, p.z); scene.add(anvil); }
-  // ciel de traîne : cumulus derrière le front froid
-  [[-8, 4], [-10, 9], [-6, 11], [-12, 2], [-9, -2]].forEach(([x, z]) => puff(x, 1.8, z, .9));
-  // pluie
-  const rainG = new T.BufferGeometry(), rp = [];
-  for (let i = 0; i < 700; i++) { let x, z; if (i < 450) { const p = wf[0].clone().lerp(wf[1], Math.random()); const q = p.add(nW.clone().multiplyScalar(Math.random() * 4)); x = q.x; z = q.z; } else { const p = cf[0].clone().lerp(cf[1], .15 + Math.random() * .75); x = p.x - .6 + (Math.random() - .5) * 2; z = p.z + (Math.random() - .5) * 2; } const y = Math.random() * 1.2; rp.push(x, y, z, x, y + .35, z); }
-  rainG.setAttribute("position", new T.Float32BufferAttribute(rp, 3)); const rain = new T.LineSegments(rainG, new T.LineBasicMaterial({ color: 0x2563eb, transparent: true, opacity: .55 })); scene.add(rain);
-  // flèches de vent : rotation autour du centre, avec convergence de 20°
-  const winds = new T.Group(); scene.add(winds);
-  [6, 11, 17].forEach((r, k) => { for (let i = 0; i < 10 + k * 4; i++) { const a = i / (10 + k * 4) * Math.PI * 2; const pos = V(r * Math.cos(a), .35, r * Math.sin(a)); const tang = V(Math.sin(a), 0, -Math.cos(a)); const inward = pos.clone().multiplyScalar(-1).normalize(); const dir = tang.multiplyScalar(Math.cos(.35)).add(inward.multiplyScalar(Math.sin(.35))).normalize(); winds.add(new T.ArrowHelper(dir, pos, 2.2, 0x0f766e, .7, .45)); } });
-  // repères (étiquettes HTML)
-  const labels = [["Dépression (D)", V(0, .5, 0), "#b91c1c"], ["Front chaud", V(9, 0, 4), "#dc2626"], ["Front froid", V(-3.5, 0, 10), "#2563eb"], ["Secteur chaud : air chaud et humide", V(8, 2.5, 12), "#b91c1c"], ["Air froid", V(-12, 1.2, -6), "#1d4ed8"], ["Air froid", V(20, .8, -14), "#1d4ed8"], ["Nimbostratus : pluie continue", V(9, 1.6, -0.5), "#374151"], ["Altostratus", V(11, 3.6, -3.5), "#374151"], ["Cirrostratus, cirrus", V(15, 7.2, -8.5), "#374151"], ["Cumulonimbus : orages, grains", V(-3.5, 7.8, 7), "#374151"], ["Ciel de traîne : cumulus, averses", V(-11, 3, 6), "#374151"], ["Nord ↑", V(0, 0, -22), "#111827"]].map(([t, p, c]) => { const d = document.createElement("div"); d.textContent = t; d.style.cssText = `position:absolute;transform:translate(-50%,-100%);font:600 11.5px system-ui,sans-serif;color:${c};background:rgba(255,255,255,.78);padding:1px 5px;border-radius:4px;pointer-events:none;white-space:nowrap`; box.appendChild(d); return [d, p]; });
-  const north = V(0, 0, -22); tube(V(0, 0.05, -15), V(0, 0.05, -20), 0x111827);
-  // caméra en orbite
-  const VIEWS = { sw: [-0.75, 0.55, 36], top: [0, 1.5, 50], cut: [0, 0.18, 36] }; let th = VIEWS.sw[0], ph = VIEWS.sw[1], rad = VIEWS.sw[2], target = V(3, 2, 3);
+  [0.3, 0.55, 0.8].forEach(t => { const [x, z] = front(CF, t); const tw = new T.Mesh(new T.CylinderGeometry(0.5, 0.75, 6.8, 16), M({ color: 0xd1d5db })); tw.position.set(x - .4, 3.4, z); scene.add(tw); const an = new T.Mesh(new T.CylinderGeometry(1.6, .6, .5, 18), M({ color: 0xe5e7eb })); an.position.set(x - .2, 6.9, z); scene.add(an); });
+  // cumulus de traîne (air froid à l'ouest), stratus du secteur chaud
+  const puff = (x, z, r) => { for (let i = 0; i < 4; i++) { const s = new T.Mesh(new T.SphereGeometry(r * (0.7 + .1 * i), 12, 10), M({ color: 0xffffff })); s.position.set(x + (i - 1.5) * r * .6, 1.6 + (i % 2) * r * .5, z + (i % 2 - .5) * r * .5); scene.add(s); } };
+  [[-14, -2], [-13, 3], [-11, 6], [-16, 5], [-10, 1]].forEach(([x, z]) => puff(x, z, .55));
+  { const st = new T.Mesh(new T.BoxGeometry(3.5, .15, 2.5), M({ color: 0xe5e7eb, transparent: true, opacity: .8 })); st.position.set(0.5, .6, 5.5); scene.add(st); }
+  // pluie : sous le nimbostratus et les cumulonimbus
+  const rp = [];
+  for (let i = 0; i < 900; i++) { let x, z, top; if (i < 600) { const t = Math.random(), d = Math.random() * 2.2, p = front(WF, t), q = front(WF, Math.min(1, t + .01)); let nx = -(q[1] - p[1]), nz = q[0] - p[0]; const L = Math.hypot(nx, nz) || 1; nx /= L; nz /= L; if ((sectorC[0] - p[0]) * nx + (sectorC[1] - p[1]) * nz > 0) { nx = -nx; nz = -nz; } x = p[0] + nx * d; z = p[1] + nz * d; top = d * .75; } else { const p = front(CF, .25 + Math.random() * .6); x = p[0] - .4 + (Math.random() - .5) * 1.4; z = p[1] + (Math.random() - .5) * 1.4; top = 1.2; } const y = Math.random() * Math.max(.3, top); rp.push(x, y, z, x, y + .3, z, top); }
+  const rainTop = [], rpos = []; for (let i = 0; i < rp.length; i += 7) { rpos.push(rp[i], rp[i + 1], rp[i + 2], rp[i + 3], rp[i + 4], rp[i + 5]); rainTop.push(rp[i + 6]); }
+  const rg = new T.BufferGeometry(); rg.setAttribute("position", new T.Float32BufferAttribute(rpos, 3)); const rm = new T.LineBasicMaterial({ color: 0x1d4ed8, transparent: true, opacity: .6 }); rm.clippingPlanes = []; mats.push(rm); const rain = new T.LineSegments(rg, rm); scene.add(rain);
+  // vent autour du centre
+  const winds = new T.Group(); scene.add(winds); const [cx, cz] = P2W(380, 160); winds.position.set(cx, 0, cz);
+  [3, 6, 9].forEach((r, k) => { for (let i = 0; i < 8 + k * 4; i++) { const a = i / (8 + k * 4) * Math.PI * 2; const pos = V(r * Math.cos(a) * 1.3, .3, r * Math.sin(a) * .75); const tang = V(Math.sin(a), 0, -Math.cos(a)); const dir = tang.multiplyScalar(Math.cos(.35)).add(pos.clone().multiplyScalar(-1).normalize().multiplyScalar(Math.sin(.35))).normalize(); const ah = new T.ArrowHelper(dir, pos, 1.6, 0x0f766e, .5, .35); ah.line.material.clippingPlanes = []; ah.cone.material.clippingPlanes = []; mats.push(ah.line.material, ah.cone.material); winds.add(ah); } });
+  // étiquettes
+  const W2 = (px, py, y) => { const [x, z] = P2W(px, py); return V(x, y, z); };
+  const labels = [["D (dépression)", W2(360, 150, .4), "#b91c1c"], ["Front chaud", W2(600, 232, 0.2), "#dc2626"], ["Front froid", W2(262, 318, 0.2), "#2563eb"], ["Secteur chaud", W2(470, 300, .5), "#b91c1c"], ["Nimbostratus : pluie continue", W2(560, 175, 2.6), "#374151"], ["Altostratus", W2(600, 120, 3.4), "#374151"], ["Cirrostratus", W2(650, 75, 4.9), "#374151"], ["Cirrus", W2(690, 40, 6.6), "#374151"], ["Cumulonimbus : averses, grains", W2(300, 270, 7.6), "#374151"], ["Ciel de traîne : cumulus", W2(160, 200, 2.6), "#374151"], ["A", W2(150, 222, .3), "#111827"], ["B", W2(820, 222, .3), "#111827"], ["Nord ↑", W2(450, 6, .2), "#111827"]].map(([t, p, c]) => { const d = document.createElement("div"); d.textContent = t; d.style.cssText = `position:absolute;transform:translate(-50%,-100%);font:600 11.5px system-ui,sans-serif;color:${c};background:rgba(255,255,255,.82);padding:1px 5px;border-radius:4px;pointer-events:none;white-space:nowrap`; box.appendChild(d); return [d, p]; });
+  // caméra
+  const VIEWS = { sw: [-0.65, 0.55, 40, false], top: [0, 1.53, 44, false], cut: [0, 0.12, 36, true] }; let th = VIEWS.sw[0], ph = VIEWS.sw[1], rad = VIEWS.sw[2], target = V(1.5, 1.8, 0);
+  const setClip = on => { clipOn = on; mats.forEach(m => m.clippingPlanes = on ? [clip] : []); };
   const place = () => { cam.position.set(target.x + rad * Math.cos(ph) * Math.sin(th), target.y + rad * Math.sin(ph), target.z + rad * Math.cos(ph) * Math.cos(th)); cam.lookAt(target); };
   let drag = null, pinch = null; const pts = new Map();
   renderer.domElement.addEventListener("pointerdown", e => { pts.set(e.pointerId, [e.clientX, e.clientY]); renderer.domElement.setPointerCapture(e.pointerId); drag = [e.clientX, e.clientY, th, ph]; if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = [Math.hypot(a[0] - b[0], a[1] - b[1]), rad]; } });
-  renderer.domElement.addEventListener("pointermove", e => { if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, [e.clientX, e.clientY]); if (pts.size === 2 && pinch) { const [a, b] = [...pts.values()]; rad = Math.max(20, Math.min(110, pinch[1] * pinch[0] / Math.hypot(a[0] - b[0], a[1] - b[1]))); } else if (drag) { th = drag[2] - (e.clientX - drag[0]) * .008; ph = Math.max(0.05, Math.min(1.55, drag[3] + (e.clientY - drag[1]) * .006)); } });
+  renderer.domElement.addEventListener("pointermove", e => { if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, [e.clientX, e.clientY]); if (pts.size === 2 && pinch) { const [a, b] = [...pts.values()]; rad = Math.max(16, Math.min(90, pinch[1] * pinch[0] / Math.hypot(a[0] - b[0], a[1] - b[1]))); } else if (drag) { th = drag[2] - (e.clientX - drag[0]) * .008; ph = Math.max(0.03, Math.min(1.55, drag[3] + (e.clientY - drag[1]) * .006)); } });
   const up = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) drag = null; };
   renderer.domElement.addEventListener("pointerup", up); renderer.domElement.addEventListener("pointercancel", up);
-  renderer.domElement.addEventListener("wheel", e => { e.preventDefault(); rad = Math.max(20, Math.min(110, rad * (1 + Math.sign(e.deltaY) * .08))); }, { passive: false });
-  document.querySelectorAll(".me-v").forEach(b => b.addEventListener("click", () => { [th, ph, rad] = VIEWS[b.dataset.v]; }));
+  renderer.domElement.addEventListener("wheel", e => { e.preventDefault(); rad = Math.max(16, Math.min(90, rad * (1 + Math.sign(e.deltaY) * .08))); }, { passive: false });
+  document.querySelectorAll(".me-v").forEach(b => b.addEventListener("click", () => { const v = VIEWS[b.dataset.v]; [th, ph, rad] = v; setClip(v[3]); document.querySelectorAll(".me-v").forEach(x => x.classList.toggle("on", x === b)); }));
   let spin = true; const btn = $("#me-anim"); btn.addEventListener("click", () => { spin = !spin; btn.textContent = spin ? "Pause de la rotation du vent" : "Reprendre la rotation du vent"; });
   let visible = true; new IntersectionObserver(es => visible = es.some(e => e.isIntersecting)).observe(box);
   new ResizeObserver(() => { if (!W()) return; renderer.setSize(W(), H()); cam.aspect = W() / H(); cam.updateProjectionMatrix(); }).observe(box);
-  const pos = rain.geometry.attributes.position;
+  const rpa = rain.geometry.attributes.position;
   const loop = () => {
     requestAnimationFrame(loop); if (!visible || !W()) return;
     if (spin) winds.rotation.y += 0.004;
-    for (let i = 0; i < pos.count; i += 2) { let y = pos.getY(i) - 0.06; if (y < 0) y += 1.4; pos.setY(i, y); pos.setY(i + 1, y + .35); } pos.needsUpdate = true;
+    for (let i = 0; i < rpa.count; i += 2) { const top = rainTop[i / 2]; let y = rpa.getY(i) - 0.05; if (y < 0) y += Math.max(.3, top); rpa.setY(i, y); rpa.setY(i + 1, y + .3); } rpa.needsUpdate = true;
     place(); renderer.render(scene, cam);
-    labels.forEach(([d, p]) => { const v = p.clone().project(cam); d.style.display = v.z > 1 ? "none" : ""; d.style.left = ((v.x + 1) / 2 * W()) + "px"; d.style.top = ((1 - v.y) / 2 * H()) + "px"; });
+    labels.forEach(([d, p]) => { const v = p.clone().project(cam), hide = v.z > 1 || (clipOn && p.z > ZCUT + .01); d.style.display = hide ? "none" : ""; d.style.left = ((v.x + 1) / 2 * W()) + "px"; d.style.top = ((1 - v.y) / 2 * H()) + "px"; });
   };
   loop();
 }
