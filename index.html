@@ -111,8 +111,7 @@
     <nav class="tabs" data-group="science" aria-label="Science" hidden>
       <a href="#tableau">Tableau périodique</a>
       <a href="#roches">Roches</a>
-      <a href="#climat-physique">Climat : la physique</a>
-      <a href="#energie-terre">Énergie de la Terre</a>
+      <a href="#climat-physique">Énergie et climat : la physique</a>
       <a href="#meteo">Météo</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
@@ -4131,168 +4130,227 @@
   <p class="muted" style="font-size:.78rem">Sources générales : composition de la croûte terrestre d'après le <i>CRC Handbook of Chemistry and Physics</i> (valeurs moyennes, arrondies) ; âges de la Terre et des plus vieilles roches : USGS ; carrières et extraction : SDES. La description des familles de roches, du cycle des roches et des grands ensembles géologiques de la France reprend les connaissances de base des manuels de géologie ; les exemples d'usages sont des exemples classiques, sans prétention d'exhaustivité.</p>
 </section>
 <section id="climat-physique" class="panel">
-  <div class="panel-head"><h2>Le climat expliqué par la physique <span class="geo-fixed">Monde</span></h2></div>
-  <p class="lead">Pourquoi ajouter un gaz présent à 0,04 % réchauffe-t-il la planète ? De combien, et avec quelle certitude ? Cet article part du bilan radiatif de la Terre, explique l'effet de serre et les rétroactions, puis résume ce que dit le GIEC, en distinguant ce qui est certain de ce qui est probable ou débattu. Le détail des flux d'énergie est dans l'onglet <a href="#energie-terre">Énergie de la Terre</a>.</p>
-  <ul class="mo-ul cr-toc">
-    <li><a href="#climat-physique" data-to="cp-p1">1. Le bilan radiatif : une Terre sans effet de serre serait à −18 °C</a></li>
-    <li><a href="#climat-physique" data-to="cp-p2">2. L'effet de serre : pourquoi le CO₂ réchauffe, et pourquoi il n'est pas « saturé »</a></li>
-    <li><a href="#climat-physique" data-to="cp-p3">3. Forçage, sensibilité et rétroactions</a></li>
-    <li><a href="#climat-physique" data-to="cp-p4">4. Calculateur : combien de degrés pour combien de CO₂ ?</a></li>
-    <li><a href="#climat-physique" data-to="cp-p5">5. Ce que dit le GIEC, et avec quelle certitude</a></li>
-    <li><a href="#climat-physique" data-to="cp-p6">6. Ce qui reste incertain</a></li>
-  </ul>
-
-  <h3 id="cp-p1" class="ag-part">1. Le bilan radiatif : une Terre sans effet de serre serait à −18 °C</h3>
-  <div class="callout small"><ul>
-    <li><b>Ce qui arrive</b> : au-dessus de l'atmosphère, le Soleil apporte 1 361 W par m² perpendiculaire à ses rayons (la « constante solaire »). La Terre intercepte ce flux sur un disque (πR²) mais le répartit sur une sphère (4πR²) : en moyenne, <b>340 W/m²</b>.</li>
-    <li><b>Ce qui repart directement</b> : environ 30 % sont réfléchis par les nuages, les glaces, les déserts (l'albédo). Il reste environ <b>240 W/m²</b> absorbés.</li>
-    <li><b>L'équilibre</b> : un corps chaud rayonne selon la loi de Stefan-Boltzmann, σT⁴ (σ = 5,67·10⁻⁸ W/m²/K⁴). Pour rayonner 240 W/m², il faut T = (240 / σ)<sup>1/4</sup> ≈ <b>255 K, soit −18 °C</b>.</li>
-    <li><b>Or la surface est à +15 °C</b> en moyenne (288 K) et rayonne environ 398 W/m². L'écart de 33 °C, c'est l'effet de serre naturel : la surface reçoit à la fois le Soleil et le rayonnement infrarouge renvoyé par l'atmosphère (environ 342 W/m²). Sans lui, la vie telle que nous la connaissons serait impossible.</li>
-  </ul></div>
-  <div id="cp-stefan" class="chart"></div>
-
-  <h3 id="cp-p2" class="ag-part">2. L'effet de serre : pourquoi le CO₂ réchauffe, et pourquoi il n'est pas « saturé »</h3>
-  <div class="callout small"><ul>
-    <li><b>Visible contre infrarouge</b> : le Soleil, à 5 800 K, émet surtout dans le visible (pic vers 0,5 µm), que l'atmosphère laisse passer. La Terre, à 288 K, émet dans l'infrarouge (pic vers 10 µm). Certaines molécules absorbent cet infrarouge : vapeur d'eau, CO₂, méthane, protoxyde d'azote, ozone. Ce sont les gaz à molécules de trois atomes ou plus, dont la vibration crée un moment dipolaire ; l'azote et l'oxygène (N₂, O₂), 99 % de l'air, sont transparents.</li>
-    <li><b>Le CO₂ absorbe vers 15 µm</b>, au cœur de l'émission terrestre (mode de déformation de la molécule).</li>
-    <li><b>L'argument de la saturation</b> : « au centre de la bande à 15 µm, l'atmosphère est déjà opaque, ajouter du CO₂ ne change rien ». C'est faux pour deux raisons :
-      <ul>
-        <li>ce qui compte, c'est l'altitude d'où le rayonnement s'échappe vers l'espace. Avec plus de CO₂, cette altitude monte ; or il y fait plus froid (−6,5 °C par km dans la troposphère), donc on rayonne moins. La Terre doit se réchauffer pour rétablir l'équilibre ;</li>
-        <li>sur les bords de la bande, l'absorption n'est pas saturée et s'élargit à mesure que la concentration augmente.</li>
-      </ul>
-      Résultat : le forçage croît comme le <b>logarithme</b> de la concentration. Chaque doublement du CO₂ ajoute à peu près le même forçage, environ <b>3,9 W/m²</b> selon le GIEC (2021).</li>
-    <li><b>Ce n'est pas une hypothèse récente</b> : Joseph Fourier (1824) comprend que l'atmosphère retient la chaleur ; John Tyndall (1859) mesure l'absorption infrarouge du CO₂ et de la vapeur d'eau ; Svante Arrhenius (1896) calcule à la main qu'un doublement du CO₂ réchaufferait de 5 à 6 °C ; Syukuro Manabe (1967) fait le premier calcul moderne, environ 2 °C (prix Nobel de physique 2021).</li>
-    <li><b>La signature</b> : si le réchauffement venait du Soleil, toute l'atmosphère se réchaufferait. Avec l'effet de serre, la basse atmosphère se réchauffe et la stratosphère se refroidit. C'est ce qu'on observe.</li>
-  </ul></div>
-
-  <h3 id="cp-p3" class="ag-part">3. Forçage, sensibilité et rétroactions</h3>
-  <div class="callout small"><ul>
-    <li><b>Le forçage (ΔF, en W/m²)</b> : la perturbation du bilan radiatif. Le forçage d'origine humaine total entre 1750 et 2019 est estimé à environ <b>2,7 W/m²</b> : le CO₂ à lui seul compte pour environ 2,2, les autres gaz à effet de serre en ajoutent, et les aérosols (pollution) en retranchent environ 1,1, en masquant une partie du réchauffement.</li>
-    <li><b>La réponse</b> : à l'équilibre, ΔT = −ΔF / λ, où λ est la somme des rétroactions (en W/m²/K). La rétroaction de base est le rayonnement de Planck : une Terre plus chaude rayonne plus, environ 3,2 W/m² de plus par degré. Sans autre effet, un doublement du CO₂ réchaufferait de 3,9 / 3,2 ≈ 1,2 °C.</li>
-    <li><b>Les rétroactions amplifient</b> : un air plus chaud contient plus de vapeur d'eau (+7 % par degré, loi de Clausius-Clapeyron), elle-même gaz à effet de serre ; la fonte de la neige et de la glace rend la surface plus sombre ; les nuages bas diminuent. Elles portent le réchauffement pour un doublement à environ 3 °C.</li>
-  </ul></div>
-  <div id="cp-retro" class="chart"></div>
-  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Valeurs centrales des rétroactions évaluées par le GIEC (AR6, groupe I, chapitre 7, 2021). Négatif = stabilise ; positif = amplifie. La vapeur d'eau et le gradient vertical de température sont évalués ensemble.</p>
-
-  <h3 id="cp-p4" class="ag-part">4. Calculateur : combien de degrés pour combien de CO₂ ?</h3>
-  <p>Forçage du CO₂ seul : ΔF = 5,35 × ln(C / 280), formule classique (Myhre et al., 1998), proche de l'évaluation du GIEC. Réchauffement à l'équilibre : ΔT = S × ΔF / F₂ₓ, où S est la sensibilité climatique à l'équilibre (réchauffement pour un doublement) et F₂ₓ le forçage d'un doublement. Le réchauffement réellement observé à un moment donné est plus faible, car l'océan met des siècles à se réchauffer.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px">
-    <label>Concentration en CO₂ <input type="range" id="cp-c" min="280" max="1120" step="5" value="420"> <b id="cp-c-v"></b></label>
-    <label>Sensibilité climatique <input type="range" id="cp-s" min="1.5" max="5" step="0.1" value="3"> <b id="cp-s-v"></b></label>
-  </div>
-  <div id="cp-calc" class="kpis"></div>
-  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Repères : 280 ppm avant l'ère industrielle ; environ 410 ppm en 2019 et plus de 420 ppm aujourd'hui ; 560 ppm = doublement. Le calcul ne compte que le CO₂, sans les autres gaz ni les aérosols, et donne l'équilibre final, pas le réchauffement observé à une date donnée.</p>
-
-  <h3 id="cp-p5" class="ag-part">5. Ce que dit le GIEC, et avec quelle certitude</h3>
-  <p>Le GIEC (Groupe d'experts intergouvernemental sur l'évolution du climat) ne fait pas de recherche : il évalue la littérature scientifique. Il exprime ses conclusions avec un vocabulaire calibré : une <b>probabilité</b> (de « quasi certain » à « exceptionnellement improbable ») quand on peut la quantifier, sinon un <b>degré de confiance</b> (faible, moyen, élevé, très élevé) qui combine la solidité des preuves et l'accord entre études.</p>
-  <div id="cp-echelle" class="chart"></div>
-  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Constat du 6ᵉ rapport (groupe I, 2021)</th><th>Niveau de certitude</th></tr></thead><tbody>
-    <tr><td>L'influence humaine a réchauffé l'atmosphère, l'océan et les terres</td><td><b>Sans équivoque</b> (« unequivocal »)</td></tr>
-    <tr><td>Réchauffement de la surface entre 1850-1900 et 2011-2020 : environ 1,1 °C (fourchette 0,95 à 1,2 °C)</td><td>Très probable (la fourchette)</td></tr>
-    <tr><td>Part humaine du réchauffement : environ 1,07 °C, soit la quasi-totalité</td><td>Probable (fourchette 0,8 à 1,3 °C)</td></tr>
-    <tr><td>Concentration de CO₂ en 2019 (410 ppm) : la plus élevée depuis au moins 2 millions d'années</td><td>Confiance élevée</td></tr>
-    <tr><td>Sensibilité climatique à l'équilibre : meilleure estimation 3 °C</td><td>Probable entre 2,5 et 4 °C ; très probable entre 2 et 5 °C</td></tr>
-    <tr><td>Les extrêmes chauds (vagues de chaleur) sont devenus plus fréquents et plus intenses depuis 1950</td><td>Quasi certain</td></tr>
-    <tr><td>L'influence humaine est le principal moteur du recul des glaciers depuis les années 1990</td><td>Très probable</td></tr>
-    <tr><td>Hausse du niveau de la mer d'environ 20 cm entre 1901 et 2018, de plus en plus rapide</td><td>Confiance élevée</td></tr>
-    <tr><td>Les fortes précipitations sont devenues plus fréquentes et intenses sur la plupart des terres étudiées</td><td>Probable que l'humain en soit le principal moteur</td></tr>
-    <tr><td>Le réchauffement de 1,5 °C (moyenne sur 20 ans) sera atteint entre 2021 et 2040</td><td>Probable dans les scénarios d'émissions intermédiaires et élevées ; plus probable qu'improbable même dans le scénario le plus bas</td></tr>
-    <tr><td>Affaiblissement de la circulation océanique atlantique (AMOC) au XXIᵉ siècle</td><td>Très probable ; pas d'effondrement brutal avant 2100 : confiance moyenne</td></tr>
-    <tr><td>Le réchauffement s'arrête quand les émissions nettes de CO₂ atteignent zéro (le réchauffement est à peu près proportionnel aux émissions cumulées : environ 0,45 °C par 1 000 milliards de tonnes de CO₂)</td><td>Confiance élevée</td></tr>
-  </tbody></table></div>
-
-  <h3 id="cp-p6" class="ag-part">6. Ce qui reste incertain</h3>
-  <div class="callout small"><ul>
-    <li><b>Les nuages</b> : principale source d'incertitude sur la sensibilité. Les nuages bas refroidissent (ils réfléchissent le Soleil), les nuages hauts réchauffent (ils retiennent l'infrarouge) ; leur évolution avec le réchauffement est difficile à modéliser, car ils se forment à des échelles plus petites que la maille des modèles.</li>
-    <li><b>Les aérosols</b> : ils masquent une partie du réchauffement, mais leur effet sur les nuages est mal connu. Réduire la pollution (bonne chose pour la santé) démasque un peu de réchauffement.</li>
-    <li><b>Les points de bascule</b> : calotte du Groenland, Antarctique de l'Ouest, forêt amazonienne, pergélisol. Leurs seuils sont incertains ; leurs effets seraient lents mais irréversibles à l'échelle humaine.</li>
-    <li><b>Les régions et les extrêmes</b> : le réchauffement global est bien établi ; sa traduction locale (pluies d'un pays, évolution d'un type de tempête) l'est beaucoup moins.</li>
-    <li><b>Ce qui n'est pas incertain</b> : le sens de l'effet, son ordre de grandeur, et le fait que le réchauffement dépend des émissions cumulées. L'incertitude sur la sensibilité (2,5 à 4 °C) est une raison de prudence, pas d'attente : la fourchette haute est aussi plausible que la basse.</li>
-  </ul></div>
-  <p class="muted" style="font-size:.78rem">Sources de référence : GIEC, 6ᵉ rapport, groupe I, <i>Résumé à l'intention des décideurs</i> et chapitre 7 (2021), <a href="https://www.ipcc.ch/report/ar6/wg1/" target="_blank" rel="noopener">ipcc.ch/report/ar6/wg1</a> ; G. Myhre et al., <i>Geophysical Research Letters</i> (1998). Le site du GIEC n'était pas accessible depuis l'environnement de rédaction : les chiffres sont repris de la synthèse du rapport et doivent être vérifiés sur le texte original avant publication.</p>
-</section>
-
-<section id="energie-terre" class="panel">
-  <div class="panel-head"><h2>Le bilan énergétique de la Terre : d'où vient l'énergie, où va-t-elle ? <span class="geo-fixed">Monde</span></h2></div>
-  <p class="lead">Presque toute l'énergie disponible sur Terre vient du Soleil. Quelle quantité la Terre capte-t-elle ? Où part-elle : réfléchie, transformée en chaleur, en vents, en pluie, en matière vivante ? Et que représente, à côté, l'énergie consommée par l'humanité ? Deux diagrammes de Sankey suivent les flux, des 173 000 térawatts reçus jusqu'aux 20 térawatts de nos sociétés.</p>
+  <div class="panel-head"><h2>Énergie de la Terre et climat : la physique <span class="geo-fixed">Monde</span></h2></div>
+  <p class="lead">D'où vient l'énergie de la Terre, où va-t-elle, et pourquoi quelques centaines de ppm de CO₂ suffisent à déplacer l'équilibre de plusieurs degrés ? Cet article, écrit pour des ingénieurs, suit les flux d'énergie du Soleil jusqu'à l'espace, établit les ordres de grandeur par le calcul (rayonnement, transfert radiatif, bilan d'énergie de l'océan), puis confronte ces modèles simples à l'évaluation du GIEC et à ses niveaux de certitude.</p>
   <div class="kpis" id="et-kpis"></div>
   <ul class="mo-ul cr-toc">
-    <li><a href="#energie-terre" data-to="et-p1">1. Ce que la Terre reçoit</a></li>
-    <li><a href="#energie-terre" data-to="et-p2">2. Le grand bilan : où va l'énergie du Soleil ?</a></li>
-    <li><a href="#energie-terre" data-to="et-p3">3. Le millième qui fait tourner le monde : vents, vie, humanité</a></li>
-    <li><a href="#energie-terre" data-to="et-p4">4. L'énergie du vivant : de la photosynthèse aux assiettes</a></li>
-    <li><a href="#energie-terre" data-to="et-p5">5. Ce qu'il faut en retenir</a></li>
+    <li class="cr-toc-p"><a href="#climat-physique" data-to="cp-partie1"><b>I. Le bilan énergétique de la Terre</b></a><ul>
+      <li><a href="#climat-physique" data-to="cp-p1">1. Ce que la Terre reçoit : constante solaire, géométrie, albédo</a></li>
+      <li><a href="#climat-physique" data-to="cp-p2">2. Deux corps noirs : le Soleil à 5 772 K, la Terre à 255 K</a></li>
+      <li><a href="#climat-physique" data-to="cp-p3">3. Le bilan complet : où va chaque watt (Sankey)</a></li>
+      <li><a href="#climat-physique" data-to="cp-p4">4. Le millième qui fait tourner le monde : vents, vie, humanité</a></li>
+      <li><a href="#climat-physique" data-to="cp-p5">5. L'énergie du vivant : rendement de la photosynthèse (Sankey)</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#climat-physique" data-to="cp-partie2"><b>II. L'effet de serre et la réponse du climat</b></a><ul>
+      <li><a href="#climat-physique" data-to="cp-p6">6. Transfert radiatif : altitude d'émission et gradient thermique</a></li>
+      <li><a href="#climat-physique" data-to="cp-p7">7. Forçage radiatif : pourquoi la loi est logarithmique</a></li>
+      <li><a href="#climat-physique" data-to="cp-p8">8. Rétroactions et sensibilité climatique</a></li>
+      <li><a href="#climat-physique" data-to="cp-p9">9. La dynamique : modèle à deux réservoirs (océan de surface, océan profond)</a></li>
+      <li><a href="#climat-physique" data-to="cp-p10">10. Calculateur : forçage et réchauffement à l'équilibre</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#climat-physique" data-to="cp-partie3"><b>III. Ce que dit le GIEC</b></a><ul>
+      <li><a href="#climat-physique" data-to="cp-p11">11. Les constats et leur niveau de certitude</a></li>
+      <li><a href="#climat-physique" data-to="cp-p12">12. Ce qui reste incertain</a></li></ul></li>
   </ul>
 
-  <h3 id="et-p1" class="ag-part">1. Ce que la Terre reçoit</h3>
+  <h2 id="cp-partie1" class="cr-partie">I. Le bilan énergétique de la Terre</h2>
+  <h3 id="cp-p1" class="ag-part">1. Ce que la Terre reçoit : constante solaire, géométrie, albédo</h3>
   <div class="callout small"><ul>
-    <li><b>Le Soleil</b> : 1 361 W/m² au sommet de l'atmosphère, sur un disque de 6 371 km de rayon (1,27·10¹⁴ m²), soit <b>environ 173 000 TW</b> (térawatts : milliers de milliards de watts). Réparti sur toute la sphère et sur le jour et la nuit, cela fait 340 W/m² en moyenne.</li>
-    <li><b>La chaleur interne de la Terre</b> (radioactivité des roches et chaleur originelle) : environ 47 TW, soit 0,09 W/m², 4 000 fois moins que le Soleil. Elle fait bouger les plaques et les volcans, mais pèse peu dans le bilan de surface (voir <a href="#roches">Roches</a>).</li>
-    <li><b>Les marées</b>, nées de l'attraction de la Lune et du Soleil : environ 3,7 TW dissipés, surtout dans les océans peu profonds.</li>
-    <li><b>À comparer</b> : l'humanité consomme environ 620 exajoules d'énergie primaire par an (2023), soit en moyenne <b>20 TW</b>. Le Soleil en livre autant à la Terre en environ <b>une heure</b>.</li>
+    <li><b>Constante solaire</b> : S₀ ≈ 1 361 W/m² au sommet de l'atmosphère, à 1 UA (mesures satellitaires ; variation de ±0,05 % sur le cycle de 11 ans, de ±3,4 % sur l'orbite elliptique).</li>
+    <li><b>Puissance interceptée</b> : la Terre présente un disque de section πR² = π × (6,371·10⁶ m)² = 1,275·10¹⁴ m², d'où P = S₀ πR² ≈ <b>1,74·10¹⁷ W, soit 174 000 TW</b>.</li>
+    <li><b>Moyenne sur la sphère</b> : la surface est 4πR², d'où un flux moyen S₀/4 = <b>340 W/m²</b> (jour et nuit, toutes latitudes).</li>
+    <li><b>Albédo planétaire</b> : α ≈ 0,29 (nuages ≈ 2/3 de la réflexion, surface ≈ 1/3). Flux absorbé : (1 − α) S₀/4 ≈ <b>240 W/m²</b>, soit 122 000 TW.</li>
+    <li><b>Les autres sources</b> sont négligeables dans le bilan de surface :
+      <ul>
+        <li>flux géothermique ≈ 47 TW, soit 0,09 W/m² (radioactivité de U, Th et K, et chaleur primordiale) ;</li>
+        <li>dissipation des marées ≈ 3,7 TW ;</li>
+        <li>énergie primaire de l'humanité ≈ 620 EJ/an (2023), soit <b>19,6 TW</b> (0,04 W/m²). Le Soleil livre cette énergie annuelle à la Terre en 620·10¹⁸ / 1,74·10¹⁷ ≈ 3 600 s : <b>une heure</b>.</li>
+      </ul></li>
   </ul></div>
 
-  <h3 id="et-p2" class="ag-part">2. Le grand bilan : où va l'énergie du Soleil ?</h3>
-  <p>Flux moyens en W/m² (multiplier par 510 pour obtenir des térawatts). Sur 340 W/m² reçus, 100 sont réfléchis tels quels ; les 240 absorbés chauffent l'atmosphère et la surface, font évaporer l'eau, puis repartent dans l'espace sous forme d'infrarouge. La différence, 0,7 W/m², s'accumule : c'est le réchauffement en cours, stocké à plus de 90 % dans les océans.</p>
+  <h3 id="cp-p2" class="ag-part">2. Deux corps noirs : le Soleil à 5 772 K, la Terre à 255 K</h3>
+  <div class="callout small"><ul>
+    <li><b>Loi de Stefan-Boltzmann</b> : un corps noir émet M = σT⁴, avec σ = 5,670·10⁻⁸ W/m²/K⁴.</li>
+    <li><b>Température d'émission de la Terre</b> : à l'équilibre, le flux sortant égale le flux absorbé : σT<sub>e</sub>⁴ = (1 − α) S₀/4, d'où T<sub>e</sub> = (240 / 5,67·10⁻⁸)<sup>1/4</sup> ≈ <b>255 K (−18 °C)</b>. C'est la température « vue de l'espace ».</li>
+    <li><b>Or la surface est à 288 K</b> (+15 °C) et émet σ × 288⁴ ≈ 390 W/m² (398 W/m² en tenant compte de la distribution réelle des températures, car la moyenne de T⁴ est supérieure à la puissance 4 de la moyenne). L'écart de 33 K est l'effet de serre naturel.</li>
+    <li><b>Loi de Wien</b> : λ<sub>max</sub> = 2 898 µm·K / T. Soleil (5 772 K) : 0,50 µm (visible). Terre (255-288 K) : 10 à 11 µm (infrarouge thermique). Les deux spectres ne se recouvrent presque pas : 99 % de l'énergie solaire est sous 4 µm, 99 % de l'émission terrestre au-dessus. C'est ce qui permet à l'atmosphère d'être transparente à l'un et opaque à l'autre.</li>
+  </ul></div>
+  <div id="cp-planck" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Luminance spectrale de Planck normalisée (chaque courbe ramenée à son maximum), échelle de longueur d'onde logarithmique. Bandes d'absorption principales indiquées : H₂O (continuum et bande de rotation au-delà de 18 µm), CO₂ à 15 µm (mode de déformation ν₂) et 4,3 µm, O₃ à 9,6 µm. La « fenêtre atmosphérique » 8-13 µm laisse sortir directement une partie de l'émission de surface.</p>
+  <div id="cp-stefan" class="chart"></div>
+
+  <h3 id="cp-p3" class="ag-part">3. Le bilan complet : où va chaque watt</h3>
+  <p>Flux moyens globaux en W/m² (×510 pour obtenir des TW). Sur 340 W/m² reçus, 100 sont réfléchis ; les 240 absorbés chauffent l'atmosphère et la surface, évaporent l'eau, puis repartent vers l'espace en infrarouge. La différence, 0,7 W/m², s'accumule dans le système : c'est le déséquilibre énergétique actuel.</p>
   <div id="et-sankey1" class="chart"></div>
-  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Les échanges infrarouges entre la surface et l'atmosphère sont montrés en net : la surface émet 398 W/m² et en reçoit 342 de l'atmosphère (effet de serre), soit 56 W/m² nets. Valeurs : GIEC, 6ᵉ rapport, groupe I, chapitre 7, figure 7.2 (2021).</p>
-  <div class="callout small"><ul>
-    <li><b>L'évaporation est le premier moteur</b> : 82 W/m², soit 42 000 TW, servent à évaporer l'eau des océans. Cette énergie est libérée en altitude quand la vapeur se condense en nuages : c'est le carburant des orages et des cyclones (voir <a href="#meteo">Météo</a>).</li>
-    <li><b>La surface ne se refroidit presque pas par rayonnement net</b> (56 W/m²), car l'atmosphère lui renvoie presque autant qu'elle émet : c'est l'effet de serre (voir <a href="#climat-physique">Le climat expliqué par la physique</a>).</li>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Échanges infrarouges surface-atmosphère montrés en net : 398 W/m² émis par la surface, 342 W/m² reçus de l'atmosphère (rayonnement de retour), soit 56 W/m² nets. Valeurs : GIEC, 6ᵉ rapport, groupe I, chapitre 7, figure 7.2 (2021).</p>
+  <div class="callout small"><p><b>Vérifications d'ordre de grandeur</b></p><ul>
+    <li><b>Chaleur latente → précipitations</b> : 82 W/m² ÷ L<sub>v</sub> (2,45 MJ/kg) = 3,3·10⁻⁵ kg/m²/s, soit 1 060 kg/m² par an : <b>environ 1 m d'eau évaporée puis précipitée par an</b> en moyenne mondiale, ce qui correspond bien aux observations (≈ 1 m/an). Le cycle de l'eau est le premier moyen de refroidissement de la surface (82 W/m², contre 21 W/m² pour la convection sèche et 56 W/m² pour le rayonnement net).</li>
+    <li><b>Le déséquilibre</b> : 0,7 W/m² × 5,1·10¹⁴ m² × 3,16·10⁷ s ≈ <b>1,1·10²² J par an (11 ZJ/an)</b>, 18 fois la consommation d'énergie de l'humanité. Plus de 90 % va dans l'océan, environ 5 % dans la fonte des glaces, quelques % dans les terres et l'atmosphère. Ce n'est pas la chaleur dégagée par nos machines (0,04 W/m²) qui réchauffe la Terre, mais la modification du bilan radiatif.</li>
+    <li><b>Inertie de l'océan</b> : la couche de mélange (≈ 70 m) a une capacité thermique ρ c<sub>p</sub> h ≈ 1 025 × 3 990 × 70 ≈ 2,9·10⁸ J/m²/K, soit 9 W·an/m²/K. Avec 0,7 W/m², elle se réchaufferait de 0,08 K par an si rien ne partait en profondeur. L'océan entier (3 700 m) représente 50 fois plus : il impose les constantes de temps séculaires (partie 9).</li>
   </ul></div>
 
-  <h3 id="et-p3" class="ag-part">3. Le millième qui fait tourner le monde : vents, vie, humanité</h3>
-  <p>Sur les 122 000 TW absorbés, presque tout devient de la chaleur. Une toute petite fraction prend d'autres formes : mouvement de l'air et de l'eau, énergie chimique des plantes. Les écarts sont si grands qu'il faut une échelle logarithmique : chaque graduation multiplie par 10.</p>
+  <h3 id="cp-p4" class="ag-part">4. Le millième qui fait tourner le monde : vents, vie, humanité</h3>
+  <p>Presque toute l'énergie absorbée finit en chaleur rayonnée. Une petite fraction prend d'autres formes : énergie cinétique de l'atmosphère et des océans, énergie chimique de la biomasse. Échelle logarithmique : chaque graduation multiplie par 10.</p>
   <div id="et-log" class="chart"></div>
   <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="et-log-src"></p>
+  <div class="callout small"><ul>
+    <li><b>L'atmosphère, une machine thermique peu efficace</b> : la production d'énergie cinétique (cycle de Lorenz) est de l'ordre de 2 W/m², soit environ 1 % des 240 W/m² absorbés. Un moteur de Carnot entre la surface tropicale (≈ 300 K) et la haute troposphère (≈ 220 K) aurait un rendement maximal de 27 % ; l'irréversibilité (frottement, mélange, chute de la pluie) en dissipe l'essentiel.</li>
+    <li><b>Les renouvelables récupèrent ces flux</b> : vents (≈ 1 000 TW dissipés, dont une petite fraction exploitable), cycle de l'eau (hydroélectricité), lumière (photovoltaïque), biomasse. Le fossile est un stock, pas un flux.</li>
+  </ul></div>
 
-  <h3 id="et-p4" class="ag-part">4. L'énergie du vivant : de la photosynthèse aux assiettes</h3>
-  <p>Ordres de grandeur, en TW. La photosynthèse brute fixe environ 260 TW ; les plantes en brûlent la moitié pour vivre (respiration) ; il reste une production nette d'environ 130 TW, partagée à peu près moitié-moitié entre terres et océans. C'est tout le « budget » des animaux, champignons, bactéries… et des humains.</p>
+  <h3 id="cp-p5" class="ag-part">5. L'énergie du vivant : rendement de la photosynthèse</h3>
+  <div class="callout small"><ul>
+    <li><b>Réaction</b> : 6 CO₂ + 6 H₂O → C₆H₁₂O₆ + 6 O₂, ΔG ≈ +2 870 kJ/mol de glucose, soit 478 kJ par mole de CO₂ fixée, ou ≈ 39 kJ par gramme de carbone.</li>
+    <li><b>Bilan photonique</b> : seul le rayonnement photosynthétiquement actif (400-700 nm, « PAR ») est utilisable, soit environ 48 % de l'énergie solaire au sol. Il faut au minimum 8 photons (en pratique 9 à 10) pour fixer une molécule de CO₂ ; un photon à 680 nm porte 176 kJ/mol. Rendement de conversion du PAR absorbé : 478 / (8 × 176 à 10 × 200) ≈ 25 à 34 %.</li>
+    <li><b>Rendement maximal théorique de la lumière solaire à la biomasse</b> : environ 4,6 % pour les plantes en C₃ (blé, riz) et 6 % pour les plantes en C₄ (maïs, canne à sucre), après les pertes de réflexion, de saturation lumineuse, de photorespiration et de respiration (Zhu, Long et Ort, 2008). En pratique : 1 à 2 % au mieux pour une culture sur une saison, moins de 0,5 % en moyenne annuelle sur l'ensemble des terres. Un panneau photovoltaïque convertit 20 à 23 %.</li>
+    <li><b>Production mondiale</b> : la production primaire nette est d'environ 105 milliards de tonnes de carbone par an (Field et al., 1998), à peu près moitié terres, moitié océans : 105·10¹⁵ g × 39 kJ/g ÷ 3,16·10⁷ s ≈ <b>130 TW</b>. La photosynthèse brute est environ le double ; les plantes en respirent la moitié pour leur propre métabolisme.</li>
+  </ul></div>
   <div id="et-sankey2" class="chart"></div>
   <div class="callout small"><ul>
-    <li><b>Les plantes sont peu efficaces</b> : moins de 1 % de la lumière solaire reçue par les terres est stocké en biomasse en moyenne (2 à 4 % pour les meilleures cultures en pleine croissance), contre 15 à 25 % pour un panneau solaire. Mais elles se reproduisent seules et stockent l'énergie.</li>
-    <li><b>L'humanité détourne environ un quart</b> de la production végétale terrestre (récoltes, pâturages, bois, défrichements), selon une étude de référence (Krausmann et al., 2013).</li>
-    <li><b>Notre nourriture</b> : 8 milliards d'humains à environ 2 500 kcal par jour, cela fait environ 1 TW. Le corps humain fonctionne avec la puissance d'une ampoule de 120 W.</li>
-    <li><b>Nos machines consomment 20 fois plus que nos corps</b> : environ 20 TW, dont plus de 80 % de charbon, pétrole et gaz, c'est-à-dire de la photosynthèse ancienne accumulée pendant des centaines de millions d'années. Nous consommons chaque année l'équivalent de plusieurs siècles de cette accumulation.</li>
+    <li><b>L'humanité détourne environ un quart</b> de la production nette terrestre (récoltes, pâturages, bois, défrichement : Krausmann et al., 2013).</li>
+    <li><b>Métabolisme humain</b> : 2 500 kcal/jour = 10,5 MJ/jour = 121 W par personne, soit ≈ 1 TW pour 8 milliards d'humains. Nos machines consomment 20 fois plus que nos corps, dont plus de 80 % sous forme de charbon, pétrole et gaz : de la photosynthèse ancienne, accumulée sur des centaines de millions d'années, que nous brûlons au rythme d'environ 15 % de la photosynthèse actuelle de toute la planète.</li>
   </ul></div>
 
-  <h3 id="et-p5" class="ag-part">5. Ce qu'il faut en retenir</h3>
+  <h2 id="cp-partie2" class="cr-partie">II. L'effet de serre et la réponse du climat</h2>
+  <h3 id="cp-p6" class="ag-part">6. Transfert radiatif : altitude d'émission et gradient thermique</h3>
   <div class="callout small"><ul>
-    <li><b>L'énergie solaire est immense</b> (8 000 fois la consommation humaine), mais très diluée : 240 W/m² en moyenne absorbés, et un panneau solaire en France produit en moyenne 25 à 30 watts par m² de panneau, jour et nuit compris.</li>
-    <li><b>Les énergies renouvelables récupèrent des flux naturels</b> : vents (environ 1 000 TW dissipés), cycle de l'eau (hydroélectricité), lumière (solaire), biomasse. L'énergie fossile, elle, est un stock qui ne se renouvelle pas à l'échelle humaine.</li>
-    <li><b>Un petit déséquilibre suffit à réchauffer</b> : 0,7 W/m² de déséquilibre, c'est 0,2 % du flux reçu, mais cela fait environ 360 TW accumulés en permanence, 18 fois la consommation humaine. Ce n'est pas la chaleur de nos machines qui réchauffe la Terre, c'est l'effet de serre.</li>
+    <li><b>Absorption moléculaire</b> : N₂ et O₂ (99 % de l'air) sont des molécules diatomiques homonucléaires, sans moment dipolaire : elles n'interagissent pas avec l'infrarouge thermique. H₂O, CO₂, CH₄, N₂O, O₃ (trois atomes ou plus) ont des modes de vibration et de rotation qui créent un moment dipolaire et absorbent dans l'infrarouge. Chaque raie est élargie par les collisions (élargissement de Lorentz, proportionnel à la pression).</li>
+    <li><b>Le modèle naïf à une couche</b> (une atmosphère opaque à l'infrarouge, transparente au visible) donne T<sub>s</sub> = 2<sup>1/4</sup> T<sub>e</sub> ≈ 303 K : trop chaud, car il ignore la convection et la fenêtre atmosphérique.</li>
+    <li><b>Le bon modèle : l'altitude d'émission</b>. La troposphère est brassée par la convection et suit un gradient vertical moyen Γ ≈ 6,5 K/km (le gradient adiabatique sec vaut g/c<sub>p</sub> = 9,8 K/km ; la condensation de la vapeur le réduit). Le rayonnement qui s'échappe vers l'espace vient en moyenne de l'altitude où l'épaisseur optique, comptée depuis le sommet, vaut environ 1 : Z<sub>e</sub> ≈ 5,5 km. Alors T<sub>s</sub> ≈ T<sub>e</sub> + Γ Z<sub>e</sub> = 255 + 6,5 × 5,5 ≈ <b>291 K</b> : on retrouve la température de surface observée.</li>
+    <li><b>Ajouter du CO₂ élève l'altitude d'émission</b> : à une altitude plus haute et plus froide, l'émission est plus faible (σT⁴) ; la planète émet moins qu'elle ne reçoit, et se réchauffe jusqu'à ce que la nouvelle altitude d'émission retrouve 255 K. Un doublement du CO₂ élève Z<sub>e</sub> d'environ 150 m, soit 6,5 × 0,15 ≈ <b>1 K</b> de réchauffement avant rétroactions.</li>
+    <li><b>Pourquoi ce n'est pas « saturé »</b> : au centre de la bande à 15 µm, l'émission vient déjà de la stratosphère, où la température augmente avec l'altitude (le centre de la bande ne contribue plus, et refroidit même la stratosphère) ; mais sur les ailes de la bande, l'absorption croît avec la concentration et l'altitude d'émission monte. C'est l'élargissement progressif de la bande qui produit le forçage.</li>
+    <li><b>La signature observée</b> : réchauffement de la troposphère et <b>refroidissement de la stratosphère</b>. Un forçage solaire réchaufferait les deux. Les mesures (radiosondes, satellites) montrent le refroidissement stratosphérique : c'est l'empreinte des gaz à effet de serre.</li>
   </ul></div>
-  <p class="muted" style="font-size:.78rem">Sources de référence : GIEC, 6ᵉ rapport, groupe I, chapitre 7, figure 7.2 (2021) ; J. H. Davies et D. R. Davies, « Earth's surface heat flux », <i>Solid Earth</i> (2010), 47 TW ; C. B. Field et al., « Primary production of the biosphere », <i>Science</i> (1998), 105 milliards de tonnes de carbone par an ; F. Krausmann et al., <i>PNAS</i> (2013) ; Energy Institute, <i>Statistical Review of World Energy</i> (2024), 620 EJ en 2023 ; dissipation des marées (Egbert et Ray, <i>Nature</i>, 2000) ; énergie cinétique des vents : ordre de grandeur du cycle énergétique de Lorenz, environ 2 W/m². Conversion : 1 g de carbone fixé ≈ 39 kJ (glucose). Ces sources n'ont pas pu être consultées en ligne depuis l'environnement de rédaction ; les chiffres sont des ordres de grandeur à vérifier avant publication.</p>
+
+  <h3 id="cp-p7" class="ag-part">7. Forçage radiatif : pourquoi la loi est logarithmique</h3>
+  <div class="callout small"><ul>
+    <li><b>Définition</b> : le forçage radiatif effectif ΔF est la variation du flux net au sommet de l'atmosphère (W/m²) causée par une perturbation, après ajustement rapide de la stratosphère et de la troposphère, à température de surface fixée.</li>
+    <li><b>Loi logarithmique</b> : comme l'absorption ne croît plus qu'aux ailes de la bande, dont la largeur augmente comme le logarithme de la concentration, le forçage du CO₂ suit ΔF ≈ 5,35 ln(C/C₀) W/m² (Myhre et al., 1998). Un doublement donne 3,7 W/m² avec cette formule ; le GIEC (2021) retient <b>3,93 W/m²</b> en forçage effectif. Le méthane et le N₂O, moins concentrés et plus loin de la saturation, suivent plutôt une loi en racine carrée.</li>
+    <li><b>Forçage d'origine humaine 1750-2019</b> (GIEC 2021) : total ≈ <b>+2,7 W/m²</b> ; CO₂ ≈ +2,2 ; CH₄ ≈ +0,5 ; N₂O et halocarbures ≈ +0,6 ; ozone ≈ +0,5 ; aérosols ≈ <b>−1,1</b> (fourchette large, −1,7 à −0,4). Le Soleil a varié de moins de 0,1 W/m² sur la période.</li>
+    <li><b>Ordre de grandeur des émissions</b> : 1 ppm de CO₂ dans l'atmosphère = 2,13 GtC = 7,8 GtCO₂. L'humanité émet environ 40 GtCO₂ par an ; environ 45 % restent dans l'atmosphère (le reste est absorbé par les océans et la végétation), d'où une hausse d'environ 2,3 ppm par an.</li>
+  </ul></div>
+
+  <h3 id="cp-p8" class="ag-part">8. Rétroactions et sensibilité climatique</h3>
+  <div class="callout small"><ul>
+    <li><b>Bilan linéarisé</b> : N = ΔF + λ ΔT, où N est le déséquilibre au sommet de l'atmosphère et λ (W/m²/K, négatif pour un système stable) la somme des rétroactions. À l'équilibre (N = 0) : ΔT = −ΔF / λ. La sensibilité climatique à l'équilibre (ECS) est le ΔT pour un doublement : ECS = −F₂ₓ / λ.</li>
+    <li><b>Rétroaction de Planck</b> : dérivée de σT⁴ à T<sub>e</sub> : −4σT<sub>e</sub>³ ≈ −3,8 W/m²/K ; le GIEC retient −3,22 W/m²/K, en tenant compte de la structure verticale et géographique réelle. Seule, elle donne ECS ≈ 3,93 / 3,22 ≈ 1,2 K.</li>
+    <li><b>Vapeur d'eau</b> : la pression de vapeur saturante croît d'environ 7 % par K (Clausius-Clapeyron), et l'humidité relative reste à peu près constante : plus de vapeur, gaz à effet de serre. <b>Gradient vertical</b> : en se réchauffant, la haute troposphère tropicale se réchauffe plus que la surface (le gradient adiabatique humide diminue), ce qui augmente l'émission et compense en partie. Les deux sont évalués ensemble : +1,30 W/m²/K.</li>
+    <li><b>Albédo de surface</b> (neige, glace de mer) : +0,35 W/m²/K. <b>Nuages</b> : +0,42 W/m²/K, avec la plus grande incertitude (−0,10 à +0,94 en fourchette très probable).</li>
+    <li><b>Gain de la boucle</b> : en notation d'électronicien, ΔT = ΔT₀ / (1 − f), où ΔT₀ = 1,2 K est la réponse sans rétroaction et f = (λ_vapeur + λ_albédo + λ_nuages) / |λ_Planck| ≈ 2,07 / 3,22 ≈ 0,64. Un gain f proche de 1 amplifierait énormément : c'est pourquoi l'incertitude sur les nuages pèse autant sur la queue haute de la distribution de l'ECS.</li>
+  </ul></div>
+  <div id="cp-retro" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Valeurs centrales évaluées par le GIEC (6ᵉ rapport, groupe I, chapitre 7, tableau 7.10, 2021). Négatif : stabilise ; positif : amplifie.</p>
+
+  <h3 id="cp-p9" class="ag-part">9. La dynamique : modèle à deux réservoirs</h3>
+  <p>Le réchauffement n'est pas instantané : l'océan absorbe de la chaleur pendant des siècles. Le modèle de bilan d'énergie à deux couches (Held et al., 2010 ; Geoffroy et al., 2013), utilisé par le GIEC pour émuler les grands modèles, s'écrit :</p>
+  <div class="callout small"><p style="text-align:center"><b>C dT/dt = F(t) + λ T − γ (T − T<sub>o</sub>)</b> &nbsp;&nbsp;&nbsp; <b>C<sub>o</sub> dT<sub>o</sub>/dt = γ (T − T<sub>o</sub>)</b></p><ul>
+    <li><b>T</b> : surface et océan de mélange, capacité C ≈ 8 W·an/m²/K ; <b>T<sub>o</sub></b> : océan profond, C<sub>o</sub> ≈ 100 W·an/m²/K ; <b>γ</b> ≈ 0,7 W/m²/K : coefficient d'échange entre les deux.</li>
+    <li><b>Deux constantes de temps</b> : rapide, τ₁ ≈ C / (|λ| + γ) ≈ 4 ans ; lente, plusieurs siècles. Après un saut de forçage, environ 60 % du réchauffement d'équilibre est atteint en une décennie, le reste en plusieurs siècles.</li>
+    <li><b>TCR</b> (réponse transitoire, au moment du doublement si le CO₂ augmente de 1 % par an, soit en 70 ans) : environ 1,8 K selon le GIEC (fourchette probable 1,4 à 2,2 K), nettement moins que l'ECS (3 K).</li>
+    <li><b>Conséquence pratique</b> : si l'on stabilisait la concentration de CO₂, la température continuerait de monter lentement. Si l'on stabilisait les émissions nettes à zéro, la baisse du CO₂ atmosphérique (absorption par l'océan) compenserait à peu près ce rattrapage : la température se stabiliserait. D'où la proportionnalité entre réchauffement et émissions cumulées.</li>
+  </ul></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px">
+    <label>Rétroaction totale λ <input type="range" id="cp-lam" min="-2.5" max="-0.7" step="0.05" value="-1.3"> <b id="cp-lam-v"></b></label>
+    <label>Échange avec l'océan profond γ <input type="range" id="cp-gam" min="0.3" max="1.2" step="0.05" value="0.7"> <b id="cp-gam-v"></b></label>
+    <label>Scénario <select id="cp-scen" style="max-width:100%"><option value="abrupt">Doublement brutal du CO₂</option><option value="pct">CO₂ +1 % par an jusqu'au doublement, puis stable</option><option value="zero">CO₂ +1 % par an pendant 50 ans, puis émissions nettes nulles (CO₂ en baisse)</option></select></label>
+  </div>
+  <div id="cp-2box" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="cp-2box-res"></p>
+
+  <h3 id="cp-p10" class="ag-part">10. Calculateur : forçage et réchauffement à l'équilibre</h3>
+  <p>ΔF = 5,35 ln(C / 280) ; ΔT<sub>éq</sub> = ECS × ΔF / F₂ₓ. CO₂ seul, sans les autres gaz ni les aérosols, et à l'équilibre (voir partie 9 pour la dynamique).</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px">
+    <label>Concentration en CO₂ <input type="range" id="cp-c" min="280" max="1120" step="5" value="420"> <b id="cp-c-v"></b></label>
+    <label>Sensibilité climatique (ECS) <input type="range" id="cp-s" min="1.5" max="5" step="0.1" value="3"> <b id="cp-s-v"></b></label>
+  </div>
+  <div id="cp-calc" class="kpis"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Repères : 280 ppm avant l'ère industrielle ; 410 ppm en 2019 ; plus de 420 ppm aujourd'hui ; 560 ppm = doublement.</p>
+
+  <h2 id="cp-partie3" class="cr-partie">III. Ce que dit le GIEC</h2>
+  <h3 id="cp-p11" class="ag-part">11. Les constats et leur niveau de certitude</h3>
+  <p>Le GIEC évalue la littérature scientifique et exprime ses conclusions avec un vocabulaire calibré : une <b>probabilité</b> quand elle est quantifiable, sinon un <b>degré de confiance</b> (faible, moyen, élevé, très élevé) qui combine la solidité des preuves et l'accord entre études.</p>
+  <div id="cp-echelle" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Constat du 6ᵉ rapport (groupe I, 2021)</th><th>Niveau de certitude</th></tr></thead><tbody>
+    <tr><td>L'influence humaine a réchauffé l'atmosphère, l'océan et les terres</td><td><b>Sans équivoque</b></td></tr>
+    <tr><td>Réchauffement de la surface entre 1850-1900 et 2011-2020 : 1,09 °C (0,95 à 1,20 °C)</td><td>Très probable (la fourchette)</td></tr>
+    <tr><td>Part humaine : 1,07 °C (0,8 à 1,3 °C), soit la quasi-totalité</td><td>Probable (la fourchette)</td></tr>
+    <tr><td>CO₂ en 2019 (410 ppm) : le plus élevé depuis au moins 2 millions d'années</td><td>Confiance élevée</td></tr>
+    <tr><td>ECS : meilleure estimation 3 °C</td><td>Probable entre 2,5 et 4 °C ; très probable entre 2 et 5 °C</td></tr>
+    <tr><td>TCR : meilleure estimation 1,8 °C</td><td>Probable entre 1,4 et 2,2 °C</td></tr>
+    <tr><td>Déséquilibre énergétique de la Terre, 2006-2018 : 0,79 W/m² (0,52 à 1,06)</td><td>Très probable (la fourchette)</td></tr>
+    <tr><td>Les extrêmes chauds sont devenus plus fréquents et plus intenses depuis 1950</td><td>Quasi certain</td></tr>
+    <tr><td>Hausse du niveau de la mer de 0,20 m entre 1901 et 2018, en accélération</td><td>Confiance élevée</td></tr>
+    <tr><td>Réchauffement d'environ 0,45 °C par 1 000 GtCO₂ émises (proportionnalité aux émissions cumulées)</td><td>Probable entre 0,27 et 0,63 °C</td></tr>
+    <tr><td>1,5 °C (moyenne sur 20 ans) atteint entre 2021 et 2040</td><td>Probable dans les scénarios d'émissions intermédiaires et élevées ; plus probable qu'improbable dans le plus bas</td></tr>
+    <tr><td>Affaiblissement de la circulation méridienne de retournement atlantique (AMOC) au XXIᵉ siècle</td><td>Très probable ; pas d'effondrement brutal avant 2100 : confiance moyenne</td></tr>
+  </tbody></table></div>
+
+  <h3 id="cp-p12" class="ag-part">12. Ce qui reste incertain</h3>
+  <div class="callout small"><ul>
+    <li><b>Les nuages</b> : principale incertitude sur l'ECS. Leurs processus (convection, microphysique) se jouent à des échelles plus petites que la maille des modèles (≈ 100 km) et sont paramétrés. Les nuages bas des océans subtropicaux, très réfléchissants, sont les plus critiques.</li>
+    <li><b>Les aérosols</b> : forçage négatif mal contraint (−1,7 à −0,4 W/m²), surtout par leur effet sur les nuages. Réduire la pollution, bénéfique pour la santé, démasque une partie du réchauffement.</li>
+    <li><b>Les points de bascule</b> : calotte du Groenland, Antarctique de l'Ouest, pergélisol, forêt amazonienne, AMOC. Seuils incertains ; dynamique lente mais irréversible à l'échelle humaine.</li>
+    <li><b>L'échelle régionale</b> : la réponse globale est contrainte par la conservation de l'énergie ; la répartition régionale des pluies et des tempêtes dépend de la dynamique atmosphérique, bien moins certaine.</li>
+    <li><b>Ce qui n'est pas incertain</b> : le signe et l'ordre de grandeur de l'effet, qui découlent du transfert radiatif (mesuré en laboratoire et par satellite depuis des décennies), et la proportionnalité aux émissions cumulées.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.78rem">Sources de référence : GIEC, 6ᵉ rapport, groupe I (2021), résumé à l'intention des décideurs et chapitre 7 (figure 7.2, tableau 7.10), <a href="https://www.ipcc.ch/report/ar6/wg1/" target="_blank" rel="noopener">ipcc.ch/report/ar6/wg1</a> ; G. Myhre et al., <i>Geophysical Research Letters</i> (1998) ; I. Held et al., <i>Journal of Climate</i> (2010) ; O. Geoffroy et al., <i>Journal of Climate</i> (2013) ; X.-G. Zhu, S. Long et D. Ort, <i>Current Opinion in Biotechnology</i> (2008) ; C. B. Field et al., <i>Science</i> (1998) ; F. Krausmann et al., <i>PNAS</i> (2013) ; J. H. Davies et D. R. Davies, <i>Solid Earth</i> (2010) ; Energy Institute, <i>Statistical Review of World Energy</i> (2024). Manuel : R. Pierrehumbert, <i>Principles of Planetary Climate</i> (2010). Ces sources n'ont pas pu être consultées en ligne depuis l'environnement de rédaction : chiffres repris de mémoire des documents originaux, à vérifier avant toute publication.</p>
 </section>
+
 
 <section id="meteo" class="panel">
   <div class="panel-head"><h2>La météo : fronts, nuages, dépressions et vent <span class="geo-fixed">Monde</span></h2></div>
-  <p class="lead">Comment lire le ciel ? Pourquoi la pluie arrive-t-elle avec un front chaud et les averses avec un front froid ? Comment un marin peut-il prévoir le vent en sachant où est la dépression ? Cet article explique la mécanique de l'atmosphère aux latitudes moyennes, avec une maquette 3D d'une dépression et un simulateur de vent.</p>
+  <p class="lead">Comment lire le ciel ? Pourquoi la pluie arrive-t-elle avec un front chaud et les averses avec un front froid ? Comment un marin peut-il prévoir le vent en sachant où est la dépression ? Cet article, écrit pour des ingénieurs, explique la mécanique de l'atmosphère aux latitudes moyennes avec les équations et les ordres de grandeur, une maquette 3D d'une dépression et deux simulateurs (ascension d'une particule d'air, vent autour d'une dépression).</p>
   <ul class="mo-ul cr-toc">
     <li><a href="#meteo" data-to="me-p1">1. Hautes et basses pressions : pourquoi le vent tourne</a></li>
-    <li><a href="#meteo" data-to="me-p2">2. La dépression et ses fronts en 3D</a></li>
-    <li><a href="#meteo" data-to="me-p3">3. Front chaud, front froid, occlusion</a></li>
-    <li><a href="#meteo" data-to="me-p4">4. Prévoir le vent selon sa position : la règle du marin</a></li>
-    <li><a href="#meteo" data-to="me-p5">5. Les nuages et ce qu'ils annoncent</a></li>
-    <li><a href="#meteo" data-to="me-p6">6. Prévoir soi-même : baromètre, ciel, dictons</a></li>
+    <li><a href="#meteo" data-to="me-p1b">2. La dynamique : vent géostrophique, frottement, vent thermique</a></li>
+    <li><a href="#meteo" data-to="me-p1c">3. La thermodynamique de l'air humide : nuages, stabilité, orages (simulateur)</a></li>
+    <li><a href="#meteo" data-to="me-p2">4. La dépression et ses fronts en 3D</a></li>
+    <li><a href="#meteo" data-to="me-p3">5. Front chaud, front froid, occlusion ; l'instabilité barocline</a></li>
+    <li><a href="#meteo" data-to="me-p4">6. Prévoir le vent selon sa position : la règle du marin</a></li>
+    <li><a href="#meteo" data-to="me-p5">7. Les nuages et ce qu'ils annoncent ; microphysique de la pluie</a></li>
+    <li><a href="#meteo" data-to="me-p6">8. Prévoir : du baromètre aux modèles numériques</a></li>
   </ul>
 
   <h3 id="me-p1" class="ag-part">1. Hautes et basses pressions : pourquoi le vent tourne</h3>
   <div class="callout small"><ul>
-    <li><b>Le moteur</b> : l'équateur reçoit plus d'énergie que les pôles (voir <a href="#energie-terre">Énergie de la Terre</a>). L'atmosphère et les océans transportent cette chaleur vers les pôles. Aux latitudes moyennes (la France), ce transport se fait par une succession de tourbillons : les dépressions et les anticyclones.</li>
+    <li><b>Le moteur</b> : l'équateur reçoit plus d'énergie que les pôles (voir <a href="#climat-physique">Énergie et climat</a>). L'atmosphère et les océans transportent cette chaleur vers les pôles. Aux latitudes moyennes (la France), ce transport se fait par une succession de tourbillons : les dépressions et les anticyclones.</li>
     <li><b>La pression</b> : le poids de la colonne d'air, en moyenne 1 013 hPa au niveau de la mer. Un anticyclone (A, ou H) est une zone de haute pression, une dépression (D, ou L) de basse pression. Sur les cartes, les isobares relient les points de même pression.</li>
     <li><b>L'air ne va pas directement des hautes vers les basses pressions</b> : la rotation de la Terre le dévie (force de Coriolis), vers la droite dans l'hémisphère Nord. En altitude, il finit par souffler parallèlement aux isobares (vent géostrophique). Dans l'hémisphère Nord, il tourne <b>dans le sens inverse des aiguilles d'une montre autour d'une dépression</b>, et dans le sens des aiguilles d'une montre autour d'un anticyclone. C'est l'inverse dans l'hémisphère Sud.</li>
     <li><b>Près du sol, le frottement</b> freine le vent, qui coupe alors les isobares en direction de la dépression : de 10 à 20° environ sur mer, de 25 à 45° sur terre. L'air converge vers la dépression et monte : il se refroidit, la vapeur se condense, il pleut. Autour de l'anticyclone, l'air descend, se réchauffe et s'assèche : il fait beau.</li>
     <li><b>Plus les isobares sont serrées, plus le vent est fort</b> : c'est l'écart de pression sur une distance donnée (le gradient) qui pousse l'air.</li>
   </ul></div>
 
-  <h3 id="me-p2" class="ag-part">2. La dépression et ses fronts en 3D</h3>
+  <h3 id="me-p1b" class="ag-part">2. La dynamique : vent géostrophique, frottement, vent thermique</h3>
+  <div class="callout small"><ul>
+    <li><b>Les ordres de grandeur décident des équations</b> : le nombre de Rossby Ro = U / (f L) compare l'accélération à la force de Coriolis, avec f = 2Ω sin φ (Ω = 7,292·10⁻⁵ s⁻¹), soit f ≈ 1,08·10⁻⁴ s⁻¹ à 48° N. Pour une dépression (U ≈ 10 m/s, L ≈ 1 000 km), Ro ≈ 0,1 : Coriolis domine. Pour une tornade (50 m/s, 100 m), Ro ≈ 5 000 : Coriolis ne joue aucun rôle (le sens de rotation des tornades, comme celui de l'eau d'un évier, n'est pas imposé par la rotation de la Terre).</li>
+    <li><b>Équilibre géostrophique</b> : en altitude, hors frottement, la force de pression équilibre Coriolis : V<sub>g</sub> = (1 / ρ f) ∂p/∂n, parallèle aux isobares, basses pressions à gauche dans l'hémisphère Nord (d'où la loi de Buys-Ballot, partie 7). <b>Exemple</b> : isobares de 4 hPa espacées de 300 km au niveau de la mer (ρ = 1,225 kg/m³) : V<sub>g</sub> = 400 / 3·10⁵ / (1,225 × 1,08·10⁻⁴) ≈ <b>10 m/s (20 nœuds)</b> ; espacées de 100 km : 30 m/s (60 nœuds, tempête). La règle pratique : le vent est inversement proportionnel à l'écartement des isobares.</li>
+    <li><b>Vent de gradient</b> : la courbure ajoute la force centrifuge. Autour d'une dépression, le vent est plus faible que le géostrophique (sous-géostrophique) ; autour d'un anticyclone, plus fort, mais l'équilibre impose un gradient de pression maximal près du centre : <b>les anticyclones ont des centres calmes et des gradients faibles</b>, les dépressions peuvent être très creuses.</li>
+    <li><b>Couche limite et spirale d'Ekman</b> : sur le premier kilomètre, le frottement freine le vent, qui tourne alors vers les basses pressions : au sol, environ 70 % du vent géostrophique et 10 à 20° de déviation sur mer, 40 à 50 % et 25 à 45° sur terre. Cette convergence vers la dépression force l'air à monter (pompage d'Ekman, de l'ordre du cm/s) : c'est l'origine des nuages et des pluies des dépressions, et des ciels clairs des anticyclones (subsidence).</li>
+    <li><b>Vent thermique et courant-jet</b> : en équilibre géostrophique et hydrostatique, le cisaillement vertical du vent est proportionnel au gradient horizontal de température : ∂V<sub>g</sub>/∂z = (g / f T) k × ∇T. Avec 10 K de contraste sur 1 000 km : g / (f T) × 10⁻⁵ ≈ 3,9·10⁻³ s⁻¹, soit <b>≈ 40 m/s de vent d'ouest en plus sur 10 km d'altitude</b>. C'est le courant-jet (jet stream), concentré au-dessus du front polaire, vers 9-12 km, souvent à 50-100 m/s.</li>
+  </ul></div>
+
+  <h3 id="me-p1c" class="ag-part">3. La thermodynamique de l'air humide : nuages, stabilité, orages</h3>
+  <div class="callout small"><ul>
+    <li><b>Détente adiabatique</b> : une particule d'air qui monte se détend et se refroidit, sans échange de chaleur : gradient adiabatique sec Γ<sub>d</sub> = g / c<sub>p</sub> = 9,81 / 1 005 ≈ <b>9,8 K/km</b>.</li>
+    <li><b>Condensation</b> : quand la particule atteint sa température de point de rosée, la vapeur condense (nuage). Altitude de condensation (base des cumulus) : <b>z ≈ 125 m × (T − T<sub>d</sub>)</b>. Ensuite la chaleur latente libérée (L<sub>v</sub> = 2,5 MJ/kg) ralentit le refroidissement : gradient adiabatique saturé Γ<sub>s</sub> ≈ 4 à 5 K/km dans l'air chaud et humide des basses couches, 6 à 7 K/km vers 0 °C, proche de 9 K/km en altitude froide.</li>
+    <li><b>Stabilité</b> : on compare le gradient réel de l'atmosphère Γ au gradient de la particule. Γ &lt; Γ<sub>s</sub> : stable (stratus, brouillard, inversion de température sous un anticyclone). Γ<sub>s</sub> &lt; Γ &lt; Γ<sub>d</sub> : <b>instabilité conditionnelle</b>, le cas courant : l'air est stable tant qu'il est sec, instable une fois saturé. Γ &gt; Γ<sub>d</sub> : instable (seulement près d'un sol surchauffé).</li>
+    <li><b>Énergie des orages</b> : la CAPE (énergie potentielle convective disponible), CAPE = ∫ g (T<sub>p</sub> − T<sub>e</sub>) / T<sub>e</sub> dz, entre le niveau de convection libre et le sommet du nuage. 1 000 J/kg : orages modérés ; plus de 2 500 J/kg : orages violents. Vitesse ascendante maximale théorique √(2 CAPE) : 45 m/s pour 1 000 J/kg (la moitié en réalité, à cause du mélange et du poids de l'eau).</li>
+    <li><b>Un orage est une centrale électrique géante</b> : un cumulonimbus qui fait tomber 10 mm de pluie en une heure sur 10 × 10 km a condensé 10⁹ kg d'eau, soit 2,5·10¹⁵ J de chaleur latente par heure : <b>≈ 700 GW</b>, l'équivalent de plusieurs centaines de réacteurs nucléaires.</li>
+  </ul></div>
+  <p><b>Simulateur d'ascension</b> : une particule partant du sol suit l'adiabatique sèche jusqu'à sa base de nuage, puis l'adiabatique saturée. Si elle devient plus chaude que l'air ambiant, elle monte d'elle-même : c'est la convection.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px">
+    <label>Température au sol <input type="range" id="me-ts" min="5" max="38" step="1" value="28"> <b id="me-ts-v"></b></label>
+    <label>Écart au point de rosée (T − T<sub>d</sub>) <input type="range" id="me-dd" min="0" max="20" step="0.5" value="8"> <b id="me-dd-v"></b></label>
+    <label>Gradient de l'air ambiant <input type="range" id="me-g" min="4" max="9.5" step="0.1" value="6.5"> <b id="me-g-v"></b></label>
+  </div>
+  <div id="me-parcel" class="chart"></div>
+  <div id="me-parcel-res" class="callout small"></div>
+
+  <h3 id="me-p2" class="ag-part">4. La dépression et ses fronts en 3D</h3>
   <p>Maquette d'une dépression des latitudes moyennes, hémisphère Nord, vue du sud-ouest. L'air froid (bleu) s'avance sous l'air chaud (rouge) au front froid ; l'air chaud glisse au-dessus de l'air froid au front chaud. <b>Faites tourner la maquette avec la souris ou le doigt</b>, et zoomez avec la molette ou en pinçant.</p>
   <div id="me-3d" style="position:relative;width:100%;height:520px;border-radius:10px;overflow:hidden;background:linear-gradient(#bfdbfe,#eff6ff);touch-action:none"><p class="muted" style="padding:20px">Chargement de la maquette 3D…</p></div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0"><button type="button" class="me-v" data-v="sw">Vue du sud-ouest</button><button type="button" class="me-v" data-v="top">Vue de dessus (carte)</button><button type="button" class="me-v" data-v="cut">Coupe (vue de côté)</button><button type="button" id="me-anim">Pause de la rotation du vent</button></div>
   <p class="muted" style="font-size:.8rem;margin:4px 0 0">Échelles très déformées : en réalité, une dépression mesure 1 000 à 2 000 km de large pour une troposphère d'une dizaine de kilomètres d'épaisseur ; la pente du front chaud est d'environ 1/150, celle du front froid d'environ 1/50 à 1/100.</p>
 
-  <h3 id="me-p3" class="ag-part">3. Front chaud, front froid, occlusion</h3>
+  <h3 id="me-p3" class="ag-part">5. Front chaud, front froid, occlusion</h3>
   <p>Un front est la limite entre deux masses d'air de températures différentes. Le modèle a été établi par l'école norvégienne de Bergen (Vilhelm et Jacob Bjerknes, Halvor Solberg, 1919-1922), et il reste la base des cartes météo.</p>
   <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th></th><th>Front chaud</th><th>Front froid</th><th>Occlusion</th></tr></thead><tbody>
     <tr><td><b>Ce qui se passe</b></td><td>L'air chaud avance et monte lentement au-dessus de l'air froid, sur une pente douce</td><td>L'air froid, plus dense, avance en coin sous l'air chaud et le soulève brutalement</td><td>Le front froid, plus rapide, rattrape le front chaud : l'air chaud est soulevé du sol</td></tr>
@@ -4311,9 +4369,16 @@
     <li><b>4. Déclin</b> : l'occlusion s'étend, l'air chaud a été rejeté en altitude, la dépression se comble en quelques jours. Une nouvelle dépression naît souvent plus à l'ouest, sur le front froid laissé derrière : les dépressions arrivent en « familles ».</li>
   </ul></div>
 
-  <h3 id="me-p4" class="ag-part">4. Prévoir le vent selon sa position : la règle du marin</h3>
+  <div class="callout small"><p><b>La physique de la dépression : l'instabilité barocline</b></p><ul>
+    <li><b>Pourquoi des tourbillons ?</b> Le contraste de température pôle-équateur crée un cisaillement vertical du vent (vent thermique). Cet état est instable : de petites ondulations puisent dans l'énergie potentielle disponible (air froid qui descend et glisse sous l'air chaud qui monte) et grandissent. C'est l'<b>instabilité barocline</b> (Charney 1947, Eady 1949).</li>
+    <li><b>Taux de croissance</b> (modèle d'Eady) : σ ≈ 0,31 f (∂U/∂z) / N, avec N ≈ 0,01 s⁻¹ (fréquence de Brunt-Väisälä, stabilité verticale). Avec ∂U/∂z = 4·10⁻³ s⁻¹ : σ ≈ 1,2·10⁻⁵ s⁻¹, soit un facteur e en un jour environ : une dépression se forme en 1 à 3 jours.</li>
+    <li><b>Taille</b> : la longueur d'onde la plus instable vaut environ 3,9 fois le rayon de déformation de Rossby L<sub>R</sub> = N H / f ≈ 0,01 × 10 000 / 10⁻⁴ = 1 000 km, soit ≈ 4 000 km. D'où des dépressions de 1 000 à 2 000 km de diamètre, séparées par des anticyclones : <b>la taille des perturbations est fixée par la rotation de la Terre et la stabilité de l'atmosphère</b>.</li>
+    <li><b>Frontogenèse</b> : la déformation de l'écoulement resserre les gradients de température en bandes étroites (les fronts), sur lesquelles se concentrent les ascendances, les nuages et les pluies. La « bombe météorologique » est une dépression qui se creuse de plus de 24 hPa en 24 heures (à 60° de latitude), comme les tempêtes Lothar et Martin (1999) ou Xynthia (2010).</li>
+  </ul></div>
+
+  <h3 id="me-p4" class="ag-part">6. Prévoir le vent selon sa position : la règle du marin</h3>
   <div class="callout small"><ul>
-    <li><b>La loi de Buys-Ballot</b> (1857) : dans l'hémisphère Nord, <b>si l'on tourne le dos au vent, la dépression est à gauche, un peu en avant</b> (et l'anticyclone à droite, un peu en arrière). Dans l'hémisphère Sud, c'est l'inverse. Un marin qui connaît le vent sait donc dans quelle direction est la dépression, et inversement.</li>
+    <li><b>La loi de Buys-Ballot</b> (1857), conséquence directe de l'équilibre géostrophique (partie 2) et de la déviation par frottement : dans l'hémisphère Nord, <b>si l'on tourne le dos au vent, la dépression est à gauche, un peu en avant</b> (et l'anticyclone à droite, un peu en arrière). Dans l'hémisphère Sud, c'est l'inverse. Un marin qui connaît le vent sait donc dans quelle direction est la dépression, et inversement.</li>
     <li><b>Si la dépression passe au nord de vous</b> (cas le plus fréquent en France, les dépressions remontant vers les îles Britanniques) : le vent <b>tourne dans le sens des aiguilles d'une montre</b> (on dit qu’il « vire ») : sud-est, puis sud et sud-ouest au passage du front chaud, puis ouest à nord-ouest au front froid, avec des grains.</li>
     <li><b>Si la dépression passe au sud de vous</b> : le vent tourne dans le sens inverse (il « recule ») : est, nord-est, puis nord. Pas de secteur chaud ; temps souvent gris et frais.</li>
     <li><b>Le baromètre complète</b> : une baisse rapide (plus de 1 hPa par heure, ou 3 hPa en 3 heures) annonce du vent fort ; le vent le plus fort arrive souvent juste après le passage du front froid, quand la pression remonte vite (« la remontée rapide est souvent pire que la descente »).</li>
@@ -4323,12 +4388,19 @@
   <div id="me-bb" class="chart"></div>
   <div id="me-bb-res" class="callout small"></div>
 
-  <h3 id="me-p5" class="ag-part">5. Les nuages et ce qu'ils annoncent</h3>
+  <h3 id="me-p5" class="ag-part">7. Les nuages et ce qu'ils annoncent</h3>
   <p>L'Organisation météorologique mondiale classe les nuages en 10 genres, selon leur altitude (étages bas, moyen, élevé) et leur forme : en couches (<i>stratus</i>), en tas (<i>cumulus</i>), en filaments (<i>cirrus</i>), porteurs de pluie (<i>nimbus</i>).</p>
   <div id="me-nuages" class="chart"></div>
   <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Nuage</th><th>Altitude (latitudes moyennes)</th><th>À quoi il ressemble</th><th>Ce qu'il annonce</th></tr></thead><tbody id="me-nuages-t"></tbody></table></div>
 
-  <h3 id="me-p6" class="ag-part">6. Prévoir soi-même : baromètre, ciel, dictons</h3>
+  <div class="callout small"><p><b>Microphysique : comment naît la pluie</b></p><ul>
+    <li><b>Noyaux de condensation</b> : sans particules (sels marins, poussières, sulfates, de 0,1 à 1 µm), la vapeur ne condenserait qu'à plusieurs centaines de % de sursaturation (effet de courbure de Kelvin). Grâce à elles, les gouttelettes se forment dès 0,1 à 1 % de sursaturation.</li>
+    <li><b>Gouttelettes et gouttes</b> : une gouttelette de nuage mesure environ 10 µm et tombe à 1 cm/s (elle flotte) ; une goutte de pluie mesure 1 à 2 mm et tombe à 4 à 9 m/s. Il faut environ un million de gouttelettes pour faire une goutte : la condensation seule est trop lente, il faut la coalescence (collisions).</li>
+    <li><b>Processus de Bergeron-Findeisen</b> : sous 0 °C, la pression de vapeur saturante est plus faible au-dessus de la glace qu'au-dessus de l'eau liquide surfondue. Dans un nuage mixte, les cristaux grossissent aux dépens des gouttelettes, puis tombent et fondent. Aux latitudes moyennes, <b>la plupart des pluies commencent sous forme de neige en altitude</b>.</li>
+    <li><b>Grêle</b> : dans un cumulonimbus aux ascendances de plus de 20 m/s, les grêlons font plusieurs allers-retours dans la zone d'eau surfondue et grossissent par couches jusqu'à ce que leur vitesse de chute dépasse l'ascendance.</li>
+  </ul></div>
+
+  <h3 id="me-p6" class="ag-part">8. Prévoir : du baromètre aux modèles numériques</h3>
   <div class="callout small"><ul>
     <li><b>« Ciel pommelé, femme fardée, ne sont pas de longue durée »</b> : les cirrocumulus et altocumulus en petits flocons précèdent souvent l'arrivée d'une perturbation. Le dicton est assez juste quand la pression baisse.</li>
     <li><b>Le halo autour du Soleil ou de la Lune</b> : un voile de cirrostratus, souvent le signe d'un front chaud à 12-24 heures.</li>
@@ -4336,9 +4408,11 @@
     <li><b>Des altocumulus en forme de tourelles le matin</b> (<i>castellanus</i>) : l'atmosphère est instable en altitude ; risque d'orages l'après-midi.</li>
     <li><b>Les nuages lenticulaires</b> au-dessus des montagnes : vent fort en altitude ; risque de rafales en aval du relief.</li>
     <li><b>« Rouge le soir, espoir ; rouge le matin, chagrin »</b> : le temps vient en général de l'ouest ; un couchant dégagé et rouge signifie que l'air est clair à l'ouest, d'où arrive le temps du lendemain.</li>
-    <li><b>Les limites</b> : ces signes valent pour quelques heures à un jour. Au-delà, les modèles numériques (comme ceux de Météo-France ou du Centre européen de Reading) sont bien plus fiables : une prévision à 5 jours est aujourd'hui aussi bonne qu'une prévision à 1 jour dans les années 1980.</li>
+        <li><b>La prévision numérique</b> : les modèles résolvent les équations primitives (Navier-Stokes en rotation, hydrostatique ou non, thermodynamique, humidité) sur une grille : environ 9 km pour le modèle global du Centre européen (ECMWF), 1,3 km pour le modèle AROME de Météo-France sur la France. L'état initial est reconstruit chaque jour à partir de millions d'observations (satellites, ballons-sondes, avions, stations, bouées) par assimilation de données (méthode 4D-Var).</li>
+    <li><b>La limite du chaos</b> : Edward Lorenz (1963) a montré qu'une petite erreur initiale double en quelques jours : la prévisibilité déterministe est limitée à environ deux semaines. On fait donc des <b>prévisions d'ensemble</b> (une cinquantaine de simulations aux conditions initiales légèrement différentes) pour estimer la probabilité de chaque scénario. Les progrès réguliers ont fait gagner environ un jour de prévision par décennie : une prévision à 5 jours est aujourd'hui aussi bonne qu'une prévision à 1 jour dans les années 1980.</li>
+<li><b>Les limites</b> : ces signes valent pour quelques heures à un jour. Au-delà, les modèles numériques (comme ceux de Météo-France ou du Centre européen de Reading) sont bien plus fiables : une prévision à 5 jours est aujourd'hui aussi bonne qu'une prévision à 1 jour dans les années 1980.</li>
   </ul></div>
-  <p class="muted" style="font-size:.78rem">Synthèse des notions classiques de météorologie, sans sources en ligne vérifiées ici : Organisation météorologique mondiale, <i>Atlas international des nuages</i> (édition en ligne, 2017) ; J. Bjerknes et H. Solberg, « Life cycle of cyclones and the polar front theory of atmospheric circulation », <i>Geofysiske Publikasjoner</i> (1922) ; C. H. D. Buys Ballot (1857) ; Météo-France, documentation pédagogique ; P. Bauer, A. Thorpe et G. Brunet, « The quiet revolution of numerical weather prediction », <i>Nature</i> (2015). Valeurs (altitudes, pentes, angles) : ordres de grandeur.</p>
+  <p class="muted" style="font-size:.78rem">Synthèse des notions classiques de météorologie, sans sources en ligne vérifiées ici : Organisation météorologique mondiale, <i>Atlas international des nuages</i> (édition en ligne, 2017) ; J. Bjerknes et H. Solberg, « Life cycle of cyclones and the polar front theory of atmospheric circulation », <i>Geofysiske Publikasjoner</i> (1922) ; C. H. D. Buys Ballot (1857) ; Météo-France, documentation pédagogique ; P. Bauer, A. Thorpe et G. Brunet, « The quiet revolution of numerical weather prediction », <i>Nature</i> (2015) ; J. Holton et G. Hakim, <i>An Introduction to Dynamic Meteorology</i> (5ᵉ éd., 2013) ; J. Wallace et P. Hobbs, <i>Atmospheric Science</i> (2006) ; E. Eady, <i>Tellus</i> (1949) ; E. Lorenz, <i>Journal of the Atmospheric Sciences</i> (1963). Valeurs (altitudes, pentes, angles) : ordres de grandeur.</p>
 </section>
 
 
@@ -4371,7 +4445,7 @@
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118l"></script>
-<script src="sciences2.js?v=20261118a"></script>
+<script src="sciences2.js?v=20261118c"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
