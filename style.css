@@ -592,3 +592,6 @@ table.cmp-t.ro-t { min-width: 0; width: 100%; }
 .cr-partie { margin: 34px 0 6px; padding: 10px 14px; background: var(--soft, #f1f5f9); border-left: 5px solid #7c3aed; border-radius: 6px; font-size: 1.15rem; }
 .cr-toc > li.cr-toc-p { margin-top: 6px; } .cr-toc ul { margin: 2px 0 0 0; }
 .rx-sem.on, .cp-et.on, .ch-ph.on, .me-v.on, .ch-mode.on, .ch-mi.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.tc-code { background: #0f172a; color: #e2e8f0; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: .8rem; line-height: 1.45; }
+.tc-code code { background: none; color: inherit; padding: 0; font-size: inherit; }

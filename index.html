@@ -115,6 +115,7 @@
       <a href="#energie-physique">L'énergie expliquée par la physique</a>
       <a href="#climat-physique">Énergie et climat : la physique</a>
       <a href="#meteo">Météo</a>
+      <a href="#telecom">Télécoms</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
       <a href="#sources">Sources</a>
@@ -4375,7 +4376,7 @@
 </section>
 <section id="chimie" class="panel">
   <div class="panel-head"><h2>La chimie : de la liaison aux procédés industriels <span class="geo-fixed">Monde</span></h2></div>
-  <p class="lead">Un cours de chimie générale en quinze chapitres (le dernier est un simulateur : qui réagit avec quoi ?), sur le plan d'une première année de classe préparatoire ou d'université, illustré d'exemples de la vie courante : pourquoi les atomes se lient, ce qui fixe l'énergie d'une réaction, si elle se fait, jusqu'où et à quelle vitesse, puis les grandes familles (acides et bases, oxydoréduction, chimie organique) et les procédés qui font tourner l'industrie. Chaque notion est illustrée par un graphique ou un simulateur. La structure des atomes et le tableau périodique sont traités dans l'onglet <a href="#tableau">Tableau périodique</a>.</p>
+  <p class="lead">Un cours de chimie générale en seize chapitres (le dernier est un simulateur : qui réagit avec quoi ?), sur le plan d'une première année de classe préparatoire ou d'université, illustré d'exemples de la vie courante : pourquoi les atomes se lient, ce qui fixe l'énergie d'une réaction, si elle se fait, jusqu'où et à quelle vitesse, puis les grandes familles (acides et bases, oxydoréduction, chimie organique) et les procédés qui font tourner l'industrie. Chaque notion est illustrée par un graphique ou un simulateur. La structure des atomes et le tableau périodique sont traités dans l'onglet <a href="#tableau">Tableau périodique</a>.</p>
   <div class="kpis" id="ch-kpis"></div>
   <ul class="mo-ul cr-toc">
     <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie1"><b>I. La matière : atomes, liaisons, états, cristaux</b></a><ul><li><a href="#chimie" data-to="ch-atome">1. L'atome et la mole : compter la matière</a></li><li><a href="#chimie" data-to="ch-p1">2. La liaison chimique : ionique, covalente, métallique</a></li><li><a href="#chimie" data-to="ch-p2">3. Entre les molécules : forces faibles et états de la matière</a></li><li><a href="#chimie" data-to="ch-cristal">4. Les solides : métaux, cristaux et céramiques</a></li></ul></li>
@@ -5314,6 +5315,328 @@
 
 
 
+<section id="telecom" class="panel">
+  <div class="panel-head"><h2>Les télécommunications : de l'onde au réseau <span class="geo-fixed">Monde</span></h2></div>
+  <p class="lead">Comment une information traverse-t-elle l'air, une fibre de verre ou 36 000 km de vide ? Cet article, écrit pour des ingénieurs, suit le plan d'un cours d'école : la physique des ondes et des antennes, la théorie du signal et de l'information (Fourier, Shannon, modulations), le choix des fréquences, puis les grands systèmes (wifi, téléphone mobile, fibre, câbles sous-marins, satellites) et, pour finir, comment écouter les ondes et programmer soi-même une radio, une antenne ou un module wifi. Chaque notion est illustrée par un graphique ou un simulateur.</p>
+  <div class="kpis" id="tc-kpis"></div>
+  <ul class="mo-ul cr-toc">
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie1"><b>I. La physique : ondes, antennes, propagation</b></a><ul><li><a href="#telecom" data-to="tc-onde">1. L'onde électromagnétique et le spectre</a></li><li><a href="#telecom" data-to="tc-antenne">2. L'antenne : rayonner et capter</a></li><li><a href="#telecom" data-to="tc-propag">3. La propagation : affaiblissement, obstacles, atmosphère</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie2"><b>II. Le signal et l'information</b></a><ul><li><a href="#telecom" data-to="tc-fourier">4. Fourier et l'échantillonnage : le signal vu en fréquences</a></li><li><a href="#telecom" data-to="tc-shannon">5. Shannon : la limite absolue du débit</a></li><li><a href="#telecom" data-to="tc-modul">6. Les modulations : mettre des bits sur une onde</a></li><li><a href="#telecom" data-to="tc-ofdm">7. OFDM, accès multiple et codes correcteurs</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie3"><b>III. Pourquoi telle fréquence et pas une autre ?</b></a><ul><li><a href="#telecom" data-to="tc-choix">8. Le compromis portée, débit, pénétration</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie4"><b>IV. Les grands systèmes</b></a><ul><li><a href="#telecom" data-to="tc-wifi">9. Le wifi</a></li><li><a href="#telecom" data-to="tc-mobile">10. Le téléphone mobile : de la 1G à la 5G</a></li><li><a href="#telecom" data-to="tc-fibre">11. La fibre optique</a></li><li><a href="#telecom" data-to="tc-cables">12. Câbles sous-marins et satellites : pourquoi les deux ?</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie5"><b>V. Autres angles</b></a><ul><li><a href="#telecom" data-to="tc-internet">13. Internet : couches, paquets, latence</a></li><li><a href="#telecom" data-to="tc-gps">14. GPS, santé, énergie, souveraineté</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie6"><b>VI. Pratique : programmer sa radio, son antenne, son wifi</b></a><ul><li><a href="#telecom" data-to="tc-sdr">15. La radio logicielle (SDR)</a></li><li><a href="#telecom" data-to="tc-code">16. Coder : wifi, antenne réseau, liaison radio</a></li></ul></li>
+  </ul>
+  <p class="muted" style="font-size:.8rem">Sauf mention d'une source en lien, les valeurs de cet article (débits, latences, capacités des câbles, normes) sont des valeurs usuelles des cours et des normes, reprises de mémoire, non vérifiées en ligne.</p>
+
+  <h2 id="tc-partie1" class="cr-partie">I. La physique : ondes, antennes, propagation</h2>
+  <h3 id="tc-onde" class="ag-part">1. L'onde électromagnétique et le spectre</h3>
+  <p>Une charge électrique qui oscille crée un champ électrique et un champ magnétique variables, qui s'entretiennent l'un l'autre et se propagent à la vitesse de la lumière : c'est l'onde électromagnétique, prévue par Maxwell en 1865 et produite par Hertz en 1887. La radio, le wifi, la lumière d'une fibre optique et les rayons X sont <b>le même phénomène</b> ; seule change la fréquence.</p>
+  <div class="callout small"><ul>
+    <li><b>Longueur d'onde</b> : λ = c / f. À 100 MHz (radio FM), λ = 3 m ; à 2,4 GHz (wifi, micro-ondes), 12,5 cm ; à 193 THz (fibre optique), 1,55 µm.</li>
+    <li><b>Énergie d'un photon</b> : E = h f. Même à 5 GHz, elle vaut 2 × 10⁻⁵ eV, cent mille fois moins que l'énergie d'une liaison chimique (≈ 1 à 5 eV) : les ondes radio ne cassent pas les molécules, elles ne peuvent que chauffer (chapitre 14).</li>
+    <li><b>Puissance en décibels</b> : les télécoms comptent en dB parce que les puissances varient sur 15 ordres de grandeur. 0 dBm = 1 mW ; 20 dBm = 100 mW (un routeur wifi) ; −90 dBm = 1 picowatt (un signal encore utilisable). +3 dB double la puissance, +10 dB la multiplie par 10.</li>
+  </ul></div>
+  <label style="display:block;max-width:640px;margin:8px 0">Fréquence <input type="range" id="tc-f" min="3" max="15" step="0.05" value="9.38" style="width:60%"> <b id="tc-f-v"></b></label>
+  <div id="tc-spectre" class="chart"></div>
+  <div id="tc-f-info" class="kpis"></div>
+
+  <h3 id="tc-antenne" class="ag-part">2. L'antenne : rayonner et capter</h3>
+  <p>Une antenne est un conducteur dans lequel on fait osciller des électrons à la fréquence voulue. Elle rayonne efficacement quand sa taille est de l'ordre de la longueur d'onde : le <b>dipôle demi-onde</b> (deux brins de λ/4) est la référence. C'est pourquoi les antennes des grandes ondes sont des pylônes de plusieurs centaines de mètres et celles du wifi des pistes de 3 cm sur un circuit imprimé. La même antenne sert à émettre et à recevoir (réciprocité).</p>
+  <div class="callout small"><ul>
+    <li><b>Gain et directivité</b> : une antenne ne crée pas d'énergie ; elle la concentre dans certaines directions. Le gain (en dBi, par rapport à une source qui rayonne également dans toutes les directions) mesure cette concentration : 2,15 dBi pour un dipôle, 15 à 20 dBi pour un panneau de station 4G, 35 à 45 dBi pour une parabole de télévision par satellite.</li>
+    <li><b>Surface effective</b> : à la réception, une antenne de gain G capte la puissance qui traverse une surface A = G λ² / 4π. À gain égal, une antenne capte <b>moins</b> à haute fréquence (λ plus petite) : c'est l'origine du terme en f² dans la formule de Friis (chapitre 3).</li>
+    <li><b>Antennes réseau (« beamforming »)</b> : en alimentant N petites antennes avec des déphasages choisis, on oriente électroniquement un faisceau sans rien bouger. Le principe est celui des fentes d'Young : les ondes s'additionnent dans certaines directions et s'annulent dans d'autres. C'est la base de la 5G (antennes « massive MIMO » de 64 éléments), des radars militaires et des antennes plates de Starlink.</li>
+  </ul></div>
+  <p class="muted" style="margin:0 0 4px"><b>Simulateur : diagramme de rayonnement d'un réseau de N antennes espacées de λ/2</b> (le facteur de réseau ; en dB, la direction 0° est droit devant)</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Nombre d'antennes <input type="range" id="tc-n" min="1" max="64" step="1" value="8"> <b id="tc-n-v"></b></label>
+    <label>Direction visée <input type="range" id="tc-th" min="-60" max="60" step="1" value="20"> <b id="tc-th-v"></b></label>
+    <label>Espacement <select id="tc-d"><option value="0.5" selected>λ/2 (standard)</option><option value="1">λ (trop grand : lobes parasites)</option><option value="0.25">λ/4</option></select></label>
+  </div>
+  <div id="tc-reseau" class="chart"></div>
+  <p class="muted" id="tc-reseau-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+
+  <h3 id="tc-propag" class="ag-part">3. La propagation : affaiblissement, obstacles, atmosphère</h3>
+  <p>Dans le vide, la puissance se répartit sur une sphère de plus en plus grande : elle décroît en 1/d². Avec deux antennes, la <b>formule de Friis</b> donne la puissance reçue :</p>
+  <p style="font-size:1.1rem;text-align:center"><b>P<sub>r</sub> = P<sub>e</sub> · G<sub>e</sub> · G<sub>r</sub> · (λ / 4π d)²</b>, soit en dB : affaiblissement = 20 log₁₀(d<sub>km</sub>) + 20 log₁₀(f<sub>MHz</sub>) + 32,4</p>
+  <p>Tout le métier de l'ingénieur radio tient dans le <b>bilan de liaison</b> : puissance émise + gains d'antennes − pertes &gt; sensibilité du récepteur + marge. Le récepteur, lui, est limité par le <b>bruit thermique</b> : kTB = −174 dBm par hertz de bande à 20 °C, soit −101 dBm pour 20 MHz de wifi, plus le facteur de bruit du récepteur (5 à 10 dB).</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Liaison <select id="tc-lien"><option value="wifi">Wifi 5 GHz dans une maison</option><option value="4g">Antenne 4G (800 MHz) → téléphone</option><option value="5g">5G 3,5 GHz en ville</option><option value="geo">Satellite géostationnaire (12 GHz) → parabole</option><option value="leo">Satellite en orbite basse (12 GHz) → antenne plate</option><option value="lune">Terre → Lune (radioamateur 144 MHz)</option></select></label>
+    <label>Distance <input type="range" id="tc-dist" min="0" max="1" step="0.005" value="0.5"> <b id="tc-dist-v"></b></label>
+    <label>Murs traversés <input type="range" id="tc-murs" min="0" max="4" step="1" value="1"> <b id="tc-murs-v"></b></label>
+  </div>
+  <div id="tc-bilan" class="chart"></div>
+  <p class="muted" id="tc-bilan-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Absorption par l'atmosphère</b> (dB par km, niveau de la mer, ordres de grandeur)</p><div id="tc-atmo" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Perte en traversant un obstacle</b> (dB, ordres de grandeur ; 10 dB = 90 % de la puissance perdue)</p><div id="tc-murs-ch" class="chart"></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Les obstacles</b> : plus la fréquence monte, plus l'onde est arrêtée par les murs, le béton armé, le verre à couche métallique, les feuilles des arbres et le corps humain. Les basses fréquences contournent aussi mieux les obstacles (diffraction, d'autant plus forte que λ est grande).</li>
+    <li><b>L'atmosphère</b> : la vapeur d'eau absorbe vers 22 GHz, l'oxygène vers 60 GHz (15 dB/km : une bande inutilisable à longue distance, donc idéale pour des liaisons courtes et discrètes). La pluie atténue fortement au-dessus de 10 GHz : une forte averse coupe parfois la télévision par satellite.</li>
+    <li><b>L'ionosphère</b> : en dessous d'environ 30 MHz (ondes courtes), les couches ionisées de la haute atmosphère, entre 80 et 400 km, réfléchissent les ondes ; par rebonds successifs, une émission fait le tour de la Terre. C'est ainsi que Marconi a traversé l'Atlantique en 1901, et que les radioamateurs et les armées communiquent encore sans infrastructure.</li>
+    <li><b>Les trajets multiples</b> : en ville, l'onde arrive par plusieurs chemins (réflexions sur les façades) qui s'additionnent ou s'annulent selon la position : le signal varie de 20 à 30 dB en quelques centimètres (évanouissement de Rayleigh). Les systèmes modernes en tirent parti (MIMO, chapitre 7).</li>
+  </ul></div>
+
+  <h2 id="tc-partie2" class="cr-partie">II. Le signal et l'information</h2>
+  <h3 id="tc-fourier" class="ag-part">4. Fourier et l'échantillonnage : le signal vu en fréquences</h3>
+  <p>Tout signal peut s'écrire comme une somme de sinusoïdes (Fourier, 1807). Cette vision « en fréquences » est le langage des télécoms : un canal radio est une <b>bande de fréquences</b>, un filtre laisse passer certaines fréquences, un signal occupe une <b>largeur de bande</b>. Plus un signal change vite (plus il transporte de symboles par seconde), plus il occupe de bande : un débit de R symboles par seconde demande environ R hertz.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Nombre d'harmoniques <input type="range" id="tc-harm" min="1" max="40" step="1" value="5"> <b id="tc-harm-v"></b></label>
+  </div>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Un signal carré reconstruit par une somme de sinusoïdes</b></p><div id="tc-carre" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Son spectre</b> : l'amplitude de chaque fréquence</p><div id="tc-carre-sp" class="chart"></div></div>
+  </div>
+  <p><b>Théorème d'échantillonnage (Nyquist-Shannon)</b> : un signal dont les fréquences ne dépassent pas B est entièrement décrit par ses valeurs prises 2B fois par seconde. C'est ce qui permet de numériser : le CD échantillonne à 44,1 kHz pour une oreille qui entend jusqu'à 20 kHz. En dessous de 2B, les hautes fréquences se replient et se déguisent en basses fréquences : c'est le <b>repliement</b> (« aliasing »), l'effet des roues de voiture qui semblent tourner à l'envers au cinéma.</p>
+  <label style="display:block;margin:6px 0">Fréquence d'échantillonnage <input type="range" id="tc-fe" min="0.6" max="8" step="0.05" value="4"> <b id="tc-fe-v"></b> (signal à 1 kHz)</label>
+  <div id="tc-alias" class="chart"></div>
+  <p class="muted" id="tc-alias-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+
+  <h3 id="tc-shannon" class="ag-part">5. Shannon : la limite absolue du débit</h3>
+  <p>En 1948, Claude Shannon fonde la théorie de l'information. Il montre qu'un canal de largeur de bande B, perturbé par un bruit, a une <b>capacité</b> maximale, et qu'en dessous de cette capacité on peut transmettre <b>sans erreur</b> grâce à un codage adapté :</p>
+  <p style="font-size:1.2rem;text-align:center"><b>C = B · log₂(1 + S/N)</b></p>
+  <div class="callout small"><ul>
+    <li><b>Deux leviers, très inégaux</b> : le débit est proportionnel à la bande B, mais seulement logarithmique en rapport signal sur bruit. Doubler la puissance d'émission (+3 dB) n'ajoute qu'un bit par seconde et par hertz ; doubler la bande double le débit. C'est la raison profonde de la course vers les hautes fréquences, où la bande disponible est large (chapitre 8).</li>
+    <li><b>Le MIMO multiplie le canal</b> : avec M antennes à l'émission et à la réception et des trajets assez différents, on crée M canaux parallèles sur la même fréquence : C ≈ M · B · log₂(1 + S/N). C'est le seul moyen de dépasser la limite d'un canal unique.</li>
+    <li><b>Les systèmes modernes sont à 1 ou 2 dB de la limite</b> de Shannon grâce aux codes turbo (1993), LDPC (redécouverts en 1996) et polaires (2009).</li>
+  </ul></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Largeur de bande <select id="tc-B"><option value="0.2">200 kHz (GSM)</option><option value="20">20 MHz (wifi, 4G)</option><option value="100" selected>100 MHz (5G 3,5 GHz)</option><option value="320">320 MHz (wifi 7)</option><option value="4000">4 GHz (canal optique)</option></select></label>
+    <label>Antennes MIMO <select id="tc-M"><option value="1">1 × 1</option><option value="2">2 × 2</option><option value="4" selected>4 × 4</option><option value="8">8 × 8</option></select></label>
+  </div>
+  <div id="tc-capa" class="chart"></div>
+
+  <h3 id="tc-modul" class="ag-part">6. Les modulations : mettre des bits sur une onde</h3>
+  <p>On ne transmet pas les bits directement : on modifie une <b>porteuse</b> sinusoïdale à la fréquence du canal. On peut jouer sur son amplitude (AM), sa fréquence (FM) ou sa phase (PSK). Les systèmes numériques modernes jouent sur l'amplitude et la phase à la fois : c'est la <b>modulation d'amplitude en quadrature (QAM)</b>. Chaque symbole est un point d'un plan (la « constellation ») ; avec 2ᵏ points, chaque symbole porte k bits.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Modulation <select id="tc-qam"><option value="2">BPSK (1 bit/symbole)</option><option value="4">QPSK (2 bits)</option><option value="16" selected>16-QAM (4 bits)</option><option value="64">64-QAM (6 bits)</option><option value="256">256-QAM (8 bits)</option><option value="1024">1024-QAM (10 bits, wifi 6)</option><option value="4096">4096-QAM (12 bits, wifi 7)</option></select></label>
+    <label>Rapport signal sur bruit <input type="range" id="tc-snr" min="0" max="45" step="0.5" value="20"> <b id="tc-snr-v"></b></label>
+  </div>
+  <div class="grid2">
+    <div><div id="tc-constel" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Taux d'erreur binaire en fonction du rapport signal sur bruit</b> (sans code correcteur)</p><div id="tc-ber" class="chart"></div><p class="muted" id="tc-qam-txt" style="font-size:.85rem;margin:4px 0 0"></p></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Adaptation de lien</b> : votre téléphone et votre box changent de modulation plusieurs fois par seconde selon la qualité mesurée : 1024-QAM près du routeur, QPSK au fond du jardin. C'est pourquoi le débit baisse progressivement avec la distance au lieu de s'effondrer.</li>
+    <li><b>Pourquoi la FM sonne mieux que l'AM</b> : le bruit modifie surtout l'amplitude ; en codant le son dans la fréquence, la FM y est peu sensible, au prix d'une bande dix fois plus large (200 kHz contre 9 kHz).</li>
+  </ul></div>
+
+  <h3 id="tc-ofdm" class="ag-part">7. OFDM, accès multiple et codes correcteurs</h3>
+  <p>Envoyer des symboles très courts sur une bande large pose un problème : les échos (trajets multiples, chapitre 3) arrivent avec quelques microsecondes de retard et brouillent le symbole suivant. La solution, adoptée par le wifi, la 4G, la 5G, la TNT et l'ADSL, est l'<b>OFDM</b> : découper la bande en centaines ou milliers de <b>sous-porteuses</b> étroites, chacune portant des symboles lents (quelques microsecondes) qui supportent les échos. Les sous-porteuses sont espacées exactement de 1/T (T la durée d'un symbole) : leurs spectres se chevauchent, mais chacune s'annule au centre des autres (orthogonalité). Le calcul se fait par une transformée de Fourier rapide (FFT) dans la puce.</p>
+  <div id="tc-ofdm-ch" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Technique</th><th>Principe</th><th>Où</th></tr></thead><tbody>
+    <tr><td><b>Accès multiple en temps</b> (TDMA)</td><td>chacun parle à son tour, dans des intervalles de quelques millisecondes</td><td>GSM (2G)</td></tr>
+    <tr><td><b>Accès multiple par code</b> (CDMA)</td><td>tous parlent en même temps, chacun avec un code différent ; le récepteur extrait le sien</td><td>3G, GPS</td></tr>
+    <tr><td><b>Accès multiple OFDMA</b></td><td>les sous-porteuses et les intervalles de temps sont distribués entre les utilisateurs</td><td>4G, 5G, wifi 6</td></tr>
+    <tr><td><b>MIMO</b></td><td>plusieurs flux sur la même fréquence, séparés par la géométrie des antennes</td><td>wifi depuis 2009, 4G, 5G</td></tr>
+    <tr><td><b>Codes correcteurs</b></td><td>on ajoute de la redondance calculée (par exemple 1 bit sur 3) qui permet de corriger les erreurs ; codes LDPC et polaires en 5G</td><td>partout ; c'est ce qui permet d'approcher la limite de Shannon</td></tr>
+  </tbody></table></div>
+
+  <h2 id="tc-partie3" class="cr-partie">III. Pourquoi telle fréquence et pas une autre ?</h2>
+  <h3 id="tc-choix" class="ag-part">8. Le compromis portée, débit, pénétration</h3>
+  <p>Le choix d'une fréquence est un compromis entre quatre contraintes physiques et une contrainte réglementaire.</p>
+  <div class="callout small"><ul>
+    <li><b>La portée et la pénétration</b> diminuent quand la fréquence monte (Friis en f², murs, pluie, absorption). Les basses fréquences (700 à 900 MHz) couvrent les campagnes et l'intérieur des bâtiments : on les appelle les « fréquences en or ».</li>
+    <li><b>Le débit</b> augmente avec la largeur de bande (Shannon), et la bande disponible est proportionnelle à la fréquence : 10 % de 800 MHz font 80 MHz ; 10 % de 28 GHz font 2,8 GHz. Les hautes fréquences offrent donc le débit, mais sur de petites zones.</li>
+    <li><b>La taille des antennes</b> est proportionnelle à λ. Un téléphone ne peut pas loger une antenne efficace à 30 MHz (λ/4 = 2,5 m) ; à l'inverse, à 28 GHz, on loge des dizaines d'antennes sur un centimètre carré (beamforming).</li>
+    <li><b>Les fenêtres physiques</b> : l'atmosphère absorbe à 22 et 60 GHz ; la silice de la fibre optique est la plus transparente vers 1,55 µm ; l'ionosphère réfléchit en dessous de 30 MHz. On place chaque usage dans la fenêtre qui lui convient.</li>
+    <li><b>La réglementation</b> : le spectre est une ressource publique rare, partagée par traité international (Union internationale des télécommunications, conférences mondiales tous les quatre ans), puis attribuée en France par l'Agence nationale des fréquences (ANFR) et l'Arcep. Les opérateurs paient des licences : les enchères 5G de 2020 dans la bande 3,5 GHz ont rapporté environ 2,8 milliards d'euros à l'État. Le wifi utilise des bandes « libres », sans licence, mais avec une puissance limitée (100 mW à 2,4 GHz).</li>
+  </ul></div>
+  <p class="muted" style="margin:0 0 4px"><b>La carte des usages : portée et débit de chaque bande</b> (échelles logarithmiques ; la taille du disque indique la largeur de bande disponible)</p>
+  <div id="tc-carte" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Bande</th><th>Fréquences</th><th>λ</th><th>Usages</th><th>Pourquoi là</th></tr></thead><tbody>
+    <tr><td>VLF</td><td>3 à 30 kHz</td><td>10 à 100 km</td><td>communications avec les sous-marins</td><td>seules ces ondes pénètrent quelques mètres dans l'eau de mer ; antennes géantes, débit de quelques caractères par minute</td></tr>
+    <tr><td>Grandes ondes, ondes moyennes</td><td>150 kHz à 1,6 MHz</td><td>200 m à 2 km</td><td>radio AM, horloges radio-pilotées (DCF77 à 77,5 kHz)</td><td>l'onde suit la courbure de la Terre : portée de plusieurs centaines de km</td></tr>
+    <tr><td>Ondes courtes (HF)</td><td>3 à 30 MHz</td><td>10 à 100 m</td><td>radioamateurs, armées, aviation transocéanique</td><td>réflexion sur l'ionosphère : portée mondiale sans relais</td></tr>
+    <tr><td>VHF</td><td>30 à 300 MHz</td><td>1 à 10 m</td><td>radio FM (88 à 108 MHz), aviation, marine, radio numérique DAB+</td><td>bonne portée en vue directe, antennes de taille raisonnable</td></tr>
+    <tr><td>UHF basse</td><td>470 à 960 MHz</td><td>30 à 60 cm</td><td>télévision TNT, 4G et 5G « basses fréquences » (700, 800, 900 MHz)</td><td>les « fréquences en or » : portée et pénétration dans les bâtiments</td></tr>
+    <tr><td>UHF haute</td><td>1 à 3 GHz</td><td>10 à 30 cm</td><td>GPS (1,575 GHz), 4G (1,8 et 2,6 GHz), wifi et Bluetooth (2,4 GHz), four à micro-ondes (2,45 GHz)</td><td>compromis débit-portée ; antennes de quelques cm</td></tr>
+    <tr><td>SHF</td><td>3 à 30 GHz</td><td>1 à 10 cm</td><td>5G (3,5 GHz), wifi 5 et 6 GHz, satellites (bandes Ku 12 GHz, Ka 20 à 30 GHz), radars</td><td>beaucoup de bande ; antennes directives ; sensible à la pluie au-delà de 10 GHz</td></tr>
+    <tr><td>EHF (ondes millimétriques)</td><td>30 à 300 GHz</td><td>1 à 10 mm</td><td>5G 26 GHz, faisceaux hertziens, radars automobiles (77 GHz), scanners d'aéroport</td><td>bande énorme mais portée de quelques centaines de mètres ; arrêtée par les murs</td></tr>
+    <tr><td>Infrarouge proche</td><td>≈ 193 THz</td><td>1,55 µm</td><td>fibre optique</td><td>fenêtre de transparence maximale de la silice : 0,2 dB/km</td></tr>
+  </tbody></table></div>
+
+  <h2 id="tc-partie4" class="cr-partie">IV. Les grands systèmes</h2>
+  <h3 id="tc-wifi" class="ag-part">9. Le wifi</h3>
+  <p>Le wifi (normes IEEE 802.11) est un réseau local radio dans des bandes sans licence : 2,4 GHz, 5 GHz et, depuis 2020-2021, 6 GHz. Il n'y a pas de chef d'orchestre : chaque appareil écoute le canal et ne parle que s'il est libre, après une attente aléatoire (accès <b>CSMA/CA</b>, « écouter avant de parler »). Conséquence : sur un canal encombré, chacun attend son tour, et le débit réel s'effondre bien avant la limite théorique.</p>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Les générations du wifi : débit maximal théorique</b> (Mb/s, échelle logarithmique)</p><div id="tc-wifi-gen" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Les canaux de la bande 2,4 GHz</b> (largeur 22 MHz, espacés de 5 MHz) : seuls 1, 6 et 11 ne se chevauchent pas</p><div id="tc-canaux" class="chart"></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Le débit affiché n'est jamais atteint</b> : il suppose la meilleure modulation, la bande la plus large et le maximum de flux MIMO. Un téléphone à deux antennes à quelques mètres d'un routeur wifi 6 obtient typiquement 500 à 900 Mb/s ; le protocole (attentes, accusés de réception) consomme 30 à 50 % du débit radio.</li>
+    <li><b>2,4 GHz ou 5 GHz ?</b> 2,4 GHz porte plus loin et traverse mieux les murs, mais n'offre que trois canaux propres de 20 MHz, partagés avec le Bluetooth, les micro-ondes et les voisins. 5 et 6 GHz offrent des dizaines de canaux et des largeurs de 80 à 320 MHz, mais sur une pièce ou deux.</li>
+    <li><b>Améliorer son wifi</b> : placer le routeur en hauteur et au centre, choisir un canal peu utilisé (chapitre 16), préférer un réseau maillé ou un câble Ethernet vers un second point d'accès plutôt qu'un répéteur, qui divise le débit par deux.</li>
+  </ul></div>
+
+  <h3 id="tc-mobile" class="ag-part">10. Le téléphone mobile : de la 1G à la 5G</h3>
+  <p>L'idée géniale du réseau mobile est la <b>cellule</b> (Bell Labs, 1947, déploiement dans les années 1980) : plutôt qu'un émetteur puissant pour toute une ville, on pose de nombreuses antennes peu puissantes, chacune servant une petite zone, et on réutilise les mêmes fréquences dans des cellules éloignées. La capacité du réseau croît alors avec le nombre de cellules : diviser la taille des cellules par deux multiplie la capacité par quatre. Le téléphone passe d'une cellule à l'autre sans coupure (le « handover »).</p>
+  <div id="tc-gen" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Génération</th><th>Années</th><th>Ce qui change</th><th>Débit typique</th><th>Latence</th></tr></thead><tbody>
+    <tr><td><b>1G</b></td><td>1980-1990</td><td>analogique (Radiocom 2000 en France), voix seulement, aucune sécurité</td><td>–</td><td>–</td></tr>
+    <tr><td><b>2G</b> GSM</td><td>1992</td><td>numérique, SMS, carte SIM, chiffrement ; norme européenne devenue mondiale</td><td>10 à 200 kb/s (EDGE)</td><td>300 à 1 000 ms</td></tr>
+    <tr><td><b>3G</b> UMTS</td><td>2004</td><td>internet mobile, CDMA</td><td>0,4 à 20 Mb/s</td><td>≈ 100 ms</td></tr>
+    <tr><td><b>4G</b> LTE</td><td>2012</td><td>tout en paquets IP (la voix aussi), OFDMA, MIMO</td><td>20 à 150 Mb/s</td><td>30 à 50 ms</td></tr>
+    <tr><td><b>5G</b> NR</td><td>2020</td><td>bandes larges (3,5 GHz, 100 MHz), massive MIMO, beamforming, cœur de réseau logiciel, découpage du réseau (« slicing »)</td><td>200 Mb/s à 1 Gb/s</td><td>10 à 20 ms (1 ms visée)</td></tr>
+    <tr><td><b>6G</b></td><td>vers 2030</td><td>en normalisation : fréquences plus hautes (7 à 15 GHz, puis au-delà de 100 GHz), intégration des satellites, détection radar par le réseau</td><td>–</td><td>–</td></tr>
+  </tbody></table></div>
+  <p class="muted" style="font-size:.8rem">Débits typiques observés, non débits maximaux. Mesures de l'Arcep pour la France : <a href="https://www.arcep.fr/cartes-et-donnees/nos-publications-chiffrees/qualite-des-services-mobiles.html" target="_blank" rel="noopener">qualité des services mobiles</a>.</p>
+
+  <h3 id="tc-fibre" class="ag-part">11. La fibre optique</h3>
+  <p>Une fibre optique est un fil de verre de silice ultra-pure de 125 µm (l'épaisseur d'un cheveu), dont le cœur (9 µm en monomode) a un indice de réfraction légèrement plus élevé que la gaine : la lumière y reste piégée par <b>réflexion totale</b>. Son atout : une atténuation de 0,2 dB/km à 1,55 µm. Après 100 km, il reste encore 1 % de la lumière ; un câble de cuivre téléphonique perd la même proportion en quelques centaines de mètres pour les hautes fréquences de l'ADSL.</p>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Atténuation de la silice selon la longueur d'onde</b> (dB/km) : les trois « fenêtres » des télécoms</p><div id="tc-fib-att" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Combien de lumière reste-t-il ?</b> (% de la puissance après la distance indiquée)</p><div id="tc-fib-dist" class="chart"></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Pourquoi 1,55 µm</b> : aux courtes longueurs d'onde, la diffusion de Rayleigh par les fluctuations du verre (en 1/λ⁴, la même qui rend le ciel bleu) domine ; aux grandes, l'absorption infrarouge des liaisons Si–O. Le minimum tombe vers 1,55 µm. Par chance, c'est aussi là que fonctionne l'amplificateur à fibre dopée à l'erbium (1987), qui amplifie directement la lumière sans la convertir en électricité : la clé des câbles transocéaniques.</li>
+    <li><b>Le multiplexage en longueur d'onde (WDM)</b> : on envoie 80 à 120 couleurs différentes dans la même fibre, chacune portant 100 à 800 Gb/s. Une seule paire de fibres transporte ainsi plusieurs dizaines de térabits par seconde.</li>
+    <li><b>La fibre jusqu'au domicile (FTTH)</b> : en France, la fibre est devenue en 2022 la première technologie d'accès fixe, devant le cuivre (ADSL), dont l'arrêt progressif est programmé jusqu'en 2030 (<a href="https://www.arcep.fr/la-regulation/grands-dossiers-reseaux-fixes/la-fermeture-du-reseau-cuivre.html" target="_blank" rel="noopener">Arcep</a>).</li>
+  </ul></div>
+
+  <h3 id="tc-cables" class="ag-part">12. Câbles sous-marins et satellites : pourquoi les deux ?</h3>
+  <p>Environ 99 % du trafic internet entre continents passe par environ 500 câbles sous-marins, pas par les satellites. Un câble récent transporte 200 à 400 Tb/s ; une constellation entière de satellites en orbite basse offre une capacité totale de quelques centaines de Tb/s pour toute la planète. Pourquoi alors des satellites ? Parce qu'ils répondent à d'autres besoins : <b>couvrir partout</b>, sans rien construire au sol.</p>
+  <label style="display:block;max-width:640px;margin:6px 0">Altitude du satellite <input type="range" id="tc-alt" min="2.48" max="4.6" step="0.01" value="4.554" style="width:60%"> <b id="tc-alt-v"></b></label>
+  <div class="grid2">
+    <div><div id="tc-orbite" class="chart"></div></div>
+    <div><div id="tc-orb-kpi" class="kpis"></div><p class="muted" style="margin:6px 0 4px"><b>Temps d'aller-retour Paris – New York</b> (ms ; la lumière dans la fibre va à 200 000 km/s, dans le vide à 300 000 km/s)</p><div id="tc-latence" class="chart"></div></div>
+  </div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th></th><th>Câble sous-marin</th><th>Satellite géostationnaire (36 000 km)</th><th>Constellation en orbite basse (300 à 1 200 km)</th></tr></thead><tbody>
+    <tr><td><b>Capacité</b></td><td>200 à 400 Tb/s par câble</td><td>0,1 à 1 Tb/s par satellite (très haut débit récent)</td><td>≈ 20 à 100 Gb/s par satellite, des milliers de satellites</td></tr>
+    <tr><td><b>Latence</b></td><td>la meilleure (≈ 5 ms par 1 000 km)</td><td>≈ 600 ms aller-retour : gênant pour la visioconférence et le jeu</td><td>25 à 50 ms : comparable au fixe</td></tr>
+    <tr><td><b>Couverture</b></td><td>d'un point d'atterrissement à un autre ; il faut ensuite un réseau terrestre</td><td>un tiers de la Terre par satellite, sauf les pôles</td><td>toute la Terre, y compris océans et pôles (selon les orbites)</td></tr>
+    <tr><td><b>Coût, durée de vie</b></td><td>quelques centaines de millions d'euros ; 25 ans</td><td>200 à 500 millions d'euros avec le lancement ; 15 ans</td><td>satellites bon marché mais remplacés tous les 5 ans environ</td></tr>
+    <tr><td><b>Usages typiques</b></td><td>tout le trafic internet entre continents</td><td>télévision (une antenne fixe suffit), zones isolées</td><td>zones rurales, bateaux, avions, armées, secours après une catastrophe</td></tr>
+    <tr><td><b>Fragilités</b></td><td>ancres et chaluts (≈ 150 incidents par an), sabotage</td><td>brouillage, pluie</td><td>débris spatiaux, pollution lumineuse du ciel, dépendance à un seul opérateur</td></tr>
+  </tbody></table></div>
+  <div class="callout small"><ul>
+    <li><b>Pourquoi l'orbite géostationnaire</b> : à 35 786 km, un satellite fait le tour de la Terre en exactement un jour sidéral (loi de Kepler : T² ∝ a³) ; il paraît immobile dans le ciel et une parabole fixe suffit. C'est l'idée qu'Arthur C. Clarke a publiée en 1945.</li>
+    <li><b>Pourquoi l'orbite basse aujourd'hui</b> : plus proche, le satellite a une latence faible et un bilan de liaison 4 000 fois meilleur (Friis en d² : 36 000 km contre 550 km), d'où des antennes d'utilisateur petites. Mais il défile (un tour en 95 minutes) : il en faut des milliers pour qu'un satellite soit toujours visible, et des antennes à faisceau orientable électroniquement (chapitre 2) pour les suivre. Ce n'est devenu possible qu'avec les lanceurs réutilisables et la fabrication en série.</li>
+    <li><b>Le laser entre satellites</b> : les constellations récentes relient leurs satellites par laser ; dans le vide, la lumière va 1,5 fois plus vite que dans le verre. Sur de très longues distances, un trajet par l'espace peut être plus rapide qu'un câble, ce qui intéresse le trading à haute fréquence.</li>
+    <li><b>Souveraineté</b> : l'Union européenne prépare sa propre constellation, IRIS², pour les communications gouvernementales ; la France est aussi un acteur majeur des câbles sous-marins (Alcatel Submarine Networks, Orange Marine).</li>
+  </ul></div>
+
+  <h2 id="tc-partie5" class="cr-partie">V. Autres angles</h2>
+  <h3 id="tc-internet" class="ag-part">13. Internet : couches, paquets, latence</h3>
+  <p>Internet n'est pas un réseau mais un accord : des milliers de réseaux indépendants (environ 75 000 « systèmes autonomes ») qui échangent des <b>paquets</b> selon des protocoles communs. Chaque paquet porte l'adresse de destination et voyage seul, routeur après routeur ; c'est le contraire du téléphone classique, qui réservait un circuit pour toute la conversation. L'architecture est en <b>couches</b>, chacune ignorant les détails des autres :</p>
+  <div id="tc-couches" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>La latence ne baisse plus</b> : le débit progresse de 40 à 50 % par an, mais la vitesse de la lumière est fixe. Paris – Sydney, c'est au minimum 170 ms aller-retour dans la fibre. D'où les centres de données et les serveurs de cache placés près des utilisateurs.</li>
+    <li><b>TCP et la fenêtre de congestion</b> : TCP garantit que tout arrive, dans l'ordre, en renvoyant ce qui est perdu ; il interprète une perte comme un embouteillage et ralentit. Sur un lien radio, où les pertes viennent du bruit, ce réflexe est contre-productif : d'où les protocoles récents (QUIC, BBR).</li>
+  </ul></div>
+
+  <h3 id="tc-gps" class="ag-part">14. GPS, santé, énergie, souveraineté</h3>
+  <div class="callout small"><ul>
+    <li><b>Le GPS est une horloge</b> : chaque satellite (≈ 31 en service, à 20 200 km) émet l'heure de son horloge atomique. Le récepteur mesure le retard de quatre satellites au moins et en déduit sa position et l'heure. Une erreur d'une microseconde donne 300 m d'erreur. Il faut même corriger la relativité : les horloges des satellites avancent de 38 microsecondes par jour par rapport au sol (+45 µs dues à la gravité plus faible, −7 µs dues à leur vitesse), soit 11 km d'erreur par jour sans correction. L'Europe a son propre système, Galileo.</li>
+    <li><b>Les ondes et la santé</b> : les ondes radio ne sont pas ionisantes (chapitre 1) ; leur seul effet établi est l'échauffement des tissus. Les limites (Commission internationale ICNIRP, reprises en France) sont fixées avec une marge de 50 par rapport au seuil d'effet thermique : 2 W/kg de débit d'absorption spécifique pour la tête, 28 à 61 V/m pour l'exposition en public selon la fréquence. Les mesures de l'ANFR relèvent le plus souvent moins de 1 V/m dans l'environnement (<a href="https://www.cartoradio.fr" target="_blank" rel="noopener">Cartoradio</a>). Le Centre international de recherche sur le cancer classe les champs radiofréquence comme « peut-être cancérogènes » (catégorie 2B, 2011), la même que l'aloe vera.</li>
+    <li><b>L'énergie</b> : en France, les réseaux représentent de l'ordre de 5 à 10 % de l'empreinte carbone du numérique ; l'essentiel (deux tiers à trois quarts) vient de la fabrication des terminaux : téléphones, écrans, ordinateurs (étude ADEME-Arcep, 2022, ordre de grandeur repris de mémoire). La 5G consomme moins d'énergie par gigaoctet que la 4G, mais elle stimule l'usage (effet rebond). Une antenne mobile consomme surtout en amplificateurs de puissance, dont le rendement plafonne vers 30 à 50 %.</li>
+    <li><b>La souveraineté et la sécurité</b> : le choix des équipementiers 5G (loi française de 2019 encadrant les antennes Huawei), la protection des câbles sous-marins, le chiffrement de bout en bout et les constellations privées sont devenus des sujets de défense.</li>
+  </ul></div>
+
+  <h2 id="tc-partie6" class="cr-partie">VI. Pratique : programmer sa radio, son antenne, son wifi</h2>
+  <h3 id="tc-sdr" class="ag-part">15. La radio logicielle (SDR)</h3>
+  <p>Une radio classique est faite de composants analogiques fixés pour une seule norme. Une <b>radio logicielle</b> (« software-defined radio ») numérise directement une bande de fréquences et confie tout le reste (filtrage, démodulation, décodage) à un programme. Avec une clé USB à 30 €, un ordinateur et du code Python, on peut écouter la FM, les avions (ADS-B à 1 090 MHz), les satellites météo (137 MHz), les bateaux (AIS) ou les stations de radioamateurs.</p>
+  <div id="tc-sdr-ch" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Matériel</th><th>Bande</th><th>Émission</th><th>Prix (ordre de grandeur)</th><th>Pour quoi faire</th></tr></thead><tbody>
+    <tr><td><b>RTL-SDR</b> (clé TNT détournée)</td><td>24 MHz à 1,7 GHz, 2,4 MHz de bande</td><td>non</td><td>30 €</td><td>découvrir : FM, avions, satellites météo, balises</td></tr>
+    <tr><td><b>ADALM-Pluto</b> (Analog Devices)</td><td>325 MHz à 3,8 GHz, 20 MHz</td><td>oui</td><td>200 €</td><td>enseignement : émettre et recevoir ses propres modulations</td></tr>
+    <tr><td><b>HackRF One</b></td><td>1 MHz à 6 GHz, 20 MHz</td><td>oui (semi-duplex)</td><td>300 €</td><td>analyse de protocoles, couverture large</td></tr>
+    <tr><td><b>USRP</b> (Ettus)</td><td>jusqu'à 6 GHz, 50 à 200 MHz</td><td>oui</td><td>1 500 à 10 000 €</td><td>laboratoires, prototypes de 4G et 5G (OpenAirInterface, srsRAN)</td></tr>
+    <tr><td><b>ESP32</b> (microcontrôleur)</td><td>wifi 2,4 GHz, Bluetooth</td><td>oui</td><td>5 €</td><td>objets connectés, scanner de réseaux, mesures de signal</td></tr>
+  </tbody></table></div>
+  <div class="callout small"><p style="margin:0 0 4px"><b>Ce que dit la loi</b></p><ul>
+    <li><b>Recevoir</b> les ondes est libre, mais intercepter, utiliser ou divulguer des correspondances privées est un délit (code pénal, article 226-15). Écouter la FM, les avions ou les satellites météo ne pose pas de problème.</li>
+    <li><b>Émettre</b> n'est permis que dans les bandes libres (wifi, 433 et 868 MHz) à faible puissance, ou avec un certificat de radioamateur (examen de l'ANFR). Brouiller un réseau est interdit (code des postes et des communications électroniques).</li>
+  </ul></div>
+
+  <h3 id="tc-code" class="ag-part">16. Coder : wifi, antenne réseau, liaison radio</h3>
+  <p><b>Exemple 1 : recevoir la radio FM avec une clé RTL-SDR</b> (Python, bibliothèques <code>pyrtlsdr</code>, <code>numpy</code>, <code>scipy</code>, <code>sounddevice</code>). Le récepteur fournit des échantillons complexes I + jQ ; la fréquence instantanée, donc le son, est la dérivée de la phase.</p>
+  <pre class="tc-code"><code>import numpy as np, sounddevice as sd
+from rtlsdr import RtlSdr
+from scipy.signal import decimate
+
+sdr = RtlSdr()
+sdr.sample_rate = 1.2e6          # 1,2 million d'échantillons complexes par seconde
+sdr.center_freq = 98.0e6         # la station FM à écouter (Hz)
+sdr.gain = "auto"
+
+x = sdr.read_samples(6_000_000)  # 5 secondes de signal I/Q
+sdr.close()
+
+x = decimate(x, 5)               # on ne garde que 240 kHz autour de la station
+# démodulation FM : variation de phase entre deux échantillons successifs
+son = np.angle(x[1:] * np.conj(x[:-1]))
+son = decimate(son, 5)           # 48 kHz pour la carte son
+sd.play(son / np.max(np.abs(son)), 48000); sd.wait()</code></pre>
+
+  <p><b>Exemple 2 : scanner les réseaux wifi et choisir le meilleur canal</b> (ESP32, langage Arduino). Le microcontrôleur liste les réseaux voisins, leur canal et leur puissance reçue (RSSI, en dBm) ; on compte l'encombrement de chaque canal en tenant compte du chevauchement (chapitre 9).</p>
+  <pre class="tc-code"><code>#include &lt;WiFi.h&gt;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+}
+
+void loop() {
+  int n = WiFi.scanNetworks();
+  float charge[14] = {0};
+  for (int i = 0; i &lt; n; i++) {
+    int ch = WiFi.channel(i), rssi = WiFi.RSSI(i);
+    Serial.printf("%-32s canal %2d  %4d dBm\n", WiFi.SSID(i).c_str(), ch, rssi);
+    // un réseau gêne les canaux à moins de 5 de distance (22 MHz de large, pas de 5 MHz)
+    for (int c = 1; c &lt;= 13; c++)
+      if (abs(c - ch) &lt; 5) charge[c] += pow(10, rssi / 10.0) * (5 - abs(c - ch)) / 5.0;
+  }
+  int best = 1;
+  for (int c : {1, 6, 11}) if (charge[c] &lt; charge[best]) best = c;
+  Serial.printf("Canal le moins encombré : %d\n\n", best);
+  delay(10000);
+}</code></pre>
+
+  <p><b>Exemple 3 : orienter le faisceau d'une antenne réseau</b> (Python). Pour viser la direction θ avec N antennes espacées de d, on applique à l'antenne n le déphasage φ<sub>n</sub> = −2π n d sin θ / λ. Le code calcule ces poids et le diagramme obtenu, celui du simulateur du chapitre 2 ; avec une carte SDR multivoies (ou plusieurs ADALM-Pluto synchronisées), ces poids s'appliquent aux échantillons de chaque voie.</p>
+  <pre class="tc-code"><code>import numpy as np
+
+N, d = 8, 0.5                         # 8 antennes espacées de λ/2
+theta0 = np.radians(20)               # direction visée
+n = np.arange(N)
+w = np.exp(-2j * np.pi * n * d * np.sin(theta0)) / np.sqrt(N)   # poids complexes
+
+theta = np.radians(np.linspace(-90, 90, 721))
+a = np.exp(2j * np.pi * np.outer(np.sin(theta), n) * d)           # vecteurs directionnels
+gain_db = 20 * np.log10(np.abs(a @ w) + 1e-9)
+print("gain maximal %.1f dB vers %.1f°" % (gain_db.max(), np.degrees(theta[gain_db.argmax()])))
+
+# en réception, on combine les voies : y = w.conj() @ x  (x : échantillons des N antennes)</code></pre>
+
+  <p><b>Exemple 4 : simuler une liaison numérique complète</b> (Python, sans matériel). On module des bits en 16-QAM, on ajoute du bruit gaussien et on mesure le taux d'erreur : c'est l'expérience du simulateur du chapitre 6, et la base de tout banc de test.</p>
+  <pre class="tc-code"><code>import numpy as np
+rng = np.random.default_rng(0)
+
+M, k = 16, 4                                   # 16-QAM : 4 bits par symbole
+niveaux = np.array([-3, -1, 3, 1])             # codage de Gray sur chaque axe
+bits = rng.integers(0, 2, 400_000)
+b = bits.reshape(-1, 4)
+s = niveaux[b[:, 0] * 2 + b[:, 1]] + 1j * niveaux[b[:, 2] * 2 + b[:, 3]]
+s /= np.sqrt(10)                               # puissance moyenne = 1
+
+for snr_db in (10, 15, 20):
+    bruit = np.sqrt(10 ** (-snr_db / 10) / 2) * (rng.standard_normal(len(s)) + 1j * rng.standard_normal(len(s)))
+    r = (s + bruit) * np.sqrt(10)
+    # décision : le niveau le plus proche sur chaque axe, puis retour aux bits
+    dec = lambda v: np.abs(v[:, None] - niveaux[None, :]).argmin(1)
+    i, q = dec(r.real), dec(r.imag)
+    bits_r = np.stack([i // 2, i % 2, q // 2, q % 2], 1).ravel()
+    print(f"S/N = {snr_db} dB : taux d'erreur binaire = {np.mean(bits_r != bits):.2e}")</code></pre>
+  <div class="callout small"><p style="margin:0 0 4px"><b>Pour aller plus loin</b></p><ul>
+    <li><b>GNU Radio</b> : environnement libre de traitement du signal par blocs graphiques, avec des exemples prêts pour la FM, l'ADS-B, le DAB+.</li>
+    <li><b>Wireshark</b> et <b>Scapy</b> : analyser les trames wifi (en mode moniteur, sur son propre réseau), comprendre les accusés de réception et les attentes.</li>
+    <li><b>srsRAN, OpenAirInterface</b> : des réseaux 4G et 5G complets en logiciel libre, sur une carte USRP, pour monter un réseau mobile de laboratoire (en cage de Faraday ou avec une autorisation de l'Arcep).</li>
+    <li><b>Livres de référence</b> : Tse et Viswanath, <i>Fundamentals of Wireless Communication</i> (Cambridge, 2005, disponible gratuitement en ligne) ; Proakis, <i>Digital Communications</i>.</li>
+  </ul></div>
+</section>
+
 <section id="meteo" class="panel">
   <div class="panel-head"><h2>La météo : fronts, nuages, dépressions et vent <span class="geo-fixed">Monde</span></h2></div>
   <p class="lead">Comment lire le ciel ? Pourquoi la pluie arrive-t-elle avec un front chaud et les averses avec un front froid ? Comment un marin peut-il prévoir le vent en sachant où est la dépression ? Cet article, écrit pour des ingénieurs, explique la mécanique de l'atmosphère aux latitudes moyennes avec les équations et les ordres de grandeur, une maquette 3D d'une dépression et deux simulateurs (ascension d'une particule d'air, vent autour d'une dépression).</p>
@@ -5495,6 +5818,7 @@
 <script src="chimie.js?v=20261118o"></script>
 <script src="eau2.js?v=20261118a"></script>
 <script src="energiephys.js?v=20261118b"></script>
+<script src="telecom.js?v=20261118a"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
