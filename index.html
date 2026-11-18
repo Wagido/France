@@ -110,6 +110,7 @@
     </nav>
     <nav class="tabs" data-group="science" aria-label="Science" hidden>
       <a href="#tableau">Tableau périodique</a>
+      <a href="#chimie">Chimie</a>
       <a href="#roches">Roches</a>
       <a href="#climat-physique">Énergie et climat : la physique</a>
       <a href="#meteo">Météo</a>
@@ -4067,6 +4068,166 @@
     </div>
   <p class="muted" style="font-size:.78rem">Sources : données des éléments d'après Wikipédia, compilées par le projet Periodic-Table-JSON (masses, configurations électroniques, électronégativité de Pauling, énergies de première ionisation, rayons atomiques calculés, densités, températures de fusion et d'ébullition) ; Commission européenne, liste 2023 des matières premières critiques ; origine des éléments simplifiée d'après Jennifer Johnson (Ohio State University, 2019). Les propriétés des éléments au-delà du fermium sont en partie prédites.</p>
 </section>
+<section id="chimie" class="panel">
+  <div class="panel-head"><h2>La chimie : de la liaison aux procédés industriels <span class="geo-fixed">Monde</span></h2></div>
+  <p class="lead">Un cours de chimie générale en dix étapes, pour ingénieurs : pourquoi les atomes se lient, ce qui fixe l'énergie d'une réaction, si elle se fait, jusqu'où et à quelle vitesse, puis les grandes familles (acides et bases, oxydoréduction, chimie organique) et les procédés qui font tourner l'industrie. Chaque notion est illustrée par un graphique ou un simulateur. La structure des atomes et le tableau périodique sont traités dans l'onglet <a href="#tableau">Tableau périodique</a>.</p>
+  <div class="kpis" id="ch-kpis"></div>
+  <ul class="mo-ul cr-toc">
+    <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie1"><b>I. La matière</b></a><ul>
+      <li><a href="#chimie" data-to="ch-p1">1. La liaison chimique : ionique, covalente, métallique</a></li>
+      <li><a href="#chimie" data-to="ch-p2">2. Entre les molécules : forces faibles et états de la matière</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie2"><b>II. Les réactions : énergie, équilibre, vitesse</b></a><ul>
+      <li><a href="#chimie" data-to="ch-p3">3. L'énergie des réactions : enthalpie et combustibles</a></li>
+      <li><a href="#chimie" data-to="ch-p4">4. La spontanéité : enthalpie libre et entropie</a></li>
+      <li><a href="#chimie" data-to="ch-p5">5. L'équilibre chimique : le cas de l'ammoniac (simulateur)</a></li>
+      <li><a href="#chimie" data-to="ch-p6">6. La cinétique : vitesse, température, catalyse (simulateur)</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie3"><b>III. Les grandes familles de réactions</b></a><ul>
+      <li><a href="#chimie" data-to="ch-p7">7. Acides et bases : le pH (simulateur de dosage)</a></li>
+      <li><a href="#chimie" data-to="ch-p8">8. Oxydoréduction : piles, batteries, électrolyse, corrosion</a></li>
+      <li><a href="#chimie" data-to="ch-p9">9. Chimie organique : le carbone, le pétrole, les plastiques</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie4"><b>IV. La chimie dans l'économie</b></a><ul>
+      <li><a href="#chimie" data-to="ch-p10">10. Les grands produits de l'industrie chimique et leur énergie</a></li></ul></li>
+  </ul>
+
+  <h2 id="ch-partie1" class="cr-partie">I. La matière</h2>
+  <h3 id="ch-p1" class="ag-part">1. La liaison chimique : ionique, covalente, métallique</h3>
+  <div class="callout small"><ul>
+    <li><b>Le moteur</b> : un atome est stable quand sa couche externe est complète (8 électrons, la « règle de l'octet », 2 pour l'hydrogène). Il y arrive en cédant, en captant ou en partageant des électrons. L'énergie du système diminue : la liaison se forme parce qu'elle libère de l'énergie.</li>
+    <li><b>L'électronégativité</b> (échelle de Pauling, de 0,7 pour le césium à 4,0 pour le fluor) mesure la force avec laquelle un atome attire les électrons d'une liaison. C'est l'écart Δχ entre les deux atomes qui décide du type de liaison (graphique).</li>
+    <li><b>Liaison covalente</b> (Δχ faible) : deux atomes partagent une paire d'électrons. Molécules de H₂, O₂, CH₄, H₂O, et les solides covalents (diamant, silicium, quartz). Elle est dirigée dans l'espace : c'est elle qui donne leur forme aux molécules (tétraèdre du méthane, angle de 104,5° de l'eau).</li>
+    <li><b>Liaison ionique</b> (Δχ supérieur à environ 1,7) : un atome cède un électron à l'autre ; les ions de charges opposées s'attirent et s'empilent en cristal (NaCl). Solides durs, cassants, qui fondent haut et conduisent l'électricité une fois fondus ou dissous.</li>
+    <li><b>Liaison métallique</b> : les atomes d'un métal mettent en commun leurs électrons externes dans une « mer d'électrons » mobile. D'où la conductivité électrique et thermique, l'éclat, et la ductilité (les plans d'atomes glissent sans casser).</li>
+  </ul></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px">
+    <div><p class="muted" style="margin:0 0 4px"><b>Caractère ionique d'une liaison selon l'écart d'électronégativité</b> (formule de Pauling)</p><div id="ch-ionique" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Énergie de quelques liaisons</b> (kJ/mol, énergie pour les rompre)</p><div id="ch-liaisons" class="chart"></div></div>
+  </div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Énergies moyennes de liaison. La triple liaison de l'azote (945 kJ/mol) est l'une des plus fortes de la chimie : c'est pourquoi l'azote de l'air est si inerte, et pourquoi le fixer (partie 5) coûte autant d'énergie.</p>
+
+  <h3 id="ch-p2" class="ag-part">2. Entre les molécules : forces faibles et états de la matière</h3>
+  <div class="callout small"><ul>
+    <li><b>Les forces intermoléculaires</b> sont 10 à 100 fois plus faibles que les liaisons chimiques, mais elles décident de l'état (solide, liquide, gaz), de la température d'ébullition, de la solubilité :
+      <ul>
+        <li><b>forces de van der Waals</b> (dispersion de London) : présentes partout, elles croissent avec la taille de la molécule (le méthane bout à −161 °C, l'octane de l'essence à 126 °C) ;</li>
+        <li><b>interactions entre dipôles</b> : entre molécules polaires ;</li>
+        <li><b>liaison hydrogène</b> : un hydrogène lié à un atome très électronégatif (O, N, F) est attiré par un autre O, N ou F. 10 à 40 kJ/mol. C'est elle qui tient la double hélice de l'ADN et qui donne à l'eau ses propriétés exceptionnelles.</li>
+      </ul></li>
+    <li><b>L'anomalie de l'eau</b> (graphique) : dans une même colonne du tableau, la température d'ébullition augmente avec la taille de la molécule. D'après H₂S, H₂Se et H₂Te, l'eau devrait bouillir vers −80 °C : sans liaisons hydrogène, il n'y aurait pas d'eau liquide sur Terre. Autres conséquences : la glace est moins dense que l'eau liquide (elle flotte), et l'eau a une très forte capacité thermique (4,18 kJ/kg/K) et chaleur de vaporisation (2,26 MJ/kg à 100 °C).</li>
+  </ul></div>
+  <p class="muted" style="margin:0 0 4px"><b>Température d'ébullition des composés hydrogénés</b>, selon la ligne du tableau périodique (°C)</p>
+  <div id="ch-ebullition" class="chart"></div>
+  <p class="muted" style="margin:8px 0 4px"><b>Diagrammes de phases</b> : état stable selon la température et la pression (échelle de pression logarithmique, schématique)</p>
+  <div style="display:flex;gap:8px;margin:6px 0"><button type="button" class="ch-ph on" data-p="eau">Eau</button><button type="button" class="ch-ph" data-p="co2">Dioxyde de carbone</button></div>
+  <div id="ch-phases" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="ch-phases-txt"></p>
+
+  <h2 id="ch-partie2" class="cr-partie">II. Les réactions : énergie, équilibre, vitesse</h2>
+  <h3 id="ch-p3" class="ag-part">3. L'énergie des réactions : enthalpie et combustibles</h3>
+  <div class="callout small"><ul>
+    <li><b>Enthalpie de réaction ΔH</b> : la chaleur échangée à pression constante. On l'estime en faisant le bilan des liaisons rompues (ça coûte) et formées (ça rapporte) : ΔH ≈ Σ(liaisons rompues) − Σ(liaisons formées). Négatif : exothermique (dégage de la chaleur) ; positif : endothermique.</li>
+    <li><b>Exemple, la combustion du méthane</b> : CH₄ + 2 O₂ → CO₂ + 2 H₂O. On rompt 4 C–H (4 × 413) et 2 O=O (2 × 498), soit 2 648 kJ ; on forme 2 C=O dans le CO₂ (2 × 805) et 4 O–H (4 × 463), soit 3 462 kJ. Bilan ≈ <b>−814 kJ/mol</b>, très proche de la valeur mesurée (−802 kJ/mol, eau produite à l'état de vapeur). Le schéma ci-dessous montre ce bilan.</li>
+    <li><b>Pourquoi les combustibles fossiles sont si énergétiques</b> : ils contiennent des liaisons C–H et C–C, assez faibles, et la combustion forme des liaisons C=O et O–H très fortes. L'énergie vient surtout de l'oxygène de l'air, qui n'a pas à être transporté : c'est un avantage décisif sur les batteries, qui doivent emporter leurs deux réactifs.</li>
+  </ul></div>
+  <div id="ch-bilan-ch4" class="chart"></div>
+  <p class="muted" style="margin:10px 0 4px"><b>Énergie stockée par kilogramme</b> (MJ/kg, échelle logarithmique)</p>
+  <div id="ch-densite" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Pouvoirs calorifiques inférieurs (eau sous forme de vapeur), ordres de grandeur. Pour les batteries : énergie électrique restituée par kg de cellule. L'uranium (fission, environ 80 millions de MJ/kg d'uranium 235) et la fusion sortent du graphique : ce sont des énergies nucléaires, un million de fois plus concentrées que l'énergie chimique.</p>
+
+  <h3 id="ch-p4" class="ag-part">4. La spontanéité : enthalpie libre et entropie</h3>
+  <div class="callout small"><ul>
+    <li><b>Dégager de la chaleur ne suffit pas</b> : la glace fond spontanément à 20 °C alors que la fusion absorbe de la chaleur. Il faut tenir compte du désordre, l'<b>entropie S</b> : la nature va spontanément vers les états les plus probables, donc les plus désordonnés.</li>
+    <li><b>Le critère</b> : l'enthalpie libre ΔG = ΔH − TΔS. Une réaction est spontanée si ΔG &lt; 0. La température arbitre entre l'énergie (ΔH) et le désordre (TΔS) : quand ΔH et ΔS ont le même signe, il existe une température d'inversion T = ΔH / ΔS.</li>
+    <li><b>Exemple industriel, la cuisson du calcaire</b> (fours à ciment et à chaux) : CaCO₃ → CaO + CO₂. ΔH ≈ +178 kJ/mol (il faut chauffer), ΔS ≈ +160 J/mol/K (on libère un gaz : plus de désordre). ΔG s'annule vers 1 110 K, soit <b>environ 840 °C</b> : c'est pourquoi les fours à chaux et à ciment chauffent au-delà de 900 °C, et pourquoi cette réaction libère du CO₂ indépendamment du combustible utilisé (environ 60 % des émissions d'une cimenterie).</li>
+    <li><b>ΔG est aussi le travail maximal récupérable</b> : pour une pile ou une électrolyse, ΔG = −nFE (F = 96 485 C/mol). Pour l'eau, ΔG = 237 kJ/mol donne 1,23 V : c'est la tension minimale de l'électrolyse (partie 8).</li>
+  </ul></div>
+  <div id="ch-gibbs" class="chart"></div>
+
+  <h3 id="ch-p5" class="ag-part">5. L'équilibre chimique : le cas de l'ammoniac</h3>
+  <div class="callout small"><ul>
+    <li><b>Beaucoup de réactions ne vont pas au bout</b> : elles s'arrêtent à un équilibre où réaction directe et réaction inverse vont à la même vitesse. La constante d'équilibre K est reliée à ΔG° : K = exp(−ΔG° / RT).</li>
+    <li><b>Le principe de Le Chatelier</b> : un système à l'équilibre qu'on perturbe évolue de façon à atténuer la perturbation. Chauffer favorise le sens qui absorbe la chaleur ; comprimer favorise le sens qui diminue le nombre de molécules de gaz.</li>
+    <li><b>La synthèse de l'ammoniac</b> (procédé Haber-Bosch, 1909-1913) : N₂ + 3 H₂ ⇌ 2 NH₃, ΔH = −92 kJ/mol. Réaction exothermique (le froid favorise l'ammoniac) qui diminue le nombre de molécules (4 → 2 : la pression favorise l'ammoniac). Mais à basse température, la réaction est beaucoup trop lente (partie 6). Le compromis industriel : <b>400 à 500 °C, 150 à 300 bar, catalyseur au fer</b>, environ 15 à 25 % de conversion par passage ; on condense l'ammoniac et on recycle les gaz.</li>
+    <li><b>Un procédé qui nourrit l'humanité</b> : les engrais azotés issus de l'ammoniac permettent de nourrir environ la moitié de la population mondiale (Smil, 2001). La production mondiale atteint environ 150 millions de tonnes d'azote par an (USGS, 2025). L'hydrogène vient surtout du gaz naturel (vaporeformage) : la filière consomme de l'ordre de 2 % de l'énergie mondiale.</li>
+  </ul></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px">
+    <label>Température <input type="range" id="ch-hT" min="200" max="700" step="10" value="450"> <b id="ch-hT-v"></b></label>
+    <label>Pression <input type="range" id="ch-hP" min="1" max="400" step="1" value="200"> <b id="ch-hP-v"></b></label>
+  </div>
+  <div id="ch-haber" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="ch-haber-txt"></p>
+
+  <h3 id="ch-p6" class="ag-part">6. La cinétique : vitesse, température, catalyse</h3>
+  <div class="callout small"><ul>
+    <li><b>Une réaction possible n'est pas forcément rapide</b> : le diamant devrait se transformer en graphite, le bois brûler à l'air ambiant. Ce qui les en empêche, c'est l'<b>énergie d'activation E<sub>a</sub></b> : une barrière à franchir pour rompre les premières liaisons.</li>
+    <li><b>La loi d'Arrhenius</b> : k = A exp(−E<sub>a</sub> / RT). Seules les molécules qui ont assez d'énergie (la queue de la distribution de Maxwell-Boltzmann) réagissent. Pour E<sub>a</sub> ≈ 50 kJ/mol, la vitesse double à peu près tous les 10 °C autour de la température ambiante : c'est la règle empirique des cuisiniers et des chimistes (et la raison pour laquelle le réfrigérateur conserve les aliments).</li>
+    <li><b>Le catalyseur</b> offre un autre chemin, avec une barrière plus basse, sans être consommé et sans changer l'équilibre. Exemples : le fer du procédé Haber-Bosch, le platine, le palladium et le rhodium des pots catalytiques, les zéolithes du raffinage, et les enzymes du vivant, qui accélèrent certaines réactions d'un facteur de plus d'un million. Environ 90 % des procédés chimiques industriels utilisent un catalyseur.</li>
+  </ul></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px">
+    <label>Énergie d'activation <input type="range" id="ch-ea" min="20" max="150" step="5" value="75"> <b id="ch-ea-v"></b></label>
+    <label>Température <input type="range" id="ch-kT" min="-20" max="500" step="5" value="25"> <b id="ch-kT-v"></b></label>
+    <label><input type="checkbox" id="ch-cat"> Avec catalyseur (barrière abaissée de 40 %)</label>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px">
+    <div><p class="muted" style="margin:0 0 4px"><b>Profil énergétique de la réaction</b></p><div id="ch-profil" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Distribution des énergies des molécules</b> (Maxwell-Boltzmann) et seuil d'activation</p><div id="ch-maxwell" class="chart"></div></div>
+  </div>
+  <div id="ch-arrh" class="callout small"></div>
+
+  <h2 id="ch-partie3" class="cr-partie">III. Les grandes familles de réactions</h2>
+  <h3 id="ch-p7" class="ag-part">7. Acides et bases : le pH</h3>
+  <div class="callout small"><ul>
+    <li><b>Définition</b> (Brønsted, 1923) : un acide cède un ion H⁺ (un proton), une base le capte. Dans l'eau, l'acidité se mesure par la concentration en ions H₃O⁺ : <b>pH = −log₁₀[H₃O⁺]</b>. L'eau pure contient 10⁻⁷ mol/L d'ions H₃O⁺ et autant d'ions OH⁻ : pH 7, neutre à 25 °C.</li>
+    <li><b>C'est une échelle logarithmique</b> : un pH de 3 est dix fois plus acide qu'un pH de 4, et mille fois plus qu'un pH de 6. La baisse du pH des océans de 8,2 à 8,1 depuis l'ère industrielle paraît faible : elle correspond à <b>26 % d'ions H⁺ en plus</b>.</li>
+    <li><b>Acides forts et faibles</b> : un acide fort (chlorhydrique, sulfurique, nitrique) se dissocie entièrement ; un acide faible (acétique, carbonique, citrique) seulement en partie, selon sa constante pK<sub>a</sub>. Autour du pK<sub>a</sub>, un mélange d'acide faible et de sa base forme un <b>tampon</b>, qui résiste aux variations de pH : c'est ainsi que le sang reste à pH 7,4 (tampon bicarbonate).</li>
+  </ul></div>
+  <p class="muted" style="margin:0 0 4px"><b>L'échelle du pH</b></p>
+  <div id="ch-ph" class="chart"></div>
+  <p class="muted" style="margin:10px 0 4px"><b>Simulateur de dosage</b> : on verse une base forte (soude à 0,1 mol/L) dans 20 mL d'un acide à 0,1 mol/L</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px">
+    <label>Acide dosé <select id="ch-acide"><option value="-7">Acide chlorhydrique (fort)</option><option value="4.76" selected>Acide acétique, vinaigre (pKa 4,76)</option><option value="6.35">Acide carbonique (pKa 6,35)</option><option value="9.25">Ion ammonium (pKa 9,25)</option></select></label>
+  </div>
+  <div id="ch-dosage" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Calcul exact par bilan des charges. Le palier autour de pH = pK<sub>a</sub> (à mi-dosage) est la zone tampon ; le saut de pH à l'équivalence (20 mL) permet de doser l'acide avec un indicateur coloré.</p>
+
+  <h3 id="ch-p8" class="ag-part">8. Oxydoréduction : piles, batteries, électrolyse, corrosion</h3>
+  <div class="callout small"><ul>
+    <li><b>Définition</b> : une oxydation est une perte d'électrons, une réduction un gain ; les deux vont toujours ensemble. Le fer qui rouille s'oxyde (Fe → Fe²⁺ + 2 e⁻), l'oxygène se réduit.</li>
+    <li><b>Les potentiels standard</b> classent les couples selon leur tendance à céder ou à capter des électrons (graphique). Le lithium cède ses électrons le plus facilement (−3,04 V), le fluor les capte le plus avidement (+2,87 V).</li>
+    <li><b>Une pile</b> associe un couple « donneur » (anode) et un couple « accepteur » (cathode) : sa tension est l'écart des potentiels. Zinc et cuivre (pile Daniell) : 0,34 − (−0,76) = 1,10 V. Les batteries au lithium exploitent le potentiel très bas du lithium : 3,2 à 3,8 V par cellule.</li>
+    <li><b>L'électrolyse</b> force la réaction inverse avec de l'électricité. Production de l'aluminium (procédé Hall-Héroult, environ 13 à 15 kWh par kg), du chlore et de la soude, de l'hydrogène (au moins 1,23 V par cellule en théorie, 1,8 à 2 V en pratique, environ 50 à 55 kWh par kg d'hydrogène).</li>
+    <li><b>La corrosion</b> est une pile involontaire : là où deux métaux se touchent en présence d'eau, le plus réducteur se dissout. On protège l'acier en le recouvrant de zinc (galvanisation : le zinc, plus réducteur, se sacrifie), ou avec des « anodes sacrificielles » de zinc ou de magnésium sur les coques de navires et les canalisations. La corrosion coûte de l'ordre de 3 % du PIB mondial (NACE, 2016).</li>
+  </ul></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px">
+    <div><p class="muted" style="margin:0 0 4px"><b>Potentiels standard de réduction</b> (V) ; cliquez sur deux couples pour former une pile</p><div id="ch-redox" class="chart"></div><div id="ch-pile" class="callout small"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Batteries : énergie massique</b> (Wh/kg de cellule, fourchettes)</p><div id="ch-batt" class="chart"></div></div>
+  </div>
+
+  <h3 id="ch-p9" class="ag-part">9. Chimie organique : le carbone, le pétrole, les plastiques</h3>
+  <div class="callout small"><ul>
+    <li><b>Pourquoi le carbone ?</b> Il forme quatre liaisons covalentes solides, avec lui-même comme avec H, O, N : chaînes, cycles, ramifications presque sans limite. Plus de cent millions de composés organiques sont recensés, contre quelques centaines de milliers pour toute la chimie minérale.</li>
+    <li><b>Les familles</b> se reconnaissent à leur groupe fonctionnel : alcanes (C–C et C–H seulement, carburants), alcènes (double liaison C=C, base des plastiques), alcools (–OH : éthanol), acides carboxyliques (–COOH : vinaigre), esters (arômes, graisses, polyesters), amines (–NH₂ : protéines).</li>
+    <li><b>Le raffinage</b> sépare le pétrole brut par distillation selon la température d'ébullition, qui croît avec la longueur des chaînes (graphique). Le craquage casse ensuite les grosses molécules en plus petites, plus demandées (essence, et éthylène et propylène pour la chimie).</li>
+    <li><b>Les polymères</b> : de petites molécules (monomères) enchaînées par milliers. L'éthylène donne le polyéthylène (sacs, films, bouteilles de lait), le propylène le polypropylène, le chlorure de vinyle le PVC, l'éthylène glycol avec l'acide téréphtalique le PET (bouteilles, fibres polyester). La production mondiale de plastiques avoisine 400 millions de tonnes par an, dont moins de 10 % sont recyclés (OCDE, 2022).</li>
+  </ul></div>
+  <p class="muted" style="margin:0 0 4px"><b>La distillation du pétrole</b> : chaque coupe selon le nombre d'atomes de carbone et la température d'ébullition</p>
+  <div id="ch-distill" class="chart"></div>
+
+  <h2 id="ch-partie4" class="cr-partie">IV. La chimie dans l'économie</h2>
+  <h3 id="ch-p10" class="ag-part">10. Les grands produits de l'industrie chimique et leur énergie</h3>
+  <p>La chimie lourde transforme des quantités énormes de matière : le ciment et l'acier se comptent en milliards de tonnes. Ce sont aussi les procédés les plus difficiles à décarboner, parce que le CO₂ vient souvent de la réaction elle-même (calcaire, réduction du minerai de fer par le carbone), pas seulement de l'énergie.</p>
+  <p class="muted" style="margin:0 0 4px"><b>Production mondiale en 2024</b> (millions de tonnes par an, échelle logarithmique)</p>
+  <div id="ch-prod" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : USGS, <i>Mineral Commodity Summaries 2025</i> (estimations 2024) : <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cement.pdf" target="_blank" rel="noopener">ciment</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-iron-steel.pdf" target="_blank" rel="noopener">acier</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-lime.pdf" target="_blank" rel="noopener">chaux</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-salt.pdf" target="_blank" rel="noopener">sel</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-nitrogen.pdf" target="_blank" rel="noopener">azote (ammoniac)</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-sulfur.pdf" target="_blank" rel="noopener">soufre</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-soda-ash.pdf" target="_blank" rel="noopener">carbonate de sodium</a>, <a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-aluminum.pdf" target="_blank" rel="noopener">aluminium</a>. Plastiques : ordre de grandeur (Plastics Europe, OCDE), non vérifié en ligne.</p>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Produit</th><th>La réaction clé</th><th>Pourquoi c'est difficile à décarboner</th></tr></thead><tbody>
+    <tr><td><b>Ciment</b></td><td>CaCO₃ → CaO + CO₂ vers 1 450 °C (clinker)</td><td>Le CO₂ vient du calcaire lui-même ; solutions : moins de clinker dans le ciment, captage du CO₂</td></tr>
+    <tr><td><b>Acier</b></td><td>Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂ (haut fourneau, coke)</td><td>Le carbone sert de réducteur ; alternatives : réduction par l'hydrogène (Fe₂O₃ + 3 H₂ → 2 Fe + 3 H₂O), recyclage au four électrique</td></tr>
+    <tr><td><b>Ammoniac</b></td><td>N₂ + 3 H₂ ⇌ 2 NH₃ (partie 5)</td><td>L'hydrogène vient du gaz naturel ; alternative : hydrogène par électrolyse</td></tr>
+    <tr><td><b>Aluminium</b></td><td>2 Al₂O₃ + 3 C → 4 Al + 3 CO₂ (électrolyse)</td><td>Très gros consommateur d'électricité ; les anodes en carbone brûlent ; anodes inertes en développement</td></tr>
+    <tr><td><b>Plastiques</b></td><td>Craquage du naphta ou de l'éthane, puis polymérisation</td><td>Matière première fossile ; fin de vie (incinération, décharge)</td></tr>
+  </tbody></table></div>
+  <p class="muted" style="font-size:.78rem">Constantes physico-chimiques (énergies de liaison, potentiels, températures d'ébullition, enthalpies et entropies, pKa, pouvoirs calorifiques) : valeurs de référence des tables usuelles (CRC Handbook of Chemistry and Physics ; P. Atkins, <i>Chimie physique</i>), reprises de mémoire et non vérifiées en ligne depuis l'environnement de rédaction ; modèles des simulateurs simplifiés (gaz parfaits, ΔH et ΔS constants). Autres références : V. Smil, <i>Enriching the Earth</i> (2001) ; OCDE, <i>Global Plastics Outlook</i> (2022) ; NACE, <i>IMPACT</i> (2016).</p>
+</section>
+
 
 <section id="roches" class="panel">
   <div class="panel-head">
@@ -4605,6 +4766,7 @@
 <script src="brouillons.js?v=20261118m"></script>
 <script src="sciences2.js?v=20261118f"></script>
 <script src="climatviz.js?v=20261118b"></script>
+<script src="chimie.js?v=20261118b"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
