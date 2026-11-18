@@ -28,7 +28,7 @@ function ecoul() {
   // voile : arc de cercle de cambrure 10 %, tournée de -a
   const pts = d3.range(0, 1.001, .05).map(t => [(t - .5) * ch, -0.4 * ch * 0.1 * 4 * t * (1 - t) * 2.2]);
   const r = rad(a), P = pts.map(([x, y]) => [cx + x * Math.cos(r) - y * Math.sin(r), cy + x * Math.sin(r) + y * Math.cos(r)]);
-  s += `<path d="M${P.map(p => p.map(v => v.toFixed(1)).join(",")).join(" L")}" fill="none" stroke="#111827" stroke-width="4"/>`;
+  s += `<path d="M${P.map(p => p.map(v => v.toFixed(1)).join(",")).join(" L")}" fill="none" stroke="currentColor" stroke-width="4"/>`;
   if (stall) for (let i = 0; i < 6; i++) { const t = .35 + i * .12, x = cx + (t - .5) * ch * Math.cos(r) + 12 * Math.sin(r), y = cy - 26 - i * 3; s += `<path d="M${x - 10},${y} a10,8 0 1,1 4,8 a6,5 0 1,1 -3,-6" fill="none" stroke="#dc2626" stroke-width="1.3"/>`; }
   s += `<line x1="16" y1="24" x2="70" y2="24" stroke="#64748b" stroke-width="2" marker-end="url(#voW)"/><text x="16" y="16" style="fill:#64748b">vent</text>`;
   const cl = CL(a), cd = CD(a), k = 70;
@@ -49,7 +49,7 @@ function clcd(a) {
   const ln = (f, sc, c, w) => `<path d="M${d3.range(-4, 30.01, .25).map(v => `${x(v).toFixed(1)},${sc(Math.max(0, f(v))).toFixed(1)}`).join(" L")}" fill="none" stroke="${c}" stroke-width="${w}"/>`;
   s += ln(CL, y, "#16a34a", 2.4) + ln(CD, y, "#dc2626", 2.4) + ln(v => CL(v) / CD(v), y2, "#7c3aed", 1.6);
   s += `<text x="${x(2)}" y="${y(CL(2)) - 6}" style="fill:#16a34a">C<tspan baseline-shift="sub" font-size="8">L</tspan> portance</text><text x="${x(22)}" y="${y(CD(22)) - 6}" style="fill:#dc2626">C<tspan baseline-shift="sub" font-size="8">D</tspan> traînée</text><text x="${x(9)}" y="${y2(CL(9) / CD(9)) - 6}" style="fill:#7c3aed">finesse L/D (échelle de droite)</text>`;
-  s += `<line x1="${x(a)}" x2="${x(a)}" y1="${m.t}" y2="${H - m.b}" stroke="#111827" stroke-dasharray="4 3"/>`;
+  s += `<line x1="${x(a)}" x2="${x(a)}" y1="${m.t}" y2="${H - m.b}" stroke="currentColor" stroke-dasharray="4 3"/>`;
   el.innerHTML = s + "</svg>";
   $("#vo-alpha-txt").innerHTML = `À ${fr(a, 1)}° : C<sub>L</sub> ≈ ${fr(CL(a), 2)}, C<sub>D</sub> ≈ ${fr(CD(a), 3)}, finesse ≈ ${fr(CL(a) / CD(a), 1)}. ` + (a > AS ? "Au-delà du décrochage, la portance baisse et la traînée grimpe : au portant, une voile travaille volontairement ainsi, comme un parachute." : a > 12 ? "Portance proche du maximum : réglage de puissance (vent faible, mer formée)." : a > 4 ? "Zone de meilleure finesse : le réglage du près." : "Incidence trop faible : la voile commence à se dégonfler côté au vent.");
 }
