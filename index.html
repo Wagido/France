@@ -4889,7 +4889,7 @@
     <li><a href="#meteo" data-to="me-p1">1. Hautes et basses pressions : pourquoi le vent tourne</a></li>
     <li><a href="#meteo" data-to="me-p1b">2. La dynamique : vent géostrophique, frottement, vent thermique</a></li>
     <li><a href="#meteo" data-to="me-p1c">3. La thermodynamique de l'air humide : nuages, stabilité, orages (simulateur)</a></li>
-    <li><a href="#meteo" data-to="me-p2">4. La dépression et ses fronts en 3D</a></li>
+    <li><a href="#meteo" data-to="me-p2">4. La dépression et ses fronts : carte, coupe et maquette 3D</a></li>
     <li><a href="#meteo" data-to="me-p3">5. Front chaud, front froid, occlusion ; l'instabilité barocline</a></li>
     <li><a href="#meteo" data-to="me-p4">6. Prévoir le vent selon sa position : la règle du marin</a></li>
     <li><a href="#meteo" data-to="me-p5">7. Les nuages : pourquoi ils se forment, ce qu'ils annoncent ; microphysique de la pluie</a></li>
@@ -4931,8 +4931,14 @@
   <div id="me-parcel" class="chart"></div>
   <div id="me-parcel-res" class="callout small"></div>
 
-  <h3 id="me-p2" class="ag-part">4. La dépression et ses fronts en 3D</h3>
-  <p>Maquette d'une dépression des latitudes moyennes, hémisphère Nord, vue du sud-ouest. L'air froid (bleu) s'avance sous l'air chaud (rouge) au front froid ; l'air chaud glisse au-dessus de l'air froid au front chaud. <b>Faites tourner la maquette avec la souris ou le doigt</b>, et zoomez avec la molette ou en pinçant.</p>
+  <h3 id="me-p2" class="ag-part">4. La dépression et ses fronts : carte, coupe et maquette 3D</h3>
+  <p><b>① La carte vue du dessus</b>, telle qu'on la voit à la météo (hémisphère Nord). La dépression (D) se déplace vers l'est-nord-est. Entre ses deux fronts, une langue d'air chaud venue du sud-ouest : le <b>secteur chaud</b>. Partout ailleurs, de l'air plus froid. Le vent tourne autour du centre dans le sens inverse des aiguilles d'une montre.</p>
+  <div id="me-plan" class="chart"></div>
+  <p style="margin-top:10px"><b>② La coupe verticale le long de la ligne A-B</b> : on « tranche » la perturbation, comme si on la regardait de côté, depuis le sud. L'air chaud, plus léger, est toujours au-dessus de l'air froid. Au front chaud, il monte lentement sur une pente très douce ; au front froid, l'air froid, plus dense, s'enfonce comme un coin et le soulève brutalement.</p>
+  <div id="me-coupe" class="chart"></div>
+  <p style="margin-top:10px"><b>③ Ce que voit un observateur en B quand la perturbation passe</b> (elle avance d'ouest en est, à 30-50 km/h : comptez environ un jour et demi entre les premiers cirrus et le ciel de traîne)</p>
+  <div id="me-sequence" class="chart"></div>
+  <p style="margin-top:10px"><b>④ La maquette 3D</b>, pour relier la carte et la coupe. Les surfaces colorées sont les fronts : la rouge (front chaud) monte doucement vers l'est au-dessus de l'air froid, la bleue (front froid) est raide. Faites tourner la maquette avec la souris ou le doigt, zoomez avec la molette ou en pinçant ; le bouton « Coupe » montre la même vue que le schéma ②.</p>
   <div id="me-3d" style="position:relative;width:100%;height:520px;border-radius:10px;overflow:hidden;background:linear-gradient(#bfdbfe,#eff6ff);touch-action:none"><p class="muted" style="padding:20px">Chargement de la maquette 3D…</p></div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0"><button type="button" class="me-v" data-v="sw">Vue du sud-ouest</button><button type="button" class="me-v" data-v="top">Vue de dessus (carte)</button><button type="button" class="me-v" data-v="cut">Coupe (vue de côté)</button><button type="button" id="me-anim">Pause de la rotation du vent</button></div>
   <p class="muted" style="font-size:.8rem;margin:4px 0 0">Échelles très déformées : en réalité, une dépression mesure 1 000 à 2 000 km de large pour une troposphère d'une dizaine de kilomètres d'épaisseur ; la pente du front chaud est d'environ 1/150, celle du front froid d'environ 1/50 à 1/100.</p>
@@ -5052,7 +5058,7 @@
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118o"></script>
-<script src="sciences2.js?v=20261118f"></script>
+<script src="sciences2.js?v=20261118g"></script>
 <script src="climatviz.js?v=20261118b"></script>
 <script src="chimie.js?v=20261118b"></script>
 <script src="eau2.js?v=20261118a"></script>
