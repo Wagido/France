@@ -4744,12 +4744,30 @@
 
   <h3 id="ch-p5" class="ag-part">8. L'équilibre chimique : le cas de l'ammoniac</h3>
   <div class="callout small"><ul>
-    <li><b>Beaucoup de réactions ne vont pas au bout</b> : elles s'arrêtent à un équilibre où réaction directe et réaction inverse vont à la même vitesse. Pendant la réaction, ΔG = ΔG° + RT ln Q, où Q mesure l'avancement (rapport des produits aux réactifs) ; à l'équilibre, ΔG = 0, d'où la constante d'équilibre <b>K = exp(−ΔG° / RT)</b>. Un ΔG° de −10 kJ/mol donne K ≈ 57 ; −50 kJ/mol, K ≈ 6·10⁸ (réaction totale) ; +10 kJ/mol, K ≈ 0,02 (presque rien ne réagit).</li>
+    <li><b>Beaucoup de réactions ne vont pas au bout</b> : elles s'arrêtent à un équilibre où réaction directe et réaction inverse vont à la même vitesse. L'équilibre est atteint quand le rapport produits / réactifs prend une valeur fixe, la <b>constante d'équilibre K</b>, qui se calcule à partir de l'énergie libre de la réaction : <b>K = exp(−ΔG° / RT)</b>. Un ΔG° de −10 kJ/mol donne K ≈ 57 ; −50 kJ/mol, K ≈ 6·10⁸ (réaction totale) ; +10 kJ/mol, K ≈ 0,02 (presque rien ne réagit). D'où vient cette formule ? Voir l'explication pas à pas en 8.1, juste en dessous.</li>
     <li><b>Au quotidien</b> : une bouteille de soda fermée est à l'équilibre entre le CO₂ dissous et le CO₂ gazeux sous pression ; à l'ouverture, la pression chute, l'équilibre se déplace et le gaz sort en bulles. Dans le sang, l'hémoglobine fixe l'oxygène dans les poumons (beaucoup d'O₂) et le libère dans les muscles (peu d'O₂) : un équilibre qui se déplace selon la concentration.</li>
     <li><b>Le principe de Le Chatelier</b> : un système à l'équilibre qu'on perturbe évolue de façon à atténuer la perturbation. Chauffer favorise le sens qui absorbe la chaleur ; comprimer favorise le sens qui diminue le nombre de molécules de gaz.</li>
     <li><b>La synthèse de l'ammoniac</b> (procédé Haber-Bosch, 1909-1913) : N₂ + 3 H₂ ⇌ 2 NH₃, ΔH = −92 kJ/mol. Réaction exothermique (le froid favorise l'ammoniac) qui diminue le nombre de molécules (4 → 2 : la pression favorise l'ammoniac). Mais à basse température, la réaction est beaucoup trop lente (partie 9). Le compromis industriel : <b>400 à 500 °C, 150 à 300 bar, catalyseur au fer</b>, environ 15 à 25 % de conversion par passage ; on condense l'ammoniac et on recycle les gaz.</li>
     <li><b>Un procédé qui nourrit l'humanité</b> : les engrais azotés issus de l'ammoniac permettent de nourrir environ la moitié de la population mondiale (Smil, 2001). La production mondiale atteint environ 150 millions de tonnes d'azote par an (USGS, 2025). L'hydrogène vient surtout du gaz naturel (vaporeformage) : la filière consomme de l'ordre de 2 % de l'énergie mondiale.</li>
   </ul></div>
+  <h3 id="ch-k" class="li-sub">8.1 D'où vient la constante d'équilibre ? ΔG, ΔG° et Q expliqués pas à pas</h3>
+  <p>Prenons la réaction la plus simple : une molécule A qui peut se transformer en B, et inversement (A ⇌ B), par exemple deux formes d'un même sucre. On part d'une mole de A pur. On appelle <b>ξ</b> (« ksi ») l'<b>avancement</b> : la fraction déjà transformée en B (0 au départ, 1 si tout était transformé).</p>
+  <div class="callout small"><ul>
+    <li><b>1. G, l'énergie libre du mélange</b> : à chaque composition correspond une valeur de G (chapitre 7), comme une altitude. Le système évolue toujours de façon à <b>descendre</b>, comme une bille sur un relief.</li>
+    <li><b>2. ΔG°, l'écart entre les deux extrémités</b> : c'est la différence d'énergie libre entre « tout B » et « tout A », chaque corps étant pur, dans les conditions standard (1 bar pour un gaz, 1 mol/L en solution). C'est un nombre fixe, que l'on lit dans les tables (le ° signifie « standard »). Si on ne regardait que lui, la bille irait tout d'un côté : tout A si ΔG° &gt; 0, tout B si ΔG° &lt; 0.</li>
+    <li><b>3. Mais le mélange abaisse G</b> : un mélange de A et de B a plus d'entropie (de désordre, de façons d'arranger les molécules) que A pur ou B pur. Ce terme de mélange, RT [ξ ln ξ + (1 − ξ) ln (1 − ξ)], est toujours négatif et creuse une <b>vallée</b> entre les deux extrémités. Le fond de la vallée n'est jamais tout à fait à une extrémité : même une réaction très favorable laisse un peu de réactif, et même une réaction défavorable produit un peu de produit.</li>
+    <li><b>4. Q, le quotient de réaction</b> : à un instant donné, Q = [produits] / [réactifs], ici Q = [B] / [A] = ξ / (1 − ξ). Il vaut 0 au départ et grandit à mesure que la réaction avance. C'est simplement une façon de dire « où en est la réaction ».</li>
+    <li><b>5. ΔG (sans °) est la pente</b> : c'est de combien G change si l'on fait avancer la réaction d'un tout petit peu, à la composition actuelle. Le calcul de la pente de la courbe donne exactement <b>ΔG = ΔG° + RT ln Q</b>. Au début, Q est minuscule, ln Q très négatif : la pente est négative, la réaction avance. Plus elle avance, plus Q grandit, plus la pente remonte.</li>
+    <li><b>6. L'équilibre, c'est le fond de la vallée</b> : la pente y est nulle, ΔG = 0. Le quotient Q a alors une valeur particulière, qu'on appelle K. En écrivant 0 = ΔG° + RT ln K, on obtient <b>ln K = −ΔG° / RT</b>, soit <b>K = exp(−ΔG° / RT)</b>.</li>
+    <li><b>7. Les ordres de grandeur</b> : RT vaut 2,48 kJ/mol à 25 °C. Chaque fois que ΔG° baisse de 5,7 kJ/mol, K est multiplié par 10. Avec ΔG° = −40 kJ/mol, K = 10⁷ : la réaction est totale en pratique. Une énergie de liaison chimique se compte en centaines de kJ/mol : c'est pourquoi la plupart des réactions sont soit totales, soit nulles, et que les vrais équilibres (comme l'ammoniac) correspondent à des ΔG° proches de zéro.</li>
+  </ul></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>ΔG° de la réaction <input type="range" id="ch-dg0" min="-15" max="15" step="0.5" value="-4"> <b id="ch-dg0-v"></b></label>
+    <label>Avancement actuel ξ <input type="range" id="ch-xi" min="0.01" max="0.99" step="0.01" value="0.2"> <b id="ch-xi-v"></b></label>
+  </div>
+  <div id="ch-vallee" class="chart"></div>
+  <p class="muted" id="ch-vallee-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px">
     <label>Température <input type="range" id="ch-hT" min="200" max="700" step="10" value="450"> <b id="ch-hT-v"></b></label>
     <label>Pression <input type="range" id="ch-hP" min="1" max="400" step="1" value="200"> <b id="ch-hP-v"></b></label>
@@ -6213,7 +6231,7 @@ for snr_db in (10, 15, 20):
 <script src="brouillons.js?v=20261118o"></script>
 <script src="sciences2.js?v=20261118h"></script>
 <script src="climatviz.js?v=20261118b"></script>
-<script src="chimie.js?v=20261118q"></script>
+<script src="chimie.js?v=20261118r"></script>
 <script src="eau2.js?v=20261118e"></script>
 <script src="energiephys.js?v=20261118b"></script>
 <script src="telecom.js?v=20261118b"></script>

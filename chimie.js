@@ -848,6 +848,33 @@ function escPlanetes() {
   el.innerHTML = s + "</svg>";
 }
 
+/* 8.1 la vallée d'énergie libre : A ⇌ B */
+function vallee() {
+  const el = $("#ch-vallee"); if (!el) return;
+  const g0 = +$("#ch-dg0").value, xi = +$("#ch-xi").value, RT = 8.314 * 298 / 1000;
+  $("#ch-dg0-v").textContent = (g0 > 0 ? "+" : "") + fr(g0, 1) + " kJ/mol"; $("#ch-xi-v").textContent = fr(xi, 2);
+  const G = x => x * g0 + RT * (x * Math.log(x) + (1 - x) * Math.log(1 - x));
+  const K = Math.exp(-g0 / RT), xeq = K / (1 + K), slope = g0 + RT * Math.log(xi / (1 - xi));
+  const W = 900, H = 320, m = { l: 60, r: 30, t: 20, b: 40 }, P = d3.range(0.002, 0.9981, 0.002), gmin = Math.min(...P.map(G)), gmax = Math.max(0, g0, ...P.map(G));
+  const x = d3.scaleLinear([0, 1], [m.l, W - m.r]), y = d3.scaleLinear([Math.min(gmin, -0.5) - 1, gmax + 1], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  y.ticks(6).forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v} kJ</text>`);
+  [0, .25, .5, .75, 1].forEach(v => s += `<text x="${x(v)}" y="${H - 22}" text-anchor="middle" style="fill:#64748b">${fr(v, 2)}</text>`);
+  s += `<text x="${x(0)}" y="${H - 6}" text-anchor="middle" font-weight="700">tout A</text><text x="${x(1)}" y="${H - 6}" text-anchor="middle" font-weight="700">tout B</text><text x="${x(.5)}" y="${H - 6}" text-anchor="middle" style="fill:#64748b">avancement ξ →</text>`;
+  // droite sans mélange
+  s += `<line x1="${x(0)}" y1="${y(0)}" x2="${x(1)}" y2="${y(g0)}" stroke="#94a3b8" stroke-dasharray="6 4" stroke-width="1.6"/><text x="${x(.5)}" y="${y(g0 * .5) - 8}" text-anchor="middle" style="fill:#64748b">sans mélange : droite de pente ΔG°</text>`;
+  s += `<path d="M${P.map(p => `${x(p).toFixed(1)},${y(G(p)).toFixed(1)}`).join(" L")}" fill="none" stroke="#2563eb" stroke-width="3"/>`;
+  // équilibre
+  s += `<circle cx="${x(xeq)}" cy="${y(G(xeq))}" r="6" fill="#16a34a"/><text x="${x(xeq)}" y="${y(G(xeq)) + 20}" text-anchor="middle" style="fill:#16a34a" font-weight="700">équilibre : ΔG = 0, Q = K = ${K > 100 || K < .01 ? K.toExponential(1).replace("e", "·10^") : fr(K, 2)}</text>`;
+  // point courant + tangente
+  const X = x(xi), Y = y(G(xi)), dx = .12, t1 = [x(xi - dx), y(G(xi) - slope * dx)], t2 = [x(xi + dx), y(G(xi) + slope * dx)];
+  s += `<line x1="${t1[0]}" y1="${t1[1]}" x2="${t2[0]}" y2="${t2[1]}" stroke="#dc2626" stroke-width="2"/><circle cx="${X}" cy="${Y}" r="7" fill="#dc2626"/><text x="${X + 10}" y="${Y - 10}" style="fill:#dc2626" font-weight="700">pente ΔG = ${slope > 0 ? "+" : ""}${fr(slope, 1)} kJ/mol</text>`;
+  s += `<text x="${X}" y="${Y + (slope > 0 ? -28 : 30)}" text-anchor="middle" style="fill:#dc2626" font-size="18">${Math.abs(xi - xeq) < .01 ? "●" : xi < xeq ? "→" : "←"}</text>`;
+  el.innerHTML = s + "</svg>";
+  const Q = xi / (1 - xi);
+  $("#ch-vallee-txt").innerHTML = `À ξ = ${fr(xi, 2)} : Q = [B]/[A] = ${fr(Q, 2)}, ln Q = ${fr(Math.log(Q), 2)}, donc ΔG = ΔG° + RT ln Q = ${fr(g0, 1)} + 2,48 × (${fr(Math.log(Q), 2)}) = <b>${fr(slope, 1)} kJ/mol</b>. ` + (Math.abs(xi - xeq) < .01 ? "On est au fond de la vallée : la réaction ne bouge plus (en réalité, elle continue dans les deux sens à la même vitesse)." : slope < 0 ? "La pente est négative : la réaction <b>avance</b> vers B jusqu'au fond de la vallée." : "La pente est positive : la réaction <b>recule</b>, des B redeviennent A.") + ` À l'équilibre, ${fr(xeq * 100)} % de B et ${fr((1 - xeq) * 100)} % de A, soit K = exp(−ΔG°/RT) = exp(${fr(-g0, 1)} / 2,48) = ${K > 100 || K < .01 ? K.toExponential(2).replace("e", "·10^") : fr(K, 2)}.`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -867,6 +894,7 @@ function init() {
   ["ch-hT", "ch-hP"].forEach(i => $("#" + i).addEventListener("input", haber));
   ["ch-ea", "ch-kT", "ch-cat"].forEach(i => $("#" + i).addEventListener("input", cinetique));
   $("#ch-acide").addEventListener("change", dosage);
+  run(vallee); ["ch-dg0", "ch-xi"].forEach(i => $("#" + i)?.addEventListener("input", () => run(vallee)));
   run(courantes); run(echappement); run(escPlanetes); ["ch-esc-p", "ch-esc-t"].forEach(i => $("#" + i)?.addEventListener("input", () => { if (i === "ch-esc-p") $("#ch-esc-t").value = ASTRES[$("#ch-esc-p").value][2]; run(echappement); }));
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
