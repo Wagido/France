@@ -190,16 +190,19 @@ function laicitePew() {
 async function laiciteCarte() {
   const el = $("#la-carte"); if (!el) return;
   let G; try { G = await fetch("data/monde_religion.geojson").then(r => r.json()); } catch (e) { el.innerHTML = `<p class="empty">Carte indisponible.</p>`; return; }
-  const K = [["1chr", "Religion officielle : christianisme", "#991b1b"], ["1aut", "Religion officielle : autre religion", "#f87171"], ["2chr", "Religion préférée : christianisme", "#b45309"], ["2aut", "Religion préférée : autre religion ou plusieurs", "#fcd34d"], ["3", "Ni religion officielle ni préférée", "#4ade80"], ["4", "État hostile ou contrôlant toutes les religions", "#475569"], ["0", "Non classé (territoire)", "#e5e7eb"]];
+  const RN = { chr: "christianisme", isl: "islam", bou: "bouddhisme", jud: "judaïsme", plu: "plusieurs religions" };
+  const K = [["1chr", "Officielle : christianisme", "#1d4ed8"], ["1isl", "Officielle : islam", "#15803d"], ["1bou", "Officielle : bouddhisme", "#c2410c"], ["1jud", "Officielle : judaïsme", "#7c3aed"],
+    ["2chr", "Préférée : christianisme", "#93c5fd"], ["2isl", "Préférée : islam", "#86efac"], ["2bou", "Préférée : bouddhisme", "#fdba74"], ["2plu", "Préférée : plusieurs religions", "#d6d3d1"],
+    ["3", "Ni religion officielle ni préférée", "#fef3c7"], ["4", "État hostile ou contrôlant toutes les religions", "#374151"], ["0", "Non classé (territoire)", "#ffffff"]];
   const col = Object.fromEntries(K.map(k => [k[0], k[2]])), lab = Object.fromEntries(K.map(k => [k[0], k[1]]));
-  const key = p => p.c === 1 || p.c === 2 ? p.c + (p.r === "chr" ? "chr" : "aut") : String(p.c);
-  const det = p => p.r === "bou" ? " (bouddhisme)" : p.r === "plu" ? " (plusieurs religions)" : "";
+  const key = p => p.c === 1 || p.c === 2 ? p.c + p.r : String(p.c);
+  const det = p => "";
   const rw = r => d3.geoArea({ type: "Polygon", coordinates: [r] }) > 2 * Math.PI ? r.slice().reverse() : r;
   G.features.forEach(f => { const g = f.geometry; if (g.type === "Polygon") g.coordinates = g.coordinates.map(rw); else if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map(p => p.map(rw)); });
   const W = 900, H = 460, proj = d3.geoNaturalEarth1().fitExtent([[0, 0], [W, H]], G), path = d3.geoPath(proj);
   let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%"><path d="${path({ type: "Sphere" })}" fill="none" stroke="#cbd5e1"/>`;
-  G.features.forEach(f => { const p = f.properties, k = key(p); svg += `<path d="${path(f)}" fill="${col[k]}" stroke="#fff" stroke-width=".4"><title>${p.n} : ${lab[k].toLowerCase()}${det(p)}</title></path>`; });
-  el.innerHTML = svg + `</svg><div class="legend-row">${K.map(k => `<span><i style="border-top-color:${k[2]};opacity:1;width:14px;border-top-width:10px"></i>${k[1]}</span>`).join("")}</div>`;
+  G.features.forEach(f => { const p = f.properties, k = key(p); svg += `<path d="${path(f)}" fill="${col[k]}" stroke="#94a3b8" stroke-width=".35"><title>${p.n} : ${p.c === 1 ? "religion officielle : " + RN[p.r] : p.c === 2 ? "religion préférée : " + RN[p.r] : lab[k].toLowerCase()}</title></path>`; });
+  el.innerHTML = svg + `</svg><div class="legend-row">${K.map(k => `<span><i style="border-top-color:${k[2]};opacity:1;width:14px;border-top-width:10px;outline:1px solid #cbd5e1"></i>${k[1]}</span>`).join("")}</div>`;
 }
 
 /* Histoire de l'art d'après Gombrich : 28 chapitres */
