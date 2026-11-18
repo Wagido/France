@@ -90,6 +90,7 @@
     <nav class="tabs" data-group="croissance" aria-label="Croissance" hidden>
       <a href="#monnaie">Monnaie et croissance</a>
       <a href="#limites">Limites physiques à la croissance</a>
+      <a href="#climat-physique">Énergie et climat : la physique</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
@@ -113,9 +114,9 @@
       <a href="#chimie">Chimie</a>
       <a href="#roches">Roches</a>
       <a href="#energie-physique">L'énergie expliquée par la physique</a>
-      <a href="#climat-physique">Énergie et climat : la physique</a>
       <a href="#meteo">Météo</a>
       <a href="#telecom">Télécoms</a>
+      <a href="#voile">Voile et aérodynamique</a>
     </nav>
     <nav class="tabs" data-group="sources-g" aria-label="Sources" hidden>
       <a href="#sources">Sources</a>
@@ -5637,6 +5638,155 @@ for snr_db in (10, 15, 20):
   </ul></div>
 </section>
 
+<section id="voile" class="panel">
+  <div class="panel-head"><h2>La voile et l'aérodynamique : comment avance un voilier <span class="geo-fixed">Monde</span></h2></div>
+  <p class="lead">Comment un bateau peut-il remonter contre le vent ? Pourquoi un voilier de croisière plafonne-t-il à 7 nœuds alors qu'un bateau à foils dépasse 40 nœuds ? Cet article, écrit pour des ingénieurs qui naviguent, part de la mécanique des fluides (portance, traînée, couche limite) pour arriver au réglage des voiles, en passant par le vent apparent, l'équilibre des forces, la stabilité, la résistance de la carène et les foils. Le même bagage sert pour l'aile d'avion et le parapente (voir <a href="#meteo" data-to="me-para">Météo, chapitre 9</a>).</p>
+  <div class="kpis" id="vo-kpis"></div>
+  <ul class="mo-ul cr-toc">
+    <li class="cr-toc-p"><a href="#voile" data-to="vo-partie1"><b>I. L'aérodynamique : pourquoi une aile porte</b></a><ul><li><a href="#voile" data-to="vo-portance">1. Portance et traînée</a></li><li><a href="#voile" data-to="vo-polaire">2. La polaire, la finesse et l'allongement</a></li><li><a href="#voile" data-to="vo-couche">3. Couche limite, nombre de Reynolds, décrochage</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#voile" data-to="vo-partie2"><b>II. Le voilier, une machine à deux ailes</b></a><ul><li><a href="#voile" data-to="vo-apparent">4. Le vent apparent</a></li><li><a href="#voile" data-to="vo-forces">5. L'équilibre des forces : pourquoi on peut remonter au vent</a></li><li><a href="#voile" data-to="vo-stab">6. La stabilité : gîte, lest et largeur</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#voile" data-to="vo-partie3"><b>III. La carène : la limite de vitesse et comment la dépasser</b></a><ul><li><a href="#voile" data-to="vo-carene">7. La résistance à l'avancement et la vitesse de coque</a></li><li><a href="#voile" data-to="vo-foil">8. Planer et voler : les foils</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#voile" data-to="vo-partie4"><b>IV. La pratique</b></a><ul><li><a href="#voile" data-to="vo-vitesses">9. La polaire des vitesses et la meilleure route (VMG)</a></li><li><a href="#voile" data-to="vo-reglages">10. Régler ses voiles : creux, vrillage, penons</a></li><li><a href="#voile" data-to="vo-vent">11. Lire le vent sur l'eau : rafales, bascules, effets de côte</a></li><li><a href="#voile" data-to="vo-records">12. Records et comparaisons</a></li></ul></li>
+  </ul>
+  <p class="muted" style="font-size:.8rem">Les coefficients aérodynamiques et les polaires de cet article sont des modèles simplifiés aux ordres de grandeur réalistes (manuels d'aérodynamique, ouvrages de C. A. Marchaj et de F. Fossati), repris de mémoire, non vérifiés en ligne ; ils servent à comprendre les mécanismes, pas à concevoir un bateau.</p>
+
+  <h2 id="vo-partie1" class="cr-partie">I. L'aérodynamique : pourquoi une aile porte</h2>
+  <h3 id="vo-portance" class="ag-part">1. Portance et traînée</h3>
+  <p>Une voile, une aile d'avion, une quille et une voile de parapente fonctionnent de la même façon : elles <b>dévient un écoulement</b>. En courbant l'air vers le bas (ou sous le vent), l'aile lui communique une quantité de mouvement ; par réaction (troisième loi de Newton), l'air pousse l'aile dans l'autre sens. On décompose cette force en deux :</p>
+  <div class="callout small"><ul>
+    <li><b>La portance</b> L, perpendiculaire au vent relatif : c'est la force utile.</li>
+    <li><b>La traînée</b> D, parallèle au vent relatif : c'est la perte.</li>
+    <li><b>Les deux suivent la même loi</b> : F = ½ ρ V² S C, avec ρ la masse volumique du fluide (1,2 kg/m³ pour l'air, 1 025 kg/m³ pour l'eau de mer), V la vitesse, S la surface et C un coefficient sans dimension (C<sub>L</sub> pour la portance, C<sub>D</sub> pour la traînée) qui dépend de la forme et de l'<b>incidence</b> (l'angle entre l'aile et le vent).</li>
+    <li><b>Bernoulli ou Newton ?</b> Les deux disent la même chose. L'air accéléré sur l'extrados (le dessus, ou le côté sous le vent d'une voile) y crée une dépression ; l'intrados est en légère surpression. La dépression de l'extrados fournit environ les deux tiers de la portance. L'idée répandue selon laquelle l'air « doit arriver en même temps » au bord de fuite est fausse : il arrive en réalité plus tôt par l'extrados.</li>
+    <li><b>Le facteur V²</b> : doubler la vitesse du vent multiplie la force par quatre. C'est pourquoi on réduit la voilure (prise de ris) bien avant que le vent ne double.</li>
+  </ul></div>
+  <label style="display:block;max-width:620px;margin:8px 0">Incidence <input type="range" id="vo-alpha" min="-4" max="30" step="0.5" value="12" style="width:55%"> <b id="vo-alpha-v"></b></label>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>L'écoulement autour d'une voile</b> (schéma)</p><div id="vo-ecoul" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Coefficients de portance et de traînée selon l'incidence</b> (voile de près typique)</p><div id="vo-clcd" class="chart"></div></div>
+  </div>
+  <p class="muted" id="vo-alpha-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+
+  <h3 id="vo-polaire" class="ag-part">2. La polaire, la finesse et l'allongement</h3>
+  <p>La <b>finesse</b> est le rapport portance sur traînée, L/D. C'est le chiffre clé de toute aile : un planeur de finesse 50 parcourt 50 km en perdant 1 km d'altitude ; un parapente de finesse 10, 10 km. Pour un voilier, une meilleure finesse permet de remonter plus près du vent (chapitre 5). On la lit sur la <b>polaire</b> (courbe C<sub>L</sub> en fonction de C<sub>D</sub>) : la finesse maximale est la tangente menée depuis l'origine.</p>
+  <p>Une grande partie de la traînée vient des <b>tourbillons marginaux</b> : en bout d'aile, l'air de la surpression contourne l'extrémité vers la dépression et forme un tourbillon qui consomme de l'énergie. Cette <b>traînée induite</b> vaut C<sub>Di</sub> = C<sub>L</sub>² / (π A e), où A est l'<b>allongement</b> (envergure² / surface) et e un coefficient d'efficacité proche de 0,8 à 0,95. Plus l'aile est longue et fine, moins elle perd : d'où les ailes très allongées des planeurs et des albatros, et les grands-voiles hautes et étroites des voiliers de course.</p>
+  <label style="display:block;max-width:620px;margin:8px 0">Allongement <input type="range" id="vo-ar" min="1" max="30" step="0.5" value="5" style="width:55%"> <b id="vo-ar-v"></b></label>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Polaire</b> : la tangente depuis l'origine donne la finesse maximale</p><div id="vo-pol" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Finesse maximale de quelques « ailes »</b></p><div id="vo-finesse" class="chart"></div></div>
+  </div>
+
+  <h3 id="vo-couche" class="ag-part">3. Couche limite, nombre de Reynolds, décrochage</h3>
+  <p>Au contact de la surface, le fluide est immobile ; sa vitesse augmente sur une mince épaisseur, la <b>couche limite</b> (quelques millimètres sur une voile). Tout se joue là : le frottement, et le décollement de l'écoulement.</p>
+  <div class="callout small"><ul>
+    <li><b>Le nombre de Reynolds</b> Re = V c / ν (c la corde, ν la viscosité cinématique : 1,5 × 10⁻⁵ m²/s pour l'air, 1,2 × 10⁻⁶ pour l'eau) compare l'inertie et la viscosité. Une voile de 3 m de corde à 5 m/s : Re ≈ 10⁶. Une quille de 1 m à 3 m/s dans l'eau : Re ≈ 2,5 × 10⁶. Un insecte : quelques centaines. Au-delà de quelques centaines de milliers, la couche limite devient <b>turbulente</b> : elle frotte plus, mais elle colle mieux à la surface.</li>
+    <li><b>Le décrochage</b> : quand l'incidence augmente, la dépression de l'extrados doit être « remontée » jusqu'au bord de fuite, contre une pression qui augmente (gradient de pression adverse). Au-delà d'un angle critique (12 à 20° selon le profil), la couche limite n'a plus assez d'énergie : elle <b>décolle</b>. La portance chute, la traînée explose. Sur une voile, les penons sous le vent se mettent à tourner ; sur un parapente, c'est la fermeture ou le décrochage de l'aile.</li>
+    <li><b>Le foc ouvre la grand-voile</b> : l'interaction entre deux voiles est subtile. Le foc ne « souffle » pas dans la grand-voile ; c'est l'inverse : la grand-voile place le foc dans un écoulement plus favorable, et le foc décharge le bord d'attaque de la grand-voile, qui décroche moins vite (analyse d'Arvel Gentry, années 1970).</li>
+  </ul></div>
+
+  <h2 id="vo-partie2" class="cr-partie">II. Le voilier, une machine à deux ailes</h2>
+  <h3 id="vo-apparent" class="ag-part">4. Le vent apparent</h3>
+  <p>À bord, on ne sent pas le vent réel mais le <b>vent apparent</b> : la somme du vent réel et du vent créé par le déplacement du bateau (le vent de vitesse, égal et opposé à la vitesse du bateau). C'est ce vent apparent qui agit sur les voiles. Plus le bateau va vite, plus le vent apparent se décale vers l'avant et, au près, se renforce.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Vent réel <input type="range" id="vo-tws" min="4" max="30" step="1" value="12"> <b id="vo-tws-v"></b></label>
+    <label>Angle au vent réel <input type="range" id="vo-twa" min="30" max="180" step="1" value="60"> <b id="vo-twa-v"></b></label>
+    <label>Vitesse du bateau <input type="range" id="vo-bs" min="0" max="40" step="0.5" value="6.5"> <b id="vo-bs-v"></b></label>
+  </div>
+  <div id="vo-triangle" class="chart"></div>
+  <p class="muted" id="vo-triangle-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+  <div class="callout small"><ul>
+    <li><b>Les bateaux rapides naviguent toujours « au près »</b> : un catamaran à foils qui va plus vite que le vent voit le vent apparent venir de l'avant même quand il descend sous le vent. Ses voiles restent bordées presque dans l'axe du bateau, quelle que soit la route.</li>
+    <li><b>Les char à voile et les bateaux à foils dépassent la vitesse du vent</b> : ce n'est pas un paradoxe. Le vent apparent reste fort tant que le bateau ne va pas « avec » le vent ; seule la traînée limite la vitesse. Au vent arrière pur, en revanche, on ne peut jamais dépasser le vent : le vent apparent s'annulerait.</li>
+  </ul></div>
+
+  <h3 id="vo-forces" class="ag-part">5. L'équilibre des forces : pourquoi on peut remonter au vent</h3>
+  <p>La force aérodynamique totale des voiles est presque perpendiculaire au vent apparent, légèrement inclinée vers l'arrière par la traînée. On la décompose selon l'axe du bateau : une petite <b>force propulsive</b> vers l'avant et une grosse <b>force de dérive</b> latérale. Sans rien sous l'eau, le bateau glisserait de côté comme une feuille. La <b>quille</b> (ou la dérive) est une seconde aile, dans l'eau : le bateau avance avec un léger angle de dérive (3 à 6°), et la quille produit une portance qui équilibre la force latérale des voiles.</p>
+  <p>En régime établi, les deux forces (aérienne et hydrodynamique) sont égales et opposées. Il en découle un résultat élégant, le <b>théorème de Lanchester</b> : l'angle minimal entre la route et le vent apparent vaut la somme de deux angles de traînée, β = ε<sub>A</sub> + ε<sub>H</sub>, avec tan ε = 1 / finesse pour les voiles (ε<sub>A</sub>) et pour la coque et la quille (ε<sub>H</sub>). Un voilier ne remonte bien au vent que si <b>ses deux ailes</b> ont une bonne finesse.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Finesse des voiles <input type="range" id="vo-fa" min="2" max="12" step="0.5" value="5"> <b id="vo-fa-v"></b></label>
+    <label>Finesse coque + quille <input type="range" id="vo-fh" min="2" max="15" step="0.5" value="6"> <b id="vo-fh-v"></b></label>
+  </div>
+  <div id="vo-forces-ch" class="chart"></div>
+  <p class="muted" id="vo-forces-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+
+  <h3 id="vo-stab" class="ag-part">6. La stabilité : gîte, lest et largeur</h3>
+  <p>La force de dérive des voiles s'applique haut (au centre de poussée vélique), celle de la quille bas : elles forment un couple qui fait <b>gîter</b> le bateau. Il est équilibré par le <b>couple de redressement</b> : le poids, appliqué au centre de gravité G, et la poussée d'Archimède, appliquée au centre de carène C, qui se déplace vers le côté qui s'enfonce. Le bras de levier entre ces deux forces s'appelle GZ.</p>
+  <div class="callout small"><ul>
+    <li><b>Stabilité de poids</b> : un lest lourd placé bas (bulbe de quille) abaisse G. Le couple de redressement continue d'augmenter avec la gîte : un monocoque lesté revient debout même couché à 90°, jusqu'à l'angle de chavirage (120 à 130° pour un bon voilier hauturier).</li>
+    <li><b>Stabilité de forme</b> : une coque large, ou deux coques écartées (catamaran), déplace beaucoup C dès les premiers degrés. Le catamaran est très raide au début, puis le couple chute une fois qu'une coque sort de l'eau : retourné, il ne revient pas.</li>
+    <li><b>Le rappel</b> : sur un dériveur, l'équipage au trapèze déplace G au vent ; sur un IMOCA, on transfère des tonnes d'eau de ballast et on incline la quille (quille pendulaire) jusqu'à 38°.</li>
+    <li><b>La puissance d'un voilier</b>, c'est sa stabilité : on ne peut utiliser que la force vélique que le couple de redressement permet d'encaisser. Au-delà, il faut réduire la toile.</li>
+  </ul></div>
+  <div id="vo-gz" class="chart"></div>
+
+  <h2 id="vo-partie3" class="cr-partie">III. La carène : la limite de vitesse et comment la dépasser</h2>
+  <h3 id="vo-carene" class="ag-part">7. La résistance à l'avancement et la vitesse de coque</h3>
+  <p>Une coque qui avance dans l'eau subit deux résistances principales : le <b>frottement</b> sur la surface mouillée (proportionnel à V²) et la <b>résistance de vagues</b> : la coque crée un train de vagues qui emporte de l'énergie. Or une vague de longueur λ avance à la vitesse c = √(g λ / 2π). Quand le bateau va assez vite pour que la vague qu'il crée ait sa propre longueur, il se retrouve coincé entre une crête à l'étrave et une crête au tableau arrière : il devrait « monter » sa propre vague d'étrave. La résistance explose. C'est la <b>vitesse de coque</b> :</p>
+  <p style="font-size:1.1rem;text-align:center"><b>V ≈ 2,43 √L</b> (nœuds, L longueur de flottaison en mètres), soit un nombre de Froude F<sub>n</sub> = V / √(g L) ≈ 0,4</p>
+  <label style="display:block;max-width:620px;margin:8px 0">Longueur de flottaison <input type="range" id="vo-lwl" min="3" max="35" step="0.5" value="9" style="width:55%"> <b id="vo-lwl-v"></b></label>
+  <div id="vo-resist" class="chart"></div>
+  <p class="muted" id="vo-resist-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+  <div class="callout small"><ul>
+    <li><b>Pourquoi les grands bateaux vont plus vite</b> : la vitesse de coque croît comme la racine de la longueur. Un dériveur de 4 m plafonne à 5 nœuds ; un voilier de croisière de 10 m, à 7,5 nœuds ; un maxi de 30 m, à 13 nœuds.</li>
+    <li><b>Pourquoi les catamarans dépassent la limite</b> : leurs coques très fines (rapport longueur sur largeur de 12 à 15) créent peu de vagues ; la « barrière » s'efface.</li>
+  </ul></div>
+
+  <h3 id="vo-foil" class="ag-part">8. Planer et voler : les foils</h3>
+  <p>Pour franchir la vitesse de coque, il faut <b>sortir de l'eau</b>. Un bateau léger à fond plat <b>déjauge</b> : la pression dynamique sous la coque le soulève, il glisse sur l'eau au lieu de la fendre (planing, F<sub>n</sub> &gt; 1). Le foil va plus loin : c'est une aile sous l'eau. L'eau étant 850 fois plus dense que l'air, un foil de moins d'un mètre carré soulève un bateau de plusieurs tonnes dès 12 à 15 nœuds. La coque sort entièrement : plus de résistance de vagues, plus de frottement de coque, seulement la traînée des foils.</p>
+  <div id="vo-regimes" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Calcul</b> : pour soulever 8 tonnes (un IMOCA) à 20 nœuds (10,3 m/s) avec C<sub>L</sub> = 0,4 : S = m g / (½ ρ V² C<sub>L</sub>) = 78 500 / (0,5 × 1 025 × 106 × 0,4) ≈ 3,6 m². En pratique, le foil porte une partie du poids et le bateau « vole » partiellement.</li>
+    <li><b>La limite des foils : la cavitation</b>. Au-delà de 45 à 50 nœuds, la dépression sur l'extrados du foil devient si forte que l'eau s'y vaporise ; la portance s'effondre. Les records absolus utilisent des profils spéciaux (supercavitants).</li>
+    <li><b>La stabilité en vol</b> : un foil porte plus quand il s'enfonce, moins quand il sort ; les bateaux de course règlent l'incidence en permanence, comme un avion règle son assiette.</li>
+  </ul></div>
+
+  <h2 id="vo-partie4" class="cr-partie">IV. La pratique</h2>
+  <h3 id="vo-vitesses" class="ag-part">9. La polaire des vitesses et la meilleure route (VMG)</h3>
+  <p>La <b>polaire des vitesses</b> donne la vitesse du bateau selon l'angle au vent réel, pour chaque force de vent. Elle se mesure en navigation ou se calcule (programmes de prédiction de vitesse, VPP). On y lit la meilleure façon d'atteindre un point situé face au vent ou sous le vent : il ne faut pas aller droit, mais <b>tirer des bords</b> à l'angle qui maximise la vitesse utile vers l'objectif, la <b>VMG</b> (« velocity made good » : V cos θ).</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0"><label>Bateau <select id="vo-bateau"><option value="croisiere" selected>Voilier de croisière de 10 m</option><option value="imoca">IMOCA à foils (18 m)</option></select></label><label>Vent réel <select id="vo-pol-tws"><option value="6">6 nœuds</option><option value="12" selected>12 nœuds</option><option value="20">20 nœuds</option></select></label></div>
+  <div class="grid2">
+    <div><div id="vo-polvit" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>VMG selon l'angle au vent</b> (vitesse utile vers le vent ou sous le vent)</p><div id="vo-vmg" class="chart"></div><p class="muted" id="vo-vmg-txt" style="font-size:.85rem;margin:4px 0 0"></p></div>
+  </div>
+  <p class="muted" style="font-size:.8rem">Polaires modélisées, à l'allure réaliste ; une vraie polaire est publiée par l'architecte ou mesurée (par exemple certificats ORC).</p>
+
+  <h3 id="vo-reglages" class="ag-part">10. Régler ses voiles : creux, vrillage, penons</h3>
+  <p>Régler une voile, c'est choisir son <b>incidence</b> (par l'écoute), son <b>creux</b> (sa courbure, par les tensions de drisse, de bordure et de pataras) et son <b>vrillage</b> (la variation d'incidence du bas vers le haut, par le hale-bas et le chariot de grand-voile).</p>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Pourquoi vriller : le vent augmente avec la hauteur</b>, donc le vent apparent adonne (vient plus de côté) en haut du mât</p><div id="vo-gradient" class="chart"></div></div>
+    <div><div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Conditions</th><th>Creux</th><th>Vrillage</th><th>Pourquoi</th></tr></thead><tbody>
+      <tr><td>Petit temps (moins de 6 nœuds), mer plate</td><td>moyen, voile assez plate</td><td>ouvert</td><td>l'écoulement décolle facilement à faible vitesse ; une voile trop creuse « cale »</td></tr>
+      <tr><td>Vent moyen, mer formée</td><td>creux maximal</td><td>moyen</td><td>chercher la puissance pour passer les vagues</td></tr>
+      <tr><td>Vent fort</td><td>plat</td><td>ouvert en haut</td><td>réduire la force et la gîte : on « vide » le haut de la voile</td></tr>
+      <tr><td>Portant</td><td>creux, voile très ouverte</td><td>ouvert</td><td>la voile travaille en partie décrochée, comme un parachute, sauf pour les bateaux rapides</td></tr>
+    </tbody></table></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Les penons</b> (brins de laine collés sur la voile) visualisent la couche limite. Au vent et sous le vent, ils doivent filer droit vers l'arrière. Penon sous le vent qui tourne : la voile est trop bordée, l'écoulement décolle (décrochage). Penon au vent qui se lève : la voile est trop choquée ou le bateau trop lofé, l'incidence est trop faible.</li>
+    <li><b>Le creux est un multiplicateur de portance</b> : un profil creux porte plus (C<sub>L</sub> jusqu'à 1,5 à 1,8) mais traîne plus et décroche plus tôt ; un profil plat porte moins mais avec une meilleure finesse : c'est le réglage du près serré.</li>
+  </ul></div>
+
+  <h3 id="vo-vent" class="ag-part">11. Lire le vent sur l'eau : rafales, bascules, effets de côte</h3>
+  <div class="callout small"><ul>
+    <li><b>Les rafales se voient</b> : une zone plus sombre sur l'eau signale un vent plus fort (petites rides qui absorbent la lumière). Une rafale apporte en général une <b>adonnante</b> au près (le vent tourne vers l'arrière, on peut lofer) car l'air qui descend d'altitude apporte la direction du vent géostrophique, tournée vers la droite (voir <a href="#meteo" data-to="me-p1b">Météo, chapitre 2</a>).</li>
+    <li><b>Les bascules</b> : le vent oscille souvent de 5 à 15° autour d'une direction moyenne. Au près, on vire sur les refusantes pour toujours naviguer sur le bord favorable : sur un parcours, gagner 5° vaut plus que gagner 0,2 nœud.</li>
+    <li><b>Les effets de côte</b> : le vent accélère autour des caps (effet Venturi) et le long d'une côte qu'il longe en ayant la terre à sa gauche (dans l'hémisphère Nord) ; il refuse ou adonne en passant de la mer à la terre, où le frottement le freine et le dévie.</li>
+    <li><b>La brise thermique</b> : l'après-midi, la terre chauffe plus vite que la mer ; l'air monte sur la terre et la brise de mer s'établit (10 à 15 nœuds), en tournant au fil de la journée dans le sens des aiguilles d'une montre. La nuit, la brise de terre, plus faible, prend le relais. Les parapentistes connaissent la même mécanique en montagne (voir Météo, chapitre 9).</li>
+    <li><b>Le courant</b> : il modifie le vent apparent ; un courant contre le vent lève une mer courte et dure, et un bateau qui remonte le courant voit un vent plus fort.</li>
+  </ul></div>
+
+  <h3 id="vo-records" class="ag-part">12. Records et comparaisons</h3>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Vitesse maximale typique</b> (nœuds ; 1 nœud = 1,852 km/h)</p><div id="vo-vmax" class="chart"></div></div>
+    <div><div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Record</th><th>Performance</th></tr></thead><tbody>
+      <tr><td>Vitesse sur 500 m (Vestas Sailrocket 2, 2012)</td><td>65,45 nœuds (121 km/h)</td></tr>
+      <tr><td>Tour du monde en équipage (trophée Jules Verne, IDEC Sport, 2017)</td><td>40 jours 23 heures</td></tr>
+      <tr><td>Tour du monde en solitaire sans escale (Vendée Globe 2024-2025, Charlie Dalin)</td><td>64 jours 19 heures</td></tr>
+      <tr><td>Premier tour du monde en solitaire (Joshua Slocum, 1895-1898)</td><td>plus de 3 ans, avec escales</td></tr>
+    </tbody></table></div><p class="muted" style="font-size:.8rem">Records repris de mémoire, non vérifiés en ligne ; voir le <a href="https://www.sailspeedrecords.com" target="_blank" rel="noopener">World Sailing Speed Record Council</a>.</p></div>
+  </div>
+</section>
+
 <section id="meteo" class="panel">
   <div class="panel-head"><h2>La météo : fronts, nuages, dépressions et vent <span class="geo-fixed">Monde</span></h2></div>
   <p class="lead">Comment lire le ciel ? Pourquoi la pluie arrive-t-elle avec un front chaud et les averses avec un front froid ? Comment un marin peut-il prévoir le vent en sachant où est la dépression ? Cet article, écrit pour des ingénieurs, explique la mécanique de l'atmosphère aux latitudes moyennes avec les équations et les ordres de grandeur, une maquette 3D d'une dépression et deux simulateurs (ascension d'une particule d'air, vent autour d'une dépression).</p>
@@ -5649,6 +5799,7 @@ for snr_db in (10, 15, 20):
     <li><a href="#meteo" data-to="me-p4">6. Prévoir le vent selon sa position : la règle du marin</a></li>
     <li><a href="#meteo" data-to="me-p5">7. Les nuages : pourquoi ils se forment, ce qu'ils annoncent ; microphysique de la pluie</a></li>
     <li><a href="#meteo" data-to="me-p6">8. Prévoir : du baromètre aux modèles numériques</a></li>
+    <li><a href="#meteo" data-to="me-para">9. La pratique du parapente : thermiques, nuages, brises et relief</a></li>
   </ul>
 
   <h3 id="me-p1" class="ag-part">1. Hautes et basses pressions : pourquoi le vent tourne</h3>
@@ -5781,6 +5932,91 @@ for snr_db in (10, 15, 20):
 <li><b>Les limites</b> : ces signes valent pour quelques heures à un jour. Au-delà, les modèles numériques (comme ceux de Météo-France ou du Centre européen de Reading) sont bien plus fiables : une prévision à 5 jours est aujourd'hui aussi bonne qu'une prévision à 1 jour dans les années 1980.</li>
   </ul></div>
   <p class="muted" style="font-size:.78rem">Synthèse des notions classiques de météorologie, sans sources en ligne vérifiées ici : Organisation météorologique mondiale, <i>Atlas international des nuages</i> (édition en ligne, 2017) ; J. Bjerknes et H. Solberg, « Life cycle of cyclones and the polar front theory of atmospheric circulation », <i>Geofysiske Publikasjoner</i> (1922) ; C. H. D. Buys Ballot (1857) ; Météo-France, documentation pédagogique ; P. Bauer, A. Thorpe et G. Brunet, « The quiet revolution of numerical weather prediction », <i>Nature</i> (2015) ; J. Holton et G. Hakim, <i>An Introduction to Dynamic Meteorology</i> (5ᵉ éd., 2013) ; J. Wallace et P. Hobbs, <i>Atmospheric Science</i> (2006) ; E. Eady, <i>Tellus</i> (1949) ; E. Lorenz, <i>Journal of the Atmospheric Sciences</i> (1963). Valeurs (altitudes, pentes, angles) : ordres de grandeur.</p>
+  <h3 id="me-para" class="ag-part">9. La pratique du parapente : thermiques, nuages, brises et relief</h3>
+  <p>Un parapente n'a pas de moteur : il descend en permanence, d'environ 1 m/s. Pour rester en l'air ou monter, il faut trouver de l'air qui monte plus vite que cela. Le parapentiste vit dans les 3 000 premiers mètres de l'atmosphère, la <b>couche limite</b>, celle que le soleil brasse chaque jour. Trois sortes d'ascendances le portent : les <b>thermiques</b> (l'air chauffé par le sol), le <b>dynamique</b> (le vent qui remonte une pente) et les <b>ondes</b> (le vent qui oscille derrière un relief). Ce chapitre applique les notions des chapitres 1 à 7 à sa pratique. L'aérodynamique de l'aile elle-même (portance, finesse, décrochage) est expliquée dans <a href="#voile" data-to="vo-portance">La voile et l'aérodynamique</a>.</p>
+
+  <h3 id="me-para-th" class="li-sub">9.1 Le thermique : une bulle d'air chaud qui monte</h3>
+  <p>Le soleil chauffe le sol, qui chauffe l'air à son contact. Mais pas partout pareil : un champ de blé mûr, une barre rocheuse, un village ou un parking chauffent plus vite qu'une forêt, un pré humide ou un lac. L'air qui s'y réchauffe de 1 à 3 °C de plus que ses voisins devient plus léger : il finit par se décoller, sous forme de <b>bulle</b> ou de <b>colonne</b>, souvent déclenché par un relief, une lisière ou le passage d'une rafale. En montant, il se détend et se refroidit de 1 °C par 100 m (adiabatique sèche, chapitre 3). Il monte tant qu'il reste plus chaud que l'air ambiant.</p>
+  <div id="me-para-schema" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Le plafond</b> : si l'air ambiant se refroidit avec l'altitude plus lentement que la bulle (atmosphère stable) ou s'il existe une <b>inversion</b> (une couche où la température augmente avec l'altitude), la bulle y perd sa flottabilité et s'arrête. C'est le « couvercle » qui limite la hauteur des vols.</li>
+    <li><b>Le cumulus</b> : si la bulle atteint son point de condensation avant le couvercle, elle forme un cumulus. Sa base plate marque l'altitude de condensation, qui vaut environ <b>125 m × (T − T<sub>d</sub>)</b> au-dessus du sol (T la température, T<sub>d</sub> le point de rosée au sol). Avec 25 °C et un point de rosée de 11 °C : base vers 1 750 m au-dessus du sol. Le simulateur du chapitre 3 fait ce calcul.</li>
+    <li><b>La vitesse de montée</b> : de 0,5 à 2 m/s par temps faible, 2 à 4 m/s par bonne journée, 5 à 8 m/s dans les Alpes en été. Le thermique est plus fort au centre (le « noyau ») et entouré d'air qui descend (les « dégueulantes ») : l'air qui monte doit bien redescendre quelque part.</li>
+    <li><b>La dérive</b> : le vent incline les thermiques ; le cumulus est sous le vent de la source au sol. Par vent régulier, les thermiques s'alignent parfois en <b>rues de nuages</b> parallèles au vent, qui permettent de longues lignes droites sans tourner.</li>
+  </ul></div>
+
+  <h3 id="me-para-jour" class="li-sub">9.2 La journée thermique : quand voler, jusqu'où monter</h3>
+  <p>Simulateur : l'évolution d'une journée d'été selon la température maximale, le point de rosée et l'altitude de l'inversion. Le plafond est la base des cumulus si elle est sous l'inversion ; sinon c'est l'inversion, et le ciel reste bleu (thermiques « secs », sans nuage pour les signaler).</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Température maximale <input type="range" id="me-pj-tx" min="12" max="36" step="1" value="27"> <b id="me-pj-tx-v"></b></label>
+    <label>Point de rosée <input type="range" id="me-pj-td" min="-2" max="22" step="1" value="12"> <b id="me-pj-td-v"></b></label>
+    <label>Inversion à <input type="range" id="me-pj-inv" min="600" max="4500" step="100" value="2400"> <b id="me-pj-inv-v"></b></label>
+    <label><input type="checkbox" id="me-pj-inst"> Air instable en altitude (pas de couvercle, orages possibles)</label>
+  </div>
+  <div id="me-para-jour-ch" class="chart"></div>
+  <p class="muted" id="me-para-jour-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+  <p class="muted" style="font-size:.8rem">Modèle pédagogique : température de la journée sinusoïdale, déclenchement des thermiques vers 3 °C de réchauffement, vitesse de montée proportionnelle à la racine de l'épaisseur de la couche brassée. Les prévisions réelles utilisent les émagrammes (sondages et modèles numériques, par exemple les sites de prévision dédiés au vol libre).</p>
+
+  <h3 id="me-para-nuages" class="li-sub">9.3 Lire le ciel en vol : ce que disent les nuages</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Ce que l'on voit</th><th>Ce que cela signifie</th><th>Ce qu'il faut faire</th></tr></thead><tbody>
+    <tr><td><b>Petits cumulus plats</b> (humilis), bien séparés</td><td>thermiques réguliers mais modestes ; couche brassée peu épaisse</td><td>bonne journée d'apprentissage ; les nuages qui se forment marquent les thermiques actifs</td></tr>
+    <tr><td><b>Cumulus bien formés, base plate et nette</b></td><td>thermiques organisés ; la base donne le plafond</td><td>viser les nuages en formation (bords nets, qui grossissent) ; quitter ceux qui se défont (bords effilochés)</td></tr>
+    <tr><td><b>Cumulus qui bourgeonnent vite</b>, plus hauts que larges, dès la fin de matinée (congestus)</td><td>air instable sur une grande épaisseur : <b>surdéveloppement</b> probable</td><td>surveiller en permanence ; prévoir d'atterrir tôt ; ne pas monter sous un nuage qui noircit</td></tr>
+    <tr><td><b>Cumulonimbus</b> : enclume, base noire, pluie, éclairs</td><td>ascendances de 10 à 20 m/s sous la base (aspiration dans le nuage), rafales descendantes jusqu'à 20 km autour, foudre</td><td><b>atterrir immédiatement</b>, loin et au vent de l'orage ; c'est le danger météorologique numéro un du vol libre</td></tr>
+    <tr><td><b>Voile de cirrus</b> puis altostratus qui arrive par l'ouest</td><td>un front chaud approche (chapitre 5) ; le soleil faiblit</td><td>les thermiques vont s'éteindre ; le vent va se renforcer dans les heures qui suivent</td></tr>
+    <tr><td><b>Étalement</b> : les cumulus s'étalent en nappe (stratocumulus)</td><td>sous une inversion humide, les nuages se rejoignent et font de l'ombre</td><td>les thermiques faiblissent ; chercher les zones encore au soleil</td></tr>
+    <tr><td><b>Ciel bleu sans aucun nuage</b> en été</td><td>air sec (T − T<sub>d</sub> grand) ou inversion basse</td><td>thermiques invisibles, parfois puissants et étroits ; lire le sol, les oiseaux, les autres ailes</td></tr>
+    <tr><td><b>Nuages lenticulaires</b> (en soucoupe, immobiles)</td><td>onde de relief : vent fort en altitude, rotors turbulents sous le vent des crêtes</td><td>journée à éviter pour le parapente, même si le vent semble faible au sol</td></tr>
+    <tr><td><b>Nuage en drapeau</b> accroché au sommet</td><td>vent fort au niveau des crêtes</td><td>ne pas décoller ; le vent en altitude dépasse ce que l'aile peut remonter</td></tr>
+    <tr><td><b>Nuages bas qui défilent vite</b></td><td>vent fort dans les basses couches</td><td>vol dangereux : turbulences, dérive</td></tr>
+  </tbody></table></div>
+
+  <h3 id="me-para-brises" class="li-sub">9.4 Les brises de montagne : un cycle de 24 heures</h3>
+  <p>En montagne, le relief crée sa propre circulation, la même mécanique que la brise de mer du marin (voir <a href="#voile" data-to="vo-vent">La voile, chapitre 11</a>). Les pentes au soleil chauffent l'air à leur contact, qui remonte le long de la pente (<b>brise montante</b>, ou anabatique). L'après-midi, toute la vallée se réchauffe plus que la plaine : l'air remonte la vallée (<b>brise de vallée</b>), parfois à 20 ou 30 km/h. Le soir, les pentes se refroidissent : l'air froid, plus lourd, descend (<b>brise descendante</b>, catabatique), puis la nuit l'air de la vallée s'écoule vers la plaine (<b>brise de montagne</b>).</p>
+  <div id="me-para-brises-ch" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Conséquences pratiques</b> : décoller tôt le matin sur une pente exposée à l'est, dès que la brise montante s'établit ; se méfier de la brise de vallée l'après-midi à l'atterrissage (vent fort, souvent turbulent, parfois de direction opposée au vent météo) ; le soir, la <b>restitution</b> donne un vol calme et ascendant dans toute la vallée, quand le sol restitue la chaleur accumulée.</li>
+    <li><b>La pente au soleil</b> : l'orientation compte plus que l'altitude. Le matin, les faces est ; à midi, les faces sud ; l'après-midi, les faces ouest. Une face qui passe à l'ombre cesse de produire en quelques minutes.</li>
+  </ul></div>
+
+  <h3 id="me-para-relief" class="li-sub">9.5 Le vent et le relief : dynamique, rotors, venturi</h3>
+  <p>Quand le vent rencontre une pente, il est forcé de monter : c'est l'<b>ascendance dynamique</b>. Sa composante verticale vaut environ V × sin(pente) devant le relief. Si elle dépasse le taux de chute de l'aile, on peut tenir en l'air indéfiniment le long d'une crête ou d'une dune (le « soaring »). Sous le vent du relief, l'air redescend et tourbillonne : c'est le <b>rotor</b>, la zone la plus dangereuse.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Vent <input type="range" id="me-pr-v" min="0" max="50" step="1" value="20"> <b id="me-pr-v-v"></b></label>
+    <label>Pente <input type="range" id="me-pr-p" min="10" max="60" step="1" value="30"> <b id="me-pr-p-v"></b></label>
+  </div>
+  <div id="me-para-relief-ch" class="chart"></div>
+  <p class="muted" id="me-para-relief-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+  <div class="callout small"><ul>
+    <li><b>Le vent limite</b> : un parapente vole à environ 38 km/h bras hauts et 50 à 60 km/h accéléré. Au-delà de 25 à 30 km/h de vent, on ne peut plus avancer face au vent avec une marge suffisante : on recule. Et le vent augmente avec l'altitude (gradient) : un vent de 15 km/h au décollage peut en faire 35 au sommet.</li>
+    <li><b>Le venturi</b> : le vent accélère en passant un col ou entre deux sommets ; un pilote peut s'y faire aspirer vers l'arrière du relief, droit dans le rotor.</li>
+    <li><b>Le gradient au sol</b> : près du sol, le frottement freine le vent ; en finale, l'aile traverse des couches de vitesse différente et perd de la vitesse air. Garder de la vitesse en approche par vent fort.</li>
+  </ul></div>
+
+  <h3 id="me-para-foehn" class="li-sub">9.6 Le foehn et les ondes</h3>
+  <p>Quand un vent humide franchit une chaîne de montagnes, il monte côté au vent, se refroidit de 1 °C par 100 m, puis seulement de 0,5 à 0,6 °C par 100 m une fois saturé (la condensation libère de la chaleur, chapitre 3) : il pleut sur ce versant. Il redescend de l'autre côté, sec, et se réchauffe de 1 °C par 100 m sur toute la descente. Résultat : un vent <b>chaud, sec et turbulent</b> sous le vent du massif, le <b>foehn</b>.</p>
+  <div id="me-para-foehn-ch" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Pour le parapente</b>, le foehn est une journée interdite : vent fort et rafaleux, rotors, et un ciel souvent trompeur (beau temps sous le vent, « mur de foehn » sur les crêtes).</li>
+    <li><b>Les ondes</b> : derrière la montagne, l'air stable oscille comme l'eau derrière un rocher, sur des dizaines de kilomètres et jusqu'à 10 km d'altitude. Les planeurs y montent très haut ; les nuages lenticulaires en marquent les crêtes et les rotors en dessous.</li>
+  </ul></div>
+
+  <h3 id="me-para-polaire" class="li-sub">9.7 La polaire du parapente et la vitesse à voler</h3>
+  <p>La polaire donne le taux de chute selon la vitesse. Un parapente de loisir chute d'environ 1 m/s à 33 km/h (taux de chute minimal), avec une finesse maximale de 9 à 10 vers 38 km/h. Mais la meilleure vitesse dépend de la masse d'air : <b>face au vent ou dans de l'air descendant, il faut accélérer</b>, pour traverser vite la zone défavorable. La construction graphique (théorie de MacCready, 1954) consiste à tracer la tangente à la polaire depuis un point décalé du vent et de la descendance.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Vent <input type="range" id="me-pp-w" min="-25" max="25" step="1" value="-15"> <b id="me-pp-w-v"></b></label>
+    <label>Masse d'air <input type="range" id="me-pp-s" min="-1.5" max="2" step="0.1" value="0.5"> <b id="me-pp-s-v"></b></label>
+  </div>
+  <div id="me-para-polaire-ch" class="chart"></div>
+  <p class="muted" id="me-para-polaire-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+
+  <div class="callout small"><p style="margin:0 0 4px"><b>En résumé : les questions météo avant de voler</b></p><ul>
+    <li><b>Le vent</b> : force et direction au sol <i>et</i> à l'altitude des crêtes (vent météo à 1 500, 2 000 et 3 000 m) ; présence de foehn ou d'onde.</li>
+    <li><b>La stabilité</b> : y a-t-il une inversion ? À quelle altitude ? L'air est-il instable en altitude (risque d'orage) ?</li>
+    <li><b>L'humidité</b> : écart température – point de rosée, donc base des cumulus ; risque de surdéveloppement l'après-midi.</li>
+    <li><b>L'évolution</b> : un front, une dégradation orageuse, un renforcement du vent sont-ils annoncés pour la journée ?</li>
+    <li><b>Le local</b> : heures des brises, zones sous le vent, atterrissages possibles. Les clubs et les écoles connaissent les pièges de chaque site.</li>
+  </ul></div>
 </section>
 
 
@@ -5818,7 +6054,9 @@ for snr_db in (10, 15, 20):
 <script src="chimie.js?v=20261118o"></script>
 <script src="eau2.js?v=20261118a"></script>
 <script src="energiephys.js?v=20261118b"></script>
-<script src="telecom.js?v=20261118a"></script>
+<script src="telecom.js?v=20261118b"></script>
+<script src="voile.js?v=20261118b"></script>
+<script src="parapente.js?v=20261118b"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
