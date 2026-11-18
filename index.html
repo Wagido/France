@@ -4329,8 +4329,8 @@
       <li><a href="#chimie" data-to="ch-p1">1. La liaison chimique : ionique, covalente, métallique</a></li>
       <li><a href="#chimie" data-to="ch-p2">2. Entre les molécules : forces faibles et états de la matière</a></li></ul></li>
     <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie2"><b>II. Les réactions : énergie, équilibre, vitesse</b></a><ul>
-      <li><a href="#chimie" data-to="ch-p3">3. L'énergie des réactions : enthalpie et combustibles</a></li>
-      <li><a href="#chimie" data-to="ch-p4">4. La spontanéité : enthalpie libre et entropie</a></li>
+      <li><a href="#chimie" data-to="ch-p3">3. L'énergie des réactions : premier principe, enthalpie, loi de Hess, calorimétrie (calculateur)</a></li>
+      <li><a href="#chimie" data-to="ch-p4">4. Le second principe : entropie, enthalpie libre, travail utile</a></li>
       <li><a href="#chimie" data-to="ch-p5">5. L'équilibre chimique : le cas de l'ammoniac (simulateur)</a></li>
       <li><a href="#chimie" data-to="ch-p6">6. La cinétique : vitesse, température, catalyse (simulateur)</a></li></ul></li>
     <li class="cr-toc-p"><a href="#chimie" data-to="ch-partie3"><b>III. Les grandes familles de réactions</b></a><ul>
@@ -4342,6 +4342,15 @@
   </ul>
 
   <h2 id="ch-partie1" class="cr-partie">I. La matière</h2>
+  <div class="callout small"><p><b>La chimie, c'est l'histoire des électrons ?</b> Oui, pour l'essentiel.</p><ul>
+    <li><b>Une réaction chimique ne touche pas aux noyaux</b> : les atomes gardent leur identité (un atome de carbone reste du carbone, c'est la loi de Lavoisier). Ce qui change, ce sont les <b>électrons externes</b>, qui passent d'un atome à l'autre ou se partagent autrement. Changer les noyaux, c'est de la physique nucléaire (voir <a href="#nucleaire">Nucléaire</a>).</li>
+    <li><b>Toutes les grandes familles de réactions sont des mouvements d'électrons</b> : la liaison covalente est une paire d'électrons partagée ; la liaison ionique, un électron cédé ; l'oxydoréduction (rouille, piles, combustion), un transfert d'électrons ; même une réaction acide-base, qui échange un proton, se fait par des paires d'électrons qui se déplacent.</li>
+    <li><b>L'échelle d'énergie le montre</b> : rompre une liaison chimique coûte quelques électronvolts (1 eV par molécule ≈ 96 kJ/mol), l'énergie d'un photon de lumière visible ; une réaction nucléaire libère des millions d'électronvolts. C'est pourquoi la lumière peut déclencher des réactions chimiques (photosynthèse, vision, bronzage, photo argentique) et pourquoi les couleurs viennent des électrons : le jaune des lampes au sodium, les couleurs des feux d'artifice (strontium rouge, baryum vert, cuivre bleu), la couleur de la rouille ou du sang.</li>
+    <li><b>Ce que la chimie ajoute à la physique des électrons</b> : à partir des mêmes lois (la mécanique quantique), elle explique pourquoi certains assemblages sont stables, lesquels se transforment, avec quelle énergie et à quelle vitesse. C'est l'objet des parties suivantes.</li>
+  </ul></div>
+  <p class="muted" style="margin:6px 0 4px"><b>Échelle des énergies par particule</b> (électronvolts, échelle logarithmique)</p>
+  <div id="ch-ev" class="chart"></div>
+
   <h3 id="ch-p1" class="ag-part">1. La liaison chimique : ionique, covalente, métallique</h3>
   <div class="callout small"><ul>
     <li><b>Le moteur</b> : un atome est stable quand sa couche externe est complète (8 électrons, la « règle de l'octet », 2 pour l'hydrogène). Il y arrive en cédant, en captant ou en partageant des électrons. L'énergie du système diminue : la liaison se forme parce qu'elle libère de l'énergie.</li>
@@ -4374,29 +4383,98 @@
   <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="ch-phases-txt"></p>
 
   <h2 id="ch-partie2" class="cr-partie">II. Les réactions : énergie, équilibre, vitesse</h2>
-  <h3 id="ch-p3" class="ag-part">3. L'énergie des réactions : enthalpie et combustibles</h3>
+  <h3 id="ch-p3" class="ag-part">3. L'énergie des réactions : un cours de thermodynamique chimique</h3>
+  <p>Cette partie suit le plan d'un cours de classe préparatoire (premier principe, enthalpie, loi de Hess, second principe, entropie, enthalpie libre), en partant chaque fois d'exemples de la vie courante. Elle répond à deux questions : <b>combien d'énergie une réaction libère-t-elle ?</b> et <b>se fait-elle toute seule ?</b></p>
+
+  <h3 id="ch-3-1" class="li-sub">3.1 Le système, l'énergie interne et le premier principe</h3>
   <div class="callout small"><ul>
-    <li><b>Enthalpie de réaction ΔH</b> : la chaleur échangée à pression constante. On l'estime en faisant le bilan des liaisons rompues (ça coûte) et formées (ça rapporte) : ΔH ≈ Σ(liaisons rompues) − Σ(liaisons formées). Négatif : exothermique (dégage de la chaleur) ; positif : endothermique.</li>
-    <li><b>Exemple, la combustion du méthane</b> : CH₄ + 2 O₂ → CO₂ + 2 H₂O. On rompt 4 C–H (4 × 413) et 2 O=O (2 × 498), soit 2 648 kJ ; on forme 2 C=O dans le CO₂ (2 × 805) et 4 O–H (4 × 463), soit 3 462 kJ. Bilan ≈ <b>−814 kJ/mol</b>, très proche de la valeur mesurée (−802 kJ/mol, eau produite à l'état de vapeur). Le schéma ci-dessous montre ce bilan.</li>
-    <li><b>Pourquoi les combustibles fossiles sont si énergétiques</b> : ils contiennent des liaisons C–H et C–C, assez faibles, et la combustion forme des liaisons C=O et O–H très fortes. L'énergie vient surtout de l'oxygène de l'air, qui n'a pas à être transporté : c'est un avantage décisif sur les batteries, qui doivent emporter leurs deux réactifs.</li>
+    <li><b>Le système</b> est ce que l'on étudie (le gaz dans la cuisinière, l'eau de la casserole), le reste est le <b>milieu extérieur</b>. Le système échange avec l'extérieur de la <b>chaleur</b> (Q) et du <b>travail</b> (W), par exemple quand un gaz pousse un piston.</li>
+    <li><b>L'énergie interne U</b> est toute l'énergie contenue dans le système : agitation des molécules, énergie des liaisons chimiques, énergie des électrons. On ne connaît jamais sa valeur absolue, seulement ses variations.</li>
+    <li><b>Premier principe</b> (conservation de l'énergie) : <b>ΔU = Q + W</b>. Rien ne se crée, rien ne se perd : l'énergie chimique libérée par le gaz qui brûle se retrouve, en totalité, en chaleur de la flamme et en travail des gaz qui se dilatent.</li>
+    <li><b>Fonctions d'état</b> : U ne dépend que de l'état du système, pas du chemin suivi. Monter au sommet d'une montagne par la route ou par le téléphérique change le trajet, pas l'altitude d'arrivée. C'est ce qui permet tous les calculs qui suivent.</li>
   </ul></div>
+
+  <h3 id="ch-3-2" class="li-sub">3.2 L'enthalpie : la chaleur des réactions à l'air libre</h3>
+  <div class="callout small"><ul>
+    <li><b>Pourquoi une nouvelle grandeur ?</b> Presque toutes les réactions de la vie courante se font à l'air libre, donc à <b>pression constante</b>. Le gaz produit doit repousser l'atmosphère, ce qui coûte un peu de travail. On définit l'<b>enthalpie</b> H = U + PV : à pression constante, sa variation ΔH est exactement la chaleur échangée.</li>
+    <li><b>Convention de signe</b> : ΔH &lt; 0, la réaction <b>dégage</b> de la chaleur (exothermique) ; ΔH &gt; 0, elle en <b>absorbe</b> (endothermique).</li>
+    <li><b>Exothermiques au quotidien</b> : la flamme de la cuisinière (combustion du méthane) ; la bougie ; le chauffe-mains jetable, de la poudre de fer qui rouille très vite en quelques minutes ; le chauffe-mains réutilisable à gel, où l'acétate de sodium cristallise d'un coup quand on plie la pastille métallique ; la chaux vive qui chauffe au contact de l'eau ; la prise du ciment ; notre corps, qui « brûle » lentement le sucre.</li>
+    <li><b>Endothermiques au quotidien</b> : la poche de froid instantané des trousses de secours (du nitrate d'ammonium qui se dissout dans l'eau : la poche descend vers 0 °C) ; la cuisson d'un gâteau (la levure chimique se décompose en libérant du CO₂) ; la fonte d'un glaçon ; l'évaporation de la sueur, qui nous refroidit ; la photosynthèse, qui stocke l'énergie de la lumière.</li>
+  </ul></div>
+
+  <h3 id="ch-3-3" class="li-sub">3.3 La loi de Hess et les enthalpies de formation : calculer sans mesurer</h3>
+  <div class="callout small"><ul>
+    <li><b>L'idée</b> : puisque H est une fonction d'état, on peut calculer l'enthalpie d'une réaction en passant par n'importe quel chemin. On choisit un chemin de référence : décomposer les réactifs en éléments simples (O₂, H₂, carbone graphite…), puis reconstruire les produits.</li>
+    <li><b>L'enthalpie standard de formation</b> ΔfH° d'un corps est la chaleur de sa formation à partir de ses éléments, à 25 °C et 1 bar ; elle vaut zéro pour les éléments eux-mêmes. Elle est tabulée pour des milliers de composés.</li>
+    <li><b>La formule</b> : <b>ΔrH° = Σ ΔfH°(produits) − Σ ΔfH°(réactifs)</b>, chaque terme multiplié par son coefficient dans l'équation.</li>
+    <li><b>Exemple</b> : CH₄ + 2 O₂ → CO₂ + 2 H₂O. ΔfH° : méthane −74,8, CO₂ −393,5, eau liquide −285,8 kJ/mol. ΔrH° = [−393,5 + 2 × (−285,8)] − [−74,8] = <b>−890,3 kJ/mol</b>. Si l'eau sort en vapeur (−241,8), on trouve −802,3 kJ/mol. La différence, 88 kJ/mol, est la chaleur de condensation de la vapeur d'eau : c'est exactement ce que récupère une <b>chaudière à condensation</b>, qui refroidit ses fumées jusqu'à condenser l'eau (d'où ses rendements affichés « supérieurs à 100 % », calculés sur le pouvoir calorifique inférieur).</li>
+  </ul></div>
+  <p class="muted" style="margin:8px 0 4px"><b>Calculateur de réactions</b> : choisissez une réaction ; le calcul utilise les tables d'enthalpies et d'entropies standard</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 18px">
+    <label>Réaction <select id="ch-rx" style="max-width:100%"></select></label>
+    <label>Température <input type="range" id="ch-rxT" min="-50" max="1500" step="5" value="25"> <b id="ch-rxT-v"></b></label>
+  </div>
+  <div id="ch-rx-out" class="chart"></div>
+  <div id="ch-rx-txt" class="callout small"></div>
+  <p class="muted" style="margin:10px 0 4px"><b>La même chose avec les énergies de liaison</b> : on rompt toutes les liaisons des réactifs, puis on forme celles des produits (combustion du méthane)</p>
   <div id="ch-bilan-ch4" class="chart"></div>
+
+  <h3 id="ch-3-4" class="li-sub">3.4 Mesurer la chaleur : capacités thermiques et calorimétrie</h3>
+  <div class="callout small"><ul>
+    <li><b>Chauffer</b> : Q = m × c × ΔT. La capacité thermique massique de l'eau, c = 4,18 kJ/kg/K, est très élevée : c'est pour cela que la mer tempère le climat des côtes et qu'une bouillotte garde la chaleur.</li>
+    <li><b>Changer d'état</b> coûte beaucoup plus : fondre 1 kg de glace demande 334 kJ, autant que pour chauffer 1 kg d'eau de 0 à 80 °C ; vaporiser 1 kg d'eau demande 2 260 kJ, cinq fois plus que de la porter de 0 à 100 °C. Un glaçon refroidit une boisson surtout en fondant.</li>
+    <li><b>Exemple</b> : porter 1 litre d'eau de 15 à 100 °C demande 4,18 × 85 ≈ 355 kJ, soit environ 0,1 kWh, ou 0,4 g de méthane brûlé (en pratique le double, car une partie de la chaleur de la flamme passe à côté de la casserole).</li>
+    <li><b>Le calorimètre</b> (une bombe d'acier dans un bain d'eau) mesure la chaleur d'une combustion par l'élévation de température de l'eau : c'est ainsi qu'ont été établies les « calories » des aliments.</li>
+  </ul></div>
   <p class="muted" style="margin:10px 0 4px"><b>Énergie stockée par kilogramme</b> (MJ/kg, échelle logarithmique)</p>
   <div id="ch-densite" class="chart"></div>
-  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Pouvoirs calorifiques inférieurs (eau sous forme de vapeur), ordres de grandeur. Pour les batteries : énergie électrique restituée par kg de cellule. L'uranium (fission, environ 80 millions de MJ/kg d'uranium 235) et la fusion sortent du graphique : ce sont des énergies nucléaires, un million de fois plus concentrées que l'énergie chimique.</p>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Pouvoirs calorifiques inférieurs (eau sous forme de vapeur), ordres de grandeur. Pour les batteries : énergie électrique restituée par kg de cellule. Les énergies nucléaires, un million de fois plus concentrées, sortent du graphique.</p>
 
-  <h3 id="ch-p4" class="ag-part">4. La spontanéité : enthalpie libre et entropie</h3>
+  <h3 id="ch-p4" class="ag-part">4. Le second principe : entropie et enthalpie libre</h3>
+  <h3 id="ch-4-1" class="li-sub">4.1 Pourquoi certaines choses arrivent toutes seules : l'entropie</h3>
   <div class="callout small"><ul>
-    <li><b>Dégager de la chaleur ne suffit pas</b> : la glace fond spontanément à 20 °C alors que la fusion absorbe de la chaleur. Il faut tenir compte du désordre, l'<b>entropie S</b> : la nature va spontanément vers les états les plus probables, donc les plus désordonnés.</li>
-    <li><b>Le critère</b> : l'enthalpie libre ΔG = ΔH − TΔS. Une réaction est spontanée si ΔG &lt; 0. La température arbitre entre l'énergie (ΔH) et le désordre (TΔS) : quand ΔH et ΔS ont le même signe, il existe une température d'inversion T = ΔH / ΔS.</li>
-    <li><b>Exemple industriel, la cuisson du calcaire</b> (fours à ciment et à chaux) : CaCO₃ → CaO + CO₂. ΔH ≈ +178 kJ/mol (il faut chauffer), ΔS ≈ +160 J/mol/K (on libère un gaz : plus de désordre). ΔG s'annule vers 1 110 K, soit <b>environ 840 °C</b> : c'est pourquoi les fours à chaux et à ciment chauffent au-delà de 900 °C, et pourquoi cette réaction libère du CO₂ indépendamment du combustible utilisé (environ 60 % des émissions d'une cimenterie).</li>
-    <li><b>ΔG est aussi le travail maximal récupérable</b> : pour une pile ou une électrolyse, ΔG = −nFE (F = 96 485 C/mol). Pour l'eau, ΔG = 237 kJ/mol donne 1,23 V : c'est la tension minimale de l'électrolyse (partie 8).</li>
+    <li><b>Dégager de la chaleur ne suffit pas à expliquer ce qui se passe spontanément</b> : un glaçon fond à 20 °C alors que la fusion <i>absorbe</i> de la chaleur ; la poche de froid se refroidit toute seule. Il manque un ingrédient : le <b>désordre</b>.</li>
+    <li><b>L'entropie S</b> mesure le nombre de façons microscopiques de réaliser un même état : S = k ln Ω (formule de Boltzmann, gravée sur sa tombe à Vienne). Un gaz, dont les molécules peuvent être n'importe où, a une entropie beaucoup plus grande qu'un liquide, lui-même plus désordonné qu'un solide. Pour l'eau : 41 J/mol/K pour la glace, 70 pour l'eau liquide, 189 pour la vapeur.</li>
+    <li><b>Le second principe</b> : l'entropie totale (système + extérieur) ne peut qu'augmenter. Tout va spontanément vers les états les plus probables : le parfum se répand dans la pièce et ne revient jamais dans le flacon ; le sucre se dissout dans le café ; le café chaud refroidit ; la chambre en ordre devient désordonnée, jamais l'inverse.</li>
+    <li><b>Mettre de l'ordre coûte de l'énergie</b> : un réfrigérateur refroidit son intérieur (moins d'entropie) mais rejette plus de chaleur à l'arrière (plus d'entropie dehors), et il faut l'alimenter. Un être vivant, très ordonné, maintient son ordre en rejetant de la chaleur et des déchets.</li>
+    <li><b>Le lien avec la chaleur</b> : quand une réaction dégage une chaleur −ΔH vers l'extérieur à la température T, elle augmente l'entropie de l'extérieur de −ΔH / T. Plus il fait froid, plus cette chaleur « compte » ; plus il fait chaud, moins elle compte.</li>
   </ul></div>
+
+  <h3 id="ch-4-2" class="li-sub">4.2 L'enthalpie libre G : le juge de paix</h3>
+  <div class="callout small"><ul>
+    <li><b>La grandeur qui combine les deux</b> : à température et pression constantes, une réaction est spontanée si la variation d'<b>enthalpie libre</b> (ou « énergie libre de Gibbs ») est négative : <b>ΔG = ΔH − TΔS &lt; 0</b>. C'est simplement le second principe réécrit du point de vue du système : −ΔG/T est l'entropie totale créée.</li>
+    <li><b>Deux tendances en concurrence</b> : la nature cherche à la fois à <b>baisser l'énergie</b> (ΔH négatif, comme une bille qui roule vers le bas) et à <b>augmenter le désordre</b> (ΔS positif). La température arbitre : à basse température, l'énergie l'emporte ; à haute température, le désordre l'emporte.</li>
+    <li><b>Les quatre cas</b> (schéma ci-dessous) :
+      <ul>
+        <li>ΔH &lt; 0 et ΔS &gt; 0 : spontanée à toute température (combustion du bois, du gaz, explosion de la poudre) ;</li>
+        <li>ΔH &gt; 0 et ΔS &gt; 0 : spontanée seulement à haute température (fonte de la glace au-dessus de 0 °C, cuisson du calcaire au-dessus de 840 °C, dissolution du nitrate d'ammonium de la poche de froid) ;</li>
+        <li>ΔH &lt; 0 et ΔS &lt; 0 : spontanée seulement à basse température (congélation de l'eau en dessous de 0 °C, synthèse de l'ammoniac, condensation de la rosée la nuit) ;</li>
+        <li>ΔH &gt; 0 et ΔS &lt; 0 : jamais spontanée ; il faut fournir de l'énergie (photosynthèse grâce à la lumière, électrolyse de l'eau grâce à l'électricité, recharge d'une batterie).</li>
+      </ul></li>
+    <li><b>La température d'inversion</b> T = ΔH / ΔS : pour la glace, 6,01 kJ/mol ÷ 22,0 J/mol/K = 273 K, soit 0 °C ; pour l'ébullition de l'eau, 40,7 kJ/mol ÷ 109 J/mol/K = 373 K, soit 100 °C. On retrouve les températures de fusion et d'ébullition par le calcul.</li>
+  </ul></div>
+  <div id="ch-quadrants" class="chart"></div>
   <div id="ch-gibbs" class="chart"></div>
+
+  <h3 id="ch-4-3" class="li-sub">4.3 ΔG, c'est le travail utile maximal</h3>
+  <div class="callout small"><ul>
+    <li><b>Ce que l'on peut récupérer</b> : −ΔG est le travail maximal (électrique, mécanique) qu'on peut tirer d'une réaction ; le reste de l'énergie, TΔS, part forcément en chaleur.</li>
+    <li><b>Les piles et les batteries</b> : ΔG = −n F E, où n est le nombre d'électrons échangés, F = 96 485 C/mol (la charge d'une mole d'électrons) et E la tension. Pour l'eau, ΔG = −237 kJ/mol et n = 2 donnent E = 1,23 V : la tension maximale d'une pile à hydrogène, et la tension minimale pour électrolyser l'eau.</li>
+    <li><b>Le rendement maximal d'une pile à combustible</b> à hydrogène vaut ΔG / ΔH = 237 / 286 = 83 %, sans limite de Carnot, car il n'y a pas de passage par la chaleur ; en pratique, on obtient 50 à 60 %.</li>
+    <li><b>Le vivant</b> : nos cellules stockent l'énergie libre dans une molécule, l'ATP. Son hydrolyse libère environ 30 kJ/mol dans les conditions standard, et 50 kJ/mol dans la cellule. Un adulte fabrique et recycle chaque jour à peu près son propre poids d'ATP.</li>
+  </ul></div>
+
+  <h3 id="ch-4-4" class="li-sub">4.4 Thermodynamique ou cinétique : possible ne veut pas dire rapide</h3>
+  <div class="callout small"><ul>
+    <li><b>Le diamant</b> devrait se transformer en graphite (ΔG ≈ −2,9 kJ/mol à 25 °C), mais à température ambiante, il faudrait des milliards d'années. « Un diamant est éternel » : c'est vrai cinétiquement, faux thermodynamiquement.</li>
+    <li><b>Le sucre, le papier, le bois</b> devraient brûler à l'air (ΔG très négatif) : il faut une allumette pour franchir la barrière d'activation, puis la chaleur de la réaction entretient le feu. Notre corps, lui, utilise des enzymes pour « brûler » le sucre à 37 °C.</li>
+    <li><b>La thermodynamique dit si une réaction est possible et jusqu'où elle peut aller ; la cinétique dit à quelle vitesse</b> (partie 6).</li>
+  </ul></div>
 
   <h3 id="ch-p5" class="ag-part">5. L'équilibre chimique : le cas de l'ammoniac</h3>
   <div class="callout small"><ul>
-    <li><b>Beaucoup de réactions ne vont pas au bout</b> : elles s'arrêtent à un équilibre où réaction directe et réaction inverse vont à la même vitesse. La constante d'équilibre K est reliée à ΔG° : K = exp(−ΔG° / RT).</li>
+    <li><b>Beaucoup de réactions ne vont pas au bout</b> : elles s'arrêtent à un équilibre où réaction directe et réaction inverse vont à la même vitesse. Pendant la réaction, ΔG = ΔG° + RT ln Q, où Q mesure l'avancement (rapport des produits aux réactifs) ; à l'équilibre, ΔG = 0, d'où la constante d'équilibre <b>K = exp(−ΔG° / RT)</b>. Un ΔG° de −10 kJ/mol donne K ≈ 57 ; −50 kJ/mol, K ≈ 6·10⁸ (réaction totale) ; +10 kJ/mol, K ≈ 0,02 (presque rien ne réagit).</li>
+    <li><b>Au quotidien</b> : une bouteille de soda fermée est à l'équilibre entre le CO₂ dissous et le CO₂ gazeux sous pression ; à l'ouverture, la pression chute, l'équilibre se déplace et le gaz sort en bulles. Dans le sang, l'hémoglobine fixe l'oxygène dans les poumons (beaucoup d'O₂) et le libère dans les muscles (peu d'O₂) : un équilibre qui se déplace selon la concentration.</li>
     <li><b>Le principe de Le Chatelier</b> : un système à l'équilibre qu'on perturbe évolue de façon à atténuer la perturbation. Chauffer favorise le sens qui absorbe la chaleur ; comprimer favorise le sens qui diminue le nombre de molécules de gaz.</li>
     <li><b>La synthèse de l'ammoniac</b> (procédé Haber-Bosch, 1909-1913) : N₂ + 3 H₂ ⇌ 2 NH₃, ΔH = −92 kJ/mol. Réaction exothermique (le froid favorise l'ammoniac) qui diminue le nombre de molécules (4 → 2 : la pression favorise l'ammoniac). Mais à basse température, la réaction est beaucoup trop lente (partie 6). Le compromis industriel : <b>400 à 500 °C, 150 à 300 bar, catalyseur au fer</b>, environ 15 à 25 % de conversion par passage ; on condense l'ammoniac et on recycle les gaz.</li>
     <li><b>Un procédé qui nourrit l'humanité</b> : les engrais azotés issus de l'ammoniac permettent de nourrir environ la moitié de la population mondiale (Smil, 2001). La production mondiale atteint environ 150 millions de tonnes d'azote par an (USGS, 2025). L'hydrogène vient surtout du gaz naturel (vaporeformage) : la filière consomme de l'ordre de 2 % de l'énergie mondiale.</li>
@@ -5114,7 +5192,7 @@
 <script src="brouillons.js?v=20261118o"></script>
 <script src="sciences2.js?v=20261118h"></script>
 <script src="climatviz.js?v=20261118b"></script>
-<script src="chimie.js?v=20261118b"></script>
+<script src="chimie.js?v=20261118c"></script>
 <script src="eau2.js?v=20261118a"></script>
 <script src="energiephys.js?v=20261118b"></script>
 <script src="nucleaire.js?v=20261118d"></script>

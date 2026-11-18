@@ -183,12 +183,66 @@ function production() {
   window.TH.kpis("#ch-kpis", [["4 000 Mt", ["de ciment par an", "le produit le plus fabriqué au monde"], "Ciment"], ["1 900 Mt", ["d'acier brut par an"], "Acier"], ["≈ 150 Mt", ["d'azote fixé en ammoniac", "la base des engrais"], "Ammoniac"], ["945 kJ/mol", ["la triple liaison N≡N", "l'une des plus fortes"], "Azote de l'air"]]);
 }
 
+/* tables standard (25 °C, 1 bar) : ΔfH° (kJ/mol), S° (J/mol/K) */
+const TD = { "CH₄(g)": [-74.8, 186.3], "O₂(g)": [0, 205.2], "CO₂(g)": [-393.5, 213.8], "H₂O(l)": [-285.8, 69.9], "H₂O(g)": [-241.8, 188.8], "C₃H₈(g)": [-103.8, 270.3], "C₈H₁₈(l)": [-250.1, 361.0], "C₂H₅OH(l)": [-277.7, 160.7], "C₆H₁₂O₆(s)": [-1273.3, 212.1], "Fe(s)": [0, 27.3], "Fe₂O₃(s)": [-824.2, 87.4], "Al(s)": [0, 28.3], "Al₂O₃(s)": [-1675.7, 50.9], "CaO(s)": [-635.1, 38.1], "Ca(OH)₂(s)": [-986.1, 83.4], "CaCO₃(s)": [-1206.9, 91.7], "N₂(g)": [0, 191.6], "H₂(g)": [0, 130.7], "NH₃(g)": [-45.9, 192.8], "H₂O(s)": [-291.8, 41.0], "C(diamant)": [1.9, 2.4], "C(graphite)": [0, 5.7] };
+const RX = [
+  ["Gaz de la cuisinière : combustion du méthane (eau en vapeur)", [["CH₄(g)", 1], ["O₂(g)", 2]], [["CO₂(g)", 1], ["H₂O(g)", 2]], "La flamme bleue de la gazinière ; le chauffage au gaz."],
+  ["Chaudière à condensation : méthane, eau condensée", [["CH₄(g)", 1], ["O₂(g)", 2]], [["CO₂(g)", 1], ["H₂O(l)", 2]], "Même réaction, mais la vapeur d'eau des fumées est condensée : on récupère 88 kJ/mol de plus."],
+  ["Bouteille de camping : combustion du propane", [["C₃H₈(g)", 1], ["O₂(g)", 5]], [["CO₂(g)", 3], ["H₂O(g)", 4]], "Le réchaud, le barbecue au gaz."],
+  ["Moteur à essence : combustion de l'octane", [["C₈H₁₈(l)", 1], ["O₂(g)", 12.5]], [["CO₂(g)", 8], ["H₂O(g)", 9]], "Environ 44 kJ par gramme d'essence."],
+  ["Bioéthanol : combustion de l'éthanol", [["C₂H₅OH(l)", 1], ["O₂(g)", 3]], [["CO₂(g)", 2], ["H₂O(g)", 3]], "Le carburant E85, une lampe à alcool."],
+  ["Notre corps : « combustion » du glucose (respiration)", [["C₆H₁₂O₆(s)", 1], ["O₂(g)", 6]], [["CO₂(g)", 6], ["H₂O(l)", 6]], "La même énergie que si le sucre brûlait, libérée lentement par les enzymes : 15,6 kJ (3,7 kcal) par gramme."],
+  ["Chauffe-mains jetable : la rouille du fer", [["Fe(s)", 4], ["O₂(g)", 3]], [["Fe₂O₃(s)", 2]], "De la poudre de fer qui s'oxyde en quelques minutes au lieu de quelques années."],
+  ["Soudure des rails : la thermite", [["Al(s)", 2], ["Fe₂O₃(s)", 1]], [["Al₂O₃(s)", 1], ["Fe(s)", 2]], "L'aluminium arrache l'oxygène à l'oxyde de fer ; le fer sort fondu, à plus de 2 500 °C."],
+  ["Chaux vive dans l'eau (extinction de la chaux)", [["CaO(s)", 1], ["H₂O(l)", 1]], [["Ca(OH)₂(s)", 1]], "Le mélange peut bouillir ; utilisé pour les plats auto-chauffants."],
+  ["Four à chaux et à ciment : cuisson du calcaire", [["CaCO₃(s)", 1]], [["CaO(s)", 1], ["CO₂(g)", 1]], "Endothermique : il faut chauffer au-delà de 840 °C, et le CO₂ sort du calcaire lui-même."],
+  ["Engrais : synthèse de l'ammoniac (Haber-Bosch)", [["N₂(g)", 1], ["H₂(g)", 3]], [["NH₃(g)", 2]], "Exothermique mais favorisée par le froid : d'où le compromis industriel (partie 5)."],
+  ["Électrolyse de l'eau (hydrogène)", [["H₂O(l)", 1]], [["H₂(g)", 1], ["O₂(g)", 0.5]], "Jamais spontanée : il faut fournir au moins 237 kJ/mol d'électricité (1,23 V)."],
+  ["Fonte de la glace", [["H₂O(s)", 1]], [["H₂O(l)", 1]], "Endothermique, mais le désordre l'emporte au-dessus de 0 °C."],
+  ["Le diamant devient graphite", [["C(diamant)", 1]], [["C(graphite)", 1]], "Possible, mais infiniment lent à température ordinaire."]];
+const fmtEq = l => l.map(([sp, n]) => `${n === 1 ? "" : String(n).replace(".", ",") + " "}${sp.replace(/\(.*\)/, "")}`).join(" + ");
+function reaction() {
+  const r = RX[+$("#ch-rx").value], Tc = +$("#ch-rxT").value, T = Tc + 273.15; $("#ch-rxT-v").textContent = Tc + " °C";
+  const sum = (l, k) => l.reduce((a, [sp, n]) => a + n * TD[sp][k], 0);
+  const Hr = sum(r[1], 0), Hp = sum(r[2], 0), dH = Hp - Hr, dS = sum(r[2], 1) - sum(r[1], 1), dG = dH - T * dS / 1000, Tinv = dS !== 0 ? dH * 1000 / dS - 273.15 : null;
+  const W = 900, H = 230, lo = Math.min(Hr, Hp, 0) - 60, hi = Math.max(Hr, Hp, 0) + 60, y = v => 30 + (hi - v) / (hi - lo) * (H - 60);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11.5px">`;
+  s += `<line x1="40" x2="${W - 20}" y1="${y(0)}" y2="${y(0)}" stroke="#cbd5e1" stroke-dasharray="4 4"/><text x="${W - 22}" y="${y(0) - 4}" text-anchor="end" style="fill:#94a3b8">éléments simples (référence 0)</text>`;
+  s += `<line x1="80" x2="330" y1="${y(Hr)}" y2="${y(Hr)}" stroke="#111827" stroke-width="4"/><text x="205" y="${y(Hr) - 8}" text-anchor="middle" font-weight="700" style="fill:#111827">${fmtEq(r[1])}</text><text x="205" y="${y(Hr) + 16}" text-anchor="middle" style="fill:#64748b">Σ ΔfH° réactifs = ${fr(Hr, 1)} kJ</text>`;
+  s += `<line x1="570" x2="820" y1="${y(Hp)}" y2="${y(Hp)}" stroke="${dH < 0 ? "#16a34a" : "#dc2626"}" stroke-width="4"/><text x="695" y="${y(Hp) - 8}" text-anchor="middle" font-weight="700" style="fill:${dH < 0 ? "#16a34a" : "#dc2626"}">${fmtEq(r[2])}</text><text x="695" y="${y(Hp) + 16}" text-anchor="middle" style="fill:#64748b">Σ ΔfH° produits = ${fr(Hp, 1)} kJ</text>`;
+  s += `<line x1="340" y1="${y(Hr)}" x2="560" y2="${y(Hp)}" stroke="${dH < 0 ? "#16a34a" : "#dc2626"}" stroke-width="2.5" marker-end="url(#rxa)"/><text x="450" y="${(y(Hr) + y(Hp)) / 2 - 8}" text-anchor="middle" font-weight="800" style="fill:${dH < 0 ? "#16a34a" : "#dc2626"}">ΔH° = ${dH > 0 ? "+" : ""}${fr(dH, 1)} kJ</text>`;
+  s += `<defs><marker id="rxa" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="${dH < 0 ? "#16a34a" : "#dc2626"}"/></marker></defs>`;
+  $("#ch-rx-out").innerHTML = s + "</svg>";
+  const verdict = dG < 0 ? `<b style="color:#16a34a">spontanée</b> à ${Tc} °C` : `<b style="color:#dc2626">non spontanée</b> à ${Tc} °C (il faut fournir au moins ${fr(dG, 0)} kJ d'énergie utile)`;
+  const inv = Tinv != null && Tinv > 3000 && dH < 0 ? " Le désordre joue très peu ici : la réaction est spontanée à toutes les températures usuelles." : Tinv != null && Tinv > -273 && Math.sign(dH) === Math.sign(dS) ? ` Elle change de sens vers <b>${fr(Tinv, 0)} °C</b> (T = ΔH / ΔS) : ${dH > 0 ? "spontanée au-dessus" : "spontanée en dessous"}.` : (dH < 0 && dS > 0 ? " Elle est spontanée à toute température." : dH > 0 && dS < 0 ? " Elle n'est spontanée à aucune température." : "");
+  const K = Math.exp(-dG * 1000 / (R * T));
+  $("#ch-rx-txt").innerHTML = `<ul><li><b>${fmtEq(r[1])} → ${fmtEq(r[2])}</b> : ${r[3]}</li><li><b>ΔH°</b> = ${fr(dH, 1)} kJ/mol (${dH < 0 ? "exothermique : la réaction chauffe" : "endothermique : il faut chauffer"}) ; <b>ΔS°</b> = ${fr(dS, 1)} J/mol/K (${dS > 0 ? "plus de désordre, souvent parce qu'il se forme du gaz" : "moins de désordre"}).</li><li><b>ΔG = ΔH − TΔS</b> = ${fr(dH, 1)} − ${fr(T, 0)} × ${fr(dS / 1000, 4)} = <b>${fr(dG, 1)} kJ/mol</b> : réaction ${verdict}.${inv}</li><li>Constante d'équilibre K = exp(−ΔG/RT) ≈ ${K > 1e6 || K < 1e-6 ? K.toExponential(1).replace(".", ",") : fr(K, 3)} ${K > 1e6 ? "(réaction pratiquement totale)" : K < 1e-6 ? "(presque rien ne réagit)" : "(équilibre partagé)"}.</li></ul><p class="muted" style="font-size:.78rem;margin:4px 0 0">Approximation d'Ellingham : ΔH et ΔS supposés constants avec la température ; tables standard à 25 °C (valeurs de référence usuelles, reprises de mémoire).</p>`;
+}
+function quadrants() {
+  const el = $("#ch-quadrants"); if (!el) return;
+  const W = 900, H = 330, cx = 450, cy = 165;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11.5px">`;
+  const Q = [[cx, 10, "#dcfce7", "ΔH < 0, ΔS > 0", "Toujours spontanée", "combustion du gaz, du bois ; poudre noire ; chauffe-mains", 0, 1], [10, 10, "#fef3c7", "ΔH > 0, ΔS > 0", "Spontanée à haute température", "fonte de la glace (> 0 °C) ; four à chaux (> 840 °C) ; poche de froid", 0, 0], [cx, cy, "#e0f2fe", "ΔH < 0, ΔS < 0", "Spontanée à basse température", "congélation (< 0 °C) ; rosée ; synthèse de l'ammoniac", 1, 1], [10, cy, "#fee2e2", "ΔH > 0, ΔS < 0", "Jamais spontanée", "photosynthèse (il faut la lumière) ; électrolyse ; recharge d'une batterie", 1, 0]];
+  Q.forEach(([x, y, c, t1, t2, t3]) => s += `<rect x="${x}" y="${y}" width="${cx - 20}" height="${cy - 20}" rx="10" fill="${c}"/><text x="${x + (cx - 20) / 2}" y="${y + 40}" text-anchor="middle" font-weight="800" style="fill:#111827">${t1}</text><text x="${x + (cx - 20) / 2}" y="${y + 64}" text-anchor="middle" font-weight="700" style="fill:#334155">${t2}</text><text x="${x + (cx - 20) / 2}" y="${y + 92}" text-anchor="middle" style="fill:#475569">${t3}</text>`);
+  s += `<line x1="${cx - 5}" y1="5" x2="${cx - 5}" y2="${H - 5}" stroke="#94a3b8"/><line x1="5" y1="${cy - 5}" x2="${W - 5}" y2="${cy - 5}" stroke="#94a3b8"/>`;
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">ΔG = ΔH − TΔS : le signe de ΔH dit si la réaction dégage de la chaleur, celui de ΔS si elle crée du désordre ; la température arbitre quand les deux s'opposent.</p>`;
+}
+function evScale() {
+  const el = $("#ch-ev"); if (!el) return;
+  const E = [["Agitation thermique à 25 °C (kT)", 0.026, "#94a3b8"], ["Liaison hydrogène", 0.2, "#7dd3fc"], ["Photon infrarouge (chaleur)", 0.5, "#fca5a5"], ["Photon de lumière visible (rouge à violet)", 2.5, "#f59e0b"], ["Liaison covalente C–H", 4.3, "#2563eb"], ["Liaison triple de l'azote N≡N", 9.8, "#7c3aed"], ["Photon ultraviolet (coups de soleil)", 4.5, "#a855f7"], ["Rayons X (radiographie)", 5e4, "#64748b"], ["Fission d'un noyau d'uranium", 2e8, "#dc2626"]];
+  const lo = -2, hi = 9, p = v => (Math.log10(v) - lo) / (hi - lo) * 100;
+  el.innerHTML = `<div class="bars">${E.sort((a, b) => a[1] - b[1]).map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${v >= 1e4 ? v.toExponential(0).replace("e+", " × 10^") : fr(v, v < 1 ? 3 : 1)} eV</span><span class="track"><span class="fill" style="width:${p(v).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:2px 0 0">La chimie se joue entre 0,1 et 10 eV : l'échelle des électrons externes et de la lumière visible. 1 eV par molécule ≈ 96 kJ/mol.</p>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
   const run = f => { try { f(); } catch (e) { console.error(f.name || "chimie", e); } };
   [ionique, liaisons, ebullition, bilanCH4, densite, gibbs, haber, cinetique, phEchelle, dosage, redox, batteries, distillation, production].forEach(run);
   run(() => phases("eau"));
+  $("#ch-rx").innerHTML = RX.map((r, i) => `<option value="${i}">${r[0]}</option>`).join("");
+  run(reaction); run(quadrants); run(evScale);
+  ["ch-rx", "ch-rxT"].forEach(i => $("#" + i).addEventListener("input", reaction));
   document.querySelectorAll(".ch-ph").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".ch-ph").forEach(x => x.classList.toggle("on", x === b)); phases(b.dataset.p); }));
   ["ch-hT", "ch-hP"].forEach(i => $("#" + i).addEventListener("input", haber));
   ["ch-ea", "ch-kT", "ch-cat"].forEach(i => $("#" + i).addEventListener("input", cinetique));
