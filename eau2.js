@@ -138,6 +138,18 @@ function mineraux() {
   window.TH.bars(el, EAUX.map(([l, c, d]) => ({ l, v: d[EAUk], t: fr(d[EAUk], d[EAUk] < 10 ? 1 : 0) + " mg/L", c })));
   el.insertAdjacentHTML("afterbegin", `<p class="muted" style="margin:0 0 4px"><b>Teneur en ${lab}</b></p>`);
 }
+function apport() {
+  const el = $("#eau-apport"); if (!el) return;
+  const pick = ["Robinet, eau calcaire (bassin parisien)", "Volvic", "Évian", "Contrex", "Hépar", "Saint-Yorre (eau gazeuse)"];
+  const W = 900, rows = EAUX.filter(e => pick.includes(e[0])), H = 30 + rows.length * 46, m = { l: 250, r: 20 }, x = d3.scaleLinear([0, 135], [m.l, W - m.r]);
+  const K = [["Mg", 380, "#7c3aed", "magnésium"], ["Ca", 950, "#2563eb", "calcium"], ["Na", 2000, "#dc2626", "sodium (max. conseillé)"]];
+  let s = svgO(W, H, 10.5);
+  K.forEach(([, , c, l], j) => s += `<rect x="${m.l + j * 170}" y="4" width="11" height="11" fill="${c}"/><text x="${m.l + j * 170 + 15}" y="13">${l}</text>`);
+  [0, 25, 50, 75, 100, 125].forEach(v => s += `<line x1="${x(v)}" x2="${x(v)}" y1="22" y2="${H - 4}" stroke="#eef2f7"/><text x="${x(v)}" y="${H}" text-anchor="middle" style="fill:#94a3b8" font-size="9">${v} %</text>`);
+  rows.forEach(([l, , d], i) => { const y = 26 + i * 46; s += `<text x="${m.l - 8}" y="${y + 22}" text-anchor="end" font-weight="700">${l}</text>`;
+    K.forEach(([k, need, c], j) => { const p = d[k] * 1.5 / need * 100, w = x(Math.min(135, p)) - m.l; s += `<rect x="${m.l}" y="${y + j * 13}" width="${Math.max(1.5, w)}" height="11" fill="${c}"/>${p > 100 ? `<text x="${m.l + w - 6}" y="${y + j * 13 + 9}" text-anchor="end" style="fill:#fff" font-weight="700" font-size="9.5">${fr(p)} % : au-delà du maximum conseillé</text>` : `<text x="${m.l + Math.max(1.5, w) + 4}" y="${y + j * 13 + 9}" style="fill:${c}" font-size="9.5">${fr(p, p < 10 ? 1 : 0)} %</text>`}`; }); });
+  el.innerHTML = s + "</svg>";
+}
 function lsi() {
   const el = $("#eau-lsi"); if (!el) return;
   const ca = +$("#eau-ca").value, tac = +$("#eau-tac").value, ph = +$("#eau-ph2").value;
@@ -169,7 +181,7 @@ function stepBilan() {
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#eau-parcours")) return;
-  [parcours, services, qualite, fuites, prix, filiere, stepCh, hocl, breakpoint, mineraux, lsi, stepBilan].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
+  [parcours, services, qualite, fuites, prix, filiere, stepCh, hocl, breakpoint, mineraux, apport, lsi, stepBilan].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
   $("#eau-ph")?.addEventListener("input", hocl); ["eau-ca", "eau-tac", "eau-ph2"].forEach(i => $("#" + i)?.addEventListener("input", lsi));
   document.querySelectorAll(".eau-mi").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".eau-mi").forEach(x => x.classList.toggle("on", x === b)); EAUk = b.dataset.k; mineraux(); }));
 }
