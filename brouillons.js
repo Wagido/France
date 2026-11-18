@@ -186,13 +186,81 @@ function laicitePew() {
   window.TH.bars(el, R.map(([l, v, c]) => ({ l, v, t: `${v} pays (${Math.round(100 * v / 199)} %)`, c })));
 }
 
+/* Carte du monde : religion officielle (Pew 2015) */
+async function laiciteCarte() {
+  const el = $("#la-carte"); if (!el) return;
+  let G; try { G = await fetch("data/monde_religion.geojson").then(r => r.json()); } catch (e) { el.innerHTML = `<p class="empty">Carte indisponible.</p>`; return; }
+  const K = [["1chr", "Religion officielle : christianisme", "#991b1b"], ["1aut", "Religion officielle : autre religion", "#f87171"], ["2chr", "Religion préférée : christianisme", "#b45309"], ["2aut", "Religion préférée : autre religion ou plusieurs", "#fcd34d"], ["3", "Ni religion officielle ni préférée", "#4ade80"], ["4", "État hostile ou contrôlant toutes les religions", "#475569"], ["0", "Non classé (territoire)", "#e5e7eb"]];
+  const col = Object.fromEntries(K.map(k => [k[0], k[2]])), lab = Object.fromEntries(K.map(k => [k[0], k[1]]));
+  const key = p => p.c === 1 || p.c === 2 ? p.c + (p.r === "chr" ? "chr" : "aut") : String(p.c);
+  const det = p => p.r === "bou" ? " (bouddhisme)" : p.r === "plu" ? " (plusieurs religions)" : "";
+  const rw = r => d3.geoArea({ type: "Polygon", coordinates: [r] }) > 2 * Math.PI ? r.slice().reverse() : r;
+  G.features.forEach(f => { const g = f.geometry; if (g.type === "Polygon") g.coordinates = g.coordinates.map(rw); else if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map(p => p.map(rw)); });
+  const W = 900, H = 460, proj = d3.geoNaturalEarth1().fitExtent([[0, 0], [W, H]], G), path = d3.geoPath(proj);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%"><path d="${path({ type: "Sphere" })}" fill="none" stroke="#cbd5e1"/>`;
+  G.features.forEach(f => { const p = f.properties, k = key(p); svg += `<path d="${path(f)}" fill="${col[k]}" stroke="#fff" stroke-width=".4"><title>${p.n} : ${lab[k].toLowerCase()}${det(p)}</title></path>`; });
+  el.innerHTML = svg + `</svg><div class="legend-row">${K.map(k => `<span><i style="border-top-color:${k[2]};opacity:1;width:14px;border-top-width:10px"></i>${k[1]}</span>`).join("")}</div>`;
+}
+
+/* Histoire de l'art d'après Gombrich : 28 chapitres */
+const GB = [
+ [1,"Débuts mystérieux","Préhistoire ; peuples sans écriture ; Amérique ancienne",-30000,1500,"pre","Monde","L'image n'est pas une décoration : elle a un pouvoir magique ou religieux (faire réussir la chasse, honorer les ancêtres). On ne peut la juger avec nos critères de « beau ».","Grotte de Lascaux, vers 17 000 av. J.-C. (fac-similé Lascaux IV, Dordogne) ; masques d'Afrique et d'Océanie (musée du Quai Branly) ; art maya et aztèque"],
+ [2,"Un art pour l'éternité","Égypte, Mésopotamie, Crète",-3000,-1000,"ant","Proche-Orient","L'Égyptien représente ce qu'il sait, pas ce qu'il voit : chaque partie du corps sous son angle le plus clair. Les règles restent presque fixes pendant 3 000 ans, car l'image doit durer pour l'éternité.","Pyramides de Gizeh, vers 2550 av. J.-C. ; buste de Néfertiti, vers 1340 av. J.-C. (Neues Museum, Berlin) ; stèle de Naram-Sin (Louvre)"],
+ [3,"Le grand réveil","Grèce, VIIᵉ-Vᵉ siècle av. J.-C.",-700,-400,"ant","Europe","Les Grecs osent regarder : le raccourci, le corps en mouvement, l'équilibre du poids sur une jambe. Pour la première fois, l'artiste corrige les règles d'après l'observation.","Parthénon, 447-432 av. J.-C. (Athènes) ; Aurige de Delphes, vers 475 av. J.-C. (musée de Delphes) ; vases à figures rouges"],
+ [4,"Le royaume de la beauté","Monde grec, IVᵉ s. av. J.-C. - Iᵉʳ s.",-400,0,"ant","Europe","L'art grec atteint la grâce idéale (Praxitèle), puis l'expression des passions et du drame à l'époque hellénistique.","Vénus de Milo et Victoire de Samothrace (Louvre) ; groupe du Laocoon (musées du Vatican)"],
+ [5,"Les conquérants du monde","Rome, Inde, premiers arts chrétiens, Iᵉʳ-IVᵉ siècle",0,400,"ant","Europe et Asie","Les Romains mettent l'art grec au service de l'Empire : architecture, portrait réaliste, récit de victoires. Les religions reprennent ces formes pour raconter leurs histoires sacrées.","Panthéon de Rome, vers 125 ; colonne Trajane, 113 ; portraits du Fayoum (Louvre) ; Bouddhas du Gandhara"],
+ [6,"La séparation des chemins","Rome et Byzance, Vᵉ-XIIIᵉ siècle",400,1250,"moy","Europe","L'art chrétien veut enseigner, pas imiter : figures solennelles, fonds d'or. Après la querelle des images, Byzance fixe des modèles que les icônes répéteront pendant des siècles.","Sainte-Sophie, Istanbul, 537 ; mosaïques de San Vitale, Ravenne, 547 ; icônes"],
+ [7,"Regards vers l'Orient","Art islamique, Chine, IIᵉ-XIIIᵉ siècle",100,1300,"moy","Asie","Là où la représentation humaine est limitée, l'art se concentre sur l'ornement, la géométrie et la calligraphie. En Chine, la peinture de paysage est un exercice de méditation, à l'encre, de mémoire.","Alhambra de Grenade, XIVᵉ siècle ; tapis persans ; peintures de paysage des Song"],
+ [8,"L'art occidental dans le creuset","Europe, VIᵉ-XIᵉ siècle",500,1100,"moy","Europe","Les traditions des peuples du Nord (entrelacs, animaux stylisés) se mêlent à l'héritage romain dans les monastères. Le moine copiste enseigne la foi par l'image.","Évangiles de Lindisfarne, vers 700 (British Library) ; chapelle palatine d'Aix-la-Chapelle, vers 800 ; tapisserie de Bayeux, fin du XIᵉ siècle"],
+ [9,"L'Église militante","XIIᵉ siècle",1100,1200,"moy","Europe","Les églises romanes, massives comme des forteresses de Dieu ; la sculpture des portails raconte le Jugement dernier à des fidèles qui ne lisent pas.","Tympan de Vézelay ; portail de Saint-Trophime d'Arles ; fonts baptismaux de Liège (Renier de Huy)"],
+ [10,"L'Église triomphante","XIIIᵉ siècle",1200,1300,"moy","Europe","La cathédrale gothique : murs de verre, voûtes sur croisées d'ogives, statues de plus en plus vivantes. En Italie, Giotto redonne aux figures du volume et de l'émotion.","Cathédrales de Chartres et Notre-Dame de Paris ; Sainte-Chapelle, 1248 ; chapelle des Scrovegni de Giotto, Padoue, vers 1305"],
+ [11,"Courtisans et bourgeois","XIVᵉ siècle",1300,1400,"moy","Europe","Le gothique international : élégance, détails précieux, scènes de la vie courtoise pour les princes et les riches marchands.","Annonciation de Simone Martini, 1333 (Offices, Florence) ; Diptyque Wilton (National Gallery, Londres) ; Très Riches Heures du duc de Berry (château de Chantilly)"],
+ [12,"La conquête de la réalité","Début du XVᵉ siècle",1400,1450,"ren","Europe","À Florence, Brunelleschi invente la perspective mathématique, Masaccio et Donatello l'appliquent ; en Flandre, Van Eyck peint chaque reflet grâce à la peinture à l'huile. Deux routes vers le réel.","Coupole de Florence, 1420-1436 ; Trinité de Masaccio, vers 1427 (Santa Maria Novella) ; Époux Arnolfini de Van Eyck, 1434 (National Gallery)"],
+ [13,"Tradition et innovation (1)","Italie, fin du XVᵉ siècle",1450,1500,"ren","Europe","Comment concilier perspective exacte et belle composition ? Les peintres italiens cherchent l'équilibre entre espace réel et harmonie.","Naissance de Vénus de Botticelli, vers 1485 (Offices) ; Piero della Francesca ; Mantegna"],
+ [14,"Tradition et innovation (2)","Europe du Nord, XVᵉ siècle",1430,1500,"ren","Europe","Au nord, le gothique se prolonge, mais avec une observation minutieuse des visages et des tissus. La gravure diffuse les images dans toute l'Europe.","Descente de croix de Rogier van der Weyden, vers 1435 (Prado) ; gravures de Schongauer"],
+ [15,"L'harmonie atteinte","Toscane et Rome, début du XVIᵉ siècle",1500,1525,"ren","Europe","L'apogée : Léonard (le modelé dans l'ombre, le sfumato), Michel-Ange (le corps héroïque), Raphaël (l'harmonie parfaite). L'artiste devient un génie respecté des princes.","Cène de Léonard, 1495-1498 (Milan) ; Joconde (Louvre) ; plafond de la chapelle Sixtine de Michel-Ange, 1508-1512 ; École d'Athènes de Raphaël (Vatican)"],
+ [16,"Lumière et couleur","Venise et Italie du Nord, début du XVIᵉ siècle",1500,1550,"ren","Europe","À Venise, la couleur et la lumière comptent plus que le dessin : Giorgione et Titien composent par les tons. Le Corrège ouvre les plafonds sur le ciel.","La Tempête de Giorgione (Accademia, Venise) ; Assomption de Titien, 1518 (église des Frari, Venise)"],
+ [17,"Le savoir nouveau se répand","Allemagne et Pays-Bas, début du XVIᵉ siècle",1500,1550,"ren","Europe","Dürer rapporte d'Italie la science de la perspective et des proportions ; Holbein devient le grand portraitiste ; la Réforme prive bientôt les peintres de commandes religieuses.","Le Lièvre de Dürer, 1502 (Albertina, Vienne) ; retable d'Issenheim de Grünewald (musée Unterlinden, Colmar) ; Les Ambassadeurs de Holbein, 1533 (National Gallery)"],
+ [18,"Une crise de l'art","Europe, fin du XVIᵉ siècle",1525,1600,"ren","Europe","Après les maîtres, que faire ? Le maniérisme cherche l'étrange et l'allongé ; Le Greco l'exaltation ; Bruegel peint les paysans et la vie ordinaire.","Madone au long cou du Parmesan (Offices) ; Enterrement du comte d'Orgaz du Greco, 1586 (Tolède) ; Chasseurs dans la neige de Bruegel, 1565 (Vienne)"],
+ [19,"Vision et visions","Europe catholique, 1ʳᵉ moitié du XVIIᵉ siècle",1600,1650,"cla","Europe","Le Caravage peint le sacré avec des gens du peuple et une lumière brutale ; Rubens, la vie et le mouvement ; Velázquez, la vision pure de ce que l'œil perçoit.","Vocation de saint Matthieu du Caravage, 1600 (Saint-Louis-des-Français, Rome) ; Les Ménines de Velázquez, 1656 (Prado)"],
+ [20,"Le miroir de la nature","Hollande, XVIIᵉ siècle",1600,1700,"cla","Europe","Pays protestant et marchand : on ne commande plus d'images d'église, mais des portraits, paysages, scènes d'intérieur, natures mortes, vendus sur un marché. Rembrandt sonde l'âme, Vermeer la lumière.","La Ronde de nuit de Rembrandt, 1642, et La Laitière de Vermeer (Rijksmuseum, Amsterdam)"],
+ [21,"Puissance et gloire (1)","Italie, XVIIᵉ-XVIIIᵉ siècle",1650,1750,"cla","Europe","Le baroque : architecture, sculpture et peinture fusionnent pour émouvoir et éblouir le fidèle, au service de l'Église de la Contre-Réforme.","Extase de sainte Thérèse du Bernin, 1652 (Rome) ; plafonds de Tiepolo"],
+ [22,"Puissance et gloire (2)","France, Allemagne, Autriche, vers 1700",1660,1750,"cla","Europe","Versailles devient le modèle des palais d'Europe ; puis le rococo, plus léger. Watteau peint des fêtes rêveuses teintées de mélancolie.","Château de Versailles ; Pèlerinage à l'île de Cythère de Watteau, 1717 (Louvre)"],
+ [23,"L'âge de raison","Angleterre et France, XVIIIᵉ siècle",1700,1800,"cla","Europe","Le public bourgeois et les Lumières : Hogarth moralise par l'image, Reynolds et Gainsborough peignent la société, Chardin la poésie des objets simples.","Le Bénédicité de Chardin, 1740 (Louvre) ; Voltaire assis de Houdon (Comédie-Française)"],
+ [24,"La rupture de la tradition","Angleterre, Amérique, France, vers 1800",1780,1840,"xix","Europe et Amérique","La Révolution et la fin des commandes traditionnelles : l'artiste choisit ses sujets. Goya dénonce la guerre, Turner et Constable regardent la nature autrement, le romantisme naît.","Mort de Marat de David, 1793 (Bruxelles) ; Tres de Mayo de Goya, 1814 (Prado) ; La Charrette de foin de Constable, 1821 (National Gallery)"],
+ [25,"La révolution permanente","XIXᵉ siècle",1840,1880,"xix","Europe","L'artiste contre le public et les Salons officiels : Courbet et le réalisme, Manet, puis les impressionnistes qui peignent dehors la lumière changeante. La photographie libère la peinture de la ressemblance.","Bonjour Monsieur Courbet, 1854 (musée Fabre, Montpellier) ; Impression, soleil levant de Monet, 1872 (Marmottan) ; Bal du moulin de la Galette de Renoir, 1876 (Orsay)"],
+ [26,"À la recherche de nouvelles normes","Fin du XIXᵉ siècle",1880,1905,"xix","Europe","Les impressionnistes ont perdu la solidité, l'ordre et l'émotion : Cézanne cherche la structure, Seurat la méthode, Van Gogh l'expression, Gauguin la simplicité « primitive ». Trois voies vers l'art moderne.","Montagne Sainte-Victoire de Cézanne (plusieurs musées) ; Nuit étoilée de Van Gogh, 1889 (MoMA, New York) ; Un dimanche à la Grande Jatte de Seurat (Chicago)"],
+ [27,"L'art expérimental","1ʳᵉ moitié du XXᵉ siècle",1905,1945,"xx","Europe et Amérique","Expressionnisme, cubisme, abstraction, surréalisme : chaque mouvement explore un des chemins ouverts par Cézanne, Van Gogh ou Gauguin. L'art cesse de vouloir représenter le monde visible.","Les Demoiselles d'Avignon de Picasso, 1907 (MoMA) ; compositions de Kandinsky et de Mondrian ; Le Cri de Munch, 1893 (Oslo)"],
+ [28,"Une histoire sans fin","Depuis 1945",1945,1995,"xx","Monde","Le triomphe de l'art moderne, devenu officiel ; l'expressionnisme abstrait (Pollock), puis le retour de l'image (pop art). Gombrich termine sur l'idée que l'histoire de l'art se réécrit sans cesse, avec les découvertes et le goût de chaque époque.","Peintures de Jackson Pollock ; Centre Pompidou ; Tate Modern"]
+];
+const GBP = [["pre", "Préhistoire et peuples sans écriture", "#78716c"], ["ant", "Antiquité (avant 400)", "#b45309"], ["moy", "Moyen Âge (400-1400)", "#7c3aed"], ["ren", "Renaissance (XVᵉ-XVIᵉ s.)", "#2563eb"], ["cla", "XVIIᵉ-XVIIIᵉ siècles", "#0d9488"], ["xix", "XIXᵉ siècle", "#dc2626"], ["xx", "XXᵉ siècle", "#111827"]];
+function gombrich() {
+  if (!$("#ar-chap")) return;
+  const { esc, bars } = window.TH, pc = Object.fromEntries(GBP.map(p => [p[0], p[2]]));
+  const fd = a => a < 0 ? `${(-a).toLocaleString("fr-FR")} av. J.-C.` : a;
+  $("#ar-chap").innerHTML = GB.map(c => `<tr><td><b style="color:${pc[c[5]]}">${c[0]}</b></td><td><b>${esc(c[1])}</b></td><td>${esc(c[2])}</td><td>${esc(c[7])}</td><td><small>${esc(c[8])}</small></td></tr>`).join("");
+  bars($("#ar-periodes"), GBP.map(([k, l, col]) => ({ l, v: GB.filter(c => c[5] === k).length, t: GB.filter(c => c[5] === k).length + " chap.", c: col })));
+  const L = {}; GB.forEach(c => L[c[6]] = (L[c[6]] || 0) + 1);
+  bars($("#ar-lieux"), Object.entries(L).sort((a, b) => b[1] - a[1]).map(([l, v]) => ({ l, v, t: v + " chap.", c: l === "Europe" ? "#2563eb" : "#64748b" })));
+  // frise : une barre par chapitre, échelle découpée (préhistoire comprimée)
+  const W = 900, rh = 15, top = 24, H = top + GB.length * rh + 30, x0 = 250, x1 = W - 10;
+  const seg = [[-30000, -3000, 0, .12], [-3000, 0, .12, .27], [0, 1400, .27, .5], [1400, 2000, .5, 1]];
+  const sc = a => { for (const [a0, a1, f0, f1] of seg) if (a <= a1) return x0 + (f0 + (Math.max(a, a0) - a0) / (a1 - a0) * (f1 - f0)) * (x1 - x0); return x1; };
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  [[-30000, "30 000 av."], [-3000, "3000 av."], [0, "0"], [500, "500"], [1000, "1000"], [1400, "1400"], [1600, "1600"], [1800, "1800"], [2000, "2000"]].forEach(([a, t]) => svg += `<line x1="${sc(a)}" x2="${sc(a)}" y1="${top - 4}" y2="${H - 26}" stroke="#e2e8f0"/><text x="${sc(a)}" y="${top - 8}" text-anchor="middle" fill="#64748b">${t}</text>`);
+  [[-30000, -3000], [-3000, 0], [0, 1400]].forEach(([a, b]) => svg += `<text x="${(sc(a) + sc(b)) / 2}" y="${H - 10}" text-anchor="middle" fill="#94a3b8" font-style="italic">échelle comprimée</text>`);
+  GB.forEach((c, i) => { const y = top + i * rh; svg += `<text x="${x0 - 6}" y="${y + 11}" text-anchor="end" fill="currentColor">${c[0]}. ${esc(c[1])}</text><rect x="${sc(c[3])}" y="${y + 2}" width="${Math.max(3, sc(c[4]) - sc(c[3]))}" height="${rh - 4}" rx="2" fill="${pc[c[5]]}"><title>${esc(c[1])} : ${fd(c[3])} à ${fd(c[4])}</title></rect>`; });
+  $("#ar-frise").innerHTML = svg + `</svg><div class="legend-row">${GBP.map(p => `<span><i style="border-top-color:${p[2]};opacity:1;width:14px"></i>${p[1]}</span>`).join("")}</div>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
   try { sankey(); } catch (e) { console.error("christianisme", e); }
   try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
   try { correspondance(); } catch (e) { console.error("correspondance", e); }
-  try { laiciteFrise(); laicitePew(); } catch (e) { console.error("laicite", e); }
+  try { laiciteFrise(); laicitePew(); laiciteCarte(); } catch (e) { console.error("laicite", e); }
+  try { gombrich(); } catch (e) { console.error("gombrich", e); }
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
