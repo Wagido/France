@@ -1,0 +1,353 @@
+/* Articles non publiés : réseaux électriques, depuis 1974, climat (physique), énergie de la Terre, météo */
+(() => {
+"use strict";
+const $ = s => document.querySelector(s);
+const fr = (v, d = 0) => v == null ? "–" : v.toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
+const J = u => fetch(u, { cache: "no-cache" }).then(r => r.json());
+
+/* ================= 1. Réseaux électriques ================= */
+let RX = null;
+function rxSemaine(k) {
+  const el = $("#rx-semaine"); if (!el || !RX) return;
+  const rows = RX.semaines[k], W = 900, H = 320, m = { t: 10, r: 10, b: 26, l: 52 };
+  const SRC = [[2, "Nucléaire", "#f59e0b"], [3, "Hydraulique", "#2563eb"], [6, "Gaz", "#64748b"], [4, "Éolien", "#14b8a6"], [5, "Solaire", "#facc15"]];
+  const stack = rows.map(r => { let y = 0; return SRC.map(([i]) => { const y0 = y; y += Math.max(0, r[i] || 0); return [y0, y]; }); });
+  const ymax = Math.max(...rows.map((r, i) => Math.max(stack[i][SRC.length - 1][1], r[1]))) * 1.05;
+  const x = i => m.l + i / (rows.length - 1) * (W - m.l - m.r), y = v => H - m.b - v / ymax * (H - m.t - m.b);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  for (let v = 0; v <= ymax; v += 20000) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e2e8f0"/><text x="${m.l - 6}" y="${y(v) + 3}" text-anchor="end" fill="#64748b">${fr(v / 1000)} GW</text>`;
+  SRC.forEach(([, , c], j) => {
+    const top = rows.map((r, i) => `${x(i)},${y(stack[i][j][1])}`).join(" "), bot = rows.map((r, i) => `${x(i)},${y(stack[i][j][0])}`).reverse().join(" ");
+    s += `<polygon points="${top} ${bot}" fill="${c}" opacity=".85"/>`;
+  });
+  s += `<polyline points="${rows.map((r, i) => `${x(i)},${y(r[1])}`).join(" ")}" fill="none" stroke="#111827" stroke-width="2"/>`;
+  rows.forEach((r, i) => { if (r[0].endsWith("T00") || r[0].endsWith("T12")) { const d = new Date(r[0] + ":00Z"); if (r[0].endsWith("T00")) s += `<line x1="${x(i)}" x2="${x(i)}" y1="${m.t}" y2="${H - m.b}" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="${x(i) + 3}" y="${H - 10}" fill="#64748b">${d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", timeZone: "UTC" })}</text>`; } });
+  const mn = Math.min(...rows.map(r => r[1])), mx = Math.max(...rows.map(r => r[1])), ex = rows.reduce((a, r) => a + r[7], 0) / rows.length;
+  el.innerHTML = s + `</svg><div class="legend-row">${SRC.map(([, l, c]) => `<span><i style="border-top-color:${c};opacity:1;width:14px;border-top-width:10px"></i>${l}</span>`).join("")}<span><i style="border-top-color:#111827;opacity:1;width:14px"></i>Consommation</span></div>
+    <p class="muted" style="font-size:.85rem;margin:6px 0 0">Consommation de ${fr(mn / 1000)} à ${fr(mx / 1000)} GW sur la semaine. Solde des échanges en moyenne : ${ex < 0 ? "export" : "import"} de ${fr(Math.abs(ex) / 1000, 1)} GW (l'écart entre production totale et consommation, plus le pompage des stations de transfert).</p>`;
+}
+
+const RXP = { eu: [3000, 5, 300, 3000], ib: [3000, 4, 35, 700], ir: [400, 3.5, 4, 300], enr: [3000, 2, 120, 3000] };
+function rxSim() {
+  const el = $("#rx-sim"); if (!el) return;
+  const loss = +$("#rx-loss").value, H = +$("#rx-h").value, S = +$("#rx-s").value * 1000, F = +$("#rx-fcr").value;
+  $("#rx-loss-v").textContent = fr(loss) + " MW"; $("#rx-h-v").textContent = fr(H, 1) + " s"; $("#rx-s-v").textContent = fr(S / 1000) + " GW"; $("#rx-fcr-v").textContent = fr(F) + " MW";
+  const f0 = 50, dt = 0.02, T = 60, kself = 0.015 * S, tau = 4;  // autorégulation 1,5 %/Hz de la charge (≈ puissance en service)
+  let df = 0, pf = 0, nad = 0, tn = 0, rocof = 0, shed = false; const pts = [];
+  for (let t = 0; t <= T; t += dt) {
+    const pl = t >= 2 ? loss : 0;
+    const target = F * Math.min(1, Math.max(0, -df - 0.01) / 0.19);
+    pf += Math.max(-F / 30 * 4, Math.min(F / 30 * 2, (target - pf) / tau)) * dt;   // retard du réglage, montée bornée
+    const dP = pf - kself * df - pl;
+    const d = f0 / (2 * H * S) * dP;
+    if (t >= 2 && t < 2 + dt) rocof = d;
+    df += d * dt;
+    if (df < nad) { nad = df; tn = t; }
+    if (50 + df < 49) shed = true;
+    if (Math.round(t / dt) % 10 === 0) pts.push([t, 50 + df]);
+  }
+  const W = 900, Hh = 300, m = { t: 12, r: 14, b: 28, l: 52 }, lo = Math.min(48.5, 50 + nad - 0.1);
+  const x = t => m.l + t / T * (W - m.l - m.r), y = v => m.t + (50.1 - v) / (50.1 - lo) * (Hh - m.t - m.b);
+  let s = `<svg viewBox="0 0 ${W} ${Hh}" width="100%" style="font-size:10.5px">`;
+  for (let v = Math.ceil(lo * 5) / 5; v <= 50.1; v += 0.2) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 6}" y="${y(v) + 3}" text-anchor="end" fill="#64748b">${v.toFixed(1).replace(".", ",")} Hz</text>`;
+  for (let t = 0; t <= T; t += 10) s += `<text x="${x(t)}" y="${Hh - 8}" text-anchor="middle" fill="#64748b">${t} s</text>`;
+  [[49.8, "#f59e0b", "49,8 Hz : réserve primaire entièrement mobilisée"], [49.0, "#dc2626", "49,0 Hz : début du délestage automatique"]].forEach(([v, c, l]) => { if (v > lo) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${c}" stroke-dasharray="5 4"/><text x="${W - m.r}" y="${y(v) - 4}" text-anchor="end" fill="${c}">${l}</text>`; });
+  s += `<polyline points="${pts.map(([t, v]) => `${x(t)},${y(Math.max(v, lo))}`).join(" ")}" fill="none" stroke="#2563eb" stroke-width="2.4"/>`;
+  s += `<circle cx="${x(tn)}" cy="${y(Math.max(50 + nad, lo))}" r="4" fill="#dc2626"/><text x="${x(tn) + 8}" y="${y(Math.max(50 + nad, lo)) + 14}" fill="#dc2626" font-weight="700">nadir ${(50 + nad).toFixed(2).replace(".", ",")} Hz</text>`;
+  el.innerHTML = s + "</svg>";
+  const fin = pts[pts.length - 1][1];
+  $("#rx-sim-res").innerHTML = `<ul>
+    <li><b>Pente initiale (RoCoF)</b> : ${fr(rocof, 3)} Hz/s${Math.abs(rocof) > 1 ? " : au-delà de 1 Hz/s, de nombreuses protections de générateurs risquent de déclencher" : ""}.</li>
+    <li><b>Point bas (nadir)</b> : ${(50 + nad).toFixed(2).replace(".", ",")} Hz, atteint ${fr(tn - 2, 1)} s après l'incident.${shed ? " <b style='color:#dc2626'>Sous 49 Hz : le délestage automatique couperait une partie des consommateurs</b> (non simulé ici)." : nad < -0.8 ? " Écart supérieur à 800 mHz : hors des limites de conception." : " Le réseau tient."}</li>
+    <li><b>Fréquence stabilisée</b> à ${fin.toFixed(2).replace(".", ",")} Hz : sans réglage secondaire, la fréquence ne revient pas à 50 Hz ; c'est le rôle de l'aFRR dans les minutes suivantes.</li></ul>`;
+}
+
+async function reseaux() {
+  if (!$("#reseaux")) return;
+  try { RX = await J("data/reseaux.json"); } catch (e) { }
+  rxSemaine("hiver");
+  document.querySelectorAll(".rx-sem").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".rx-sem").forEach(x => x.classList.toggle("on", x === b)); rxSemaine(b.dataset.s); }));
+  ["rx-loss", "rx-h", "rx-s", "rx-fcr"].forEach(i => $("#" + i).addEventListener("input", rxSim));
+  document.querySelectorAll(".rx-pre").forEach(b => b.addEventListener("click", () => { const p = RXP[b.dataset.p]; ["rx-loss", "rx-h", "rx-s", "rx-fcr"].forEach((i, k) => $("#" + i).value = p[k]); rxSim(); }));
+  rxSim();
+}
+
+/* ================= 2. Depuis 1974 ================= */
+async function depuis1974() {
+  if (!$("#depuis1974")) return;
+  const TH = window.TH; let Hh, C, F, D;
+  try { [Hh, C, F, D] = await Promise.all([J("data/histoire.json"), J("data/chomage.json"), J("data/finances.json"), J("data/desindustrialisation.json")]); } catch (e) { return; }
+  const L = Hh.longue.filter(d => d.annee >= 1960);
+  // croissance (barres) + inflation (ligne)
+  const el = $("#h74-croiss"), W = 900, H = 280, m = { t: 12, r: 10, b: 26, l: 40 };
+  const x0 = 1960, x1 = L[L.length - 1].annee, bw = (W - m.l - m.r) / (x1 - x0 + 1);
+  const x = a => m.l + (a - x0) * bw, lo = -8, hi = 15, y = v => m.t + (hi - v) / (hi - lo) * (H - m.t - m.b);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  for (let v = lo; v <= hi; v += 4) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? "#94a3b8" : "#eef2f7"}"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" fill="#64748b">${v} %</text>`;
+  L.forEach(d => s += `<rect x="${x(d.annee) + 1}" y="${y(Math.max(0, d.croissance))}" width="${bw - 2}" height="${Math.abs(y(d.croissance) - y(0))}" fill="${d.croissance < 0 ? "#dc2626" : "#3b6fd6"}" opacity=".8"><title>${d.annee} : croissance ${fr(d.croissance, 1)} %, inflation ${fr(d.inflation, 1)} %</title></rect>`);
+  s += `<polyline points="${L.map(d => `${x(d.annee) + bw / 2},${y(Math.min(hi, d.inflation))}`).join(" ")}" fill="none" stroke="#f59e0b" stroke-width="2"/>`;
+  for (let a = 1960; a <= x1; a += 10) s += `<text x="${x(a) + bw / 2}" y="${H - 8}" text-anchor="middle" fill="#64748b">${a}</text>`;
+  s += `<line x1="${x(1974)}" x2="${x(1974)}" y1="${m.t}" y2="${H - m.b}" stroke="#111827" stroke-dasharray="4 3"/>`;
+  [[1975, "1ᵉʳ choc pétrolier"], [1983, "Tournant de la rigueur"], [1993, "Crise du SME"], [2009, "Crise financière"], [2020, "Covid"]].forEach(([a, t], i) => s += `<text x="${x(a) + bw / 2}" y="${m.t + 10 + (i % 2) * 12}" text-anchor="middle" fill="#111827" font-size="10">${t}</text>`);
+  el.innerHTML = s + `</svg><div class="legend-row"><span><i style="border-top-color:#3b6fd6;opacity:1;width:14px;border-top-width:10px"></i>Croissance du PIB en volume</span><span><i style="border-top-color:#dc2626;opacity:1;width:14px;border-top-width:10px"></i>Récession</span><span><i style="border-top-color:#f59e0b;opacity:1;width:14px"></i>Inflation (prix à la consommation)</span></div>`;
+  // chômage annuel
+  const ch = {}; C.bit.forEach(r => { const a = +r.t.slice(0, 4); (ch[a] = ch[a] || []).push(r.taux); });
+  const CH = Object.entries(ch).map(([a, v]) => ({ annee: +a, taux: Math.round(v.reduce((p, q) => p + q, 0) / v.length * 10) / 10 }));
+  TH.lineChart($("#h74-chom"), CH, [{ k: "taux", l: "Taux de chômage", c: "#dc2626" }], { yfmt: v => v + " %", vfmt: v => fr(v, 1) + " %", h: 220 });
+  // solde et dette
+  const dette = Object.fromEntries(F.historique.map(r => [+r.annee, r.dette_pct]));
+  const SD = Hh.longue.filter(d => d.annee >= 1970).map(d => ({ annee: d.annee, solde: d.solde_public, dette: dette[d.annee] ?? null }));
+  TH.lineChart($("#h74-dette"), SD, [{ k: "solde", l: "Solde public", c: "#64748b" }, { k: "dette", l: "Dette publique", c: "#7c3aed" }], { yfmt: v => v + " %", vfmt: v => fr(v, 1) + " % du PIB", h: 220 });
+  TH.lineChart($("#h74-indus"), D.va.map(r => ({ annee: r.annee, FR: r.FR, DE: r.DE })), [{ k: "FR", l: "France", c: "#2563eb" }, { k: "DE", l: "Allemagne", c: "#64748b" }], { yfmt: v => v + " %", vfmt: v => fr(v, 1) + " %", h: 220, nozero: true });
+  TH.lineChart($("#h74-emploi"), D.emplois_fr.map(r => ({ annee: r.annee, v: r.v })), [{ k: "v", l: "Emploi industriel", c: "#2563eb" }], { yfmt: v => v + " M", vfmt: v => fr(v, 2) + " million", h: 220, nozero: true });
+  $("#h74-src").innerHTML = `Sources : ${TH.esc(Hh.longue_source)} ; chômage : INSEE, enquête Emploi (moyenne annuelle des taux trimestriels) ; dette : INSEE, comptes nationaux (dette au sens de Maastricht) ; industrie : Eurostat et INSEE (valeur ajoutée de l'industrie hors construction, emploi industriel). Fichiers de données du site.`;
+  const moy = (a, b, k) => { const v = Hh.longue.filter(d => d.annee >= a && d.annee <= b).map(d => d[k]); return v.reduce((p, q) => p + q, 0) / v.length; };
+  const chm = (a, b) => { const v = CH.filter(d => d.annee >= a && d.annee <= b).map(d => d.taux); return v.length ? v.reduce((p, q) => p + q, 0) / v.length : null; };
+  const last = Hh.longue[Hh.longue.length - 1].annee, va = D.va, em = D.emplois_fr;
+  TH.kpis("#h74-kpis", [
+    [fr(moy(1950, 1973, "croissance"), 1) + " % → " + fr(moy(2008, last, "croissance"), 1) + " %", ["1950-1973 contre 2008-" + last], "Croissance moyenne par an"],
+    [fr(CH[0].taux, 1) + " % → " + fr(CH[CH.length - 1].taux, 1) + " %", [`${CH[0].annee} contre ${CH[CH.length - 1].annee}`, "pic à plus de 10 % en 1997 et 2015"], "Chômage"],
+    [fr(em[0].v, 1) + " M → " + fr(em[em.length - 1].v, 1) + " M", [`${em[0].annee} contre ${em[em.length - 1].annee}`], "Emplois dans l'industrie"],
+    [fr(dette[1995]) + " % → " + fr(dette[+F.historique[F.historique.length - 1].annee]) + " %", ["du PIB, 1995 contre " + F.historique[F.historique.length - 1].annee], "Dette publique"]
+  ]);
+  $("#h74-bilan").innerHTML = [
+    ["Croissance moyenne du PIB", fr(moy(1950, 1973, "croissance"), 1) + " % par an (1950-1973)", fr(moy(2008, last, "croissance"), 1) + " % par an (2008-" + last + ")"],
+    ["Inflation moyenne", fr(moy(1950, 1973, "inflation"), 1) + " % par an", fr(moy(2008, last, "inflation"), 1) + " % par an"],
+    ["Chômage", "2 à 3 % (plein emploi)", fr(chm(2008, last), 1) + " % en moyenne"],
+    ["Solde public moyen", fr(moy(1950, 1973, "solde_public"), 1) + " % du PIB", fr(moy(2008, last, "solde_public"), 1) + " % du PIB"],
+    ["Part de l'industrie dans la valeur ajoutée", fr(va[0].FR, 1) + " % (" + va[0].annee + ")", fr(va[va.length - 1].FR, 1) + " % (" + va[va.length - 1].annee + ")"]
+  ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
+}
+
+/* ================= 3. Climat : la physique ================= */
+function climat() {
+  if (!$("#climat-physique")) return;
+  const TH = window.TH;
+  // température d'équilibre
+  $("#cp-stefan").innerHTML = `<div class="bars">${[["Terre sans atmosphère absorbante (même albédo)", -18, "#60a5fa"], ["Terre réelle, moyenne en surface", 15, "#f97316"]].map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${v > 0 ? "+" : ""}${v} °C</span><span class="track"><span class="fill" style="width:${(v + 30) / 50 * 100}%;background:${c}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">Barres partant de −30 °C. Écart : 33 °C d'effet de serre naturel.</p>`;
+  // rétroactions AR6 (W/m²/K)
+  const R = [["Rayonnement de Planck (une Terre plus chaude rayonne plus)", -3.22, "#2563eb"], ["Vapeur d'eau et gradient vertical", 1.30, "#dc2626"], ["Nuages", 0.42, "#f87171"], ["Albédo de surface (neige, glace)", 0.35, "#fca5a5"], ["Total (somme des rétroactions)", -1.16, "#111827"]];
+  $("#cp-retro").innerHTML = `<div class="bars">${R.map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${v > 0 ? "+" : ""}${fr(v, 2)} W/m²/K</span><span class="track" style="position:relative"><span class="fill" style="position:absolute;${v < 0 ? `right:50%` : `left:50%`};width:${Math.abs(v) / 3.4 * 50}%;background:${c}"></span><i style="position:absolute;left:50%;top:-3px;bottom:-3px;border-left:1px solid #94a3b8"></i></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">Sensibilité qui en découle : 3,93 W/m² (doublement du CO₂) ÷ 1,16 ≈ 3,4 °C, cohérent avec la meilleure estimation de 3 °C retenue par le GIEC après combinaison avec les observations et les paléoclimats.</p>`;
+  const calc = () => {
+    const c = +$("#cp-c").value, S = +$("#cp-s").value, dF = 5.35 * Math.log(c / 280), dT = S * dF / (5.35 * Math.log(2));
+    $("#cp-c-v").textContent = c + " ppm"; $("#cp-s-v").textContent = fr(S, 1) + " °C";
+    TH.kpis("#cp-calc", [[fr(dF, 2) + " W/m²", ["forçage du CO₂ par rapport à 280 ppm"], "Forçage"], [(dT >= 0 ? "+" : "") + fr(dT, 1) + " °C", ["réchauffement à l'équilibre (CO₂ seul)"], "Réchauffement"], [fr(c / 280, 2) + " ×", [c >= 560 ? "au-delà d'un doublement" : "la concentration préindustrielle"], "CO₂"]]);
+  };
+  ["cp-c", "cp-s"].forEach(i => $("#" + i).addEventListener("input", calc)); calc();
+  const E = [["Quasi certain", 99, 100], ["Extrêmement probable", 95, 100], ["Très probable", 90, 100], ["Probable", 66, 100], ["Aussi probable qu'improbable", 33, 66], ["Improbable", 0, 33], ["Très improbable", 0, 10], ["Exceptionnellement improbable", 0, 1]];
+  $("#cp-echelle").innerHTML = `<div class="bars">${E.map(([l, a, b]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${a}-${b} %</span><span class="track" style="position:relative"><span class="fill" style="position:absolute;left:${a}%;width:${Math.max(1, b - a)}%;background:${a >= 66 ? "#16a34a" : a >= 33 ? "#f59e0b" : "#dc2626"}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">Échelle de probabilité du GIEC : probabilité que le résultat se produise ou soit vrai.</p>`;
+}
+
+/* ================= 4. Énergie de la Terre ================= */
+function sk(el, N, Lk, opts) {
+  if (!el || !window.d3?.sankey) return;
+  const W = 900, H = opts.h || 460;
+  const g = d3.sankey().nodeId(d => d.id).nodeAlign(n => n.c).nodeSort(null).nodeWidth(12).nodePadding(opts.pad || 18).extent([[2, 24], [W - (opts.right || 200), H - 6]])({ nodes: N.map(([id, l, c, col]) => ({ id, l, c, col })), links: Lk.map(([s, t, v]) => ({ source: s, target: t, value: v })) });
+  const svg = d3.select(el).html("").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+  svg.append("g").attr("fill", "none").selectAll("path").data(g.links).join("path").attr("d", d3.sankeyLinkHorizontal())
+    .attr("stroke", d => d.target.col).attr("stroke-opacity", .4).attr("stroke-width", d => Math.max(1.5, d.width)).append("title").text(d => `${d.source.l} → ${d.target.l} : ${fr(d.value, d.value < 10 ? 1 : 0)} ${opts.u}`);
+  svg.append("g").selectAll("rect").data(g.nodes).join("rect").attr("x", d => d.x0).attr("y", d => d.y0).attr("width", d => d.x1 - d.x0).attr("height", d => Math.max(2, d.y1 - d.y0)).attr("fill", d => d.col);
+  const last = Math.max(...g.nodes.map(n => n.c));
+  svg.append("g").attr("font-size", 11).attr("fill", "currentColor").selectAll("text").data(g.nodes).join("text")
+    .attr("x", d => d.c === last ? d.x1 + 6 : d.x0).attr("y", d => d.c === last ? (d.y0 + d.y1) / 2 : d.y0 - 4).attr("dy", d => d.c === last ? "0.35em" : 0)
+    .text(d => `${d.l} : ${fr(d.value, d.value < 10 ? 1 : 0)} ${opts.u}`);
+}
+function energieTerre() {
+  if (!$("#energie-terre")) return;
+  window.TH.kpis("#et-kpis", [["173 000 TW", ["1 361 W/m² sur le disque terrestre"], "Reçu du Soleil"], ["122 000 TW", ["après réflexion de 30 %"], "Absorbé"], ["≈ 130 TW", ["production nette de la photosynthèse"], "Capté par la vie"], ["≈ 20 TW", ["620 EJ par an (2023)"], "Consommé par l'humanité"]]);
+  const sw = "#f59e0b", rf = "#93c5fd", lw = "#dc2626", lt = "#0ea5e9";
+  sk($("#et-sankey1"), [
+    ["sun", "Soleil", 0, sw],
+    ["ra", "Réfléchi par nuages, air, aérosols", 1, rf], ["rs", "Réfléchi par la surface", 1, rf], ["aa", "Absorbé par l'atmosphère", 1, "#fb923c"], ["as", "Absorbé par la surface", 1, "#ea580c"],
+    ["ev", "Évaporation (chaleur latente)", 2, lt], ["cv", "Conduction et convection", 2, "#a78bfa"], ["ir", "Infrarouge net de la surface", 2, lw],
+    ["atm", "Atmosphère et nuages", 3, "#b91c1c"],
+    ["esw", "Lumière renvoyée vers l'espace", 4, rf], ["elw", "Infrarouge émis vers l'espace", 4, lw], ["st", "Stocké (océans surtout)", 4, "#111827"]
+  ], [["sun", "ra", 76], ["sun", "rs", 24], ["sun", "aa", 80], ["sun", "as", 160], ["ra", "esw", 76], ["rs", "esw", 24],
+    ["as", "ev", 82], ["as", "cv", 21], ["as", "ir", 56.3], ["as", "st", 0.7], ["ev", "atm", 82], ["cv", "atm", 21], ["ir", "atm", 56.3], ["aa", "atm", 80], ["atm", "elw", 239.3]], { u: "W/m²", h: 480, right: 230 });
+  // échelle logarithmique
+  const LG = [["Rayonnement solaire intercepté", 173000, sw], ["Absorbé par la Terre", 122000, "#ea580c"], ["Évaporation de l'eau", 42000, lt], ["Vents (énergie dissipée, ordre de grandeur)", 1000, "#14b8a6"], ["Déséquilibre (réchauffement en cours)", 360, "#111827"], ["Photosynthèse brute", 260, "#16a34a"], ["Photosynthèse nette", 130, "#22c55e"], ["Chaleur interne de la Terre", 47, "#78716c"], ["Énergie primaire de l'humanité", 20, "#7c3aed"], ["Marées", 3.7, "#64748b"], ["Électricité mondiale produite", 3.4, "#a855f7"], ["Nourriture des 8 milliards d'humains", 1, "#be185d"]];
+  const lmin = -0.3, lmax = 5.4, p = v => (Math.log10(v) - lmin) / (lmax - lmin) * 100;
+  $("#et-log").innerHTML = `<div class="bars">${LG.map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${fr(v, v < 10 ? 1 : 0)} TW</span><span class="track"><span class="fill" style="width:${p(v).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div>
+    <div style="position:relative;height:16px;font-size:.72rem;color:#64748b;margin:2px 0 0">${[1, 10, 100, 1000, 10000, 100000].map(v => `<span style="position:absolute;left:${p(v).toFixed(1)}%;transform:translateX(-50%)">${fr(v)} TW</span>`).join("")}</div>`;
+  $("#et-log-src").textContent = "Échelle logarithmique. Ordres de grandeur, sources en bas de page ; électricité mondiale : environ 30 000 TWh en 2023 (Energy Institute).";
+  const gr = "#16a34a";
+  sk($("#et-sankey2"), [
+    ["gpp", "Photosynthèse brute", 0, gr], ["fos", "Charbon, pétrole, gaz (photosynthèse ancienne)", 0, "#78716c"], ["nfo", "Nucléaire, hydraulique, éolien, solaire, biomasse moderne", 0, "#a855f7"],
+    ["resp", "Respiration des plantes", 1, "#86efac"], ["npt", "Production nette des terres", 1, gr], ["npo", "Production nette des océans", 1, "#0ea5e9"],
+    ["hum", "Détourné par l'humanité", 2, "#be185d"], ["nat", "Herbivores, champignons, bactéries (terres)", 3, "#a3a3a3"], ["mar", "Plancton animal, poissons, bactéries", 3, "#38bdf8"],
+    ["food", "Nourriture humaine", 3, "#be185d"], ["aut", "Élevage, bois, résidus, pertes", 3, "#f9a8d4"], ["mach", "Machines de l'humanité", 3, "#7c3aed"]
+  ], [["gpp", "resp", 130], ["gpp", "npt", 70], ["gpp", "npo", 60], ["npt", "hum", 17], ["npt", "nat", 53], ["npo", "mar", 60], ["hum", "food", 1], ["hum", "aut", 16], ["fos", "mach", 16], ["nfo", "mach", 4]], { u: "TW", h: 520, right: 250, pad: 30 });
+}
+
+/* ================= 5. Météo ================= */
+const NUAGES = [
+  ["Cirrus", "Ci", "haut", 7, 12, "Filaments blancs, « queues de chat », faits de cristaux de glace", "Isolés : beau temps. S'ils envahissent le ciel depuis l'ouest et que la pression baisse : front chaud dans 12 à 24 h"],
+  ["Cirrocumulus", "Cc", "haut", 7, 11, "Petits flocons blancs en rangées, « ciel pommelé »", "Souvent avant une perturbation"],
+  ["Cirrostratus", "Cs", "haut", 6, 11, "Voile blanc laiteux, halo autour du Soleil ou de la Lune", "Front chaud qui approche : pluie probable dans les 12 à 24 h"],
+  ["Altocumulus", "Ac", "moyen", 2.5, 6, "Bancs de galets gris et blancs ; en tourelles : castellanus", "Variable ; castellanus le matin : orages l'après-midi"],
+  ["Altostratus", "As", "moyen", 2.5, 6, "Couche grise uniforme, Soleil vu « comme à travers un verre dépoli »", "Front chaud proche : pluie dans quelques heures"],
+  ["Nimbostratus", "Ns", "moyen", 0.6, 5, "Couche grise sombre et épaisse, sans forme", "Pluie ou neige continue, pendant des heures"],
+  ["Stratocumulus", "Sc", "bas", 0.5, 2, "Rouleaux ou dalles grises, ciel souvent couvert", "Temps gris, peu ou pas de pluie ; fréquent sous les anticyclones en hiver"],
+  ["Stratus", "St", "bas", 0, 0.6, "Couche grise basse, comme un brouillard décollé du sol", "Bruine, grisaille ; se dissipe souvent dans la journée"],
+  ["Cumulus", "Cu", "bas", 0.6, 3, "Tas blancs à base plate, contours nets (« choux-fleurs »)", "Petits : beau temps (cumulus de beau temps). Très développés (congestus) : averses possibles"],
+  ["Cumulonimbus", "Cb", "tous", 0.6, 12, "Tour énorme, sommet en forme d'enclume", "Orage, grêle, rafales, fortes averses, parfois tornades : à fuir en bateau ou en avion"]
+];
+function nuages() {
+  const el = $("#me-nuages"); if (!el) return;
+  const W = 900, H = 330, m = { l: 46, r: 8, t: 10, b: 40 }, kmax = 13, y = k => m.t + (kmax - k) / kmax * (H - m.t - m.b), cw = (W - m.l - m.r) / NUAGES.length;
+  const col = { haut: "#e0f2fe", moyen: "#cbd5e1", bas: "#94a3b8", tous: "#64748b" };
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px"><rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="#eff6ff"/>`;
+  [[0, 2, "Étage bas"], [2, 6, "Étage moyen"], [6, 13, "Étage élevé"]].forEach(([a, b, t], i) => s += `<rect x="${m.l}" y="${y(b)}" width="${W - m.l - m.r}" height="${y(a) - y(b)}" fill="${["#dbeafe", "#e0e7ff", "#f0f9ff"][i]}" opacity=".6"/><text x="${m.l + 4}" y="${y(b) + 12}" fill="#64748b" font-style="italic">${t}</text>`);
+  for (let k = 0; k <= 12; k += 2) s += `<text x="${m.l - 6}" y="${y(k) + 3}" text-anchor="end" fill="#64748b">${k} km</text>`;
+  const rnd = (i, j) => ((Math.sin(i * 12.9898 + j * 78.233) * 43758.5453) % 1 + 1) % 1;
+  NUAGES.forEach(([n, ab, et, a, b], i) => {
+    const cx = m.l + cw * (i + .5), y0 = y(b), y1 = y(a), c = col[et];
+    if (ab === "Cb") { s += `<path d="M${cx - 18},${y1} C${cx - 26},${y1 - 40} ${cx - 20},${y0 + 40} ${cx - 10},${y0 + 14} L${cx - 38},${y0 + 4} L${cx + 40},${y0 + 4} L${cx + 12},${y0 + 14} C${cx + 22},${y0 + 40} ${cx + 28},${y1 - 40} ${cx + 18},${y1} Z" fill="${c}"/>`; }
+    else if (ab === "Ci") for (let j = 0; j < 5; j++) s += `<path d="M${cx - 28 + rnd(i, j) * 10},${y0 + 12 + j * 14} q20,-10 45,-4" stroke="#94a3b8" stroke-width="2" fill="none"/>`;
+    else if (["Cs", "As", "St", "Ns", "Sc"].includes(ab)) { s += `<rect x="${cx - cw / 2 + 6}" y="${y0 + (ab === "Ns" ? 0 : (y1 - y0) * .3)}" width="${cw - 12}" height="${ab === "Ns" ? y1 - y0 : (y1 - y0) * .4}" rx="8" fill="${ab === "Cs" ? "#f8fafc" : c}" stroke="#cbd5e1"/>`; if (ab === "Ns") for (let j = 0; j < 7; j++) s += `<line x1="${cx - 30 + j * 10}" y1="${y1 + 2}" x2="${cx - 34 + j * 10}" y2="${y1 + 16}" stroke="#3b82f6"/>`; }
+    else for (let j = 0; j < (ab === "Cu" ? 3 : 6); j++) s += `<circle cx="${cx - 26 + (j % 3) * 24 + rnd(i, j) * 6}" cy="${(y0 + y1) / 2 - (ab === "Cu" ? 0 : (Math.floor(j / 3) - .5) * 16) + rnd(j, i) * 6}" r="${ab === "Cu" ? 15 : 9}" fill="${ab === "Cc" ? "#f8fafc" : "#fff"}" stroke="#cbd5e1"/>`;
+    s += `<text x="${cx}" y="${H - 22}" text-anchor="middle" font-weight="700" fill="currentColor">${n}</text><text x="${cx}" y="${H - 9}" text-anchor="middle" fill="#64748b">${ab}</text>`;
+  });
+  el.innerHTML = s + "</svg>";
+  $("#me-nuages-t").innerHTML = NUAGES.map(([n, ab, et, a, b, as, si]) => `<tr><td><b>${n}</b> (${ab})</td><td>${et === "tous" ? `de ${fr(a, 1)} à plus de ${b} km` : `${fr(a, 1)} à ${b} km`}</td><td>${as}</td><td>${si}</td></tr>`).join("");
+}
+
+/* simulateur de Buys-Ballot (hémisphère Nord) */
+let BOAT = [640, 250];
+function buysBallot() {
+  const el = $("#me-bb"); if (!el) return;
+  const W = 900, H = 520, t = +$("#me-t").value / 100;
+  const L = [120 + t * 620, 300 - t * 120], R = 170, P0 = 1012, dP = 36;
+  const ang = (dx, dy) => Math.atan2(-dy, dx) * 180 / Math.PI;      // angle math (y vers le haut)
+  const pr = r => P0 - dP * Math.exp(-((r / R) ** 2));
+  const pol = (a, r) => [L[0] + r * Math.cos(a * Math.PI / 180), L[1] - r * Math.sin(a * Math.PI / 180)];
+  const wfA = -25, cfA = -112;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px;cursor:crosshair;background:#f0f9ff;border-radius:8px">`;
+  // secteur chaud
+  const ws = [L, ...Array.from({ length: 9 }, (_, i) => pol(cfA + (wfA - cfA) * i / 8, 300))];
+  s += `<polygon points="${ws.map(p => p.join(",")).join(" ")}" fill="#fecaca" opacity=".45"/>`;
+  // isobares
+  for (let p = 980; p <= 1008; p += 4) { const r = R * Math.sqrt(-Math.log((P0 - p) / dP)); if (!isFinite(r)) continue; s += `<circle cx="${L[0]}" cy="${L[1]}" r="${r}" fill="none" stroke="#64748b" stroke-width=".8"/><text x="${L[0] - r * .71 + 4}" y="${L[1] - r * .71}" fill="#64748b" font-size="9.5">${p}</text>`; }
+  // fronts
+  const fpath = (a, len, curve) => Array.from({ length: 13 }, (_, i) => pol(a + curve * (i / 12) ** 2, len * i / 12));
+  const warm = fpath(wfA, 280, -12), cold = fpath(cfA, 300, -18);
+  s += `<polyline points="${warm.map(p => p.join(",")).join(" ")}" fill="none" stroke="#dc2626" stroke-width="3"/>`;
+  warm.slice(1, -1).forEach((p, i) => { if (i % 2 === 0) s += `<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#dc2626"/>`; });
+  s += `<polyline points="${cold.map(p => p.join(",")).join(" ")}" fill="none" stroke="#2563eb" stroke-width="3"/>`;
+  cold.slice(1, -1).forEach((p, i) => { if (i % 2 === 0) s += `<polygon points="${p[0] - 6},${p[1]} ${p[0] + 6},${p[1]} ${p[0] - 6},${p[1] - 9}" fill="#2563eb"/>`; });
+  s += `<text x="${L[0]}" y="${L[1] + 7}" text-anchor="middle" font-size="22" font-weight="800" fill="#b91c1c">D</text>`;
+  s += `<text x="${warm[9][0] + 8}" y="${warm[9][1] - 10}" fill="#dc2626" font-weight="700">front chaud</text><text x="${cold[8][0] - 80}" y="${cold[8][1] + 4}" fill="#2563eb" font-weight="700">front froid</text><text x="${pol(-70, 150)[0]}" y="${pol(-70, 150)[1]}" text-anchor="middle" fill="#b91c1c">secteur chaud</text>`;
+  // trajectoire
+  s += `<line x1="120" y1="300" x2="740" y2="180" stroke="#b91c1c" stroke-dasharray="6 5" opacity=".5"/><text x="742" y="176" fill="#b91c1c" font-size="10">trajectoire de la dépression →</text>`;
+  // champ de vent (petites flèches)
+  const wind = (x, y) => { const dx = x - L[0], dy = -(y - L[1]), r = Math.hypot(dx, dy) || 1; let a = Math.atan2(dy, dx) + Math.PI / 2 + 20 * Math.PI / 180; const g = dP * 2 * r / R / R * Math.exp(-((r / R) ** 2)); return { vx: Math.cos(a), vy: -Math.sin(a), kt: Math.min(55, 6 + g * 1100), r }; };
+  for (let gx = 40; gx < W; gx += 60) for (let gy = 30; gy < H; gy += 60) { const w = wind(gx, gy), l = 8 + w.kt * .35; s += `<line x1="${gx - w.vx * l / 2}" y1="${gy - w.vy * l / 2}" x2="${gx + w.vx * l / 2}" y2="${gy + w.vy * l / 2}" stroke="#0f766e" stroke-width="1.3" opacity=".55" marker-end="url(#ar)"/>`; }
+  // bateau
+  const [bx, by] = BOAT, w = wind(bx, by), from = (Math.atan2(-w.vx, w.vy) * 180 / Math.PI + 360) % 360;   // direction d'où vient le vent (0 = nord)
+  const dirs = ["nord", "nord-nord-est", "nord-est", "est-nord-est", "est", "est-sud-est", "sud-est", "sud-sud-est", "sud", "sud-sud-ouest", "sud-ouest", "ouest-sud-ouest", "ouest", "ouest-nord-ouest", "nord-ouest", "nord-nord-ouest"];
+  const dname = dirs[Math.round(from / 22.5) % 16];
+  const bf = [1, 3, 6, 10, 16, 21, 27, 33, 40, 47, 55, 63].findIndex(v => w.kt < v);
+  s += `<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#111827"/></marker></defs>`;
+  s += `<line x1="${bx - w.vx * 46}" y1="${by - w.vy * 46}" x2="${bx + w.vx * 30}" y2="${by + w.vy * 30}" stroke="#111827" stroke-width="4" marker-end="url(#ar2)"/>`;
+  s += `<line x1="${bx}" y1="${by}" x2="${L[0]}" y2="${L[1]}" stroke="#b91c1c" stroke-width="1" stroke-dasharray="2 4"/>`;
+  s += `<path d="M${bx - 12},${by + 4} L${bx + 12},${by + 4} L${bx + 7},${by + 10} L${bx - 7},${by + 10} Z M${bx},${by + 4} L${bx},${by - 16} L${bx + 9},${by + 2} Z" fill="#111827"/>`;
+  s += `<text x="${W - 10}" y="22" text-anchor="end" font-size="12" font-weight="700">N ↑</text>`;
+  el.innerHTML = s + "</svg>";
+  // zone
+  const a = ang(bx - L[0], by - L[1]), r = w.r; let zone, ciel, avenir;
+  const inA = (a, lo, hi) => a >= lo && a <= hi;
+  if (r > 360) zone = "Loin de la dépression : vent faible, temps influencé par les hautes pressions.";
+  else if (inA(a, cfA, wfA)) zone = "<b>Dans le secteur chaud</b> : air doux et humide, ciel gris (stratus, stratocumulus), bruine, vent de sud-ouest assez régulier.";
+  else if (inA(a, wfA, 70)) zone = "<b>En avant du front chaud</b> : nuages de plus en plus bas et épais (cirrus, cirrostratus, altostratus, puis nimbostratus), pluie continue à l'approche du front, pression en baisse régulière.";
+  else if (a > 70 || a < -175) zone = "<b>Au nord de la dépression</b> (zone de l'occlusion) : vent d'est à nord, ciel gris, pluie durable, temps frais.";
+  else zone = "<b>Derrière le front froid</b> : ciel de traîne, cumulus et cumulonimbus, averses et grains, rafales, excellente visibilité, pression en hausse.";
+  const yTrack = 300 - (bx - 120) / 620 * 120;
+  avenir = by > yTrack ? "La dépression passera <b>au nord</b> de vous : le vent va <b>virer</b> (tourner dans le sens des aiguilles d'une montre), du sud-est vers le sud-ouest au front chaud, puis brutalement vers l'ouest et le nord-ouest au front froid." : "La dépression passera <b>au sud</b> de vous : le vent va <b>reculer</b> (tourner dans le sens inverse des aiguilles d'une montre), de l'est vers le nord-est puis le nord, sans passage net de fronts.";
+  $("#me-bb-res").innerHTML = `<ul><li><b>Vent du ${dname}</b>, environ ${fr(Math.round(w.kt / 5) * 5)} nœuds (force ${bf < 0 ? "11+" : bf} Beaufort), pression d'environ ${fr(pr(r))} hPa. Dos au vent, la dépression est à votre gauche, un peu en avant (pointillés rouges).</li><li>${zone}</li><li>${avenir}</li></ul><p class="muted" style="font-size:.78rem;margin:4px 0 0">Modèle schématique : vent tournant autour de la dépression et coupant les isobares de 20° vers le centre (valeur typique sur mer), force estimée d'après le resserrement des isobares.</p>`;
+}
+function meteo() {
+  if (!$("#meteo")) return;
+  nuages();
+  $("#me-t").addEventListener("input", buysBallot);
+  $("#me-bb").addEventListener("click", ev => { const svg = $("#me-bb svg"); if (!svg) return; const b = svg.getBoundingClientRect(); BOAT = [(ev.clientX - b.left) / b.width * 900, (ev.clientY - b.top) / b.height * 520]; buysBallot(); });
+  buysBallot();
+  // maquette 3D : chargée seulement quand elle devient visible
+  const box = $("#me-3d"); let started = false;
+  const io = new IntersectionObserver(es => { if (started || !es.some(e => e.isIntersecting)) return; started = true;
+    const sc = document.createElement("script"); sc.src = "lib/three.min.js"; sc.onload = () => { try { meteo3d(box); } catch (e) { console.error("meteo3d", e); box.innerHTML = `<p class="empty">Maquette 3D indisponible sur ce navigateur.</p>`; } }; document.head.appendChild(sc); });
+  io.observe(box);
+}
+
+function meteo3d(box) {
+  const T = window.THREE; box.innerHTML = "";
+  const W = () => box.clientWidth, H = () => box.clientHeight;
+  const renderer = new T.WebGLRenderer({ antialias: true, alpha: true }); renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.setSize(W(), H()); box.appendChild(renderer.domElement);
+  const scene = new T.Scene(), cam = new T.PerspectiveCamera(40, W() / H(), 0.1, 500);
+  scene.add(new T.HemisphereLight(0xffffff, 0x88aa88, 1.1)); const sun = new T.DirectionalLight(0xffffff, 0.9); sun.position.set(-20, 40, 20); scene.add(sun);
+  // sol : x vers l'est, z vers le sud
+  const ground = new T.Mesh(new T.PlaneGeometry(56, 56), new T.MeshLambertMaterial({ color: 0xb7d7b0 })); ground.rotation.x = -Math.PI / 2; scene.add(ground);
+  const V = (x, y, z) => new T.Vector3(x, y, z);
+  // fronts au sol
+  const wf = [V(0, 0, 0), V(14, 0, 6)], cf = [V(0, 0, 0), V(-5, 0, 14)];
+  const tube = (a, b, c) => { const m = new T.Mesh(new T.CylinderGeometry(0.18, 0.18, a.distanceTo(b), 8), new T.MeshLambertMaterial({ color: c })); m.position.copy(a.clone().add(b).multiplyScalar(.5)); m.quaternion.setFromUnitVectors(V(0, 1, 0), b.clone().sub(a).normalize()); scene.add(m); };
+  tube(wf[0], wf[1], 0xdc2626); tube(cf[0], cf[1], 0x2563eb);
+  // surfaces frontales
+  const quad = (pts, color, op) => { const g = new T.BufferGeometry(); const p = [pts[0], pts[1], pts[2], pts[0], pts[2], pts[3]].flatMap(v => [v.x, v.y, v.z]); g.setAttribute("position", new T.Float32BufferAttribute(p, 3)); g.computeVertexNormals(); const m = new T.Mesh(g, new T.MeshLambertMaterial({ color, transparent: true, opacity: op, side: T.DoubleSide, depthWrite: false })); scene.add(m); return m; };
+  const nW = V(6, 0, -14).normalize(), nC = V(-14, 0, -5).normalize();
+  const wUp = (p, d, h) => p.clone().add(nW.clone().multiplyScalar(d)).add(V(0, h, 0)), cUp = (p, d, h) => p.clone().add(nC.clone().multiplyScalar(d)).add(V(0, h, 0));
+  quad([wf[0], wf[1], wUp(wf[1], 14, 7), wUp(wf[0], 14, 7)], 0xef4444, .28);       // front chaud : pente douce
+  quad([cf[0], cf[1], cUp(cf[1], 4, 8), cUp(cf[0], 4, 8)], 0x3b82f6, .32);         // front froid : pente raide
+  // masse d'air chaud (secteur chaud)
+  const warmS = new T.Mesh(new T.CylinderGeometry(12, 12, 3, 32, 1, false, Math.PI * 0.03, Math.PI * 0.47), new T.MeshLambertMaterial({ color: 0xf87171, transparent: true, opacity: .2, depthWrite: false }));
+  warmS.position.set(0, 1.5, 0); warmS.rotation.y = Math.PI * 0.62; scene.add(warmS);
+  // nuages
+  const cloudMat = c => new T.MeshLambertMaterial({ color: c, transparent: true, opacity: .92 });
+  const puff = (x, y, z, r, c = 0xffffff, n = 6) => { const g = new T.Group(); for (let i = 0; i < n; i++) { const s = new T.Mesh(new T.SphereGeometry(r * (0.6 + Math.random() * .5), 12, 10), cloudMat(c)); s.position.set((Math.random() - .5) * r * 1.6, (Math.random() - .3) * r * .6, (Math.random() - .5) * r * 1.6); g.add(s); } g.position.set(x, y, z); scene.add(g); return g; };
+  const slab = (x, y, z, sx, sy, sz, c, op = .85, rot = 0) => { const m = new T.Mesh(new T.BoxGeometry(sx, sy, sz), new T.MeshLambertMaterial({ color: c, transparent: true, opacity: op })); m.position.set(x, y, z); m.rotation.y = rot; scene.add(m); return m; };
+  const rotW = -Math.atan2(6, 14);
+  // le long du front chaud, de plus en plus haut vers l'avant (nord-est)
+  [[2, 1.2, 0x6b7280, 3.4, 1.4], [6, 3.4, 0x9ca3af, 3.4, .6], [10, 5.4, 0xe5e7eb, 3.4, .35], [13, 6.8, 0xf8fafc, 3.4, .15]].forEach(([d, h, c, w, th]) => { const p = wf[0].clone().lerp(wf[1], .5); const q = p.clone().add(nW.clone().multiplyScalar(d)); slab(q.x, h, q.z, 15, th, w, c, d > 9 ? .55 : .85, rotW); });
+  // cumulonimbus le long du front froid
+  for (let i = 1; i <= 3; i++) { const p = cf[0].clone().lerp(cf[1], .3 + i / 5); const tower = new T.Mesh(new T.CylinderGeometry(0.7, 1.0, 6.5, 14), cloudMat(0xd1d5db)); tower.position.set(p.x - .6, 3.6, p.z); scene.add(tower); const anvil = new T.Mesh(new T.CylinderGeometry(1.7, 0.8, .6, 16), cloudMat(0xf3f4f6)); anvil.position.set(p.x - .2, 7, p.z); scene.add(anvil); }
+  // ciel de traîne : cumulus derrière le front froid
+  [[-8, 4], [-10, 9], [-6, 11], [-12, 2], [-9, -2]].forEach(([x, z]) => puff(x, 1.8, z, .9));
+  // pluie
+  const rainG = new T.BufferGeometry(), rp = [];
+  for (let i = 0; i < 700; i++) { let x, z; if (i < 450) { const p = wf[0].clone().lerp(wf[1], Math.random()); const q = p.add(nW.clone().multiplyScalar(Math.random() * 4)); x = q.x; z = q.z; } else { const p = cf[0].clone().lerp(cf[1], .15 + Math.random() * .75); x = p.x - .6 + (Math.random() - .5) * 2; z = p.z + (Math.random() - .5) * 2; } const y = Math.random() * 1.2; rp.push(x, y, z, x, y + .35, z); }
+  rainG.setAttribute("position", new T.Float32BufferAttribute(rp, 3)); const rain = new T.LineSegments(rainG, new T.LineBasicMaterial({ color: 0x2563eb, transparent: true, opacity: .55 })); scene.add(rain);
+  // flèches de vent : rotation autour du centre, avec convergence de 20°
+  const winds = new T.Group(); scene.add(winds);
+  [6, 11, 17].forEach((r, k) => { for (let i = 0; i < 10 + k * 4; i++) { const a = i / (10 + k * 4) * Math.PI * 2; const pos = V(r * Math.cos(a), .35, r * Math.sin(a)); const tang = V(Math.sin(a), 0, -Math.cos(a)); const inward = pos.clone().multiplyScalar(-1).normalize(); const dir = tang.multiplyScalar(Math.cos(.35)).add(inward.multiplyScalar(Math.sin(.35))).normalize(); winds.add(new T.ArrowHelper(dir, pos, 2.2, 0x0f766e, .7, .45)); } });
+  // repères (étiquettes HTML)
+  const labels = [["Dépression (D)", V(0, .5, 0), "#b91c1c"], ["Front chaud", V(9, 0, 4), "#dc2626"], ["Front froid", V(-3.5, 0, 10), "#2563eb"], ["Secteur chaud : air chaud et humide", V(8, 2.5, 12), "#b91c1c"], ["Air froid", V(-12, 1.2, -6), "#1d4ed8"], ["Air froid", V(20, .8, -14), "#1d4ed8"], ["Nimbostratus : pluie continue", V(9, 1.6, -0.5), "#374151"], ["Altostratus", V(11, 3.6, -3.5), "#374151"], ["Cirrostratus, cirrus", V(15, 7.2, -8.5), "#374151"], ["Cumulonimbus : orages, grains", V(-3.5, 7.8, 7), "#374151"], ["Ciel de traîne : cumulus, averses", V(-11, 3, 6), "#374151"], ["Nord ↑", V(0, 0, -22), "#111827"]].map(([t, p, c]) => { const d = document.createElement("div"); d.textContent = t; d.style.cssText = `position:absolute;transform:translate(-50%,-100%);font:600 11.5px system-ui,sans-serif;color:${c};background:rgba(255,255,255,.78);padding:1px 5px;border-radius:4px;pointer-events:none;white-space:nowrap`; box.appendChild(d); return [d, p]; });
+  const north = V(0, 0, -22); tube(V(0, 0.05, -15), V(0, 0.05, -20), 0x111827);
+  // caméra en orbite
+  const VIEWS = { sw: [-0.75, 0.55, 36], top: [0, 1.5, 50], cut: [0, 0.18, 36] }; let th = VIEWS.sw[0], ph = VIEWS.sw[1], rad = VIEWS.sw[2], target = V(3, 2, 3);
+  const place = () => { cam.position.set(target.x + rad * Math.cos(ph) * Math.sin(th), target.y + rad * Math.sin(ph), target.z + rad * Math.cos(ph) * Math.cos(th)); cam.lookAt(target); };
+  let drag = null, pinch = null; const pts = new Map();
+  renderer.domElement.addEventListener("pointerdown", e => { pts.set(e.pointerId, [e.clientX, e.clientY]); renderer.domElement.setPointerCapture(e.pointerId); drag = [e.clientX, e.clientY, th, ph]; if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = [Math.hypot(a[0] - b[0], a[1] - b[1]), rad]; } });
+  renderer.domElement.addEventListener("pointermove", e => { if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, [e.clientX, e.clientY]); if (pts.size === 2 && pinch) { const [a, b] = [...pts.values()]; rad = Math.max(20, Math.min(110, pinch[1] * pinch[0] / Math.hypot(a[0] - b[0], a[1] - b[1]))); } else if (drag) { th = drag[2] - (e.clientX - drag[0]) * .008; ph = Math.max(0.05, Math.min(1.55, drag[3] + (e.clientY - drag[1]) * .006)); } });
+  const up = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) drag = null; };
+  renderer.domElement.addEventListener("pointerup", up); renderer.domElement.addEventListener("pointercancel", up);
+  renderer.domElement.addEventListener("wheel", e => { e.preventDefault(); rad = Math.max(20, Math.min(110, rad * (1 + Math.sign(e.deltaY) * .08))); }, { passive: false });
+  document.querySelectorAll(".me-v").forEach(b => b.addEventListener("click", () => { [th, ph, rad] = VIEWS[b.dataset.v]; }));
+  let spin = true; const btn = $("#me-anim"); btn.addEventListener("click", () => { spin = !spin; btn.textContent = spin ? "Pause de la rotation du vent" : "Reprendre la rotation du vent"; });
+  let visible = true; new IntersectionObserver(es => visible = es.some(e => e.isIntersecting)).observe(box);
+  new ResizeObserver(() => { if (!W()) return; renderer.setSize(W(), H()); cam.aspect = W() / H(); cam.updateProjectionMatrix(); }).observe(box);
+  const pos = rain.geometry.attributes.position;
+  const loop = () => {
+    requestAnimationFrame(loop); if (!visible || !W()) return;
+    if (spin) winds.rotation.y += 0.004;
+    for (let i = 0; i < pos.count; i += 2) { let y = pos.getY(i) - 0.06; if (y < 0) y += 1.4; pos.setY(i, y); pos.setY(i + 1, y + .35); } pos.needsUpdate = true;
+    place(); renderer.render(scene, cam);
+    labels.forEach(([d, p]) => { const v = p.clone().project(cam); d.style.display = v.z > 1 ? "none" : ""; d.style.left = ((v.x + 1) / 2 * W()) + "px"; d.style.top = ((1 - v.y) / 2 * H()) + "px"; });
+  };
+  loop();
+}
+
+function init() {
+  if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
+  [reseaux, depuis1974, climat, energieTerre, meteo].forEach(f => { try { const r = f(); if (r?.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
