@@ -258,7 +258,8 @@ function nuages() {
     s += `<text x="${cx}" y="${H - 22}" text-anchor="middle" font-weight="700" fill="currentColor">${n}</text><text x="${cx}" y="${H - 9}" text-anchor="middle" fill="#64748b">${ab}</text>`;
   });
   el.innerHTML = s + "</svg>";
-  $("#me-nuages-t").innerHTML = NUAGES.map(([n, ab, et, a, b, as, si]) => `<tr><td><b>${n}</b> (${ab})</td><td>${et === "tous" ? `de ${fr(a, 1)} à plus de ${b} km` : `${fr(a, 1)} à ${b} km`}</td><td>${as}</td><td>${si}</td></tr>`).join("");
+  const FORM = {"Ci": "Air qui monte très haut, lentement, sur la pente d'un front chaud ou au sommet d'un orage ; cristaux de glace étirés par le vent fort d'altitude", "Cc": "Petite instabilité dans une couche humide en altitude : la couche se découpe en cellules", "Cs": "Ascendance lente et étendue au-dessus d'un front chaud : un voile de glace continu", "Ac": "Couche humide en altitude, brassée par de petites cellules (instabilité ou ondes) ; castellanus : instabilité forte en altitude", "As": "Ascendance de grande échelle sur la pente du front chaud, plus bas que le cirrostratus", "Ns": "Ascendance lente mais continue sur une grande épaisseur (base d'un front chaud ou d'une occlusion)", "Sc": "Couche humide sous une inversion de température (air stable au-dessus), brassée par la turbulence", "St": "Air humide refroidi près du sol (nuit claire, air doux sur mer froide) ou soulevé faiblement ; air très stable", "Cu": "Bulles d'air chauffées par le sol (convection) qui montent jusqu'à leur point de rosée ; base plate = altitude de condensation", "Cb": "Convection profonde dans un air instable sur toute la troposphère, déclenchée par le sol chaud, un relief ou un front froid"};
+  $("#me-nuages-t").innerHTML = NUAGES.map(([n, ab, et, a, b, as, si]) => `<tr><td><b>${n}</b> (${ab})</td><td>${et === "tous" ? `de ${fr(a, 1)} à plus de ${b} km` : `${fr(a, 1)} à ${b} km`}</td><td>${as}</td><td>${FORM[ab]}</td><td>${si}</td></tr>`).join("");
 }
 
 /* simulateur de Buys-Ballot (hémisphère Nord) */
@@ -350,9 +351,51 @@ function parcel() {
     <li><b>CAPE</b> ≈ ${fr(cape)} J/kg (vitesse ascendante maximale théorique √(2 CAPE) ≈ ${fr(Math.sqrt(2 * cape))} m/s) ; <b>inhibition (CIN)</b> ≈ ${fr(cin)} J/kg.</li><li>${v}</li></ul><p class="muted" style="font-size:.78rem;margin:4px 0 0">Modèle simplifié : pas de mélange avec l'air ambiant, effet de la vapeur sur la densité (température virtuelle) négligé, pression standard.</p>`;
 }
 
+/* courbe de saturation et masse d'air */
+let SAT = [20, 10];
+function saturation() {
+  const el = $("#me-satur"); if (!el) return;
+  const W = 900, H = 300, m = { l: 50, r: 20, t: 12, b: 34 }, x = d3.scaleLinear([-10, 40], [m.l, W - m.r]), y = d3.scaleLinear([0, 50], [H - m.b, m.t]);
+  const es = t => 6.112 * Math.exp(17.67 * t / (t + 243.5)), ws = t => 622 * es(t) / (1013.25 - es(t));
+  const td = w => { let lo = -40, hi = 40; for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; ws(mid) < w ? lo = mid : hi = mid; } return lo; };
+  const [T, w] = SAT, d = td(w), hr = 100 * w / ws(T);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px;cursor:crosshair">`;
+  y.ticks(5).forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" fill="#64748b">${v} g/kg</text>`);
+  x.ticks(10).forEach(v => s += `<text x="${x(v)}" y="${H - 14}" text-anchor="middle" fill="#64748b">${v} °C</text>`);
+  const cur = d3.range(-10, 40.1, .5);
+  s += `<path d="M${x(-10)},${y(0)} ${cur.map(t => `L${x(t)},${y(Math.min(50, ws(t)))}`).join(" ")} L${x(40)},${y(0)} Z" fill="#dbeafe" opacity=".6"/><polyline points="${cur.map(t => `${x(t)},${y(Math.min(50, ws(t)))}`).join(" ")}" fill="none" stroke="#1d4ed8" stroke-width="2.4"/>`;
+  s += `<text x="${x(31)}" y="${y(ws(31)) - 8}" fill="#1d4ed8" font-weight="700">saturation (100 % d'humidité)</text><text x="${x(28)}" y="${y(8)}" fill="#1e40af">air non saturé : vapeur invisible</text><text x="${x(-2)}" y="${y(30)}" fill="#64748b">au-dessus de la courbe : impossible, l'excès se condense en nuage</text>`;
+  s += `<line x1="${x(T)}" y1="${y(w)}" x2="${x(d)}" y2="${y(w)}" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 4"/><circle cx="${x(T)}" cy="${y(w)}" r="7" fill="#dc2626"/><circle cx="${x(d)}" cy="${y(w)}" r="6" fill="#fff" stroke="#dc2626" stroke-width="2"/><text x="${x(d) - 8}" y="${y(w) - 10}" text-anchor="end" fill="#dc2626" font-weight="700">point de rosée ${fr(d, 1)} °C</text>`;
+  el.innerHTML = s + "</svg>";
+  $("#me-satur-res").innerHTML = `<ul><li>Masse d'air à <b>${fr(T, 1)} °C</b> contenant <b>${fr(w, 1)} g</b> de vapeur par kg d'air : humidité relative ${fr(Math.min(100, hr))} %.</li><li>Il faut la refroidir de <b>${fr(Math.max(0, T - d), 1)} °C</b> (jusqu'à ${fr(d, 1)} °C) pour qu'elle sature. ${T - d > 0.5 ? `En montant (≈ 1 °C par 100 m), cela arrive vers <b>${fr(125 * (T - d))} m</b> d'altitude : c'est la base du nuage. La nuit, si le sol se refroidit de ${fr(T - d, 1)} °C, du brouillard ou de la rosée apparaissent.` : "<b>Elle est déjà saturée</b> : brouillard ou nuage au sol."}</li></ul>`;
+}
+/* cinq mécanismes */
+function mecanismes() {
+  const el = $("#me-meca"); if (!el) return;
+  const P = [["① Convection", "le sol chauffé par le Soleil crée des bulles d'air chaud qui montent", "Cumulus, cumulonimbus", "c"], ["② Relief", "le vent pousse l'air contre une montagne, il est forcé de monter", "Nuages accrochés aux crêtes, lenticulaires, pluie au vent du relief", "o"], ["③ Front", "l'air chaud glisse sur l'air froid (ou l'air froid soulève l'air chaud)", "Cirrus → altostratus → nimbostratus ; cumulonimbus au front froid", "f"], ["④ Convergence", "dans une dépression, l'air converge près du sol et monte lentement sur une grande surface", "Grandes couches nuageuses, pluie durable", "d"], ["⑤ Refroidissement par le bas", "nuit claire (le sol rayonne vers l'espace) ou air doux passant sur une surface froide (mer)", "Brouillard, stratus", "r"]];
+  const W = 900, cw = W / 5, H = 290;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px"><defs><marker id="mk" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker></defs>`;
+  const cloud = (cx, cy, r) => [0, 1, 2].map(i => `<circle cx="${cx - r + i * r}" cy="${cy - (i === 1 ? r * .4 : 0)}" r="${r * (i === 1 ? 1 : .8)}" fill="#fff" stroke="#94a3b8"/>`).join("");
+  P.forEach(([t, d, n, k], i) => {
+    const x0 = i * cw + 6, w = cw - 12, gy = 150;
+    s += `<rect x="${x0}" y="4" width="${w}" height="${H - 8}" rx="8" fill="#f8fafc" stroke="#e2e8f0"/><rect x="${x0}" y="${gy}" width="${w}" height="10" fill="#86efac"/>`;
+    const cx = x0 + w / 2;
+    if (k === "c") { s += `<circle cx="${cx}" cy="${gy - 8}" r="6" fill="#fdba74"/><line x1="${cx}" y1="${gy - 16}" x2="${cx}" y2="${gy - 70}" stroke="#dc2626" stroke-width="2" marker-end="url(#mk)"/>${cloud(cx, gy - 92, 16)}<text x="${x0 + 10}" y="24" fill="#f59e0b">☀</text>`; }
+    if (k === "o") { s += `<polygon points="${x0 + 30},${gy} ${cx + 10},${gy - 70} ${x0 + w - 10},${gy}" fill="#a8a29e"/><path d="M${x0 + 8},${gy - 20} L${cx - 10},${gy - 70} L${cx + 20},${gy - 90}" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#mk)"/>${cloud(cx + 10, gy - 92, 13)}`; }
+    if (k === "f") { s += `<polygon points="${x0 + 10},${gy} ${x0 + w - 10},${gy} ${x0 + w - 10},${gy - 60}" fill="#bfdbfe"/><text x="${x0 + w - 40}" y="${gy - 8}" fill="#1d4ed8">froid</text><text x="${x0 + 14}" y="${gy - 40}" fill="#b91c1c">chaud</text><path d="M${x0 + 20},${gy - 20} L${x0 + w - 20},${gy - 70}" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#mk)"/><rect x="${x0 + w / 2}" y="${gy - 92}" width="${w / 2 - 12}" height="12" rx="6" fill="#e5e7eb" stroke="#94a3b8"/>`; }
+    if (k === "d") { s += `<path d="M${x0 + 10},${gy - 10} L${cx - 6},${gy - 10}" stroke="#dc2626" stroke-width="2" marker-end="url(#mk)"/><path d="M${x0 + w - 10},${gy - 10} L${cx + 6},${gy - 10}" stroke="#dc2626" stroke-width="2" marker-end="url(#mk)"/><line x1="${cx}" y1="${gy - 14}" x2="${cx}" y2="${gy - 64}" stroke="#dc2626" stroke-width="2" marker-end="url(#mk)"/><rect x="${x0 + 12}" y="${gy - 92}" width="${w - 24}" height="18" rx="9" fill="#d1d5db" stroke="#94a3b8"/><text x="${cx + 18}" y="${gy - 18}" text-anchor="middle" fill="#b91c1c" font-weight="700">D</text>`; }
+    if (k === "r") { s += `<text x="${x0 + 10}" y="28" fill="#64748b">☾ nuit claire</text><line x1="${cx}" y1="${gy - 4}" x2="${cx}" y2="${gy - 60}" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4 3"/><rect x="${x0 + 4}" y="${gy - 26}" width="${w - 8}" height="24" fill="#e5e7eb" opacity=".9"/><text x="${cx}" y="${gy - 10}" text-anchor="middle" fill="#475569">brouillard</text>`; }
+    s += `<text x="${cx}" y="184" text-anchor="middle" font-weight="700">${t}</text>`;
+    let yy = 200; const wrap = (txt, col) => { const words = txt.split(" "); let line = "", out = ""; words.forEach(wd => { if ((line + wd).length > 27) { out += `<text x="${cx}" y="${yy}" text-anchor="middle" fill="${col}">${line}</text>`; line = ""; yy += 13; } line += wd + " "; }); out += `<text x="${cx}" y="${yy}" text-anchor="middle" fill="${col}">${line}</text>`; yy += 20; return out; };
+    s += wrap(d, "#475569") + wrap("→ " + n, "#0f766e");
+  });
+  el.innerHTML = s + "</svg>";
+}
+
 function meteo() {
   if (!$("#meteo")) return;
-  nuages();
+  nuages(); saturation(); mecanismes();
+  $("#me-satur").addEventListener("click", ev => { const sv = $("#me-satur svg"); if (!sv) return; const b = sv.getBoundingClientRect(); const px = (ev.clientX - b.left) / b.width * 900, py = (ev.clientY - b.top) / b.height * 300; SAT = [Math.max(-10, Math.min(40, -10 + (px - 50) / 830 * 50)), Math.max(0.5, Math.min(50, (300 - 34 - py) / 254 * 50))]; saturation(); });
   ["me-ts", "me-dd", "me-g"].forEach(i => $("#" + i).addEventListener("input", parcel)); parcel();
   $("#me-t").addEventListener("input", buysBallot);
   $("#me-bb").addEventListener("click", ev => { const svg = $("#me-bb svg"); if (!svg) return; const b = svg.getBoundingClientRect(); BOAT = [(ev.clientX - b.left) / b.width * 900, (ev.clientY - b.top) / b.height * 520]; buysBallot(); });

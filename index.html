@@ -4134,6 +4134,7 @@
   <p class="lead">D'où vient l'énergie de la Terre, où va-t-elle, et pourquoi quelques centaines de ppm de CO₂ suffisent à déplacer l'équilibre de plusieurs degrés ? Cet article, écrit pour des ingénieurs, suit les flux d'énergie du Soleil jusqu'à l'espace, établit les ordres de grandeur par le calcul (rayonnement, transfert radiatif, bilan d'énergie de l'océan), puis confronte ces modèles simples à l'évaluation du GIEC et à ses niveaux de certitude.</p>
   <div class="kpis" id="et-kpis"></div>
   <ul class="mo-ul cr-toc">
+    <li class="cr-toc-p"><a href="#climat-physique" data-to="cp-obs"><b>Ce que l'on mesure : température, CO₂, mer, glaciers</b></a></li>
     <li class="cr-toc-p"><a href="#climat-physique" data-to="cp-partie1"><b>I. Le bilan énergétique de la Terre</b></a><ul>
       <li><a href="#climat-physique" data-to="cp-p1">1. Ce que la Terre reçoit : constante solaire, géométrie, albédo</a></li>
       <li><a href="#climat-physique" data-to="cp-p2">2. Deux corps noirs : le Soleil à 5 772 K, la Terre à 255 K</a></li>
@@ -4154,6 +4155,18 @@
       <li><a href="#climat-physique" data-to="cp-p14">14. « C'est l'axe de la Terre ou son orbite autour du Soleil »</a></li>
       <li><a href="#climat-physique" data-to="cp-p15">15. Les autres objections courantes</a></li></ul></li>
   </ul>
+
+  <h2 id="cp-obs" class="cr-partie">Ce que l'on mesure : les faits avant la théorie</h2>
+  <p>Avant toute explication, les mesures. Chaque bande ci-dessous est une année, de 1850 à aujourd'hui : bleu = plus froid que la moyenne 1850-1900, rouge = plus chaud. Pas besoin de modèle pour voir la tendance.</p>
+  <div id="cp-bandes" class="chart"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px">
+    <div><p class="muted" style="margin:0 0 4px"><b>Température moyenne mondiale</b>, écart à 1850-1900 (°C)</p><div id="cp-o-temp" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>CO₂ dans l'air à Mauna Loa (Hawaï)</b>, ppm ; 280 ppm avant 1850</p><div id="cp-o-co2" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Niveau moyen des mers</b>, cm depuis 1880</p><div id="cp-o-mer" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Glaciers de montagne</b> : épaisseur perdue depuis 1956, m d'équivalent eau</p><div id="cp-o-glac" class="chart"></div></div>
+  </div>
+  <div id="cp-o-kpis" class="kpis"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="cp-o-src"></p>
 
   <h2 id="cp-partie1" class="cr-partie">I. Le bilan énergétique de la Terre</h2>
   <h3 id="cp-p1" class="ag-part">1. Ce que la Terre reçoit : constante solaire, géométrie, albédo</h3>
@@ -4183,6 +4196,9 @@
 
   <h3 id="cp-p3" class="ag-part">3. Le bilan complet : où va chaque watt</h3>
   <p>Flux moyens globaux en W/m² (×510 pour obtenir des TW). Sur 340 W/m² reçus, 100 sont réfléchis ; les 240 absorbés chauffent l'atmosphère et la surface, évaporent l'eau, puis repartent vers l'espace en infrarouge. La différence, 0,7 W/m², s'accumule dans le système : c'est le déséquilibre énergétique actuel.</p>
+  <p class="muted" style="margin:0 0 4px"><b>Le schéma simple</b> (flux en W/m²)</p>
+  <div id="cp-schema" class="chart"></div>
+  <p class="muted" style="margin:10px 0 4px"><b>Le bilan détaillé</b> (diagramme de Sankey)</p>
   <div id="et-sankey1" class="chart"></div>
   <p class="muted" style="font-size:.8rem;margin:4px 0 0">Échanges infrarouges surface-atmosphère montrés en net : 398 W/m² émis par la surface, 342 W/m² reçus de l'atmosphère (rayonnement de retour), soit 56 W/m² nets. Valeurs : GIEC, 6ᵉ rapport, groupe I, chapitre 7, figure 7.2 (2021).</p>
   <div class="callout small"><p><b>Vérifications d'ordre de grandeur</b></p><ul>
@@ -4220,9 +4236,14 @@
     <li><b>Le modèle naïf à une couche</b> (une atmosphère opaque à l'infrarouge, transparente au visible) donne T<sub>s</sub> = 2<sup>1/4</sup> T<sub>e</sub> ≈ 303 K : trop chaud, car il ignore la convection et la fenêtre atmosphérique.</li>
     <li><b>Le bon modèle : l'altitude d'émission</b>. La troposphère est brassée par la convection et suit un gradient vertical moyen Γ ≈ 6,5 K/km (le gradient adiabatique sec vaut g/c<sub>p</sub> = 9,8 K/km ; la condensation de la vapeur le réduit). Le rayonnement qui s'échappe vers l'espace vient en moyenne de l'altitude où l'épaisseur optique, comptée depuis le sommet, vaut environ 1 : Z<sub>e</sub> ≈ 5,5 km. Alors T<sub>s</sub> ≈ T<sub>e</sub> + Γ Z<sub>e</sub> = 255 + 6,5 × 5,5 ≈ <b>291 K</b> : on retrouve la température de surface observée.</li>
     <li><b>Ajouter du CO₂ élève l'altitude d'émission</b> : à une altitude plus haute et plus froide, l'émission est plus faible (σT⁴) ; la planète émet moins qu'elle ne reçoit, et se réchauffe jusqu'à ce que la nouvelle altitude d'émission retrouve 255 K. Un doublement du CO₂ élève Z<sub>e</sub> d'environ 150 m, soit 6,5 × 0,15 ≈ <b>1 K</b> de réchauffement avant rétroactions.</li>
+    <li><b>Voir le schéma ci-dessous</b> : il montre les trois étapes.</li>
     <li><b>Pourquoi ce n'est pas « saturé »</b> : au centre de la bande à 15 µm, l'émission vient déjà de la stratosphère, où la température augmente avec l'altitude (le centre de la bande ne contribue plus, et refroidit même la stratosphère) ; mais sur les ailes de la bande, l'absorption croît avec la concentration et l'altitude d'émission monte. C'est l'élargissement progressif de la bande qui produit le forçage.</li>
     <li><b>La signature observée</b> : réchauffement de la troposphère et <b>refroidissement de la stratosphère</b>. Un forçage solaire réchaufferait les deux. Les mesures (radiosondes, satellites) montrent le refroidissement stratosphérique : c'est l'empreinte des gaz à effet de serre.</li>
   </ul></div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0"><button type="button" class="cp-et on" data-e="0">① Équilibre initial</button><button type="button" class="cp-et" data-e="1">② On double le CO₂</button><button type="button" class="cp-et" data-e="2">③ Nouvel équilibre</button></div>
+  <div id="cp-altitude" class="chart"></div>
+  <div id="cp-altitude-txt" class="callout small"></div>
 
   <h3 id="cp-p7" class="ag-part">7. Forçage radiatif : pourquoi la loi est logarithmique</h3>
   <div class="callout small"><ul>
@@ -4240,8 +4261,13 @@
     <li><b>Albédo de surface</b> (neige, glace de mer) : +0,35 W/m²/K. <b>Nuages</b> : +0,42 W/m²/K, avec la plus grande incertitude (−0,10 à +0,94 en fourchette très probable).</li>
     <li><b>Gain de la boucle</b> : en notation d'électronicien, ΔT = ΔT₀ / (1 − f), où ΔT₀ = 1,2 K est la réponse sans rétroaction et f = (λ_vapeur + λ_albédo + λ_nuages) / |λ_Planck| ≈ 2,07 / 3,22 ≈ 0,64. Un gain f proche de 1 amplifierait énormément : c'est pourquoi l'incertitude sur les nuages pèse autant sur la queue haute de la distribution de l'ECS.</li>
   </ul></div>
+  <div id="cp-boucle" class="chart"></div>
   <div id="cp-retro" class="chart"></div>
   <p class="muted" style="font-size:.8rem;margin:4px 0 0">Valeurs centrales évaluées par le GIEC (6ᵉ rapport, groupe I, chapitre 7, tableau 7.10, 2021). Négatif : stabilise ; positif : amplifie.</p>
+
+  <p class="muted" style="margin:8px 0 4px"><b>Vérification par les mesures</b> : température mondiale en fonction du logarithme de la concentration de CO₂, une année par point (1959 à aujourd'hui)</p>
+  <div id="cp-nuage" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0" id="cp-nuage-txt"></p>
 
   <h3 id="cp-p9" class="ag-part">9. La dynamique : modèle à deux réservoirs</h3>
   <p>Le réchauffement n'est pas instantané : l'océan absorbe de la chaleur pendant des siècles. Le modèle de bilan d'énergie à deux couches (Held et al., 2010 ; Geoffroy et al., 2013), utilisé par le GIEC pour émuler les grands modèles, s'écrit :</p>
@@ -4271,7 +4297,10 @@
   <h2 id="cp-partie3" class="cr-partie">III. Ce que dit le GIEC</h2>
   <h3 id="cp-p11" class="ag-part">11. Les constats et leur niveau de certitude</h3>
   <p>Le GIEC évalue la littérature scientifique et exprime ses conclusions avec un vocabulaire calibré : une <b>probabilité</b> quand elle est quantifiable, sinon un <b>degré de confiance</b> (faible, moyen, élevé, très élevé) qui combine la solidité des preuves et l'accord entre études.</p>
-  <div id="cp-echelle" class="chart"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px;align-items:start">
+    <div><p class="muted" style="margin:0 0 4px"><b>Échelle de probabilité</b></p><div id="cp-echelle" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Degré de confiance</b> : il combine la quantité et la qualité des preuves avec l'accord entre études</p><div id="cp-matrice" class="chart"></div></div>
+  </div>
   <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Constat du 6ᵉ rapport (groupe I, 2021)</th><th>Niveau de certitude</th></tr></thead><tbody>
     <tr><td>L'influence humaine a réchauffé l'atmosphère, l'océan et les terres</td><td><b>Sans équivoque</b></td></tr>
     <tr><td>Réchauffement de la surface entre 1850-1900 et 2011-2020 : 1,09 °C (0,95 à 1,20 °C)</td><td>Très probable (la fourchette)</td></tr>
@@ -4286,6 +4315,12 @@
     <tr><td>1,5 °C (moyenne sur 20 ans) atteint entre 2021 et 2040</td><td>Probable dans les scénarios d'émissions intermédiaires et élevées ; plus probable qu'improbable dans le plus bas</td></tr>
     <tr><td>Affaiblissement de la circulation méridienne de retournement atlantique (AMOC) au XXIᵉ siècle</td><td>Très probable ; pas d'effondrement brutal avant 2100 : confiance moyenne</td></tr>
   </tbody></table></div>
+
+  <p class="muted" style="margin:10px 0 4px"><b>Réchauffement en 2081-2100 selon le scénario d'émissions</b> (°C par rapport à 1850-1900 ; barre = fourchette très probable, point = meilleure estimation)</p>
+  <div id="cp-scenarios" class="chart"></div>
+  <p class="muted" style="margin:10px 0 4px"><b>Le budget carbone</b> : ce que l'on peut encore émettre (depuis 2020) pour rester sous un seuil, comparé à ce qui a été émis depuis 1850 (GtCO₂)</p>
+  <div id="cp-budget" class="chart"></div>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">Source : GIEC, 6ᵉ rapport, groupe I, résumé à l'intention des décideurs, tableaux SPM.1 et SPM.2 (2021). Au rythme actuel d'environ 40 GtCO₂ par an, le budget de 1,5 °C (50 % de chances) est épuisé vers le début des années 2030.</p>
 
   <h3 id="cp-p12" class="ag-part">12. Ce qui reste incertain</h3>
   <div class="callout small"><ul>
@@ -4322,6 +4357,7 @@
     <tr><td><b>Obliquité</b> (inclinaison de l'axe)</td><td>23,44° aujourd'hui, en baisse ; varie de 22,1° à 24,5°</td><td>≈ 41 000 ans</td><td>Ne change pas le total annuel ; plus l'axe est incliné, plus les étés des hautes latitudes sont ensoleillés et les hivers sombres.</td></tr>
     <tr><td><b>Précession</b> (orientation de l'axe par rapport au périhélie)</td><td>Périhélie (point le plus proche du Soleil) début janvier, pendant l'hiver de l'hémisphère Nord</td><td>≈ 19 000 à 23 000 ans</td><td>Déplace la saison où la Terre est la plus proche du Soleil. Aujourd'hui, les étés boréaux ont lieu au plus loin du Soleil : ils sont relativement doux.</td></tr>
   </tbody></table></div>
+  <div id="cp-milanko" class="chart"></div>
   <div class="callout small"><ul>
     <li><b>Le mécanisme</b> : les cycles glaciaires dépendent de l'ensoleillement d'été aux hautes latitudes de l'hémisphère Nord (vers 65° N), là où les calottes de glace peuvent naître ou fondre. Il varie d'environ ±10 % (plusieurs dizaines de W/m² en juin) sur 20 000 ans, alors que la moyenne mondiale annuelle ne bouge presque pas. Les rétroactions (albédo des calottes, CO₂, vapeur d'eau) transforment cette redistribution en 5 à 7 °C de changement global.</li>
     <li><b>Le problème des échelles de temps</b> : ces paramètres changent sur des millénaires. Sur les 150 dernières années, la variation du forçage orbital en moyenne mondiale est de l'ordre du centième de W/m², contre environ 2,7 W/m² pour le forçage humain. C'est comme expliquer la montée d'une rivière en une nuit par l'érosion de la montagne.</li>
@@ -4334,7 +4370,7 @@
 
   <h3 id="cp-p15" class="ag-part">15. Les autres objections courantes</h3>
   <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Objection</th><th>Réponse physique</th></tr></thead><tbody>
-    <tr><td><b>« C'est le Soleil »</b></td><td>Le flux solaire est mesuré par satellite depuis 1978 : il varie de ±0,05 % sur le cycle de 11 ans et n'augmente pas (légère baisse depuis les années 1980), alors que la température monte. Et un réchauffement solaire chaufferait aussi la stratosphère, qui se refroidit (partie 6) ; il réchaufferait plus le jour que la nuit et l'été que l'hiver, c'est l'inverse qu'on observe.</td></tr>
+    <tr><td><b>« C'est le Soleil »</b></td><td>Le flux solaire est mesuré par satellite depuis 1978 : il varie de ±0,05 % sur le cycle de 11 ans et n'augmente pas (légère baisse depuis les années 1980), alors que la température monte. Et un réchauffement solaire chaufferait aussi la stratosphère, qui se refroidit (partie 6). Il réchaufferait aussi d'abord les journées ; or, sur le siècle, les nuits se sont réchauffées plus vite que les jours (graphique ci-dessous : l'effet de serre agit jour et nuit, le Soleil seulement le jour). Depuis 1980, les journées rattrapent leur retard : l'air est moins pollué (moins d'aérosols), le Soleil arrive mieux au sol.</td></tr>
     <tr><td><b>« Le CO₂ n'est qu'une trace : 0,04 % de l'air »</b></td><td>Ce qui compte n'est pas la proportion mais l'opacité dans l'infrarouge : 99 % de l'air (N₂, O₂) est transparent. Une colonne d'atmosphère contient environ 6 kg de CO₂ par m², assez pour absorber totalement le centre de la bande de 15 µm sur quelques dizaines de mètres. Une concentration de 0,04 % peut avoir un grand effet, comme 0,1 % d'encre dans de l'eau.</td></tr>
     <tr><td><b>« La vapeur d'eau est le principal gaz à effet de serre »</b></td><td>Vrai (environ la moitié de l'effet de serre naturel, les nuages un quart, le CO₂ un cinquième). Mais la vapeur d'eau reste une dizaine de jours dans l'atmosphère : sa quantité est fixée par la température (Clausius-Clapeyron). C'est une rétroaction, pas une commande ; le CO₂ (qui reste des siècles) fixe la température, qui fixe la vapeur d'eau.</td></tr>
     <tr><td><b>« Les volcans émettent plus de CO₂ que les humains »</b></td><td>Volcans terrestres et sous-marins : environ 0,3 à 0,4 GtCO₂ par an (Gerlach, 2011). Humains : environ 40 GtCO₂ par an, 100 fois plus.</td></tr>
@@ -4343,6 +4379,8 @@
     <tr><td><b>« C'est l'effet des villes (îlots de chaleur) »</b></td><td>Les séries sont corrigées des effets urbains ; l'océan, loin des villes, se réchauffe aussi, tout comme la basse atmosphère mesurée par satellite. Et l'océan accumule 90 % de la chaleur supplémentaire, ce qu'aucune ville ne peut expliquer.</td></tr>
     <tr><td><b>« Il a fait très froid cet hiver »</b></td><td>La météo est un état de l'atmosphère sur quelques jours, le climat sa moyenne sur 30 ans. La variabilité d'une année à l'autre (±0,1 à 0,2 °C en moyenne mondiale, beaucoup plus localement) est superposée à la tendance de 0,2 °C par décennie.</td></tr>
   </tbody></table></div>
+  <p class="muted" style="margin:8px 0 4px"><b>Températures maximales (jour) et minimales (nuit) sur les terres</b>, écart à 1951-1980 (°C), moyenne glissante sur 10 ans</p>
+  <div id="cp-journuit" class="chart"></div>
   <p class="muted" style="font-size:.78rem">Références pour la partie IV : J. Hays, J. Imbrie et N. Shackleton, <i>Science</i> (1976) ; A. Berger, <i>Journal of the Atmospheric Sciences</i> (1978) ; A. Berger et M.-F. Loutre, <i>Science</i> (2002) ; J. Shakun et al., <i>Nature</i> (2012) ; PAGES 2k Consortium, <i>Nature Geoscience</i> (2019) ; T. Gerlach, <i>Eos</i> (2011) ; Z. Hausfather et al., <i>Geophysical Research Letters</i> (2020) ; G. Kopp et J. Lean, <i>Geophysical Research Letters</i> (2011) ; GIEC, 6ᵉ rapport, groupe I, chapitres 2, 5 et 7 (2021). Non consultées en ligne depuis l'environnement de rédaction.</p>
 
   <p class="muted" style="font-size:.78rem">Sources de référence : GIEC, 6ᵉ rapport, groupe I (2021), résumé à l'intention des décideurs et chapitre 7 (figure 7.2, tableau 7.10), <a href="https://www.ipcc.ch/report/ar6/wg1/" target="_blank" rel="noopener">ipcc.ch/report/ar6/wg1</a> ; G. Myhre et al., <i>Geophysical Research Letters</i> (1998) ; I. Held et al., <i>Journal of Climate</i> (2010) ; O. Geoffroy et al., <i>Journal of Climate</i> (2013) ; X.-G. Zhu, S. Long et D. Ort, <i>Current Opinion in Biotechnology</i> (2008) ; C. B. Field et al., <i>Science</i> (1998) ; F. Krausmann et al., <i>PNAS</i> (2013) ; J. H. Davies et D. R. Davies, <i>Solid Earth</i> (2010) ; Energy Institute, <i>Statistical Review of World Energy</i> (2024). Manuel : R. Pierrehumbert, <i>Principles of Planetary Climate</i> (2010). Ces sources n'ont pas pu être consultées en ligne depuis l'environnement de rédaction : chiffres repris de mémoire des documents originaux, à vérifier avant toute publication.</p>
@@ -4359,7 +4397,7 @@
     <li><a href="#meteo" data-to="me-p2">4. La dépression et ses fronts en 3D</a></li>
     <li><a href="#meteo" data-to="me-p3">5. Front chaud, front froid, occlusion ; l'instabilité barocline</a></li>
     <li><a href="#meteo" data-to="me-p4">6. Prévoir le vent selon sa position : la règle du marin</a></li>
-    <li><a href="#meteo" data-to="me-p5">7. Les nuages et ce qu'ils annoncent ; microphysique de la pluie</a></li>
+    <li><a href="#meteo" data-to="me-p5">7. Les nuages : pourquoi ils se forment, ce qu'ils annoncent ; microphysique de la pluie</a></li>
     <li><a href="#meteo" data-to="me-p6">8. Prévoir : du baromètre aux modèles numériques</a></li>
   </ul>
 
@@ -4444,8 +4482,28 @@
 
   <h3 id="me-p5" class="ag-part">7. Les nuages et ce qu'ils annoncent</h3>
   <p>L'Organisation météorologique mondiale classe les nuages en 10 genres, selon leur altitude (étages bas, moyen, élevé) et leur forme : en couches (<i>stratus</i>), en tas (<i>cumulus</i>), en filaments (<i>cirrus</i>), porteurs de pluie (<i>nimbus</i>).</p>
+  <div class="callout small"><p><b>Pourquoi un nuage se forme : une seule règle</b></p><ul>
+    <li><b>L'air contient toujours de la vapeur d'eau invisible</b>, mais il ne peut en contenir qu'une quantité limitée, qui dépend de sa température : elle double à peu près tous les 10 à 11 °C (environ 4 g par kg d'air à 0 °C, 15 g à 20 °C, 27 g à 30 °C). C'est la loi de Clausius-Clapeyron (courbe ci-dessous).</li>
+    <li><b>Un nuage apparaît quand on refroidit l'air jusqu'à cette limite</b> (le point de rosée) : l'excédent de vapeur se condense en gouttelettes (ou en cristaux de glace s'il fait très froid). Il y a donc deux questions à se poser devant un nuage : <b>qu'est-ce qui a refroidi l'air ?</b> et <b>comment l'air se comporte-t-il ensuite ?</b></li>
+    <li><b>Presque toujours, l'air se refroidit parce qu'il monte</b> : en altitude, la pression baisse, l'air se détend et se refroidit d'environ 1 °C tous les 100 m (partie 3). Pour 10 °C d'écart entre la température et le point de rosée, il faut monter d'environ 1 250 m pour former un nuage. Les cinq façons de faire monter (ou refroidir) l'air sont schématisées plus bas.</li>
+    <li><b>La forme dépend de la stabilité</b> : si l'air est stable, il monte seulement parce qu'on le force, et lentement : le nuage s'étale en <b>couche</b> (stratus, altostratus, nimbostratus). Si l'air est instable, chaque bulle qui commence à monter continue d'elle-même, plus chaude que son entourage : le nuage pousse en <b>tour</b> (cumulus, cumulonimbus). C'est ce que montre le simulateur d'ascension (partie 3).</li>
+    <li><b>L'altitude dit la matière</b> : au-dessus de 6 km environ, il fait moins de −30 °C : les nuages sont en glace, fins et filamenteux (cirrus) ; entre 2 et 6 km, mélange d'eau surfondue et de glace ; en dessous, gouttelettes d'eau, contours nets.</li>
+  </ul></div>
+  <p class="muted" style="margin:8px 0 4px"><b>Combien de vapeur l'air peut-il contenir ?</b> (au niveau de la mer ; cliquez sur le graphique pour placer une masse d'air)</p>
+  <div id="me-satur" class="chart"></div>
+  <div id="me-satur-res" class="callout small"></div>
+  <p class="muted" style="margin:10px 0 4px"><b>Les cinq façons de refroidir l'air jusqu'au nuage</b></p>
+  <div id="me-meca" class="chart"></div>
+  <div class="callout small"><p><b>Pourquoi les nuages sont des signaux</b></p><ul>
+    <li><b>La séquence d'un front chaud</b> : la surface frontale est une pente très douce (1/150) qui passe au-dessus de vous bien avant d'arriver au sol. Vous en voyez d'abord la partie la plus haute, à 8-10 km et 800 km en avant (cirrus), puis des parties de plus en plus basses (cirrostratus, altostratus), et enfin la base au sol avec le nimbostratus. <b>Des cirrus qui épaississent depuis l'ouest, c'est le front qui arrive, vu par le haut</b> (voir la maquette 3D, partie 4).</li>
+    <li><b>Les cumulus mesurent l'instabilité de la journée</b> : petits et plats (humilis), une couche stable au-dessus les plafonne : beau temps. S'ils bourgeonnent (congestus) avant midi, l'atmosphère est instable sur une grande épaisseur : risque d'averses ou d'orages l'après-midi. L'enclume du cumulonimbus montre où la tour a buté sur la tropopause (10-12 km).</li>
+    <li><b>Les altocumulus castellanus du matin</b> trahissent une instabilité en altitude, avant même que le sol ne chauffe : signe classique d'orages dans la journée.</li>
+    <li><b>Le stratus et le brouillard</b> signalent un air stable et humide près du sol : sous un anticyclone en hiver, ils peuvent durer des jours (la chaleur du Soleil ne suffit pas à brasser l'air).</li>
+    <li><b>Les lenticulaires</b> sont immobiles alors que le vent les traverse : l'air se condense en montant sur l'onde créée par la montagne et s'évapore en redescendant. Ils signalent un vent fort en altitude.</li>
+  </ul></div>
+  <p class="muted" style="margin:10px 0 4px"><b>Les dix genres de nuages</b></p>
   <div id="me-nuages" class="chart"></div>
-  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Nuage</th><th>Altitude (latitudes moyennes)</th><th>À quoi il ressemble</th><th>Ce qu'il annonce</th></tr></thead><tbody id="me-nuages-t"></tbody></table></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Nuage</th><th>Altitude</th><th>À quoi il ressemble</th><th>Comment il se forme</th><th>Ce qu'il annonce</th></tr></thead><tbody id="me-nuages-t"></tbody></table></div>
 
   <div class="callout small"><p><b>Microphysique : comment naît la pluie</b></p><ul>
     <li><b>Noyaux de condensation</b> : sans particules (sels marins, poussières, sulfates, de 0,1 à 1 µm), la vapeur ne condenserait qu'à plusieurs centaines de % de sursaturation (effet de courbure de Kelvin). Grâce à elles, les gouttelettes se forment dès 0,1 à 1 % de sursaturation.</li>
@@ -4499,7 +4557,8 @@
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118l"></script>
-<script src="sciences2.js?v=20261118d"></script>
+<script src="sciences2.js?v=20261118f"></script>
+<script src="climatviz.js?v=20261118b"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
