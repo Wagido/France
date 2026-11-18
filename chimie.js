@@ -455,6 +455,28 @@ async function tableauReactions() {
   clickPT("Na");
 }
 
+/* produit cinétique contre produit thermodynamique */
+function kcontrol() {
+  const el = $("#ch-kcontrol"); if (!el) return;
+  const Tc = +$("#ch-kt2").value, T = Tc + 273.15, dur = +$("#ch-kdur").value; $("#ch-kt2-v").textContent = Tc + " °C";
+  const A = 1e12, Ea1 = 55e3, Ea2 = 75e3, dG1 = -8e3, dG2 = -25e3;
+  const k1 = A * Math.exp(-Ea1 / (R * T)), k2 = A * Math.exp(-Ea2 / (R * T)), km1 = A * Math.exp(-(Ea1 - dG1) / (R * T)), km2 = A * Math.exp(-(Ea2 - dG2) / (R * T));
+  let r = 1, p1 = 0, p2 = 0; const N = 2000, pts = [];
+  const lt0 = -3, lt1 = Math.log10(dur);
+  let tPrev = 0;
+  for (let i = 0; i <= N; i++) { const t = Math.pow(10, lt0 + (lt1 - lt0) * i / N); let dt = t - tPrev; tPrev = t; const sub = Math.max(1, Math.ceil(dt * (k1 + k2 + km1 + km2) * 5)); const h = dt / sub;
+    for (let j = 0; j < sub; j++) { const d1 = (k1 * r - km1 * p1) * h, d2 = (k2 * r - km2 * p2) * h; r -= d1 + d2; p1 += d1; p2 += d2; }
+    pts.push([t, r, p1, p2]); }
+  const W = 900, H = 260, m = { l: 50, r: 14, t: 12, b: 30 }, x = d3.scaleLog([1e-3, dur], [m.l, W - m.r]), y = d3.scaleLinear([0, 1], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  [0, .25, .5, .75, 1].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v * 100} %</text>`);
+  [[1e-3, "1 ms"], [1, "1 s"], [60, "1 min"], [3600, "1 h"], [86400, "1 jour"]].filter(([v]) => v <= dur).forEach(([v, t]) => s += `<text x="${x(v)}" y="${H - 10}" text-anchor="middle" style="fill:#64748b">${t}</text>`);
+  [[1, "#94a3b8", "réactif R"], [2, "#f59e0b", "P1 (rapide, peu stable)"], [3, "#2563eb", "P2 (lent, stable)"]].forEach(([k, c]) => s += `<polyline points="${pts.map(p => `${x(Math.max(1e-3, p[0]))},${y(p[k])}`).join(" ")}" fill="none" stroke="${c}" stroke-width="2.4"/>`);
+  el.innerHTML = s + `</svg><div class="legend-row"><span><i style="border-top-color:#94a3b8;opacity:1"></i>Réactif R</span><span><i style="border-top-color:#f59e0b;opacity:1"></i>P1 : produit cinétique (barrière 55 kJ/mol, ΔG −8)</span><span><i style="border-top-color:#2563eb;opacity:1"></i>P2 : produit thermodynamique (barrière 75 kJ/mol, ΔG −25)</span></div>`;
+  const f = pts[pts.length - 1];
+  $("#ch-kcontrol-txt").innerHTML = `Au bout de ${{ 60: "1 minute", 3600: "1 heure", 86400: "1 jour" }[dur]} à ${Tc} °C : ${fr(100 * f[2], 0)} % de P1, ${fr(100 * f[3], 0)} % de P2, ${fr(100 * f[1], 0)} % de réactif restant. ${f[2] > f[3] ? "Le produit le plus rapide domine : <b>contrôle cinétique</b>." : "Le produit le plus stable domine : <b>contrôle thermodynamique</b>."} Échelle de temps logarithmique ; constantes de vitesse d'Arrhenius (facteur préexponentiel 10¹² s⁻¹).`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -465,6 +487,7 @@ function init() {
   run(reaction); run(quadrants); run(evScale);
   $("#ch-mol").innerHTML = MOL.map((m, i) => `<option value="${i}">${m[0]}</option>`).join(""); $("#ch-metal").innerHTML = MET.map((m, i) => `<option value="${i}">${m[0]}</option>`).join("");
   [mole, vsepr, maille, avancement, pharma, pourbaix, alcanes].forEach(run);
+  run(kcontrol); ["ch-kt2", "ch-kdur"].forEach(i => $("#" + i).addEventListener("input", kcontrol));
   tableauReactions().catch(e => console.error("tableauReactions", e));
   ["ch-m", "ch-mol"].forEach(i => $("#" + i).addEventListener("input", mole)); $("#ch-metal").addEventListener("input", maille);
   ["ch-n1", "ch-n2", "ch-x"].forEach(i => $("#" + i).addEventListener("input", avancement)); ["ch-t12", "ch-tau"].forEach(i => $("#" + i).addEventListener("input", pharma));
