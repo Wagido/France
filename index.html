@@ -33,6 +33,7 @@
       <button type="button" data-group="ressources">Ressources</button>
       <button type="button" data-group="croissance">Croissance</button>
       <button type="button" data-group="societe">Société</button>
+      <button type="button" data-group="histoire">Histoire</button>
       <button type="button" data-group="science">Science</button>
       <button type="button" data-group="sources-g">Sources</button>
     </nav>
@@ -89,8 +90,6 @@
       <a href="#limites">Limites physiques à la croissance</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
-      <a href="#christianisme">Christianisme</a>
-      <a href="#laicite">Laïcité</a>
       <a href="#demographie">Démographie</a>
       <a href="#immigration">Immigration</a>
       <a href="#justice">Justice</a>
@@ -101,6 +100,11 @@
       <a href="#capital">Capital social et culturel</a>
       <a href="#electorat">Sociologie électorale</a>
       <a href="#patrimoine-hist">Patrimoine historique</a>
+    </nav>
+    <nav class="tabs" data-group="histoire" aria-label="Histoire" hidden>
+      <a href="#christianisme">Christianisme</a>
+      <a href="#laicite">Laïcité</a>
+      <a href="#art">Histoire de l'art</a>
     </nav>
     <nav class="tabs" data-group="science" aria-label="Science" hidden>
       <a href="#tableau">Tableau périodique</a>
@@ -2646,8 +2650,9 @@
 
   <h3 id="la-p8" class="ag-part">8. Et ailleurs ? La France comparée</h3>
   <p>Dans le monde, un pays sur cinq a une religion officielle et un sur cinq favorise une religion sans la rendre officielle. La France fait partie de la petite moitié de pays sans religion officielle ni préférée.</p>
+  <div id="la-carte" class="chart"></div>
   <div id="la-pew" class="chart"></div>
-  <p class="muted" style="font-size:.8rem;margin:4px 0 0">199 pays et territoires, situation en 2015. Source : Pew Research Center, <a href="https://www.pewresearch.org/religion/2017/10/03/many-countries-favor-specific-religions-officially-or-unofficially/" target="_blank" rel="noopener">« Many Countries Favor Specific Religions, Officially or Unofficially »</a> (2017).</p>
+  <p class="muted" style="font-size:.8rem;margin:4px 0 0">199 pays et territoires, situation en 2015 (les très petits pays, comme Malte, Monaco ou le Liechtenstein, à religion officielle, sont à peine visibles ; les territoires dépendants ne sont pas classés). Survolez un pays pour son nom. Fond de carte : Natural Earth. Source : Pew Research Center, <a href="https://www.pewresearch.org/religion/2017/10/03/many-countries-favor-specific-religions-officially-or-unofficially/" target="_blank" rel="noopener">« Many Countries Favor Specific Religions, Officially or Unofficially »</a> (2017).</p>
   <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Pays</th><th>Régime</th><th>En pratique</th></tr></thead><tbody>
     <tr><td><b>France</b></td><td>Séparation stricte (1905)</td><td>Pas de cours de religion à l'école publique, pas de salaire pour les cultes ; mais l'État paie les enseignants des écoles privées sous contrat (loi Debré, 1959) et les communes entretiennent les églises d'avant 1905.</td></tr>
     <tr><td><b>Royaume-Uni</b></td><td>Église d'État (anglicane) en Angleterre</td><td>Le roi est chef de l'Église d'Angleterre ; 26 évêques siègent à la Chambre des lords. L'Écosse a une Église nationale presbytérienne.</td></tr>
@@ -2655,7 +2660,7 @@
     <tr><td><b>Norvège</b></td><td>Église d'État jusqu'en 2012-2017</td><td>L'Église luthérienne est devenue indépendante de l'État en 2017, mais reste « l'Église du peuple » soutenue par lui.</td></tr>
     <tr><td><b>Grèce</b></td><td>Religion « dominante » orthodoxe</td><td>Les prêtres orthodoxes sont payés par l'État ; la Constitution est proclamée « au nom de la Trinité ».</td></tr>
     <tr><td><b>Allemagne</b></td><td>Coopération</td><td>Pas d'Église d'État, mais l'État collecte un impôt d'Église (8 à 9 % de l'impôt sur le revenu) pour les fidèles inscrits ; cours de religion à l'école publique.</td></tr>
-    <tr><td><b>Italie, Espagne</b></td><td>Concordats avec le Vatican</td><td>Les contribuables peuvent affecter une petite part de leur impôt sur le revenu à une Église (0,8 % en Italie, 0,7 % en Espagne) ; cours de religion facultatifs à l'école.</td></tr>
+    <tr><td><b>Italie, Espagne</b></td><td>Concordats avec le Vatican (Pew les classe parmi les pays à religion « préférée »)</td><td>Les contribuables peuvent affecter une petite part de leur impôt sur le revenu à une Église (0,8 % en Italie, 0,7 % en Espagne) ; cours de religion facultatifs à l'école.</td></tr>
     <tr><td><b>Belgique</b></td><td>Cultes « reconnus »</td><td>L'État paie les ministres des cultes reconnus et les conseillers laïques (humanistes).</td></tr>
     <tr><td><b>États-Unis</b></td><td>Séparation (1ᵉʳ amendement, 1791)</td><td>L'État ne peut établir aucune religion, mais la religion est très présente dans la vie publique : « In God We Trust » sur les billets, serment présidentiel souvent sur la Bible. La séparation y protège les Églises de l'État ; en France, elle protège plutôt l'État des Églises.</td></tr>
   </tbody></table></div>
@@ -2674,6 +2679,56 @@
 
   <p class="muted" style="font-size:.78rem">Parties 2 à 7 et 9 : synthèse du consensus des historiens (dates, lois, encycliques), hors texte de loi et chiffres Pew liés ci-dessus. L'estimation de l'exil des congrégations est un ordre de grandeur. Pour approfondir : Jean Baubérot, <i>Histoire de la laïcité en France</i> (Que sais-je ?, 2000) ; Jean-Marie Mayeur, <i>La Séparation des Églises et de l'État</i> (1966, rééd. 2005) ; Patrick Cabanel, <i>Le Grand Exil des congrégations religieuses françaises, 1901-1914</i> (2005) ; Marcel Gauchet, <i>Le Désenchantement du monde</i> (1985) et <i>La Religion dans la démocratie</i> (1998) ; René Rémond, <i>L'Anticléricalisme en France de 1815 à nos jours</i> (1976) ; Jacqueline Lalouette, <i>La Séparation des Églises et de l'État : genèse et développement d'une idée</i> (2005).</p>
 </section>
+<section id="art" class="panel">
+  <div class="panel-head"><h2>Histoire de l'art, d'après Gombrich <span class="geo-fixed">Monde</span></h2></div>
+  <p class="lead">En 1950, l'historien d'art Ernst Gombrich publie <i>Histoire de l'art</i> (<i>The Story of Art</i>), devenu le livre d'initiation le plus lu au monde, réédité seize fois. Cet article en suit le fil, des grottes préhistoriques au XXᵉ siècle, chapitre par chapitre, avec les idées principales et les œuvres repères, et indique où les voir.</p>
+  <ul class="mo-ul cr-toc">
+    <li><a href="#art" data-to="ar-p1">1. Le livre et sa méthode</a></li>
+    <li><a href="#art" data-to="ar-p2">2. La frise : 28 chapitres, 30 000 ans</a></li>
+    <li><a href="#art" data-to="ar-p3">3. Le livre chapitre par chapitre</a></li>
+    <li><a href="#art" data-to="ar-p4">4. Les grandes idées qui traversent le livre</a></li>
+    <li><a href="#art" data-to="ar-p5">5. Les limites du livre, et ce qu'il faut ajouter</a></li>
+  </ul>
+
+  <h3 id="ar-p1" class="ag-part">1. Le livre et sa méthode</h3>
+  <div class="in-need">
+    <div><b>L'auteur</b><span>Ernst Gombrich (1909-2001), né à Vienne, s'installe à Londres en 1936 pour fuir le nazisme. Il dirige le Warburg Institute (1959-1976). Avant ce livre, il avait écrit pour les enfants une <i>Brève histoire du monde</i> (1936) : il en garde le ton simple et direct.</span></div>
+    <div><b>La première phrase</b><span>« Il n'y a pas, à vrai dire, d'Art. Il n'y a que des artistes. » Pour Gombrich, l'art n'est pas une essence mystérieuse : ce sont des personnes qui, à chaque époque, cherchent à résoudre des problèmes concrets (représenter un corps, raconter une histoire, décorer une église, plaire à un client).</span></div>
+    <div><b>Ses règles</b><span>Ne parler que des œuvres reproduites dans le livre, pour que le lecteur puisse regarder en lisant ; préférer les œuvres connues aux curiosités ; éviter le jargon. Chaque style est présenté comme une réponse aux problèmes laissés par le précédent.</span></div>
+  </div>
+
+  <h3 id="ar-p2" class="ag-part">2. La frise : 28 chapitres, 30 000 ans</h3>
+  <p>Le livre n'avance pas à vitesse constante : le premier chapitre couvre des dizaines de milliers d'années, alors que certains chapitres de la Renaissance ne couvrent que vingt-cinq ans. Le cœur du livre est l'Europe, de 1400 à 1900.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px">
+    <div><p class="muted" style="margin:0 0 4px"><b>Nombre de chapitres par période</b></p><div id="ar-periodes" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Où se passe chaque chapitre ?</b></p><div id="ar-lieux" class="chart"></div></div>
+  </div>
+  <div id="ar-frise" class="chart"></div>
+
+  <h3 id="ar-p3" class="ag-part">3. Le livre chapitre par chapitre</h3>
+  <p>Titres traduits librement ; résumés et choix des œuvres repères faits pour cet article (les œuvres citées sont commentées par Gombrich ou typiques du chapitre).</p>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th style="width:4%">N°</th><th style="width:17%">Chapitre</th><th style="width:14%">Époque, lieu</th><th>L'idée principale</th><th style="width:28%">Œuvres repères (où les voir)</th></tr></thead><tbody id="ar-chap"></tbody></table></div>
+
+  <h3 id="ar-p4" class="ag-part">4. Les grandes idées qui traversent le livre</h3>
+  <div class="callout small"><ul>
+    <li><b>Ce que l'on sait contre ce que l'on voit</b> : l'Égyptien dessine un visage de profil, un œil de face, des épaules de face : il montre chaque chose sous son aspect le plus caractéristique, comme on la connaît. Il faudra des siècles pour oser peindre les choses telles qu'elles apparaissent, raccourcies, cachées en partie. C'est le « grand réveil » grec, puis la Renaissance.</li>
+    <li><b>Faire, puis corriger</b> : un artiste ne copie jamais la nature directement. Il part de schémas appris (une tradition), puis les corrige en comparant avec ce qu'il voit. Gombrich développera cette idée dans <i>L'Art et l'illusion</i> (1960).</li>
+    <li><b>Chaque solution crée un nouveau problème</b> : la perspective rend l'espace juste mais menace l'harmonie de la composition ; Léonard et Raphaël trouvent l'équilibre ; leurs successeurs, qui ne peuvent faire mieux, cherchent l'étrange (le maniérisme). L'histoire de l'art est une suite de problèmes et de réponses, pas un progrès vers la « vraie » peinture.</li>
+    <li><b>Ce que l'art doit à ses commanditaires</b> : l'Église au Moyen Âge, les princes et les papes à la Renaissance, les marchands hollandais au XVIIᵉ siècle. Quand la Réforme vide les églises de leurs images, les peintres protestants se tournent vers le portrait, le paysage, la nature morte.</li>
+    <li><b>La « révolution permanente »</b> : vers 1800, la tradition se rompt. L'artiste ne travaille plus pour un client connu mais pour un marché et des expositions ; il devient libre, mais souvent incompris. D'où la succession rapide des « ismes » (romantisme, réalisme, impressionnisme, cubisme…), chacun se définissant contre le précédent.</li>
+    <li><b>Le goût change, les chefs-d'œuvre restent</b> : pour Gombrich, il n'y a pas de bonne ou de mauvaise raison d'aimer une œuvre, mais il faut apprendre à regarder sans préjugés, ni sur le « beau sujet », ni sur l'exactitude, ni sur la nouveauté.</li>
+  </ul></div>
+
+  <h3 id="ar-p5" class="ag-part">5. Les limites du livre, et ce qu'il faut ajouter</h3>
+  <div class="callout small"><ul>
+    <li><b>Un livre centré sur l'Europe</b> : l'Afrique, les Amériques, l'Inde, la Chine et le Japon tiennent en quelques pages (chapitres 1, 5 et 7), puis disparaissent. Gombrich l'assume : il raconte <i>une</i> histoire, celle de la tradition européenne, où chaque artiste répond à ses prédécesseurs.</li>
+    <li><b>Presque pas de femmes artistes</b> dans les premières éditions : Artemisia Gentileschi, Élisabeth Vigée Le Brun, Berthe Morisot ou Camille Claudel n'y figurent pas, reflet des choix de l'historiographie de 1950.</li>
+    <li><b>Peu d'architecture moderne, de photographie et de cinéma</b> ; le dernier chapitre, ajouté et réécrit au fil des éditions, survole l'art depuis 1945 et s'arrête aux années 1990.</li>
+    <li><b>Pour aller plus loin</b> : Gombrich, <i>L'Art et l'illusion</i> (1960) ; Erwin Panofsky, <i>Essais d'iconologie</i> (1939) ; Daniel Arasse, <i>On n'y voit rien</i> (2000), très accessible ; Neil MacGregor, <i>Une histoire du monde en 100 objets</i> (British Museum, 2010), qui corrige le regard centré sur l'Europe.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.78rem">Source principale : Ernst H. Gombrich, <i>Histoire de l'art</i> (<i>The Story of Art</i>, Phaidon, 1ʳᵉ éd. 1950, 16ᵉ éd. 1995 ; trad. française chez Phaidon), dont cet article suit le plan. Résumés, dates et localisation des œuvres : synthèse faite pour ce site, sans sources en ligne vérifiées ici ; les musées indiqués sont ceux où les œuvres sont conservées à la date de rédaction.</p>
+</section>
+
 
 
 <!-- =============================================================== MATIERES -->
@@ -3917,7 +3972,7 @@
 <script src="retraites.js?v=20261118d"></script>
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
-<script src="brouillons.js?v=20261118i"></script>
+<script src="brouillons.js?v=20261118j"></script>
 <script src="nucleaire.js?v=20261118d"></script>
 <script src="logementeco.js?v=20261118d"></script>
 <script src="competences.js?v=20261118d"></script>
