@@ -806,6 +806,48 @@ function courantes() {
   $("#ch-mi-log")?.addEventListener("input", milieux);
 }
 
+/* 15.7 échappement atmosphérique (Jeans) */
+const ASTRES = { terre: [11.19, "Terre", 1000], mars: [5.03, "Mars", 250], lune: [2.38, "Lune", 390], titan: [2.64, "Titan", 150], jupiter: [59.5, "Jupiter", 1000] };
+const GAZ = [["H", 1, "#2563eb"], ["He", 4, "#f59e0b"], ["H₂O", 18, "#0ea5e9"], ["N₂", 28, "#16a34a"], ["O₂", 32, "#dc2626"], ["CO₂", 44, "#111827"]];
+const supE = l => "10" + String(Math.round(l)).replace("-", "⁻").replace(/\d/g, d => "⁰¹²³⁴⁵⁶⁷⁸⁹"[d]);
+const kB = 1.380649e-23, uMass = 1.66054e-27;
+const vpk = (T, m) => Math.sqrt(2 * kB * T / (m * uMass)) / 1000; // vitesse la plus probable, km/s
+const log10Frac = x => x < 3 ? Math.log10(erfc0(x) + 2 * x / Math.sqrt(Math.PI) * Math.exp(-x * x)) : -x * x * Math.LOG10E + Math.log10((2 * x + 1 / x) / Math.sqrt(Math.PI));
+function erfc0(x) { const t = 1 / (1 + 0.5 * x), r = t * Math.exp(-x * x - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277))))))))); return r; }
+function echappement() {
+  const el = $("#ch-esc"); if (!el) return;
+  const pk = $("#ch-esc-p").value, T = +$("#ch-esc-t").value, [ve, nom] = ASTRES[pk]; $("#ch-esc-t-v").textContent = fr(T) + " K (" + fr(T - 273) + " °C)";
+  const vmax = Math.max(ve * 1.25, 12), W = 440, H = 280, m = { l: 30, r: 10, t: 14, b: 30 }, x = d3.scaleLinear([0, vmax], [m.l, W - m.r]);
+  const f = (v, mm) => { const a = vpk(T, mm); return 4 / Math.sqrt(Math.PI) * v * v / a ** 3 * Math.exp(-((v / a) ** 2)); };
+  const fmax = Math.max(...GAZ.map(([, mm]) => f(vpk(T, mm), mm))), y = d3.scaleLinear([0, fmax * 1.05], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10px">`;
+  x.ticks(6).forEach(v => s += `<line x1="${x(v)}" x2="${x(v)}" y1="${m.t}" y2="${H - m.b}" stroke="#eef2f7"/><text x="${x(v)}" y="${H - 12}" text-anchor="middle" style="fill:#64748b">${v} km/s</text>`);
+  GAZ.forEach(([g, mm, c]) => { const P = d3.range(0, vmax, vmax / 300); s += `<path d="M${P.map(v => `${x(v).toFixed(1)},${y(f(v, mm)).toFixed(1)}`).join(" L")}" fill="${c}" fill-opacity=".08" stroke="${c}" stroke-width="2"/>`; const vp = vpk(T, mm); s += `<text x="${x(vp)}" y="${y(f(vp, mm)) - 5}" text-anchor="middle" style="fill:${c}" font-weight="700">${g}</text>`; });
+  s += `<line x1="${x(ve)}" x2="${x(ve)}" y1="${m.t}" y2="${H - m.b}" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="6 4"/><text x="${x(ve) - 4}" y="${m.t + 12}" text-anchor="end" style="fill:#7c3aed" font-weight="700">libération ${nom} ${fr(ve, 1)} km/s</text>`;
+  el.innerHTML = s + "</svg>";
+  // fractions
+  const e2 = $("#ch-esc-frac"), lo = -60, yy = d3.scaleLinear([lo, 0], [H - m.b, m.t]), bw = (W - 60) / GAZ.length;
+  let t = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10px">`;
+  [0, -10, -20, -30, -40, -50, -60].forEach(v => t += `<line x1="40" x2="${W - 10}" y1="${yy(v)}" y2="${yy(v)}" stroke="#eef2f7"/><text x="36" y="${yy(v) + 3}" text-anchor="end" style="fill:#64748b">${v === 0 ? "1" : "10" + String(v).replace("-", "⁻").replace(/\d/g, d => "⁰¹²³⁴⁵⁶⁷⁸⁹"[d])}</text>`);
+  const res = [];
+  GAZ.forEach(([g, mm, c], k) => { const xx = ve / vpk(T, mm), lf = log10Frac(xx), X = 46 + k * bw; res.push([g, lf, ve / (vpk(T, mm) * 2 / Math.sqrt(Math.PI))]); const top = yy(Math.max(lo, lf)); t += `<rect x="${X}" y="${top}" width="${bw - 12}" height="${H - m.b - top}" fill="${c}" opacity=".85"/><text x="${X + (bw - 12) / 2}" y="${H - 12}" text-anchor="middle" font-weight="700" style="fill:${c}">${g}</text><text x="${X + (bw - 12) / 2}" y="${top - 4}" text-anchor="middle" style="fill:${c}">${lf < lo ? "&lt; 10⁻⁶⁰" : supE(lf)}</text>`; });
+  e2.innerHTML = t + "</svg>";
+  const lost = res.filter(r => r[2] < 6).map(r => r[0]), kept = res.filter(r => r[2] >= 6).map(r => r[0]);
+  $("#ch-esc-txt").innerHTML = `${nom} à ${fr(T)} K : rapport v<sub>lib</sub> / v<sub>moy</sub> de ${res.map(r => `${r[0]} ${fr(r[2], 1)}`).join(", ")}. ` + (lost.length ? `<b>S'échappent</b> (rapport inférieur à 6) : ${lost.join(", ")}. ` : "Aucun gaz ne s'échappe par agitation thermique. ") + (kept.length ? `<b>Retenus</b> : ${kept.join(", ")}.` : "Aucun gaz n'est retenu durablement.") + ` Pour l'hydrogène, environ ${res[0][1] > -1 ? "une molécule sur " + fr(10 ** -res[0][1]) : supE(res[0][1])} dépasse la vitesse de libération à chaque instant ; celles qui montent vers l'espace s'en vont, et les chocs renouvellent sans cesse la queue de la distribution. Pour l'azote, la fraction (${supE(res[3][1])}) est si faible qu'aucune molécule ne s'échappe en 4,5 milliards d'années.`;
+}
+function escPlanetes() {
+  const el = $("#ch-esc-planetes"); if (!el) return;
+  const A = [["Mercure", 4.25, 600, "#a8a29e"], ["Vénus", 10.36, 300, "#eab308"], ["Terre", 11.19, 1000, "#2563eb"], ["Lune", 2.38, 390, "#94a3b8"], ["Mars", 5.03, 250, "#dc2626"], ["Jupiter", 59.5, 1000, "#b45309"], ["Saturne", 35.5, 420, "#ca8a04"], ["Uranus", 21.3, 800, "#06b6d4"], ["Neptune", 23.5, 750, "#3b82f6"], ["Titan", 2.64, 150, "#f97316"], ["Pluton", 1.21, 70, "#78716c"]];
+  const W = 900, H = 330, m = { l: 56, r: 80, t: 14, b: 34 }, x = d3.scaleLog([50, 2500], [m.l, W - m.r]), y = d3.scaleLog([0.5, 80], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  [1, 2, 5, 10, 20, 50].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v} km/s</text>`);
+  [50, 100, 200, 500, 1000, 2000].forEach(v => s += `<line x1="${x(v)}" x2="${x(v)}" y1="${m.t}" y2="${H - m.b}" stroke="#eef2f7"/><text x="${x(v)}" y="${H - 16}" text-anchor="middle" style="fill:#64748b">${v} K</text>`);
+  s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 2}" text-anchor="middle" style="fill:#64748b">température de la haute atmosphère →</text>`;
+  GAZ.forEach(([g, mm, c]) => { const P = [50, 2500].map(T => [T, 6 * vpk(T, mm) * 2 / Math.sqrt(Math.PI)]); s += `<line x1="${x(P[0][0])}" y1="${y(Math.max(.5, P[0][1]))}" x2="${x(P[1][0])}" y2="${y(Math.min(80, P[1][1]))}" stroke="${c}" stroke-width="1.6" stroke-dasharray="6 4"/><text x="${W - m.r + 4}" y="${y(Math.min(80, P[1][1])) + 4}" style="fill:${c}" font-weight="700">${g}</text>`; });
+  A.forEach(([n, v, T, c]) => s += `<circle cx="${x(T)}" cy="${y(v)}" r="7" fill="${c}" stroke="#fff" stroke-width="1.5"/><text x="${x(T) + 10}" y="${y(v) + (n === "Uranus" ? 14 : n === "Neptune" ? -4 : 4)}" font-weight="700">${n}</text>`);
+  el.innerHTML = s + "</svg>";
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -825,7 +867,7 @@ function init() {
   ["ch-hT", "ch-hP"].forEach(i => $("#" + i).addEventListener("input", haber));
   ["ch-ea", "ch-kT", "ch-cat"].forEach(i => $("#" + i).addEventListener("input", cinetique));
   $("#ch-acide").addEventListener("change", dosage);
-  run(courantes);
+  run(courantes); run(echappement); run(escPlanetes); ["ch-esc-p", "ch-esc-t"].forEach(i => $("#" + i)?.addEventListener("input", () => { if (i === "ch-esc-p") $("#ch-esc-t").value = ASTRES[$("#ch-esc-p").value][2]; run(echappement); }));
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();

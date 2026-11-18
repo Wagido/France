@@ -4958,11 +4958,39 @@
     <li><b>Pourquoi le CO₂ et le méthane comptent tant malgré leur rareté</b> : ils absorbent l'infrarouge émis par le sol, car leurs vibrations déforment la répartition des charges. N₂ et O₂, molécules symétriques à deux atomes identiques, n'ont pas cette propriété : 99 % de l'air est transparent à l'infrarouge (voir <a href="#climat-physique" data-to="climat-physique">Le climat expliqué par la physique</a>).</li>
     <li><b>Le méthane est un intermédiaire</b> : il ne s'accumule pas indéfiniment, car le radical OH (durée de vie d'une seconde) le transforme en CO₂ en une douzaine d'années. Mais il réchauffe environ 80 fois plus que le CO₂ sur 20 ans, à masse égale.</li>
   </ul></div>
+  <h3 id="ch-cour-r7" class="li-sub">15.7 Pourquoi certains atomes manquent sur Terre : l'hydrogène et l'hélium s'échappent</h3>
+  <p>L'hydrogène est l'élément le plus abondant de l'Univers (74 % de la masse), mais l'air n'en contient que 0,5 molécule par million ; l'hélium (24 % de l'Univers) n'y est qu'à 5 ppm. Deux mécanismes l'expliquent : la Terre ne les a presque pas captés à sa naissance, et elle perd encore aujourd'hui ceux qu'elle a.</p>
+  <div class="callout small"><ul>
+    <li><b>Ce n'est pas la vitesse des électrons qui compte</b>, mais celle de l'atome ou de la molécule entière, dans son mouvement d'agitation thermique. La température fixe l'énergie cinétique moyenne, la même pour toutes les espèces : ½ m v² ≈ (3/2) k T. À énergie égale, <b>les plus légers vont le plus vite</b> : v<sub>moy</sub> = √(8 k T / π m). À 1 000 K, un atome d'hydrogène (1 u) file en moyenne à 4,6 km/s, une molécule d'azote (28 u) à 0,9 km/s.</li>
+    <li><b>La vitesse de libération</b> de la Terre, v<sub>lib</sub> = √(2 G M / r), vaut 11,2 km/s ; elle ne dépend pas de la masse de l'objet lancé. Aucune molécule ne l'atteint « en moyenne », mais la distribution de Maxwell-Boltzmann a une queue : une petite fraction des molécules va beaucoup plus vite que la moyenne. Comme cette queue décroît en e<sup>−(v/v<sub>p</sub>)²</sup>, la fraction qui dépasse 11,2 km/s est énorme pour l'hydrogène et infinitésimale pour l'azote.</li>
+    <li><b>Où cela se passe</b> : pas au sol, où chaque molécule subit des milliards de chocs par seconde et ne garde jamais sa vitesse. L'échappement se produit dans l'<b>exosphère</b>, au-dessus d'environ 500 km, là où l'air est si raréfié qu'une molécule lancée vers le haut ne rencontre plus personne. Or cette haute atmosphère est chaude : 700 à 1 500 K selon l'activité du Soleil, chauffée par ses ultraviolets. C'est l'<b>échappement de Jeans</b> (James Jeans, 1916).</li>
+    <li><b>La règle pratique</b> : une planète garde un gaz pendant des milliards d'années si sa vitesse de libération dépasse environ <b>6 fois</b> la vitesse moyenne des molécules de ce gaz dans son exosphère. Pour la Terre : l'hydrogène (rapport ≈ 2,4) et l'hélium (≈ 5) s'échappent ; l'oxygène, l'azote, l'argon et le CO₂ restent.</li>
+  </ul></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin:6px 0">
+    <label>Astre <select id="ch-esc-p"><option value="terre" selected>Terre (11,2 km/s)</option><option value="mars">Mars (5,0 km/s)</option><option value="lune">Lune (2,4 km/s)</option><option value="titan">Titan (2,6 km/s)</option><option value="jupiter">Jupiter (59,5 km/s)</option></select></label>
+    <label>Température de l'exosphère <input type="range" id="ch-esc-t" min="100" max="2500" step="10" value="1000"> <b id="ch-esc-t-v"></b></label>
+  </div>
+  <div class="grid2">
+    <div><p class="muted" style="margin:0 0 4px"><b>Distribution des vitesses (Maxwell-Boltzmann)</b> et vitesse de libération</p><div id="ch-esc" class="chart"></div></div>
+    <div><p class="muted" style="margin:0 0 4px"><b>Fraction des molécules plus rapides que la vitesse de libération</b> (échelle logarithmique)</p><div id="ch-esc-frac" class="chart"></div></div>
+  </div>
+  <p class="muted" id="ch-esc-txt" style="font-size:.85rem;margin:4px 0 0"></p>
+  <p class="muted" style="margin:10px 0 4px"><b>Qui garde quoi ?</b> Vitesse de libération des astres et température de leur haute atmosphère ; un gaz est retenu si l'astre est au-dessus de sa ligne (6 fois la vitesse moyenne de ce gaz)</p>
+  <div id="ch-esc-planetes" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Comment l'hydrogène de la Terre s'échappe vraiment</b> : presque tout l'hydrogène terrestre est lié, dans l'eau (H₂O) et le méthane (CH₄), molécules trop lourdes pour fuir. Il faut d'abord qu'elles montent dans la haute atmosphère, où les ultraviolets du Soleil les cassent (photodissociation) et libèrent des atomes H. Or la vapeur d'eau est bloquée par le « piège froid » de la tropopause (−60 °C vers 15 km d'altitude), où elle gèle et retombe : la stratosphère est extrêmement sèche. Ce piège protège nos océans. Bilan actuel : environ <b>3 kg d'hydrogène par seconde</b> et 50 g d'hélium par seconde. Sur 4,5 milliards d'années, cela équivaut à quelques millièmes de l'eau des océans : la Terre a gardé son eau.</li>
+    <li><b>L'hélium se renouvelle par la radioactivité</b> : l'uranium et le thorium des roches émettent des particules alpha, qui sont des noyaux d'hélium. Cet hélium s'accumule dans certains gisements de gaz naturel (d'où on l'extrait), ou rejoint l'air, d'où il s'échappe en un million d'années environ. C'est une ressource non renouvelable à notre échelle. À l'inverse, l'<b>argon</b> (0,93 % de l'air, le troisième gaz de l'atmosphère) vient de la désintégration du potassium 40 des roches : lourd (40 u), il s'accumule depuis 4,5 milliards d'années.</li>
+    <li><b>Mais surtout, la Terre ne les a jamais eus</b> : près du jeune Soleil, il faisait trop chaud pour que les gaz légers et les glaces se condensent. Seules les poussières de roches et de métaux ont formé les planètes intérieures, trop petites ensuite pour capturer le gaz du disque. Au-delà de la « ligne des glaces », les grosses planètes ont avalé l'hydrogène et l'hélium : Jupiter est fait à 90 % de ces deux éléments. C'est pourquoi le néon, gaz noble léger et abondant dans l'Univers, est dix milliards de fois plus rare sur Terre que dans le Soleil, rapporté au silicium.</li>
+    <li><b>Les autres modes de fuite</b> : l'échappement de Jeans n'est pas le seul. Les ions peuvent échanger leur charge avec un atome neutre et repartir à grande vitesse ; le vent solaire arrache directement la haute atmosphère des planètes sans champ magnétique (Mars) ; et, au début du système solaire, quand le jeune Soleil émettait 10 à 100 fois plus d'ultraviolets, la haute atmosphère, très chaude, s'écoulait comme un vent (échappement hydrodynamique), entraînant même des gaz lourds.</li>
+    <li><b>Mars, la Lune, Titan</b> : la Lune, avec 2,4 km/s, ne retient rien. Mars a perdu l'essentiel de son atmosphère et de son eau. Titan, lune de Saturne, garde une atmosphère d'azote plus épaisse que la nôtre malgré sa faible gravité, parce qu'il fait très froid si loin du Soleil : les molécules y sont lentes.</li>
+  </ul></div>
+
   <div class="callout small"><p style="margin:0 0 4px"><b>En résumé : une molécule est courante si</b></p><ul>
     <li>ses atomes sont abondants (H, O, C, N ; O et Si dans les roches) ;</li>
     <li>elle respecte simplement les valences (CH₄, NH₃, H₂O, CO₂, N₂, O₂) ;</li>
     <li>elle est un « fond de puits » d'énergie dans un milieu oxydant (CO₂, H₂O, N₂, silicates, carbonates) ;</li>
-    <li>ou bien quelque chose la refabrique en permanence plus vite qu'elle ne disparaît (O₂ et CH₄ par la vie, ozone par le Soleil).</li>
+    <li>ou bien quelque chose la refabrique en permanence plus vite qu'elle ne disparaît (O₂ et CH₄ par la vie, ozone par le Soleil) ;</li>
+    <li>et si elle est assez lourde pour ne pas s'échapper dans l'espace (ce qui exclut H₂ et l'hélium, chapitre 15.7).</li>
   </ul></div>
   <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Où</th><th>Les molécules courantes</th></tr></thead><tbody>
     <tr><td><b>Cuisine</b></td><td>eau H₂O, sel NaCl, sucre (saccharose C₁₂H₂₂O₁₁), amidon, huiles (triglycérides), vinaigre (acide acétique CH₃COOH), alcool (éthanol C₂H₅OH), bicarbonate NaHCO₃</td></tr>
@@ -6175,7 +6203,7 @@ for snr_db in (10, 15, 20):
 <script src="brouillons.js?v=20261118o"></script>
 <script src="sciences2.js?v=20261118h"></script>
 <script src="climatviz.js?v=20261118b"></script>
-<script src="chimie.js?v=20261118p"></script>
+<script src="chimie.js?v=20261118q"></script>
 <script src="eau2.js?v=20261118e"></script>
 <script src="energiephys.js?v=20261118b"></script>
 <script src="telecom.js?v=20261118b"></script>
