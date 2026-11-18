@@ -57,10 +57,76 @@ function sankey() {
     .attr("x", d => d.c === 4 ? d.x1 + 6 : d.x0).attr("y", d => d.c === 4 ? (d.y0 + d.y1) / 2 : d.y0 - 5).attr("dy", d => d.c === 4 ? "0.35em" : 0)
     .attr("font-weight", d => d.c === 4 ? 600 : 400).text(d => d.l);
 }
+
+/* ---------- Ancien Testament : livre par livre ----------
+   r : période racontée [début, fin] (années, négatif = av. J.-C. ; null = temps des origines ou sans cadre historique)
+   e : période de rédaction [début, fin] selon le consensus des historiens (approximatif) */
+const AT = [
+ { g: "Pentateuque (Torah)", b: [
+  ["Genèse", "La Création, Adam et Ève, Caïn et Abel, le Déluge, la tour de Babel ; puis les patriarches Abraham, Isaac, Jacob et Joseph, jusqu'à l'installation en Égypte.", "Moïse", "Plusieurs traditions assemblées par des scribes et des prêtres", null, [-750, -450]],
+  ["Exode", "L'esclavage en Égypte, Moïse, les dix plaies, la sortie d'Égypte, le passage de la mer, les dix commandements au Sinaï.", "Moïse", "Idem", [-1250, -1200], [-700, -450]],
+  ["Lévitique", "Les lois du culte : sacrifices, prêtres, pur et impur, fêtes, « aime ton prochain comme toi-même ».", "Moïse", "Milieu des prêtres du Temple", [-1250, -1210], [-600, -450]],
+  ["Nombres", "Le recensement et les 40 ans d'errance dans le désert.", "Moïse", "Idem", [-1250, -1210], [-600, -450]],
+  ["Deutéronome", "Les derniers discours de Moïse, qui redit la Loi avant de mourir face à la Terre promise.", "Moïse", "Noyau lié à la réforme du roi Josias (vers 622), complété pendant l'exil", [-1210, -1200], [-640, -500]]]},
+ { g: "Livres historiques", b: [
+  ["Josué", "La conquête de Canaan : la prise de Jéricho, le partage du pays entre les douze tribus.", "Josué", "« Histoire deutéronomiste », rédigée à la cour de Juda puis pendant l'exil", [-1200, -1150], [-640, -550]],
+  ["Juges", "Les héros des tribus avant la royauté : Débora, Gédéon, Samson.", "Samuel", "Idem", [-1150, -1030], [-640, -550]],
+  ["Ruth", "Une étrangère moabite, fidèle à sa belle-mère, devient l'arrière-grand-mère du roi David.", "Samuel", "Récit de l'époque perse", [-1100, -1050], [-500, -350]],
+  ["1 et 2 Samuel", "Samuel, Saül premier roi, David et Goliath, le règne de David.", "Samuel, Nathan, Gad", "Histoire deutéronomiste, sur des sources plus anciennes", [-1050, -970], [-640, -550]],
+  ["1 et 2 Rois", "Salomon et le Temple, la division en deux royaumes (Israël et Juda), les prophètes Élie et Élisée, la chute de Samarie (722) et de Jérusalem (586).", "Jérémie", "Idem", [-970, -560], [-620, -550]],
+  ["1 et 2 Chroniques", "Une réécriture de l'histoire d'Adam à l'exil, centrée sur David et le Temple.", "Esdras", "Lévites de Jérusalem, époque perse", [-1000, -538], [-400, -300]],
+  ["Esdras et Néhémie", "Le retour d'exil, la reconstruction du Temple et des murailles de Jérusalem.", "Esdras, Néhémie", "Époque perse", [-538, -430], [-400, -300]],
+  ["Esther", "Une reine juive à la cour de Perse sauve son peuple d'un massacre (origine de la fête de Pourim).", "Mardochée", "Roman de l'époque perse ou grecque", [-480, -470], [-400, -200]]]},
+ { g: "Livres poétiques et de sagesse", b: [
+  ["Job", "Un juste frappé de tous les malheurs se demande pourquoi Dieu permet la souffrance.", "Moïse ou Job", "Poète anonyme", null, [-550, -350]],
+  ["Psaumes", "150 prières et chants : louange, supplication, colère, confiance (« Le Seigneur est mon berger »).", "David", "Recueil formé sur plusieurs siècles", null, [-900, -200]],
+  ["Proverbes", "Maximes de sagesse pratique, dont certaines reprennent un texte égyptien.", "Salomon", "Recueils d'écoles de sagesse", null, [-800, -300]],
+  ["Ecclésiaste (Qohélet)", "« Vanité des vanités, tout est vanité » : une méditation désabusée sur le sens de la vie.", "Salomon", "Sage de l'époque grecque", null, [-300, -200]],
+  ["Cantique des cantiques", "Un poème d'amour entre deux amants, lu plus tard comme une image de l'amour de Dieu.", "Salomon", "Poèmes d'amour, époque perse ou grecque", null, [-450, -250]]]},
+ { g: "Prophètes", b: [
+  ["Isaïe", "Trois prophètes en un livre : les menaces contre Juda (VIIIᵉ s.), la consolation de l'exil, le retour. L'annonce d'un serviteur souffrant et de l'Emmanuel, relue par les chrétiens comme annonce du Christ.", "Isaïe", "Isaïe de Jérusalem (ch. 1-39), un prophète de l'exil (40-55), ses disciples (56-66)", [-740, -500], [-740, -450]],
+  ["Jérémie et Lamentations", "Le prophète annonce la chute de Jérusalem et la vit ; les Lamentations pleurent la ville détruite.", "Jérémie", "Jérémie et son secrétaire Baruch, puis éditeurs", [-627, -580], [-620, -500]],
+  ["Ézéchiel", "Prophète déporté à Babylone : visions du char divin, des ossements desséchés qui revivent, du Temple futur.", "Ézéchiel", "Ézéchiel et son école", [-593, -571], [-590, -500]],
+  ["Daniel", "Daniel dans la fosse aux lions, les trois jeunes gens dans la fournaise, et des visions de la fin des temps.", "Daniel (VIᵉ s.)", "Auteur anonyme pendant la révolte contre le roi grec Antiochos IV : c'est le livre le plus récent", [-605, -530], [-167, -164]],
+  ["Les douze « petits prophètes »", "Osée, Joël, Amos, Abdias, Jonas (avalé par le grand poisson), Michée, Nahum, Habacuc, Sophonie, Aggée, Zacharie, Malachie. Amos et Osée sont les plus anciens livres prophétiques de la Bible.", "Chacun des douze", "Du VIIIᵉ au IVᵉ siècle", [-760, -450], [-760, -350]]]},
+ { g: "Livres en plus chez les catholiques et les orthodoxes (deutérocanoniques)", b: [
+  ["Tobie", "Le jeune Tobie, guidé par l'ange Raphaël, guérit son père aveugle.", "Tobit", "Roman, peut-être écrit en araméen", [-720, -700], [-250, -150]],
+  ["Judith", "Une veuve sauve sa ville en décapitant le général ennemi Holopherne.", "–", "Roman de l'époque grecque", null, [-150, -100]],
+  ["1 et 2 Maccabées", "La révolte des Maccabées contre les rois grecs (167-160) et la purification du Temple (origine de Hanoukka).", "–", "Historiens juifs de l'époque hasmonéenne", [-175, -134], [-125, -100]],
+  ["Sagesse", "Une méditation en grec sur la sagesse et l'immortalité de l'âme.", "Salomon", "Juif d'Alexandrie de langue grecque", null, [-50, 0]],
+  ["Siracide (Ecclésiastique)", "Un recueil de sagesse d'un maître de Jérusalem.", "Jésus Ben Sira", "Ben Sira, vers 180 ; traduit en grec par son petit-fils vers 132", null, [-190, -175]],
+  ["Baruch", "Prière et exhortation attribuées au secrétaire de Jérémie.", "Baruch", "Auteurs de l'époque grecque", null, [-200, -100]]]}
+];
+function ancienTestament() {
+  const tb = $("#cr-at"); if (!tb) return;
+  const yr = v => v == null ? "" : v < 0 ? `${-v} av. J.-C.` : `${v}`;
+  const per = a => a ? `${yr(a[0])} – ${yr(a[1])}` : "temps des origines, sans date";
+  tb.innerHTML = AT.map(gr => `<tr><td colspan="4" style="background:var(--soft,#f1f5f9)"><b>${gr.g}</b></td></tr>` + gr.b.map(([n, c, ta, h, r, e]) =>
+    `<tr><td><b>${n}</b></td><td>${c}</td><td>${ta}</td><td>${h}<br><small class="muted">Raconte : ${per(r)} · Écrit vers : ${per(e)}</small></td></tr>`).join("")).join("");
+  /* frise : époque racontée (gris) et époque d'écriture (couleur) */
+  const el = $("#cr-frise"); if (!el) return;
+  const rows = AT.flatMap(gr => gr.b.map(b => ({ n: b[0], r: b[4], e: b[5], g: gr.g })));
+  const X0 = -1300, X1 = 50, W = 1000, LW = 190, RH = 18, H = rows.length * RH + 52;
+  const x = v => LW + (v - X0) / (X1 - X0) * (W - LW - 10);
+  const gc = { "Pentateuque (Torah)": "#2563eb", "Livres historiques": "#16a34a", "Livres poétiques et de sagesse": "#d97706", "Prophètes": "#9333ea" };
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  for (let t = -1200; t <= 0; t += 100) svg += `<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H - 22}" stroke="#e5e7eb"/><text x="${x(t)}" y="${H - 8}" text-anchor="middle" fill="#64748b">${t === 0 ? "0" : -t}</text>`;
+  [[-1000, "David"], [-722, "chute de Samarie"], [-586, "exil à Babylone"], [-538, "retour"], [-332, "Alexandre"], [-167, "Maccabées"]].forEach(([t, l], i) =>
+    svg += `<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H - 22}" stroke="#ef4444" stroke-dasharray="3 3"/><text x="${x(t) + 3}" y="${10 + (i % 3) * 11}" fill="#ef4444">${l}</text>`);
+  rows.forEach((r, i) => {
+    const y = 36 + i * RH, c = gc[r.g] || "#64748b";
+    svg += `<text x="${LW - 6}" y="${y + 12}" text-anchor="end" fill="currentColor">${r.n}</text>`;
+    if (r.r) svg += `<rect x="${x(r.r[0])}" y="${y + 2}" width="${Math.max(3, x(r.r[1]) - x(r.r[0]))}" height="6" fill="#94a3b8"><title>Raconte : ${r.r.join(" à ")}</title></rect>`;
+    svg += `<rect x="${x(r.e[0])}" y="${y + 9}" width="${Math.max(3, x(r.e[1]) - x(r.e[0]))}" height="7" fill="${c}"><title>Écrit vers : ${r.e.join(" à ")}</title></rect>`;
+  });
+  el.innerHTML = svg + `</svg><div class="legend-row"><span><i style="border-top-color:#94a3b8;opacity:1;border-top-width:6px;width:14px"></i>Époque racontée</span><span><i style="border-top-color:#2563eb;opacity:1;border-top-width:7px;width:14px"></i>Époque de rédaction (couleur selon la partie)</span><span><i style="border-top-color:#ef4444;opacity:1;width:14px;border-top-style:dashed"></i>Repères historiques</span></div>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
   try { sankey(); } catch (e) { console.error("christianisme", e); }
+  try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
