@@ -266,6 +266,60 @@ function typologie() {
   el.innerHTML = s + `<defs><marker id="tya" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a78bfa"/></marker></defs></svg>`;
 }
 
+/* voyages de Paul */
+async function paulCarte() {
+  const el = $("#cr-paul-carte"); if (!el) return;
+  let G; try { G = await fetch("data/monde_religion.geojson").then(r => r.json()); } catch (e) { return; }
+  const C = { "Jérusalem": [35.23, 31.78], "Damas": [36.29, 33.51], "Antioche": [36.16, 36.2], "Tarse": [34.9, 36.92], "Salamine": [33.9, 35.18], "Paphos": [32.42, 34.77], "Pergé": [30.85, 36.96], "Antioche de Pisidie": [31.19, 38.31], "Iconium": [32.48, 37.87], "Lystres": [32.33, 37.58], "Derbé": [33.36, 37.35], "Troas": [26.16, 39.75], "Philippes": [24.29, 41.01], "Thessalonique": [22.94, 40.64], "Bérée": [22.2, 40.52], "Athènes": [23.73, 37.98], "Corinthe": [22.88, 37.91], "Éphèse": [27.34, 37.94], "Milet": [27.28, 37.53], "Rhodes": [28.22, 36.43], "Tyr": [35.2, 33.27], "Césarée": [34.89, 32.5], "Myre": [29.98, 36.26], "Crète": [24.77, 34.93], "Malte": [14.4, 35.95], "Syracuse": [15.29, 37.07], "Pouzzoles": [14.12, 40.82], "Rome": [12.49, 41.9] };
+  const V = [["Conversion (vers 33-36)", "#6b7280", ["Jérusalem", "Damas"]], ["1ᵉʳ voyage (vers 46-48)", "#2563eb", ["Antioche", "Salamine", "Paphos", "Pergé", "Antioche de Pisidie", "Iconium", "Lystres", "Derbé", "Lystres", "Pergé", "Antioche"]], ["2ᵉ voyage (vers 49-52)", "#16a34a", ["Antioche", "Tarse", "Derbé", "Lystres", "Iconium", "Troas", "Philippes", "Thessalonique", "Bérée", "Athènes", "Corinthe", "Éphèse", "Césarée", "Jérusalem", "Antioche"]], ["3ᵉ voyage (vers 53-58)", "#f59e0b", ["Antioche", "Iconium", "Éphèse", "Troas", "Philippes", "Thessalonique", "Corinthe", "Philippes", "Troas", "Milet", "Rhodes", "Tyr", "Césarée", "Jérusalem"]], ["Captif vers Rome (vers 59-60)", "#dc2626", ["Césarée", "Myre", "Crète", "Malte", "Syracuse", "Pouzzoles", "Rome"]]];
+  const rw = r => d3.geoArea({ type: "Polygon", coordinates: [r] }) > 2 * Math.PI ? r.slice().reverse() : r;
+  G.features.forEach(f => { const g = f.geometry; if (g.type === "Polygon") g.coordinates = g.coordinates.map(rw); else if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map(q => q.map(rw)); });
+  const W = 900, H = 470, proj = d3.geoMercator().fitExtent([[0, 0], [W, H]], { type: "MultiPoint", coordinates: [[11, 30.5], [38.5, 43]] }), path = d3.geoPath(proj);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px;background:#dbeafe;border-radius:8px;overflow:hidden"><defs><clipPath id="pclip"><rect width="${W}" height="${H}"/></clipPath></defs><g clip-path="url(#pclip)">`;
+  G.features.forEach(f => s += `<path d="${path(f)}" fill="#f5f5f4" stroke="#d6d3d1" stroke-width=".6"/>`);
+  V.forEach(([n, c, pts], k) => { const xy = pts.map(p => proj(C[p])); s += `<path d="${d3.line().curve(d3.curveCatmullRom.alpha(.5))(xy.map(([x, y]) => [x + (k - 2) * 2.5, y + (k - 2) * 2.5]))}" fill="none" stroke="${c}" stroke-width="2.4" stroke-opacity=".85" ${k === 0 ? 'stroke-dasharray="4 3"' : ""}/>`; });
+  Object.entries(C).forEach(([n, ll]) => { const [x, y] = proj(ll); const big = ["Jérusalem", "Antioche", "Éphèse", "Corinthe", "Rome", "Athènes", "Thessalonique", "Tarse", "Damas", "Philippes"].includes(n); s += `<circle cx="${x}" cy="${y}" r="${big ? 4 : 2.6}" fill="#111827"/>${big || ["Malte", "Crète", "Iconium", "Troas", "Césarée"].includes(n) ? `<text x="${x + 6}" y="${y - 4}" style="fill:#111827" font-weight="${big ? 700 : 400}">${n}</text>` : ""}`; });
+  el.innerHTML = s + `</g></svg><div class="legend-row">${V.map(([n, c]) => `<span><i style="border-top-color:${c};opacity:1;width:16px"></i>${n}</span>`).join("")}</div>`;
+}
+
+/* courants des cinq premiers siècles */
+function sankeyPrim() {
+  const el = $("#cr-sankey-prim"); if (!el || !window.d3?.sankey) return;
+  const N = [["dis", "Disciples de Jésus (Jérusalem, vers 30)", 0, "#6b7280"],
+    ["jud", "Judéo-chrétiens (Jacques, Pierre)", 1, "#a8a29e"], ["pau", "Communautés de Paul (non-juifs)", 1, "#2563eb"], ["joh", "Communautés johanniques", 1, "#0ea5e9"],
+    ["ebi", "Ébionites, nazaréens", 2, "#a8a29e"], ["gno", "Gnostiques", 2, "#9333ea"], ["mar", "Marcionites", 2, "#c084fc"], ["mon", "Montanistes", 2, "#e879f9"], ["gra", "« Grande Église » (évêques, canon)", 2, "#1d4ed8"],
+    ["ari", "Ariens (Goths, Vandales)", 3, "#f59e0b"], ["don", "Donatistes (Afrique)", 3, "#fbbf24"], ["nic", "Église impériale (Nicée, 325)", 3, "#1e3a8a"],
+    ["dis2", "Courants disparus (Vᵉ-VIIᵉ siècle)", 4, "#d6d3d1"], ["ori", "Église de l'Orient (431)", 4, "#c084fc"], ["oor", "Orthodoxes orientaux (451)", 4, "#a855f7"], ["cha", "Chalcédoine (451) : futurs catholiques et orthodoxes", 4, "#1d4ed8"]];
+  const L = [["dis", "jud", 10], ["dis", "pau", 65], ["dis", "joh", 15], ["jud", "ebi", 10], ["pau", "gno", 8], ["joh", "gno", 3], ["pau", "mar", 7], ["pau", "mon", 3], ["pau", "gra", 47], ["joh", "gra", 12],
+    ["gra", "ari", 6], ["gra", "don", 3], ["gra", "nic", 50], ["ebi", "dis2", 10], ["gno", "dis2", 11], ["mar", "dis2", 7], ["mon", "dis2", 3], ["ari", "dis2", 6], ["don", "dis2", 3], ["nic", "ori", 2], ["nic", "oor", 6], ["nic", "cha", 42]];
+  const W = 900, H = 520;
+  const g = d3.sankey().nodeId(d => d.id).nodeAlign(n => n.c).nodeSort(null).nodeWidth(12).nodePadding(16).extent([[2, 26], [W - 230, H - 6]])({ nodes: N.map(([id, l, c, col]) => ({ id, l, c, col })), links: L.map(([s, t, v]) => ({ source: s, target: t, value: v })) });
+  const svg = d3.select(el).html("").append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+  ["Iᵉʳ siècle", "fin Iᵉʳ - IIᵉ s.", "IIᵉ - IIIᵉ s.", "IVᵉ s.", "Vᵉ s."].forEach((t, i) => svg.append("text").attr("x", 2 + i * (W - 232) / 4).attr("y", 12).attr("font-size", 11).attr("font-weight", 700).style("fill", "#64748b").text(t));
+  svg.append("g").attr("fill", "none").selectAll("path").data(g.links).join("path").attr("d", d3.sankeyLinkHorizontal()).attr("stroke", d => d.target.col).attr("stroke-opacity", .35).attr("stroke-width", d => Math.max(1.5, d.width));
+  svg.append("g").selectAll("rect").data(g.nodes).join("rect").attr("x", d => d.x0).attr("y", d => d.y0).attr("width", d => d.x1 - d.x0).attr("height", d => Math.max(2, d.y1 - d.y0)).attr("fill", d => d.col);
+  svg.append("g").attr("font-size", 11).selectAll("text").data(g.nodes).join("text").attr("x", d => d.c === 4 ? d.x1 + 6 : d.x0).attr("y", d => d.c === 4 ? (d.y0 + d.y1) / 2 : d.y0 - 4).attr("dy", d => d.c === 4 ? "0.35em" : 0).style("fill", "currentColor").text(d => d.l);
+}
+
+/* croissance du christianisme dans l'Empire (modèle de Stark) */
+function croissance() {
+  const el = $("#cr-croissance-g"); if (!el) return;
+  const S = [[40, 0.0017], [100, 0.0126], [150, 0.07], [200, 0.36], [250, 1.9], [300, 10.5], [350, 56.5]];
+  const EV = [[64, "Néron"], [250, "persécution de Dèce"], [303, "Dioclétien"], [312, "Constantin"], [380, "Théodose : religion officielle"]];
+  const draw = (log, W, H) => { const m = { l: 52, r: 12, t: 16, b: 30 }, x = d3.scaleLinear([30, 400], [m.l, W - m.r]), y = log ? d3.scaleLog([0.001, 100], [H - m.b, m.t]) : d3.scaleLinear([0, 100], [H - m.b, m.t]);
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+    (log ? [0.001, 0.01, 0.1, 1, 10, 100] : [0, 20, 40, 60, 80, 100]).forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${String(v).replace(".", ",")} %</text>`);
+    [50, 100, 150, 200, 250, 300, 350, 400].forEach(v => s += `<text x="${x(v)}" y="${H - 10}" text-anchor="middle" style="fill:#64748b">${v}</text>`);
+    s += `<rect x="${x(295)}" y="${y(10)}" width="${x(305) - x(295)}" height="${y(5) - y(10)}" fill="#fca5a5" opacity=".6"/>`;
+    EV.forEach(([a, t], i) => s += `<line x1="${x(a)}" x2="${x(a)}" y1="${m.t}" y2="${H - m.b}" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="${x(a) + 3}" y="${m.t + 10 + (i % 3) * 11}" style="fill:#64748b" font-size="9.5">${t}</text>`);
+    s += `<polyline points="${S.map(([a, v]) => `${x(a)},${y(v)}`).join(" ")}" fill="none" stroke="#2563eb" stroke-width="2.4"/>`;
+    S.forEach(([a, v]) => s += `<circle cx="${x(a)}" cy="${y(v)}" r="4" fill="#2563eb"><title>${a} : ${String(v).replace(".", ",")} %</title></circle>`);
+    if (!log) s += `<text x="${x(350) - 6}" y="${y(56.5) - 8}" text-anchor="end" style="fill:#2563eb" font-weight="700">vers 350 : plus de la moitié ?</text><text x="${x(300) + 8}" y="${y(10.5) + 4}" style="fill:#2563eb" font-weight="700">vers 300 : ≈ 10 %</text>`;
+    else s += `<text x="${x(160)}" y="${y(0.004)}" style="fill:#2563eb">croissance constante (≈ 40 % par décennie) :</text><text x="${x(160)}" y="${y(0.0022)}" style="fill:#2563eb">une droite en échelle logarithmique</text>`;
+    return s + "</svg>"; };
+  el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px"><div><p class="muted" style="margin:0 0 4px"><b>Part de chrétiens dans l'Empire romain</b> (%)</p>${draw(false, 440, 280)}</div><div><p class="muted" style="margin:0 0 4px"><b>La même chose en échelle logarithmique</b></p>${draw(true, 440, 280)}</div></div>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
@@ -273,6 +327,7 @@ function init() {
   try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
   try { correspondance(); } catch (e) { console.error("correspondance", e); }
   try { typologie(); } catch (e) { console.error("typologie", e); }
+  try { paulCarte(); sankeyPrim(); croissance(); } catch (e) { console.error("christianisme primitif", e); }
   try { laiciteFrise(); laicitePew(); laiciteCarte(); } catch (e) { console.error("laicite", e); }
   try { gombrich(); } catch (e) { console.error("gombrich", e); }
 }
