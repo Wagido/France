@@ -573,6 +573,42 @@ function schemaSpecial(A, B, c) {
   return s + "</svg>" + notes;
 }
 
+/* lumière : longueur d'onde → couleur, énergie, effets */
+function lambdaRGB(l) { let r = 0, g = 0, b = 0; if (l >= 380 && l < 440) { r = -(l - 440) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = -(l - 510) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = -(l - 645) / 65; } else if (l <= 780) { r = 1; } return `rgb(${Math.round(255 * r)},${Math.round(255 * g)},${Math.round(255 * b)})`; }
+function photon() {
+  const el = $("#ch-photon"); if (!el) return;
+  const l = +$("#ch-lambda").value, E = 1240 / l; $("#ch-lambda-v").textContent = l + " nm";
+  const dom = l < 280 ? "ultraviolet C (stérilisation, arrêté par l'ozone)" : l < 315 ? "ultraviolet B (coups de soleil)" : l < 380 ? "ultraviolet A (bronzage, vieillissement de la peau)" : l <= 780 ? "lumière visible" : "infrarouge (chaleur)";
+  const B = [["Liaison hydrogène", 0.2], ["Liaison C–C", 3.6], ["Liaison C–H", 4.3], ["Liaison O–H", 4.8], ["Arracher l'électron du sodium", 5.1], ["Arracher l'électron de l'hydrogène", 13.6]];
+  const W = 900, H = 120, x0 = 30, x1 = W - 30, x = v => x0 + (v - 200) / 1000 * (x1 - x0);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px"><defs><linearGradient id="spec" x1="0" x2="1">`;
+  for (let v = 200; v <= 1200; v += 20) s += `<stop offset="${(v - 200) / 1000}" stop-color="${v < 380 ? "#6d28d9" : v > 780 ? "#7f1d1d" : lambdaRGB(v)}" stop-opacity="${v < 380 || v > 780 ? .25 : 1}"/>`;
+  s += `</linearGradient></defs><rect x="${x0}" y="20" width="${x1 - x0}" height="34" rx="6" fill="url(#spec)"/>`;
+  [200, 300, 400, 500, 600, 700, 800, 1000, 1200].forEach(v => s += `<text x="${x(v)}" y="70" text-anchor="middle" style="fill:#64748b">${v} nm</text>`);
+  s += `<text x="${x(290)}" y="14" text-anchor="middle" style="fill:#6d28d9">ultraviolet</text><text x="${x(580)}" y="14" text-anchor="middle" style="fill:#111827">visible</text><text x="${x(990)}" y="14" text-anchor="middle" style="fill:#7f1d1d">infrarouge</text>`;
+  s += `<line x1="${x(l)}" x2="${x(l)}" y1="16" y2="58" stroke="#111827" stroke-width="3"/><circle cx="${x(l)}" cy="96" r="16" fill="${l >= 380 && l <= 780 ? lambdaRGB(l) : "#e2e8f0"}" stroke="#111827"/><text x="${x(l) + 24}" y="100" font-weight="800" style="fill:#111827">${fr(E, 2)} eV par photon = ${fr(E * 96.485, 0)} kJ/mol</text>`;
+  el.innerHTML = s + `</svg><ul style="margin:4px 0 0">${`<li><b>${dom}</b>.</li>`}${B.map(([n, e]) => `<li>${n} (${fr(e, 1)} eV) : ${E >= e ? `<b style="color:#dc2626">le photon peut la rompre</b>` : "le photon n'a pas assez d'énergie"}</li>`).join("")}</ul>`;
+}
+function flammes() {
+  const el = $("#ch-flammes"); if (!el) return;
+  const F = [["Lithium", 671, "rouge carmin"], ["Strontium", 650, "rouge (feux d'artifice)"], ["Calcium", 622, "orange-rouge"], ["Sodium", 589, "jaune-orangé (lampadaires)"], ["Baryum", 554, "vert pomme"], ["Cuivre", 520, "bleu-vert"], ["Potassium", 404, "violet pâle"]];
+  el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px">${F.map(([n, l, t]) => `<div style="border-radius:8px;overflow:hidden;border:1px solid #e2e8f0"><div style="height:46px;background:radial-gradient(ellipse at 50% 90%, #fff 0%, ${lambdaRGB(l)} 45%, #111827 100%)"></div><div style="padding:4px 6px;font-size:.8rem"><b>${n}</b><br>${l} nm<br><span class="muted">${t}</span></div></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">Raies d'émission principales (valeurs usuelles des tables) ; couleurs reconstituées à l'écran, approximatives.</p>`;
+}
+function morse() {
+  const el = $("#ch-morse"); if (!el) return;
+  const D = 4.75, a = 1.94, r0 = 0.741, V = r => D * (1 - Math.exp(-a * (r - r0))) ** 2 - D;
+  const W = 900, H = 280, m = { l: 50, r: 20, t: 14, b: 34 }, x = d3.scaleLinear([0.3, 3], [m.l, W - m.r]), y = d3.scaleLinear([-5.2, 3], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  [-5, -4, -3, -2, -1, 0, 1, 2, 3].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? "#94a3b8" : "#eef2f7"}"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v} eV</text>`);
+  [0.5, 1, 1.5, 2, 2.5, 3].forEach(v => s += `<text x="${x(v)}" y="${H - 14}" text-anchor="middle" style="fill:#64748b">${fr(v * 100)} pm</text>`);
+  const pts = d3.range(0.42, 3.001, 0.01).map(r => [r, Math.min(3, V(r))]);
+  s += `<polyline points="${pts.map(([r, v]) => `${x(r)},${y(v)}`).join(" ")}" fill="none" stroke="#2563eb" stroke-width="2.6"/>`;
+  s += `<circle cx="${x(r0)}" cy="${y(-D)}" r="5" fill="#dc2626"/><text x="${x(r0) + 10}" y="${y(-D) + 4}" style="fill:#dc2626" font-weight="700">distance d'équilibre : 74 pm ; énergie de liaison ≈ 4,5 eV</text>`;
+  s += `<text x="${x(0.47)}" y="${y(2.4)}" style="fill:#475569">trop près : les noyaux se repoussent</text><text x="${x(2.2)}" y="${y(-0.6)}" style="fill:#475569">loin : deux atomes séparés</text><text x="${x(1.6)}" y="${y(-3)}" style="fill:#2563eb">la paire d'électrons partagée abaisse l'énergie</text>`;
+  s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 1}" text-anchor="middle" style="fill:#64748b">distance entre les deux noyaux d'hydrogène</text>`;
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Énergie de la molécule H₂ selon la distance entre ses noyaux (courbe de Morse, paramètres usuels de H₂). Toutes les liaisons chimiques ont une courbe de ce type ; seules la profondeur et la position du creux changent.</p>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -580,7 +616,7 @@ function init() {
   [ionique, liaisons, ebullition, bilanCH4, densite, gibbs, haber, cinetique, phEchelle, dosage, redox, batteries, distillation, production].forEach(run);
   run(() => phases("eau"));
   $("#ch-rx").innerHTML = RX.map((r, i) => `<option value="${i}">${r[0]}</option>`).join("");
-  run(reaction); run(quadrants); run(evScale);
+  run(reaction); run(quadrants); run(evScale); run(photon); run(flammes); run(morse); $("#ch-lambda").addEventListener("input", photon);
   $("#ch-mol").innerHTML = MOL.map((m, i) => `<option value="${i}">${m[0]}</option>`).join(""); $("#ch-metal").innerHTML = MET.map((m, i) => `<option value="${i}">${m[0]}</option>`).join("");
   [mole, vsepr, maille, avancement, pharma, pourbaix, alcanes].forEach(run);
   run(kcontrol); ["ch-kt2", "ch-kdur"].forEach(i => $("#" + i).addEventListener("input", kcontrol));
