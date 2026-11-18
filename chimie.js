@@ -484,7 +484,7 @@ function schemaElectrons(c) {
   return s + "</svg>";
 }
 function fiche(A, B, c) {
-  if (["rien", "alliage", "meme", "inconnu"].includes(c.t) || !c.f || c.f === "?") return `<p><b>${A.n} + ${B.n}</b> → ${c.f && c.f !== "?" ? `<b>${c.f}</b> : ` : ""}${c.txt}</p>`;
+  if (["rien", "alliage", "meme", "inconnu"].includes(c.t) || !c.f || c.f === "?") return `<p><b>${A.n} + ${B.n}</b> → ${c.f && c.f !== "?" ? `<b>${c.f}</b> : ` : ""}${c.txt}</p>` + schemaSpecial(A, B, c);
   const [tn, td] = typeReaction(c), eq = equation(c), K = c.known;
   let o = `<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px"><span style="background:#ede9fe;color:#5b21b6;border-radius:999px;padding:2px 10px;font-weight:700">${tn}</span><span style="background:${COLT[c.t]};border-radius:999px;padding:2px 10px">${LABT[c.t]}</span></div>`;
   o += `<p style="font-size:1.25rem;font-weight:800;margin:6px 0">${eq.txt}</p><p class="muted" style="margin:0 0 6px">${td}.</p>`;
@@ -534,6 +534,43 @@ function kcontrol() {
   el.innerHTML = s + `</svg><div class="legend-row"><span><i style="border-top-color:#94a3b8;opacity:1"></i>Réactif R</span><span><i style="border-top-color:#f59e0b;opacity:1"></i>P1 : produit cinétique (barrière 55 kJ/mol, ΔG −8)</span><span><i style="border-top-color:#2563eb;opacity:1"></i>P2 : produit thermodynamique (barrière 75 kJ/mol, ΔG −25)</span></div>`;
   const f = pts[pts.length - 1];
   $("#ch-kcontrol-txt").innerHTML = `Au bout de ${{ 60: "1 minute", 3600: "1 heure", 86400: "1 jour" }[dur]} à ${Tc} °C : ${fr(100 * f[2], 0)} % de P1, ${fr(100 * f[3], 0)} % de P2, ${fr(100 * f[1], 0)} % de réactif restant. ${f[2] > f[3] ? "Le produit le plus rapide domine : <b>contrôle cinétique</b>." : "Le produit le plus stable domine : <b>contrôle thermodynamique</b>."} Échelle de temps logarithmique ; constantes de vitesse d'Arrhenius (facteur préexponentiel 10¹² s⁻¹).`;
+}
+
+/* schémas des cas sans composé : alliage, gaz noble, élément seul, superlourd */
+function schemaSpecial(A, B, c) {
+  const W = 860, H = 215; let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:12px">`;
+  const at = (x, y, sym, col, r = 20) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${col}" stroke="#64748b"/><text x="${x}" y="${y + 5}" text-anchor="middle" font-weight="800" style="fill:#111827">${sym}</text>`;
+  const shell = (cx, cy, e, n) => `<circle cx="${cx}" cy="${cy}" r="24" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><text x="${cx}" y="${cy + 6}" text-anchor="middle" font-size="17" font-weight="800" style="fill:#111827">${e.s}</text>` + Array.from({ length: n }, (_, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / n; return `<circle cx="${cx + 34 * Math.cos(a)}" cy="${cy + 34 * Math.sin(a)}" r="4.5" fill="#16a34a"/>`; }).join("");
+  let notes = "";
+  if (c.t === "alliage") {
+    const rA = A.r, rB = B.r, diff = rA && rB ? Math.abs(rA - rB) / Math.max(rA, rB) : null, subst = diff != null && diff < 0.15;
+    // réseau : atomes A et B mélangés dans une mer d'électrons
+    s += `<rect x="20" y="20" width="360" height="170" rx="12" fill="#e0f2fe"/>`;
+    for (let i = 0; i < 6; i++) for (let j = 0; j < 3; j++) { const isB = (i + j * 2) % 3 === 0; s += at(55 + i * 58, 55 + j * 50, isB ? B.s : A.s, isB ? "#fde68a" : "#cbd5e1", 18); }
+    for (let k = 0; k < 40; k++) { const x = 30 + (k * 97 % 340), y = 28 + (k * 53 % 155); s += `<circle cx="${x}" cy="${y}" r="2.6" fill="#2563eb" opacity=".7"/>`; }
+    s += `<text x="25" y="${H - 2}" style="fill:#475569" font-size="11">ions des deux métaux dans une « mer » d'électrons (points bleus)</text>`;
+    s += `<text x="410" y="40" font-weight="800" style="fill:#111827">La liaison métallique</text><text x="410" y="60" style="fill:#475569">Aucun atome ne prend les électrons de l'autre : les deux métaux</text><text x="410" y="76" style="fill:#475569">ont une électronégativité proche (${A.s} ${A.en ?? "–"}, ${B.s} ${B.en ?? "–"}). Leurs électrons externes</text><text x="410" y="92" style="fill:#475569">circulent librement entre tous les atomes : d'où la conduction et l'éclat.</text>`;
+    s += `<text x="410" y="122" font-weight="800" style="fill:#111827">Se mélangent-ils ? La règle des tailles (Hume-Rothery)</text><text x="410" y="142" style="fill:#475569">Rayon atomique : ${A.s} ${rA ?? "–"} pm, ${B.s} ${rB ?? "–"} pm${diff != null ? ` (écart de ${Math.round(100 * diff)} %)` : ""}.</text>`;
+    s += `<text x="410" y="162" style="fill:${subst ? "#16a34a" : "#b45309"}" font-weight="700">${diff == null ? "Données manquantes." : subst ? "Écart < 15 % : un atome peut remplacer l'autre" : "Écart > 15 % : mélange limité, souvent des"}</text><text x="410" y="178" style="fill:${subst ? "#16a34a" : "#b45309"}" font-weight="700">${diff == null ? "" : subst ? "dans le cristal (alliage de substitution)." : "composés intermétalliques à proportions fixes."}</text><text x="410" y="198" style="fill:#475569" font-size="11">Exemples : laiton (Cu-Zn), bronze (Cu-Sn), inox (Fe-Cr-Ni).</text>`;
+    notes = `<p class="muted" style="font-size:.8rem;margin:4px 0 0">Un petit atome non métallique (carbone, azote, hydrogène) peut aussi se glisser dans les trous du réseau métallique : c'est l'<b>alliage d'insertion</b>, comme l'acier (fer + moins de 2 % de carbone), beaucoup plus dur que le fer pur.</p>`;
+  } else if (c.t === "rien") {
+    const g = A.f === "gaznoble" ? A : B, o = g === A ? B : A;
+    s += shell(150, 100, g, g.s === "He" ? 2 : 8) + `<text x="150" y="160" text-anchor="middle" style="fill:#475569">${g.n} : couche externe complète (${g.s === "He" ? 2 : 8} électrons)</text>`;
+    s += `<text x="300" y="106" font-size="24" style="fill:#94a3b8">✕</text>` + shell(420, 100, o, Math.max(1, VAL(o))) + `<text x="420" y="160" text-anchor="middle" style="fill:#475569">${o.n}</text>`;
+    s += `<text x="520" y="70" font-weight="800" style="fill:#111827">Pourquoi rien ne se passe</text><text x="520" y="92" style="fill:#475569">Le gaz noble n'a aucun intérêt énergétique à céder,</text><text x="520" y="110" style="fill:#475569">prendre ou partager des électrons : sa couche est pleine,</text><text x="520" y="128" style="fill:#475569">et il faudrait beaucoup d'énergie pour l'arracher</text><text x="520" y="146" style="fill:#475569">(énergie d'ionisation ${g.ie ? fr(g.ie) + " kJ/mol" : "très élevée"}).</text>`;
+  } else if (c.t === "meme") {
+    if (isMetal(A)) { s += `<rect x="20" y="20" width="360" height="170" rx="12" fill="#e0f2fe"/>`; for (let i = 0; i < 6; i++) for (let j = 0; j < 3; j++) s += at(55 + i * 58, 55 + j * 50, A.s, "#cbd5e1", 18); for (let k = 0; k < 40; k++) s += `<circle cx="${30 + (k * 97 % 340)}" cy="${28 + (k * 53 % 155)}" r="2.6" fill="#2563eb" opacity=".7"/>`; s += `<text x="410" y="80" font-weight="800">Le métal pur : liaison métallique</text><text x="410" y="102" style="fill:#475569">des ions ${A.s} rangés en cristal, baignés dans les électrons qu'ils partagent tous.</text>`; }
+    else { s += `<circle cx="300" cy="100" r="26" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="300" y="106" text-anchor="middle" font-weight="800" font-size="17">${A.s}</text><circle cx="380" cy="100" r="26" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="380" y="106" text-anchor="middle" font-weight="800" font-size="17">${A.s}</text><circle cx="336" cy="92" r="4.5" fill="#16a34a"/><circle cx="344" cy="108" r="4.5" fill="#16a34a"/><text x="340" y="160" text-anchor="middle" style="fill:#475569">${A.f === "gaznoble" ? "les gaz nobles restent des atomes isolés" : "deux atomes identiques partagent des électrons : liaison covalente pure (Δχ = 0)"}</text>`; }
+  } else if (c.t === "inconnu") {
+    const sh = A.en == null ? A : B;
+    s += `<circle cx="150" cy="100" r="30" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="4 3" stroke-width="2"/><text x="150" y="106" text-anchor="middle" font-weight="800" font-size="17">${sh.s}</text>`;
+    [[200, 60], [210, 100], [200, 140]].forEach(([x, y]) => s += `<line x1="182" y1="${(y + 100) / 2}" x2="${x + 30}" y2="${y}" stroke="#dc2626" stroke-width="2" marker-end="url(#ea2)"/>`);
+    s += `<defs><marker id="ea2" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#dc2626"/></marker></defs><text x="150" y="170" text-anchor="middle" style="fill:#475569">se désintègre en quelques secondes</text>`;
+    s += `<text x="300" y="80" font-weight="800">Une chimie atome par atome</text><text x="300" y="102" style="fill:#475569">Quelques atomes produits en accélérateur, aussitôt désintégrés : on ne peut ni peser,</text><text x="300" y="120" style="fill:#475569">ni voir le composé ; on déduit sa chimie de sa vitesse dans une colonne de gaz.</text>`;
+  } else {
+    s += shell(200, 100, A, Math.max(1, VAL(A))) + shell(420, 100, B, Math.max(1, VAL(B))) + `<text x="540" y="96" style="fill:#475569">la règle simple ne prévoit pas de formule pour ce couple</text>`;
+  }
+  return s + "</svg>" + notes;
 }
 
 function init() {
