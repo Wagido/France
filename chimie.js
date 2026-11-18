@@ -196,7 +196,7 @@ const RX = [
   ["Soudure des rails : la thermite", [["Al(s)", 2], ["Fe₂O₃(s)", 1]], [["Al₂O₃(s)", 1], ["Fe(s)", 2]], "L'aluminium arrache l'oxygène à l'oxyde de fer ; le fer sort fondu, à plus de 2 500 °C."],
   ["Chaux vive dans l'eau (extinction de la chaux)", [["CaO(s)", 1], ["H₂O(l)", 1]], [["Ca(OH)₂(s)", 1]], "Le mélange peut bouillir ; utilisé pour les plats auto-chauffants."],
   ["Four à chaux et à ciment : cuisson du calcaire", [["CaCO₃(s)", 1]], [["CaO(s)", 1], ["CO₂(g)", 1]], "Endothermique : il faut chauffer au-delà de 840 °C, et le CO₂ sort du calcaire lui-même."],
-  ["Engrais : synthèse de l'ammoniac (Haber-Bosch)", [["N₂(g)", 1], ["H₂(g)", 3]], [["NH₃(g)", 2]], "Exothermique mais favorisée par le froid : d'où le compromis industriel (partie 5)."],
+  ["Engrais : synthèse de l'ammoniac (Haber-Bosch)", [["N₂(g)", 1], ["H₂(g)", 3]], [["NH₃(g)", 2]], "Exothermique mais favorisée par le froid : d'où le compromis industriel (partie 8)."],
   ["Électrolyse de l'eau (hydrogène)", [["H₂O(l)", 1]], [["H₂(g)", 1], ["O₂(g)", 0.5]], "Jamais spontanée : il faut fournir au moins 237 kJ/mol d'électricité (1,23 V)."],
   ["Fonte de la glace", [["H₂O(s)", 1]], [["H₂O(l)", 1]], "Endothermique, mais le désordre l'emporte au-dessus de 0 °C."],
   ["Le diamant devient graphite", [["C(diamant)", 1]], [["C(graphite)", 1]], "Possible, mais infiniment lent à température ordinaire."]];
@@ -234,6 +234,102 @@ function evScale() {
   el.innerHTML = `<div class="bars">${E.sort((a, b) => a[1] - b[1]).map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${v >= 1e4 ? v.toExponential(0).replace("e+", " × 10^") : fr(v, v < 1 ? 3 : 1)} eV</span><span class="track"><span class="fill" style="width:${p(v).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:2px 0 0">La chimie se joue entre 0,1 et 10 eV : l'échelle des électrons externes et de la lumière visible. 1 eV par molécule ≈ 96 kJ/mol.</p>`;
 }
 
+/* chapitre 1 : masse → moles → molécules */
+const MOL = [["eau (H₂O)", 18.02], ["sel (NaCl)", 58.44], ["sucre (saccharose)", 342.3], ["glucose", 180.16], ["CO₂", 44.01], ["méthane", 16.04], ["éthanol", 46.07], ["paracétamol", 151.16], ["fer", 55.85], ["or", 196.97], ["carbone (graphite, diamant)", 12.01]];
+function mole() {
+  const m = +$("#ch-m").value || 0, M = MOL[+$("#ch-mol").value][1], n = m / M, N = n * 6.022e23;
+  window.TH.kpis("#ch-mole", [[fr(M, 2) + " g/mol", ["masse d'une mole"], "Masse molaire"], [n < 0.01 ? n.toExponential(2).replace(".", ",") : fr(n, 3) + " mol", ["n = m / M"], "Quantité de matière"], [N.toExponential(2).replace(".", ",").replace("e+", " × 10^"), ["n × 6,022·10²³"], "Nombre de molécules (ou d'atomes)"]]);
+}
+/* chapitre 2 : formes VSEPR */
+function vsepr() {
+  const el = $("#ch-vsepr"); if (!el) return;
+  const F = [["Linéaire", "CO₂", "180°", 2, 0, "deux doubles liaisons, aucune paire libre sur le carbone"], ["Triangle plat", "BF₃, formaldéhyde", "120°", 3, 0, "trois paires autour de l'atome central"], ["Tétraèdre", "CH₄ (méthane)", "109,5°", 4, 0, "quatre liaisons : la forme de base du carbone"], ["Pyramide", "NH₃ (ammoniac)", "107°", 3, 1, "une paire libre referme un peu les angles"], ["Coudée", "H₂O (eau)", "104,5°", 2, 2, "deux paires libres : molécule polaire"]];
+  const W = 900, H = 220, cw = W / F.length;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  F.forEach(([n, ex, ang, b, lp], i) => {
+    const cx = cw * i + cw / 2, cy = 85; let dirs = [];
+    if (b + lp === 2) dirs = [180, 0]; else if (b + lp === 3) dirs = [90, 210, 330]; else dirs = [90, 200, 340, 270];
+    if (n === "Pyramide") dirs = [90, 210, 330, 270]; if (n === "Coudée") dirs = [215, 325, 60, 120];
+    dirs.forEach((a, k) => { const r = a * Math.PI / 180, x = cx + 48 * Math.cos(r), y = cy - 48 * Math.sin(r), lone = k >= b; s += lone ? `<ellipse cx="${cx + 30 * Math.cos(r)}" cy="${cy - 30 * Math.sin(r)}" rx="13" ry="8" transform="rotate(${-a} ${cx + 30 * Math.cos(r)} ${cy - 30 * Math.sin(r)})" fill="#fde68a" stroke="#f59e0b"/>` : `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#475569" stroke-width="4"${n === "Tétraèdre" && k === 3 ? ' stroke-dasharray="4 3"' : ""}/><circle cx="${x}" cy="${y}" r="11" fill="#e2e8f0" stroke="#64748b"/>`; });
+    s += `<circle cx="${cx}" cy="${cy}" r="15" fill="#2563eb"/><text x="${cx}" y="${H - 56}" text-anchor="middle" font-weight="800" style="fill:#111827">${n}</text><text x="${cx}" y="${H - 40}" text-anchor="middle" style="fill:#2563eb">${ex}</text><text x="${cx}" y="${H - 24}" text-anchor="middle" style="fill:#475569">angle ${ang}</text>`;
+  });
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Bleu : atome central ; gris : atomes liés ; jaune : paires d'électrons libres. Le tétraèdre est en trois dimensions (une liaison pointe vers l'arrière).</p>`;
+}
+/* chapitre 4 : masse volumique d'un métal */
+const MET = [["Cuivre", "cubique à faces centrées", 4, 63.55, 361.5, 8.96], ["Aluminium", "cubique à faces centrées", 4, 26.98, 404.9, 2.70], ["Or", "cubique à faces centrées", 4, 196.97, 407.8, 19.3], ["Fer (α)", "cubique centré", 2, 55.85, 286.7, 7.87], ["Tungstène", "cubique centré", 2, 183.84, 316.5, 19.3]];
+function maille() {
+  const el = $("#ch-maille"); if (!el) return;
+  const [n, st, Z, M, a, rho] = MET[+$("#ch-metal").value], calc = Z * M / 6.022e23 / Math.pow(a * 1e-10, 3);
+  const comp = Z === 4 ? 74 : 68;
+  const W = 900, H = 230, s0 = 120, ox = 120, oy = 50, d = 45;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:12px">`;
+  const P = (x, y, z) => [ox + x * s0 + z * d, oy + (1 - y) * s0 + 20 - z * d * .6];
+  const cube = [[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0], [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]], E = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+  E.forEach(([a1, b1]) => { const p = P(...cube[a1]), q = P(...cube[b1]); s += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="#94a3b8"/>`; });
+  let at = cube.map(c => [c, 9, "#64748b"]);
+  if (Z === 4) at = at.concat([[.5, .5, 0], [.5, .5, 1], [.5, 0, .5], [.5, 1, .5], [0, .5, .5], [1, .5, .5]].map(c => [c, 11, "#d97706"])); else at.push([[.5, .5, .5], 12, "#d97706"]);
+  at.sort((u, v) => u[0][2] - v[0][2]).reverse().forEach(([c, r, col]) => { const p = P(...c); s += `<circle cx="${p[0]}" cy="${p[1]}" r="${r}" fill="${col}" stroke="#fff"/>`; });
+  s += `<text x="420" y="50" font-weight="800">${n} : ${st}</text><text x="420" y="78">Atomes par maille : ${Z === 4 ? "8 sommets × 1/8 + 6 faces × 1/2 = 4" : "8 sommets × 1/8 + 1 au centre = 2"}</text><text x="420" y="104">Côté de la maille : a = ${fr(a, 1)} pm (mesuré par diffraction des rayons X)</text><text x="420" y="130">Masse molaire : ${fr(M, 2)} g/mol</text><text x="420" y="160" font-weight="800" style="fill:#2563eb">ρ = ${Z} × ${fr(M, 2)} / (6,022·10²³ × a³) = ${fr(calc, 2)} g/cm³</text><text x="420" y="184" style="fill:#16a34a">valeur mesurée : ${fr(rho, 2)} g/cm³</text><text x="420" y="208" style="fill:#64748b">compacité : ${comp} % de l'espace occupé</text>`;
+  el.innerHTML = s + "</svg>";
+}
+/* chapitre 5 : tableau d'avancement */
+function avancement() {
+  const el = $("#ch-avancement"); if (!el) return;
+  const n1 = +$("#ch-n1").value, n2 = +$("#ch-n2").value, xm = Math.min(n1, n2 / 2), x = xm * +$("#ch-x").value / 100;
+  $("#ch-n1-v").textContent = fr(n1, 1) + " mol"; $("#ch-n2-v").textContent = fr(n2, 1) + " mol"; $("#ch-x-v").textContent = "x = " + fr(x, 2) + " mol";
+  const lim = n1 === n2 / 2 ? "les deux réactifs sont épuisés en même temps (mélange stœchiométrique)" : n1 < n2 / 2 ? "le méthane est le réactif limitant : il reste de l'oxygène" : "l'oxygène est le réactif limitant : il reste du méthane (dans une chaudière, combustion incomplète et risque de monoxyde de carbone)";
+  const row = (t, a, b, c, d) => `<tr><td><b>${t}</b></td><td>${a}</td><td>${b}</td><td>${c}</td><td>${d}</td></tr>`;
+  const v = e => fr(Math.max(0, e), 2);
+  const sp = [["CH₄", n1 - x, "#64748b"], ["O₂", n2 - 2 * x, "#0ea5e9"], ["CO₂", x, "#111827"], ["H₂O", 2 * x, "#2563eb"]], mx = Math.max(n1, n2, 2 * xm, 1);
+  el.innerHTML = `<div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>État</th><th>CH₄</th><th>2 O₂</th><th>CO₂</th><th>2 H₂O</th></tr></thead><tbody>${row("Au départ", v(n1), v(n2), 0, 0)}${row("En cours (avancement x)", "n₁ − x = " + v(n1 - x), "n₂ − 2x = " + v(n2 - 2 * x), "x = " + v(x), "2x = " + v(2 * x))}${row("À la fin (x max = " + v(xm) + ")", v(n1 - xm), v(n2 - 2 * xm), v(xm), v(2 * xm))}</tbody></table></div><div class="bars" style="margin-top:8px">${sp.map(([l, q, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${v(q)} mol</span><span class="track"><span class="fill" style="width:${(100 * Math.max(0, q) / mx).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.85rem;margin:6px 0 0">Avancement maximal x max = min(n₁ ; n₂ / 2) = ${v(xm)} mol : ${lim}.</p>`;
+}
+/* chapitre 9 : pharmacocinétique d'ordre 1 */
+function pharma() {
+  const el = $("#ch-pharma"); if (!el) return;
+  const t12 = +$("#ch-t12").value, tau = +$("#ch-tau").value; $("#ch-t12-v").textContent = fr(t12, 1) + " h"; $("#ch-tau-v").textContent = tau + " h";
+  const k = Math.log(2) / t12, T = 48, pts = []; let c = 0;
+  for (let t = 0; t <= T; t += 0.1) { if (Math.abs(t % tau) < 0.05 || t < 0.05) c += 1; pts.push([t, c]); c *= Math.exp(-k * 0.1); }
+  const W = 900, H = 260, m = { l: 44, r: 14, t: 12, b: 28 }, x = d3.scaleLinear([0, T], [m.l, W - m.r]), ymax = Math.max(...pts.map(p => p[1])) * 1.1, y = d3.scaleLinear([0, ymax], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  y.ticks(5).forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${fr(v, 1)}</text>`);
+  for (let t = 0; t <= T; t += 6) s += `<text x="${x(t)}" y="${H - 8}" text-anchor="middle" style="fill:#64748b">${t} h</text>`;
+  s += `<polyline points="${pts.map(([t, v]) => `${x(t)},${y(v)}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/>`;
+  const css = 1 / (1 - Math.exp(-k * tau)); s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(css)}" y2="${y(css)}" stroke="#dc2626" stroke-dasharray="5 4"/><text x="${W - m.r}" y="${y(css) - 4}" text-anchor="end" style="fill:#dc2626">pic à l'équilibre : ${fr(css, 2)} × la dose</text>`;
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Concentration en unités de « dose » ; absorption supposée instantanée. Si l'intervalle est court par rapport à la demi-vie, le médicament s'accumule (plateau élevé) ; s'il est long, la concentration retombe presque à zéro entre deux prises.</p>`;
+}
+/* chapitre 12 : diagramme potentiel-pH du fer (simplifié) */
+function pourbaix() {
+  const el = $("#ch-pourbaix"); if (!el) return;
+  const W = 900, H = 360, m = { l: 50, r: 20, t: 12, b: 32 }, x = d3.scaleLinear([0, 14], [m.l, W - m.r]), y = d3.scaleLinear([-1.2, 1.6], [H - m.b, m.t]);
+  const L = (pts, c, w = 2.2, d = "") => `<polyline points="${pts.map(([p, e]) => `${x(p)},${y(e)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="${w}" stroke-dasharray="${d}"/>`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  // zones (polygones approchés, concentration 10⁻⁶ mol/L)
+  const poly = (pts, c) => `<polygon points="${pts.map(([p, e]) => `${x(p)},${y(e)}`).join(" ")}" fill="${c}"/>`;
+  s += poly([[0, -1.2], [14, -1.2], [14, -0.88], [9.4, -0.6], [0, -0.62]], "#cbd5e1");          // immunité
+  s += poly([[0, -0.62], [9.4, -0.6], [6.4, 0.06], [1.6, 0.77], [0, 0.77]], "#fecaca");                     // corrosion Fe2+
+  s += poly([[0, 0.77], [0, 1.6], [1.6, 1.6], [1.6, 0.77]], "#fca5a5");                         // Fe3+
+  s += poly([[1.6, 0.77], [1.6, 1.6], [14, 1.6], [14, -0.88], [9.4, -0.6], [6.4, 0.06]], "#bbf7d0"); // passivation oxydes
+  s += L([[0, 1.23], [14, 1.23 - 0.059 * 14]], "#2563eb", 1.6, "6 4") + L([[0, 0], [14, -0.059 * 14]], "#2563eb", 1.6, "6 4");
+  s += `<text x="${x(13.5)}" y="${y(1.23 - 0.059 * 13.5) - 6}" text-anchor="end" style="fill:#2563eb">O₂ / H₂O</text><text x="${x(13.5)}" y="${y(-0.059 * 13.5) - 6}" text-anchor="end" style="fill:#2563eb">H₂O / H₂</text><text x="${x(7.4)}" y="${y(0.05)}" style="fill:#1d4ed8" font-style="italic">eau stable entre les deux pointillés</text>`;
+  [[3, -0.9, "IMMUNITÉ : le fer reste métal", "#334155"], [2.5, 0.05, "CORROSION : le fer se dissout (Fe²⁺)", "#b91c1c"], [0.3, 1.2, "Fe³⁺", "#991b1b"], [6.2, 1.35, "PASSIVATION : couche d'oxyde (rouille, Fe₂O₃)", "#166534"]].forEach(([p, e, t, c]) => s += `<text x="${x(p)}" y="${y(e)}" font-weight="800" style="fill:${c}">${t}</text>`);
+  [0, 2, 4, 6, 7, 8, 10, 12, 14].forEach(v => s += `<text x="${x(v)}" y="${H - 10}" text-anchor="middle" style="fill:#64748b">pH ${v}</text>`);
+  [-1, -0.5, 0, 0.5, 1, 1.5].forEach(v => s += `<text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${fr(v, 1)} V</text>`);
+  s += `<line x1="${x(12.5)}" x2="${x(12.5)}" y1="${m.t}" y2="${H - m.b}" stroke="#111827" stroke-dasharray="3 3"/><text x="${x(12.4)}" y="${m.t + 12}" text-anchor="end" style="fill:#111827">béton sain</text><line x1="${x(7)}" x2="${x(7)}" y1="${m.t}" y2="${H - m.b}" stroke="#94a3b8" stroke-dasharray="3 3"/><text x="${x(7) - 3}" y="${m.t + 12}" text-anchor="end" style="fill:#475569">eau neutre</text>`;
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Diagramme simplifié du fer dans l'eau à 25 °C (frontières approchées, ions dissous à 10⁻⁶ mol/L), d'après la méthode de M. Pourbaix. Le domaine d'immunité du fer est entièrement sous la ligne de l'eau : dans l'eau, le fer est toujours attaqué, sauf s'il est protégé par une couche d'oxyde (milieu basique) ou par un métal plus réducteur (zinc).</p>`;
+}
+/* chapitre 13 : ébullition des alcanes */
+function alcanes() {
+  const el = $("#ch-alcanes"); if (!el) return;
+  const A = [["méthane", -162], ["éthane", -89], ["propane", -42], ["butane", -0.5], ["pentane", 36], ["hexane", 69], ["heptane", 98], ["octane", 126], ["nonane", 151], ["décane", 174]];
+  const W = 900, H = 260, m = { l: 50, r: 14, t: 14, b: 40 }, x = d3.scaleLinear([1, 10], [m.l + 20, W - m.r - 20]), y = d3.scaleLinear([-180, 200], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  [-150, -100, -50, 0, 50, 100, 150, 200].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 20 ? "#f59e0b" : "#eef2f7"}"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v} °C</text>`);
+  s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(20)}" y2="${y(20)}" stroke="#f59e0b" stroke-dasharray="5 4"/><text x="${W - m.r}" y="${y(20) - 4}" text-anchor="end" style="fill:#b45309">20 °C : au-dessous, gaz ; au-dessus, liquide</text>`;
+  s += `<polyline points="${A.map(([, t], i) => `${x(i + 1)},${y(t)}`).join(" ")}" fill="none" stroke="#2563eb" stroke-width="2.2"/>`;
+  A.forEach(([n, t], i) => s += `<circle cx="${x(i + 1)}" cy="${y(t)}" r="5" fill="${t < 20 ? "#0ea5e9" : "#2563eb"}"/><text x="${x(i + 1)}" y="${H - 24}" text-anchor="middle" style="fill:#111827">${n}</text><text x="${x(i + 1)}" y="${H - 10}" text-anchor="middle" style="fill:#64748b">C${i + 1}</text><text x="${x(i + 1) + 6}" y="${y(t) - 6}" style="fill:#475569">${fr(t, t % 1 ? 1 : 0)}</text>`);
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Gaz de ville et de briquet (C1 à C4), essence (C5 à C10 environ), kérosène et gazole au-delà. Plus la chaîne est longue, plus les forces de van der Waals entre molécules sont fortes.</p>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -242,6 +338,10 @@ function init() {
   run(() => phases("eau"));
   $("#ch-rx").innerHTML = RX.map((r, i) => `<option value="${i}">${r[0]}</option>`).join("");
   run(reaction); run(quadrants); run(evScale);
+  $("#ch-mol").innerHTML = MOL.map((m, i) => `<option value="${i}">${m[0]}</option>`).join(""); $("#ch-metal").innerHTML = MET.map((m, i) => `<option value="${i}">${m[0]}</option>`).join("");
+  [mole, vsepr, maille, avancement, pharma, pourbaix, alcanes].forEach(run);
+  ["ch-m", "ch-mol"].forEach(i => $("#" + i).addEventListener("input", mole)); $("#ch-metal").addEventListener("input", maille);
+  ["ch-n1", "ch-n2", "ch-x"].forEach(i => $("#" + i).addEventListener("input", avancement)); ["ch-t12", "ch-tau"].forEach(i => $("#" + i).addEventListener("input", pharma));
   ["ch-rx", "ch-rxT"].forEach(i => $("#" + i).addEventListener("input", reaction));
   document.querySelectorAll(".ch-ph").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".ch-ph").forEach(x => x.classList.toggle("on", x === b)); phases(b.dataset.p); }));
   ["ch-hT", "ch-hP"].forEach(i => $("#" + i).addEventListener("input", haber));
