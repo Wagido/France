@@ -440,7 +440,6 @@ function clickPT(sym) {
     else if (PTmode === "acide" && lv > 0) detail = ficheAcide(e, lv);
     else if (lv === 0 && ["O", "Cl", "H"].includes(PTmode) && e.s !== PTmode) detail = `<p class="muted">Pas de réaction notable dans les conditions ordinaires. Cliquez sur « Deux éléments » pour voir ce que la règle simple prévoit quand même.</p>`;
     $("#ch-pt-res").innerHTML = `<p style="font-size:1.05rem"><b>${e.n} (${e.s}) avec ${R}</b> : ${lv < 0 ? "<b>chimie presque inconnue</b>. " : "<b>" + LV[lv][1] + "</b>. "}${t}.</p>` + detail + `<p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
-  if (false) { const [lv, t] = [0, ""]; $("#ch-pt-res").innerHTML = `<p><b>${e.n} (${e.s}) avec</b> : ${lv < 0 ? "<b>chimie presque inconnue</b>. " : "<b>" + LV[lv][1] + "</b>. "}${t}.</p><p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
   if (PTsel.length !== 1) PTsel = [sym]; else PTsel = [PTsel[0], sym];
   drawPT();
   const A = PT[PTsel[0]];
@@ -618,6 +617,14 @@ function morse() {
 }
 
 /* bilan : stabilité, équilibre, vitesse */
+/* jauge qui se remplit : frac 0..1 */
+function jauge(frac, col, gauche, droite, val) {
+  const f = Math.max(0.03, Math.min(1, frac));
+  return `<div style="margin:2px 0 6px"><div style="display:flex;justify-content:space-between;font-size:.72rem;color:#64748b"><span>${gauche}</span><b style="color:${col}">${val}</b><span>${droite}</span></div><div style="height:12px;border-radius:6px;background:#eef2f7;overflow:hidden;position:relative"><div style="width:${(f * 100).toFixed(0)}%;height:100%;background:linear-gradient(90deg,${col}55,${col});border-radius:6px"></div>${[.25, .5, .75].map(t => `<span style="position:absolute;left:${t * 100}%;top:0;bottom:0;border-left:1px solid #fff"></span>`).join("")}</div></div>`;
+}
+const jStab = (dG, lab = "ΔG") => jauge(0.5 - 0.5 * Math.tanh(dG / 300), "#16a34a", "instable", "très stable", `${lab} ≈ ${fr(dG)} kJ`);
+const jEqui = lk => jauge(lk == null ? 1 : (lk + 10) / 20, "#2563eb", "rien ne réagit", "totale", lk == null ? "K ≫ 1" : `K ≈ 10^${fr(lk)}`);
+const jVit = bar => jauge([1, .75, .35, .08][bar], "#7c3aed", "bloquée", "instantanée", ["instantanée", "rapide", "lente à froid", "très lente"][bar]);
 function bilanReaction(c, eq) {
   const K = c.known, X = c.c, Y = c.a;
   const gas = e => e.e === "gaz";
@@ -631,10 +638,11 @@ function bilanReaction(c, eq) {
   const prodKey = (isMetal(X) ? ["(s)", "(l)", "(g)"] : ["(l)", "(g)", "(s)"]).map(k => c.f + k).find(k => TD[k]);
   const exact = prodKey && TD[elKey(X)] && TD[elKey(Y)];
   const dS = exact ? p * TD[prodKey][1] - coefX * TD[elKey(X)][1] - coefY * TD[elKey(Y)][1] : dn * 180;
-  const card = (t, col, body) => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b><div style="margin-top:4px">${body}</div></div>`;
-  let stab, equi;
+  const card = (t, col, body, g = "") => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b>${g ? `<div style="margin-top:6px">${g}</div>` : ""}<div style="margin-top:4px">${body}</div></div>`;
+  let stab, equi, gS = "", gE = "";
   if (K) {
     const dH = p * K[1], dG = dH - 298 * dS / 1000, lk = -dG * 1000 / (R * 298 * Math.LN10);
+    gS = jStab(dG); gE = jEqui(lk);
     const Tinv = dS !== 0 ? dH * 1000 / dS - 273 : null;
     stab = dG < 0 ? `ΔG ≈ ${fr(dG)} kJ &lt; 0 : le composé est <b>plus stable</b> que les éléments séparés à 25 °C ; il se forme spontanément (si la réaction peut démarrer).` : `ΔG ≈ +${fr(dG)} kJ &gt; 0 : le composé est <b>instable</b> par rapport aux éléments ; il ne se forme pas spontanément.`;
     if (Tinv != null && dH < 0 && dS < 0 && Tinv > 0 && Tinv < 4000 && isMetal(X)) stab += ` À très haute température, l'équilibre s'inverse : il se <b>décompose</b> en ses éléments au-delà d'environ ${fr(Math.round(Tinv / 50) * 50)} °C (T = ΔH / ΔS${exact ? "" : ", estimation grossière"}).`;
@@ -658,17 +666,17 @@ function bilanReaction(c, eq) {
   const dHv = K ? p * K[1] : -100, Ea = [15, 40, 90, 160][bar], W = 300, H = 130, lo = Math.min(0, dHv) - 20, hi = Ea + 20, y = v => 10 + (hi - v) / (hi - lo) * (H - 30), x = t => 20 + t * (W - 40);
   const prof = d3.range(0, 1.001, .02).map(t => [t, dHv * (3 * t * t - 2 * t * t * t) + (Ea - dHv / 2) * Math.sin(Math.PI * t) ** 2]);
   const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:9.5px"><polyline points="${prof.map(([t, v]) => `${x(t)},${y(Math.max(lo, Math.min(hi, v)))}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/><text x="${x(0)}" y="${y(0) - 4}" style="fill:#475569">éléments</text><text x="${x(1)}" y="${y(dHv) + 12}" text-anchor="end" style="fill:#475569">${c.f}</text><text x="${x(.5)}" y="${y(Ea) - 3}" text-anchor="middle" style="fill:#7c3aed">barrière ${["très faible", "faible", "moyenne", "élevée"][bar]}</text><text x="${x(.5)}" y="${H - 3}" text-anchor="middle" style="fill:#94a3b8">avancement →</text></svg>`;
-  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab)}${card("Équilibre", "#2563eb", equi)}${card("Vitesse (cinétique)", "#7c3aed", vit)}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div><p class="muted" style="font-size:.76rem;margin:4px 0 0">${exact ? "ΔG calculé avec les entropies standard de la table" : "ΔG estimé avec ΔS ≈ 180 J/K par mole de gaz consommée ou produite (ordre de grandeur)"}, à 25 °C ; vitesse : règles qualitatives (partie 9).</p>`;
+  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab, gS)}${card("Équilibre", "#2563eb", equi, gE)}${card("Vitesse (cinétique)", "#7c3aed", vit, jVit(bar))}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div><p class="muted" style="font-size:.76rem;margin:4px 0 0">${exact ? "ΔG calculé avec les entropies standard de la table" : "ΔG estimé avec ΔS ≈ 180 J/K par mole de gaz consommée ou produite (ordre de grandeur)"}, à 25 °C ; vitesse : règles qualitatives (partie 9).</p>`;
 }
 
 /* fiches spécifiques : métal + eau, métal + acide */
 const HYD = { Li: [1, -484.9], Na: [1, -425.6], K: [1, -424.7], Rb: [1, -418.2], Cs: [1, -416.2], Mg: [2, -924.5], Ca: [2, -986.1], Sr: [2, -959.0], Ba: [2, -944.7] };
-function cartes(stab, equi, vit, bar, dH, prodLab) {
-  const card = (t, col, body) => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b><div style="margin-top:4px">${body}</div></div>`;
+function cartes(stab, equi, vit, bar, dH, prodLab, g = dH, gLab = "ΔG", lk = null) {
+  const card = (t, col, body, g = "") => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b>${g ? `<div style="margin-top:6px">${g}</div>` : ""}<div style="margin-top:4px">${body}</div></div>`;
   const Ea = [15, 40, 90, 160][bar], W = 300, H = 130, lo = Math.min(0, dH) - 20, hi = Ea + 20, y = v => 10 + (hi - v) / (hi - lo) * (H - 30), x = t => 20 + t * (W - 40);
   const prof = d3.range(0, 1.001, .02).map(t => [t, dH * (3 * t * t - 2 * t * t * t) + (Ea - dH / 2) * Math.sin(Math.PI * t) ** 2]);
   const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:9.5px"><polyline points="${prof.map(([t, v]) => `${x(t)},${y(Math.max(lo, Math.min(hi, v)))}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/><text x="${x(0)}" y="${y(0) - 4}" style="fill:#475569">réactifs</text><text x="${x(1)}" y="${y(dH) + 12}" text-anchor="end" style="fill:#475569">${prodLab}</text><text x="${x(.5)}" y="${y(Ea) - 3}" text-anchor="middle" style="fill:#7c3aed">barrière ${["très faible", "faible", "moyenne", "élevée"][bar]}</text></svg>`;
-  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab)}${card("Équilibre", "#2563eb", equi)}${card("Vitesse (cinétique)", "#7c3aed", vit)}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div>`;
+  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab, jStab(g, gLab))}${card("Équilibre", "#2563eb", equi, jEqui(lk))}${card("Vitesse (cinétique)", "#7c3aed", vit, jVit(bar))}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div>`;
 }
 function transfert(e, n, cible, prod) {
   const W = 860, H = 150;
@@ -692,7 +700,7 @@ function ficheEau(e, lv) {
   o += transfert(e, n, "H₂O", oh + " + H₂");
   o += `<ul><li><b>Énergie</b> : ΔH ≈ ${fr(dH)} kJ pour l'équation écrite (hydroxyde solide) : la chaleur peut fondre le métal ou enflammer l'hydrogène.</li></ul>`;
   const bar = lv === 3 ? 0 : lv === 2 ? 1 : 2;
-  o += cartes(`Le produit (hydroxyde + hydrogène) est beaucoup plus stable que le métal et l'eau : ΔG très négatif.`, `Réaction <b>totale</b> : l'hydrogène s'échappe, l'équilibre ne peut pas revenir en arrière.`, lv === 3 ? "<b>Instantanée</b> : aucune couche protectrice, le métal cède son électron immédiatement." : lv === 2 ? "<b>Rapide</b> à froid, accélérée à chaud." : "<b>Lente</b> à froid (couche d'hydroxyde peu soluble), rapide dans l'eau chaude ou la vapeur.", bar, dH, oh);
+  o += cartes(`Le produit (hydroxyde + hydrogène) est beaucoup plus stable que le métal et l'eau : ΔG très négatif.`, `Réaction <b>totale</b> : l'hydrogène s'échappe, l'équilibre ne peut pas revenir en arrière.`, lv === 3 ? "<b>Instantanée</b> : aucune couche protectrice, le métal cède son électron immédiatement." : lv === 2 ? "<b>Rapide</b> à froid, accélérée à chaud." : "<b>Lente</b> à froid (couche d'hydroxyde peu soluble), rapide dans l'eau chaude ou la vapeur.", bar, dH, oh, dH, "ΔH", null);
   return o;
 }
 function ficheAcide(e, lv) {
@@ -705,8 +713,97 @@ function ficheAcide(e, lv) {
   o += `<p style="font-size:1.25rem;font-weight:800;margin:6px 0">${eq}</p><p class="muted" style="margin:0 0 6px">L'acide apporte des ions H⁺ ; le métal, plus réducteur que l'hydrogène (potentiel ${fr(E, 2)} V &lt; 0), leur cède ses électrons. Les ions chlorure de l'acide restent spectateurs : on obtient une solution de chlorure de ${e.n.toLowerCase()}.</p>`;
   o += transfert(e, n, "H⁺", `ion ${e.s} + H₂`);
   o += `<ul><li><b>Énergie libre</b> : ΔG = n F E° = ${n} × 96 485 × (${fr(E, 2)} V) ≈ <b>${fr(dG)} kJ</b> par mole de métal (calcul par les potentiels standard, partie 12).</li></ul>`;
-  o += cartes(`ΔG ≈ ${fr(dG)} kJ/mol &lt; 0 : le métal dissous est plus stable que le métal au contact de l'acide.`, `K ≈ 10^${fr(lk)} : ${lk > 6 ? "réaction totale ; l'hydrogène s'échappe en bulles." : "réaction limitée ; elle s'arrête vite si l'hydrogène reste sur place."}`, lv === 3 ? "<b>Très vive</b>, parfois violente." : lv === 2 ? "<b>Visible</b> : bulles régulières, accélérées si l'on chauffe ou si l'acide est concentré." : "<b>Lente</b> : le potentiel est proche de celui de l'hydrogène, ou une couche d'oxyde gêne l'attaque.", lv === 3 ? 0 : lv === 2 ? 1 : 2, dG, `${e.s}${n > 1 ? n : ""}⁺ + H₂`);
+  o += cartes(`ΔG ≈ ${fr(dG)} kJ/mol &lt; 0 : le métal dissous est plus stable que le métal au contact de l'acide.`, `K ≈ 10^${fr(lk)} : ${lk > 6 ? "réaction totale ; l'hydrogène s'échappe en bulles." : "réaction limitée ; elle s'arrête vite si l'hydrogène reste sur place."}`, lv === 3 ? "<b>Très vive</b>, parfois violente." : lv === 2 ? "<b>Visible</b> : bulles régulières, accélérées si l'on chauffe ou si l'acide est concentré." : "<b>Lente</b> : le potentiel est proche de celui de l'hydrogène, ou une couche d'oxyde gêne l'attaque.", lv === 3 ? 0 : lv === 2 ? 1 : 2, dG, `${e.s}${n > 1 ? n : ""}⁺ + H₂`, dG, "ΔG", lk);
   return o;
+}
+
+/* chapitre 15 : les molécules courantes */
+function airGrille() {
+  const el = $("#ch-air"); if (!el) return;
+  const G = [["N₂ diazote", 7808, "#60a5fa"], ["O₂ dioxygène", 2095, "#f87171"], ["Ar argon", 93, "#a3a3a3"], ["CO₂", 4, "#111827"]];
+  const W = 900, c = 6.4, cols = 125, H = 80 * c + 4;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:12px">`, k = 0;
+  const col = []; G.forEach(([, n, cc]) => { for (let i = 0; i < n; i++) col.push(cc); });
+  // CO₂ placé au milieu de la grille pour être visible
+  const co2 = col.splice(col.length - 4, 4); col.splice(5050, 0, ...co2);
+  for (let i = 0; i < 10000; i++) { const x = (i % cols) * c, y = Math.floor(i / cols) * c; s += `<rect x="${x}" y="${y}" width="${c - 1}" height="${c - 1}" fill="${col[i]}"/>`; }
+  [5050, 5051, 5052, 5053].forEach(i => { const x = (i % cols) * c, y = Math.floor(i / cols) * c; s += `<rect x="${x - 1.5}" y="${y - 1.5}" width="${c + 2}" height="${c + 2}" fill="none" stroke="#facc15" stroke-width="2"/>`; });
+  const lx = cols * c + 14;
+  G.forEach(([l, n, cc], i) => { s += `<rect x="${lx}" y="${20 + i * 46}" width="14" height="14" fill="${cc}"/><text x="${lx + 20}" y="${32 + i * 46}" font-weight="700">${l}</text><text x="${lx + 20}" y="${48 + i * 46}" style="fill:#475569">${fr(n)} cases</text>`; });
+  s += `<text x="${lx}" y="230" style="fill:#475569">CH₄ : 0,02 case</text><text x="${lx}" y="246" style="fill:#475569">(1 molécule</text><text x="${lx}" y="262" style="fill:#475569">sur 520 000)</text><text x="${lx}" y="300" style="fill:#475569">néon, hélium :</text><text x="${lx}" y="316" style="fill:#475569">0,2 case</text><text x="${lx}" y="360" style="fill:#b45309" font-weight="700">cadre jaune :</text><text x="${lx}" y="376" style="fill:#b45309">les 4 CO₂</text>`;
+  el.innerHTML = s.replace(`viewBox="0 0 ${W} ${H}"`, `viewBox="0 0 ${lx + 130} ${H}"`) + "</svg>";
+}
+const MIL = {
+  air: [[["N₂", 78.08, "#60a5fa"], ["O₂", 20.95, "#f87171"], ["Ar", 0.934, "#a3a3a3"], ["CO₂", 0.042, "#111827"], ["Ne", 0.0018, "#d4d4d4"], ["He", 0.00052, "#d4d4d4"], ["CH₄", 0.00019, "#f59e0b"], ["N₂O", 0.000034, "#a855f7"]], "Air sec, en % des molécules. La vapeur d'eau s'y ajoute : de 0,1 % (air polaire) à 4 % (air tropical)."],
+  ocean: [[["H₂O", 96.5, "#0ea5e9"], ["Cl⁻ (chlorure)", 1.94, "#22c55e"], ["Na⁺ (sodium)", 1.08, "#eab308"], ["SO₄²⁻ (sulfate)", 0.27, "#a855f7"], ["Mg²⁺", 0.13, "#64748b"], ["Ca²⁺", 0.041, "#94a3b8"], ["K⁺", 0.040, "#94a3b8"], ["HCO₃⁻ (bicarbonate)", 0.014, "#111827"]], "Eau de mer, en % de la masse (salinité 35 g/kg). Le sel n'y est pas sous forme de molécules NaCl : il est dissous en ions séparés, entourés de molécules d'eau (chapitre 11)."],
+  croute: [[["Feldspaths (silicates d'Al, Na, K, Ca)", 51, "#f472b6"], ["Quartz SiO₂", 12, "#e5e7eb"], ["Pyroxènes (silicates de Fe, Mg)", 11, "#166534"], ["Micas", 5, "#a16207"], ["Amphiboles", 5, "#365314"], ["Argiles", 5, "#d6a77a"], ["Olivine", 3, "#84cc16"], ["Autres (calcaire, oxydes de fer…)", 8, "#78716c"]], "Croûte terrestre, en % du volume (ordre de grandeur, repris de mémoire). Ce ne sont pas des molécules séparées mais des réseaux d'atomes Si et O, liés à des métaux."],
+  bois: [[["Cellulose (C₆H₁₀O₅)ₙ", 45, "#16a34a"], ["Hémicelluloses", 27, "#65a30d"], ["Lignine", 23, "#92400e"], ["Autres (résines, protéines, minéraux)", 5, "#a8a29e"]], "Bois sec, en % de la masse (feuillus et résineux, fourchettes usuelles). Un arbre vivant contient en plus environ 50 % d'eau."],
+  corps: [[["Eau H₂O", 61, "#0ea5e9"], ["Protéines (collagène, muscles…)", 17, "#dc2626"], ["Lipides (graisses)", 15, "#f59e0b"], ["Minéraux (os : hydroxyapatite)", 6, "#a8a29e"], ["Glucides (glycogène, glucose)", 1, "#7c3aed"]], "Adulte, en % de la masse (moyennes, varient avec l'âge et la corpulence). Un adulte de 70 kg contient environ 43 litres d'eau."]
+};
+let MILk = "air";
+function milieux() {
+  const el = $("#ch-milieux"); if (!el) return;
+  const [L, t] = MIL[MILk], log = $("#ch-mi-log").checked, lo = -5, hi = 2;
+  const p = v => log ? Math.max(0, (Math.log10(v) - lo) / (hi - lo) * 100) : v / Math.max(...L.map(d => d[1])) * 100;
+  el.innerHTML = `<div class="bars">${L.map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${v < 0.01 ? fr(v, 5).replace(/0+$/, "") : fr(v, v < 1 ? 3 : v < 10 ? 2 : 1)} %</span><span class="track"><span class="fill" style="width:${p(v).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div>`;
+  $("#ch-milieux-txt").textContent = t + (log ? " Échelle logarithmique : chaque graduation divise par 10." : "");
+}
+function stocks() {
+  const el = $("#ch-stocks"); if (!el) return;
+  const P = [["Silicates et silice (croûte terrestre)", 2.6e10, "#f472b6"], ["Eau des océans H₂O", 1.4e9, "#0ea5e9"], ["Calcaire et carbonates (roches)", 5e8, "#a8a29e"], ["Sel dissous dans les océans", 5e7, "#22c55e"], ["Glace des calottes et glaciers", 2.6e7, "#bae6fd"], ["Diazote de l'air N₂", 3.9e6, "#60a5fa"], ["Dioxygène de l'air O₂", 1.2e6, "#f87171"], ["Vapeur d'eau de l'air", 1.3e4, "#7dd3fc"], ["CO₂ de l'air", 3.3e3, "#111827"], ["Ce que l'homme a construit (béton, métaux…)", 1.1e3, "#64748b"], ["Biomasse sèche (surtout cellulose)", 1.1e3, "#16a34a"], ["Méthane de l'air CH₄", 5.4, "#f59e0b"]];
+  const lo = 0, hi = 10.5, p = v => (Math.log10(v) - lo) / (hi - lo) * 100;
+  const f = v => v >= 1e6 ? `${fr(v / 1e6, v < 1e7 ? 1 : 0)} millions de Gt` : `${fr(v, v < 10 ? 1 : 0)} Gt`;
+  el.innerHTML = `<div class="bars">${P.map(([l, v, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${f(v)}</span><span class="track"><span class="fill" style="width:${p(v).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">1 Gt = 1 milliard de tonnes. Ordres de grandeur calculés à partir des masses de l'atmosphère (5,1 × 10¹⁸ kg), des océans (1,4 × 10²¹ kg) et de la croûte (environ 2,6 × 10²² kg), et de leurs compositions ; repris de mémoire, non vérifiés en ligne, sauf l'anthropomasse et la biomasse (Elhacham et al., 2020).</p>`;
+}
+function abondances() {
+  if (!$("#ch-ab-univers")) return;
+  const b = (sel, L) => window.TH.bars($(sel), L.map(([l, v, c]) => ({ l, v, t: fr(v, v < 1 ? 2 : 1) + " %", c })));
+  b("#ch-ab-univers", [["H hydrogène", 73.9, "#2563eb"], ["He hélium (inerte)", 24.0, "#cbd5e1"], ["O oxygène", 1.04, "#dc2626"], ["C carbone", 0.46, "#111827"], ["Ne néon (inerte)", 0.13, "#cbd5e1"], ["Fe fer", 0.11, "#78716c"], ["N azote", 0.10, "#7c3aed"], ["Si silicium", 0.07, "#f472b6"], ["Mg magnésium", 0.06, "#94a3b8"], ["S soufre", 0.04, "#eab308"]]);
+  b("#ch-ab-croute", [["O oxygène", 46.1, "#dc2626"], ["Si silicium", 28.2, "#f472b6"], ["Al aluminium", 8.2, "#94a3b8"], ["Fe fer", 5.6, "#78716c"], ["Ca calcium", 4.1, "#a8a29e"], ["Na sodium", 2.4, "#eab308"], ["Mg magnésium", 2.3, "#94a3b8"], ["K potassium", 2.1, "#94a3b8"], ["H hydrogène", 0.14, "#2563eb"], ["C carbone", 0.02, "#111827"]]);
+}
+function valence() {
+  const el = $("#ch-valence"); if (!el) return;
+  const W = 900, H = 230, at = { H: ["#e5e7eb", 13], C: ["#374151", 18], N: ["#3b82f6", 18], O: ["#ef4444", 18] };
+  const A = (x, y, e) => `<circle cx="${x}" cy="${y}" r="${at[e][1]}" fill="${at[e][0]}" stroke="#334155"/><text x="${x}" y="${y + 5}" text-anchor="middle" font-weight="800" style="fill:${e === "H" ? "#111" : "#fff"}">${e}</text>`;
+  const L = (x1, y1, x2, y2, n) => { const dx = x2 - x1, dy = y2 - y1, d = Math.hypot(dx, dy), ox = -dy / d * 4, oy = dx / d * 4; let r = ""; for (let i = 0; i < n; i++) { const k = i - (n - 1) / 2; r += `<line x1="${x1 + ox * k}" y1="${y1 + oy * k}" x2="${x2 + ox * k}" y2="${y2 + oy * k}" stroke="#334155" stroke-width="2.4"/>`; } return r; };
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:12px">`;
+  // tête : nombre de liaisons
+  [["H", 1], ["O", 2], ["N", 3], ["C", 4]].forEach(([e, n], i) => { const x = 60 + i * 70; s += A(x, 30, e) + `<text x="${x}" y="66" text-anchor="middle" style="fill:#475569">${n} liaison${n > 1 ? "s" : ""}</text>`; });
+  s += `<text x="340" y="36" style="fill:#475569">chaque trait = une paire d'électrons partagée</text>`;
+  const M = [
+    [80, "CH₄ méthane", c => { let r = ""; [[-34, -26], [34, -26], [-34, 26], [34, 26]].forEach(([dx, dy]) => r += L(c[0], c[1], c[0] + dx, c[1] + dy, 1) + A(c[0] + dx, c[1] + dy, "H")); return r + A(...c, "C"); }],
+    [220, "NH₃ ammoniac", c => { let r = ""; [[-36, 22], [36, 22], [0, -36]].forEach(([dx, dy]) => r += L(c[0], c[1], c[0] + dx, c[1] + dy, 1) + A(c[0] + dx, c[1] + dy, "H")); return r + A(...c, "N"); }],
+    [350, "H₂O eau", c => { let r = ""; [[-34, 22], [34, 22]].forEach(([dx, dy]) => r += L(c[0], c[1], c[0] + dx, c[1] + dy, 1) + A(c[0] + dx, c[1] + dy, "H")); return r + A(...c, "O"); }],
+    [500, "CO₂ dioxyde de carbone", c => L(c[0] - 46, c[1], c[0] + 46, c[1], 2) + A(c[0] - 46, c[1], "O") + A(c[0] + 46, c[1], "O") + A(...c, "C")],
+    [650, "N₂ diazote", c => L(c[0] - 22, c[1], c[0] + 22, c[1], 3) + A(c[0] - 22, c[1], "N") + A(c[0] + 22, c[1], "N")],
+    [800, "O₂ dioxygène", c => L(c[0] - 22, c[1], c[0] + 22, c[1], 2) + A(c[0] - 22, c[1], "O") + A(c[0] + 22, c[1], "O")]
+  ];
+  M.forEach(([x, l, f]) => { s += f([x, 145]) + `<text x="${x}" y="215" text-anchor="middle" font-weight="700">${l}</text>`; });
+  el.innerHTML = s + "</svg>";
+}
+function puits() {
+  const el = $("#ch-puits"); if (!el) return;
+  const P = [["O₃ ozone", 163.2], ["N₂O protoxyde d'azote", 104.2], ["NO monoxyde d'azote", 86.6], ["NO₂ dioxyde d'azote", 51.3], ["N₂, O₂, H₂ (référence)", 0], ["NH₃ ammoniac", -16.4], ["CH₄ méthane", -50.5], ["CO monoxyde de carbone", -137.2], ["H₂O vapeur", -228.6], ["H₂O liquide", -237.1], ["CO₂ dioxyde de carbone", -394.4]];
+  const W = 900, H = 330, m = { l: 200, r: 90, t: 10, b: 24 }, x = d3.scaleLinear([-420, 180], [m.l, W - m.r]), bh = (H - m.t - m.b) / P.length;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11.5px">`;
+  [-400, -300, -200, -100, 0, 100].forEach(v => s += `<line x1="${x(v)}" x2="${x(v)}" y1="${m.t}" y2="${H - m.b}" stroke="${v === 0 ? "#64748b" : "#eef2f7"}"/><text x="${x(v)}" y="${H - 8}" text-anchor="middle" style="fill:#64748b">${v}</text>`);
+  P.forEach(([l, v], i) => { const y = m.t + i * bh, c = v > 0 ? "#f97316" : v < -200 ? "#16a34a" : "#86efac"; s += `<text x="${m.l - 8}" y="${y + bh / 2 + 4}" text-anchor="end">${l}</text><rect x="${Math.min(x(0), x(v))}" y="${y + 3}" width="${Math.max(1.5, Math.abs(x(v) - x(0)))}" height="${bh - 6}" fill="${c}"/><text x="${v < 0 ? x(v) - 4 : x(v) + 4}" y="${y + bh / 2 + 4}" text-anchor="${v < 0 ? "end" : "start"}" font-weight="700">${v > 0 ? "+" : ""}${fr(v, 0)}</text>`; });
+  s += `<text x="${x(90)}" y="${m.t + 4.5 * bh + 4}" text-anchor="middle" style="fill:#c2410c" font-weight="700">↑ instables : vie courte</text><text x="${x(-330)}" y="${H - m.b - 70}" text-anchor="middle" style="fill:#15803d" font-weight="700">fonds de puits :</text><text x="${x(-330)}" y="${H - m.b - 55}" text-anchor="middle" style="fill:#15803d">là où tout finit</text>`;
+  el.innerHTML = s + "</svg>";
+}
+function vies() {
+  const el = $("#ch-vies"); if (!el) return;
+  const s1 = 1, mn = 60, h = 3600, j = 86400, an = 3.156e7;
+  const P = [["OH radical hydroxyle", 1, "1 seconde", "#f97316"], ["NO, NO₂ oxydes d'azote", 1 * j, "≈ 1 jour", "#f97316"], ["O₃ ozone (près du sol)", 22 * j, "≈ 3 semaines", "#f97316"], ["CO monoxyde de carbone", 60 * j, "≈ 2 mois", "#fb923c"], ["H₂O vapeur d'eau", 9 * j, "≈ 9 jours (pluie)", "#0ea5e9"], ["CH₄ méthane", 12 * an, "≈ 12 ans", "#f59e0b"], ["N₂O protoxyde d'azote", 110 * an, "≈ 110 ans", "#a855f7"], ["CO₂ (surplus)", 1000 * an, "siècles à millénaires", "#111827"], ["O₂ dioxygène", 4e6 * an, "≈ quelques millions d'années", "#f87171"], ["N₂ diazote", 3e8 * an, "centaines de millions d'années", "#60a5fa"]];
+  P.sort((a, b) => a[1] - b[1]);
+  const lo = 0, hi = Math.log10(1e9 * an), p = v => (Math.log10(v) - lo) / (hi - lo) * 100;
+  const ticks = [[1, "1 s"], [h, "1 h"], [j * 365 / 365 * 30, "1 mois"], [an, "1 an"], [100 * an, "1 siècle"], [1e4 * an, "10 000 ans"], [1e6 * an, "1 million"], [1e8 * an, "100 millions"]];
+  el.innerHTML = `<div class="bars">${P.map(([l, v, t, c]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${t}</span><span class="track"><span class="fill" style="width:${Math.max(1, p(v)).toFixed(1)}%;background:${c}"></span></span></div>`).join("")}</div><div style="position:relative;height:16px;font-size:.7rem;color:#64748b;margin-left:auto;width:var(--track-w,auto)">${ticks.map(([v, t]) => `<span style="position:absolute;left:${p(v)}%;transform:translateX(${v === 1 ? 0 : -50}%);white-space:nowrap">${t}</span>`).join("")}</div>`;
+}
+function courantes() {
+  [airGrille, stocks, abondances, valence, puits, vies, milieux].forEach(f => { try { f(); } catch (e) { console.error(f.name, e); } });
+  document.querySelectorAll(".ch-mi").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".ch-mi").forEach(x => x.classList.toggle("on", x === b)); MILk = b.dataset.r; milieux(); }));
+  $("#ch-mi-log")?.addEventListener("input", milieux);
 }
 
 function init() {
@@ -728,6 +825,7 @@ function init() {
   ["ch-hT", "ch-hP"].forEach(i => $("#" + i).addEventListener("input", haber));
   ["ch-ea", "ch-kT", "ch-cat"].forEach(i => $("#" + i).addEventListener("input", cinetique));
   $("#ch-acide").addEventListener("change", dosage);
+  run(courantes);
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
