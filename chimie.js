@@ -330,6 +330,131 @@ function alcanes() {
   el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Gaz de ville et de briquet (C1 à C4), essence (C5 à C10 environ), kérosène et gazole au-delà. Plus la chaîne est longue, plus les forces de van der Waals entre molécules sont fortes.</p>`;
 }
 
+/* chapitre 15 : simulateur « qui réagit avec quoi ? » */
+let PT = null, PTsel = [], PTmode = "paire";
+const OX = { H: [1, -1], Li: [1], Be: [2], B: [3], C: [4, -4], N: [5, -3], O: [-2], F: [-1], Na: [1], Mg: [2], Al: [3], Si: [4, -4], P: [5, -3], S: [6, -2], Cl: [7, -1], K: [1], Ca: [2], Sc: [3], Ti: [4], V: [5], Cr: [3], Mn: [2], Fe: [3], Co: [2], Ni: [2], Cu: [2], Zn: [2], Ga: [3], Ge: [4], As: [3, -3], Se: [4, -2], Br: [5, -1], Rb: [1], Sr: [2], Y: [3], Zr: [4], Nb: [5], Mo: [6], Tc: [7], Ru: [4], Rh: [3], Pd: [2], Ag: [1], Cd: [2], In: [3], Sn: [4], Sb: [3, -3], Te: [4, -2], I: [5, -1], Cs: [1], Ba: [2], Hf: [4], Ta: [5], W: [6], Re: [7], Os: [4], Ir: [3], Pt: [2], Au: [3], Hg: [2], Tl: [1], Pb: [2], Bi: [3], Po: [2, -2], At: [-1], Fr: [1], Ra: [2], Th: [4], U: [6], Pu: [4], Ce: [3] };
+const KNOWN = { "NaCl": ["chlorure de sodium, le sel de cuisine", -411], "KCl": ["chlorure de potassium (sylvite, engrais)", -437], "LiCl": ["chlorure de lithium (saumures des salars)", -409], "CsCl": ["chlorure de césium", -443], "HCl": ["chlorure d'hydrogène : dissous dans l'eau, l'acide chlorhydrique (suc gastrique)", -92], "HF": ["fluorure d'hydrogène, qui grave le verre", -273], "H₂O": ["l'eau", -286], "CO₂": ["dioxyde de carbone", -394], "CH₄": ["méthane, le gaz naturel", -75], "NH₃": ["ammoniac, base des engrais", -46], "H₂S": ["sulfure d'hydrogène (odeur d'œuf pourri)", -21], "SiO₂": ["silice : le sable, le quartz, le verre", -911], "Al₂O₃": ["alumine : corindon, rubis, saphir ; couche qui protège l'aluminium", -1676], "Fe₂O₃": ["oxyde de fer : la rouille, l'hématite", -824], "MgO": ["oxyde de magnésium (éclair des anciens flashs photo)", -601], "CaO": ["chaux vive", -635], "Na₂O": ["oxyde de sodium", -414], "K₂O": ["oxyde de potassium", -363], "CuO": ["oxyde de cuivre (noir)", -157], "ZnO": ["oxyde de zinc, crème solaire", -350], "TiO₂": ["dioxyde de titane, pigment blanc des peintures", -944], "SO₃": ["trioxyde de soufre : dans l'eau, l'acide sulfurique", -396], "P₂O₅": ["oxyde de phosphore, très avide d'eau", -1505], "N₂O₅": ["pentoxyde d'azote (l'azote et l'oxygène ne réagissent qu'à très haute température : oxydes d'azote des moteurs)", 11], "CaF₂": ["fluorure de calcium, la fluorine", -1220], "NaF": ["fluorure de sodium (dentifrices)", -576], "AgCl": ["chlorure d'argent, sensible à la lumière (photographie)", -127], "AgBr": ["bromure d'argent, base de la photo argentique", -100], "NaH": ["hydrure de sodium", -56], "LiH": ["hydrure de lithium", -91], "CaH₂": ["hydrure de calcium", -181], "SiH₄": ["silane (fabrication des puces)", 34], "ZnS": ["sulfure de zinc, la blende", -206], "PbS": ["sulfure de plomb, la galène", -100], "FeCl₃": ["chlorure de fer (traitement de l'eau, gravure des circuits)", -399], "AlCl₃": ["chlorure d'aluminium", -704], "CuCl₂": ["chlorure de cuivre", -220], "MgCl₂": ["chlorure de magnésium (eau de mer)", -641], "CaCl₂": ["chlorure de calcium (sel de déneigement)", -796], "CCl₄": ["tétrachlorure de carbone", -128], "PCl₅": ["pentachlorure de phosphore", -444], "SiC": ["carbure de silicium, abrasif et électronique de puissance", -73], "WC": ["carbure de tungstène, outils de coupe", -40], "Fe₃C": ["cémentite (dans l'acier)", 25], "UO₃": ["oxyde d'uranium", -1224], "BN": ["nitrure de bore", -254], "Li₂O": ["oxyde de lithium", -598], "SnO₂": ["oxyde d'étain, la cassitérite", -578], "PbO": ["oxyde de plomb", -219] };
+const sub = n => n === 1 ? "" : String(n).split("").map(c => "₀₁₂₃₄₅₆₇₈₉"[c]).join("");
+const gcd = (a, b) => b ? gcd(b, a % b) : a;
+const isMetal = e => ["alcalin", "alcalino", "transition", "pauvre", "lanthanide", "actinide"].includes(e.f);
+function compose(A, B) {
+  if (A.z === B.z) { const di = ["H", "N", "O", "F", "Cl", "Br", "I"].includes(A.s); return { t: "meme", f: di ? A.s + "₂" : A.s, txt: di ? `molécule diatomique ${A.s}₂ (les atomes se lient entre eux)` : isMetal(A) ? "le métal pur (liaison métallique)" : A.f === "gaznoble" ? "gaz monoatomique : ne se lie pas" : "solide covalent ou molécules de l'élément pur" }; }
+  if (A.f === "gaznoble" || B.f === "gaznoble") { const g = A.f === "gaznoble" ? A : B, o = A.f === "gaznoble" ? B : A; if (["Xe", "Kr"].includes(g.s) && ["F", "O"].includes(o.s)) return { t: "covalent", f: g.s === "Xe" ? (o.s === "F" ? "XeF₂, XeF₄, XeF₆" : "XeO₃ (explosif)") : "KrF₂", txt: "les gaz nobles lourds réagissent seulement avec le fluor (et l'oxygène pour le xénon), découverte de 1962" }; return { t: "rien", txt: `pas de réaction : ${g.n.toLowerCase()} est un gaz noble, sa couche électronique est complète` }; }
+  if (A.en == null || B.en == null) return { t: "inconnu", txt: "élément superlourd : chimie quasiment inconnue (quelques atomes produits)" };
+  if (isMetal(A) && isMetal(B)) return { t: "alliage", txt: `deux métaux : pas de composé ionique, mais un <b>alliage</b> ou un composé intermétallique (comme le laiton cuivre-zinc, le bronze cuivre-étain, l'acier fer-carbone)` };
+  const [c, a] = A.en <= B.en ? [A, B] : [B, A];
+  const pos = (OX[c.s] || [3]).find(o => o > 0), neg = (OX[a.s] || []).find(o => o < 0);
+  const d = Math.abs(A.en - B.en);
+  if (!pos || !neg) return { t: d < 0.4 ? "covalent" : "polaire", f: "?", txt: "composé possible, mais la règle simple ne prévoit pas sa formule" };
+  const g = gcd(pos, -neg), nc = -neg / g, na = pos / g;
+  let f = c.s + sub(nc) + a.s + sub(na);
+  if (c.s === "H" && a.s === "C") f = "CH₄"; if (c.s === "H" && ["N", "P", "As"].includes(a.s)) f = a.s + "H₃"; if (c.s === "H" && a.s === "Si") f = "SiH₄";
+  const t = d > 1.7 ? "ionique" : d > 0.4 ? "polaire" : "covalent";
+  return { t, f, d, c, a, pos, neg, known: KNOWN[f] };
+}
+const COLT = { ionique: "#f59e0b", polaire: "#a78bfa", covalent: "#38bdf8", alliage: "#94a3b8", rien: "#f1f5f9", meme: "#e2e8f0", inconnu: "#fafafa" };
+const LABT = { ionique: "liaison ionique (sel)", polaire: "covalente polaire", covalent: "covalente", alliage: "alliage (deux métaux)", rien: "pas de réaction (gaz noble)", inconnu: "inconnu" };
+const POT = { Li: -3.04, K: -2.93, Rb: -2.98, Cs: -3.03, Ba: -2.91, Sr: -2.89, Ca: -2.87, Na: -2.71, Mg: -2.37, Be: -1.85, Al: -1.66, Ti: -1.63, Mn: -1.18, Zn: -0.76, Cr: -0.74, Fe: -0.44, Cd: -0.40, Co: -0.28, Ni: -0.25, Sn: -0.14, Pb: -0.13, Cu: 0.34, Ag: 0.80, Hg: 0.85, Pd: 0.95, Pt: 1.18, Au: 1.50, Ga: -0.53, In: -0.34, Tl: -0.34, Bi: 0.31, V: -1.18, Zr: -1.45, Y: -2.37, Sc: -2.03, La: -2.38, U: -1.80 };
+const NOBLEM = ["Au", "Pt", "Ir", "Pd", "Rh", "Ru", "Os", "Ag"];
+function reactif(e, m) {   // retourne [niveau 0-3, texte]
+  if (e.f === "gaznoble") return [0, "gaz noble : ne réagit pas"];
+  if (e.en == null) return [-1, "chimie inconnue"];
+  const p = POT[e.s], s = e.s, fam = e.f;
+  if (m === "O") {
+    if (NOBLEM.includes(s)) return [0, "métal noble : ne s'oxyde pas à l'air (d'où les bijoux)"];
+    if (fam === "alcalin") return [3, `s'oxyde instantanément à l'air (conservé sous huile) → ${compose(e, PT.O).f}, oxyde basique`];
+    if (fam === "alcalino") return [s === "Be" ? 1 : 2, `${s === "Mg" ? "brûle avec une flamme blanche aveuglante" : "se ternit à l'air"} → ${compose(e, PT.O).f}, oxyde basique`];
+    if (["Al", "Zn", "Cr", "Ti", "Sn", "Ni"].includes(s)) return [1, `s'oxyde en surface, mais la couche d'oxyde ${compose(e, PT.O).f} protège le reste (passivation)`];
+    if (s === "Fe") return [1, "rouille lentement en présence d'humidité → Fe₂O₃ (rouille), qui ne protège pas"];
+    if (s === "Cu") return [1, "se couvre lentement d'une patine (vert-de-gris sur les toits)"];
+    if (["C", "S", "H"].includes(s)) return [2, `brûle une fois allumé → ${s === "C" ? "CO₂ (et CO si l'oxygène manque)" : s === "S" ? "SO₂, gaz irritant, puis SO₃" : "H₂O, avec une flamme presque invisible"}`];
+    if (s === "P") return [3, "le phosphore blanc s'enflamme spontanément à l'air → P₂O₅"];
+    if (s === "N") return [1, "ne réagit qu'à très haute température (moteurs, éclairs) → oxydes d'azote NOx"];
+    if (["F", "Cl", "Br", "I"].includes(s)) return [0, "pas de réaction directe (les oxydes d'halogène existent mais sont instables)"];
+    if (s === "O") return [0, "c'est l'oxygène lui-même"];
+    if (fam === "lanthanide" || fam === "actinide") return [2, `s'oxyde facilement à l'air → oxyde ${compose(e, PT.O).f}`];
+    return [1, `forme l'oxyde ${compose(e, PT.O).f}, en général lentement ou à chaud`];
+  }
+  if (m === "eau") {
+    if (fam === "alcalin") return [3, `réagit violemment avec l'eau${["K", "Rb", "Cs"].includes(s) ? " (explosion, l'hydrogène s'enflamme)" : s === "Li" ? " (calmement pour le lithium)" : ""} : 2 ${s} + 2 H₂O → 2 ${s}OH + H₂`];
+    if (["Ca", "Sr", "Ba"].includes(s)) return [2, `réagit avec l'eau froide, en dégageant de l'hydrogène → ${s}(OH)₂`];
+    if (s === "Mg") return [1, "réagit avec l'eau chaude ou la vapeur (feux de magnésium : ne pas les éteindre à l'eau)"];
+    if (s === "F") return [3, "décompose l'eau violemment, en libérant de l'oxygène"];
+    if (s === "Cl") return [1, "se dissout et réagit en partie : acide hypochloreux, le désinfectant de l'eau des piscines"];
+    if (["Al", "Zn", "Fe"].includes(s)) return [s === "Fe" ? 1 : 0, s === "Fe" ? "rouille en présence d'eau et d'oxygène" : "protégé par sa couche d'oxyde : pas de réaction visible"];
+    if (fam === "lanthanide") return [1, "réagit lentement avec l'eau, plus vite à chaud"];
+    return [0, "pas de réaction notable avec l'eau"];
+  }
+  if (m === "acide") {
+    if (p != null) return p < -1.5 ? [3, `réaction très vive : dégage de l'hydrogène (potentiel ${fr(p, 2)} V)`] : p < -0.2 ? [2, `est attaqué en dégageant de l'hydrogène : ${s} + acide → sel + H₂ (potentiel ${fr(p, 2)} V)`] : p < 0 ? [1, `attaque lente (potentiel ${fr(p, 2)} V, proche de celui de l'hydrogène)`] : [0, `n'est pas attaqué par un acide dilué non oxydant (potentiel ${fr(p, 2)} V, au-dessus de l'hydrogène)${s === "Cu" || s === "Ag" ? " ; l'acide nitrique, oxydant, l'attaque" : s === "Au" || s === "Pt" ? " ; seule l'« eau régale » (acides nitrique + chlorhydrique) le dissout" : ""}`];
+    if (isMetal(e)) return [1, "métal attaqué par les acides (valeur indicative)"];
+    return [0, "non-métal : pas de réaction acide-métal"];
+  }
+  if (m === "Cl") {
+    if (s === "Cl") return [0, "c'est le chlore lui-même"];
+    if (["O", "N", "C"].includes(s)) return [0, "pas de réaction directe notable"];
+    if (s === "H") return [3, "explose à la lumière : H₂ + Cl₂ → 2 HCl"];
+    if (fam === "alcalin") return [3, `réaction très violente, flamme : → ${compose(e, PT.Cl).f}`];
+    if (NOBLEM.includes(s) && s !== "Ag") return [1, `réagit seulement à chaud → ${compose(e, PT.Cl).f}`];
+    if (isMetal(e)) return [2, `brûle dans le chlore → ${compose(e, PT.Cl).f}`];
+    if (s === "F") return [2, "forme des fluorures de chlore (ClF, ClF₃), très réactifs"];
+    return [2, `réagit → ${compose(e, PT.Cl).f}`];
+  }
+  if (m === "H") {
+    if (s === "F") return [3, "explose même dans le noir et au froid : H₂ + F₂ → 2 HF"];
+    if (s === "Cl") return [3, "explose à la lumière → HCl"];
+    if (s === "O") return [3, "mélange explosif, déclenché par une étincelle → H₂O (moteurs de fusée)"];
+    if (s === "N") return [1, "seulement avec un catalyseur, sous pression → NH₃ (procédé Haber-Bosch, partie 8)"];
+    if (["Br", "I", "S"].includes(s)) return [1, `à chaud → ${compose(e, PT.H).f}`];
+    if (s === "C") return [0, "presque aucune réaction directe ; le méthane se fabrique autrement"];
+    if (fam === "alcalin" || ["Ca", "Sr", "Ba"].includes(s)) return [1, `à chaud → hydrure ${compose(e, PT.H).f}, où l'hydrogène est un ion H⁻`];
+    if (s === "Pd") return [1, "absorbe l'hydrogène comme une éponge (jusqu'à 900 fois son volume)"];
+    return [0, "pas de réaction notable"];
+  }
+  return [0, ""];
+}
+const LV = [["#f1f5f9", "ne réagit pas"], ["#fde68a", "lentement ou dans certaines conditions"], ["#fb923c", "vivement"], ["#dc2626", "violemment"]];
+function drawPT() {
+  const el = $("#ch-pt"); if (!el || !PT) return;
+  const cw = 46, ch = 44, W = 18 * cw + 10, H = 10 * ch + 10;
+  const A = PTsel[0] ? PT[PTsel[0]] : null;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px;cursor:pointer;user-select:none">`;
+  Object.values(PT).forEach(e => {
+    let col = "#fff", stroke = "#cbd5e1", txt = "";
+    if (PTmode === "paire" && A) { const c = compose(A, e); col = COLT[c.t] || "#fff"; txt = c.f && c.f !== "?" && e.z !== A.z ? c.f : ""; }
+    if (PTmode !== "paire") { const [lv] = reactif(e, PTmode); col = lv < 0 ? "#fafafa" : LV[lv][0]; }
+    const sel = PTsel.includes(e.s), x = 5 + (e.x - 1) * cw, y = 5 + (e.y - 1) * ch - (e.y >= 9 ? -6 : 0);
+    s += `<g data-s="${e.s}"><rect x="${x}" y="${y}" width="${cw - 3}" height="${ch - 3}" rx="4" fill="${col}" stroke="${sel ? "#111827" : stroke}" stroke-width="${sel ? 2.5 : 1}"/><text x="${x + 3}" y="${y + 10}" font-size="8" style="fill:#64748b">${e.z}</text><text x="${x + (cw - 3) / 2}" y="${y + 24}" text-anchor="middle" font-weight="800" font-size="14" style="fill:#111827">${e.s}</text>${txt ? `<text x="${x + (cw - 3) / 2}" y="${y + 37}" text-anchor="middle" font-size="8.5" style="fill:#111827">${txt.length > 9 ? "" : txt}</text>` : ""}</g>`;
+  });
+  el.innerHTML = s + "</svg>";
+  el.querySelectorAll("g[data-s]").forEach(g => g.addEventListener("click", () => clickPT(g.dataset.s)));
+  $("#ch-pt-legend").innerHTML = PTmode === "paire" ? (A ? Object.entries(LABT).map(([k, l]) => `<span><i style="border-top-color:${COLT[k]};opacity:1;width:14px;border-top-width:12px;outline:1px solid #cbd5e1"></i>${l}</span>`).join("") : "") : LV.map(([c, l]) => `<span><i style="border-top-color:${c};opacity:1;width:14px;border-top-width:12px;outline:1px solid #cbd5e1"></i>${l}</span>`).join("");
+}
+function clickPT(sym) {
+  const e = PT[sym];
+  if (PTmode !== "paire") { const [lv, t] = reactif(e, PTmode); const R = { O: "l'oxygène de l'air", eau: "l'eau", acide: "un acide dilué (acide chlorhydrique)", Cl: "le chlore", H: "l'hydrogène" }[PTmode]; PTsel = [sym]; drawPT(); $("#ch-pt-res").innerHTML = `<p><b>${e.n} (${e.s}) avec ${R}</b> : ${lv < 0 ? "" : "<b>" + LV[lv][1] + "</b>. "}${t}.</p><p class="muted" style="font-size:.8rem;margin:2px 0 0">Famille : ${e.f} ; électronégativité ${e.en ?? "–"}${POT[e.s] != null ? ` ; potentiel standard ${fr(POT[e.s], 2)} V` : ""}.</p>`; return; }
+  if (PTsel.length !== 1) PTsel = [sym]; else PTsel = [PTsel[0], sym];
+  drawPT();
+  const A = PT[PTsel[0]];
+  if (PTsel.length === 1) { $("#ch-pt-res").innerHTML = `<p><b>${A.n} (${A.s})</b> : électronégativité ${A.en ?? "–"}, ${OX[A.s] ? "degrés d'oxydation usuels " + OX[A.s].map(o => (o > 0 ? "+" : "") + o).join(", ") : "degrés d'oxydation non renseignés"}. Les couleurs montrent le type de composé formé avec chaque autre élément ; cliquez un second élément.</p>`; return; }
+  const B = PT[PTsel[1]], c = compose(A, B);
+  let out = `<p><b>${A.n} + ${B.n}</b> → `;
+  if (c.t === "rien" || c.t === "alliage" || c.t === "meme" || c.t === "inconnu") out += c.f ? `<b>${c.f}</b> : ${c.txt}` : c.txt;
+  else { out += `<b>${c.f}</b>, ${LABT[c.t]} (écart d'électronégativité ${fr(c.d, 2)}).</p><ul><li><b>Pourquoi cette formule</b> : ${c.a.n.toLowerCase()} est le plus électronégatif, il prend ${-c.neg} électron${-c.neg > 1 ? "s" : ""} (degré ${c.neg}) ; ${c.c.n.toLowerCase()} en cède ${c.pos} (degré +${c.pos}) ; la formule équilibre les charges.</li>`;
+    out += c.t === "ionique" ? `<li><b>Propriétés attendues</b> : un solide cristallin (sel) dur et cassant, à température de fusion élevée, souvent soluble dans l'eau, conducteur une fois fondu ou dissous.</li>` : c.t === "polaire" ? `<li><b>Propriétés attendues</b> : une molécule ou un solide covalent à liaisons polaires ; les petites molécules sont souvent des gaz ou des liquides (H₂O, NH₃, HCl).</li>` : `<li><b>Propriétés attendues</b> : liaisons covalentes peu polaires : molécules (CH₄) ou réseaux solides très durs (SiC).</li>`;
+    if (c.known) out += `<li><b>Composé réel</b> : ${c.known[0]} ; enthalpie de formation ΔfH° ≈ ${fr(c.known[1])} kJ/mol (${c.known[1] < 0 ? "formation exothermique : le composé est plus stable que les éléments séparés" : "formation endothermique : composé instable par rapport aux éléments"}).</li>`;
+    else out += `<li>Composé non répertorié dans la table du site : la formule est une prévision de la règle simple.</li>`;
+    out += "</ul>"; }
+  $("#ch-pt-res").innerHTML = out;
+}
+async function tableauReactions() {
+  if (!$("#ch-pt")) return;
+  try { const D = await fetch("data/tableau.json").then(r => r.json()); PT = {}; D.elements.forEach(e => PT[e.s] = e); } catch (e) { return; }
+  drawPT();
+  document.querySelectorAll(".ch-mode").forEach(b => b.addEventListener("click", () => { PTmode = b.dataset.m; PTsel = []; document.querySelectorAll(".ch-mode").forEach(x => x.classList.toggle("on", x === b)); drawPT(); $("#ch-pt-res").innerHTML = `<p>${PTmode === "paire" ? "Cliquez un élément." : "Cliquez un élément pour le détail."}</p>`; }));
+  clickPT("Na");
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -340,6 +465,7 @@ function init() {
   run(reaction); run(quadrants); run(evScale);
   $("#ch-mol").innerHTML = MOL.map((m, i) => `<option value="${i}">${m[0]}</option>`).join(""); $("#ch-metal").innerHTML = MET.map((m, i) => `<option value="${i}">${m[0]}</option>`).join("");
   [mole, vsepr, maille, avancement, pharma, pourbaix, alcanes].forEach(run);
+  tableauReactions().catch(e => console.error("tableauReactions", e));
   ["ch-m", "ch-mol"].forEach(i => $("#" + i).addEventListener("input", mole)); $("#ch-metal").addEventListener("input", maille);
   ["ch-n1", "ch-n2", "ch-x"].forEach(i => $("#" + i).addEventListener("input", avancement)); ["ch-t12", "ch-tau"].forEach(i => $("#" + i).addEventListener("input", pharma));
   ["ch-rx", "ch-rxT"].forEach(i => $("#" + i).addEventListener("input", reaction));
