@@ -164,12 +164,35 @@ function correspondance() {
   el.innerHTML = svg + `</svg><div class="legend-row"><span><i style="border-top-color:#2563eb;opacity:1;width:14px"></i>Torah</span><span><i style="border-top-color:#9333ea;opacity:1;width:14px"></i>Prophètes</span><span><i style="border-top-color:#d97706;opacity:1;width:14px"></i>Écrits</span><span style="color:#dc2626">✚ livres présents seulement dans les Bibles catholiques et orthodoxes (absents chez les protestants)</span></div>`;
 }
 
+
+/* Laïcité : frise 1789-1924 et régimes religieux dans le monde (Pew) */
+const LAI = [[1789,"Droits de l'homme, biens du clergé nationalisés",1,1,0,"start"],[1790,"Constitution civile du clergé",1,0,0,"start"],[1792,"État civil laïque, divorce",1,1,1,"start"],[1795,"1ʳᵉ séparation",1,0,1,"start"],[1801,"Concordat",0,1,2,"start"],[1816,"Divorce aboli",0,0,2,"middle"],[1850,"Loi Falloux",0,1,0,"middle"],[1864,"Syllabus",0,0,0,"middle"],[1882,"École laïque (Ferry)",1,1,0,"middle"],[1892,"Ralliement",0,0,0,"middle"],[1901,"Loi sur les associations",1,1,1,"end"],[1904,"Rupture avec le Vatican",1,0,1,"end"],[1905,"Loi de séparation",1,1,2,"end"],[1906,"Inventaires",1,0,2,"end"],[1921,"Retour du nonce",0,1,0,"end"],[1924,"Accord avec Pie XI",0,0,0,"end"]];
+function laiciteFrise() {
+  const el = $("#la-frise"); if (!el) return;
+  const W = 900, H = 210, x0 = 30, x1 = W - 30, y = 100, sc = a => x0 + (a - 1785) / (1928 - 1785) * (x1 - x0);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px"><line x1="${x0}" x2="${x1}" y1="${y}" y2="${y}" stroke="#94a3b8" stroke-width="2"/>`;
+  for (let a = 1800; a <= 1920; a += 20) svg += `<line x1="${sc(a)}" x2="${sc(a)}" y1="${y - 4}" y2="${y + 4}" stroke="#94a3b8"/><text x="${sc(a)}" y="${y + 16}" text-anchor="middle" fill="#64748b">${a}</text>`;
+  svg += `<rect x="${sc(1801)}" y="${y - 3}" width="${sc(1905) - sc(1801)}" height="6" fill="#3b6fd6" opacity=".25"/><text x="${(sc(1801) + sc(1905)) / 2}" y="${y + 30}" text-anchor="middle" fill="#3b6fd6" font-weight="700">Régime du Concordat (1801-1905)</text>`;
+  LAI.forEach(([a, t, sep, up, lvl, anc]) => {
+    const yy = up ? y - 18 - lvl * 22 : y + 46 + lvl * 22, c = sep ? "#dc2626" : "#3b6fd6";
+    svg += `<line x1="${sc(a)}" x2="${sc(a)}" y1="${y}" y2="${up ? yy + 3 : yy - 10}" stroke="${c}" stroke-opacity=".4"/><circle cx="${sc(a)}" cy="${y}" r="4" fill="${c}"/>`;
+    svg += `<text x="${sc(a)}" y="${yy}" text-anchor="${anc}" dx="${anc === "start" ? -4 : anc === "end" ? 4 : 0}" fill="${c}"><tspan font-weight="700">${a}</tspan> ${t}</text>`;
+  });
+  el.innerHTML = svg + `</svg><div class="legend-row"><span><i style="border-top-color:#dc2626;opacity:1;width:14px"></i>vers la séparation</span><span><i style="border-top-color:#3b6fd6;opacity:1;width:14px"></i>retour en arrière ou compromis</span></div>`;
+}
+function laicitePew() {
+  const el = $("#la-pew"); if (!el) return;
+  const R = [["Pas de religion officielle ni préférée (dont la France, les États-Unis)", 106, "#16a34a"], ["Religion officielle d'État (dont Royaume-Uni, Danemark, Grèce)", 43, "#dc2626"], ["Religion préférée, non officielle", 40, "#d97706"], ["État hostile ou contrôlant toutes les religions (Chine, Cuba, Corée du Nord, Vietnam…)", 10, "#64748b"]];
+  window.TH.bars(el, R.map(([l, v, c]) => ({ l, v, t: `${v} pays (${Math.round(100 * v / 199)} %)`, c })));
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
   try { sankey(); } catch (e) { console.error("christianisme", e); }
   try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
   try { correspondance(); } catch (e) { console.error("correspondance", e); }
+  try { laiciteFrise(); laicitePew(); } catch (e) { console.error("laicite", e); }
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
