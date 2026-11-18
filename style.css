@@ -587,3 +587,5 @@ table.cmp-t.tp-kl { min-width: 0; width: 100%; table-layout: fixed; }
 .ro-stack span { display: flex; align-items: center; justify-content: center; color: #fff; font-size: .75rem; font-weight: 600; white-space: nowrap; overflow: hidden; }
 .ro-cycle { width: 100%; height: auto; color: var(--ink); }
 .ro-t td { vertical-align: top; white-space: normal; }
+table.cmp-t.ro-t { min-width: 0; width: 100%; }
+.ro-t th, .ro-t td { text-align: left !important; white-space: normal !important; vertical-align: top; }
