@@ -256,12 +256,23 @@ function gombrich() {
   $("#ar-frise").innerHTML = svg + `</svg><div class="legend-row">${GBP.map(p => `<span><i style="border-top-color:${p[2]};opacity:1;width:14px"></i>${p[1]}</span>`).join("")}</div>`;
 }
 
+/* typologie : figures de l'Ancien Testament → accomplissement dans le Nouveau */
+function typologie() {
+  const el = $("#cr-typo"); if (!el) return;
+  const T = [["Adam, le premier homme (Genèse 2-3)", "Le Christ, « nouvel Adam » (Romains 5)"], ["Le sacrifice d'Isaac par Abraham (Genèse 22)", "Le sacrifice du Fils sur la croix"], ["L'agneau de la Pâque (Exode 12)", "« Voici l'agneau de Dieu » (Jean 1, 29)"], ["Le passage de la mer Rouge (Exode 14)", "Le baptême (1 Corinthiens 10)"], ["La manne dans le désert (Exode 16)", "L'eucharistie, « pain de vie » (Jean 6)"], ["Le serpent d'airain élevé par Moïse (Nombres 21)", "Le Christ élevé sur la croix (Jean 3, 14)"], ["Melchisédech offre le pain et le vin (Genèse 14)", "Le Christ prêtre éternel (Hébreux 7)"], ["Jonas, trois jours dans le poisson (Jonas 2)", "Trois jours au tombeau, puis la résurrection (Matthieu 12, 40)"], ["« La jeune femme est enceinte » (Isaïe 7, 14)", "La naissance virginale (Matthieu 1, 23)"], ["Le Serviteur souffrant (Isaïe 53)", "La Passion"]];
+  const W = 900, rh = 30, H = T.length * rh + 30, LX = 380, RX = 520;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11.5px"><text x="${LX}" y="14" text-anchor="end" font-weight="700" fill="#9333ea">Ancien Testament : la « figure »</text><text x="${RX}" y="14" font-weight="700" fill="#2563eb">Nouveau Testament : l'« accomplissement »</text>`;
+  T.forEach(([a, b], i) => { const y = 34 + i * rh; s += `<text x="${LX}" y="${y}" text-anchor="end" fill="currentColor">${a}</text><path d="M${LX + 6},${y - 4} C${(LX + RX) / 2},${y - 4} ${(LX + RX) / 2},${y - 4} ${RX - 6},${y - 4}" stroke="#a78bfa" stroke-width="2" fill="none" marker-end="url(#tya)"/><text x="${RX}" y="${y}" fill="currentColor">${b}</text>`; });
+  el.innerHTML = s + `<defs><marker id="tya" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a78bfa"/></marker></defs></svg>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
   try { sankey(); } catch (e) { console.error("christianisme", e); }
   try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
   try { correspondance(); } catch (e) { console.error("correspondance", e); }
+  try { typologie(); } catch (e) { console.error("typologie", e); }
   try { laiciteFrise(); laicitePew(); laiciteCarte(); } catch (e) { console.error("laicite", e); }
   try { gombrich(); } catch (e) { console.error("gombrich", e); }
 }
