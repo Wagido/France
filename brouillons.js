@@ -320,6 +320,19 @@ function croissance() {
   el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:18px"><div><p class="muted" style="margin:0 0 4px"><b>Part de chrétiens dans l'Empire romain</b> (%)</p>${draw(false, 440, 280)}</div><div><p class="muted" style="margin:0 0 4px"><b>La même chose en échelle logarithmique</b></p>${draw(true, 440, 280)}</div></div>`;
 }
 
+/* héritiers de Rome (frise) et portée comparée */
+function heritiers() {
+  const el = $("#cr-heritiers"); if (!el) return;
+  const R = [["Empire romain (d'Auguste à la chute de l'Occident)", -27, 476, "#b91c1c"], ["Empire romain d'Orient (Byzance)", 395, 1453, "#9333ea"], ["Papauté (évêques de Rome)", 60, 2026, "#d97706"], ["Empire carolingien", 800, 888, "#2563eb"], ["Saint-Empire romain germanique", 962, 1806, "#1d4ed8"], ["Russie des tsars (« troisième Rome »)", 1547, 1917, "#16a34a"], ["Sultans ottomans, « César de Rome »", 1453, 1922, "#0d9488"], ["Empire napoléonien", 1804, 1815, "#64748b"], ["Empire allemand (Kaiser)", 1871, 1918, "#475569"]];
+  const W = 900, rh = 26, H = R.length * rh + 40, m = { l: 300, r: 20 }, x = d3.scaleLinear([-100, 2030], [m.l, W - m.r]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  [0, 500, 1000, 1500, 2000].forEach(v => s += `<line x1="${x(v)}" x2="${x(v)}" y1="8" y2="${H - 24}" stroke="#eef2f7"/><text x="${x(v)}" y="${H - 8}" text-anchor="middle" style="fill:#64748b">${v === 0 ? "an 1" : v}</text>`);
+  R.forEach(([l, a, b, c], i) => { const y = 10 + i * rh; s += `<text x="${m.l - 8}" y="${y + 15}" text-anchor="end" style="fill:currentColor">${l}</text><rect x="${x(a)}" y="${y + 4}" width="${Math.max(3, x(b) - x(a))}" height="${rh - 9}" rx="4" fill="${c}" opacity=".85"><title>${l} : ${a < 0 ? -a + " av. J.-C." : a} - ${b === 2026 ? "aujourd'hui" : b}</title></rect>`; });
+  [[476, "chute de Rome"], [1453, "chute de Constantinople"]].forEach(([v, t]) => s += `<line x1="${x(v)}" x2="${x(v)}" y1="8" y2="${H - 24}" stroke="#111827" stroke-dasharray="4 3"/><text x="${x(v) + 3}" y="${H - 26}" style="fill:#111827" font-size="10">${t}</text>`);
+  el.innerHTML = s + "</svg>";
+  window.TH.bars($("#cr-portee"), [{ l: "Empire romain à son apogée (vers 117)", v: 60, t: "≈ 60 millions", c: "#b91c1c" }, { l: "Locuteurs des langues issues du latin", v: 1000, t: "≈ 1 milliard", c: "#0ea5e9" }, { l: "Catholiques (l'Église de Rome)", v: 1400, t: "≈ 1,4 milliard", c: "#d97706" }, { l: "Chrétiens", v: 2300, t: "≈ 2,3 milliards", c: "#9333ea" }]);
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
@@ -327,6 +340,7 @@ function init() {
   try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
   try { correspondance(); } catch (e) { console.error("correspondance", e); }
   try { typologie(); } catch (e) { console.error("typologie", e); }
+  try { heritiers(); } catch (e) { console.error("heritiers", e); }
   try { paulCarte(); sankeyPrim(); croissance(); } catch (e) { console.error("christianisme primitif", e); }
   try { laiciteFrise(); laicitePew(); laiciteCarte(); } catch (e) { console.error("laicite", e); }
   try { gombrich(); } catch (e) { console.error("gombrich", e); }

@@ -392,9 +392,59 @@ function mecanismes() {
   el.innerHTML = s + "</svg>";
 }
 
+/* carte en plan et coupe verticale d'une perturbation */
+function perturbation2D() {
+  const P = $("#me-plan"), C = $("#me-coupe"), Q = $("#me-sequence"); if (!P || !C) return;
+  { const W = 900, H = 360, L = [360, 150];
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11.5px;background:#f8fafc;border-radius:8px">`;
+    for (let r = 50; r <= 330; r += 50) s += `<ellipse cx="${L[0] + r * .25}" cy="${L[1] + r * .1}" rx="${r * 1.25}" ry="${r * .8}" fill="none" stroke="#94a3b8" stroke-width=".9"/>`;
+    const warm = "M360,150 C430,190 520,215 640,235", cold = "M360,150 C340,210 300,270 230,340";
+    s += `<path d="M360,150 C430,190 520,215 640,235 L560,360 L230,360 C300,270 340,210 360,150 Z" fill="#fecaca" opacity=".55"/>`;
+    s += `<path d="${warm}" fill="none" stroke="#dc2626" stroke-width="4"/><path d="${cold}" fill="none" stroke="#2563eb" stroke-width="4"/>`;
+    [[420, 181], [480, 205], [540, 220], [600, 230]].forEach(([x, y]) => s += `<circle cx="${x}" cy="${y}" r="8" fill="#dc2626"/>`);
+    [[350, 190], [330, 235], [300, 280], [262, 318]].forEach(([x, y]) => s += `<polygon points="${x - 9},${y - 6} ${x + 7},${y + 6} ${x - 14},${y + 12}" fill="#2563eb"/>`);
+    s += `<text x="${L[0]}" y="${L[1] + 8}" text-anchor="middle" font-size="26" font-weight="800" style="fill:#b91c1c">D</text>`;
+    s += `<text x="650" y="250" style="fill:#dc2626" font-weight="700">front chaud</text><text x="160" y="330" style="fill:#2563eb" font-weight="700">front froid</text><text x="420" y="300" style="fill:#b91c1c" font-weight="700">SECTEUR CHAUD</text><text x="420" y="316" style="fill:#b91c1c">air chaud et humide venu du sud-ouest</text>`;
+    s += `<text x="120" y="120" style="fill:#1d4ed8" font-weight="700">AIR FROID</text><text x="120" y="136" style="fill:#1d4ed8">(derrière le front froid)</text><text x="700" y="120" style="fill:#1d4ed8" font-weight="700">AIR FROID</text><text x="700" y="136" style="fill:#1d4ed8">(devant le front chaud)</text>`;
+    // ligne de coupe
+    s += `<line x1="150" y1="222" x2="820" y2="222" stroke="#111827" stroke-width="2" stroke-dasharray="8 5"/><circle cx="150" cy="222" r="5" fill="#111827"/><circle cx="820" cy="222" r="5" fill="#111827"/><text x="140" y="226" text-anchor="end" font-weight="800">A</text><text x="830" y="226" font-weight="800">B</text><text x="760" y="214" text-anchor="middle" style="fill:#475569">ligne de coupe (schéma ②)</text>`;
+    // vents
+    [[360, 60, 180], [520, 110, 200], [600, 300, 30], [220, 230, 110], [480, 250, 55], [700, 200, 10]].forEach(([x, y, a]) => { const r = a * Math.PI / 180; s += `<line x1="${x}" y1="${y}" x2="${x + 30 * Math.cos(r)}" y2="${y - 30 * Math.sin(r)}" stroke="#0f766e" stroke-width="2" marker-end="url(#mev)"/>`; });
+    s += `<defs><marker id="mev" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#0f766e"/></marker><marker id="mem" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#b91c1c"/></marker></defs>`;
+    s += `<line x1="380" y1="110" x2="460" y2="80" stroke="#b91c1c" stroke-width="3" marker-end="url(#mem)"/><text x="465" y="78" style="fill:#b91c1c">déplacement</text><text x="${W - 10}" y="22" text-anchor="end" font-weight="700">N ↑</text><text x="10" y="22" style="fill:#0f766e">→ vent</text>`;
+    P.innerHTML = s + "</svg>"; }
+  { const W = 900, H = 340, g = 290, x = km => 40 + (km + 400) / 1600 * 820, y = z => g - z * 22;   // km le long de A-B ; z en km d'altitude
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+    s += `<rect x="0" y="0" width="${W}" height="${g}" fill="#eff6ff"/>`;
+    // air froid arrière (coin sous front froid) et avant (sous front chaud)
+    s += `<polygon points="${x(-400)},${g} ${x(0)},${g} ${x(-100)},${y(10)} ${x(-400)},${y(10)}" fill="#bfdbfe"/>`;
+    s += `<polygon points="${x(250)},${g} ${x(1200)},${g} ${x(1200)},${y(9)}" fill="#bfdbfe"/>`;
+    s += `<polygon points="${x(0)},${g} ${x(250)},${g} ${x(1200)},${y(9)} ${x(1200)},${y(11)} ${x(-100)},${y(11)} ${x(-100)},${y(10)}" fill="#fecaca" opacity=".8"/>`;
+    s += `<line x1="${x(0)}" y1="${g}" x2="${x(-100)}" y2="${y(10)}" stroke="#2563eb" stroke-width="4"/><line x1="${x(250)}" y1="${g}" x2="${x(1200)}" y2="${y(9)}" stroke="#dc2626" stroke-width="4"/>`;
+    s += `<text x="${x(-330)}" y="${y(4)}" style="fill:#1d4ed8" font-weight="800">AIR FROID</text><text x="${x(80)}" y="${y(5.5)}" style="fill:#b91c1c" font-weight="800">AIR CHAUD</text><text x="${x(80)}" y="${y(4.8)}" style="fill:#b91c1c">monte sur l'air froid</text><text x="${x(900)}" y="${y(1.5)}" style="fill:#1d4ed8" font-weight="800">AIR FROID</text>`;
+    const cl = (cx, cy, w, h, col, t, tx, ty) => `<rect x="${x(cx) - w / 2}" y="${y(cy) - h / 2}" width="${w}" height="${h}" rx="${Math.min(w, h) / 2}" fill="${col}" stroke="#94a3b8"/>` + (t ? `<text x="${tx ?? x(cx)}" y="${ty ?? y(cy) + 4}" text-anchor="middle" style="fill:#111827" font-weight="700">${t}</text>` : "");
+    s += `<path d="M${x(-40)},${g} L${x(-60)},${y(9)} L${x(-130)},${y(10.2)} L${x(40)},${y(10.2)} L${x(-10)},${y(9)} L${x(30)},${g} Z" fill="#94a3b8" opacity=".9"/><text x="${x(-35)}" y="${y(6)}" text-anchor="middle" style="fill:#fff" font-weight="800" transform="rotate(-90 ${x(-35)} ${y(6)})">Cumulonimbus</text>`;
+    s += cl(-250, 1.5, 34, 26, "#fff", "Cu", null, null) + cl(-170, 1.8, 30, 24, "#fff", "Cu");
+    s += cl(130, 1, 150, 16, "#cbd5e1", "St, Sc : bruine");
+    s += `<polygon points="${x(250)},${y(0.6)} ${x(560)},${y(3)} ${x(560)},${y(5)} ${x(330)},${y(4.6)} ${x(250)},${y(3.5)}" fill="#6b7280" opacity=".85"/><text x="${x(410)}" y="${y(3)}" text-anchor="middle" style="fill:#fff" font-weight="800">Nimbostratus</text>`;
+    s += `<polygon points="${x(560)},${y(3.6)} ${x(820)},${y(5.4)} ${x(820)},${y(6.6)} ${x(560)},${y(5.2)}" fill="#cbd5e1"/><text x="${x(690)}" y="${y(5.1)}" text-anchor="middle" font-weight="700">Altostratus</text>`;
+    s += `<polygon points="${x(820)},${y(6)} ${x(1000)},${y(7.4)} ${x(1000)},${y(8.1)} ${x(820)},${y(6.8)}" fill="#e2e8f0"/><text x="${x(910)}" y="${y(7.1)}" text-anchor="middle" font-weight="700">Cirrostratus</text>`;
+    s += `<path d="M${x(1030)},${y(8.4)} q30,-8 60,-2 M${x(1080)},${y(8.9)} q30,-8 60,-2 M${x(1130)},${y(8.6)} q30,-8 60,-2" stroke="#64748b" stroke-width="2" fill="none"/><text x="${x(1110)}" y="${y(9.6)}" text-anchor="middle" font-weight="700">Cirrus</text>`;
+    for (let k = 260; k < 560; k += 14) s += `<line x1="${x(k)}" y1="${y(0.5)}" x2="${x(k) - 3}" y2="${g}" stroke="#2563eb" stroke-width="1.2"/>`;
+    for (let k = -30; k < 25; k += 7) s += `<line x1="${x(k)}" y1="${y(0.8)}" x2="${x(k) - 4}" y2="${g}" stroke="#1d4ed8" stroke-width="2.4"/>`;
+    s += `<text x="${x(400)}" y="${g + 16}" text-anchor="middle" style="fill:#2563eb">pluie continue (plusieurs heures)</text><text x="${x(0)}" y="${g + 16}" text-anchor="middle" style="fill:#1d4ed8" font-weight="700">averses, grains</text>`;
+    s += `<rect x="0" y="${g}" width="${W}" height="6" fill="#86efac"/>`;
+    [-400, 0, 400, 800, 1200].forEach(k => s += `<text x="${x(k)}" y="${H - 6}" text-anchor="middle" style="fill:#64748b">${k} km</text>`);
+    s += `<text x="${x(-400) + 4}" y="14" font-weight="800">A (ouest)</text><text x="${x(1200) - 4}" y="14" text-anchor="end" font-weight="800">B (est)</text><text x="${x(-60)}" y="${y(11.5)}" style="fill:#2563eb" font-weight="700">front froid : pente ≈ 1/100</text><text x="${x(700)}" y="${y(9.6)}" style="fill:#dc2626" font-weight="700">front chaud : pente ≈ 1/150</text>`;
+    s += `<line x1="${x(600)}" y1="${y(10.6)}" x2="${x(760)}" y2="${y(10.6)}" stroke="#b91c1c" stroke-width="3" marker-end="url(#mem)"/><text x="${x(600)}" y="${y(10.9)}" style="fill:#b91c1c">la perturbation avance vers l'est</text>`;
+    C.innerHTML = s + `<defs><marker id="mem" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#b91c1c"/></marker></defs></svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Altitudes de 0 à 12 km, distances le long de la coupe ; échelle verticale exagérée environ 50 fois.</p>`; }
+  if (Q) { const S = [["≈ 24 h avant", "Cirrus en filaments qui envahissent le ciel depuis l'ouest", "pression qui commence à baisser", "#e2e8f0"], ["≈ 12 h avant", "Voile de cirrostratus, halo autour du Soleil", "baisse plus nette ; vent de sud qui forcit", "#cbd5e1"], ["≈ 6 h avant", "Altostratus : Soleil comme derrière un verre dépoli", "baisse continue", "#94a3b8"], ["Front chaud", "Nimbostratus, pluie continue pendant des heures", "le vent tourne au sud-ouest ; la température monte", "#6b7280"], ["Secteur chaud", "Ciel gris et bas, bruine, air doux et humide", "pression stable", "#fca5a5"], ["Front froid", "Cumulonimbus, averses violentes, grains, parfois orage", "le vent tourne brutalement au nord-ouest ; la température chute ; la pression remonte", "#3b82f6"], ["Après", "Ciel de traîne : éclaircies, cumulus, averses ; excellente visibilité", "pression en hausse, vent de nord-ouest frais", "#bfdbfe"]];
+    Q.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px">${S.map(([t, c, p, col], i) => `<div style="border-top:6px solid ${col};background:#f8fafc;border-radius:6px;padding:6px 8px;font-size:.8rem"><b>${i + 1}. ${t}</b><div style="margin-top:4px">${c}</div><div class="muted" style="margin-top:4px">${p}</div></div>`).join("")}</div>`; }
+}
+
 function meteo() {
   if (!$("#meteo")) return;
-  nuages(); saturation(); mecanismes();
+  nuages(); saturation(); mecanismes(); try { perturbation2D(); } catch (e) { console.error('perturbation2D', e); }
   $("#me-satur").addEventListener("click", ev => { const sv = $("#me-satur svg"); if (!sv) return; const b = sv.getBoundingClientRect(); const px = (ev.clientX - b.left) / b.width * 900, py = (ev.clientY - b.top) / b.height * 300; SAT = [Math.max(-10, Math.min(40, -10 + (px - 50) / 830 * 50)), Math.max(0.5, Math.min(50, (300 - 34 - py) / 254 * 50))]; saturation(); });
   ["me-ts", "me-dd", "me-g"].forEach(i => $("#" + i).addEventListener("input", parcel)); parcel();
   $("#me-t").addEventListener("input", buysBallot);
