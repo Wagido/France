@@ -134,8 +134,52 @@ function climat() {
     TH.kpis("#cp-calc", [[fr(dF, 2) + " W/m²", ["forçage du CO₂ par rapport à 280 ppm"], "Forçage"], [(dT >= 0 ? "+" : "") + fr(dT, 1) + " °C", ["réchauffement à l'équilibre (CO₂ seul)"], "Réchauffement"], [fr(c / 280, 2) + " ×", [c >= 560 ? "au-delà d'un doublement" : "la concentration préindustrielle"], "CO₂"]]);
   };
   ["cp-c", "cp-s"].forEach(i => $("#" + i).addEventListener("input", calc)); calc();
+  planck(); ["cp-lam", "cp-gam", "cp-scen"].forEach(i => $("#" + i).addEventListener("input", deuxBoites)); deuxBoites();
   const E = [["Quasi certain", 99, 100], ["Extrêmement probable", 95, 100], ["Très probable", 90, 100], ["Probable", 66, 100], ["Aussi probable qu'improbable", 33, 66], ["Improbable", 0, 33], ["Très improbable", 0, 10], ["Exceptionnellement improbable", 0, 1]];
   $("#cp-echelle").innerHTML = `<div class="bars">${E.map(([l, a, b]) => `<div class="bar-row"><span class="lab">${l}</span><span class="val">${a}-${b} %</span><span class="track" style="position:relative"><span class="fill" style="position:absolute;left:${a}%;width:${Math.max(1, b - a)}%;background:${a >= 66 ? "#16a34a" : a >= 33 ? "#f59e0b" : "#dc2626"}"></span></span></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">Échelle de probabilité du GIEC : probabilité que le résultat se produise ou soit vrai.</p>`;
+}
+
+/* spectres de Planck normalisés */
+function planck() {
+  const el = $("#cp-planck"); if (!el) return;
+  const W = 900, H = 260, m = { l: 40, r: 10, t: 14, b: 32 }, l0 = Math.log10(0.1), l1 = Math.log10(100);
+  const x = um => m.l + (Math.log10(um) - l0) / (l1 - l0) * (W - m.l - m.r), y = v => H - m.b - v * (H - m.t - m.b);
+  const B = (um, T) => { const l = um * 1e-6; return 1 / (l ** 5 * (Math.exp(0.014388 / (l * T)) - 1)); };
+  const curve = T => { const pts = []; for (let k = 0; k <= 400; k++) { const um = 10 ** (l0 + (l1 - l0) * k / 400); pts.push([um, B(um, T)]); } const mx = Math.max(...pts.map(p => p[1])); return pts.map(([u, v]) => `${x(u)},${y(v / mx)}`).join(" "); };
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  [[0.4, 0.7, "#fde68a", "visible", 0], [8, 13, "#d1fae5", "fenêtre 8-13 µm", 3], [14, 16.5, "#fecaca", "CO₂ 15 µm", 1], [4.2, 4.45, "#fecaca", "CO₂ 4,3", 2], [9.4, 9.9, "#e9d5ff", "O₃", 4], [5.5, 7.5, "#bfdbfe", "H₂O 6,3 µm", 0], [18, 100, "#dbeafe", "H₂O rotation", 0]].forEach(([a, b, c, t, k]) => s += `<rect x="${x(a)}" y="${m.t}" width="${x(b) - x(a)}" height="${H - m.t - m.b}" fill="${c}" opacity=".7"/>${t ? `<text x="${(x(a) + x(b)) / 2}" y="${H - m.b - 8 - k * 13}" text-anchor="middle" fill="#475569" font-size="9.5">${t}</text>` : ""}`);
+  [0.1, 0.3, 1, 3, 10, 30, 100].forEach(u => s += `<text x="${x(u)}" y="${H - 12}" text-anchor="middle" fill="#64748b">${String(u).replace(".", ",")} µm</text>`);
+  s += `<polyline points="${curve(5772)}" fill="none" stroke="#f59e0b" stroke-width="2.4"/><polyline points="${curve(288)}" fill="none" stroke="#dc2626" stroke-width="2.4"/><polyline points="${curve(220)}" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5 4"/>`;
+  s += `<text x="${x(0.5)}" y="${y(1) - 4}" text-anchor="middle" fill="#b45309" font-weight="700">Soleil, 5 772 K (pic 0,50 µm)</text><text x="${x(10)}" y="${y(1) - 4}" text-anchor="middle" fill="#dc2626" font-weight="700">Surface, 288 K (pic 10 µm)</text><text x="${x(30)}" y="${y(.55)}" fill="#7c3aed">220 K (tropopause)</text>`;
+  el.innerHTML = s + "</svg>";
+}
+/* modèle à deux réservoirs */
+function deuxBoites() {
+  const el = $("#cp-2box"); if (!el) return;
+  const lam = +$("#cp-lam").value, gam = +$("#cp-gam").value, sc = $("#cp-scen").value, C = 8, Co = 100, F2 = 3.93;
+  $("#cp-lam-v").textContent = fr(lam, 2) + " W/m²/K (ECS " + fr(-F2 / lam, 1) + " K)"; $("#cp-gam-v").textContent = fr(gam, 2) + " W/m²/K";
+  const N = 300, dt = 0.1, out = []; let T = 0, To = 0, co2 = 280;
+  for (let k = 0; k <= N / dt; k++) {
+    const t = k * dt;
+    if (sc === "abrupt") co2 = 560;
+    else if (sc === "pct") co2 = Math.min(560, 280 * 1.01 ** t);
+    else co2 = t <= 50 ? 280 * 1.01 ** t : 280 + (280 * 1.01 ** 50 - 280) * (0.55 + 0.45 * Math.exp(-(t - 50) / 60)) - 0;   // après zéro émission : baisse rapide puis plateau
+    const F = 5.35 * Math.log(co2 / 280) * F2 / (5.35 * Math.log(2));
+    const dT = (F + lam * T - gam * (T - To)) / C, dTo = gam * (T - To) / Co;
+    T += dT * dt; To += dTo * dt;
+    if (k % 10 === 0) out.push([t, T, To, co2]);
+  }
+  const W = 900, H = 260, m = { l: 44, r: 50, t: 12, b: 28 }, ymax = Math.max(1, ...out.map(o => o[1])) * 1.1, ecs = -F2 / lam;
+  const x = t => m.l + t / N * (W - m.l - m.r), y = v => H - m.b - v / Math.max(ymax, ecs * 1.05) * (H - m.t - m.b);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  for (let v = 0; v <= Math.max(ymax, ecs); v += 0.5) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" fill="#64748b">${fr(v, 1)} K</text>`;
+  for (let t = 0; t <= N; t += 50) s += `<text x="${x(t)}" y="${H - 8}" text-anchor="middle" fill="#64748b">${t} ans</text>`;
+  s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(ecs)}" y2="${y(ecs)}" stroke="#dc2626" stroke-dasharray="5 4"/><text x="${W - m.r + 3}" y="${y(ecs) + 3}" fill="#dc2626">ECS</text>`;
+  s += `<polyline points="${out.map(o => `${x(o[0])},${y(o[1])}`).join(" ")}" fill="none" stroke="#dc2626" stroke-width="2.4"/><polyline points="${out.map(o => `${x(o[0])},${y(o[2])}`).join(" ")}" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 3"/>`;
+  el.innerHTML = s + `</svg><div class="legend-row"><span><i style="border-top-color:#dc2626;opacity:1"></i>Surface et océan de mélange (T)</span><span><i style="border-top-color:#2563eb;opacity:1;border-top-style:dashed"></i>Océan profond (T<sub>o</sub>)</span><span><i style="border-top-color:#dc2626;opacity:1;border-top-style:dashed"></i>Réchauffement d'équilibre pour un doublement</span></div>`;
+  const at = yr => out.find(o => o[0] >= yr)[1];
+  const tau1 = C / (-lam + gam);
+  $("#cp-2box-res").innerHTML = `Constante de temps rapide τ₁ = C / (|λ| + γ) ≈ ${fr(tau1, 1)} ans. Réchauffement après 10 ans : ${fr(at(10), 2)} K ; 70 ans : ${fr(at(70), 2)} K${sc === "pct" ? " (≈ TCR)" : ""} ; 300 ans : ${fr(at(300), 2)} K (ECS = ${fr(ecs, 2)} K). Paramètres C = 8 et C<sub>o</sub> = 100 W·an/m²/K. Pour le dernier scénario, la décroissance du CO₂ après l'arrêt des émissions est schématique (environ la moitié de l'excès absorbée par l'océan et la biosphère en quelques décennies).`;
 }
 
 /* ================= 4. Énergie de la Terre ================= */
@@ -153,7 +197,7 @@ function sk(el, N, Lk, opts) {
     .text(d => `${d.l} : ${fr(d.value, d.value < 10 ? 1 : 0)} ${opts.u}`);
 }
 function energieTerre() {
-  if (!$("#energie-terre")) return;
+  if (!$("#et-sankey1")) return;
   window.TH.kpis("#et-kpis", [["173 000 TW", ["1 361 W/m² sur le disque terrestre"], "Reçu du Soleil"], ["122 000 TW", ["après réflexion de 30 %"], "Absorbé"], ["≈ 130 TW", ["production nette de la photosynthèse"], "Capté par la vie"], ["≈ 20 TW", ["620 EJ par an (2023)"], "Consommé par l'humanité"]]);
   const sw = "#f59e0b", rf = "#93c5fd", lw = "#dc2626", lt = "#0ea5e9";
   sk($("#et-sankey1"), [
@@ -265,9 +309,46 @@ function buysBallot() {
   avenir = by > yTrack ? "La dépression passera <b>au nord</b> de vous : le vent va <b>virer</b> (tourner dans le sens des aiguilles d'une montre), du sud-est vers le sud-ouest au front chaud, puis brutalement vers l'ouest et le nord-ouest au front froid." : "La dépression passera <b>au sud</b> de vous : le vent va <b>reculer</b> (tourner dans le sens inverse des aiguilles d'une montre), de l'est vers le nord-est puis le nord, sans passage net de fronts.";
   $("#me-bb-res").innerHTML = `<ul><li><b>Vent du ${dname}</b>, environ ${fr(Math.round(w.kt / 5) * 5)} nœuds (force ${bf < 0 ? "11+" : bf} Beaufort), pression d'environ ${fr(pr(r))} hPa. Dos au vent, la dépression est à votre gauche, un peu en avant (pointillés rouges).</li><li>${zone}</li><li>${avenir}</li></ul><p class="muted" style="font-size:.78rem;margin:4px 0 0">Modèle schématique : vent tournant autour de la dépression et coupant les isobares de 20° vers le centre (valeur typique sur mer), force estimée d'après le resserrement des isobares.</p>`;
 }
+/* ascension d'une particule (adiabatiques sèche et saturée) */
+function parcel() {
+  const el = $("#me-parcel"); if (!el) return;
+  const Ts = +$("#me-ts").value, dd = +$("#me-dd").value, G = +$("#me-g").value;
+  $("#me-ts-v").textContent = Ts + " °C"; $("#me-dd-v").textContent = fr(dd, 1) + " K (point de rosée " + fr(Ts - dd, 1) + " °C)"; $("#me-g-v").textContent = fr(G, 1) + " K/km";
+  const g = 9.81, cp = 1005, Rd = 287, Lv = 2.5e6, eps = 0.622, dz = 25, zmax = 14000, ztrop = 11000;
+  const env = z => Ts - G * Math.min(z, ztrop) / 1000;
+  const pz = z => 1013.25 * Math.exp(-z / 8000), es = Tc => 6.112 * Math.exp(17.67 * Tc / (Tc + 243.5));
+  const zl = 125 * dd; const P = []; let Tp = Ts, cape = 0, cin = 0, lfc = null, el_ = null;
+  for (let z = 0; z <= zmax; z += dz) {
+    P.push([z, Tp]);
+    const Te = env(z);
+    if (z > zl) { if (Tp > Te) { cape += g * (Tp - Te) / (Te + 273.15) * dz; if (lfc == null) lfc = z; el_ = z; } else if (lfc == null) cin += g * (Tp - Te) / (Te + 273.15) * dz; }
+    else cin += Math.min(0, g * (Tp - Te) / (Te + 273.15) * dz);
+    let gam;
+    if (z < zl) gam = g / cp;
+    else { const T = Tp + 273.15, p = pz(z), rs = eps * es(Tp) / (p - es(Tp)); gam = g * (1 + Lv * rs / (Rd * T)) / (cp + Lv * Lv * rs * eps / (Rd * T * T)); }
+    Tp -= gam * dz;
+  }
+  const W = 900, H = 360, m = { l: 48, r: 12, t: 10, b: 30 }, t0 = -70, t1 = 40;
+  const x = t => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r), y = z => H - m.b - z / zmax * (H - m.t - m.b);
+  let sv = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  for (let z = 0; z <= zmax; z += 2000) sv += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(z)}" y2="${y(z)}" stroke="#eef2f7"/><text x="${m.l - 5}" y="${y(z) + 3}" text-anchor="end" fill="#64748b">${z / 1000} km</text>`;
+  for (let t = -60; t <= 40; t += 20) sv += `<text x="${x(t)}" y="${H - 10}" text-anchor="middle" fill="#64748b">${t} °C</text><line x1="${x(t)}" x2="${x(t)}" y1="${m.t}" y2="${H - m.b}" stroke="#f1f5f9"/>`;
+  // aires
+  const pos = P.filter(([z, t]) => z > zl && t > env(z));
+  if (pos.length) sv += `<polygon points="${pos.map(([z, t]) => `${x(t)},${y(z)}`).join(" ")} ${pos.slice().reverse().map(([z]) => `${x(env(z))},${y(z)}`).join(" ")}" fill="#fca5a5" opacity=".6"/>`;
+  sv += `<rect x="${m.l}" y="${y(zl)}" width="${W - m.l - m.r}" height="2" fill="#94a3b8"/><text x="${W - m.r - 4}" y="${y(zl) - 4}" text-anchor="end" fill="#475569">base du nuage (condensation) : ${fr(zl)} m</text>`;
+  sv += `<polyline points="${P.map(([z]) => `${x(env(z))},${y(z)}`).join(" ")}" fill="none" stroke="#111827" stroke-width="2"/>`;
+  sv += `<polyline points="${P.map(([z, t]) => `${x(Math.max(t0, t))},${y(z)}`).join(" ")}" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="${""}"/>`;
+  el.innerHTML = sv + `</svg><div class="legend-row"><span><i style="border-top-color:#111827;opacity:1"></i>Air ambiant (gradient choisi, isotherme au-dessus de 11 km)</span><span><i style="border-top-color:#dc2626;opacity:1"></i>Particule (sèche puis saturée)</span><span><i style="border-top-color:#fca5a5;opacity:1;border-top-width:10px;width:14px"></i>Zone où la particule est plus chaude : énergie disponible (CAPE)</span></div>`;
+  const v = cape < 50 ? "Pas de convection profonde : l'air ne monte pas de lui-même. Ciel clair, ou stratus et stratocumulus si l'air est humide." : cape < 1000 ? "Convection modérée : cumulus bourgeonnants, averses possibles." : cape < 2500 ? "Atmosphère instable : orages probables si un déclencheur (relief, front, chaleur du sol) franchit la barrière d'inhibition." : "Très forte instabilité : orages violents, grêle, rafales possibles.";
+  $("#me-parcel-res").innerHTML = `<ul><li><b>Base du nuage</b> : ${fr(zl)} m. ${lfc != null ? `<b>Niveau de convection libre</b> : ${fr(lfc)} m ; <b>sommet du nuage</b> (équilibre) : environ ${fr(el_ / 1000, 1)} km.` : "La particule reste plus froide que l'air ambiant : pas de convection libre."}</li>
+    <li><b>CAPE</b> ≈ ${fr(cape)} J/kg (vitesse ascendante maximale théorique √(2 CAPE) ≈ ${fr(Math.sqrt(2 * cape))} m/s) ; <b>inhibition (CIN)</b> ≈ ${fr(cin)} J/kg.</li><li>${v}</li></ul><p class="muted" style="font-size:.78rem;margin:4px 0 0">Modèle simplifié : pas de mélange avec l'air ambiant, effet de la vapeur sur la densité (température virtuelle) négligé, pression standard.</p>`;
+}
+
 function meteo() {
   if (!$("#meteo")) return;
   nuages();
+  ["me-ts", "me-dd", "me-g"].forEach(i => $("#" + i).addEventListener("input", parcel)); parcel();
   $("#me-t").addEventListener("input", buysBallot);
   $("#me-bb").addEventListener("click", ev => { const svg = $("#me-bb svg"); if (!svg) return; const b = svg.getBoundingClientRect(); BOAT = [(ev.clientX - b.left) / b.width * 900, (ev.clientY - b.top) / b.height * 520]; buysBallot(); });
   buysBallot();
