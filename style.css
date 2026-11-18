@@ -589,3 +589,5 @@ table.cmp-t.tp-kl { min-width: 0; width: 100%; table-layout: fixed; }
 .ro-t td { vertical-align: top; white-space: normal; }
 table.cmp-t.ro-t { min-width: 0; width: 100%; }
 .ro-t th, .ro-t td { text-align: left !important; white-space: normal !important; vertical-align: top; }
+.cr-partie { margin: 34px 0 6px; padding: 10px 14px; background: var(--soft, #f1f5f9); border-left: 5px solid #7c3aed; border-radius: 6px; font-size: 1.15rem; }
+.cr-toc > li.cr-toc-p { margin-top: 6px; } .cr-toc ul { margin: 2px 0 0 0; }

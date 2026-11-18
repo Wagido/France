@@ -122,11 +122,54 @@ function ancienTestament() {
   el.innerHTML = svg + `</svg><div class="legend-row"><span><i style="border-top-color:#94a3b8;opacity:1;border-top-width:6px;width:14px"></i>Époque racontée</span><span><i style="border-top-color:#2563eb;opacity:1;border-top-width:7px;width:14px"></i>Époque de rédaction (couleur selon la partie)</span><span><i style="border-top-color:#ef4444;opacity:1;width:14px;border-top-style:dashed"></i>Repères historiques</span></div>`;
 }
 
+/* ---------- Correspondance Bible hébraïque (24 livres) / Ancien Testament chrétien (ordre catholique, 46 livres) ---------- */
+const TANAKH = [
+ ["Torah (la Loi)", "#2563eb", [["Genèse", ["Genèse"]], ["Exode", ["Exode"]], ["Lévitique", ["Lévitique"]], ["Nombres", ["Nombres"]], ["Deutéronome", ["Deutéronome"]]]],
+ ["Nevi'im (les Prophètes)", "#9333ea", [["Josué", ["Josué"]], ["Juges", ["Juges"]], ["Samuel", ["1 Samuel", "2 Samuel"]], ["Rois", ["1 Rois", "2 Rois"]], ["Isaïe", ["Isaïe"]], ["Jérémie", ["Jérémie"]], ["Ézéchiel", ["Ézéchiel"]],
+   ["Les Douze", ["Osée", "Joël", "Amos", "Abdias", "Jonas", "Michée", "Nahum", "Habacuc", "Sophonie", "Aggée", "Zacharie", "Malachie"]]]],
+ ["Ketouvim (les Écrits)", "#d97706", [["Psaumes", ["Psaumes"]], ["Proverbes", ["Proverbes"]], ["Job", ["Job"]], ["Cantique des cantiques", ["Cantique des cantiques"]], ["Ruth", ["Ruth"]], ["Lamentations", ["Lamentations"]],
+   ["Ecclésiaste", ["Ecclésiaste"]], ["Esther", ["Esther"]], ["Daniel", ["Daniel"]], ["Esdras-Néhémie", ["Esdras", "Néhémie"]], ["Chroniques", ["1 Chroniques", "2 Chroniques"]]]]
+];
+const ATC = [
+ ["Pentateuque", ["Genèse", "Exode", "Lévitique", "Nombres", "Deutéronome"]],
+ ["Livres historiques", ["Josué", "Juges", "Ruth", "1 Samuel", "2 Samuel", "1 Rois", "2 Rois", "1 Chroniques", "2 Chroniques", "Esdras", "Néhémie", "Tobie*", "Judith*", "Esther", "1 Maccabées*", "2 Maccabées*"]],
+ ["Livres poétiques et de sagesse", ["Job", "Psaumes", "Proverbes", "Ecclésiaste", "Cantique des cantiques", "Sagesse*", "Siracide*"]],
+ ["Prophètes", ["Isaïe", "Jérémie", "Lamentations", "Baruch*", "Ézéchiel", "Daniel", "Osée", "Joël", "Amos", "Abdias", "Jonas", "Michée", "Nahum", "Habacuc", "Sophonie", "Aggée", "Zacharie", "Malachie"]]
+];
+function correspondance() {
+  const el = $("#cr-corresp"); if (!el) return;
+  const W = 900, RH = 15, top = 30, gap = 14, LX = 150, RX = 600;
+  // colonne de droite
+  const right = {}; let y = top; const rg = [];
+  ATC.forEach(([g, bs]) => { rg.push([g, y]); bs.forEach(b => { right[b.replace("*", "")] = { y, extra: b.endsWith("*"), n: b }; y += RH; }); y += gap; });
+  const H = y + 10;
+  // colonne de gauche, répartie sur la même hauteur
+  const HD = 18, nL = TANAKH.reduce((a, g) => a + g[2].length, 0), LH = (H - top - 10 - gap * 2 - HD * 3) / nL;
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11.5px">`;
+  svg += `<text x="${LX}" y="14" text-anchor="end" font-weight="700" fill="currentColor">Bible hébraïque (24 livres)</text><text x="${RX}" y="14" font-weight="700" fill="currentColor">Ancien Testament chrétien (46 livres)</text>`;
+  let ly = top;
+  TANAKH.forEach(([g, c, bs]) => {
+    svg += `<text x="${LX}" y="${ly + 11}" text-anchor="end" font-weight="700" fill="${c}" font-size="11">${g}</text>`; ly += HD;
+    bs.forEach(([n, targets]) => {
+      const yl = ly + LH / 2;
+      targets.forEach(t => { const r = right[t]; const yr = r.y + RH / 2 - 3;
+        svg += `<path d="M${LX + 4},${yl} C${(LX + RX) / 2},${yl} ${(LX + RX) / 2},${yr} ${RX - 6},${yr}" fill="none" stroke="${c}" stroke-opacity=".45" stroke-width="1.4"/>`; });
+      svg += `<text x="${LX}" y="${yl + 4}" text-anchor="end" fill="currentColor">${n}</text>`;
+      ly += LH;
+    });
+    ly += gap;
+  });
+  rg.forEach(([g, yy]) => svg += `<text x="${W - 4}" y="${yy + 10}" text-anchor="end" font-weight="700" fill="#64748b" font-size="11">${g}</text>`);
+  Object.values(right).forEach(r => svg += `<text x="${RX}" y="${r.y + RH / 2 + 1}" fill="${r.extra ? "#dc2626" : "currentColor"}" font-weight="${r.extra ? 700 : 400}">${r.n.replace("*", "")}${r.extra ? " ✚" : ""}</text>`);
+  el.innerHTML = svg + `</svg><div class="legend-row"><span><i style="border-top-color:#2563eb;opacity:1;width:14px"></i>Torah</span><span><i style="border-top-color:#9333ea;opacity:1;width:14px"></i>Prophètes</span><span><i style="border-top-color:#d97706;opacity:1;width:14px"></i>Écrits</span><span style="color:#dc2626">✚ livres présents seulement dans les Bibles catholiques et orthodoxes (absents chez les protestants)</span></div>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try { fiscalite(); } catch (e) { console.error("fiscalite", e); }
   try { sankey(); } catch (e) { console.error("christianisme", e); }
   try { ancienTestament(); } catch (e) { console.error("ancien testament", e); }
+  try { correspondance(); } catch (e) { console.error("correspondance", e); }
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
