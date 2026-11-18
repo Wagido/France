@@ -498,6 +498,7 @@ function fiche(A, B, c) {
     o += `<p style="margin:10px 0 2px"><b>Énergie en jeu</b> (enthalpie de réaction à 25 °C)</p><svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:560px;font-size:11px"><line x1="30" x2="200" y1="${y(0)}" y2="${y(0)}" stroke="#111827" stroke-width="4"/><text x="115" y="${y(0) - 6}" text-anchor="middle" font-weight="700">éléments séparés (0)</text><line x1="320" x2="490" y1="${y(dH)}" y2="${y(dH)}" stroke="${dH < 0 ? "#16a34a" : "#dc2626"}" stroke-width="4"/><text x="405" y="${y(dH) + (dH < 0 ? 16 : -6)}" text-anchor="middle" font-weight="700" style="fill:${dH < 0 ? "#16a34a" : "#dc2626"}">${eq.p > 1 ? eq.p + " " : ""}${c.f}</text><line x1="210" y1="${y(0)}" x2="310" y2="${y(dH)}" stroke="${dH < 0 ? "#16a34a" : "#dc2626"}" stroke-width="2" stroke-dasharray="5 4"/><text x="260" y="${(y(0) + y(dH)) / 2 - 8}" text-anchor="middle" font-weight="800" style="fill:${dH < 0 ? "#16a34a" : "#dc2626"}">ΔH = ${dH > 0 ? "+" : ""}${fr(dH)} kJ</text></svg>`;
     o += `<ul><li><b>${dH < 0 ? "Réaction exothermique" : "Réaction endothermique"}</b> : ${dH < 0 ? `elle libère ${fr(-dH)} kJ pour l'équation écrite, de quoi porter ${fr(litres, 1)} litre${litres >= 2 ? "s" : ""} d'eau de 20 à 100 °C. Le produit est plus stable que les éléments séparés.` : `il faut fournir ${fr(dH)} kJ : le composé est moins stable que les éléments, et on le prépare autrement.`}</li><li><b>Le composé</b> : ${K[0]} (ΔfH° = ${fr(K[1])} kJ/mol).</li>`;
   } else o += `<ul><li>Composé non répertorié dans la table du site : la formule est une prévision de la règle simple, et l'énergie n'est pas calculée.</li>`;
+  o += "</ul>" + bilanReaction(c, eq) + "<ul>";
   o += c.t === "ionique" ? `<li><b>Propriétés attendues</b> : solide cristallin dur et cassant, fondant à haute température, souvent soluble dans l'eau, conducteur une fois fondu ou dissous.</li>` : c.t === "polaire" ? `<li><b>Propriétés attendues</b> : molécule polaire ou solide covalent ; les petites molécules sont souvent des gaz ou des liquides (H₂O, NH₃, HCl).</li>` : `<li><b>Propriétés attendues</b> : liaisons peu polaires ; molécules (CH₄) ou réseaux solides très durs (SiC).</li>`;
   const viv = ["O", "Cl", "H"].includes(c.a.s) ? reactif(c.c, c.a.s) : ["O", "Cl", "H"].includes(c.c.s) ? reactif(c.a, c.c.s) : null;
   if (viv && viv[0] >= 0 && viv[1]) o += `<li><b>En pratique</b> : ${LV[viv[0]][1]} ; ${viv[1]}.</li>`;
@@ -573,6 +574,86 @@ function schemaSpecial(A, B, c) {
   return s + "</svg>" + notes;
 }
 
+/* lumière : longueur d'onde → couleur, énergie, effets */
+function lambdaRGB(l) { let r = 0, g = 0, b = 0; if (l >= 380 && l < 440) { r = -(l - 440) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = -(l - 510) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = -(l - 645) / 65; } else if (l <= 780) { r = 1; } return `rgb(${Math.round(255 * r)},${Math.round(255 * g)},${Math.round(255 * b)})`; }
+function photon() {
+  const el = $("#ch-photon"); if (!el) return;
+  const l = +$("#ch-lambda").value, E = 1240 / l; $("#ch-lambda-v").textContent = l + " nm";
+  const dom = l < 280 ? "ultraviolet C (stérilisation, arrêté par l'ozone)" : l < 315 ? "ultraviolet B (coups de soleil)" : l < 380 ? "ultraviolet A (bronzage, vieillissement de la peau)" : l <= 780 ? "lumière visible" : "infrarouge (chaleur)";
+  const B = [["Liaison hydrogène", 0.2], ["Liaison C–C", 3.6], ["Liaison C–H", 4.3], ["Liaison O–H", 4.8], ["Arracher l'électron du sodium", 5.1], ["Arracher l'électron de l'hydrogène", 13.6]];
+  const W = 900, H = 120, x0 = 30, x1 = W - 30, x = v => x0 + (v - 200) / 1000 * (x1 - x0);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px"><defs><linearGradient id="spec" x1="0" x2="1">`;
+  for (let v = 200; v <= 1200; v += 20) s += `<stop offset="${(v - 200) / 1000}" stop-color="${v < 380 ? "#6d28d9" : v > 780 ? "#7f1d1d" : lambdaRGB(v)}" stop-opacity="${v < 380 || v > 780 ? .25 : 1}"/>`;
+  s += `</linearGradient></defs><rect x="${x0}" y="20" width="${x1 - x0}" height="34" rx="6" fill="url(#spec)"/>`;
+  [200, 300, 400, 500, 600, 700, 800, 1000, 1200].forEach(v => s += `<text x="${x(v)}" y="70" text-anchor="middle" style="fill:#64748b">${v} nm</text>`);
+  s += `<text x="${x(290)}" y="14" text-anchor="middle" style="fill:#6d28d9">ultraviolet</text><text x="${x(580)}" y="14" text-anchor="middle" style="fill:#111827">visible</text><text x="${x(990)}" y="14" text-anchor="middle" style="fill:#7f1d1d">infrarouge</text>`;
+  s += `<line x1="${x(l)}" x2="${x(l)}" y1="16" y2="58" stroke="#111827" stroke-width="3"/><circle cx="${x(l)}" cy="96" r="16" fill="${l >= 380 && l <= 780 ? lambdaRGB(l) : "#e2e8f0"}" stroke="#111827"/><text x="${x(l) + 24}" y="100" font-weight="800" style="fill:#111827">${fr(E, 2)} eV par photon = ${fr(E * 96.485, 0)} kJ/mol</text>`;
+  el.innerHTML = s + `</svg><ul style="margin:4px 0 0">${`<li><b>${dom}</b>.</li>`}${B.map(([n, e]) => `<li>${n} (${fr(e, 1)} eV) : ${E >= e ? `<b style="color:#dc2626">le photon peut la rompre</b>` : "le photon n'a pas assez d'énergie"}</li>`).join("")}</ul>`;
+}
+function flammes() {
+  const el = $("#ch-flammes"); if (!el) return;
+  const F = [["Lithium", 671, "rouge carmin"], ["Strontium", 650, "rouge (feux d'artifice)"], ["Calcium", 622, "orange-rouge"], ["Sodium", 589, "jaune-orangé (lampadaires)"], ["Baryum", 554, "vert pomme"], ["Cuivre", 520, "bleu-vert"], ["Potassium", 404, "violet pâle"]];
+  el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:8px">${F.map(([n, l, t]) => `<div style="border-radius:8px;overflow:hidden;border:1px solid #e2e8f0"><div style="height:46px;background:radial-gradient(ellipse at 50% 90%, #fff 0%, ${lambdaRGB(l)} 45%, #111827 100%)"></div><div style="padding:4px 6px;font-size:.8rem"><b>${n}</b><br>${l} nm<br><span class="muted">${t}</span></div></div>`).join("")}</div><p class="muted" style="font-size:.8rem;margin:4px 0 0">Raies d'émission principales (valeurs usuelles des tables) ; couleurs reconstituées à l'écran, approximatives.</p>`;
+}
+function morse() {
+  const el = $("#ch-morse"); if (!el) return;
+  const D = 4.75, a = 1.94, r0 = 0.741, V = r => D * (1 - Math.exp(-a * (r - r0))) ** 2 - D;
+  const W = 900, H = 280, m = { l: 50, r: 20, t: 14, b: 34 }, x = d3.scaleLinear([0.3, 3], [m.l, W - m.r]), y = d3.scaleLinear([-5.2, 3], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:10.5px">`;
+  [-5, -4, -3, -2, -1, 0, 1, 2, 3].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? "#94a3b8" : "#eef2f7"}"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v} eV</text>`);
+  [0.5, 1, 1.5, 2, 2.5, 3].forEach(v => s += `<text x="${x(v)}" y="${H - 14}" text-anchor="middle" style="fill:#64748b">${fr(v * 100)} pm</text>`);
+  const pts = d3.range(0.42, 3.001, 0.01).map(r => [r, Math.min(3, V(r))]);
+  s += `<polyline points="${pts.map(([r, v]) => `${x(r)},${y(v)}`).join(" ")}" fill="none" stroke="#2563eb" stroke-width="2.6"/>`;
+  s += `<circle cx="${x(r0)}" cy="${y(-D)}" r="5" fill="#dc2626"/><text x="${x(r0) + 10}" y="${y(-D) + 4}" style="fill:#dc2626" font-weight="700">distance d'équilibre : 74 pm ; énergie de liaison ≈ 4,5 eV</text>`;
+  s += `<text x="${x(0.47)}" y="${y(2.4)}" style="fill:#475569">trop près : les noyaux se repoussent</text><text x="${x(2.2)}" y="${y(-0.6)}" style="fill:#475569">loin : deux atomes séparés</text><text x="${x(1.6)}" y="${y(-3)}" style="fill:#2563eb">la paire d'électrons partagée abaisse l'énergie</text>`;
+  s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 1}" text-anchor="middle" style="fill:#64748b">distance entre les deux noyaux d'hydrogène</text>`;
+  el.innerHTML = s + `</svg><p class="muted" style="font-size:.8rem;margin:2px 0 0">Énergie de la molécule H₂ selon la distance entre ses noyaux (courbe de Morse, paramètres usuels de H₂). Toutes les liaisons chimiques ont une courbe de ce type ; seules la profondeur et la position du creux changent.</p>`;
+}
+
+/* bilan : stabilité, équilibre, vitesse */
+function bilanReaction(c, eq) {
+  const K = c.known, X = c.c, Y = c.a;
+  const gas = e => e.e === "gaz";
+  const nx = c.nc ?? 1, ny = c.na ?? 1, p = eq.p;
+  // moles de gaz consommées par l'équation (éléments gazeux diatomiques ou non)
+  const coefX = DIAT.includes(X.s) ? nx * p / 2 : nx * p, coefY = DIAT.includes(Y.s) ? ny * p / 2 : ny * p;
+  const prodGaz = K && /gaz|vapeur/.test(K[0]) ? p : 0;
+  const dn = prodGaz - (gas(X) ? coefX : 0) - (gas(Y) ? coefY : 0);
+  // ΔS exact si les entropies sont dans la table, sinon estimation (≈ 180 J/K par mole de gaz)
+  const elKey = e => DIAT.includes(e.s) ? e.s + "₂(g)" : e.s === "C" ? "C(graphite)" : e.s + "(s)";
+  const prodKey = (isMetal(X) ? ["(s)", "(l)", "(g)"] : ["(l)", "(g)", "(s)"]).map(k => c.f + k).find(k => TD[k]);
+  const exact = prodKey && TD[elKey(X)] && TD[elKey(Y)];
+  const dS = exact ? p * TD[prodKey][1] - coefX * TD[elKey(X)][1] - coefY * TD[elKey(Y)][1] : dn * 180;
+  const card = (t, col, body) => `<div style="border-top:5px solid ${col};background:#fff;border-radius:8px;padding:8px 10px;font-size:.86rem"><b>${t}</b><div style="margin-top:4px">${body}</div></div>`;
+  let stab, equi;
+  if (K) {
+    const dH = p * K[1], dG = dH - 298 * dS / 1000, lk = -dG * 1000 / (R * 298 * Math.LN10);
+    const Tinv = dS !== 0 ? dH * 1000 / dS - 273 : null;
+    stab = dG < 0 ? `ΔG ≈ ${fr(dG)} kJ &lt; 0 : le composé est <b>plus stable</b> que les éléments séparés à 25 °C ; il se forme spontanément (si la réaction peut démarrer).` : `ΔG ≈ +${fr(dG)} kJ &gt; 0 : le composé est <b>instable</b> par rapport aux éléments ; il ne se forme pas spontanément.`;
+    if (Tinv != null && dH < 0 && dS < 0 && Tinv > 0 && Tinv < 4000 && isMetal(X)) stab += ` À très haute température, l'équilibre s'inverse : il se <b>décompose</b> en ses éléments au-delà d'environ ${fr(Math.round(Tinv / 50) * 50)} °C (T = ΔH / ΔS${exact ? "" : ", estimation grossière"}).`;
+    else if (dH < 0) stab += " Il reste stable à toutes les températures usuelles.";
+    equi = lk > 6 ? `K ≈ 10^${fr(lk)} : réaction <b>totale</b>, il ne reste pratiquement rien des réactifs à l'équilibre.` : lk < -6 ? `K ≈ 10^${fr(lk)} : presque rien ne réagit.` : `K ≈ 10^${fr(lk, 1)} : équilibre partagé entre réactifs et produits.`;
+    equi += dn < 0 && dH < 0 ? " La réaction consomme du gaz et dégage de la chaleur : la pression la favorise, la chaleur la fait reculer (principe de Le Chatelier)." : dn > 0 ? " Elle libère du gaz : une basse pression la favorise." : "";
+  } else { stab = "Énergie de formation non répertoriée : stabilité non calculée."; equi = "Non calculé faute de données."; }
+  // vitesse : règles qualitatives
+  const metal = isMetal(X), fam = X.f, ys = Y.s;
+  let vit, bar;
+  if (ys === "N" || X.s === "N") { vit = "<b>Très lente</b> : la triple liaison de l'azote (945 kJ/mol) doit d'abord être cassée. Il faut chauffer fortement ou utiliser un catalyseur (comme pour l'ammoniac)."; bar = 3; }
+  else if (["alcalin", "alcalino"].includes(fam) && ["F", "Cl", "Br", "I", "O"].includes(ys)) { vit = "<b>Rapide</b>, dès la température ambiante : le métal cède très facilement son électron. Souvent violente."; bar = 1; }
+  else if (!metal && ys === "O") { vit = "<b>Bloquée à froid</b> : le mélange est stable tant qu'on n'apporte pas une flamme ou une étincelle (barrière d'activation). Une fois démarrée, la chaleur dégagée entretient la réaction : c'est une combustion."; bar = 2; }
+  else if (X.s === "H" && ["F"].includes(ys)) { vit = "<b>Explosive</b>, même au froid et dans le noir."; bar = 0; }
+  else if (X.s === "H" && ["Cl", "Br"].includes(ys)) { vit = "<b>Déclenchée par la lumière ou la chaleur</b>, puis très rapide (réaction en chaîne)."; bar = 2; }
+  else if (NOBLEM.includes(X.s)) { vit = "<b>Très lente ou nulle</b> : métal noble, à la fois peu réactif et protégé."; bar = 3; }
+  else if (metal && ys === "O") { vit = "<b>Lente à froid</b> en surface (souvent freinée par une couche d'oxyde protectrice), <b>rapide</b> à chaud ou si le métal est en poudre fine."; bar = 2; }
+  else if (metal) { vit = "<b>Lente à froid</b>, rapide à chaud : en pratique, on chauffe le métal dans le gaz ou on fait fondre les deux éléments ensemble."; bar = 2; }
+  else { vit = "<b>Variable</b> : la plupart des réactions entre non-métaux demandent de la chaleur ou un catalyseur."; bar = 2; }
+  // profil d'énergie qualitatif
+  const dHv = K ? p * K[1] : -100, Ea = [15, 40, 90, 160][bar], W = 300, H = 130, lo = Math.min(0, dHv) - 20, hi = Ea + 20, y = v => 10 + (hi - v) / (hi - lo) * (H - 30), x = t => 20 + t * (W - 40);
+  const prof = d3.range(0, 1.001, .02).map(t => [t, dHv * (3 * t * t - 2 * t * t * t) + (Ea - dHv / 2) * Math.sin(Math.PI * t) ** 2]);
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:9.5px"><polyline points="${prof.map(([t, v]) => `${x(t)},${y(Math.max(lo, Math.min(hi, v)))}`).join(" ")}" fill="none" stroke="#7c3aed" stroke-width="2.2"/><text x="${x(0)}" y="${y(0) - 4}" style="fill:#475569">éléments</text><text x="${x(1)}" y="${y(dHv) + 12}" text-anchor="end" style="fill:#475569">${c.f}</text><text x="${x(.5)}" y="${y(Ea) - 3}" text-anchor="middle" style="fill:#7c3aed">barrière ${["très faible", "faible", "moyenne", "élevée"][bar]}</text><text x="${x(.5)}" y="${H - 3}" text-anchor="middle" style="fill:#94a3b8">avancement →</text></svg>`;
+  return `<p style="margin:10px 0 4px"><b>Bilan : stabilité, équilibre, vitesse</b></p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px">${card("Stabilité (thermodynamique)", "#16a34a", stab)}${card("Équilibre", "#2563eb", equi)}${card("Vitesse (cinétique)", "#7c3aed", vit)}${card("Profil d'énergie (schématique)", "#94a3b8", svg)}</div><p class="muted" style="font-size:.76rem;margin:4px 0 0">${exact ? "ΔG calculé avec les entropies standard de la table" : "ΔG estimé avec ΔS ≈ 180 J/K par mole de gaz consommée ou produite (ordre de grandeur)"}, à 25 °C ; vitesse : règles qualitatives (partie 9).</p>`;
+}
+
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#chimie")) return;
@@ -580,7 +661,7 @@ function init() {
   [ionique, liaisons, ebullition, bilanCH4, densite, gibbs, haber, cinetique, phEchelle, dosage, redox, batteries, distillation, production].forEach(run);
   run(() => phases("eau"));
   $("#ch-rx").innerHTML = RX.map((r, i) => `<option value="${i}">${r[0]}</option>`).join("");
-  run(reaction); run(quadrants); run(evScale);
+  run(reaction); run(quadrants); run(evScale); run(photon); run(flammes); run(morse); $("#ch-lambda").addEventListener("input", photon);
   $("#ch-mol").innerHTML = MOL.map((m, i) => `<option value="${i}">${m[0]}</option>`).join(""); $("#ch-metal").innerHTML = MET.map((m, i) => `<option value="${i}">${m[0]}</option>`).join("");
   [mole, vsepr, maille, avancement, pharma, pourbaix, alcanes].forEach(run);
   run(kcontrol); ["ch-kt2", "ch-kdur"].forEach(i => $("#" + i).addEventListener("input", kcontrol));
