@@ -73,7 +73,7 @@ function chaine(el, txt, rows, info, sel) {
   txt.innerHTML = info[sel];
   el.querySelectorAll("g[data-k]").forEach(g => g.addEventListener("click", () => chaine(el, txt, rows, info, g.dataset.k)));
 }
-const FIL = [{ titre: "eau brute (rivière ou nappe) →", et: [["capt", "Captage", "#0ea5e9"], ["degr", "Dégrillage et tamisage", "#64748b"], ["preox", "Préoxydation", "#7c3aed"], ["coag", "Coagulation floculation", "#b45309"], ["dec", "Décantation", "#a16207"], ["sable", "Filtration sur sable", "#ca8a04"], ["ozone", "Ozonation", "#2563eb"]] }, { titre: "→ suite de la filière", et: [["cag", "Charbon actif", "#111827"], ["memb", "Membranes (si besoin)", "#0891b2"], ["desinf", "Désinfection chlore, UV", "#16a34a"], ["equil", "Mise à l'équilibre", "#db2777"], ["res", "Réservoir et réseau", "#1d4ed8"]] }];
+const FIL = [{ titre: "eau brute (rivière ou nappe) →", et: [["capt", "Captage", "#0ea5e9"], ["degr", "Dégrillage et tamisage", "#64748b"], ["preox", "Préoxydation", "#7c3aed"], ["coag", "Coagulation floculation", "#b45309"], ["dec", "Décantation", "#a16207"], ["sable", "Filtration sur sable", "#ca8a04"], ["ozone", "Ozonation", "#2563eb"]] }, { titre: "→ suite de la filière", et: [["cag", "Charbon actif", "currentColor"], ["memb", "Membranes (si besoin)", "#0891b2"], ["desinf", "Désinfection chlore, UV", "#16a34a"], ["equil", "Mise à l'équilibre", "#db2777"], ["res", "Réservoir et réseau", "#1d4ed8"]] }];
 const FILI = {
   capt: "<b>Captage</b> : pompage en nappe (forage, puits) ou en rivière. Une nappe profonde et protégée peut aller directement à la désinfection ; une eau de rivière a besoin de toute la filière. Les stations d'alerte surveillent en continu la rivière en amont (truites ou daphnies dont le comportement signale une pollution, analyseurs automatiques) pour fermer la prise d'eau en cas d'accident.",
   degr: "<b>Dégrillage et tamisage</b> : grilles puis tamis de quelques millimètres qui arrêtent les branches, feuilles, poissons, déchets. Purement mécanique.",
@@ -115,7 +115,7 @@ function hocl() {
   s += `<path d="M${x(5)},${y(0)} L${P.map(p => `${x(p).toFixed(1)},${y(f(p)).toFixed(1)}`).join(" L")} L${x(10)},${y(0)} Z" fill="#16a34a" opacity=".25"/><path d="M${x(5)},${y(1)} L${P.map(p => `${x(p).toFixed(1)},${y(f(p)).toFixed(1)}`).join(" L")} L${x(10)},${y(1)} Z" fill="#94a3b8" opacity=".2"/>`;
   s += `<path d="M${P.map(p => `${x(p).toFixed(1)},${y(f(p)).toFixed(1)}`).join(" L")}" fill="none" stroke="#16a34a" stroke-width="2.4"/>`;
   s += `<text x="${x(5.6)}" y="${y(.45)}" style="fill:#15803d" font-weight="700">HOCl : très efficace</text><text x="${x(8.6)}" y="${y(.6)}" style="fill:#475569" font-weight="700">OCl⁻ : peu efficace</text>`;
-  s += `<line x1="${x(ph)}" x2="${x(ph)}" y1="${m.t}" y2="${H - m.b}" stroke="#111827" stroke-dasharray="4 3"/><circle cx="${x(ph)}" cy="${y(f(ph))}" r="5" fill="#111827"/><text x="${x(ph) + 6}" y="${y(f(ph)) - 6}" font-weight="700">${fr(f(ph) * 100)} % de HOCl</text>`;
+  s += `<line x1="${x(ph)}" x2="${x(ph)}" y1="${m.t}" y2="${H - m.b}" stroke="currentColor" stroke-dasharray="4 3"/><circle cx="${x(ph)}" cy="${y(f(ph))}" r="5" fill="currentColor"/><text x="${x(ph) + 6}" y="${y(f(ph)) - 6}" font-weight="700">${fr(f(ph) * 100)} % de HOCl</text>`;
   el.innerHTML = s + "</svg>";
 }
 function breakpoint() {
@@ -161,7 +161,7 @@ function lsi() {
   s += `<text x="${W - m.r - 6}" y="${y(2.6)}" text-anchor="end" style="fill:#b45309" font-weight="700">entartrante : dépôt de calcaire</text><text x="${W - m.r - 6}" y="${y(-2.6)}" text-anchor="end" style="fill:#1d4ed8" font-weight="700">agressive : corrode, dissout plomb et cuivre</text><text x="${W - m.r - 6}" y="${y(0) + 4}" text-anchor="end" style="fill:#16a34a">à l'équilibre</text>`;
   [-3, -2, -1, 0, 1, 2, 3].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? "#94a3b8" : "#eef2f7"}"/><text x="${m.l - 5}" y="${y(v) + 3}" text-anchor="end" style="fill:#64748b">${v > 0 ? "+" : ""}${v}</text>`);
   [10, 20, 40, 60, 80].forEach(v => s += `<text x="${x(v)}" y="${H - 14}" text-anchor="middle" style="fill:#64748b">${v} °C</text>`);
-  s += `<path d="M${d3.range(5, 85.1, .5).map(T => `${x(T).toFixed(1)},${y(Math.max(-3, Math.min(3, L(T)))).toFixed(1)}`).join(" L")}" fill="none" stroke="#111827" stroke-width="2.6"/>`;
+  s += `<path d="M${d3.range(5, 85.1, .5).map(T => `${x(T).toFixed(1)},${y(Math.max(-3, Math.min(3, L(T)))).toFixed(1)}`).join(" L")}" fill="none" stroke="currentColor" stroke-width="2.6"/>`;
   [[12, "eau du réseau"], [60, "chauffe-eau"]].forEach(([T, l]) => s += `<circle cx="${x(T)}" cy="${y(Math.max(-3, Math.min(3, L(T))))}" r="5" fill="#dc2626"/><text x="${x(T)}" y="${y(Math.max(-3, Math.min(3, L(T)))) - 9}" text-anchor="middle" style="fill:#dc2626" font-weight="700">${l} : ${L(T) > 0 ? "+" : ""}${fr(L(T), 2)}</text>`);
   s += `<text x="${m.l + 4}" y="${m.t - 4}" style="fill:#64748b">↑ indice de Langelier selon la température de l'eau</text>`;
   el.innerHTML = s + "</svg>";

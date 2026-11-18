@@ -595,3 +595,20 @@ table.cmp-t.ro-t { min-width: 0; width: 100%; }
 
 .tc-code { background: #0f172a; color: #e2e8f0; padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: .8rem; line-height: 1.45; }
 .tc-code code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+/* thème sombre : schémas SVG des fiches et encadrés, dessinés pour fond clair */
+.chart svg { color: var(--ink); }
+.callout svg { color: #17191e; }
+:root[data-theme="dark"] .callout svg { background: #f8fafc; border-radius: 8px; }
+:root[data-theme="dark"] #ch-pt-res div[style*="#fef2f2"] { color: #7f1d1d; }
+/* fiches du simulateur de chimie */
+#ch-pt-res .fi-head { margin-bottom: 4px; }
+#ch-pt-res .fi-badge { border-radius: 999px; padding: 2px 10px; font-weight: 700; font-size: .85rem; }
+#ch-pt-res .fi-eq { font-size: 1.3rem; font-weight: 800; margin: 8px 0 2px; }
+#ch-pt-res .fi-sec { font-weight: 700; margin: 14px 0 6px; font-size: .95rem; }
+#ch-pt-res .fi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+#ch-pt-res .fi-grid.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 720px) { #ch-pt-res .fi-grid, #ch-pt-res .fi-grid.g3 { grid-template-columns: 1fr; } }
+#ch-pt-res .fi-card { background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-top: 4px solid; border-radius: 10px; padding: 10px 12px; font-size: .86rem; line-height: 1.45; }
+#ch-pt-res .fi-card .fi-t { display: block; margin-bottom: 4px; }
+#ch-pt-res .fi-card ul { margin: 4px 0 0; padding-left: 18px; }

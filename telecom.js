@@ -90,7 +90,7 @@ function bilan() {
   let cur = 0;
   steps.forEach(([l, v, c], i) => { const X = m.l + i * bw + 8; s += `<rect x="${X}" y="${y(Math.max(cur, cur + v))}" width="${bw - 16}" height="${Math.max(1, Math.abs(y(cur) - y(cur + v)))}" fill="${c}" opacity=".85"/><text x="${X + (bw - 16) / 2}" y="${H - 32}" text-anchor="middle" font-size="10">${l.length > 26 ? l.slice(0, 26) + "…" : l}</text><text x="${X + (bw - 16) / 2}" y="${H - 18}" text-anchor="middle" font-weight="700" style="fill:${c}">${v >= 0 ? "+" : ""}${fr(v, 1)} dB</text>`; cur += v; });
   const X = m.l + steps.length * bw + 8;
-  s += `<rect x="${X}" y="${y(Pr) - 2}" width="${bw - 16}" height="4" fill="#111827"/><text x="${X + (bw - 16) / 2}" y="${y(Pr) - 8}" text-anchor="middle" font-weight="800">${fr(Pr, 1)} dBm</text><text x="${X + (bw - 16) / 2}" y="${H - 32}" text-anchor="middle" font-size="10">puissance reçue</text>`;
+  s += `<rect x="${X}" y="${y(Pr) - 2}" width="${bw - 16}" height="4" fill="currentColor"/><text x="${X + (bw - 16) / 2}" y="${y(Pr) - 8}" text-anchor="middle" font-weight="800">${fr(Pr, 1)} dBm</text><text x="${X + (bw - 16) / 2}" y="${H - 32}" text-anchor="middle" font-size="10">puissance reçue</text>`;
   s += `<line x1="${m.l}" x2="${W - m.r + 10}" y1="${y(Nn)}" y2="${y(Nn)}" stroke="#64748b" stroke-dasharray="6 4"/><text x="${W - m.r + 14}" y="${y(Nn) + 4}" style="fill:#64748b">bruit : ${fr(Nn, 1)} dBm</text>`;
   const yS = Math.abs(y(Pr) - y(Nn)) < 16 ? y(Nn) - 16 : y(Pr) + 4;
   s += `<text x="${W - m.r + 14}" y="${yS}" font-weight="700" style="fill:${snr > 10 ? "#16a34a" : snr > 0 ? "#f59e0b" : "#dc2626"}">S/B = ${fr(snr, 1)} dB</text>`;
@@ -204,7 +204,7 @@ function constel() {
     const ok = P[best] === p; if (!ok) err++;
     if (Math.abs(q[0]) < lim && Math.abs(q[1]) < lim) dots += `<circle cx="${x(q[0]).toFixed(1)}" cy="${y(q[1]).toFixed(1)}" r="${Mo > 256 ? 1 : 1.6}" fill="${ok ? "#2563eb" : "#dc2626"}" fill-opacity=".55"/>`;
   }
-  s += dots; P.forEach(p => s += `<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${Mo > 256 ? 1.2 : 2.6}" fill="#111827"/>`);
+  s += dots; P.forEach(p => s += `<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${Mo > 256 ? 1.2 : 2.6}" fill="currentColor"/>`);
   s += `<text x="14" y="22" font-weight="700">Constellation reçue</text><text x="14" y="38" style="fill:#475569">noir : points idéaux ; bleu : reçus, bien décodés ; rouge : erreurs</text><text x="14" y="${H - 16}" style="fill:#dc2626" font-weight="700">${fr(err / n * 100, 1)} % de symboles faux</text><text x="${W - 14}" y="${H - 16}" text-anchor="end" style="fill:#64748b">axe horizontal : I, vertical : Q</text>`;
   el.innerHTML = s + "</svg>";
   // courbes BER
@@ -214,7 +214,7 @@ function constel() {
   [0, 10, 20, 30, 40].forEach(v => t += `<text x="${xx(v)}" y="${H2 - 12}" text-anchor="middle" style="fill:#64748b">${v} dB</text>`);
   const cols = { 2: "#16a34a", 4: "#22c55e", 16: "#2563eb", 64: "#7c3aed", 256: "#a855f7", 1024: "#dc2626", 4096: "#f97316" };
   Object.entries(cols).forEach(([k, c]) => { const K = +k, pts = d3.range(0, 45.01, .25).map(v => [v, berTh(K, v)]).filter(p => p[1] > 1e-7); if (!pts.length) return; t += `<path d="M${pts.map(([a, v]) => `${xx(a).toFixed(1)},${yy(v).toFixed(1)}`).join(" L")}" fill="none" stroke="${c}" stroke-width="${K === Mo ? 3 : 1.3}" opacity="${K === Mo ? 1 : .6}"/>`; const last = pts[pts.length - 1]; t += `<text x="${xx(last[0]) + 2}" y="${yy(last[1]) - 3}" style="fill:${c}" font-size="9">${K === 2 ? "BPSK" : K === 4 ? "QPSK" : K + "-QAM"}</text>`; });
-  const bv = berTh(Mo, snr); if (bv > 1e-7) t += `<circle cx="${xx(snr)}" cy="${yy(bv)}" r="5" fill="#111827"/>`;
+  const bv = berTh(Mo, snr); if (bv > 1e-7) t += `<circle cx="${xx(snr)}" cy="${yy(bv)}" r="5" fill="currentColor"/>`;
   b.innerHTML = t + "</svg>";
   const k = Math.log2(Mo), need = d3.range(0, 50, .1).find(v => berTh(Mo, v) < 1e-5);
   $("#tc-qam-txt").innerHTML = `${Mo === 2 ? "BPSK" : Mo === 4 ? "QPSK" : Mo + "-QAM"} : <b>${k} bits par symbole</b>. Pour moins d'une erreur sur 100 000 bits sans code correcteur, il faut environ <b>${fr(need, 1)} dB</b> de rapport signal sur bruit. Chaque bit supplémentaire par symbole coûte environ 3 dB : c'est la loi de Shannon vue de près.`;
@@ -303,7 +303,7 @@ function orbite() {
   const sx = cx, sy = cy - Ra, p1 = [cx - Re * Math.sin(lamb), cy - Re * Math.cos(lamb)], p2 = [cx + Re * Math.sin(lamb), cy - Re * Math.cos(lamb)];
   s += `<path d="M${sx},${sy} L${p1[0]},${p1[1]} A${Re},${Re} 0 0 1 ${p2[0]},${p2[1]} Z" fill="#f59e0b" fill-opacity=".3" stroke="#f59e0b"/>`;
   s += `<path d="M${p1[0]},${p1[1]} A${Re},${Re} 0 0 1 ${p2[0]},${p2[1]}" fill="none" stroke="#dc2626" stroke-width="4"/>`;
-  s += `<rect x="${sx - 6}" y="${sy - 4}" width="12" height="8" fill="#111827"/><line x1="${sx - 16}" x2="${sx + 16}" y1="${sy}" y2="${sy}" stroke="#2563eb" stroke-width="3"/>`;
+  s += `<rect x="${sx - 6}" y="${sy - 4}" width="12" height="8" fill="currentColor"/><line x1="${sx - 16}" x2="${sx + 16}" y1="${sy}" y2="${sy}" stroke="#2563eb" stroke-width="3"/>`;
   s += `<text x="${cx}" y="${cy + 4}" text-anchor="middle" style="fill:#1e3a8a" font-weight="700">Terre (à l'échelle)</text><text x="10" y="${H - 10}" style="fill:#64748b">rouge : zone couverte (satellite à plus de 25° au-dessus de l'horizon)</text>`;
   el.innerHTML = s + "</svg>";
   const Th = T / 3600;
