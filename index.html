@@ -46,7 +46,7 @@
       <a href="#argent-prive">Argent privé</a>
       <a href="#bulletin">Bulletin de salaire</a>
       <a href="#niveau-vie">Vit-on mieux qu'avant ?</a>
-      <a href="#cycle-vie">La vie en euros</a>
+      <a href="#inegalites">Inégalités et redistribution</a>
       <a href="#retraites">Retraites</a>
       <a href="#duree">Dette sur 30 ans</a>
       <a href="#simulateur">Couper la dépense ?</a>
@@ -100,7 +100,6 @@
       <a href="#sante">Santé</a>
       <a href="#education">Éducation</a>
       <a href="#logement">Logement</a>
-      <a href="#inegalites">Inégalités</a>
       <a href="#capital">Capital social et culturel</a>
       <a href="#electorat">Sociologie électorale</a>
       <a href="#patrimoine-hist">Patrimoine historique</a>
@@ -437,14 +436,6 @@
 </section>
 
 
-
-<section id="cycle-vie" class="panel">
-  <div class="panel-head"><h2>La vie en euros : ce que l'on paie et ce que l'on reçoit à chaque âge <span class="geo-fixed">France</span></h2></div>
-  <div class="kpis" id="cv-kpis"></div>
-  <p class="lead">La traduction par âge du diagramme « L'argent public », en euros par personne et par an. Sous zéro, en rouge, ce que l'on paie ; au-dessus, ce que l'on reçoit en argent (bleu) et en services publics (vert) ; le trait noir est ce que l'on gagne par son travail et son patrimoine. La courbe orange cumule le solde. Survolez une tranche pour le détail.</p>
-  <div id="cv-chart" class="chart"></div><div class="legend-row" id="cv-legend"></div>
-  <div class="callout small"><p><b>Comment c'est calculé.</b> Comptes nationaux distribués de l'INSEE (tableau CND.103, dernière année publiée), par âge de la personne de référence du ménage, divisés par le nombre de personnes du ménage. Les enfants sont donc comptés avec leurs parents : c'est pourquoi l'école apparaît surtout entre 30 et 50 ans, et pourquoi la vie commence ici à 18 ans. L'INSEE ne publie pas ces comptes année d'âge par année d'âge. Ce n'est pas le parcours d'une personne réelle, mais une photographie de la France d'une année, lue par âge. La courbe cumulée n'est pas actualisée et ignore la croissance future.</p><p><b>Pourquoi reçoit-on plus que l'on paie ?</b> Les dépenses publiques dépassent les prélèvements : l'écart est financé par la dette (le déficit) et par des recettes qui ne sont pas des prélèvements sur les ménages (revenus du patrimoine public, recettes des administrations). Une vie « moyenne » reçoit donc environ 20 % de plus qu'elle ne paie : ce qui ne vient pas des recettes non fiscales est reporté sur les générations futures.</p></div>
-</section>
 
 <section id="retraites" class="panel">
   <div class="panel-head">
@@ -4619,14 +4610,24 @@
 
 <section id="inegalites" class="panel">
   <div class="panel-head">
-    <h2>Inégalités et pauvreté <span class="geo-tag"></span></h2>
+    <h2>Inégalités et redistribution : selon le revenu et selon l'âge <span class="geo-tag"></span></h2>
   </div>
   <div class="kpis" id="in-kpis"></div>
+  <p class="lead">Qui gagne quoi, qui paie et qui reçoit ? Cet onglet regarde la redistribution sous deux angles : selon le <b>niveau de vie</b> (des plus modestes aux plus aisés) et selon l'<b>âge</b> (de l'enfance à la retraite). Il complète les onglets <a href="#argent-public">Argent public</a>, qui suit l'argent du côté de ceux qui le dépensent, et <a href="#bulletin">Bulletin de salaire</a>, qui le suit sur une fiche de paie.</p>
+  <ul class="mo-ul cr-toc">
+    <li><a href="#inegalites" data-to="in-p1">1. Les revenus et la pauvreté</a></li>
+    <li><a href="#inegalites" data-to="in-p2">2. Qui paie, qui reçoit, selon le niveau de vie</a></li>
+    <li><a href="#inegalites" data-to="cv-part">3. Selon l'âge : la vie en euros</a></li>
+    <li><a href="#inegalites" data-to="in-p4">4. Patrimoine et héritage</a></li>
+    <li><a href="#inegalites" data-to="in-p5">5. La redistribution réduit-elle les écarts ? Comparaisons</a></li>
+  </ul>
+  <h3 class="ag-part" id="in-p1">1. Les revenus et la pauvreté</h3>
   <div class="grid2">
     <div><h3 id="in-dec-title">Part du revenu de chaque dixième</h3><div id="in-dec" class="chart"></div>
       <p class="muted" style="font-size:.85rem">Revenu disponible (après impôts directs et prestations) par unité de consommation, enquête SRCV. Ces chiffres ne comptent pas les services publics gratuits (école, santé) : voir le diagramme « L'argent public » pour une vision élargie.</p></div>
     <div><h3>Pauvreté et inégalités dans le temps</h3><div id="in-serie" class="chart"></div><div class="legend-row" id="in-serie-legend"></div></div>
   </div>
+  <h3 class="ag-part" id="in-p2">2. Qui paie, qui reçoit, selon le niveau de vie</h3>
   <h3>Ce que chaque tranche de 5 % de la population paie et reçoit <span class="geo-fixed">France</span></h3>
   <div class="kpis" id="rd-kpis"></div>
   <p class="lead">La population est classée en vingt tranches de 5 % selon son niveau de vie, des plus modestes (à gauche) aux plus aisés (à droite) : c'est le découpage le plus fin publié par l'INSEE. Pour chaque tranche, en euros par an et par unité de consommation : sous zéro ce qu'elle paie (impôts, cotisations, TVA…), au-dessus ce qu'elle reçoit en argent (bleu) et en services publics (vert). Le losange gris est son revenu avant redistribution, le trait noir son niveau de vie après. Survolez une colonne pour le détail.</p>
@@ -4635,6 +4636,13 @@
   <div class="kpis" id="or-kpis"></div>
   <p class="lead">Pour chaque tranche de 5 %, la part du revenu avant redistribution qui vient du travail (salaires, cotisations comprises), du travail indépendant (où travail et capital sont mêlés) et du patrimoine (intérêts, dividendes, loyers, bénéfices gardés dans les entreprises détenues). Survolez une colonne pour le détail en euros.</p>
   <div id="or-chart" class="chart"></div><div class="legend-row" id="or-legend"></div>
+  <h3 class="ag-part" id="cv-part">3. Selon l'âge : la vie en euros, ce que l'on paie et ce que l'on reçoit à chaque âge</h3>
+  <div class="kpis" id="cv-kpis"></div>
+  <p class="lead">La traduction par âge du diagramme « L'argent public », en euros par personne et par an. Sous zéro, en rouge, ce que l'on paie ; au-dessus, ce que l'on reçoit en argent (bleu) et en services publics (vert) ; le trait noir est ce que l'on gagne par son travail et son patrimoine. La courbe orange cumule le solde. Survolez une tranche pour le détail.</p>
+  <div id="cv-chart" class="chart"></div><div class="legend-row" id="cv-legend"></div>
+  <div class="callout small"><p><b>Comment c'est calculé.</b> Comptes nationaux distribués de l'INSEE (tableau CND.103, dernière année publiée), par âge de la personne de référence du ménage, divisés par le nombre de personnes du ménage. Les enfants sont donc comptés avec leurs parents : c'est pourquoi l'école apparaît surtout entre 30 et 50 ans, et pourquoi la vie commence ici à 18 ans. L'INSEE ne publie pas ces comptes année d'âge par année d'âge. Ce n'est pas le parcours d'une personne réelle, mais une photographie de la France d'une année, lue par âge. La courbe cumulée n'est pas actualisée et ignore la croissance future.</p><p><b>Pourquoi reçoit-on plus que l'on paie ?</b> Les dépenses publiques dépassent les prélèvements : l'écart est financé par la dette (le déficit) et par des recettes qui ne sont pas des prélèvements sur les ménages (revenus du patrimoine public, recettes des administrations). Une vie « moyenne » reçoit donc environ 20 % de plus qu'elle ne paie : ce qui ne vient pas des recettes non fiscales est reporté sur les générations futures.</p></div>
+
+  <h3 class="ag-part" id="in-p4">4. Patrimoine et héritage</h3>
   <h3>Et l'héritage ?</h3>
   <div class="callout small" id="her-box"></div>
   <h3>Patrimoine et héritage</h3>
@@ -4650,6 +4658,7 @@
   <div id="her-mont" class="chart"></div><div class="legend-row" id="her-mont-legend"></div>
   <div class="callout small" id="pat-txt"></div>
   <div class="grid2">
+  <h3 class="ag-part" id="in-p5">5. La redistribution réduit-elle les écarts ? Comparaisons</h3>
     <div><h3>Avant et après : l'écart entre les tranches</h3><div id="rd-avap" class="chart"></div></div>
     <div><h3>Qui réduit les inégalités, qui les accroît</h3><div id="rd-gini" class="chart"></div>
       <p class="muted" style="font-size:.85rem">Contribution de chaque élément à l'indice d'inégalité (pseudo-Gini, en points) selon l'INSEE. Positif : accroît les inégalités ; négatif : les réduit. Les services publics gratuits (santé, école) réduisent plus les inégalités que les prestations en argent ; la TVA et les taxes sur la consommation, qui pèsent plus lourd dans le budget des ménages modestes, les accroissent.</p></div>

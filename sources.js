@@ -172,12 +172,12 @@ function render() {
     `<div class="kpi"><div class="v" style="font-size:1rem"><a href="${o.url}" target="_blank" rel="noopener">${esc(o.nom)}</a></div><div class="l">${esc(o.desc)}<br><b>Licence :</b> ${esc(o.licence)}</div></div>`).join("");
 }
 // en bas de chaque article, ses sources en petit
-const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé", "Logement (économie)"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"], "cycle-vie": ["La vie en euros"], retraites: ["Retraites"], simulateur: ["Argent public", "PIB", "Argentine"],
+const PAR_ARTICLE = { pib: ["PIB"], "argent-prive": ["Argent privé"], "niveau-vie": ["Vit-on mieux", "Argent privé", "Logement (économie)"], repartition: ["Argent public", "PIB"], population: ["Qui fait quoi"], "argent-public": ["Argent public"],  retraites: ["Retraites"], simulateur: ["Argent public", "PIB", "Argentine"],
   duree: ["Argent public"], monnaie: ["Monnaie et croissance"], limites: ["Limites physiques à la croissance"], electorat: ["Sociologie électorale"], tableau: ["Tableau périodique"], roches: ["Roches"], couper: ["Couper où"], patrimoine: ["Patrimoine", "Solde extérieur"], commerce: ["Commerce extérieur"], industrie: ["Industrie et innovation"], comparer: ["PIB", "Argent public", "Patrimoine"], prosperite: ["Pays prospère"],
   biodiversite: ["Biodiversité"], foret: ["Forêt"], air: ["Air"], soussol: ["Sous-sol"], agriculture: ["Agriculture", "Sans intrants", "Pesticides"], catastrophes: ["Catastrophes"], transition: ["Transition"],
   energie: ["Énergie"], nucleaire: ["Nucléaire"], matieres: ["Matières"], eau: ["Eau"], sols: ["Sols"], alimentation: ["Alimentation", "Du champ au caddie"], climat: ["Climat", "Empreinte carbone"], dechets: ["Déchets"],
   territoire: ["Territoire"], transports: ["Transports"], demographie: ["Démographie"], immigration: ["Immigration"], travail: ["Temps de travail"], emploi: ["Emploi"], chomage: ["Chômage"],
-  justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };
+  justice: ["Justice"], sante: ["Santé"], education: ["Éducation"], logement: ["Logement"], inegalites: ["Inégalités", "La vie en euros"], capital: ["Capital social et culturel"], "patrimoine-hist": ["Patrimoine historique"] };
 function footers() {
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   Object.entries(PAR_ARTICLE).forEach(([id, themes]) => {
