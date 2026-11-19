@@ -116,6 +116,7 @@
       <a href="#chimie">Chimie</a>
       <a href="#roches">Roches</a>
       <a href="#energie-physique">L'énergie expliquée par la physique</a>
+      <a href="#vivant">Le vivant comme machine</a>
       <a href="#meteo">Météo</a>
       <a href="#telecom">Télécoms</a>
       <a href="#voile">Voile et aérodynamique</a>
@@ -6630,6 +6631,188 @@
 
 
 
+<section id="vivant" class="panel">
+  <div class="panel-head"><h2>Le vivant comme machine : énergie, photosynthèse, métabolisme, sol <span class="geo-fixed">Science</span></h2></div>
+  <p class="lead">Un être vivant obéit aux mêmes lois que n'importe quelle machine : conservation de l'énergie, thermodynamique, chimie. Mais c'est une machine étrange, qui se construit elle-même, se répare, se reproduit et fonctionne à 37 °C avec des rendements que les ingénieurs envient parfois. Cet article suit l'énergie de bout en bout : du photon capté par une feuille à l'ATP qui fait tourner nos moteurs moléculaires, jusqu'au sol, l'usine invisible qui recycle tout.</p>
+  <div class="kpis" id="vi-kpis"></div>
+  <ul class="mo-ul cr-toc">
+    <li class="cr-toc-p"><a href="#vivant" data-to="vi-p1"><b>I. Le vivant vu par un ingénieur</b></a><ul><li><a href="#vivant" data-to="vi-thermo">1. Une machine loin de l'équilibre</a></li><li><a href="#vivant" data-to="vi-atp">2. L'ATP, la monnaie énergétique</a></li><li><a href="#vivant" data-to="vi-moteurs">3. Les moteurs moléculaires</a></li><li><a href="#vivant" data-to="vi-info">4. Le logiciel : l'ADN</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#vivant" data-to="vi-p2"><b>II. La photosynthèse : capter le Soleil</b></a><ul><li><a href="#vivant" data-to="vi-photo">5. L'équation et ce qu'elle cache</a></li><li><a href="#vivant" data-to="vi-rend">6. Un rendement de 1 % : pourquoi si peu ?</a></li><li><a href="#vivant" data-to="vi-global">7. À l'échelle de la planète</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#vivant" data-to="vi-p3"><b>III. Le corps humain comme moteur</b></a><ul><li><a href="#vivant" data-to="vi-puiss">8. Combien de watts ?</a></li><li><a href="#vivant" data-to="vi-carbu">9. Les carburants et les réservoirs</a></li><li><a href="#vivant" data-to="vi-chaine">10. Du glucose à l'ATP : la chaîne de production</a></li><li><a href="#vivant" data-to="vi-froid">11. Refroidir la machine, l'alimenter en oxygène</a></li><li><a href="#vivant" data-to="vi-sim">12. Simulateur : ce que coûte un effort</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#vivant" data-to="vi-p4"><b>IV. Le sol : l'usine invisible</b></a><ul><li><a href="#vivant" data-to="vi-sol">13. De quoi est fait un sol</a></li><li><a href="#vivant" data-to="vi-bio">14. Un monde vivant sous nos pieds</a></li><li><a href="#vivant" data-to="vi-cycles">15. Les cycles de l'azote et du carbone</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#vivant" data-to="vi-p5"><b>V. Vivant et machines : comparer</b></a><ul><li><a href="#vivant" data-to="vi-cmp">16. Rendements, puissances, stockage</a></li><li><a href="#vivant" data-to="vi-limites">17. Les limites de la métaphore</a></li></ul></li>
+  </ul>
+
+  <h2 id="vi-p1" class="cr-partie">I. Le vivant vu par un ingénieur</h2>
+  <h3 id="vi-thermo" class="ag-part">1. Une machine loin de l'équilibre</h3>
+  <p>Le second principe de la thermodynamique dit que l'entropie (le désordre) d'un système isolé ne peut qu'augmenter. Comment un être vivant peut-il alors construire et maintenir un ordre aussi complexe ? Parce qu'il n'est <b>pas isolé</b> : c'est un système ouvert, traversé par un flux d'énergie. Il importe de l'énergie de haute qualité (lumière, molécules riches en énergie) et rejette de la chaleur et des molécules simples (CO₂, eau). Il produit de l'ordre localement en exportant davantage de désordre à l'extérieur.</p>
+  <div class="callout small"><ul>
+    <li><b>Erwin Schrödinger</b> (<i>Qu'est-ce que la vie ?</i>, 1944) : un organisme « se nourrit d'entropie négative ». Ilya Prigogine (prix Nobel de chimie 1977) parle de <b>structures dissipatives</b> : des systèmes qui se maintiennent organisés tant qu'un flux d'énergie les traverse, comme un tourbillon dans une rivière ou une flamme.</li>
+    <li><b>L'équilibre, c'est la mort</b> : une cellule maintient en permanence des déséquilibres (concentrations d'ions différentes de part et d'autre de sa membrane, réactions poussées loin de leur équilibre chimique). Quand le flux d'énergie s'arrête, tout se rééquilibre en quelques minutes : c'est la mort cellulaire.</li>
+    <li><b>Les ordres de grandeur</b> : une bactérie mesure environ 1 µm, une cellule humaine 10 à 100 µm. Le corps humain compte environ <b>30 000 milliards de cellules</b>, dont 84 % de globules rouges en nombre, et héberge à peu près autant de bactéries, surtout dans l'intestin (Sender, Fuchs et Milo, 2016).</li>
+  </ul></div>
+
+  <h3 id="vi-atp" class="ag-part">2. L'ATP, la monnaie énergétique</h3>
+  <p>Toute l'énergie du vivant transite par une même molécule, l'<b>ATP</b> (adénosine triphosphate). En perdant un de ses trois groupes phosphate (hydrolyse en ADP), elle libère de l'énergie utilisable pour contracter un muscle, fabriquer une protéine ou pomper des ions. C'est l'équivalent d'une batterie rechargeable à l'échelle moléculaire, ou d'une monnaie : on « gagne » de l'ATP en brûlant des aliments ou en captant la lumière, on la « dépense » pour travailler.</p>
+  <div class="callout small"><ul>
+    <li><b>L'énergie en jeu</b> : ΔG°′ ≈ −30,5 kJ/mol dans les conditions standard. Dans la cellule, où l'ATP est maintenue très concentrée et l'ADP peu concentrée, ΔG ≈ −50 à −57 kJ/mol : c'est exactement la relation ΔG = ΔG° + RT ln Q du chapitre 8 de l'article <a href="#chimie" data-to="ch-k">Chimie</a>. La cellule « tend le ressort » en se tenant loin de l'équilibre.</li>
+    <li><b>Un recyclage vertigineux</b> : le corps ne contient qu'une centaine de grammes d'ATP, mais en recycle chaque jour l'équivalent de <b>son propre poids</b> (40 à 75 kg), davantage en cas d'effort. Chaque molécule est rechargée plus de mille fois par jour.</li>
+    <li><b>Pourquoi le phosphate ?</b> Les liaisons entre phosphates sont chargées négativement et se repoussent ; leur rupture est très favorable, mais lente sans enzyme : l'ATP est à la fois énergétique et stable, donc stockable et dépensable à la demande, là où l'enzyme le décide.</li>
+  </ul></div>
+
+  <h3 id="vi-moteurs" class="ag-part">3. Les moteurs moléculaires</h3>
+  <div class="callout small"><ul>
+    <li><b>L'ATP synthase, une turbine</b> : cette enzyme fabrique l'ATP. Elle est littéralement un moteur rotatif de 10 nm : des protons (ions H⁺) traversent la membrane en faisant tourner un rotor, qui déforme la tête de l'enzyme et assemble l'ATP. Environ <b>3 ATP par tour</b>, plus de 100 tours par seconde. Son rendement approche 100 %. (Paul Boyer et John Walker, Nobel 1997.)</li>
+    <li><b>Un barrage à protons</b> : c'est la théorie <b>chimiosmotique</b> de Peter Mitchell (1961, Nobel 1978), longtemps jugée farfelue. La respiration ou la lumière pompent des protons d'un côté d'une membrane ; ils redescendent par l'ATP synthase comme l'eau d'un barrage par une turbine. La différence de potentiel est d'environ <b>0,15 à 0,2 volt</b> à travers une membrane de 5 nm, soit un champ électrique de 30 à 40 millions de volts par mètre, plus que celui qui fait claquer l'air dans un éclair.</li>
+    <li><b>Les « marcheurs »</b> : la kinésine transporte des charges le long des microtubules (les rails de la cellule) par pas de 8 nm, en consommant une ATP par pas. La myosine tire sur l'actine dans nos muscles : des milliards de petits coups de rame de quelques nanomètres font la contraction.</li>
+    <li><b>Les pompes</b> : la pompe sodium-potassium expulse 3 Na⁺ et fait entrer 2 K⁺ par ATP. Elle consomme environ un quart de l'énergie au repos, et jusqu'aux deux tiers dans les neurones : c'est le coût de la batterie électrique qui permet l'influx nerveux.</li>
+  </ul></div>
+
+  <h3 id="vi-info" class="ag-part">4. Le logiciel : l'ADN</h3>
+  <div class="callout small"><ul>
+    <li><b>Un code numérique</b> : l'ADN écrit l'information avec quatre lettres (A, T, G, C), soit 2 bits par base. Le génome humain compte environ <b>3,1 milliards de paires de bases</b> par jeu de chromosomes, environ 750 mégaoctets, et deux jeux par cellule. Moins de 2 % codent des protéines (environ 20 000 gènes) ; le reste règle quand et où les gènes s'expriment, ou n'a pas de fonction connue.</li>
+    <li><b>Une copie quasi parfaite</b> : à chaque division, l'ADN est recopié avec une erreur pour environ un milliard de bases, grâce à des systèmes de relecture et de correction. Les erreurs restantes, les mutations, sont le moteur de l'évolution.</li>
+    <li><b>Une usine à protéines</b> : le ribosome lit l'ARN messager et assemble 10 à 20 acides aminés par seconde ; une cellule en contient des millions. C'est une imprimante 3D moléculaire, qui fabrique aussi… les ribosomes.</li>
+    <li><b>Une densité record</b> : en théorie, un gramme d'ADN peut stocker environ 200 millions de gigaoctets (Erlich et Zielinski, 2017). Des laboratoires y archivent déjà des fichiers ; la lecture et l'écriture restent lentes et chères.</li>
+  </ul></div>
+
+  <h2 id="vi-p2" class="cr-partie">II. La photosynthèse : capter le Soleil</h2>
+  <h3 id="vi-photo" class="ag-part">5. L'équation et ce qu'elle cache</h3>
+  <p style="text-align:center;font-size:1.05rem"><b>6 CO₂ + 6 H₂O + lumière → C₆H₁₂O₆ (glucose) + 6 O₂</b>&nbsp;&nbsp; ΔG° ≈ +2 870 kJ par mole de glucose</p>
+  <div class="callout small"><ul>
+    <li><b>Une réaction « en montée »</b> : c'est exactement l'inverse de la combustion du glucose. La plante doit fournir de l'énergie pour arracher les électrons de l'eau (qui libère l'O₂ : l'oxygène que nous respirons vient de l'eau, pas du CO₂) et les donner au carbone du CO₂. C'est une <b>réduction</b>, au sens de l'article <a href="#chimie">Chimie</a>.</li>
+    <li><b>Deux étapes</b> : la <b>phase lumineuse</b>, dans les membranes des chloroplastes, transforme la lumière en ATP et en molécules réductrices (NADPH) grâce à deux photosystèmes en série, qui absorbent à 680 et 700 nm ; le <b>cycle de Calvin</b> utilise cette énergie pour fixer le CO₂ et fabriquer des sucres.</li>
+    <li><b>Le combien</b> : il faut au moins 8 à 10 photons rouges par molécule de CO₂ fixée. Un photon rouge apporte environ 1,8 eV, soit 175 kJ par mole de photons ; 48 moles de photons (8 × 6) apportent environ 8 400 kJ pour stocker 2 870 kJ : un rendement d'environ 35 % sur la lumière absorbée, dans le meilleur des cas.</li>
+    <li><b>La Rubisco, l'enzyme maladroite</b> : c'est elle qui fixe le CO₂. Elle est lente (quelques réactions par seconde, contre des milliers pour beaucoup d'enzymes) et confond parfois le CO₂ avec l'O₂, ce qui gaspille de l'énergie (la photorespiration, jusqu'à un quart du carbone fixé perdu par temps chaud). Pour compenser, les plantes en produisent énormément : c'est la protéine la plus abondante sur Terre.</li>
+    <li><b>Les astuces des plantes C4 et CAM</b> : le maïs, la canne à sucre ou le sorgho (plantes « C4 ») concentrent le CO₂ autour de la Rubisco et gaspillent moins par temps chaud ; les cactus et l'ananas (« CAM ») ouvrent leurs pores la nuit pour ne pas perdre d'eau.</li>
+    <li><b>Pourquoi les plantes sont vertes</b> : la chlorophylle absorbe le bleu et le rouge et renvoie le vert, pourtant abondant dans la lumière solaire. Une hypothèse récente (Arp et al., <i>Science</i>, 2020) : absorber deux bandes étroites, aux bords du pic solaire, rend l'apport d'énergie plus régulier et protège la machine des fluctuations, au prix d'un peu de rendement.</li>
+  </ul></div>
+
+  <h3 id="vi-rend" class="ag-part">6. Un rendement de 1 % : pourquoi si peu ?</h3>
+  <p class="muted" style="font-size:.85rem">Où part l'énergie solaire qui arrive sur une feuille (plante C3, conditions optimales ; d'après Zhu, Long et Ort, 2008)</p>
+  <div id="vi-pertes" class="chart"></div>
+  <div class="callout small"><ul>
+    <li><b>Le maximum théorique</b> de conversion de l'énergie solaire en biomasse est d'environ <b>4,6 % pour les plantes C3</b> (blé, riz, arbres) et <b>6 % pour les C4</b> (maïs, canne). Plus de la moitié de la lumière solaire est hors des longueurs d'onde utiles (infrarouge, ultraviolet) ; une partie est réfléchie ; l'énergie des photons bleus en excès est perdue en chaleur ; la plante respire une partie de ce qu'elle produit.</li>
+    <li><b>En pratique, sur une année</b>, un champ convertit 0,5 à 1 % de l'énergie solaire reçue, 2 à 3 % au mieux pendant la saison de croissance (la canne à sucre est la championne). Un panneau photovoltaïque fait 20 à 22 % : à surface égale, il capte 20 à 40 fois plus d'énergie qu'une culture énergétique. C'est la raison pour laquelle les biocarburants demandent tant de terres (voir <a href="#limites">Limites physiques à la croissance</a>).</li>
+    <li><b>Mais la plante fait autre chose</b> : elle se construit et se répare toute seule, se reproduit, stocke son énergie sous forme chimique pendant des années, et fixe du carbone. Aucun panneau n'en fait autant.</li>
+  </ul></div>
+
+  <h3 id="vi-global" class="ag-part">7. À l'échelle de la planète</h3>
+  <div class="callout small"><ul>
+    <li><b>Production primaire</b> : les plantes et le phytoplancton fixent environ <b>105 milliards de tonnes de carbone par an</b>, à peu près moitié sur terre, moitié dans les océans (Field et al., 1998). Converti en énergie, cela fait environ <b>130 térawatts</b>, six à sept fois la consommation d'énergie primaire de l'humanité (environ 19 TW).</li>
+    <li><b>Les humains s'en approprient une part énorme</b> : par les cultures, les pâturages, la forêt exploitée, environ un quart de la production primaire terrestre est détournée ou empêchée par l'activité humaine (Haberl et al., 2007).</li>
+    <li><b>L'oxygène de l'air est un déchet</b> : il y a environ 2,4 milliards d'années, des cyanobactéries ont rempli l'atmosphère d'oxygène (la « Grande Oxydation »), empoisonnant une grande partie de la vie d'alors et permettant ensuite la respiration, beaucoup plus énergétique. Le charbon, le pétrole et le gaz sont de la photosynthèse ancienne, stockée pendant des millions d'années, que nous brûlons en quelques siècles.</li>
+  </ul></div>
+
+  <h2 id="vi-p3" class="cr-partie">III. Le corps humain comme moteur</h2>
+  <h3 id="vi-puiss" class="ag-part">8. Combien de watts ?</h3>
+  <p>Un adulte mange environ 2 000 à 2 500 kilocalories par jour, soit 8 à 10 mégajoules : cela fait une puissance moyenne de <b>100 à 120 watts</b>, celle d'une vieille ampoule. Au repos, le « métabolisme de base » consomme environ 80 W, qui finissent tous en chaleur.</p>
+  <div class="grid2">
+    <div><h3>Puissance, du repos à l'effort maximal</h3><div id="vi-watts" class="chart"></div></div>
+    <div><h3>Qui consomme l'énergie au repos ?</h3><div id="vi-organes" class="chart"></div></div>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Le cerveau</b> : 2 % du poids du corps, 20 % de sa consommation au repos, environ <b>20 watts</b>. Un supercalculateur consomme des dizaines de mégawatts, un million de fois plus, pour des tâches que nous faisons sans effort (et l'inverse est vrai pour le calcul).</li>
+    <li><b>Le muscle</b> : au repos, il pèse peu dans la consommation par kilo, mais il est capable de la multiplier par 50 à l'effort. Un cycliste du Tour de France développe 250 à 400 W pendant des heures et plus de 1 500 W au sprint ; un amateur entraîné tient 150 à 250 W. Pour fournir 400 W mécaniques, le corps en brûle environ 1 700, car son rendement est d'environ 23 % : comme un moteur de voiture.</li>
+    <li><b>Ce que mange un coureur du Tour</b> : 5 000 à 7 000 kcal par jour d'étape de montagne, à avaler en partie en pédalant.</li>
+  </ul></div>
+
+  <h3 id="vi-carbu" class="ag-part">9. Les carburants et les réservoirs</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Carburant</th><th>Énergie</th><th>Stock dans un corps de 70 kg</th><th>Autonomie</th></tr></thead><tbody>
+    <tr><td><b>Graisses</b></td><td>37 kJ/g (9 kcal/g)</td><td>10 à 15 kg</td><td>environ 100 000 kcal : plus d'un mois de jeûne, ou plusieurs milliers de kilomètres de marche</td></tr>
+    <tr><td><b>Glucides</b> (glycogène du foie et des muscles, glucose du sang)</td><td>17 kJ/g (4 kcal/g)</td><td>400 à 500 g</td><td>environ 2 000 kcal : 1 h 30 à 2 h d'effort intense. C'est le « mur » du marathon, vers le 30ᵉ kilomètre</td></tr>
+    <tr><td><b>Protéines</b> (muscles)</td><td>17 kJ/g</td><td>environ 10 kg</td><td>ce n'est pas un réservoir : le corps ne les brûle qu'en dernier recours, en se détruisant</td></tr>
+    <tr><td><b>Alcool</b></td><td>29 kJ/g (7 kcal/g)</td><td>pas de stock</td><td>le foie l'élimine en priorité, environ 7 g par heure</td></tr>
+    <tr><td><i>Pour comparer : essence</i></td><td><i>46 kJ/g</i></td><td></td><td><i>une batterie lithium-ion : 0,7 à 1 kJ/g, cinquante fois moins que la graisse</i></td></tr>
+  </tbody></table></div>
+  <div class="callout small"><ul>
+    <li><b>Pourquoi stocker en graisse ?</b> Le glycogène est stocké avec environ 3 g d'eau par gramme : en énergie par kilo transporté, la graisse est six à huit fois plus compacte. Un humain qui stockerait ses réserves en glycogène pèserait 60 kg de plus.</li>
+    <li><b>Pourquoi des glucides pour l'effort intense ?</b> Brûler du glucose rend plus d'énergie par molécule d'oxygène que brûler des graisses (environ 7 % de plus), et la filière glucose peut fonctionner sans oxygène pendant quelques dizaines de secondes. Quand l'oxygène est le facteur limitant, le sucre est le meilleur carburant.</li>
+  </ul></div>
+
+  <h3 id="vi-chaine" class="ag-part">10. Du glucose à l'ATP : la chaîne de production</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Étape</th><th>Où</th><th>Ce qui se passe</th><th>ATP par glucose</th></tr></thead><tbody>
+    <tr><td><b>Glycolyse</b></td><td>cytoplasme</td><td>le glucose (6 carbones) est coupé en deux pyruvates (3 carbones) ; pas besoin d'oxygène. Sans oxygène, le pyruvate devient du lactate (muscle) ou de l'alcool (levure)</td><td>2</td></tr>
+    <tr><td><b>Cycle de Krebs</b></td><td>mitochondrie</td><td>le pyruvate est démonté carbone par carbone ; le carbone part en CO₂ (celui que nous expirons) ; les électrons sont chargés sur des transporteurs (NADH, FADH₂)</td><td>2</td></tr>
+    <tr><td><b>Chaîne respiratoire</b></td><td>membrane interne de la mitochondrie</td><td>les électrons descendent une cascade de protéines jusqu'à l'oxygène, qui devient de l'eau ; l'énergie libérée pompe des protons ; l'ATP synthase les fait redescendre et fabrique l'ATP</td><td>environ 26 à 28</td></tr>
+    <tr><td><b>Total</b></td><td></td><td></td><td><b>environ 30 à 32</b> (les anciens manuels disaient 36 à 38)</td></tr>
+  </tbody></table></div>
+  <div class="callout small"><ul>
+    <li><b>Le rendement</b> : 30 ATP × 50 kJ ≈ 1 500 kJ récupérés sur les 2 870 kJ du glucose, soit environ <b>50 %</b> dans les conditions de la cellule (35 % avec les valeurs standard). Le reste chauffe le corps. Le muscle convertit ensuite l'ATP en mouvement avec un rendement d'environ 50 % : d'où les 20 à 25 % au total.</li>
+    <li><b>Pourquoi l'oxygène ?</b> C'est le meilleur « accepteur d'électrons » disponible : la chute d'énergie des électrons jusqu'à lui est la plus grande. Sans oxygène, on ne récupère que les 2 ATP de la glycolyse, quinze fois moins : d'où l'avantage énorme des organismes qui respirent.</li>
+    <li><b>Les mitochondries</b> sont d'anciennes bactéries, avalées par une autre cellule il y a environ 2 milliards d'années et devenues des centrales électriques internes ; elles ont gardé leur propre petit ADN (Lynn Margulis, théorie endosymbiotique, 1967).</li>
+  </ul></div>
+
+  <h3 id="vi-froid" class="ag-part">11. Refroidir la machine, l'alimenter en oxygène</h3>
+  <div class="callout small"><ul>
+    <li><b>Une machine à 37 °C</b> : nos enzymes fonctionnent dans une plage étroite. Au-dessus de 40-41 °C, c'est le coup de chaleur ; au-dessous de 35 °C, l'hypothermie. À l'effort, 75 % de l'énergie devient chaleur : un cycliste à 400 W doit évacuer plus de 1 300 W.</li>
+    <li><b>Le refroidissement par évaporation</b> : évaporer 1 litre de sueur évacue environ 2,4 MJ, soit 670 Wh. Par forte chaleur, un marathonien peut perdre 1 à 2 litres par heure. Quand l'air est saturé d'humidité, la sueur ne s'évapore plus et ne refroidit plus : c'est pourquoi la chaleur humide est la plus dangereuse (voir <a href="#climat">Climat</a>). L'humain est l'un des meilleurs coureurs d'endurance du règne animal justement grâce à cette transpiration.</li>
+    <li><b>Le circuit d'oxygène</b> : 5 litres de sang, un cœur qui pompe 5 litres par minute au repos et jusqu'à 25 à 35 litres chez un athlète. Chaque litre d'oxygène consommé libère environ 20 kJ (4,8 kcal) : la consommation maximale d'oxygène (VO₂max), 35 à 45 ml par kilo et par minute chez un adulte moyen, 80 à 90 chez un champion de ski de fond, fixe la puissance maximale durable. En altitude, l'air contient moins d'oxygène et la VO₂max baisse d'environ 7 % par 1 000 mètres au-dessus de 1 500 m.</li>
+  </ul></div>
+
+  <h3 id="vi-sim" class="ag-part">12. Simulateur : ce que coûte un effort</h3>
+  <div class="callout">
+    <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center">
+      <label>Puissance mécanique : <input type="range" id="vi-p" min="50" max="500" step="10" value="200" style="vertical-align:middle"> <b id="vi-pv">200</b> W</label>
+      <label>Durée : <input type="range" id="vi-t" min="15" max="360" step="15" value="120" style="vertical-align:middle"> <b id="vi-tv">2 h</b></label>
+      <label>Masse : <input type="range" id="vi-m" min="45" max="110" step="1" value="70" style="vertical-align:middle"> <b id="vi-mv">70</b> kg</label>
+    </div>
+    <div id="vi-sim-out" style="margin-top:10px"></div>
+  </div>
+
+  <h2 id="vi-p4" class="cr-partie">IV. Le sol : l'usine invisible</h2>
+  <h3 id="vi-sol" class="ag-part">13. De quoi est fait un sol</h3>
+  <div class="grid2">
+    <div><div id="vi-solcomp" class="chart"></div></div>
+    <div class="callout small"><ul>
+      <li><b>Un sol, ce n'est pas de la terre inerte</b> : c'est une roche altérée, mélangée à de la matière organique, de l'eau, de l'air et des milliards d'êtres vivants. Dans un bon sol agricole, la moitié du volume est faite de vides : les pores, où circulent l'eau et l'air.</li>
+      <li><b>Le squelette minéral</b> : les sables (0,05 à 2 mm), les limons (2 à 50 µm) et les argiles (moins de 2 µm). Les argiles, en feuillets chargés négativement, ont une surface immense : jusqu'à plusieurs centaines de m² par gramme.</li>
+      <li><b>Le complexe argilo-humique</b> : argiles et humus (la matière organique décomposée) forment des agrégats qui retiennent les ions positifs nutritifs (potassium K⁺, calcium Ca²⁺, magnésium Mg²⁺, ammonium NH₄⁺) et les échangent avec les racines : c'est la <b>capacité d'échange cationique</b>, la « batterie » de fertilité du sol.</li>
+      <li><b>Un réservoir d'eau</b> : un sol profond retient 100 à 200 mm d'eau utilisable par mètre, de quoi alimenter une culture pendant plusieurs semaines sans pluie.</li>
+      <li><b>Lent à se faire, rapide à se défaire</b> : il faut des siècles pour former quelques centimètres de sol ; l'érosion d'un sol nu et labouré en pente peut en emporter un centimètre en quelques années (voir <a href="#sols">Sols</a>).</li>
+    </ul></div>
+  </div>
+
+  <h3 id="vi-bio" class="ag-part">14. Un monde vivant sous nos pieds</h3>
+  <div class="callout small"><ul>
+    <li><b>Une biodiversité record</b> : une cuillère à café de sol contient environ un milliard de bactéries de milliers d'espèces, des kilomètres de filaments de champignons, des protozoaires, des nématodes. Le sol abrite peut-être plus de la moitié des espèces vivantes de la planète (Anthony et al., 2023).</li>
+    <li><b>Les vers de terre</b> : dans une prairie, leur masse atteint 1 à 2 tonnes par hectare, souvent plus que celle du bétail qui broute au-dessus. Ils creusent des galeries, mélangent, aèrent et digèrent la matière organique. Darwin leur a consacré son dernier livre (1881).</li>
+    <li><b>Les mycorhizes</b> : environ 80 % des plantes vivent en association avec des champignons du sol. Le champignon prolonge les racines par un réseau de filaments très fins et leur apporte eau et phosphore ; la plante le paie en sucres, jusqu'à 20 % de ce qu'elle fabrique.</li>
+    <li><b>Les décomposeurs</b> : bactéries et champignons démontent feuilles, bois et cadavres et rendent les éléments minéraux aux plantes. Sans eux, le carbone et l'azote resteraient bloqués dans la matière morte.</li>
+  </ul></div>
+
+  <h3 id="vi-cycles" class="ag-part">15. Les cycles de l'azote et du carbone</h3>
+  <div class="callout small"><ul>
+    <li><b>L'azote, le grand paradoxe</b> : l'air en contient 78 %, mais sous forme de N₂, une molécule à triple liaison presque impossible à casser. Seules quelques bactéries savent le faire, grâce à la nitrogénase, qui coûte 16 ATP par molécule de N₂ : les <b>rhizobiums</b> vivent dans des nodules des racines de légumineuses (trèfle, luzerne, pois, soja), d'où l'intérêt de ces cultures pour fertiliser le sol.</li>
+    <li><b>Haber et Bosch</b> (1909-1913) ont reproduit ce tour de force industriellement : N₂ + 3 H₂ → 2 NH₃, à 400-500 °C et 150 à 300 bars. Les engrais azotés qui en sortent consomment 1 à 2 % de l'énergie mondiale et nourrissent environ la moitié de l'humanité (Vaclav Smil). Leur excès pollue rivières et nappes (nitrates, algues vertes) et émet un puissant gaz à effet de serre, le protoxyde d'azote.</li>
+    <li><b>Le sol, premier réservoir de carbone terrestre</b> : il en contient environ <b>1 700 milliards de tonnes</b> (hors pergélisol), deux fois plus que l'atmosphère et près de quatre fois plus que toute la végétation.</li>
+  </ul></div>
+  <h3>Où est le carbone de la planète ? (milliards de tonnes de carbone)</h3>
+  <div id="vi-carbone" class="chart"></div>
+  <p class="muted" style="font-size:.8rem">D'après le GIEC (AR6, groupe 1, chapitre 5, ordres de grandeur). Les océans profonds stockent environ 37 000 milliards de tonnes, hors échelle. L'initiative « 4 pour 1000 », lancée par la France en 2015, part de ce constat : augmenter chaque année de 0,4 % le carbone des sols compenserait une grande partie de la hausse annuelle du CO₂ atmosphérique ; l'objectif est jugé très difficile à atteindre à grande échelle, mais il a fait des sols un sujet climatique.</p>
+
+  <h2 id="vi-p5" class="cr-partie">V. Vivant et machines : comparer</h2>
+  <h3 id="vi-cmp" class="ag-part">16. Rendements, puissances, stockage</h3>
+  <div id="vi-rendements" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th></th><th>Le vivant</th><th>La machine</th></tr></thead><tbody>
+    <tr><td><b>Capter le Soleil</b></td><td>feuille : 1 à 2 %, maximum théorique 6 %</td><td>panneau photovoltaïque : 20 à 22 %</td></tr>
+    <tr><td><b>Transformer un carburant en mouvement</b></td><td>muscle : 20 à 25 %</td><td>moteur à essence : 25 à 35 % ; diesel : 40 % ; moteur électrique : 90 à 95 %</td></tr>
+    <tr><td><b>Calculer</b></td><td>cerveau : 20 W, environ 86 milliards de neurones</td><td>supercalculateur : 20 à 30 MW ; un grand modèle d'IA s'entraîne avec des mégawatts pendant des mois</td></tr>
+    <tr><td><b>Stocker l'énergie</b></td><td>graisse : 37 kJ/g</td><td>batterie lithium : moins de 1 kJ/g ; essence : 46 kJ/g</td></tr>
+    <tr><td><b>Stocker l'information</b></td><td>ADN : environ 200 millions de Go par gramme, stable des milliers d'années</td><td>disque dur ou bande : quelques To par cent grammes</td></tr>
+    <tr><td><b>Se réparer, se reproduire</b></td><td>en permanence, à partir de matériaux banals (C, H, O, N) et à température ambiante</td><td>non : il faut une usine, des mines, de l'énergie à haute température</td></tr>
+  </tbody></table></div>
+
+  <h3 id="vi-limites" class="ag-part">17. Les limites de la métaphore</h3>
+  <div class="callout small"><ul>
+    <li><b>Une vieille idée</b> : Descartes décrit l'animal comme une machine (<i>Discours de la méthode</i>, 1637) ; La Mettrie étend l'idée à l'homme (<i>L'Homme machine</i>, 1748). Contre eux, les « vitalistes » croient à une force vitale propre au vivant. La biochimie du XXᵉ siècle a donné raison aux mécanistes sur un point : aucune force mystérieuse n'est nécessaire, tout s'explique par la physique et la chimie.</li>
+    <li><b>Mais aucun ingénieur</b> : une machine est conçue pour un but ; un être vivant est le produit de milliards d'années d'évolution par variation et sélection, sans plan. François Jacob parlait de « bricolage » (1977) : l'évolution réutilise ce qui existe, d'où des solutions étonnantes et des défauts (la Rubisco maladroite, le nerf optique qui crée une tache aveugle dans l'œil).</li>
+    <li><b>L'auto-organisation</b> : une machine est assemblée de l'extérieur ; un organisme se construit de l'intérieur, à partir d'une seule cellule, et renouvelle en permanence ses pièces (la plupart des protéines du corps sont remplacées en quelques jours ou semaines). Le philosophe Kant disait déjà qu'un être vivant est à la fois cause et effet de lui-même.</li>
+    <li><b>Ce que les ingénieurs en retiennent</b> : le « biomimétisme » copie le vivant (le velcro inspiré de la bardane, les ailes d'avion inspirées des oiseaux, le train japonais Shinkansen au nez de martin-pêcheur), et la biologie de synthèse fait travailler des bactéries et des levures comme des usines (insuline depuis 1982, vaccins, enzymes industrielles).</li>
+  </ul></div>
+  <p class="muted" style="font-size:.78rem;margin-top:6px">Pour approfondir : Erwin Schrödinger, <i>Qu'est-ce que la vie ?</i> (1944) ; Nick Lane, <i>Le Nombre de la vie</i> (<i>The Vital Question</i>, 2015) ; Ron Milo et Rob Phillips, <i>Cell Biology by the Numbers</i> (2015) ; X.-G. Zhu, S. Long, D. Ort, « What is the maximum efficiency with which photosynthesis can convert solar energy into biomass? », <i>Current Opinion in Biotechnology</i> (2008) ; Marc-André Selosse, <i>L'Origine du monde. Une histoire naturelle du sol</i> (2021) ; Vaclav Smil, <i>Enriching the Earth</i> (2001).</p>
+</section>
+
 <section id="telecom" class="panel">
   <div class="panel-head"><h2>Les télécommunications : de l'onde au réseau <span class="geo-fixed">Monde</span></h2></div>
   <p class="lead">Comment une information traverse-t-elle l'air, une fibre de verre ou 36 000 km de vide ? Cet article, écrit pour des ingénieurs, suit le plan d'un cours d'école : la physique des ondes et des antennes, la théorie du signal et de l'information (Fourier, Shannon, modulations), le choix des fréquences, puis les grands systèmes (wifi, téléphone mobile, fibre, câbles sous-marins, satellites) et, pour finir, comment écouter les ondes et programmer soi-même une radio, une antenne ou un module wifi. Chaque notion est illustrée par un graphique ou un simulateur.</p>
@@ -7366,6 +7549,7 @@ for snr_db in (10, 15, 20):
 <script src="decilesankey.js?v=20261119b"></script>
 <script src="immigration2.js?v=20261119a"></script>
 <script src="revolutions.js?v=20261119a"></script>
+<script src="vivant.js?v=20261119a"></script>
 <script src="bulletin.js?v=20261119g"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
