@@ -7433,7 +7433,7 @@
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie3"><b>III. Pourquoi telle fréquence et pas une autre ?</b></a><ul><li><a href="#telecom" data-to="tc-choix">8. Le compromis portée, débit, pénétration</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie4"><b>IV. Les grands systèmes</b></a><ul><li><a href="#telecom" data-to="tc-wifi">9. Le wifi</a></li><li><a href="#telecom" data-to="tc-mobile">10. Le téléphone mobile : de la 1G à la 5G</a></li><li><a href="#telecom" data-to="tc-fibre">11. La fibre optique</a></li><li><a href="#telecom" data-to="tc-cables">12. Câbles sous-marins et satellites : pourquoi les deux ?</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie5"><b>V. Autres angles</b></a><ul><li><a href="#telecom" data-to="tc-internet">13. Internet : couches, paquets, latence</a></li><li><a href="#telecom" data-to="tc-gps">14. GPS, santé, énergie, souveraineté</a></li></ul></li>
-    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie6"><b>VI. Pratique : programmer sa radio, son antenne, son wifi</b></a><ul><li><a href="#telecom" data-to="tc-sdr">15. La radio logicielle (SDR)</a></li><li><a href="#telecom" data-to="tc-code">16. Coder : wifi, antenne réseau, liaison radio</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie6"><b>VI. Pratique : programmer sa radio, son antenne, son wifi</b></a><ul><li><a href="#telecom" data-to="tc-sdr">15. La radio logicielle (SDR)</a></li><li><a href="#telecom" data-to="tc-code">16. Coder : wifi, antenne réseau, liaison radio</a></li><li><a href="#telecom" data-to="tc-gps2">17. Le GPS de A à Z : comment un récepteur trouve sa position</a></li></ul></li>
   </ul>
   <p class="muted" style="font-size:.8rem">Sauf mention d'une source en lien, les valeurs de cet article (débits, latences, capacités des câbles, normes) sont des valeurs usuelles des cours et des normes.</p>
 
@@ -7637,7 +7637,7 @@
 
   <h3 id="tc-gps" class="ag-part">14. GPS, santé, énergie, souveraineté</h3>
   <div class="callout small"><ul>
-    <li><b>Le GPS est une horloge</b> : chaque satellite (≈ 31 en service, à 20 200 km) émet l'heure de son horloge atomique. Le récepteur mesure le retard de quatre satellites au moins et en déduit sa position et l'heure. Une erreur d'une microseconde donne 300 m d'erreur. Il faut même corriger la relativité : les horloges des satellites avancent de 38 microsecondes par jour par rapport au sol (+45 µs dues à la gravité plus faible, −7 µs dues à leur vitesse), soit 11 km d'erreur par jour sans correction. L'Europe a son propre système, Galileo.</li>
+    <li><b>Le GPS est une horloge</b> (le fonctionnement complet du récepteur est détaillé au <a href="#telecom" data-to="tc-gps2">chapitre 17</a>) : chaque satellite (≈ 31 en service, à 20 200 km) émet l'heure de son horloge atomique. Le récepteur mesure le retard de quatre satellites au moins et en déduit sa position et l'heure. Une erreur d'une microseconde donne 300 m d'erreur. Il faut même corriger la relativité : les horloges des satellites avancent de 38 microsecondes par jour par rapport au sol (+45 µs dues à la gravité plus faible, −7 µs dues à leur vitesse), soit 11 km d'erreur par jour sans correction. L'Europe a son propre système, Galileo.</li>
     <li><b>Les ondes et la santé</b> : les ondes radio ne sont pas ionisantes (chapitre 1) ; leur seul effet établi est l'échauffement des tissus. Les limites (Commission internationale ICNIRP, reprises en France) sont fixées avec une marge de 50 par rapport au seuil d'effet thermique : 2 W/kg de débit d'absorption spécifique pour la tête, 28 à 61 V/m pour l'exposition en public selon la fréquence. Les mesures de l'ANFR relèvent le plus souvent moins de 1 V/m dans l'environnement (<a href="https://www.cartoradio.fr" target="_blank" rel="noopener">Cartoradio</a>). Le Centre international de recherche sur le cancer classe les champs radiofréquence comme « peut-être cancérogènes » (catégorie 2B, 2011), la même que l'aloe vera.</li>
     <li><b>L'énergie</b> : en France, les réseaux représentent de l'ordre de 5 à 10 % de l'empreinte carbone du numérique ; l'essentiel (deux tiers à trois quarts) vient de la fabrication des terminaux : téléphones, écrans, ordinateurs (étude ADEME-Arcep, 2022). La 5G consomme moins d'énergie par gigaoctet que la 4G, mais elle stimule l'usage (effet rebond). Une antenne mobile consomme surtout en amplificateurs de puissance, dont le rendement plafonne vers 30 à 50 %.</li>
     <li><b>La souveraineté et la sécurité</b> : le choix des équipementiers 5G (loi française de 2019 encadrant les antennes Huawei), la protection des câbles sous-marins, le chiffrement de bout en bout et les constellations privées sont devenus des sujets de défense.</li>
@@ -7743,6 +7743,72 @@ for snr_db in (10, 15, 20):
     <li><b>srsRAN, OpenAirInterface</b> : des réseaux 4G et 5G complets en logiciel libre, sur une carte USRP, pour monter un réseau mobile de laboratoire (en cage de Faraday ou avec une autorisation de l'Arcep).</li>
     <li><b>Livres de référence</b> : Tse et Viswanath, <i>Fundamentals of Wireless Communication</i> (Cambridge, 2005, disponible gratuitement en ligne) ; Proakis, <i>Digital Communications</i>.</li>
   </ul></div>
+  <h3 id="tc-gps2" class="ag-part">17. Le GPS de A à Z : comment un récepteur trouve sa position</h3>
+  <p>Le « récepteur », c'est toute la chaîne qui transforme une onde radio venue de 20 000 km en latitude et longitude. Dans un téléphone, elle tient sur une puce de quelques millimètres. Dans un projet de radio logicielle (chapitre 15), on la coupe en deux : du <b>matériel</b> qui capte et numérise l'onde, et un <b>logiciel</b> qui fait tout le reste.</p>
+
+  <h3 id="tc-gps2-1" class="li-sub">17.1 Ce qui arrive du ciel : un signal plus faible que le bruit</h3>
+  <div class="callout small"><ul>
+    <li><b>Les satellites</b> : une trentaine, à 20 200 km d'altitude, à 3,9 km/s, sur six plans d'orbite. Chacun émet en continu sur <b>1 575,42 MHz</b> (bande L1, longueur d'onde 19 cm), avec environ 25 à 50 W.</li>
+    <li><b>Ce qui arrive au sol</b> : environ <b>10⁻¹⁶ W</b> (−130 dBm), une ampoule de 50 W vue à la distance d'un aller-retour Terre-Lune.</li>
+    <li><b>Le bruit</b> : l'agitation thermique des électrons produit une puissance kTB, soit −174 dBm/Hz × 2 MHz de bande ≈ <b>−111 dBm</b>. Le signal GPS est donc enfoui <b>environ 20 dB sous le bruit</b>, cent fois plus faible. Impossible de le « voir » directement sur un analyseur de spectre.</li>
+    <li><b>La parade, le code</b> : chaque satellite module son onde avec sa propre séquence pseudo-aléatoire de <b>1 023 « chips »</b> (le code C/A), répétée 1 000 fois par seconde (1,023 Mchip/s). Tous émettent sur la même fréquence et se distinguent par leur code : c'est l'accès multiple par répartition de code (CDMA, chapitre 7). Ces codes sont produits par deux registres à décalage de 10 bits (G1 et G2) ; le simulateur ci-dessous les génère exactement comme la norme IS-GPS-200.</li>
+  </ul></div>
+
+  <h3 id="tc-gps2-2" class="li-sub">17.2 Le matériel : capter, amplifier, filtrer, numériser</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Étape</th><th>Composant</th><th>Ce qu'il fait</th></tr></thead><tbody>
+    <tr><td><b>Antenne</b></td><td>« patch » en céramique d'environ 25 mm</td><td>les ondes font osciller les électrons du métal ; elle est taillée pour 1,5 GHz et pour la polarisation circulaire droite des satellites</td></tr>
+    <tr><td><b>Amplificateur faible bruit</b> (LNA)</td><td>intégré à l'antenne « active », alimenté par le câble</td><td>multiplie le signal par environ 500 (+28 dB) <b>avant</b> le câble, pour que les pertes du câble ne dégradent pas le rapport signal/bruit (formule de Friis du bruit)</td></tr>
+    <tr><td><b>Filtre</b></td><td>filtre à ondes de surface</td><td>ne garde qu'environ 2 MHz autour de 1 575 MHz, rejette le wifi, la 4G, la FM</td></tr>
+    <tr><td><b>Mélangeur</b></td><td>tuner de la clé RTL-SDR</td><td>multiplie le signal par une onde locale pour le ramener de 1,5 GHz vers la bande de base, comme une radio FM</td></tr>
+    <tr><td><b>Convertisseur</b></td><td>puce de la clé</td><td>mesure la tension environ 2 millions de fois par seconde, en deux voies décalées d'un quart de période (I et Q), pour garder la phase de l'onde</td></tr>
+    <tr><td><b>USB</b></td><td></td><td>envoie environ 4 Mo par seconde à l'ordinateur : un fichier qui ressemble à du bruit pur</td></tr>
+  </tbody></table></div>
+
+  <h3 id="tc-gps2-3" class="li-sub">17.3 L'acquisition : faire sortir le satellite du bruit</h3>
+  <p>Le logiciel connaît les 32 codes. Pour chaque satellite, il multiplie le signal reçu par une copie de son code, en essayant tous les <b>décalages</b> possibles (le retard du signal) et toutes les <b>fréquences</b> possibles (l'effet Doppler, ±5 kHz selon que le satellite s'approche ou s'éloigne). Quand la copie est alignée, le signal s'additionne de façon cohérente et le bruit, aléatoire, se moyenne : sur 1 ms, le gain est de 1 023, soit <b>+30 dB</b>. Le calcul de tous les décalages d'un coup se fait par FFT : corrélation = FFT⁻¹[ FFT(signal) × conj(FFT(code)) ].</p>
+  <div class="callout">
+    <div style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+      <label>Puissance du signal / bruit : <input type="range" id="gps-snr" min="-35" max="0" step="1" value="-20" style="vertical-align:middle"> <b id="gps-snr-v"></b></label>
+      <label>Durée d'intégration : <input type="range" id="gps-ms" min="1" max="20" step="1" value="1" style="vertical-align:middle"> <b id="gps-ms-v"></b></label>
+      <label>Erreur sur le Doppler testé : <input type="range" id="gps-df" min="-1500" max="1500" step="50" value="0" style="vertical-align:middle"> <b id="gps-df-v"></b></label>
+      <label>Code cherché : <select id="gps-prn"><option value="7" selected>satellite 7 (présent)</option><option value="3">satellite 3 (absent)</option><option value="1">satellite 1 (absent)</option></select></label>
+    </div>
+    <div id="gps-corr" class="chart" style="margin-top:6px"></div>
+    <p id="gps-corr-out" style="margin:4px 0 0;font-size:.88rem"></p>
+    <p class="muted" style="font-size:.78rem;margin:4px 0 0">Simulation : 1 ms de signal échantillonné à 2,048 MHz (comme une clé RTL-SDR), un satellite (le n° 7) avec un retard de 400,5 chips et un Doppler de 2 350 Hz, plus un bruit gaussien. Le récepteur retire la fréquence qu'il teste, corrèle par FFT, puis additionne la puissance sur plusieurs millisecondes. Essayez −30 dB avec 1 ms, puis 20 ms.</p>
+  </div>
+
+  <h3 id="tc-gps2-4" class="li-sub">17.4 La poursuite et le décodage : rester accroché, lire le message</h3>
+  <div class="callout small"><ul>
+    <li><b>La poursuite</b> : une fois le satellite trouvé, il bouge (le Doppler change de quelques Hz par seconde) et l'horloge de la clé dérive. Deux boucles d'asservissement le suivent : une boucle de code (DLL), qui compare la corrélation un demi-chip en avance et en retard pour rester centrée sur le pic, et une boucle de phase (PLL, ou de Costas), qui garde la porteuse alignée au degré près. C'est de l'automatique pure : gain de boucle, bande passante (quelques Hz), stabilité.</li>
+    <li><b>Le message de navigation</b> : par-dessus le code, chaque satellite envoie des données à 50 bits/s (chaque bit dure 20 répétitions du code). Elles sont organisées en sous-trames de 6 s, qui commencent par un mot de synchronisation (10001011) et donnent l'<b>heure d'émission</b> (le « temps de la semaine »), l'état et les corrections d'horloge du satellite, et ses <b>éphémérides</b> : les paramètres de son orbite képlérienne (demi-grand axe, excentricité, inclinaison, etc.). Il faut environ 30 s de poursuite sans interruption pour tout recevoir.</li>
+    <li><b>La pseudo-distance</b> : l'heure d'émission lue dans le message, plus le décalage précis du code (au centième de chip, soit quelques mètres), donne l'instant d'émission à quelques nanosecondes près. Multiplié par la vitesse de la lumière, le temps de trajet donne la distance au satellite (environ 20 000 à 25 000 km). On parle de « pseudo »-distance, car elle est faussée par l'erreur de l'horloge du récepteur.</li>
+  </ul></div>
+
+  <h3 id="tc-gps2-5" class="li-sub">17.5 La position : quatre inconnues, quatre satellites</h3>
+  <p>L'horloge du récepteur (un quartz à quelques euros) est imprécise ; celles des satellites sont atomiques. Une erreur d'horloge de 1 µs fausse <b>toutes</b> les distances de 300 m. On en fait donc une inconnue : la pseudo-distance au satellite i vaut ρᵢ = ‖sᵢ − r‖ + c·b + bruit, avec quatre inconnues (x, y, z de r, et le biais b). Il faut au moins <b>quatre satellites</b>, et on résout par moindres carrés, en linéarisant autour d'une estimation (méthode de Gauss-Newton). La qualité dépend de la géométrie : des satellites bien répartis dans le ciel donnent une petite <b>dilution de précision</b> (DOP), des satellites groupés une grande.</p>
+  <div class="callout">
+    <div style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+      <label>Écart angulaire des satellites : <input type="range" id="gps-ouv" min="10" max="150" step="5" value="110" style="vertical-align:middle"> <b id="gps-ouv-v"></b></label>
+      <label>Erreur d'horloge du récepteur : <input type="range" id="gps-biais" min="-2" max="2" step="0.1" value="0.5" style="vertical-align:middle"> <b id="gps-biais-v"></b></label>
+      <label>Bruit de mesure : <input type="range" id="gps-bruit" min="0" max="20" step="1" value="3" style="vertical-align:middle"> <b id="gps-bruit-v"></b></label>
+      <label><input type="checkbox" id="gps-hor"> estimer l'horloge (inconnue supplémentaire)</label>
+    </div>
+    <div id="gps-tri" class="chart" style="margin-top:6px"></div>
+    <p id="gps-tri-out" style="margin:4px 0 0;font-size:.88rem"></p>
+    <p class="muted" style="font-size:.78rem;margin:4px 0 0">Vue en coupe, en deux dimensions : il suffit alors de trois satellites pour (x, y, b) ; on en utilise quatre. Dans l'espace, il en faut quatre pour (x, y, z, b).</p>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Les autres corrections</b> : l'ionosphère retarde le signal (de 2 à 50 m selon l'heure et l'activité solaire ; un modèle diffusé par les satellites en corrige environ la moitié, et les récepteurs bi-fréquence l'éliminent) ; la troposphère (environ 2,5 m au zénith) ; la rotation de la Terre pendant le trajet (effet Sagnac, quelques dizaines de mètres) ; et la <b>relativité</b> : les horloges des satellites avancent d'environ 38 µs par jour par rapport au sol (+45 µs par la gravité plus faible, −7 µs par la vitesse) ; leur fréquence est réglée en usine en conséquence, et un terme dû à l'excentricité de l'orbite est corrigé par le récepteur.</li>
+    <li><b>La précision obtenue</b> : 2 à 5 m pour un récepteur simple ; de l'ordre du mètre avec Galileo et plusieurs fréquences ; quelques <b>centimètres</b> en mesurant la phase de la porteuse avec une station de référence proche (RTK).</li>
+  </ul></div>
+
+  <h3 id="tc-gps2-6" class="li-sub">17.6 Le faire soi-même : trois niveaux</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Niveau</th><th>Matériel</th><th>Ce que l'on fait</th></tr></thead><tbody>
+    <tr><td><b>1. Lire son GPS</b></td><td>ESP32 + module u-blox NEO-M8N (environ 25 €)</td><td>décoder soi-même les trames NMEA, calculer distance et cap, mesurer la précision réelle d'un GPS immobile : <a href="projets/gps-nmea/README.md" target="_blank" rel="noopener">le projet complet (code ESP32 et analyse Python)</a></td></tr>
+    <tr><td><b>2. Calculer sa position</b></td><td>module u-blox M8T ou F9P (mesures brutes)</td><td>récupérer les pseudo-distances et les éphémérides, et faire soi-même le calcul de 17.5</td></tr>
+    <tr><td><b>3. Le récepteur complet</b></td><td>clé RTL-SDR v4 + antenne active (environ 55 €)</td><td>enregistrer le signal brut et coder toute la chaîne de 17.3 à 17.5 : acquisition, poursuite, décodage, position. Référence : Borre et al., <i>A Software-Defined GPS and Galileo Receiver</i> (Birkhäuser, 2007) ; logiciels libres GNSS-SDR et RTKLIB pour comparer</td></tr>
+  </tbody></table></div>
 </section>
 
 <section id="voile" class="panel">
@@ -8162,6 +8228,7 @@ for snr_db in (10, 15, 20):
 <script src="vivant.js?v=20261119a"></script>
 <script src="religions.js?v=20261119a"></script>
 <script src="industrie2.js?v=20261119a"></script>
+<script src="gps.js?v=20261119c"></script>
 <script src="bulletin.js?v=20261119g"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
