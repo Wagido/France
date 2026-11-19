@@ -848,8 +848,54 @@
   <ul class="mo-ul">
     <li><b>Créée à partir de rien, mais dépensée pour quelque chose de bien réel.</b> Reprenons le prêt de la partie 2 : les 200 000 € ont payé une maison au vendeur, qui les garde et les dépense. Vous, vous avez la maison. Le remboursement, c'est vous qui rendez l'équivalent de ce que vous avez obtenu, en travaillant. Si personne ne remboursait, chacun pourrait obtenir des maisons contre de simples écritures, la monnaie s'accumulerait sans que la production suive, et les prix s'envoleraient.</li>
     <li><b>Le remboursement détruit la monnaie</b> : la dette et le dépôt disparaissent ensemble (voir 2.1). La banque ne « récupère » pas l'argent pour elle ; elle ne garde que les intérêts.</li>
-    <li><b>Et les intérêts ?</b> Ils paient le service de la banque et le risque qu'elle prend : si vous ne remboursez pas, c'est elle qui perd, sur ses fonds propres (voir 2.4). Le détail du calcul est dans la partie 4.</li>
+    <li><b>Et les intérêts ?</b> Ils paient le service de la banque et le risque qu'elle prend : si vous ne remboursez pas et que la garantie ne suffit pas, c'est elle qui perd, sur ses fonds propres (voir ci-dessous). Le détail du calcul est dans la partie 4.</li>
   </ul>
+  <div class="callout small" id="mo-rembourser"><p style="margin:0 0 6px"><b>« La banque crée l'argent à partir de rien » : faut-il quand même rembourser ? Et la banque n'a-t-elle pas tous les avantages ?</b></p><ul>
+    <li><b>La banque crée de la monnaie, pas des richesses</b> : les 200 000 € créés pour vous ont payé une maison bien réelle, construite par des gens qui ont échangé leur temps de travail. Le crédit est un échange : des biens produits par d'autres aujourd'hui, contre votre travail de demain. L'analogie avec le voisin qui vous prête tient donc : l'argent est né d'une écriture, mais ce que vous avez reçu, non.</li>
+    <li><b>Mais la monnaie de banque centrale, elle, ne se crée pas.</b> Quand vous payez le vendeur, client d'une autre banque, votre banque doit lui transférer des <b>réserves</b> (étape ② du crédit pas à pas, en 2.1). La « réserve fractionnaire » dit seulement qu'une banque n'en garde qu'une petite fraction (1 % des dépôts dans la zone euro) ; elle ne lui permet pas d'en fabriquer. La banque centrale les fournit à la demande, sans limite de quantité, mais <b>à son prix</b> (le taux directeur, autour de 2 %). Le coût de l'argent pour la banque n'est donc pas nul, et sa marge sur un crédit immobilier est souvent inférieure à un point (voir le calcul du taux en 4.2).</li>
+    <li><b>Si vous ne remboursez pas, l'ordre des pertes est le suivant</b> :
+      <ol style="margin:4px 0 4px 18px;padding:0">
+        <li><b>l'emprunteur d'abord</b> : la caution paie la banque puis se retourne contre lui, ou la maison hypothéquée est vendue aux enchères, souvent sous le prix du marché ; en France, si la vente ne suffit pas, la dette restante survit, et le créancier peut saisir l'épargne et une partie du salaire (en laissant un minimum insaisissable) ;</li>
+        <li><b>la caution</b> (Crédit Logement, cautions mutuelles), financée par les cotisations de tous les emprunteurs ;</li>
+        <li><b>la banque</b>, sur ses fonds propres, pour ce qui reste vraiment irrécouvrable ;</li>
+        <li>dans une crise grave, <b>les créanciers et les déposants</b> (au-delà de 100 000 € garantis), puis <b>l'État</b>, comme en 2008.</li>
+      </ol>
+      Le simulateur ci-dessous montre qui perd quoi.</li>
+    <li><b>« Elle récupère la maison de toute façon » : pas tout à fait.</b> La banque ne garde ni la maison ni le surplus : le bien est vendu, la dette est payée sur le prix, et <b>s'il reste de l'argent, il revient à l'emprunteur</b>. La procédure prend un à trois ans et coûte cher. Et quand les prix s'effondrent, la maison ne couvre plus la dette : en Espagne, après 2008, les banques ont croulé sous des logements saisis invendables et ont dû être renflouées (environ 40 milliards d'euros prêtés par l'Europe en 2012).</li>
+    <li><b>La garantie profite aussi à l'emprunteur</b> : c'est parce que le crédit est garanti par la maison qu'il est le moins cher (autour de 3 %, contre 6 à 8 % pour un crédit à la consommation et 15 à 20 % pour un crédit renouvelable). Sans garantie, ceux qui remboursent paieraient pour ceux qui ne remboursent pas.</li>
+    <li><b>Où sont les vrais avantages des banques ?</b> Moins dans la marge du crédit immobilier que dans : les <b>dépôts à vue non rémunérés</b> (une forme de seigneuriage) ; la <b>garantie implicite de l'État</b> pour les banques « trop grandes pour faire faillite », qui les fait emprunter moins cher (le FMI l'a chiffrée en 2014 à des dizaines de milliards par an dans la zone euro) : c'est le véritable aléa moral du système ; les <b>produits vendus avec le crédit</b> (frais de dossier, assurance emprunteur, longtemps très rentable, jusqu'à la loi Lemoine de 2022 qui permet d'en changer à tout moment) ; et le fait que le <b>risque de baisse des prix</b> reste chez l'emprunteur.</li>
+    <li><b>La société accepte déjà que certaines dettes ne soient pas remboursées</b> : la procédure de surendettement de la Banque de France peut aller jusqu'à l'effacement (« rétablissement personnel »), le plus souvent après la vente du logement ; les dettes des États sont restructurées (Grèce, 2012) ; l'anthropologue David Graeber rappelle les annulations de dettes des rois de Mésopotamie et le « jubilé » biblique (<i>Dette : 5 000 ans d'histoire</i>, 2011). La frontière morale passe entre celui qui <b>ne peut pas</b> payer, que la société protège, et celui qui <b>ne veut pas</b> payer après avoir reçu des biens réels.</li>
+  </ul></div>
+
+  <h3>Simulateur : si l'emprunteur ne rembourse plus, qui perd quoi ?</h3>
+  <div class="callout">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 18px">
+      <label>Capital restant dû <input type="range" id="mo-df-r" min="20000" max="400000" step="5000" value="180000"> <b id="mo-df-r-v"></b></label>
+      <label>Prix obtenu à la vente aux enchères <input type="range" id="mo-df-p" min="0" max="400000" step="5000" value="150000"> <b id="mo-df-p-v"></b></label>
+      <label>Intérêts de retard et frais de procédure <input type="range" id="mo-df-f" min="0" max="40000" step="1000" value="12000"> <b id="mo-df-f-v"></b></label>
+      <label>Épargne et autres biens saisissables <input type="range" id="mo-df-e" min="0" max="100000" step="1000" value="8000"> <b id="mo-df-e-v"></b></label>
+      <label>Saisies sur salaire les années suivantes <input type="range" id="mo-df-s" min="0" max="100000" step="1000" value="15000"> <b id="mo-df-s-v"></b></label>
+      <label>Garantie du prêt <select id="mo-df-g"><option value="caution">caution (Crédit Logement…)</option><option value="hypo">hypothèque</option></select></label>
+      <label><input type="checkbox" id="mo-df-sur"> L'emprunteur obtient un effacement (surendettement)</label>
+    </div>
+    <div id="mo-df-g1" class="chart" style="margin-top:10px"></div>
+    <div id="mo-df-out"></div>
+  </div>
+
+  <div class="callout small" id="mo-mabanque"><p style="margin:0 0 6px"><b>Et si je créais ma propre banque, pour prêter à ma femme ? Si elle ne rembourse pas, je saisis la maison : une maison gratuite ?</b></p><ul>
+    <li><b>Ce qu'il faut pour être une banque</b> : un <b>agrément</b> d'établissement de crédit, délivré dans la zone euro par la BCE sur proposition de l'Autorité de contrôle prudentiel et de résolution (ACPR) ; un <b>capital minimum de 5 millions d'euros</b> (directive européenne CRD) ; au moins deux dirigeants jugés compétents et honorables ; un plan d'affaires crédible ; un contrôle interne, une lutte anti-blanchiment, l'adhésion au fonds de garantie des dépôts ; puis le respect permanent des ratios de fonds propres et de liquidité. La procédure dure souvent plus d'un an. On peut aussi devenir « établissement de paiement » ou « de monnaie électronique », plus simple, mais sans droit de faire du crédit.</li>
+    <li><b>Prêter à sa famille est encadré</b> : les prêts aux dirigeants et à leurs proches doivent être accordés aux conditions du marché et déclarés, et aucun client (ou groupe lié) ne peut représenter plus de 25 % des fonds propres de la banque. Un prêt de complaisance, c'est un abus de biens sociaux, voire une fraude.</li>
+    <li><b>Pourquoi ce n'est pas une maison gratuite</b> :
+      <ol style="margin:4px 0 4px 18px;padding:0">
+        <li>votre banque crée 300 000 € sur le compte de votre femme : jusque-là, rien n'a de valeur ;</li>
+        <li>votre femme paie le vendeur, client d'une autre banque : votre banque doit lui transférer <b>300 000 € de réserves</b>, qu'elle ne peut pas créer ; elle les puise dans son capital ou les emprunte, au taux directeur ou auprès d'épargnants qu'il faut rémunérer ;</li>
+        <li>le vendeur, lui, est parti avec 300 000 € bien réels : c'est votre banque, donc vous comme actionnaire, qui a payé la maison ;</li>
+        <li>si votre femme ne rembourse pas, la banque fait vendre la maison et se rembourse sur le prix ; elle ne peut pas la garder pour vous, et le surplus éventuel revient à votre femme. Au mieux, votre banque récupère ce qu'elle a avancé ; au pire, elle perd la différence.</li>
+      </ol>
+      Le circuit est fermé : la monnaie créée a été détruite, et la maison a été payée par le capital de la banque. Aucune richesse n'est apparue.</li>
+    <li><b>Qui a vraiment le pouvoir de « battre monnaie » ?</b> Seule la <b>banque centrale</b> émet la monnaie qui a <b>cours légal</b> : les billets et les réserves (article 128 du traité sur le fonctionnement de l'Union européenne). Les banques créent de la monnaie <b>scripturale</b>, qui n'est acceptée que parce qu'elle est convertible à tout moment, un pour un, en billets ou en réserves. C'est cette promesse qui les oblige à se procurer de la monnaie centrale, et qui les limite.</li>
+    <li><b>Créer sa propre monnaie, c'est permis… mais personne n'est obligé de l'accepter</b> : les banques écossaises émettaient leurs propres billets au XIXᵉ siècle (et le font encore, adossés à des livres sterling de la Banque d'Angleterre) ; aux États-Unis, l'époque du « free banking » (1837-1863) a vu des milliers de billets privés, et de nombreuses faillites de banques « sauvages » ; les monnaies locales françaises (l'eusko au Pays basque) sont adossées un pour un à des euros ; le bitcoin n'est garanti par personne, d'où sa volatilité ; les « stablecoins » sont adossés à des dollars ou des euros, et encadrés en Europe par le règlement MiCA (2024). Ce qui fait la valeur de l'euro, c'est que l'État l'impose pour payer les impôts et régler les dettes, et qu'une banque centrale en défend la valeur.</li>
+  </ul></div>
 
   <h3 id="mo-3-2" class="li-sub">3.2 À qui l'État emprunte-t-il vraiment ?</h3>
   <ul class="mo-ul">
@@ -7991,6 +8037,7 @@ for snr_db in (10, 15, 20):
 <script src="agriculture.js?v=20261118d"></script>
 <script src="rendements.js?v=20261118d"></script>
 <script src="monnaie.js?v=20261118d"></script>
+<script src="monnaie2.js?v=20261119a"></script>
 <script src="limites.js?v=20261118d"></script>
 <script src="sociologie.js?v=20261118d"></script>
 <script src="chaine.js?v=20261118d"></script>
