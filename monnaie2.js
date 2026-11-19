@@ -103,3 +103,23 @@ function init() {
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+/* Calculateur inflation (2.2) */
+(() => {
+"use strict";
+const $ = s => document.querySelector(s);
+const f1 = v => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }), f0 = v => Math.round(v).toLocaleString("fr-FR");
+function calc() {
+  const p = +$("#mo-inf-p").value / 100, i = +$("#mo-inf-i").value / 100, n = +$("#mo-inf-n").value;
+  $("#mo-inf-p-v").textContent = f1(p * 100) + " %"; $("#mo-inf-i-v").textContent = f1(i * 100) + " %"; $("#mo-inf-n-v").textContent = n + " ans";
+  const r = (1 + i) / (1 + p) - 1, billet = 100 / Math.pow(1 + p, n), place = 100 * Math.pow(1 + r, n), dette = 100 / Math.pow(1 + p, n);
+  const dbl = p > 0 ? Math.log(2) / Math.log(1 + p) : null;
+  $("#mo-inf-out").innerHTML = `<ul style="margin:0">
+    <li><b>Taux réel</b> (taux moins inflation) : <b style="color:${r < 0 ? "var(--neg)" : "var(--pos)"}">${f1(r * 100)} %</b> par an. ${r < 0 ? "L'emprunteur gagne, l'épargnant perd : l'inflation rembourse une partie de la dette à sa place." : r > 0.04 ? "Un taux réel élevé : l'épargne est bien rémunérée, mais emprunter et investir coûte cher." : ""}</li>
+    <li><b>100 € en billets</b> gardés ${n} ans valent <b>${f0(billet)} €</b> d'aujourd'hui${dbl ? ` ; les prix doublent en ${f0(dbl)} ans` : p < 0 ? " : en déflation, garder ses billets rapporte, d'où la tentation de ne plus dépenser" : ""}.</li>
+    <li><b>100 € placés</b> à ce taux valent <b>${f0(place)} €</b> d'aujourd'hui au bout de ${n} ans.</li>
+    <li><b>Une dette de 100 €</b> sans intérêt pèse au bout de ${n} ans comme <b>${f0(dette)} €</b> d'aujourd'hui${p < 0 ? " : la déflation alourdit les dettes" : ""}.</li></ul>`;
+}
+function init() { if (!$("#mo-inf-p")) return; ["#mo-inf-p", "#mo-inf-i", "#mo-inf-n"].forEach(s => $(s).addEventListener("input", calc)); calc(); }
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
