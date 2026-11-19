@@ -7428,7 +7428,7 @@
   <p class="lead">Comment une information traverse-t-elle l'air, une fibre de verre ou 36 000 km de vide ? Cet article, écrit pour des ingénieurs, suit le plan d'un cours d'école : la physique des ondes et des antennes, la théorie du signal et de l'information (Fourier, Shannon, modulations), le choix des fréquences, puis les grands systèmes (wifi, téléphone mobile, fibre, câbles sous-marins, satellites) et, pour finir, comment écouter les ondes et programmer soi-même une radio, une antenne ou un module wifi. Chaque notion est illustrée par un graphique ou un simulateur.</p>
   <div class="kpis" id="tc-kpis"></div>
   <ul class="mo-ul cr-toc">
-    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie1"><b>I. La physique : ondes, antennes, propagation</b></a><ul><li><a href="#telecom" data-to="tc-onde">1. L'onde électromagnétique et le spectre</a></li><li><a href="#telecom" data-to="tc-antenne">2. L'antenne : rayonner et capter</a></li><li><a href="#telecom" data-to="tc-propag">3. La propagation : affaiblissement, obstacles, atmosphère</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie1"><b>I. La physique : ondes, antennes, propagation</b></a><ul><li><a href="#telecom" data-to="tc-onde">1. L'onde électromagnétique et le spectre</a></li><li><a href="#telecom" data-to="tc-maxwell">1.1 Les équations de Maxwell en images</a></li><li><a href="#telecom" data-to="tc-antenne">2. L'antenne : rayonner et capter</a></li><li><a href="#telecom" data-to="tc-propag">3. La propagation : affaiblissement, obstacles, atmosphère</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie2"><b>II. Le signal et l'information</b></a><ul><li><a href="#telecom" data-to="tc-fourier">4. Fourier et l'échantillonnage : le signal vu en fréquences</a></li><li><a href="#telecom" data-to="tc-shannon">5. Shannon : la limite absolue du débit</a></li><li><a href="#telecom" data-to="tc-modul">6. Les modulations : mettre des bits sur une onde</a></li><li><a href="#telecom" data-to="tc-ofdm">7. OFDM, accès multiple et codes correcteurs</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie3"><b>III. Pourquoi telle fréquence et pas une autre ?</b></a><ul><li><a href="#telecom" data-to="tc-choix">8. Le compromis portée, débit, pénétration</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie4"><b>IV. Les grands systèmes</b></a><ul><li><a href="#telecom" data-to="tc-wifi">9. Le wifi</a></li><li><a href="#telecom" data-to="tc-mobile">10. Le téléphone mobile : de la 1G à la 5G</a></li><li><a href="#telecom" data-to="tc-fibre">11. La fibre optique</a></li><li><a href="#telecom" data-to="tc-cables">12. Câbles sous-marins et satellites : pourquoi les deux ?</a></li></ul></li>
@@ -7448,6 +7448,43 @@
   <label style="display:block;max-width:640px;margin:8px 0">Fréquence <input type="range" id="tc-f" min="3" max="15" step="0.05" value="9.38" style="width:60%"> <b id="tc-f-v"></b></label>
   <div id="tc-spectre" class="chart"></div>
   <div id="tc-f-info" class="kpis"></div>
+
+  <h3 id="tc-maxwell" class="li-sub">1.1 Les équations de Maxwell en images</h3>
+  <p>Toute l'électricité, le magnétisme, la lumière et les ondes radio tiennent en quatre équations, écrites par James Clerk Maxwell en 1865. Elles parlent de deux champs, le champ électrique <b>E</b> et le champ magnétique <b>B</b>, et de deux opérations : la <b>divergence</b> et le <b>rotationnel</b>.</p>
+  <div class="callout small"><ul>
+    <li><b>La divergence</b> (div), c'est « ce qui sort » : imaginez une toute petite boîte autour d'un point ; si plus de champ en sort qu'il n'en entre, la divergence est positive (une source), si plus en entre, elle est négative (un puits).</li>
+    <li><b>Le rotationnel</b> (rot), c'est « ce qui fait tourner » : posez une toute petite roue à aubes dans le champ, comme dans un courant d'eau ; si elle se met à tourner, le rotationnel n'est pas nul, et sa vitesse de rotation le mesure. Le simulateur affiche cette roue sous votre souris.</li>
+    <li><b>Leurs versions « intégrales »</b>, plus intuitives : le flux qui sort d'une surface fermée (somme de la divergence à l'intérieur, théorème d'Ostrogradski), et la circulation le long d'une boucle (somme du rotationnel sur la surface qu'elle entoure, théorème de Stokes). Le cercle pointillé du simulateur les calcule.</li>
+  </ul></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Équation</th><th>Forme locale</th><th>Forme intégrale</th><th>En mots</th><th>Ce qu'on en fait</th></tr></thead><tbody>
+    <tr><td><b>Gauss</b></td><td>div <b>E</b> = ρ / ε₀</td><td>flux de E sortant d'une surface fermée = charge intérieure / ε₀</td><td>les charges sont les sources du champ électrique</td><td>condensateurs, électrostatique</td></tr>
+    <tr><td><b>Gauss magnétique</b></td><td>div <b>B</b> = 0</td><td>flux de B sortant d'une surface fermée = 0</td><td>pas de charge magnétique : les lignes de B se referment</td><td>pas de pôle nord isolé</td></tr>
+    <tr><td><b>Faraday</b></td><td>rot <b>E</b> = −∂<b>B</b>/∂t</td><td>circulation de E sur une boucle = −dΦ(B)/dt</td><td>un B qui varie crée un E qui tourne</td><td>alternateur, transformateur, induction</td></tr>
+    <tr><td><b>Ampère-Maxwell</b></td><td>rot <b>B</b> = μ₀ <b>J</b> + μ₀ε₀ ∂<b>E</b>/∂t</td><td>circulation de B sur une boucle = μ₀ (courant traversant + ε₀ dΦ(E)/dt)</td><td>un courant, ou un E qui varie, crée un B qui tourne</td><td>électroaimant, moteur, et… les ondes</td></tr>
+  </tbody></table></div>
+  <div class="callout">
+    <div class="seg" id="mx-scene" role="radiogroup" aria-label="Équation" style="margin-bottom:6px">
+      <button type="button" data-s="gauss" aria-pressed="true">div E = ρ/ε₀</button>
+      <button type="button" data-s="divb" aria-pressed="false">div B = 0</button>
+      <button type="button" data-s="faraday" aria-pressed="false">rot E = −∂B/∂t</button>
+      <button type="button" data-s="ampere" aria-pressed="false">rot B = μ₀J</button>
+      <button type="button" data-s="onde" aria-pressed="false">Les quatre : l'onde</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:6px">
+      <div class="seg" id="mx-sub"></div>
+      <label id="mx-rad-l">Rayon du cercle : <input type="range" id="mx-rad" min="0.05" max="0.5" step="0.01" value="0.18" style="vertical-align:middle"></label>
+      <label id="mx-f-l" hidden>Longueur d'onde : <input type="range" id="mx-f" min="10" max="40" step="1" value="20" style="vertical-align:middle"></label>
+      <label id="mx-h-l" hidden><input type="checkbox" id="mx-h"> afficher le champ magnétique</label>
+    </div>
+    <canvas id="mx-canvas" style="width:100%;max-width:900px;border-radius:8px;display:block;touch-action:none"></canvas>
+    <p id="mx-txt" style="margin:8px 0 0;font-size:.9rem"></p>
+    <p class="muted" style="font-size:.78rem;margin:4px 0 0">Déplacez la souris (ou le doigt) sur le champ : la roue à aubes mesure le rotationnel, le cercle pointillé le flux et la circulation. Les champs sont vus en coupe, en deux dimensions (des fils chargés ou parcourus par un courant, perpendiculaires à l'écran). Dans la scène « onde », un clic crée une impulsion.</p>
+  </div>
+  <div class="callout small"><ul>
+    <li><b>Comment naît l'onde</b> : dans le vide, sans charge ni courant, il reste rot E = −∂B/∂t et rot B = μ₀ε₀ ∂E/∂t. En combinant les deux, on obtient l'équation d'onde ∇²E = μ₀ε₀ ∂²E/∂t² : une perturbation qui se propage à la vitesse <b>c = 1/√(μ₀ε₀)</b>. Avec les valeurs mesurées en laboratoire pour ε₀ (électrostatique) et μ₀ (magnétisme), on trouve 299 792 km/s, la vitesse de la lumière : c'est ainsi que Maxwell a découvert que la lumière est une onde électromagnétique. Heinrich Hertz a produit les premières ondes radio en 1887.</li>
+    <li><b>Dans l'onde</b>, E et B sont perpendiculaires entre eux et à la direction de propagation, en phase, avec |E| = c |B|. L'énergie transportée par seconde et par m² vaut le vecteur de Poynting, E × B / μ₀.</li>
+    <li><b>Ce que la simulation calcule</b> : la scène « onde » découpe l'espace en cellules et applique à chaque pas de temps les deux équations de rotationnel sur une grille décalée (Yee, 1966). C'est exactement la méthode qu'utilisent les ingénieurs pour concevoir les antennes de téléphones, les radars ou les fours à micro-ondes.</li>
+  </ul></div>
 
   <h3 id="tc-antenne" class="ag-part">2. L'antenne : rayonner et capter</h3>
   <p>Une antenne est un conducteur dans lequel on fait osciller des électrons à la fréquence voulue. Elle rayonne efficacement quand sa taille est de l'ordre de la longueur d'onde : le <b>dipôle demi-onde</b> (deux brins de λ/4) est la référence. C'est pourquoi les antennes des grandes ondes sont des pylônes de plusieurs centaines de mètres et celles du wifi des pistes de 3 cm sur un circuit imprimé. La même antenne sert à émettre et à recevoir (réciprocité).</p>
@@ -8229,6 +8266,7 @@ for snr_db in (10, 15, 20):
 <script src="religions.js?v=20261119a"></script>
 <script src="industrie2.js?v=20261119a"></script>
 <script src="gps.js?v=20261119c"></script>
+<script src="maxwell.js?v=20261119c"></script>
 <script src="bulletin.js?v=20261119g"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
