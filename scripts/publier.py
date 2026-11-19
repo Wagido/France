@@ -11,7 +11,7 @@ import re, sys
 
 NON_PUBLIE = ["societe", "histoire"]                 # valeurs data-group des rubriques à ne pas publier
 PUBLIES = {"societe": ["electorat"]}     # onglets publiés malgré tout dans ces rubriques
-ONGLETS_NON_PUBLIES = ["roches", "infrastructures", "reseaux", "meteo", "chimie", "energie-physique", "telecom", "voile"]        # onglets retirés de la version publiée, dans des rubriques publiées
+ONGLETS_NON_PUBLIES = ["roches", "infrastructures", "reseaux", "meteo", "chimie", "energie-physique", "telecom", "voile", "vivant"]        # onglets retirés de la version publiée, dans des rubriques publiées
 
 p = sys.argv[1]
 t = open(p, encoding="utf-8").read()
