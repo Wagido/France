@@ -43,6 +43,7 @@
       <a href="#prosperite">Pays prospère ?</a>
       <a href="#repartition">Répartition du PIB</a>
       <a href="#argent-public">Argent public</a>
+      <a href="#bulletin">Bulletin de salaire</a>
       <a href="#argent-prive">Argent privé</a>
       <a href="#niveau-vie">Vit-on mieux qu'avant ?</a>
       <a href="#cycle-vie">La vie en euros</a>
@@ -226,6 +227,63 @@
   <p class="lead">Chaque bande a l'épaisseur d'un montant. De gauche à droite : ce que la France produit, ce qui est prélevé et ce qui est laissé au privé, ce que devient l'argent public (il fait fonctionner les services publics ou revient au privé par la redistribution), et, au final, l'argent privé. Survolez ou touchez un bloc pour voir son détail.</p>
   <div class="sk-scroll"><div id="rp-sankey" class="chart"></div></div>
   <div class="callout small" id="rp-txt"></div>
+</section>
+
+<section id="bulletin" class="panel">
+  <div class="panel-head"><h2>Le bulletin de salaire : du coût pour l'employeur au net du salarié, ligne par ligne <span class="geo-fixed">France, novembre 2026</span></h2></div>
+  <p class="lead">Entre ce que paie l'employeur et ce que le salarié touche sur son compte, il y a une trentaine de lignes : cotisations sociales, contributions, CSG, réductions et impôt. Ce simulateur reconstitue un bulletin de salaire complet pour un salarié du privé à temps plein, avec les taux en vigueur en novembre 2026, et montre où va chaque euro : retraite, santé, famille, chômage, État. C'est l'autre face de l'onglet <a href="#argent-public">Argent public</a>, qui suit ces mêmes euros du côté de ceux qui les dépensent.</p>
+  <div class="callout small">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px"><b>Exemples :</b>
+      <button type="button" class="bu-pre" data-b="smic">SMIC</button>
+      <button type="button" class="bu-pre" data-b="2800">Salaire médian</button>
+      <button type="button" class="bu-pre" data-b="3550">Salaire moyen</button>
+      <button type="button" class="bu-pre" data-b="5000" data-c="1">Cadre 5 000 €</button>
+      <button type="button" class="bu-pre" data-b="10000" data-c="1">Cadre 10 000 €</button>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <label>Salaire brut mensuel <input type="number" id="bu-brut" min="1867" max="40000" step="10" value="2800" style="width:110px"> €</label>
+      <input type="range" id="bu-brut-r" min="1867" max="12000" step="10" value="2800" style="flex:1;min-width:200px">
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px">
+      <label>Statut <select id="bu-cadre"><option value="0">non-cadre</option><option value="1">cadre</option></select></label>
+      <label>Entreprise <select id="bu-eff"><option value="5">moins de 11 salariés</option><option value="30" selected>11 à 49 salariés</option><option value="100">50 salariés et plus</option></select></label>
+      <label>Versement mobilité <select id="bu-vm"><option value="0">aucun</option><option value="2" selected>2 % (grande agglomération)</option><option value="3.2">3,2 % (Paris, Hauts-de-Seine)</option></select></label>
+      <label>Mutuelle (total par mois) <input type="number" id="bu-mut" value="80" min="0" max="400" step="5" style="width:60px"> €, dont employeur <select id="bu-mutp"><option value="0.5" selected>50 %</option><option value="0.6">60 %</option><option value="1">100 %</option></select></label>
+      <label>Taux accidents du travail <input type="number" id="bu-at" value="2.08" min="0.5" max="8" step="0.01" style="width:60px"> %</label>
+    </div>
+  </div>
+  <div class="kpis" id="bu-kpis"></div>
+
+  <h3 class="ag-part" id="bu-p1">1. Où vont 100 € payés par l'employeur</h3>
+  <div id="bu-100" class="chart"></div>
+  <div class="legend-row" id="bu-100-leg"></div>
+  <p class="muted" id="bu-100-txt" style="font-size:.85rem"></p>
+
+  <h3 class="ag-part" id="bu-p2">2. Le bulletin, ligne par ligne</h3>
+  <p class="muted" style="margin:0 0 6px">Présenté dans l'ordre du « bulletin clarifié » obligatoire depuis 2018 : cotisations regroupées par risque couvert. Base : montant sur lequel s'applique le taux ; T1 = tranche jusqu'au plafond de la Sécurité sociale (4 005 €/mois), T2 = au-delà.</p>
+  <div class="table-scroll"><table class="cmp-t" id="bu-table"></table></div>
+
+  <h3 class="ag-part" id="bu-p3">3. Selon le niveau de salaire : qui paie combien ?</h3>
+  <p>Les prélèvements ne sont pas proportionnels. Près du SMIC, la <b>réduction générale</b> efface l'essentiel des cotisations patronales ; elle disparaît progressivement jusqu'à 3 SMIC. Au-delà du plafond de la Sécurité sociale, certaines cotisations s'arrêtent, d'autres augmentent (retraite complémentaire de tranche 2), et l'impôt sur le revenu, progressif, prend le relais.</p>
+  <div id="bu-courbe" class="chart"></div>
+  <div class="legend-row" id="bu-courbe-leg"></div>
+
+  <h3 class="ag-part" id="bu-p4">4. Comprendre les lignes</h3>
+  <div class="grid2">
+    <div class="callout small"><ul>
+      <li><b>Brut, net, coût employeur</b> : le <b>salaire brut</b> est celui du contrat. L'employeur paie en plus ses cotisations (le « coût employeur », autrefois appelé « super-brut ») ; le salarié voit retirer du brut ses propres cotisations, la CSG et la CRDS, pour obtenir le <b>net à payer avant impôt</b>. L'impôt sur le revenu est ensuite prélevé à la source.</li>
+      <li><b>Salarié ou employeur, une distinction juridique</b> : économiquement, toutes les cotisations font partie du coût du travail ; la répartition entre « part salariale » et « part patronale » est une convention, qui varie beaucoup d'un pays à l'autre. En France, la part patronale est particulièrement lourde.</li>
+      <li><b>Les cotisations « contributives »</b> ouvrent des droits proportionnels à ce que l'on a cotisé : retraite de base (jusqu'au plafond), retraite complémentaire Agirc-Arrco (en points), allocations chômage. Les autres financent des prestations versées selon les besoins, sans lien avec le salaire : santé, famille, logement.</li>
+      <li><b>La CSG</b> (contribution sociale généralisée, créée en 1991 par Michel Rocard) et la <b>CRDS</b> (1996, remboursement de la dette sociale) sont des impôts : elles touchent aussi les retraites, les revenus du patrimoine et les jeux. Elles portent sur 98,25 % du brut (abattement forfaitaire pour frais professionnels) plus la part de mutuelle payée par l'employeur. Une partie de la CSG (6,8 points) est déductible du revenu imposable ; le reste (2,4 points) et la CRDS ne le sont pas : c'est pourquoi le « net imposable » est supérieur au net payé.</li>
+    </ul></div>
+    <div class="callout small"><ul>
+      <li><b>La réduction générale (RGDU)</b> : depuis 1993, l'État allège les cotisations patronales sur les bas salaires pour encourager l'emploi peu qualifié. Réformée au 1ᵉʳ janvier 2026, elle est désormais unique et dégressive : au niveau du SMIC, elle retire environ 40 % du brut (39,81 % dans une entreprise de moins de 50 salariés) et s'annule à 3 SMIC. Elle remplace aussi les anciens taux réduits de cotisation maladie et famille. Ces allègements coûtent plusieurs dizaines de milliards d'euros par an ; la Sécurité sociale est compensée par l'État, notamment par une part de la TVA.</li>
+      <li><b>Le plafond de la Sécurité sociale</b> (4 005 € par mois en 2026) : au-dessus, la retraite de base ne cotise plus qu'au taux « déplafonné », et la retraite complémentaire passe en tranche 2, plus chère, avec la contribution d'équilibre technique (CET). L'assurance chômage s'arrête à 4 plafonds (16 020 €/mois), la retraite complémentaire à 8 plafonds.</li>
+      <li><b>Les contributions qui ne financent pas la Sécurité sociale</b> : formation professionnelle et taxe d'apprentissage (formation des salariés et des apprentis), versement mobilité (transports en commun de l'agglomération, au-delà de 10 salariés), participation à l'effort de construction (logement des salariés, à partir de 50), FNAL (aides au logement), contribution au dialogue social (financement des syndicats et organisations patronales).</li>
+      <li><b>L'impôt prélevé à la source</b> : calculé ici avec le <b>taux neutre</b> (barème officiel 2026), celui d'un célibataire sans enfant ni autres revenus. Le taux réel du foyer, transmis par l'administration fiscale, peut être très différent.</li>
+    </ul></div>
+  </div>
+  <p class="muted" style="font-size:.78rem">Paramètres en vigueur en novembre 2026 : SMIC horaire 12,31 € depuis juin 2026 (12,02 € de janvier à mai), plafond mensuel de la Sécurité sociale 4 005 €, taux de cotisation, réduction générale (Tmin 0,02 ; Tdelta 0,3781 sous 50 salariés, 0,3821 au-delà ; exposant 1,75) et grille du taux neutre 2026, tels que codés dans le modèle de calcul officiel de l'Urssaf utilisé par mon-entreprise.urssaf.fr (paquet « modele-social », version 11.1.0, juillet 2026). Simplifications : temps plein, 151,67 heures, pas d'heures supplémentaires, de primes ni d'avantages en nature, pas de prévoyance conventionnelle (sauf la prévoyance cadre obligatoire de 1,5 %), taux accidents du travail moyen national, régime général hors Alsace-Moselle et outre-mer. Les montants peuvent différer de quelques euros d'un vrai bulletin, et la mutuelle dépend du contrat de l'entreprise. Salaire médian : environ 2 180 € net par mois dans le privé en 2023, salaire moyen environ 2 730 € net (INSEE, salariés du privé en équivalent temps plein).</p>
 </section>
 
 <section id="argent-prive" class="panel">
@@ -6771,6 +6829,7 @@ for snr_db in (10, 15, 20):
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118o"></script>
+<script src="bulletin.js?v=20261119b"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
 <script src="sciences2.js?v=20261118h"></script>
