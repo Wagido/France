@@ -4557,6 +4557,154 @@
     <div><h3>Arrivées et départs par an</h3><div id="im-flux" class="chart"></div></div>
   </div>
   <h3>Comparer les pays</h3><div id="im-cmp" class="chart"></div>
+  <h2 class="cr-partie" id="im2-top">L'immigration en France, en détail</h2>
+  <p class="lead">Qui arrive, pourquoi, avec quels diplômes, qui décide, et ce que cela coûte et rapporte. Les chiffres viennent de l'INSEE (recensement et enquête Emploi 2025, publiés en juin 2026) et d'Eurostat (titres de séjour et asile, jusqu'en 2025).</p>
+  <ol class="cr-toc">
+    <li><a href="#immigration" data-to="im2-def">Les mots et les chiffres de base</a></li>
+    <li><a href="#immigration" data-to="im2-flux">Qui entre chaque année, et pour quelle raison ?</a></li>
+    <li><a href="#immigration" data-to="im2-diplomes">Quels diplômes ?</a></li>
+    <li><a href="#immigration" data-to="im2-travail">Emploi et chômage</a></li>
+    <li><a href="#immigration" data-to="im2-decide">Qui décide du nombre d'entrées ? Y a-t-il des quotas ?</a></li>
+    <li><a href="#immigration" data-to="im2-chomage">Pourquoi faire venir des travailleurs alors qu'il y a du chômage ?</a></li>
+    <li><a href="#immigration" data-to="im2-cout">Ce que l'immigration coûte et rapporte</a></li>
+    <li><a href="#immigration" data-to="im2-europe">La France comparée à ses voisins</a></li>
+    <li><a href="#immigration" data-to="im2-histoire">Cinquante ans de politiques migratoires</a></li>
+  </ol>
+
+  <h3 id="im2-def" class="ag-part">1. Les mots et les chiffres de base</h3>
+  <div class="callout small"><ul>
+    <li><b>Immigré</b> : né étranger à l'étranger et vivant en France. On le reste toute sa vie, même devenu Français. <b>Étranger</b> : n'a pas la nationalité française, qu'il soit né à l'étranger ou en France. <b>Descendant d'immigré</b> : né en France d'au moins un parent immigré.</li>
+    <li><b>En 2025, 8,0 millions d'immigrés vivent en France, soit 11,6 % de la population</b>. Un tiers d'entre eux (2,6 millions) sont devenus Français. Les étrangers sont 6,3 millions (9,1 %), dont 1 million nés en France. S'y ajoutent 1,7 million de Français nés à l'étranger (enfants d'expatriés, rapatriés d'Algérie), qui ne sont pas des immigrés.</li>
+    <li><b>Origines</b> : 49 % des immigrés sont nés en Afrique, 30 % en Europe, 14 % en Asie. Les sept premiers pays de naissance sont l'Algérie (12,6 %), le Maroc (11,7 %), le Portugal (7,2 %), la Tunisie (4,9 %), l'Italie, la Turquie (3,5 % chacune) et l'Espagne (3,0 %).</li>
+    <li><b>Sur trois générations</b> : 7,5 millions de personnes sont enfants d'immigrés (12 % de la population). Parmi les moins de 60 ans, un sur trois a au moins un parent ou un grand-parent immigré.</li>
+    <li><b>Où ?</b> 36 % des immigrés vivent en Île-de-France ; ils sont 21 % de la population de Paris et près d'un tiers de celle de la Seine-Saint-Denis.</li>
+  </ul></div>
+  <h3>Le nombre d'immigrés depuis 1921</h3>
+  <div id="im2-stock" class="chart"></div><div class="legend-row" id="im2-stock-leg"></div>
+  <p class="muted" style="font-size:.8rem">Trois vagues se lisent : l'entre-deux-guerres (Italiens, Polonais, Belges, pour reconstruire et remplacer les morts de 14-18), les Trente Glorieuses (Portugais, Espagnols, Maghrébins, pour l'industrie et le bâtiment), puis la hausse depuis 2000, plus diversifiée et davantage liée à la famille, aux études et à l'asile. La part stagne entre 1975 et 1999, après l'arrêt de l'immigration de travail en 1974. La série est rompue en 2024 (meilleure mesure au recensement) : la hausse 2023-2024 est en partie un effet de méthode. Source : <a href="https://www.insee.fr/fr/statistiques/3633212" target="_blank" rel="noopener">INSEE, L'essentiel sur les immigrés et les étrangers</a> (juin 2026).</p>
+
+  <h3 id="im2-flux" class="ag-part">2. Qui entre chaque année, et pour quelle raison ?</h3>
+  <p><b>Deux façons de compter</b>. L'INSEE compte les personnes nées à l'étranger qui s'installent pour au moins un an : <b>313 000 immigrés entrés en 2024</b> (347 000 en 2023), Européens compris. Le ministère de l'Intérieur et Eurostat comptent les <b>premiers titres de séjour</b> délivrés aux non-Européens : <b>345 600 en 2024, 377 500 en 2025</b>. Les deux chiffres ne mesurent pas la même chose : les citoyens de l'Union européenne n'ont pas besoin de titre, et un titre peut être délivré à quelqu'un arrivé une année précédente (régularisation, étudiant qui change de statut). Et il y a des départs : environ 1 immigré sur 5 repart dans les années qui suivent.</p>
+  <h3>Premiers titres de séjour par motif, 2008-2025</h3>
+  <div id="im2-motifs" class="chart"></div><div class="legend-row" id="im2-motifs-leg"></div>
+  <div class="callout small"><ul>
+    <li><b>La famille reste le premier motif</b> (91 000 titres en 2025, environ un quart), mais elle stagne depuis quinze ans. Elle recouvre surtout les conjoints et parents de Français, et les membres de famille d'étrangers régulièrement installés. Le <b>regroupement familial</b> au sens strict (un étranger qui fait venir sa femme et ses enfants) n'en représente qu'une petite partie, de l'ordre de 10 000 à 15 000 personnes par an : il faut 18 mois de séjour régulier, des revenus au moins égaux au SMIC et un logement adapté, vérifiés par la mairie et l'OFII.</li>
+    <li><b>Les études ont doublé</b> : 52 000 en 2008, 118 000 en 2025. La France est l'un des premiers pays d'accueil d'étudiants étrangers ; ce sont les universités et les écoles qui les sélectionnent (via Campus France). Une partie reste ensuite pour travailler.</li>
+    <li><b>Le travail a presque triplé</b> : 22 000 en 2008, 59 000 en 2023-2024, 51 000 en 2025. En 2024, on compte environ 2 800 « cartes bleues européennes » (très qualifiés), 6 700 chercheurs et 48 000 autres salariés (dont beaucoup dans les métiers en tension, et des saisonniers agricoles).</li>
+    <li><b>« Humanitaire et autres » bondit en 2025</b> (117 000) : réfugiés et protégés, étrangers malades, victimes de violences, régularisations et visiteurs. Les protections accordées par l'OFPRA ont nettement augmenté (Afghans, Soudanais, Ukrainiens, Haïtiens).</li>
+  </ul></div>
+  <h3>Pourquoi les immigrés disent être venus</h3>
+  <p class="muted" style="font-size:.85rem">Motif principal déclaré par les immigrés arrivés après 15 ans, selon l'origine (en %). INSEE, enquête Emploi 2025.</p>
+  <div id="im2-raisons" class="chart"></div><div class="legend-row" id="im2-raisons-leg"></div>
+  <p class="muted" style="font-size:.8rem">Les Portugais, Espagnols et Italiens sont surtout venus travailler ; les Maghrébins et les Turcs, surtout pour la famille ; les Asiatiques du Sud-Est (réfugiés du Cambodge, du Laos, du Vietnam après 1975) et une partie des Africains, pour se protéger. Source : <a href="https://www.insee.fr/fr/statistiques/6472909" target="_blank" rel="noopener">INSEE</a>.</p>
+  <h3>L'asile</h3>
+  <div id="im2-asile" class="chart"></div><div class="legend-row" id="im2-asile-leg"></div>
+  <div class="callout small"><ul>
+    <li><b>Comment ça marche</b> : une personne qui craint d'être persécutée dans son pays (convention de Genève, 1951) ou menacée par une guerre (« protection subsidiaire », droit européen) peut demander l'asile. L'<b>OFPRA</b>, un établissement public indépendant, instruit la demande ; en cas de refus, on peut faire appel devant la <b>Cour nationale du droit d'asile</b> (CNDA). Ce n'est pas un choix politique annuel : c'est une obligation internationale examinée au cas par cas.</li>
+    <li><b>Combien ?</b> Environ 116 000 premières demandes en 2025 (145 000 au pic de 2023). En première instance, l'OFPRA a accordé une protection dans 38 % des cas en 2024 et 40 % en 2025 ; l'appel ajoute des protections supplémentaires.</li>
+    <li><b>Les déboutés</b> : ceux qui sont refusés doivent en principe quitter le territoire. En pratique, une petite partie des obligations de quitter le territoire (OQTF) est exécutée, moins d'une sur cinq selon les rapports parlementaires, faute d'accord des pays d'origine pour reprendre leurs ressortissants, de places en rétention ou parce que les personnes disparaissent. Beaucoup restent alors en situation irrégulière : leur nombre est inconnu, estimé par le ministère de l'Intérieur entre 600 000 et 900 000 ; l'Aide médicale d'État, réservée aux sans-papiers, compte environ 450 000 bénéficiaires.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.8rem">Source : Eurostat, <a href="https://ec.europa.eu/eurostat/databrowser/view/migr_resfirst/default/table" target="_blank" rel="noopener">migr_resfirst</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/migr_resocc/default/table" target="_blank" rel="noopener">migr_resocc</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/migr_asyappctza/default/table" target="_blank" rel="noopener">migr_asyappctza</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/migr_asydcfsta/default/table" target="_blank" rel="noopener">migr_asydcfsta</a> (premières instances).</p>
+
+  <h3 id="im2-diplomes" class="ag-part">3. Quels diplômes ?</h3>
+  <p class="muted" style="font-size:.85rem">Plus haut diplôme des 15-64 ans ayant fini leurs études (en %). INSEE, enquête Emploi 2025.</p>
+  <div id="im2-dipl" class="chart"></div><div class="legend-row" id="im2-dipl-leg"></div>
+  <div class="callout small"><ul>
+    <li><b>Un profil « en sablier »</b> : les immigrés sont à la fois beaucoup plus souvent sans diplôme (34 % contre 13 % des personnes sans ascendance migratoire) <b>et</b> aussi souvent diplômés au-delà de bac + 2 (30 % contre 29 %). Il leur manque surtout les niveaux intermédiaires (CAP, bac, bac + 2), typiques du système scolaire français.</li>
+    <li><b>Selon les origines, des écarts énormes</b> : la moitié des immigrés venus d'Espagne ou d'Italie ont plus que bac + 2, contre 6 % de ceux venus du Portugal ou de Turquie, arrivés pour des emplois ouvriers. Les arrivées récentes sont plus diplômées que les anciennes, notamment à cause des étudiants.</li>
+    <li><b>Les enfants rattrapent largement</b> : chez les descendants d'immigrés, la part sans diplôme tombe à 16 %, proche de la moyenne nationale (16 %), et 27 % ont plus que bac + 2. L'école fait une grande partie du chemin en une génération, avec de fortes différences selon les origines.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.8rem">Source : <a href="https://www.insee.fr/fr/statistiques/4187349" target="_blank" rel="noopener">INSEE, niveau de diplôme des immigrés et descendants d'immigrés</a>.</p>
+
+  <h3 id="im2-travail" class="ag-part">4. Emploi et chômage</h3>
+  <div id="im2-emploi" class="chart"></div><div class="legend-row" id="im2-emploi-leg"></div>
+  <div class="callout small"><ul>
+    <li><b>Les immigrés travaillent moins et chôment deux fois plus</b> : 62 % des 15-64 ans sont en emploi, contre 72 % des personnes sans ascendance migratoire ; parmi les actifs, 12,4 % sont au chômage contre 6,5 %. L'écart d'emploi vient surtout des <b>femmes</b>, souvent arrivées pour raisons familiales et moins souvent actives.</li>
+    <li><b>Pourquoi ?</b> Moins de diplômes en moyenne ; des diplômes étrangers mal reconnus (un médecin ou un ingénieur peut finir aide-soignant ou technicien) ; la langue ; des réseaux professionnels plus faibles ; la concentration dans des quartiers et des secteurs où le chômage est élevé ; et des <b>discriminations</b>, mesurées par les « testings » : à CV identique, un nom à consonance maghrébine reçoit nettement moins de réponses (DARES, 2021).</li>
+    <li><b>Des métiers où ils sont très présents</b> : aides à domicile, employés de maison, agents d'entretien, ouvriers du bâtiment, cuisiniers et employés de restauration, gardiens, conducteurs, mais aussi médecins hospitaliers et chercheurs.</li>
+    <li><b>Les descendants d'immigrés</b> ne font pas mieux que leurs parents en taux d'emploi (59,5 %) malgré de meilleurs diplômes : c'est l'un des constats les plus préoccupants, qui renvoie à la ségrégation urbaine et aux discriminations.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.8rem">Source : <a href="https://www.insee.fr/fr/statistiques/4195420" target="_blank" rel="noopener">INSEE, inactivité, chômage et emploi des immigrés</a> (2025).</p>
+
+  <h3 id="im2-decide" class="ag-part">5. Qui décide du nombre d'entrées ? Y a-t-il des quotas ?</h3>
+  <p><b>Non, la France n'a pas de quota global</b>, et personne ne fixe chaque année un nombre d'entrées. L'immigration passe par plusieurs portes, et chacune a ses propres règles et ses propres décideurs. Une partie importante repose sur des <b>droits</b> garantis par la Constitution, les traités européens et la Convention européenne des droits de l'homme : l'État ne peut pas les plafonner, seulement en fixer les conditions.</p>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Porte d'entrée</th><th>Qui décide</th><th>Sur quelle base</th><th>Peut-on fixer un plafond ?</th></tr></thead><tbody>
+    <tr><td><b>Citoyens de l'Union européenne</b></td><td>personne : libre circulation</td><td>traités européens</td><td>non, sauf à sortir de l'UE</td></tr>
+    <tr><td><b>Famille</b> (conjoints de Français, regroupement familial)</td><td>préfectures, consulats, OFII (contrôle des ressources et du logement)</td><td>droit de « mener une vie familiale normale » (Préambule de 1946, Conseil constitutionnel 1993), article 8 de la CEDH, directive européenne de 2003</td><td>non : on peut durcir les conditions (revenus, logement, langue), pas fixer un nombre</td></tr>
+    <tr><td><b>Asile</b></td><td>OFPRA puis CNDA, au cas par cas</td><td>convention de Genève (1951), droit européen, Constitution</td><td>non</td></tr>
+    <tr><td><b>Études</b></td><td>universités et écoles, consulats (visa)</td><td>admission dans un établissement, ressources suffisantes</td><td>en pratique par les capacités d'accueil et les frais d'inscription</td></tr>
+    <tr><td><b>Travail</b></td><td>employeur, puis préfecture (autorisation de travail), consulat (visa)</td><td>l'employeur doit prouver qu'il n'a pas trouvé de candidat en France (« opposabilité de la situation de l'emploi »), sauf pour les <b>métiers en tension</b>, listés par arrêté et par région, et pour les profils qualifiés (« passeport talent »)</td><td>oui, juridiquement possible, mais jamais fait</td></tr>
+    <tr><td><b>Régularisations</b></td><td>préfets</td><td>admission exceptionnelle au séjour : années de présence, travail dans un métier en tension (loi de 2024), liens familiaux</td><td>pouvoir discrétionnaire du préfet</td></tr>
+  </tbody></table></div>
+  <div class="callout small"><ul>
+    <li><b>Les métiers en tension</b> : la liste, fixée par le ministère du Travail après avis des partenaires sociaux et mise à jour en mai 2025, compte environ 80 métiers par région (aides-soignants, couvreurs, cuisiniers, chauffeurs routiers, bouchers, techniciens de maintenance…). Pour ces métiers, l'employeur n'a pas à prouver qu'aucun chômeur ne peut occuper le poste. La loi du 26 janvier 2024 permet aussi à un sans-papiers qui y travaille depuis au moins 12 mois, et vit en France depuis 3 ans, de demander un titre de séjour, jusqu'à fin 2026.</li>
+    <li><b>Les quotas, un vieux débat</b> : en 2008, Nicolas Sarkozy voulait des quotas par grandes catégories ; la commission Mazeaud a conclu qu'ils étaient irréalisables pour la famille et l'asile, et inutiles pour le travail. En 2023-2024, la loi immigration prévoyait que le Parlement fixe des plafonds pluriannuels : le Conseil constitutionnel a censuré la disposition.</li>
+    <li><b>Ailleurs, des quotas existent pour le travail</b> : le Canada fixe chaque année un objectif de résidents permanents (environ 400 000), choisis à 60 % pour l'économie par un système de points (âge, diplôme, langue, offre d'emploi) ; l'Italie publie un « décret flux » de 150 000 à 165 000 travailleurs par an ; les États-Unis plafonnent les visas de travail qualifié H-1B à 85 000. Mais même ces pays ne plafonnent ni l'asile ni, en pratique, la famille proche.</li>
+    <li><b>Le niveau européen pèse de plus en plus</b> : visas Schengen, directives sur la famille, les étudiants et la carte bleue, et le Pacte européen sur la migration et l'asile, adopté en 2024 et applicable depuis juin 2026 (filtrage aux frontières, procédures accélérées, solidarité entre États).</li>
+  </ul></div>
+
+  <h3 id="im2-chomage" class="ag-part">6. Pourquoi faire venir des travailleurs alors qu'il y a du chômage ?</h3>
+  <p>Avec un chômage autour de 8 % (2,6 millions de chômeurs en 2026), la question est légitime. Plusieurs réponses, qui ne s'excluent pas :</p>
+  <div class="callout small"><ul>
+    <li><b>La plupart des immigrés ne viennent pas pour un emploi</b> : le travail ne représente qu'environ 15 à 17 % des premiers titres de séjour. La famille, les études et l'asile reposent sur des droits ou des choix qui ne dépendent pas du marché du travail.</li>
+    <li><b>Les chômeurs et les emplois vacants ne se correspondent pas</b> : métier, qualification, région. Il y a des chômeurs en Seine-Saint-Denis ou dans le Nord et des postes de maçon en Savoie, de saisonnier agricole dans le Lot-et-Garonne, d'infirmier de nuit en Creuse. France Travail recense chaque année environ 2,4 millions de projets d'embauche, dont environ la moitié sont jugés difficiles par les employeurs.</li>
+    <li><b>Certains emplois sont peu attractifs</b> : horaires décalés, pénibilité, salaires bas, temps partiel subi (aide à domicile, nettoyage, restauration, agriculture). Les employeurs y recrutent souvent des immigrés plutôt que d'augmenter les salaires ou d'améliorer les conditions : c'est la critique de ceux qui veulent réduire l'immigration de travail, et elle n'est pas sans fondement dans ces secteurs.</li>
+    <li><b>Le nombre d'emplois n'est pas fixe</b> : un immigré qui travaille consomme, paie un loyer, crée de la demande et donc d'autres emplois. Les économistes appellent « sophisme de la masse fixe de travail » l'idée qu'un emploi pris par l'un est forcément perdu pour un autre. Les études sur les grandes arrivées soudaines (les rapatriés d'Algérie en France en 1962, les Cubains de Miami en 1980) trouvent des effets faibles sur le chômage et les salaires des locaux, sauf parfois pour les moins qualifiés, en concurrence directe.</li>
+    <li><b>La démographie</b> : les générations du baby-boom partent à la retraite ; le nombre de personnes en âge de travailler stagnerait sans immigration. Les métiers du grand âge, de la santé et du bâtiment en ont un besoin croissant.</li>
+    <li><b>Les alternatives</b> : former et accompagner les chômeurs vers ces métiers, revaloriser les salaires, automatiser, faire travailler davantage les seniors et les femmes. Tous les pays les combinent avec l'immigration ; le dosage est un choix politique.</li>
+  </ul></div>
+
+  <h3 id="im2-cout" class="ag-part">7. Ce que l'immigration coûte et rapporte</h3>
+  <p>C'est l'une des questions les plus disputées, parce que le résultat dépend de ce que l'on compte. Les études sérieuses arrivent à des montants <b>faibles</b> par rapport à la richesse nationale, positifs ou négatifs selon les hypothèses.</p>
+  <div class="callout small"><ul>
+    <li><b>L'OCDE</b> (<i>Perspectives des migrations internationales 2021</i>, moyenne 2006-2018) : les immigrés versent un peu plus en impôts et cotisations qu'ils ne reçoivent en prestations et services individuels, <b>+1,0 % du PIB</b> par an pour la France. Si on leur impute aussi une part des dépenses collectives (défense, intérêts de la dette, administration), le solde devient <b>−0,9 % du PIB</b>. La moyenne des 25 pays étudiés est proche de zéro.</li>
+    <li><b>Le CEPII</b> (Chojnicki, Ragot et Sokhna, 2018, période 1979-2011) : une contribution nette généralement légèrement négative, toujours comprise entre −0,5 % et +0,5 % du PIB, qui n'a jamais été la cause du déficit public.</li>
+    <li><b>Ce qui pèse sur le solde</b> : un taux d'emploi plus faible, des salaires plus bas (donc moins d'impôts), davantage de prestations sociales (logement, famille, minima), l'hébergement des demandeurs d'asile. L'Aide médicale d'État coûte environ 1,2 milliard d'euros par an, 0,5 % des dépenses d'assurance maladie.</li>
+    <li><b>Ce qui joue en faveur</b> : les immigrés arrivent surtout en âge de travailler, après avoir été élevés et formés aux frais de leur pays d'origine, et coûtent moins en retraites et en santé tant qu'ils sont jeunes. Ils contribuent aussi à la natalité, aux créations d'entreprises et, pour les plus qualifiés, à la recherche et à l'innovation.</li>
+    <li><b>Pourquoi les chiffres divergent dans le débat public</b> : certaines estimations, par exemple celles de l'Observatoire de l'immigration et de la démographie, arrivent à des coûts de plusieurs dizaines de milliards en incluant les descendants, l'ensemble des dépenses publiques ou les coûts de sécurité ; d'autres, en ne comptant que les dépenses directement liées aux immigrés, arrivent à des gains. Le résultat dépend surtout du <b>taux d'emploi</b> : un immigré qui travaille rapporte, un immigré qui ne travaille pas coûte, comme n'importe quel habitant.</li>
+    <li><b>Le consensus des économistes</b> : l'effet budgétaire est modeste ; ce qui compte, c'est la sélection (qualifications) et surtout l'<b>intégration dans l'emploi</b>. C'est là que la France fait moins bien que ses voisins (Allemagne, Royaume-Uni, Canada).</li>
+  </ul></div>
+  <h3>Pourquoi les uns trouvent un coût élevé et les autres un gain : tout dépend de ce qu'on compte</h3>
+  <p class="muted" style="font-size:.85rem">Solde annuel « impôts et cotisations versés moins dépenses publiques reçues », en % du PIB (1 % du PIB ≈ 30 milliards d'euros aujourd'hui). Survolez pour voir ce que chaque estimation inclut.</p>
+  <div id="im2-couts" class="chart"></div>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Choix de calcul</th><th>OCDE, sans biens publics</th><th>OCDE, avec biens publics</th><th>CEPII 1979-2011</th><th>Estimations « coût élevé » (OID, 2023)</th></tr></thead><tbody>
+    <tr><td><b>Qui compte-t-on ?</b></td><td>les immigrés</td><td>les immigrés</td><td>les immigrés</td><td>les immigrés et souvent leurs enfants nés en France</td></tr>
+    <tr><td><b>Impôts, cotisations, TVA versés</b></td><td>oui</td><td>oui</td><td>oui</td><td>oui</td></tr>
+    <tr><td><b>Prestations et services individuels</b> (retraites, santé, école, allocations)</td><td>oui</td><td>oui</td><td>oui</td><td>oui</td></tr>
+    <tr><td><b>Biens publics</b> (armée, police, justice, intérêts de la dette, administration)</td><td>non : on considère qu'un habitant de plus ne les augmente pas</td><td>oui, au prorata de la population</td><td>oui, au prorata</td><td>oui, au prorata, parfois avec des coûts spécifiques (sécurité, rétention, asile)</td></tr>
+    <tr><td><b>Part du déficit public</b></td><td>non</td><td>en partie</td><td>oui : chacun « porte » sa part du déficit</td><td>oui, appliquée à une année défavorable</td></tr>
+    <tr><td><b>Effets indirects</b> (croissance, emplois créés, consommation)</td><td>non</td><td>non</td><td>non</td><td>non</td></tr>
+    <tr><td><b>Horizon</b></td><td>une année (moyenne 2006-2018)</td><td>une année</td><td>chaque année de 1979 à 2011</td><td>une année</td></tr>
+  </tbody></table></div>
+  <div class="callout small"><ul>
+    <li><b>Premier levier : les biens publics</b>. L'armée ou les intérêts de la dette ne coûtent pas plus cher parce qu'un habitant arrive. Si on ne les attribue pas aux immigrés, le solde est positif ; si on leur en attribue une part égale à leur poids dans la population, il devient négatif. C'est à lui seul l'écart de près de 2 points de PIB entre les deux barres de l'OCDE.</li>
+    <li><b>Deuxième levier : qui compte-t-on ?</b> Inclure les enfants nés en France, encore à l'école donc « coûteux », alourdit le bilan ; mais il faudrait alors compter aussi les impôts qu'ils paieront adultes. Les compter seulement pendant leurs années coûteuses biaise le calcul.</li>
+    <li><b>Troisième levier : l'horizon</b>. Sur une année, un immigré âgé ou au chômage coûte ; sur une vie entière, un immigré arrivé à 25 ans après une scolarité payée par son pays d'origine est plutôt rentable. Les études de « comptabilité générationnelle » (Chojnicki, 2012) trouvent un effet de long terme légèrement positif.</li>
+    <li><b>Quatrième levier : l'année et la conjoncture</b>. En 2011, après la crise, le déficit public est très élevé : en attribuer une part aux immigrés gonfle mécaniquement leur « coût », comme celui de tout le monde.</li>
+    <li><b>Ce qu'aucune de ces études ne mesure</b> : les effets sur la croissance, les prix, les salaires des autres, l'innovation, mais aussi les coûts difficiles à chiffrer (ségrégation urbaine, sécurité). Ce sont des débats légitimes, mais ils relèvent d'autres méthodes.</li>
+    <li><b>À retenir</b> : aucun chiffre n'est « faux » en soi ; chacun répond à une question différente. Les estimations vont d'environ −1,6 % à +1,0 % du PIB : dans tous les cas, l'immigration n'explique ni le déficit ni la richesse du pays. La variable décisive reste le <b>taux d'emploi</b> des immigrés.</li>
+  </ul></div>
+  <p class="muted" style="font-size:.8rem">Sources : OCDE, <a href="https://www.oecd.org/fr/publications/perspectives-des-migrations-internationales-2021_da2bbd99-fr" target="_blank" rel="noopener">Perspectives des migrations internationales 2021</a>, chapitre 4 ; Fondation Jean-Jaurès, <a href="https://www.jean-jaures.org/publication/le-cout-de-limmigration-en-france-une-fake-news-a-lepreuve-de-la-verite/" target="_blank" rel="noopener">analyse critique du chiffre de 40 milliards</a> ; X. Chojnicki, L. Ragot, N. P. Sokhna, <a href="https://ideas.repec.org/p/cii/cepidt/2018-04.html" target="_blank" rel="noopener">« The fiscal impact of 30 years of immigration in France »</a>, CEPII, 2018 ; Conseil d'analyse économique, <a href="https://cae-eco.fr/static/pdf/cae-focus072.pdf" target="_blank" rel="noopener">Focus n° 72</a> (2021).</p>
+
+  <h3 id="im2-europe" class="ag-part">8. La France comparée à ses voisins</h3>
+  <p class="muted" style="font-size:.85rem">Premiers titres de séjour délivrés à des non-Européens en 2024, pour 1 000 habitants. Eurostat.</p>
+  <div id="im2-eu" class="chart"></div>
+  <p class="muted" style="font-size:.8rem">Avec 5 titres pour 1 000 habitants, la France délivre <b>moins</b> de premiers titres que la moyenne européenne (7,8) et que l'Allemagne, l'Espagne, les Pays-Bas ou la Belgique. En revanche, sa population immigrée est ancienne et nombreuse (11,6 %), du fait des vagues du XXᵉ siècle. Les records de Malte, Chypre, la Croatie ou la Pologne viennent surtout de travailleurs (Ukrainiens, Asiatiques). Ces chiffres n'incluent pas les Ukrainiens sous protection temporaire, comptés à part.</p>
+
+  <h3 id="im2-histoire" class="ag-part">9. Cinquante ans de politiques migratoires</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t"><thead><tr><th>Date</th><th>Mesure</th><th>Ce qu'elle change</th></tr></thead><tbody>
+    <tr><td>1945</td><td>Ordonnance sur l'entrée et le séjour des étrangers ; création de l'Office national d'immigration</td><td>l'État organise le recrutement de main-d'œuvre pour la reconstruction</td></tr>
+    <tr><td>1974</td><td>Suspension de l'immigration de travail</td><td>après le choc pétrolier ; l'immigration familiale devient le premier motif</td></tr>
+    <tr><td>1976-1978</td><td>Décret sur le regroupement familial ; arrêt GISTI du Conseil d'État (1978)</td><td>le droit de faire venir sa famille est reconnu comme un principe général du droit</td></tr>
+    <tr><td>1981</td><td>Régularisation de 130 000 sans-papiers</td><td>première grande régularisation</td></tr>
+    <tr><td>1993</td><td>Lois Pasqua</td><td>durcissement (regroupement familial, nationalité) ; le Conseil constitutionnel consacre le droit à une vie familiale normale</td></tr>
+    <tr><td>1997-1998</td><td>Lois Chevènement et Guigou</td><td>nouvelle régularisation (environ 80 000), retour du droit du sol automatique à 18 ans</td></tr>
+    <tr><td>2006-2007</td><td>Lois Sarkozy et Hortefeux : « immigration choisie »</td><td>conditions de ressources et de langue, contrat d'accueil et d'intégration, carte « compétences et talents »</td></tr>
+    <tr><td>2016</td><td>Loi relative au droit des étrangers</td><td>titre pluriannuel, « passeport talent »</td></tr>
+    <tr><td>2018</td><td>Loi Collomb</td><td>accélération de l'asile, rétention allongée à 90 jours</td></tr>
+    <tr><td>2024</td><td>Loi « pour contrôler l'immigration, améliorer l'intégration » (Darmanin)</td><td>régularisation par les métiers en tension, examen de français pour les cartes pluriannuelles, expulsions facilitées ; 35 articles censurés par le Conseil constitutionnel</td></tr>
+    <tr><td>2026</td><td>Entrée en application du Pacte européen sur la migration et l'asile</td><td>filtrage aux frontières extérieures, procédures accélérées, mécanisme de solidarité entre États</td></tr>
+  </tbody></table></div>
 </section>
 
 <section id="travail" class="panel">
@@ -6947,6 +7095,7 @@ for snr_db in (10, 15, 20):
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118o"></script>
 <script src="decilesankey.js?v=20261119b"></script>
+<script src="immigration2.js?v=20261119a"></script>
 <script src="bulletin.js?v=20261119g"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
