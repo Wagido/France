@@ -23,6 +23,27 @@ const BR = {
   autres: ["Formation, transports, logement", "#94a3b8"]
 };
 
+/* impôt sur le revenu du foyer, barème 2026 (revenus 2025) */
+const BAREME = [[11600, 0], [29579, 11], [84577, 30], [181917, 41], [Infinity, 45]];
+function baremeParPart(q) { let imp = 0, prev = 0; for (const [lim, t] of BAREME) { if (q > prev) imp += (Math.min(q, lim) - prev) * t / 100; prev = lim; } return imp; }
+function impotFoyer(revs, sit, enf) {
+  const abattu = revs.map(r => r - Math.min(14555, Math.max(509, 0.1 * r)));
+  const R = Math.max(0, abattu.reduce((a, b) => a + b, 0)), revTot = revs.reduce((a, b) => a + b, 0);
+  const isole = sit === "isole" && enf > 0;
+  const princ = sit === "couple" ? 2 : 1;
+  const ratt = enf <= 2 ? 0.5 * enf : enf - 1;
+  const maj = isole ? 0.5 : 0, parts = princ + ratt + maj;
+  const brutParts = baremeParPart(R / parts) * parts;
+  const brutPrinc = baremeParPart(R / princ) * princ;
+  const plafond = 1807 * 2 * (ratt - maj) + (isole ? 4262 : 0);
+  const impBrut = Math.max(brutParts, brutPrinc - plafond);
+  const plafonne = impBrut > brutParts + 0.5;
+  const D = sit === "couple" ? 1483 : 897;
+  const decote = Math.max(0, Math.min(impBrut, D - 0.4525 * impBrut));
+  const impot = Math.max(0, Math.round(impBrut - decote));
+  return { impot, impotExact: Math.max(0, impBrut - decote), parts, R, revTot, impBrut, decote, plafonne, gainQF: Math.max(0, brutPrinc - impBrut) };
+}
+
 function calcul(brut, o) {
   const cadre = o.cadre, eff = o.eff, at = o.at / 100, vm = eff > 10 ? o.vm / 100 : 0;
   const mutP = o.mut * o.mutp, mutS = o.mut - mutP;
@@ -77,8 +98,17 @@ function calcul(brut, o) {
   const net = brut - sumS;
   const csgND = baseCSG * 0.029;
   const imposable = net + csgND + mutP;
-  const tx = NEUTRE.find(([lim]) => imposable <= lim)[1];
+  let tx, foyer = null;
+  const fam = o.fam || { sit: "neutre" };
+  if (fam.sit === "neutre") tx = NEUTRE.find(([lim]) => imposable <= lim)[1];
+  else {
+    const revs = [imposable * 12];
+    if (fam.sit === "couple" && fam.conj > 0) revs.push(calcul(Math.max(SMIC, fam.conj), { ...o, cadre: false, fam: { sit: "neutre" } }).imposable * 12);
+    foyer = impotFoyer(revs, fam.sit, fam.enf);
+    tx = foyer.revTot > 0 ? Math.round(foyer.impot / foyer.revTot * 1000) / 10 : 0;
+  }
   const ir = Math.round(imposable * tx) / 100;
+  const irExact = foyer ? (foyer.revTot > 0 ? imposable * 12 * foyer.impotExact / foyer.revTot / 12 : 0) : ir;
   const cout = brut + pat;
   // répartition par branche (la réduction générale est imputée au prorata des cotisations de Sécurité sociale qu'elle allège)
   const parBr = {}; Object.keys(BR).forEach(k => parBr[k] = 0);
@@ -89,10 +119,10 @@ function calcul(brut, o) {
   const patTot = Object.values(patBr).reduce((a, b) => a + b, 0);
   Object.keys(patBr).forEach(k => parBr[k] -= patTot ? rgdu * patBr[k] / patTot : 0);
   parBr.ir = ir; parBr.net = net - ir;
-  return { L, sumS, sumPavant, rgdu, coef, pat, net, imposable, tx, ir, cout, baseCSG, parBr, brut };
+  return { L, sumS, sumPavant, rgdu, coef, pat, net, imposable, tx, ir, irExact, cout, baseCSG, parBr, brut, foyer };
 }
 
-function opts() { return { cadre: $("#bu-cadre").value === "1", eff: +$("#bu-eff").value, vm: +$("#bu-vm").value, mut: +$("#bu-mut").value || 0, mutp: +$("#bu-mutp").value, at: +$("#bu-at").value || 2.08 }; }
+function opts() { const sit = $("#bu-sit").value; return { cadre: $("#bu-cadre").value === "1", eff: +$("#bu-eff").value, vm: +$("#bu-vm").value, mut: +$("#bu-mut").value || 0, mutp: +$("#bu-mutp").value, at: +$("#bu-at").value || 2.08, fam: { sit, enf: +$("#bu-enf").value, conj: sit === "couple" ? (+$("#bu-conj").value || 0) : 0 } }; }
 
 function rendu() {
   let brut = +$("#bu-brut").value || SMIC; if (brut < SMIC) brut = SMIC;
@@ -101,10 +131,54 @@ function rendu() {
     [eur(r.cout, 0), ["coût total pour l'employeur", "par mois"], "Coût employeur"],
     [eur(brut, 0), ["salaire brut du contrat"], "Brut"],
     [eur(r.net, 0), ["net versé avant impôt", `${pct(r.net / brut * 100, 1)} du brut`], "Net avant impôt"],
-    [eur(r.net - r.ir, 0), [`après impôt à la source (taux neutre ${pct(r.tx, 1)})`, `${pct((r.net - r.ir) / r.cout * 100, 1)} du coût employeur`], "Net après impôt"]
+    [eur(r.net - r.ir, 0), [`après impôt à la source (taux ${o.fam.sit === "neutre" ? "neutre" : "du foyer"} ${pct(r.tx, 1)})`, `${pct((r.net - r.ir) / r.cout * 100, 1)} du coût employeur`], "Net après impôt"]
   ]);
-  barre100(r); table(r, o); courbe(o, brut);
+  annuel(r); cascade(r); barre100(r); table(r, o); familles(brut, o); marginal(brut, o); courbe(o, brut);
   document.querySelectorAll(".bu-pre").forEach(b => b.classList.toggle("on", (b.dataset.b === "smic" ? Math.abs(brut - SMIC) < 1 : +b.dataset.b === brut)));
+}
+
+function annuel(r) {
+  const el = $("#bu-an"); if (!el) return;
+  const f = r.foyer;
+  el.innerHTML = `Par an : coût employeur <b>${eur(r.cout * 12, 0)}</b>, brut <b>${eur(r.brut * 12, 0)}</b>, net avant impôt <b>${eur(r.net * 12, 0)}</b>, impôt prélevé <b>${eur(r.ir * 12, 0)}</b>, net après impôt <b>${eur((r.net - r.ir) * 12, 0)}</b> (sans prime ni treizième mois).` + (f ? ` Impôt du foyer : <b>${eur(f.impot, 0)}</b> pour ${String(f.parts).replace(".", ",")} part${f.parts > 1 ? "s" : ""}, revenu net imposable après abattement de 10 % : ${eur(f.R, 0)}${f.decote > 0 ? `, décote ${eur(f.decote, 0)}` : ""}${f.gainQF > 0 ? `, gain dû au quotient familial ${eur(f.gainQF, 0)}${f.plafonne ? " (plafonné)" : ""}` : ""}.` : "");
+}
+function cascade(r) {
+  const el = $("#bu-cascade"); if (!el) return;
+  const st = [["Coût employeur", r.cout, "#1e3a8a", "tot"], ["Cotisations patronales", -r.pat, "#2563eb"], ["Salaire brut", r.brut, "#334155", "tot"], ["Cotisations salariales", -(r.sumS - r.L.filter(l => l.br === "csg").reduce((a, l) => a + l.ms, 0)), "#0ea5e9"], ["CSG et CRDS", -r.L.filter(l => l.br === "csg").reduce((a, l) => a + l.ms, 0), "#0891b2"], ["Net avant impôt", r.net, "#15803d", "tot"], ["Impôt à la source", -r.ir, "#64748b"], ["Net après impôt", r.net - r.ir, "#16a34a", "tot"]];
+  const W = 900, H = 280, m = { l: 10, r: 10, t: 24, b: 54 }, bw = (W - m.l - m.r) / st.length, y = d3.scaleLinear([0, r.cout * 1.05], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`, cur = 0;
+  st.forEach(([l, v, c, tot], i) => {
+    const x = m.l + i * bw + 8, w = bw - 16;
+    let y0, y1; if (tot) { y0 = 0; y1 = v; cur = v; } else { y0 = cur + v; y1 = cur; cur = cur + v; }
+    s += `<rect x="${x}" y="${y(Math.max(y0, y1))}" width="${w}" height="${Math.max(1, Math.abs(y(y0) - y(y1)))}" fill="${c}" rx="3"/>`;
+    s += `<text x="${x + w / 2}" y="${y(Math.max(y0, y1)) - 6}" text-anchor="middle" font-weight="700" style="fill:${c}">${tot || Math.abs(v) < 0.5 ? "" : "−"}${Math.abs(v).toLocaleString("fr-FR", { maximumFractionDigits: 0 })} €</text>`;
+    l.split(" ").reduce((acc, w2) => { const last = acc[acc.length - 1]; if ((last + " " + w2).trim().length > 14) acc.push(w2); else acc[acc.length - 1] = (last + " " + w2).trim(); return acc; }, [""]).forEach((t, j) => s += `<text x="${x + w / 2}" y="${H - m.b + 16 + j * 13}" text-anchor="middle" style="fill:#334155">${t}</text>`);
+    if (i < st.length - 1) s += `<line x1="${x + w}" x2="${x + bw + 8}" y1="${y(cur)}" y2="${y(cur)}" stroke="#94a3b8" stroke-dasharray="3 3"/>`;
+  });
+  el.innerHTML = s + "</svg>";
+}
+const SITS = [["Célibataire, sans enfant", "seul", 0, 0], ["Parent isolé, 1 enfant", "isole", 1, 0], ["Parent isolé, 2 enfants", "isole", 2, 0], ["Couple, conjoint sans revenu", "couple", 0, 0], ["Couple, 2 enfants, conjoint sans revenu", "couple", 2, 0], ["Couple, 2 enfants, conjoint au SMIC", "couple", 2, -1], ["Couple, 3 enfants, conjoint au SMIC", "couple", 3, -1]];
+function familles(brut, o) {
+  const el = $("#bu-fam"); if (!el) return;
+  const rows = SITS.map(([l, sit, enf, conj]) => { const r = calcul(brut, { ...o, fam: { sit, enf, conj: conj < 0 ? SMIC : conj } }); return [l, r.ir * 12, r.tx, r.foyer]; });
+  window.TH.bars(el, rows.map(([l, v, tx], i) => ({ l, v: Math.max(v, 0.001), t: `${eur(v, 0)} par an (taux ${pct(tx, 1)})`, c: ["#64748b", "#a855f7", "#7c3aed", "#0ea5e9", "#2563eb", "#16a34a", "#15803d"][i] })));
+  const base = rows[0][1];
+  $("#bu-fam-txt").innerHTML = `Pour un même salaire brut de ${eur(brut, 0)} par mois, l'impôt sur le revenu prélevé sur ce salaire varie de ${eur(Math.min(...rows.map(r => r[1])), 0)} à ${eur(Math.max(...rows.map(r => r[1])), 0)} par an selon la situation du foyer. Les cotisations sociales, elles, ne changent pas : elles ne dépendent que du salaire. Pour un couple, le taux est celui du foyer, appliqué aux deux salaires.`;
+}
+function marginal(brut, o) {
+  const el = $("#bu-marg"); if (!el) return;
+  const keep = b => { const r1 = calcul(b, o), r2 = calcul(b + 100, o); return ((r2.net - r2.irExact) - (r1.net - r1.irExact)) / (r2.cout - r1.cout); };
+  const k0 = keep(brut);
+  const pts = []; for (let b = SMIC; b <= 10000; b += 20) pts.push([b, keep(b)]);
+  const W = 900, H = 270, m = { l: 50, r: 20, t: 16, b: 44 }, x = d3.scaleLinear([SMIC, 10000], [m.l, W - m.r]), y = d3.scaleLinear([0, .8], [H - m.b, m.t]);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-size:11px">`;
+  [0, .2, .4, .6, .8].forEach(v => s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e2e8f0"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end" style="fill:#64748b">${Math.round(v * 100)} €</text>`);
+  [[SMIC, "SMIC"], [2 * SMIC, "2 SMIC"], [3 * SMIC, "3 SMIC"], [P, "plafond SS", 1], [10000, "10 000 €"]].forEach(([v, l, up]) => s += `<line x1="${x(v)}" x2="${x(v)}" y1="${m.t}" y2="${H - m.b}" stroke="#cbd5e1" stroke-dasharray="3 3"/><text x="${x(v)}" y="${up ? H - m.b + 28 : H - m.b + 16}" text-anchor="${v === 10000 ? "end" : "middle"}" style="fill:#475569">${l}</text>`);
+  s += `<path d="M${pts.map(([b, k]) => `${x(b).toFixed(1)},${y(Math.max(0, Math.min(.8, k))).toFixed(1)}`).join(" L")}" fill="none" stroke="#16a34a" stroke-width="2.5"/>`;
+  s += `<circle cx="${x(Math.min(10000, brut))}" cy="${y(Math.max(0, Math.min(.8, k0)))}" r="6" fill="#111827"/><text x="${x(Math.min(10000, brut)) + 9}" y="${y(Math.max(0, Math.min(.8, k0))) - 8}" font-weight="700">${Math.round(k0 * 100)} € gardés</text>`;
+  s += `<text x="${m.l + 4}" y="${m.t + 4}" style="fill:#64748b">↑ euros nets (après impôt) gardés par le salarié sur 100 € de coût employeur supplémentaire</text>`;
+  el.innerHTML = s + "</svg>";
+  $("#bu-marg-txt").innerHTML = `À ${eur(brut, 0)} brut, si l'employeur dépense 100 € de plus pour augmenter ce salarié, le salarié touche environ <b>${Math.round(k0 * 100)} €</b> de plus après impôt ; le reste part en cotisations, en CSG, en impôt et en réduction générale perdue. ` + (brut < 2 * SMIC ? "Près du SMIC, la réduction générale diminue à mesure que le salaire monte : chaque euro d'augmentation coûte donc à l'employeur nettement plus d'un euro de cotisations. Les économistes parlent de « trappe à bas salaires », l'un des effets pervers des allègements ciblés." : "Les sauts de la courbe viennent des seuils : fin de la réduction générale à 3 SMIC, plafond de la Sécurité sociale, tranches de l'impôt.");
 }
 
 function barre100(r) {
@@ -133,7 +207,7 @@ function table(r, o) {
   h += `<tr style="font-weight:700;border-top:2px solid var(--line)"><td>Total des cotisations et contributions</td><td></td><td></td><td style="text-align:right">${eur(-r.sumS)}</td><td></td><td style="text-align:right">${eur(r.pat)}</td></tr>`;
   h += `<tr style="font-weight:800"><td>Net à payer avant impôt sur le revenu</td><td></td><td></td><td style="text-align:right">${eur(r.net)}</td><td></td><td></td></tr>`;
   h += `<tr><td>Net imposable (net + CSG non déductible + CRDS + part employeur de la mutuelle)</td><td></td><td></td><td style="text-align:right">${eur(r.imposable)}</td><td></td><td></td></tr>`;
-  h += `<tr><td>Impôt prélevé à la source (taux neutre ${pct(r.tx, 1)})</td><td style="text-align:right">${eur(r.imposable)}</td><td style="text-align:right">${pct(r.tx, 1)}</td><td style="text-align:right">${eur(-r.ir)}</td><td></td><td></td></tr>`;
+  h += `<tr><td>Impôt prélevé à la source (taux ${o.fam.sit === "neutre" ? "neutre" : "du foyer"} ${pct(r.tx, 1)})</td><td style="text-align:right">${eur(r.imposable)}</td><td style="text-align:right">${pct(r.tx, 1)}</td><td style="text-align:right">${eur(-r.ir)}</td><td></td><td></td></tr>`;
   h += `<tr style="font-weight:800;color:#16a34a"><td>Net payé au salarié</td><td></td><td></td><td style="text-align:right">${eur(r.net - r.ir)}</td><td></td><td></td></tr>`;
   h += `<tr style="font-weight:800"><td>Coût total pour l'employeur (brut + part employeur)</td><td></td><td></td><td></td><td></td><td style="text-align:right">${eur(r.cout)}</td></tr></tbody>`;
   $("#bu-table").innerHTML = h;
@@ -163,12 +237,13 @@ function courbe(o, brutSel) {
 function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   if (!$("#bulletin")) return;
-  const B = $("#bu-brut"), Rg = $("#bu-brut-r");
+  const B = $("#bu-brut"), Rg = $("#bu-brut-r"); Rg.max = 20000;
   B.min = Rg.min = Math.ceil(SMIC);
-  B.addEventListener("input", () => { Rg.value = Math.min(12000, +B.value || SMIC); rendu(); });
+  B.addEventListener("input", () => { Rg.value = Math.min(20000, +B.value || SMIC); rendu(); });
   Rg.addEventListener("input", () => { B.value = Rg.value; rendu(); });
-  ["bu-cadre", "bu-eff", "bu-vm", "bu-mut", "bu-mutp", "bu-at"].forEach(i => $("#" + i).addEventListener("input", rendu));
-  document.querySelectorAll(".bu-pre").forEach(b => b.addEventListener("click", () => { const v = b.dataset.b === "smic" ? SMIC : +b.dataset.b; B.value = v; Rg.value = Math.min(12000, v); $("#bu-cadre").value = b.dataset.c ? "1" : "0"; rendu(); }));
+  ["bu-cadre", "bu-eff", "bu-vm", "bu-mut", "bu-mutp", "bu-at", "bu-enf", "bu-conj"].forEach(i => $("#" + i).addEventListener("input", rendu));
+  $("#bu-sit").addEventListener("input", () => { $("#bu-conj-l").hidden = $("#bu-sit").value !== "couple"; $("#bu-enf").disabled = $("#bu-sit").value === "neutre"; rendu(); });
+  document.querySelectorAll(".bu-pre").forEach(b => b.addEventListener("click", () => { const v = b.dataset.b === "smic" ? SMIC : +b.dataset.b; B.value = v; Rg.value = Math.min(20000, v); $("#bu-cadre").value = b.dataset.c ? "1" : "0"; rendu(); }));
   try { rendu(); } catch (e) { console.error("bulletin", e); }
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
