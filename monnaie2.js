@@ -56,3 +56,50 @@ function init() {
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+/* Désendettement général (2.5) et déflation de l'étalon-or (partie 1) */
+(() => {
+"use strict";
+const $ = s => document.querySelector(s);
+const f0 = v => Math.round(v).toLocaleString("fr-FR"), f1 = v => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+function dl() {
+  const el = $("#mo-dl-g"); if (!el) return;
+  const r = +$("#mo-dl-r").value, sh = +$("#mo-dl-s").value / 100;
+  $("#mo-dl-r-v").textContent = r + " points de PIB"; $("#mo-dl-s-v").textContent = Math.round(sh * 100) + " %";
+  const D0 = 150, M0 = 110, Y0 = 100, V = Y0 / M0, N = 12, rows = [];
+  let D = D0, M = M0, G = 0;
+  for (let t = 0; t <= N; t++) {
+    const Y = M * V;
+    rows.push({ t, M, Y, ratio: D / Y * 100, G, D });
+    const rep = Math.min(r, D, Math.max(0, M - 5));
+    D -= rep; M -= rep * (1 - sh); G += rep * sh;
+  }
+  const W = Math.max(520, el.clientWidth || 700), H = 260, m = { l: 44, r: 16, t: 12, b: 26 };
+  const x = d3.scaleLinear().domain([0, N]).range([m.l, W - m.r]);
+  const ymax = Math.min(600, d3.max(rows, d => Math.max(d.ratio, d.M, d.Y, d.G)) * 1.1);
+  const y = d3.scaleLinear().domain([0, ymax]).range([H - m.b, m.t]).clamp(true);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").style("font-size", "11px");
+  svg.append("g").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(N).tickFormat(v => "an " + v));
+  svg.append("g").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6));
+  const S = [["M", "#16a34a", "Monnaie (% du PIB de départ)"], ["Y", "#2563eb", "Revenu national en euros (base 100)"], ["ratio", "#dc2626", "Dettes privées / revenu (%)"], ["G", "#7c3aed", "Dette publique supplémentaire (points de PIB)"]];
+  S.forEach(([k, c]) => svg.append("path").datum(rows).attr("fill", "none").attr("stroke", c).attr("stroke-width", 2.2).attr("d", d3.line().x(d => x(d.t)).y(d => y(d[k]))));
+  el.replaceChildren(svg.node());
+  $("#mo-dl-leg").innerHTML = S.map(([, c, l]) => `<span style="display:inline-flex;align-items:center;gap:5px;margin-right:14px;font-size:12px"><span style="width:14px;height:3px;background:${c}"></span>${l}</span>`).join("");
+  const last = rows[N], i2 = rows.findIndex(d => d.ratio > 300);
+  $("#mo-dl-txt").innerHTML = `Après ${N} ans, la monnaie est à ${f0(last.M)} % du PIB de départ, le revenu national en euros à ${f0(last.Y)}, et les dettes privées restantes pèsent <b>${f0(last.ratio)} %</b> de ce revenu (contre 150 % au départ)${i2 > 0 ? `, au-delà de 300 % dès l'année ${i2} : bien avant, les faillites en chaîne auraient interrompu le processus` : ""}. ${sh >= 0.99 ? "L'État emprunte autant que le privé rembourse : la monnaie et le revenu ne bougent pas, la dette passe simplement du privé au public, comme au Japon." : sh > 0 ? "L'emprunt public freine la chute, sans l'empêcher." : "Sans personne pour emprunter à la place, le revenu en euros chute plus vite que la dette : c'est la déflation par la dette."} <i>Modèle volontairement simple : production réelle constante, monnaie qui circule au même rythme, aucun défaut.</i>`;
+}
+function or() {
+  if (!$("#mo-or-g")) return;
+  const g = +$("#mo-or-g").value, mm = +$("#mo-or-m").value;
+  $("#mo-or-g-v").textContent = f1(g) + " % par an"; $("#mo-or-m-v").textContent = f1(mm) + " % par an";
+  const p = (1 + mm / 100) / (1 + g / 100) - 1, p30 = Math.pow(1 + p, 30) - 1;
+  const debt = 100 * Math.pow(1 + g / 100, 30) / Math.pow(1 + mm / 100, 30);
+  $("#mo-or-out").innerHTML = `<p style="margin:0">Prix : <b style="color:${p < 0 ? "var(--neg)" : "var(--pos)"}">${p >= 0 ? "+" : ""}${f1(p * 100)} % par an</b>, soit <b>${p30 >= 0 ? "+" : ""}${f0(p30 * 100)} %</b> en 30 ans. ${p < -0.001 ? `Une dette de 100 000 € contractée au départ pèserait au bout de 30 ans comme <b>${f0(Math.round(debt) * 1000)} €</b> d'aujourd'hui, et un salaire inchangé en euros vaudrait de plus en plus : il faudrait baisser les salaires nominaux chaque année.` : p > 0.001 ? "Le stock d'or croît plus vite que la production : les prix montent, comme après les ruées vers l'or de 1848-1851 ou de 1896." : "Production et or croissent au même rythme : prix stables."}</p>`;
+}
+function init() {
+  if ($("#mo-dl-r")) { ["#mo-dl-r", "#mo-dl-s"].forEach(s => $(s).addEventListener("input", dl)); dl(); }
+  if ($("#mo-or-g")) { ["#mo-or-g", "#mo-or-m"].forEach(s => $(s).addEventListener("input", or)); or(); }
+  addEventListener("hashchange", () => { if (location.hash === "#monnaie") setTimeout(dl, 50); });
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();

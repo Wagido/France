@@ -654,6 +654,20 @@
       <li><b>Et on le suspendait dès que c'était grave</b> : en 1914, tous les pays en guerre suspendent la convertibilité et font financer la guerre par leur banque centrale. La règle d'or ne valait qu'en temps de paix.</li>
     </ul>
   </div>
+  <div class="callout small" id="mo-or-energie"><p style="margin:0 0 6px"><b>Avec l'explosion de l'énergie et de la production, fallait-il forcément abandonner l'or ?</b></p><ul>
+    <li><b>L'arithmétique est implacable</b> : si la monnaie est liée à l'or, elle ne peut croître qu'au rythme du stock d'or, environ <b>1,5 à 2 % par an</b> (on extrait aujourd'hui environ 3 600 tonnes par an, pour un stock d'environ 216 000 tonnes extraites depuis l'origine, selon le World Gold Council). Si la production de biens croît plus vite, à monnaie qui circule au même rythme, les prix doivent baisser d'environ l'écart chaque année : c'est une <b>déflation</b> permanente. Avec une croissance de 5 % par an, comme pendant les Trente Glorieuses, cela ferait des prix en baisse d'environ 3 % par an.</li>
+    <li><b>L'histoire le confirme</b> : de 1873 à 1896, la deuxième révolution industrielle (acier, chemins de fer, vapeur) fait croître la production plus vite que l'or, et les prix baissent pendant vingt ans (la « grande dépression » de l'encadré précédent). Ils remontent après 1896… grâce à la chance : découvertes d'or au Transvaal (1886) et au Klondike (1896), et nouveau procédé d'extraction au cyanure (1887). De même, les ruées vers l'or de Californie (1848) et d'Australie (1851) avaient fait monter les prix dans les années 1850. Le niveau des prix dépendait des chercheurs d'or.</li>
+    <li><b>Mais la baisse des prix n'est pas forcément une catastrophe</b> : quand elle vient de gains de productivité, les revenus réels peuvent continuer de croître (les historiens parlent de « bonne déflation », Bordo, Lane et Redish, 2004). Le problème vient des <b>dettes</b> et des <b>salaires</b>, fixés en monnaie : avec des prix qui baissent, la dette pèse plus lourd et les salaires doivent baisser, ce qui ne se fait pas sans conflit (les paysans endettés américains de 1896).</li>
+    <li><b>Le système avait des soupapes</b> : la monnaie bancaire croissait plus vite que l'or (réserves fractionnaires), puis l'étalon de change-or (1922) et Bretton Woods (1944) ont ajouté des devises (livres, dollars) aux réserves d'or. Dès les années 1960, on craint une « pénurie de liquidités » mondiale : le FMI crée en 1969 les droits de tirage spéciaux (DTS), une monnaie de réserve artificielle, justement parce que l'or ne suffisait plus au commerce mondial.</li>
+    <li><b>Donc oui, en partie</b> : la croissance de la production, portée par l'énergie abondante, rendait l'or structurellement trop rare. Mais l'abandon a eu des causes plus immédiates : financer les guerres (1914), sortir de la crise de 1929 (les pays qui quittent l'or tôt se redressent plus vite), puis, en 1971, les déficits américains (guerre du Vietnam, programmes sociaux) qui rendaient la promesse de convertibilité intenable (le « dilemme de Triffin », encadré Bretton Woods). Il s'y ajoute une raison politique : depuis 1945, les États veulent pouvoir agir sur le chômage, ce que l'or interdit.</li>
+    <li><b>Et le bitcoin ?</b> Sa quantité est plafonnée à 21 millions d'unités par construction : c'est un « or numérique », qui hériterait du même défaut s'il devenait une monnaie, une tendance à la déflation. C'est d'ailleurs ce que recherchent ses partisans, qui y voient une protection contre les banques centrales.</li>
+  </ul>
+  <p style="margin:8px 0 4px"><b>Calculateur : la déflation de l'étalon-or</b></p>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+    <label>Croissance de la production : <input type="range" id="mo-or-g" min="0" max="6" step="0.25" value="3" style="vertical-align:middle"> <b id="mo-or-g-v"></b></label>
+    <label>Croissance du stock d'or : <input type="range" id="mo-or-m" min="0" max="5" step="0.25" value="1.75" style="vertical-align:middle"> <b id="mo-or-m-v"></b></label>
+  </div>
+  <div id="mo-or-out" style="margin-top:6px"></div></div>
   <h3>4. Le chaos : 1914-1944</h3>
   <div class="callout small">
     <ul>
@@ -667,7 +681,7 @@
     <ul>
       <li><b>En juillet 1944, 44 pays se réunissent à Bretton Woods</b>, aux États-Unis. Keynes propose une monnaie internationale (le « bancor ») ; c'est le plan américain qui l'emporte. Le dollar est convertible en or à 35 dollars l'once, mais seulement pour les banques centrales, plus pour les particuliers. Les autres monnaies sont fixées par rapport au dollar. On crée le FMI et la Banque mondiale.</li>
       <li><b>Le contrôle remplace l'or</b> : les mouvements de capitaux sont limités, et en France l'État dirige le crédit (circuit du Trésor, encadrement du crédit, voir la partie 3). C'est une période de forte croissance, d'inflation et de taux réels bas.</li>
-      <li><b>Le défaut de construction</b> : pour que le monde ait assez de dollars, les États-Unis doivent en émettre plus que leur or ne couvre. L'économiste Robert Triffin le prévoit dès 1960 : un jour, la promesse ne pourra plus être tenue. En 1965, de Gaulle dénonce ce « privilège exorbitant » et la France échange ses dollars contre de l'or.</li>
+      <li><b>Le défaut de construction</b> : pour que le monde ait assez de dollars, les États-Unis doivent en émettre plus que leur or ne couvre. L'économiste Robert Triffin le prévoit dès 1960 : un jour, la promesse ne pourra plus être tenue. En 1965, le ministre des Finances Valéry Giscard d'Estaing dénonce ce « privilège exorbitant », de Gaulle réclame le retour à l'or, et la France échange ses dollars contre de l'or (encadré plus bas).</li>
       <li><b>Le 15 août 1971</b>, Nixon suspend la convertibilité du dollar en or. Les monnaies flottent à partir de 1973. Depuis, aucune grande monnaie n'est liée à un métal.</li>
     </ul>
   </div>
@@ -680,6 +694,15 @@
       <li><b>Depuis 2008, la banque centrale crée aussi directement de la monnaie</b> en rachetant des dettes publiques et privées sur les marchés (« assouplissement quantitatif »). La masse monétaire française passe d'environ 49 % du PIB en 1999 à 117 % en 2020.</li>
     </ul>
   </div>
+  <div class="callout small" id="mo-dollar"><p style="margin:0 0 6px"><b>« Les États-Unis se fichent de leur dette, ce sont les autres qui la financent » : qu'est-ce que cela veut dire ?</b></p><ul>
+    <li><b>Le dollar est la monnaie du monde</b> : il représente environ 58 % des réserves de change des banques centrales (l'euro environ 20 %, selon le FMI) ; il est d'un côté de près de 9 transactions de change sur 10 (Banque des règlements internationaux) ; environ la moitié du commerce mondial est facturée en dollars, ainsi que le pétrole et la plupart des matières premières (depuis l'accord de 1974 avec l'Arabie saoudite, le « pétrodollar ») ; près de la moitié des billets de dollars circulent hors des États-Unis.</li>
+    <li><b>Comment le reste du monde finance les Américains</b> : un exportateur chinois, allemand ou saoudien vendu aux États-Unis est payé en dollars. Une banque centrale qui veut se protéger d'une crise (comme les pays d'Asie après 1997) accumule des dollars. Ces dollars ne dorment pas : ils sont placés en <b>bons du Trésor américain</b>, l'actif le plus sûr et le plus facile à revendre du monde. Environ 9 000 milliards de dollars de dette publique américaine sont ainsi détenus par l'étranger, le Japon en tête, devant le Royaume-Uni et la Chine. Cette demande permanente fait baisser les taux auxquels l'État américain emprunte (de l'ordre d'un demi-point à un point selon les estimations du « rendement de commodité »).</li>
+    <li><b>Le résultat</b> : les États-Unis peuvent consommer et investir plus qu'ils ne produisent, avec un déficit extérieur d'environ 3 à 4 % du PIB chaque année depuis des décennies, et un déficit public de 6 % du PIB en temps de paix, sans crise de change. Le reste du monde leur vend des biens réels contre des titres de dette en dollars. C'est le « <b>privilège exorbitant</b> » dénoncé en 1965 par Valéry Giscard d'Estaing, ministre des Finances du général de Gaulle. En 1971, le secrétaire au Trésor américain John Connally le résumait ainsi aux Européens : « Le dollar est notre monnaie, mais c'est votre problème. »</li>
+    <li><b>Une dette dans sa propre monnaie</b> : les États-Unis empruntent en dollars, que la Réserve fédérale peut toujours créer. Ils ne peuvent donc pas être forcés à la faillite comme l'Argentine, qui emprunte en dollars, ou la Grèce, qui empruntait en euros sans contrôler la BCE. Le risque n'est pas le défaut, c'est l'inflation ou la baisse du dollar, que paient… les détenteurs étrangers.</li>
+    <li><b>Un pouvoir, pas seulement un confort</b> : toute transaction en dollars passe par des banques américaines, ce qui permet aux États-Unis d'imposer leurs sanctions au monde entier (gel d'environ 300 milliards de dollars de réserves russes en 2022 par les pays occidentaux ; amende de 8,9 milliards de dollars infligée à BNP Paribas en 2014 pour des transactions avec des pays sous embargo).</li>
+    <li><b>Mais ils ne s'en « fichent » pas</b> : la dette fédérale dépasse 36 000 milliards de dollars, environ 120 % du PIB, et ses intérêts coûtent désormais environ 1 000 milliards par an, plus que le budget de la défense ; l'agence Moody's a retiré aux États-Unis leur dernière note AAA en mai 2025. Le privilège a aussi un revers : la demande mondiale de dollars rend le dollar cher, ce qui pénalise l'industrie américaine ; une partie de l'administration Trump y voit un fardeau autant qu'un avantage, et justifie ainsi ses droits de douane.</li>
+    <li><b>Et demain ?</b> Le « dilemme de Triffin » n'a pas disparu : pour fournir des dollars au monde, les États-Unis doivent s'endetter envers lui, ce qui finit par user la confiance. La Chine pousse le yuan, les BRICS parlent de se passer du dollar, et les banques centrales achètent de l'or à un rythme record (plus de 1 000 tonnes par an de 2022 à 2024). Mais il n'existe pas d'alternative crédible : l'euro n'a pas d'actif sûr unique à la taille du marché américain, et le yuan n'est pas librement convertible. Le dollar reste la monnaie du monde faute de mieux.</li>
+  </ul></div>
   <h3>La monnaie et les prix en France depuis 1870</h3>
   <div class="grid2">
     <div><h3 style="margin-top:0">Masse monétaire (au sens large), en % du PIB</h3><div id="mo-hmon" class="chart"></div></div>
@@ -789,6 +812,20 @@
       <li><b>Quand la monnaie croît plus vite que la production, elle va ailleurs</b> : dans la hausse des prix à la consommation (l'inflation, jusqu'aux années 1980), dans la hausse des prix des logements et des actions (depuis 2000), ou elle reste simplement sur les comptes, épargnée.</li>
     </ul>
   </div>
+  <div class="callout small" id="mo-desendet"><p style="margin:0 0 6px"><b>Et si tout le monde arrêtait d'emprunter ? Les crédits se remboursent, et toute la monnaie disparaît ?</b></p><ul>
+    <li><b>En grande partie, oui</b> : la monnaie des comptes est l'autre face des crédits, et rembourser la détruit (voir 2.3). Il resterait un socle : la monnaie créée par l'achat d'obligations d'État (un État ne rembourse jamais tout, il réemprunte), par les exportations (des dollars convertis en euros) et par l'or et les devises des banques centrales.</li>
+    <li><b>Mais on ne peut pas tout rembourser</b> : ceux qui doivent ne sont pas ceux qui ont l'argent. Pour rembourser, l'emprunteur doit d'abord gagner des euros en vendant son travail ou ses produits à ceux qui en ont. Si tous remboursent en même temps sans réemprunter, chacun dépense moins, les ventes et les revenus baissent, la monnaie se raréfie et les prix baissent (la <b>déflation</b>). Les dettes, elles, restent fixées en euros : leur poids réel augmente, les défauts se multiplient, des banques font faillite et des dépôts disparaissent avec elles. C'est la <b>déflation par la dette</b> d'Irving Fisher (1933) : plus on rembourse, plus la dette pèse.</li>
+    <li><b>C'est déjà arrivé</b> : aux États-Unis, de 1929 à 1933, la masse monétaire chute d'environ un tiers, les prix d'environ un quart, le chômage atteint 25 %. Au Japon, après 1990, les entreprises se désendettent pendant quinze ans malgré des taux nuls (la « récession de bilan » décrite par Richard Koo) ; la monnaie ne s'effondre pas parce que l'État emprunte à leur place, et sa dette passe d'environ 60 % à plus de 200 % du PIB. Dans la zone euro, en 2012-2014, le crédit recule, et la BCE répond par des taux négatifs et des rachats massifs de titres.</li>
+    <li><b>La leçon</b> : dans ce système, quelqu'un doit être endetté pour que la monnaie existe. Si les ménages et les entreprises se désendettent, il faut qu'un autre emprunte à leur place : l'<b>État</b> (par le déficit), la <b>banque centrale</b> (par ses achats de titres) ou l'<b>étranger</b> (par un excédent commercial). C'est l'idée des « soldes sectoriels » de Wynne Godley : les dettes des uns sont les avoirs des autres.</li>
+    <li><b>Une monnaie qui ne serait pas une dette ?</b> Les pièces d'or ne l'étaient pas, mais leur quantité dépendait des mines (encadré plus haut, partie 1). La « monnaie pleine » (seule la banque centrale crée la monnaie, sans dette) a été rejetée par 76 % des Suisses en 2018. La « monnaie hélicoptère » (un versement direct aux ménages) reste théorique. En théorie, une économie peut tourner avec deux fois moins de monnaie et des prix deux fois plus bas ; en pratique, la transition est dévastatrice, parce que les salaires et les dettes ne baissent pas d'eux-mêmes.</li>
+  </ul>
+  <p style="margin:8px 0 4px"><b>Simulateur : un désendettement général</b> (point de départ inspiré de la France : dettes des ménages et des entreprises ≈ 150 % du PIB, monnaie ≈ 110 % du PIB ; production supposée constante, la monnaie circulant au même rythme)</p>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+    <label>Remboursement net chaque année : <input type="range" id="mo-dl-r" min="2" max="15" step="1" value="8" style="vertical-align:middle"> <b id="mo-dl-r-v"></b></label>
+    <label>Part compensée par l'emprunt public : <input type="range" id="mo-dl-s" min="0" max="100" step="10" value="0" style="vertical-align:middle"> <b id="mo-dl-s-v"></b></label>
+  </div>
+  <div id="mo-dl-g" class="chart"></div><div class="legend-row" id="mo-dl-leg"></div>
+  <p class="muted" style="font-size:.82rem;margin:4px 0 0" id="mo-dl-txt"></p></div>
 
   <h3>La monnaie est l'autre face du crédit</h3>
   <div id="mo-credit" class="chart"></div><div class="legend-row" id="mo-credit-legend"></div>
@@ -8037,7 +8074,7 @@ for snr_db in (10, 15, 20):
 <script src="agriculture.js?v=20261118d"></script>
 <script src="rendements.js?v=20261118d"></script>
 <script src="monnaie.js?v=20261118d"></script>
-<script src="monnaie2.js?v=20261119a"></script>
+<script src="monnaie2.js?v=20261119b"></script>
 <script src="limites.js?v=20261118d"></script>
 <script src="sociologie.js?v=20261118d"></script>
 <script src="chaine.js?v=20261118d"></script>
