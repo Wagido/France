@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261118dz">
+<link rel="stylesheet" href="style.css?v=20261118dzx">
 <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <!-- Mesure d'audience GoatCounter (sans cookies) : une visite par onglet consulté -->
 <script>
@@ -7428,7 +7428,7 @@
   <p class="lead">Comment une information traverse-t-elle l'air, une fibre de verre ou 36 000 km de vide ? Cet article, écrit pour des ingénieurs, suit le plan d'un cours d'école : la physique des ondes et des antennes, la théorie du signal et de l'information (Fourier, Shannon, modulations), le choix des fréquences, puis les grands systèmes (wifi, téléphone mobile, fibre, câbles sous-marins, satellites) et, pour finir, comment écouter les ondes et programmer soi-même une radio, une antenne ou un module wifi. Chaque notion est illustrée par un graphique ou un simulateur.</p>
   <div class="kpis" id="tc-kpis"></div>
   <ul class="mo-ul cr-toc">
-    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie1"><b>I. La physique : ondes, antennes, propagation</b></a><ul><li><a href="#telecom" data-to="tc-onde">1. L'onde électromagnétique et le spectre</a></li><li><a href="#telecom" data-to="tc-maxwell">1.1 Les équations de Maxwell en images</a></li><li><a href="#telecom" data-to="tc-antenne">2. L'antenne : rayonner et capter</a></li><li><a href="#telecom" data-to="tc-propag">3. La propagation : affaiblissement, obstacles, atmosphère</a></li></ul></li>
+    <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie1"><b>I. La physique : ondes, antennes, propagation</b></a><ul><li><a href="#telecom" data-to="tc-onde">1. L'onde électromagnétique et le spectre</a></li><li><a href="#telecom" data-to="tc-maxwell">1.1 Les équations de Maxwell en images</a></li><li><a href="#telecom" data-to="tc-maxwell-math">1.2 Les ondes de Maxwell en équations</a></li><li><a href="#telecom" data-to="tc-antenne">2. L'antenne : rayonner et capter</a></li><li><a href="#telecom" data-to="tc-propag">3. La propagation : affaiblissement, obstacles, atmosphère</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie2"><b>II. Le signal et l'information</b></a><ul><li><a href="#telecom" data-to="tc-fourier">4. Fourier et l'échantillonnage : le signal vu en fréquences</a></li><li><a href="#telecom" data-to="tc-shannon">5. Shannon : la limite absolue du débit</a></li><li><a href="#telecom" data-to="tc-modul">6. Les modulations : mettre des bits sur une onde</a></li><li><a href="#telecom" data-to="tc-ofdm">7. OFDM, accès multiple et codes correcteurs</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie3"><b>III. Pourquoi telle fréquence et pas une autre ?</b></a><ul><li><a href="#telecom" data-to="tc-choix">8. Le compromis portée, débit, pénétration</a></li></ul></li>
     <li class="cr-toc-p"><a href="#telecom" data-to="tc-partie4"><b>IV. Les grands systèmes</b></a><ul><li><a href="#telecom" data-to="tc-wifi">9. Le wifi</a></li><li><a href="#telecom" data-to="tc-mobile">10. Le téléphone mobile : de la 1G à la 5G</a></li><li><a href="#telecom" data-to="tc-fibre">11. La fibre optique</a></li><li><a href="#telecom" data-to="tc-cables">12. Câbles sous-marins et satellites : pourquoi les deux ?</a></li></ul></li>
@@ -7498,6 +7498,70 @@
   <ul style="margin-top:6px">
     <li><b>Et dans un câble ?</b> Ce ne sont pas les électrons qui transportent le signal : ils dérivent à peine, de l'ordre du millimètre par seconde. L'énergie voyage dans les <b>champs</b>, autour et entre les conducteurs (le vecteur de Poynting), à une vitesse proche de celle de la lumière (environ deux tiers de c dans un câble coaxial). Les conducteurs servent de guides au champ.</li>
   </ul></div>
+
+  <h3 id="tc-maxwell-math" class="li-sub">1.2 Les ondes de Maxwell en équations : de la théorie aux ordres de grandeur</h3>
+  <p>Cette partie suit le raisonnement d'un cours de physique de premier cycle universitaire ou de classe préparatoire : des quatre équations à l'équation d'onde, puis à ce qu'elle dit de l'énergie, des matériaux et des antennes.</p>
+
+  <p><b>1. Les outils.</b> L'opérateur nabla, ∇ = (∂/∂x, ∂/∂y, ∂/∂z), permet d'écrire, pour un champ <b>A</b> = (A<sub>x</sub>, A<sub>y</sub>, A<sub>z</sub>) :</p>
+  <div class="mx-eq">div <b>A</b> = ∇·<b>A</b> = ∂A<sub>x</sub>/∂x + ∂A<sub>y</sub>/∂y + ∂A<sub>z</sub>/∂z <small>un nombre : ce qui sort</small></div>
+  <div class="mx-eq">rot <b>A</b> = ∇×<b>A</b> = ( ∂A<sub>z</sub>/∂y − ∂A<sub>y</sub>/∂z , ∂A<sub>x</sub>/∂z − ∂A<sub>z</sub>/∂x , ∂A<sub>y</sub>/∂x − ∂A<sub>x</sub>/∂y ) <small>un vecteur : l'axe et la vitesse de la roue à aubes</small></div>
+  <div class="mx-eq">∇²f = ∂²f/∂x² + ∂²f/∂y² + ∂²f/∂z² <small>le laplacien : écart d'un point à la moyenne de ses voisins</small></div>
+
+  <p><b>2. Les équations dans le vide</b> (pas de charge, pas de courant : ρ = 0, <b>J</b> = 0), avec ε₀ = 8,854 × 10⁻¹² F/m et μ₀ ≈ 4π × 10⁻⁷ H/m :</p>
+  <div class="mx-eq">∇·<b>E</b> = 0 &nbsp;&nbsp;&nbsp; ∇·<b>B</b> = 0 &nbsp;&nbsp;&nbsp; ∇×<b>E</b> = −∂<b>B</b>/∂t &nbsp;&nbsp;&nbsp; ∇×<b>B</b> = μ₀ε₀ ∂<b>E</b>/∂t</div>
+
+  <p><b>3. L'équation d'onde.</b> On prend le rotationnel de l'équation de Faraday, et on utilise l'identité ∇×(∇×<b>E</b>) = ∇(∇·<b>E</b>) − ∇²<b>E</b> :</p>
+  <div class="mx-eq">∇×(∇×<b>E</b>) = −∂(∇×<b>B</b>)/∂t = −μ₀ε₀ ∂²<b>E</b>/∂t² &nbsp;&nbsp; et &nbsp;&nbsp; ∇×(∇×<b>E</b>) = ∇(∇·<b>E</b>) − ∇²<b>E</b> = −∇²<b>E</b></div>
+  <div class="mx-eq">∇²<b>E</b> = μ₀ε₀ ∂²<b>E</b>/∂t² = (1/c²) ∂²<b>E</b>/∂t² &nbsp;&nbsp;&nbsp; avec &nbsp;&nbsp; c = 1/√(μ₀ε₀) = 299 792 458 m/s</div>
+  <p>C'est l'équation de d'Alembert, celle d'une corde vibrante, mais en trois dimensions et pour chaque composante du champ ; on obtient la même pour <b>B</b>. En 1865, Maxwell calcule 1/√(μ₀ε₀) à partir des mesures de Weber et Kohlrausch, trouve environ 310 000 km/s, la vitesse de la lumière mesurée par Fizeau, et conclut : « la lumière est une perturbation électromagnétique ».</p>
+
+  <p><b>4. La solution la plus simple : l'onde plane progressive.</b> Cherchons une onde qui avance selon z :</p>
+  <div class="mx-eq"><b>E</b>(z, t) = E₀ cos(kz − ωt) <b>e</b><sub>x</sub> &nbsp;&nbsp; avec &nbsp;&nbsp; k = 2π/λ (nombre d'onde), ω = 2πf (pulsation)</div>
+  <p>En la remplaçant dans l'équation d'onde : −k² E = −(ω²/c²) E, donc <b>ω = c k</b>, c'est-à-dire <b>λ f = c</b> (la relation de dispersion du vide : toutes les fréquences vont à la même vitesse). Puis :</p>
+  <ul class="mo-ul">
+    <li><b>L'onde est transverse</b> : ∇·<b>E</b> = 0 impose E<sub>z</sub> = 0. Le champ électrique est perpendiculaire à la direction de propagation ; sa direction s'appelle la <b>polarisation</b> (rectiligne ici ; circulaire pour le GPS, chapitre 17).</li>
+    <li><b>Le champ magnétique suit</b> : Faraday donne ∂B<sub>y</sub>/∂t = −∂E<sub>x</sub>/∂z, d'où <b>B</b> = (E₀/c) cos(kz − ωt) <b>e</b><sub>y</sub>. <b>E</b>, <b>B</b> et la direction de propagation forment un trièdre direct ; ils sont en phase, et <b>|B| = |E| / c</b> : le champ magnétique d'une onde est minuscule en teslas (pour E = 1 V/m, B = 3,3 nT).</li>
+    <li><b>L'impédance du vide</b> : le rapport E / H (avec H = B/μ₀) vaut Z₀ = √(μ₀/ε₀) = μ₀c ≈ <b>377 Ω</b>. C'est la « résistance » que le vide oppose à l'onde ; une antenne bien conçue adapte l'impédance de son câble (50 Ω) à celle du vide.</li>
+  </ul>
+
+  <p><b>5. L'énergie transportée.</b> La densité d'énergie électromagnétique et son flux (le vecteur de Poynting, 1884) valent :</p>
+  <div class="mx-eq">u = ε₀E²/2 + B²/(2μ₀) &nbsp;&nbsp;&nbsp;&nbsp; <b>S</b> = <b>E</b> × <b>B</b> / μ₀ &nbsp;&nbsp;&nbsp;&nbsp; ⟨S⟩ = E₀² / (2 Z₀) <small>en W/m², moyenne sur une période</small></div>
+  <p>Dans l'onde plane, l'énergie est également partagée entre le champ électrique et le champ magnétique (ε₀E²/2 = B²/2μ₀ puisque B = E/c), et elle avance à la vitesse c : S = u c. L'onde transporte aussi une <b>quantité de mouvement</b> S/c² par unité de volume : c'est la pression de radiation (environ 4,5 µPa pour la lumière du Soleil sur Terre), qui pousse les voiles solaires.</p>
+
+  <p><b>6. Dans la matière : indice, absorption, effet de peau.</b></p>
+  <ul class="mo-ul">
+    <li><b>Dans un isolant</b> (verre, eau, plastique) : ε₀ devient ε₀ε<sub>r</sub>, et la vitesse devient v = c/n, avec l'indice <b>n = √(ε<sub>r</sub> μ<sub>r</sub>)</b>. Pour la silice des fibres optiques, n ≈ 1,45 : la lumière y va à environ 200 000 km/s, d'où les 5 µs par kilomètre de fibre (chapitre 11). Comme ε<sub>r</sub> dépend de la fréquence, les couleurs n'ont pas le même indice : c'est la dispersion (l'arc-en-ciel, et l'étalement des impulsions dans une fibre).</li>
+    <li><b>Dans un conducteur</b> (conductivité σ), le courant ajoute un terme σ<b>E</b> dans Ampère-Maxwell, et l'onde s'amortit exponentiellement sur une distance appelée <b>épaisseur de peau</b> : δ = √(2 / (ω μ σ)). Pour le cuivre à 2,4 GHz, δ ≈ 1,3 µm : quelques microns de métal suffisent à arrêter le wifi. C'est la cage de Faraday, le blindage des câbles coaxiaux, et la raison pour laquelle le courant à haute fréquence ne circule qu'à la surface des conducteurs.</li>
+    <li><b>Dans l'eau de mer</b> (σ ≈ 4 S/m), δ ≈ 25 cm à 1 MHz et 2,5 m à 10 kHz : les sous-marins communiquent en très basses fréquences, avec des antennes de plusieurs kilomètres.</li>
+  </ul>
+  <div class="callout">
+    <div style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">
+      <label>Matériau : <select id="mx-mat"><option value="5.8e7">cuivre (5,8 × 10⁷ S/m)</option><option value="3.5e7">aluminium (3,5 × 10⁷ S/m)</option><option value="1e7">acier (≈ 10⁷ S/m)</option><option value="4">eau de mer (4 S/m)</option><option value="0.01">sol humide (0,01 S/m)</option></select></label>
+      <label>Fréquence : <input type="range" id="mx-ff" min="1" max="10" step="0.02" value="9.38" style="vertical-align:middle"> <b id="mx-ff-v"></b></label>
+    </div>
+    <p id="mx-peau" style="margin:6px 0 0"></p>
+  </div>
+
+  <p><b>7. Rayonner : le dipôle.</b> Une charge immobile crée un champ en 1/r² ; une charge qui <b>accélère</b> rayonne un champ en 1/r. Pour un petit dipôle de longueur ℓ parcouru par un courant I₀ cos ωt, loin de lui (r ≫ λ) :</p>
+  <div class="mx-eq">E<sub>θ</sub> ≈ (Z₀ I₀ ℓ / 2λ) · sin θ / r · cos(kr − ωt) &nbsp;&nbsp;&nbsp;&nbsp; P<sub>rayonnée</sub> = (π Z₀ / 3) · I₀² (ℓ/λ)² <small>formule de Larmor appliquée au dipôle</small></div>
+  <ul class="mo-ul">
+    <li><b>Le facteur sin θ</b> : le dipôle ne rayonne rien dans son propre axe, et le maximum perpendiculairement (le diagramme en « tore » du chapitre 2).</li>
+    <li><b>Le facteur (ℓ/λ)²</b> : une antenne beaucoup plus petite que la longueur d'onde rayonne très mal (sa « résistance de rayonnement », 80π²(ℓ/λ)² Ω, devient minuscule devant les pertes). D'où des antennes de l'ordre de λ/2 : 6 cm en wifi, 1,5 m en FM, des kilomètres pour les sous-marins.</li>
+    <li><b>La décroissance en 1/r</b> du champ donne une puissance par m² en <b>1/r²</b> : l'énergie se répartit sur une sphère de surface 4πr². C'est la base de la formule de Friis du bilan de liaison (chapitre 3).</li>
+  </ul>
+  <div class="callout">
+    <p style="margin:0 0 6px"><b>Calculateur : les champs autour d'un émetteur</b> (antenne isotrope, onde plane loin de la source)</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">
+      <label>Puissance émise : <input type="range" id="mx-p" min="-3" max="5" step="0.1" value="-1" style="vertical-align:middle"> <b id="mx-p-v"></b></label>
+      <label>Distance : <input type="range" id="mx-d" min="-1" max="5" step="0.05" value="0" style="vertical-align:middle"> <b id="mx-d-v"></b></label>
+    </div>
+    <p id="mx-champ" style="margin:6px 0 0"></p>
+  </div>
+
+  <p><b>8. Ce que calcule le simulateur « onde ».</b> En deux dimensions, avec E<sub>z</sub>, H<sub>x</sub> et H<sub>y</sub> seulement (mode « TM »), les deux équations de rotationnel deviennent :</p>
+  <div class="mx-eq">∂H<sub>x</sub>/∂t = −(1/μ₀) ∂E<sub>z</sub>/∂y &nbsp;&nbsp;&nbsp; ∂H<sub>y</sub>/∂t = (1/μ₀) ∂E<sub>z</sub>/∂x &nbsp;&nbsp;&nbsp; ∂E<sub>z</sub>/∂t = (1/ε₀) (∂H<sub>y</sub>/∂x − ∂H<sub>x</sub>/∂y)</div>
+  <p>La méthode de Yee (1966) place E et H sur deux grilles décalées d'une demi-cellule, dans l'espace et dans le temps, et remplace chaque dérivée par une différence finie. À chaque pas, H est mis à jour à partir des différences de E voisins, puis E à partir des différences de H. Le schéma n'est stable que si c Δt ≤ Δx / √2 en 2D (condition de Courant-Friedrichs-Lewy) : l'onde ne doit pas franchir plus d'une cellule par pas de temps. Les bords absorbent l'onde par une couche amortissante, version simplifiée des « couches parfaitement adaptées » (PML) des logiciels industriels.</p>
+  <p class="muted" style="font-size:.78rem">Pour approfondir : Richard Feynman, <i>Le Cours de physique de Feynman</i>, tome Électromagnétisme (1964) ; David J. Griffiths, <i>Introduction to Electrodynamics</i> (5ᵉ éd., 2023) ; José-Philippe Pérez, <i>Électromagnétisme : fondements et applications</i> (Dunod) ; Allen Taflove, <i>Computational Electrodynamics: The Finite-Difference Time-Domain Method</i>.</p>
 
   <h3 id="tc-antenne" class="ag-part">2. L'antenne : rayonner et capter</h3>
   <p>Une antenne est un conducteur dans lequel on fait osciller des électrons à la fréquence voulue. Elle rayonne efficacement quand sa taille est de l'ordre de la longueur d'onde : le <b>dipôle demi-onde</b> (deux brins de λ/4) est la référence. C'est pourquoi les antennes des grandes ondes sont des pylônes de plusieurs centaines de mètres et celles du wifi des pistes de 3 cm sur un circuit imprimé. La même antenne sert à émettre et à recevoir (réciprocité).</p>
@@ -8279,7 +8343,7 @@ for snr_db in (10, 15, 20):
 <script src="religions.js?v=20261119a"></script>
 <script src="industrie2.js?v=20261119a"></script>
 <script src="gps.js?v=20261119c"></script>
-<script src="maxwell.js?v=20261119c"></script>
+<script src="maxwell.js?v=20261119e"></script>
 <script src="bulletin.js?v=20261119g"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>

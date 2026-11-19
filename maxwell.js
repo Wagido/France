@@ -210,3 +210,29 @@ function init() {
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+/* ---------------- calculateurs : épaisseur de peau, champs d'un émetteur ---------------- */
+(() => {
+  const $ = s => document.querySelector(s);
+  const sci = v => { if (v === 0) return "0"; const e = Math.floor(Math.log10(Math.abs(v))), m = v / 10 ** e; return e >= -2 && e <= 3 ? v.toLocaleString("fr-FR", { maximumSignificantDigits: 3 }) : `${m.toLocaleString("fr-FR", { maximumFractionDigits: 2 })} × 10<sup>${e}</sup>`; };
+  const freqTxt = f => f >= 1e9 ? sci(f / 1e9) + " GHz" : f >= 1e6 ? sci(f / 1e6) + " MHz" : f >= 1e3 ? sci(f / 1e3) + " kHz" : sci(f) + " Hz";
+  const lenTxt = d => d >= 1 ? sci(d) + " m" : d >= 1e-3 ? sci(d * 1e3) + " mm" : sci(d * 1e6) + " µm";
+  const mu0 = 4e-7 * Math.PI, Z0 = 376.73, c = 299792458;
+  function peau() {
+    const s = +$("#mx-mat").value, f = 10 ** +$("#mx-ff").value, w = 2 * Math.PI * f, d = Math.sqrt(2 / (w * mu0 * s));
+    $("#mx-ff-v").textContent = freqTxt(f).replace(/<[^>]+>/g, "");
+    const att = 20 * Math.log10(Math.E);   // dB par épaisseur de peau
+    $("#mx-peau").innerHTML = `Épaisseur de peau δ = √(2/ωμσ) = <b>${lenTxt(d)}</b> à ${freqTxt(f)} (longueur d'onde dans le vide : ${lenTxt(c / f)}). L'onde perd environ ${att.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} dB par épaisseur de peau : 1 mm de ce matériau l'atténue de <b>${(att * 1e-3 / d) > 1e4 ? "plus de 10 000" : sci(att * 1e-3 / d)} dB</b>.${s > 1e6 ? " Une feuille de métal plus épaisse que quelques δ arrête donc totalement l'onde : c'est la cage de Faraday." : s > 1 ? " Seules les très basses fréquences pénètrent en profondeur." : " À de telles conductivités, l'approximation du « bon conducteur » devient grossière aux hautes fréquences ; l'ordre de grandeur reste utile pour les ondes longues."}`;
+  }
+  function champ() {
+    const P = 10 ** +$("#mx-p").value, d = 10 ** +$("#mx-d").value, S = P / (4 * Math.PI * d * d), E = Math.sqrt(2 * Z0 * S), B = E / c;
+    $("#mx-p-v").textContent = (P >= 1 ? sci(P) + " W" : sci(P * 1e3) + " mW").replace(/<[^>]+>/g, ""); $("#mx-d-v").textContent = (d >= 1000 ? sci(d / 1000) + " km" : sci(d) + " m").replace(/<[^>]+>/g, "");
+    $("#mx-champ").innerHTML = `Densité de puissance S = P / 4πr² = <b>${sci(S)} W/m²</b> ; champ électrique (amplitude) E₀ = √(2 Z₀ S) = <b>${sci(E)} V/m</b> ; champ magnétique B₀ = E₀ / c = <b>${sci(B * 1e9)} nT</b>. Valeur efficace : ${sci(E / Math.SQRT2)} V/m. ${E / Math.SQRT2 > 28 ? "C'est au-dessus de la limite d'exposition du public (28 à 61 V/m efficaces selon la fréquence)." : "Repère : la limite d'exposition du public est de 28 à 61 V/m efficaces selon la fréquence ; une box wifi de 100 mW à 1 m donne environ 1,7 V/m efficace."}`;
+  }
+  function init() {
+    if (!$("#mx-mat")) return;
+    $("#mx-mat").oninput = peau; $("#mx-ff").oninput = peau; peau();
+    $("#mx-p").oninput = champ; $("#mx-d").oninput = champ; champ();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
