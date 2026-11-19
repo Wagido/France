@@ -342,6 +342,10 @@
         <button data-u="pib">% du PIB</button>
         <button data-u="hab">€ / habitant</button>
       </div>
+      <div class="seg" id="sk-mode" role="radiogroup" aria-label="Retraites des fonctionnaires">
+        <button data-m="eu" aria-pressed="true" title="Convention de la comptabilité nationale européenne">Convention officielle</button>
+        <button data-m="net" title="Retire les cotisations imputées : chaque pension n'est comptée qu'une fois">Sans double compte des retraites</button>
+      </div>
     </div>
   </div>
   <div class="kpis" id="sk-kpis"></div>
@@ -8131,7 +8135,7 @@ for snr_db in (10, 15, 20):
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
 <script src="kpi.js?v=20261118d"></script>
-<script src="app.js?v=20261118d"></script>
+<script src="app.js?v=20261119a"></script>
 <script src="energie.js?v=20261118d"></script>
 <script src="matieres.js?v=20261118d"></script>
 <script src="territoire.js?v=20261118d"></script>

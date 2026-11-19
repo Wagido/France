@@ -343,10 +343,36 @@ def ras(seed, rows, cols, it=200):
     return m
 
 
-def sankey_year(y):
+_d1 = getter(jstat("gov_10a_exp_d1.json")) if os.path.exists(os.path.join(SRC, "gov_10a_exp_d1.json")) else None
+
+
+def sankey_year(y, net=False):
+    """net=True : retire les cotisations sociales imputées (D612), c'est-à-dire la charge des retraites
+    des fonctionnaires que la comptabilité nationale inscrit à la fois en recette (cotisation « imputée »)
+    et en dépense de chaque fonction (rémunération des agents en poste), en plus des pensions versées
+    (fonction Retraites). Sans elles, chaque pension n'est comptée qu'une fois, dans Retraites."""
     M = lambda s, i: main(sector=s, na_item=i, time=y) or 0.0
     T = lambda s, i: tax(sector=s, na_item=i, time=y) or 0.0
-    X = lambda s, c: exp(sector=s, cofog99=c, time=y) or 0.0
+    X0 = lambda s, c: exp(sector=s, cofog99=c, time=y) or 0.0
+    imp = {k: (T(s, "D612") if net else 0.0) for k, s in SUBS.items()}
+    imp_tot = sum(imp.values())
+
+    # Répartition des cotisations imputées entre fonctions, au prorata de la rémunération des agents (D1)
+    def d1(sec, c):
+        return (_d1(sector=sec, cofog99=c, time=y) or 0.0) if _d1 else 0.0
+    def imp_part(sec, c):
+        if not net:
+            return 0.0
+        k = [kk for kk, ss in SUBS.items() if ss == sec]
+        secs = [sec] if k else list(SUBS.values())
+        tot = 0.0
+        for ss in secs:
+            kk = [a for a, b in SUBS.items() if b == ss][0]
+            base = d1(ss, "TOTAL")
+            if base > 0:
+                tot += imp[kk] * d1(ss, c) / base
+        return tot
+    X = lambda s, c: X0(s, c) - imp_part(s, c)
 
     # --- transferts entre administrations
     d9_intra_pay = sum(M(s, "D9PAY") for s in SUBS.values()) - M("S13", "D9PAY")
@@ -362,7 +388,7 @@ def sankey_year(y):
     for k, s in SUBS.items():
         d51a, d51b = T(s, "D51A"), T(s, "D51B")
         r = {
-            "cotisations": T(s, "D61"),
+            "cotisations": T(s, "D61") - imp[k],
             "csg": d51a if k == "SS" else 0.0,
             "ir": d51a if k != "SS" else 0.0,
             "is": d51b,
@@ -371,7 +397,7 @@ def sankey_year(y):
             "prod": T(s, "D29"),
             "patrimoine": T(s, "D59") + T(s, "D91") + (T(s, "D51") - d51a - d51b),
         }
-        r["autres"] = M(s, "TR") - intra_rec[k] - sum(r.values())
+        r["autres"] = M(s, "TR") - imp[k] - intra_rec[k] - sum(r.values())
         own[k] = r
 
     # --- dépenses par fonction (consolidées) : RAS sur la matrice sous-secteur x fonction
@@ -383,7 +409,7 @@ def sankey_year(y):
 
     total_cofog = X("S13", "TOTAL")
     cols = [fval("S13", f[2]) for f in FUNCS]
-    spend = {k: M(s, "TE") - intra_pay[k] for k, s in SUBS.items()}
+    spend = {k: M(s, "TE") - imp[k] - intra_pay[k] for k, s in SUBS.items()}
     order = ["C", "SS", "L"]
     rows_t = [total_cofog - spend["SS"] - spend["L"], spend["SS"], spend["L"]]
     seed = [[max(0.0, fval(SUBS[k], f[2])) + 1e-6 for f in FUNCS] for k in order]
@@ -392,7 +418,7 @@ def sankey_year(y):
     spend = {k: rows_t[i] for i, k in enumerate(order)}
 
     # --- emprunt et transferts nets
-    deficit = total_cofog - M("S13", "TR")
+    deficit = total_cofog - (M("S13", "TR") - imp_tot)
     borrow = {"L": pos(-M("S1313", "B9")), "SS": pos(-M("S1314", "B9"))}
     transfer = {}
     for k in ["L", "SS"]:
@@ -465,7 +491,8 @@ def sankey_year(y):
     return {
         "annee": y,
         "depenses": md(total_cofog),
-        "recettes": md(M("S13", "TR")),
+        "recettes": md(M("S13", "TR") - imp_tot),
+        "imputees": md(T("S13", "D612")),
         "deficit": md(deficit),
         "pib": md(gdp(na_item="B1GQ", time=y)),
         "population": pop(y),
@@ -477,6 +504,7 @@ def sankey_year(y):
 
 cofog_years = [y for y in years_of(exp_t) if exp(sector="S13", cofog99="TOTAL", time=y)]
 sankey = {y: sankey_year(y) for y in cofog_years[-3:]}
+sankey_net = {y: sankey_year(y, net=True) for y in cofog_years[-3:]}
 
 # ================================================================= 4. Patrimoine
 BS_SECTORS = [
@@ -602,6 +630,7 @@ out = {
     "fonctions_hist": fonctions_hist,
     "pib": pib,
     "sankey": sankey,
+    "sankey_net": sankey_net,
     "patrimoine": patrimoine,
     "simulateur": simu,
     "cnd": cnd_info,
@@ -698,6 +727,8 @@ print("écrit", OUT, os.path.getsize(OUT), "octets")
 print("PIB", {y: pib[y]["pib"] for y in pib})
 for y, s in sankey.items():
     print("sankey", y, "dépenses", s["depenses"], "recettes", s["recettes"], "déficit", s["deficit"], "transferts", s["transferts"])
+    n = sankey_net[y]
+    print("  sans double compte", "dépenses", n["depenses"], "recettes", n["recettes"], "déficit", n["deficit"], "transferts", n["transferts"])
 for y, p in patrimoine.items():
     print("patrimoine", y, {s["id"]: s["net"] for s in p["secteurs"]})
 print("simu", simu)

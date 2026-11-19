@@ -188,10 +188,17 @@ const INSTR_COL = {
 const FUNC_PAL = ["#3b6fd6", "#e15759", "#f28e2b", "#76b7b2", "#59a14f", "#edc948", "#b07aa1", "#ff9da7", "#9c755f", "#5aa469", "#6b6ecf", "#8c564b", "#7f7f7f", "#d7a32a"];
 const decColor = d3.interpolateHcl("#2a9d8f", "#a3245e");
 
+let skMode = "eu";
 function initSankey() {
   const years = Object.keys(DATA.sankey).sort();
   fillSelect($("#sk-year"), years, years.at(-1));
   $("#sk-year").onchange = () => { skLocked = null; drawSankey(); };
+  document.querySelectorAll("#sk-mode button").forEach(b => b.onclick = () => {
+    skMode = b.dataset.m; skLocked = null;
+    document.querySelectorAll("#sk-mode button").forEach(o => o.setAttribute("aria-pressed", o === b));
+    drawSankey();
+  });
+  if (!DATA.sankey_net) { const m = $("#sk-mode"); if (m) m.hidden = true; }
   document.querySelectorAll("#sk-unit button").forEach(b => b.onclick = () => {
     skUnit = b.dataset.u;
     document.querySelectorAll("#sk-unit button").forEach(o => o.setAttribute("aria-pressed", o === b));
@@ -222,7 +229,7 @@ function nodeColor(n) {
 
 function drawSankey() {
   if (!DATA) return;
-  const y = $("#sk-year").value, S = DATA.sankey[y];
+  const y = $("#sk-year").value, S = ((skMode === "net" && DATA.sankey_net) ? DATA.sankey_net : DATA.sankey)[y], S0 = DATA.sankey[y];
   const el = $("#sankey");
   kpis($("#sk-kpis"), [
     [skFmtShort(S.depenses, S), `dépenses publiques ${y}`],
@@ -325,6 +332,7 @@ function drawSankey() {
   const interets = d3.sum(fn.filter(n => n.id === "f_dette"), n => n.value);
   const indiv = d3.sum(fn.filter(n => n.id !== "f_dette" && !COLLECTIF.has(n.id)), n => n.value);
   $("#sk-explain").innerHTML = `<p>En ${y}, les administrations publiques ont dépensé <b>${md(S.depenses)}</b>, soit <b>${pct(100 * S.depenses / S.pib)}</b> du PIB et <b>${eur(S.depenses * 1e9 / S.population)}</b> par habitant. Les impôts et cotisations, plus les recettes non fiscales, en ont couvert ${md(S.recettes)}. Le reste, <b>${md(S.deficit)}</b>, a été emprunté : c'est le bloc « Générations futures ».</p>
+    ${S0.imputees ? `<p><b>Les retraites des fonctionnaires sont-elles comptées ?</b> Oui, et deux fois dans la convention officielle. Les pensions versées aux fonctionnaires retraités figurent dans « Retraites ». Mais la comptabilité nationale ajoute aussi, dans chaque fonction (enseignement, défense, police…), des <i>cotisations imputées</i> sur les salaires des agents en poste, calculées pour couvrir ces mêmes pensions, et les inscrit en face comme une recette de « cotisations » : <b>${md(S0.imputees)}</b> en ${y}, presque entièrement pour l'État. Le déficit n'en est pas changé, mais les dépenses et les recettes sont gonflées d'autant, et l'enseignement paraît plus coûteux qu'il ne l'est pour les élèves (la moitié de ces cotisations concerne l'Éducation nationale). ${skMode === "net" ? "Vous voyez ici la version <b>sans double compte</b> : ces cotisations imputées sont retirées des recettes et des fonctions (au prorata des salaires des agents) ; chaque pension n'est comptée qu'une fois, dans Retraites." : "Le bouton « Sans double compte des retraites » les retire."} Voir aussi l'onglet <a href="#retraites" data-to="rt-fonctionnaires">Retraites</a>.</p>` : ""}
     <p>L'État reverse en net ${md(t.vers_collectivites)} aux collectivités locales${t.vers_secu > 0.5 ? ` et ${md(t.vers_secu)} à la Sécurité sociale` : ""}. Une partie de la TVA va directement à la Sécurité sociale et aux collectivités : elle apparaît comme leur recette propre.</p>
     <p>Ces ${pct(100 * S.depenses / S.pib, 0)} du PIB ne disparaissent pas : <b>${pct(100 * indiv / S.depenses, 0)}</b> reviennent directement aux ménages, en argent (retraites, chômage, allocations) ou en nature (soins, école, culture). Le reste finance des services collectifs (${pct(100 * (S.depenses - indiv - interets) / S.depenses, 0)}) et les intérêts de la dette (${pct(100 * interets / S.depenses, 0)}). Le solde payé/reçu de chaque tranche s'affiche au survol des blocs de gauche et de droite.</p>`;
 }
