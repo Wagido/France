@@ -240,9 +240,15 @@
       <button type="button" class="bu-pre" data-b="5000" data-c="1">Cadre 5 000 €</button>
       <button type="button" class="bu-pre" data-b="10000" data-c="1">Cadre 10 000 €</button>
     </div>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-      <label>Salaire brut mensuel <input type="number" id="bu-brut" min="1867" max="40000" step="10" value="2800" style="width:110px"> €</label>
-      <input type="range" id="bu-brut-r" min="1867" max="12000" step="10" value="2800" style="flex:1;min-width:200px">
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:1.05rem">
+      <label><b>Salaire brut mensuel</b> <input type="number" id="bu-brut" min="1867" max="40000" step="10" value="2800" style="width:120px;font-size:1.05rem;font-weight:700"> €</label>
+      <input type="range" id="bu-brut-r" min="1867" max="20000" step="10" value="2800" style="flex:1;min-width:240px;accent-color:#2563eb">
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px;padding:6px 8px;background:var(--surface);border-radius:8px">
+      <b>Situation familiale</b>
+      <label><select id="bu-sit"><option value="neutre">taux neutre (non communiqué à l'employeur)</option><option value="seul" selected>célibataire, divorcé</option><option value="isole">parent isolé</option><option value="couple">couple marié ou pacsé</option></select></label>
+      <label>Enfants à charge <select id="bu-enf"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+      <label id="bu-conj-l" hidden>Salaire brut du conjoint <input type="number" id="bu-conj" value="0" min="0" max="40000" step="50" style="width:90px"> € <span class="muted">(0 = sans revenu)</span></label>
     </div>
     <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px">
       <label>Statut <select id="bu-cadre"><option value="0">non-cadre</option><option value="1">cadre</option></select></label>
@@ -253,22 +259,35 @@
     </div>
   </div>
   <div class="kpis" id="bu-kpis"></div>
+  <p class="muted" id="bu-an" style="font-size:.85rem;margin:2px 0 0"></p>
 
-  <h3 class="ag-part" id="bu-p1">1. Où vont 100 € payés par l'employeur</h3>
+  <h3 class="ag-part" id="bu-p0">1. Du coût employeur au net : la cascade</h3>
+  <div id="bu-cascade" class="chart"></div>
+
+  <h3 class="ag-part" id="bu-p1">2. Où vont 100 € payés par l'employeur</h3>
   <div id="bu-100" class="chart"></div>
   <div class="legend-row" id="bu-100-leg"></div>
   <p class="muted" id="bu-100-txt" style="font-size:.85rem"></p>
 
-  <h3 class="ag-part" id="bu-p2">2. Le bulletin, ligne par ligne</h3>
+  <h3 class="ag-part" id="bu-p2">3. Le bulletin, ligne par ligne</h3>
   <p class="muted" style="margin:0 0 6px">Présenté dans l'ordre du « bulletin clarifié » obligatoire depuis 2018 : cotisations regroupées par risque couvert. Base : montant sur lequel s'applique le taux ; T1 = tranche jusqu'au plafond de la Sécurité sociale (4 005 €/mois), T2 = au-delà.</p>
   <div class="table-scroll"><table class="cmp-t" id="bu-table"></table></div>
 
-  <h3 class="ag-part" id="bu-p3">3. Selon le niveau de salaire : qui paie combien ?</h3>
+  <h3 class="ag-part" id="bu-pfam">4. Même salaire, impôt différent : la situation familiale</h3>
+  <p>L'impôt sur le revenu est calculé par <b>foyer</b>, avec le <b>quotient familial</b> : le revenu du foyer est divisé par un nombre de parts (1 par adulte, 0,5 pour chacun des deux premiers enfants, 1 à partir du troisième, 0,5 de plus pour un parent isolé), le barème progressif est appliqué à une part, puis le résultat est multiplié par le nombre de parts. L'avantage procuré par les enfants est plafonné (1 807 € par demi-part en 2026), et une <b>décote</b> réduit l'impôt des foyers modestes. Le taux prélevé à la source est le taux du foyer : impôt total divisé par les revenus.</p>
+  <div id="bu-fam" class="chart"></div>
+  <p class="muted" id="bu-fam-txt" style="font-size:.85rem"></p>
+
+  <h3 class="ag-part" id="bu-pmarg">5. Une augmentation de 100 € : combien pour le salarié ?</h3>
+  <div id="bu-marg" class="chart"></div>
+  <p class="muted" id="bu-marg-txt" style="font-size:.85rem"></p>
+
+  <h3 class="ag-part" id="bu-p3">6. Selon le niveau de salaire : qui paie combien ?</h3>
   <p>Les prélèvements ne sont pas proportionnels. Près du SMIC, la <b>réduction générale</b> efface l'essentiel des cotisations patronales ; elle disparaît progressivement jusqu'à 3 SMIC. Au-delà du plafond de la Sécurité sociale, certaines cotisations s'arrêtent, d'autres augmentent (retraite complémentaire de tranche 2), et l'impôt sur le revenu, progressif, prend le relais.</p>
   <div id="bu-courbe" class="chart"></div>
   <div class="legend-row" id="bu-courbe-leg"></div>
 
-  <h3 class="ag-part" id="bu-p4">4. Comprendre les lignes</h3>
+  <h3 class="ag-part" id="bu-p4">7. Comprendre les lignes</h3>
   <div class="grid2">
     <div class="callout small"><ul>
       <li><b>Brut, net, coût employeur</b> : le <b>salaire brut</b> est celui du contrat. L'employeur paie en plus ses cotisations (le « coût employeur », autrefois appelé « super-brut ») ; le salarié voit retirer du brut ses propres cotisations, la CSG et la CRDS, pour obtenir le <b>net à payer avant impôt</b>. L'impôt sur le revenu est ensuite prélevé à la source.</li>
@@ -280,7 +299,7 @@
       <li><b>La réduction générale (RGDU)</b> : depuis 1993, l'État allège les cotisations patronales sur les bas salaires pour encourager l'emploi peu qualifié. Réformée au 1ᵉʳ janvier 2026, elle est désormais unique et dégressive : au niveau du SMIC, elle retire environ 40 % du brut (39,81 % dans une entreprise de moins de 50 salariés) et s'annule à 3 SMIC. Elle remplace aussi les anciens taux réduits de cotisation maladie et famille. Ces allègements coûtent plusieurs dizaines de milliards d'euros par an ; la Sécurité sociale est compensée par l'État, notamment par une part de la TVA.</li>
       <li><b>Le plafond de la Sécurité sociale</b> (4 005 € par mois en 2026) : au-dessus, la retraite de base ne cotise plus qu'au taux « déplafonné », et la retraite complémentaire passe en tranche 2, plus chère, avec la contribution d'équilibre technique (CET). L'assurance chômage s'arrête à 4 plafonds (16 020 €/mois), la retraite complémentaire à 8 plafonds.</li>
       <li><b>Les contributions qui ne financent pas la Sécurité sociale</b> : formation professionnelle et taxe d'apprentissage (formation des salariés et des apprentis), versement mobilité (transports en commun de l'agglomération, au-delà de 10 salariés), participation à l'effort de construction (logement des salariés, à partir de 50), FNAL (aides au logement), contribution au dialogue social (financement des syndicats et organisations patronales).</li>
-      <li><b>L'impôt prélevé à la source</b> : calculé ici avec le <b>taux neutre</b> (barème officiel 2026), celui d'un célibataire sans enfant ni autres revenus. Le taux réel du foyer, transmis par l'administration fiscale, peut être très différent.</li>
+      <li><b>L'impôt prélevé à la source</b> : calculé avec le taux du foyer selon la situation choisie (barème 2026 des revenus de 2025 : 0 % jusqu'à 11 600 € par part, puis 11 %, 30 %, 41 % et 45 % ; abattement de 10 % pour frais professionnels ; quotient familial plafonné ; décote), en supposant que le salaire est stable sur l'année et sans autres revenus. Le choix « taux neutre » applique la grille officielle utilisée quand le salarié ne transmet pas son taux à l'employeur. Les prestations sociales (allocations familiales, prime d'activité, aides au logement) ne sont pas prises en compte.</li>
     </ul></div>
   </div>
   <p class="muted" style="font-size:.78rem">Paramètres en vigueur en novembre 2026 : SMIC horaire 12,31 € depuis juin 2026 (12,02 € de janvier à mai), plafond mensuel de la Sécurité sociale 4 005 €, taux de cotisation, réduction générale (Tmin 0,02 ; Tdelta 0,3781 sous 50 salariés, 0,3821 au-delà ; exposant 1,75) et grille du taux neutre 2026, tels que codés dans le modèle de calcul officiel de l'Urssaf utilisé par mon-entreprise.urssaf.fr (paquet « modele-social », version 11.1.0, juillet 2026). Simplifications : temps plein, 151,67 heures, pas d'heures supplémentaires, de primes ni d'avantages en nature, pas de prévoyance conventionnelle (sauf la prévoyance cadre obligatoire de 1,5 %), taux accidents du travail moyen national, régime général hors Alsace-Moselle et outre-mer. Les montants peuvent différer de quelques euros d'un vrai bulletin, et la mutuelle dépend du contrat de l'entreprise. Salaire médian : environ 2 180 € net par mois dans le privé en 2023, salaire moyen environ 2 730 € net (INSEE, salariés du privé en équivalent temps plein).</p>
@@ -6829,7 +6848,7 @@ for snr_db in (10, 15, 20):
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118o"></script>
-<script src="bulletin.js?v=20261119b"></script>
+<script src="bulletin.js?v=20261119d"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
 <script src="sciences2.js?v=20261118h"></script>
