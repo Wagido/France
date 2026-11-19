@@ -4628,6 +4628,12 @@
     <div><h3>Pauvreté et inégalités dans le temps</h3><div id="in-serie" class="chart"></div><div class="legend-row" id="in-serie-legend"></div></div>
   </div>
   <h3 class="ag-part" id="in-p2">2. Qui paie, qui reçoit, selon le niveau de vie</h3>
+  <p>Le diagramme reprend la logique de l'onglet <a href="#argent-public">Argent public</a>, mais en suivant chaque <b>dixième de la population</b> (décile), classé par niveau de vie : à gauche, ce que chaque décile paie ; au centre, les prélèvements et l'argent public ; à droite, ce que chaque décile reçoit, en argent (retraites, allocations) et en services publics (santé, école, sécurité…). <b>Cliquez sur un décile</b> pour suivre ses flux.</p>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0" id="ds-btns"></div>
+  <div class="sk-scroll"><div id="ds-sankey" class="chart"></div></div>
+  <div class="callout small" id="ds-txt"></div>
+  <div class="table-scroll"><table class="cmp-t" id="ds-table"></table></div>
+  <p class="muted" style="font-size:.8rem">INSEE, comptes nationaux distribués (dernière année publiée, 2023), ménages classés par niveau de vie ; regroupement par déciles des vingtièmes publiés, pondéré par le nombre d'unités de consommation. Montants totaux en milliards d'euros par an, et par unité de consommation (le premier adulte compte pour 1, les autres personnes de 14 ans ou plus pour 0,5, les enfants plus jeunes pour 0,3). L'écart entre ce qui est payé et ce qui est reçu correspond pour l'essentiel au déficit public, financé par l'emprunt.</p>
   <h3>Ce que chaque tranche de 5 % de la population paie et reçoit <span class="geo-fixed">France</span></h3>
   <div class="kpis" id="rd-kpis"></div>
   <p class="lead">La population est classée en vingt tranches de 5 % selon son niveau de vie, des plus modestes (à gauche) aux plus aisés (à droite) : c'est le découpage le plus fin publié par l'INSEE. Pour chaque tranche, en euros par an et par unité de consommation : sous zéro ce qu'elle paie (impôts, cotisations, TVA…), au-dessus ce qu'elle reçoit en argent (bleu) et en services publics (vert). Le losange gris est son revenu avant redistribution, le trait noir son niveau de vie après. Survolez une colonne pour le détail.</p>
@@ -6861,6 +6867,7 @@ for snr_db in (10, 15, 20):
 <script src="energiecout.js?v=20261118d"></script>
 <script src="energieformation.js?v=20261118d"></script>
 <script src="brouillons.js?v=20261118o"></script>
+<script src="decilesankey.js?v=20261119b"></script>
 <script src="bulletin.js?v=20261119g"></script>
 <script src="liturgie.js?v=20261118b"></script>
 <script src="franc.js?v=20261118b"></script>
