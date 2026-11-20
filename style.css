@@ -615,3 +615,5 @@ table.cmp-t.ro-t { min-width: 0; width: 100%; }
 .mx-eq { font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif; font-size: 1.08rem; text-align: center; margin: 8px 0; padding: 6px 10px; background: var(--soft); border-radius: 8px; overflow-x: auto; white-space: nowrap; }
 .mx-eq small { font-family: var(--font); font-size: .78rem; color: var(--muted); margin-left: 12px; }
 .mx-step { counter-increment: mxs; }
+.maj-date { font-size: .78rem; color: var(--muted, #6b7280); margin: -.3rem 0 .8rem; }
+.maj-date.vieux { color: #b45309; }
