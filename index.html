@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="darkreader-lock">
+<meta name="theme-color" content="#17191e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="France">
+<link rel="apple-touch-icon" href="lib/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="lib/icons/icon-192.png">
+<script>
+  /* application installable : manifeste « perso » pour la version personnelle */
+  (function () { var l = document.createElement("link"); l.rel = "manifest"; l.href = /brouillon-/.test(location.pathname) ? "data/app-perso.webmanifest" : "data/app.webmanifest"; document.head.appendChild(l); })();
+  if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+</script>
 <title>France Patrimoine</title>
 <meta name="description" content="Le PIB français décomposé, le circuit de l'argent public (qui paie, qui reçoit) et le patrimoine de la France, à partir des données Eurostat et INSEE.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
