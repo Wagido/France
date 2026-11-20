@@ -132,6 +132,9 @@ get nama_10_pe.json     "$E/nama_10_pe?geo=FR&unit=THS_PER&na_item=POP_NC&sinceT
 get gov_10a_main.json   "$E/gov_10a_main?geo=FR&unit=MIO_EUR&sinceTimePeriod=1995"
 get gov_10a_taxag.json  "$E/gov_10a_taxag?geo=FR&unit=MIO_EUR&sinceTimePeriod=2015"
 get gov_10a_exp.json    "$E/gov_10a_exp?geo=FR&unit=MIO_EUR&na_item=TE&sector=S13&sector=S1311&sector=S1313&sector=S1314&sinceTimePeriod=1995"
+# rémunérations (D1) par fonction : sert à répartir les cotisations imputées (retraites des fonctionnaires) dans le Sankey
+get gov_10a_exp_d1.json "$E/gov_10a_exp?geo=FR&unit=MIO_EUR&na_item=D1&sector=S13&sector=S1311&sector=S1313&sector=S1314&sinceTimePeriod=1990"
+get gov_exp_soussecteurs.json "$E/gov_10a_exp?geo=FR&unit=MIO_EUR&na_item=TE&sector=S13&sector=S1311&sector=S1313&sector=S1314&cofog99=TOTAL&cofog99=GF01&cofog99=GF02&cofog99=GF03&cofog99=GF04&cofog99=GF05&cofog99=GF06&cofog99=GF07&cofog99=GF08&cofog99=GF09&cofog99=GF10&sinceTimePeriod=2022"
 
 # Patrimoine : actifs non financiers et comptes financiers par secteur
 get nama_10_nfa_bs.json "$E/nama_10_nfa_bs?geo=FR&unit=CP_MEUR&sinceTimePeriod=2015"
