@@ -1,0 +1,796 @@
+{
+ "build.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/gov_10a_exp.json",
+   "data/sources/gov_10a_exp_d1.json",
+   "data/sources/gov_10a_main.json",
+   "data/sources/gov_10a_taxag.json",
+   "data/sources/gov_10dd_edpt1.json",
+   "data/sources/insee_IA118.xlsx",
+   "data/sources/nama_10_a10.json",
+   "data/sources/nama_10_co3_p3.json",
+   "data/sources/nama_10_gdp.json",
+   "data/sources/nama_10_nfa_bs.json",
+   "data/sources/nama_10_pe.json",
+   "data/sources/nasa_10_f_bs.json",
+   "data/sources/nasa_10_nf_tr.json",
+   "data/sources/pays/gov_10a_exp.json",
+   "data/sources/pays/gov_10a_main.json",
+   "data/sources/pays/gov_10a_taxag.json",
+   "data/sources/pays/gov_10dd_edpt1.json",
+   "data/sources/pays/nama_10_a10.json",
+   "data/sources/pays/nama_10_co3_p3.json",
+   "data/sources/pays/nama_10_gdp.json",
+   "data/sources/pays/nama_10_nfa_bs.json",
+   "data/sources/pays/nama_10_pe.json",
+   "data/sources/pays/nasa_10_f_bs.json",
+   "data/sources/pays/nasa_10_nf_tr.json"
+  ],
+  "ecrits": [
+   "data/comparaison.json",
+   "data/finances.json",
+   "data/pays/AT.json",
+   "data/pays/BE.json",
+   "data/pays/BG.json",
+   "data/pays/CH.json",
+   "data/pays/CY.json",
+   "data/pays/CZ.json",
+   "data/pays/DE.json",
+   "data/pays/DK.json",
+   "data/pays/EE.json",
+   "data/pays/EL.json",
+   "data/pays/ES.json",
+   "data/pays/FI.json",
+   "data/pays/HR.json",
+   "data/pays/HU.json",
+   "data/pays/IE.json",
+   "data/pays/IS.json",
+   "data/pays/IT.json",
+   "data/pays/LT.json",
+   "data/pays/LU.json",
+   "data/pays/LV.json",
+   "data/pays/MT.json",
+   "data/pays/NL.json",
+   "data/pays/NO.json",
+   "data/pays/PL.json",
+   "data/pays/PT.json",
+   "data/pays/RO.json",
+   "data/pays/SE.json",
+   "data/pays/SI.json",
+   "data/pays/SK.json"
+  ]
+ },
+ "build_agriculture.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/agri/bio.json",
+   "data/sources/agri/cult_pays.json",
+   "data/sources/agri/cultures.json",
+   "data/sources/agri/cultures_ar.json"
+  ],
+  "ecrits": [
+   "data/agriculture.json"
+  ]
+ },
+ "build_argent_prive.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/empreinte/FR.json",
+   "data/sources/energie/owid_europe.csv",
+   "data/sources/histoire/bdm_histoire.xml",
+   "data/sources/histoire/bdm_menages.xml",
+   "data/sources/histoire/harvard/energy_france.xlsx",
+   "data/sources/histoire/jst_macrohistory.xlsx",
+   "data/themes/FR.json"
+  ],
+  "ecrits": [
+   "data/argent_prive.json"
+  ]
+ },
+ "build_chomage.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/chomage/bdm_chomage.xml",
+   "data/sources/chomage/lfsi_sla_a.json",
+   "data/themes/index.json"
+  ],
+  "ecrits": [
+   "data/chomage.json"
+  ]
+ },
+ "build_competences.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/gov_exp_soussecteurs.json"
+  ],
+  "ecrits": [
+   "data/competences.json"
+  ]
+ },
+ "build_couper.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/finances.json",
+   "data/sources/gov_10a_exp_pays_pib.json"
+  ],
+  "ecrits": [
+   "data/couper.json"
+  ]
+ },
+ "build_desindustrialisation.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/indus_emp.json",
+   "data/sources/indus_va.json"
+  ],
+  "ecrits": [
+   "data/desindustrialisation.json"
+  ]
+ },
+ "build_echanges.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/energie/comext_2716.json",
+   "data/sources/energie/nrg_cb_e_echanges.json",
+   "data/sources/energie/nrg_pc_204.json"
+  ],
+  "ecrits": [
+   "data/echanges_elec.json"
+  ]
+ },
+ "build_eco2.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/societe/FR.json",
+   "data/sources/eco2/demo_pjanbroad.json",
+   "data/sources/eco2/htec_emp_nat2.json",
+   "data/sources/eco2/insee_fonction_publique.json",
+   "data/sources/eco2/isoc_eb_ai.json",
+   "data/sources/eco2/lfsa_esgaed.json",
+   "data/sources/eco2/lfsa_igar.json",
+   "data/sources/eco2/lfsa_pganws.json",
+   "data/sources/eco2/nama_10_a10.json",
+   "data/sources/eco2/nama_10_a10_e.json",
+   "data/sources/eco2/rd_e_gerdtot.json",
+   "data/sources/eco2/rd_p_persocc.json",
+   "data/sources/eco2/sts_inpr_a.json",
+   "data/sources/gov_10a_taxag.json",
+   "data/sources/hvp_cadrage_herit_donat_FR.xlsx",
+   "data/sources/hvp_cadrage_menages_FR.xlsx",
+   "data/sources/hvp_donat_rec_FR.xlsx",
+   "data/sources/hvp_herit_FR.xlsx",
+   "data/sources/insee_IA118.xlsx",
+   "data/sources/insee_T_CND_103.xlsx",
+   "data/sources/insee_reve-patrim-brut-compo.xlsx",
+   "data/sources/insee_reve-patrim-brut-montants.xlsx",
+   "data/sources/insee_reve-patrim-decile.xlsx",
+   "data/sources/insee_reve-patrim-masse-men-decile.xlsx",
+   "data/sources/nama_10_gdp.json",
+   "data/themes/index.json"
+  ],
+  "ecrits": [
+   "data/eco2/AT.json",
+   "data/eco2/BE.json",
+   "data/eco2/BG.json",
+   "data/eco2/CH.json",
+   "data/eco2/CY.json",
+   "data/eco2/CZ.json",
+   "data/eco2/DE.json",
+   "data/eco2/DK.json",
+   "data/eco2/EE.json",
+   "data/eco2/EL.json",
+   "data/eco2/ES.json",
+   "data/eco2/FI.json",
+   "data/eco2/FR.json",
+   "data/eco2/HR.json",
+   "data/eco2/HU.json",
+   "data/eco2/IE.json",
+   "data/eco2/IS.json",
+   "data/eco2/IT.json",
+   "data/eco2/LT.json",
+   "data/eco2/LU.json",
+   "data/eco2/LV.json",
+   "data/eco2/MT.json",
+   "data/eco2/NL.json",
+   "data/eco2/NO.json",
+   "data/eco2/PL.json",
+   "data/eco2/PT.json",
+   "data/eco2/RO.json",
+   "data/eco2/SE.json",
+   "data/eco2/SI.json",
+   "data/eco2/SK.json",
+   "data/eco2/index.json"
+  ]
+ },
+ "build_empreinte.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/empreinte/env_ac_ainah_r2.json",
+   "data/sources/empreinte/ghgfp_AT.json",
+   "data/sources/empreinte/ghgfp_BE.json",
+   "data/sources/empreinte/ghgfp_BG.json",
+   "data/sources/empreinte/ghgfp_CH.json",
+   "data/sources/empreinte/ghgfp_CY.json",
+   "data/sources/empreinte/ghgfp_CZ.json",
+   "data/sources/empreinte/ghgfp_DE.json",
+   "data/sources/empreinte/ghgfp_DK.json",
+   "data/sources/empreinte/ghgfp_EE.json",
+   "data/sources/empreinte/ghgfp_EL.json",
+   "data/sources/empreinte/ghgfp_ES.json",
+   "data/sources/empreinte/ghgfp_FI.json",
+   "data/sources/empreinte/ghgfp_FR.json",
+   "data/sources/empreinte/ghgfp_HR.json",
+   "data/sources/empreinte/ghgfp_HU.json",
+   "data/sources/empreinte/ghgfp_IE.json",
+   "data/sources/empreinte/ghgfp_IS.json",
+   "data/sources/empreinte/ghgfp_IT.json",
+   "data/sources/empreinte/ghgfp_LT.json",
+   "data/sources/empreinte/ghgfp_LU.json",
+   "data/sources/empreinte/ghgfp_LV.json",
+   "data/sources/empreinte/ghgfp_MT.json",
+   "data/sources/empreinte/ghgfp_NL.json",
+   "data/sources/empreinte/ghgfp_NO.json",
+   "data/sources/empreinte/ghgfp_PL.json",
+   "data/sources/empreinte/ghgfp_PT.json",
+   "data/sources/empreinte/ghgfp_RO.json",
+   "data/sources/empreinte/ghgfp_SE.json",
+   "data/sources/empreinte/ghgfp_SI.json",
+   "data/sources/empreinte/ghgfp_SK.json",
+   "data/sources/empreinte/ghgfp_orig_AT.json",
+   "data/sources/empreinte/ghgfp_orig_BE.json",
+   "data/sources/empreinte/ghgfp_orig_BG.json",
+   "data/sources/empreinte/ghgfp_orig_CH.json",
+   "data/sources/empreinte/ghgfp_orig_CY.json",
+   "data/sources/empreinte/ghgfp_orig_CZ.json",
+   "data/sources/empreinte/ghgfp_orig_DE.json",
+   "data/sources/empreinte/ghgfp_orig_DK.json",
+   "data/sources/empreinte/ghgfp_orig_EE.json",
+   "data/sources/empreinte/ghgfp_orig_EL.json",
+   "data/sources/empreinte/ghgfp_orig_ES.json",
+   "data/sources/empreinte/ghgfp_orig_FI.json",
+   "data/sources/empreinte/ghgfp_orig_FR.json",
+   "data/sources/empreinte/ghgfp_orig_HR.json",
+   "data/sources/empreinte/ghgfp_orig_HU.json",
+   "data/sources/empreinte/ghgfp_orig_IE.json",
+   "data/sources/empreinte/ghgfp_orig_IT.json",
+   "data/sources/empreinte/ghgfp_orig_LT.json",
+   "data/sources/empreinte/ghgfp_orig_LU.json",
+   "data/sources/empreinte/ghgfp_orig_LV.json",
+   "data/sources/empreinte/ghgfp_orig_MT.json",
+   "data/sources/empreinte/ghgfp_orig_NL.json",
+   "data/sources/empreinte/ghgfp_orig_NO.json",
+   "data/sources/empreinte/ghgfp_orig_PL.json",
+   "data/sources/empreinte/ghgfp_orig_PT.json",
+   "data/sources/empreinte/ghgfp_orig_RO.json",
+   "data/sources/empreinte/ghgfp_orig_SE.json",
+   "data/sources/empreinte/ghgfp_orig_SI.json",
+   "data/sources/empreinte/ghgfp_orig_SK.json",
+   "data/sources/empreinte/sdes_empreinte.xlsx",
+   "data/sources/themes/demo_gind.json",
+   "data/themes/index.json"
+  ],
+  "ecrits": [
+   "data/empreinte/AT.json",
+   "data/empreinte/BE.json",
+   "data/empreinte/BG.json",
+   "data/empreinte/CH.json",
+   "data/empreinte/CY.json",
+   "data/empreinte/CZ.json",
+   "data/empreinte/DE.json",
+   "data/empreinte/DK.json",
+   "data/empreinte/EE.json",
+   "data/empreinte/EL.json",
+   "data/empreinte/ES.json",
+   "data/empreinte/FI.json",
+   "data/empreinte/FR.json",
+   "data/empreinte/HR.json",
+   "data/empreinte/HU.json",
+   "data/empreinte/IE.json",
+   "data/empreinte/IT.json",
+   "data/empreinte/LT.json",
+   "data/empreinte/LU.json",
+   "data/empreinte/LV.json",
+   "data/empreinte/MT.json",
+   "data/empreinte/NL.json",
+   "data/empreinte/NO.json",
+   "data/empreinte/PL.json",
+   "data/empreinte/PT.json",
+   "data/empreinte/RO.json",
+   "data/empreinte/SE.json",
+   "data/empreinte/SI.json",
+   "data/empreinte/SK.json",
+   "data/empreinte/index.json"
+  ]
+ },
+ "build_energie.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/energie/nrg_bal_c.json",
+   "data/sources/energie/nrg_bal_c_long.json",
+   "data/sources/energie/owid_europe.csv"
+  ],
+  "ecrits": [
+   "data/energie/AT.json",
+   "data/energie/BE.json",
+   "data/energie/BG.json",
+   "data/energie/CY.json",
+   "data/energie/CZ.json",
+   "data/energie/DE.json",
+   "data/energie/DK.json",
+   "data/energie/EE.json",
+   "data/energie/EL.json",
+   "data/energie/ES.json",
+   "data/energie/FI.json",
+   "data/energie/FR.json",
+   "data/energie/HR.json",
+   "data/energie/HU.json",
+   "data/energie/IE.json",
+   "data/energie/IS.json",
+   "data/energie/IT.json",
+   "data/energie/LT.json",
+   "data/energie/LU.json",
+   "data/energie/LV.json",
+   "data/energie/MT.json",
+   "data/energie/NL.json",
+   "data/energie/NO.json",
+   "data/energie/PL.json",
+   "data/energie/PT.json",
+   "data/energie/RO.json",
+   "data/energie/SE.json",
+   "data/energie/SI.json",
+   "data/energie/SK.json",
+   "data/energie/index.json"
+  ]
+ },
+ "build_environnement.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/env/aires.json",
+   "data/sources/env/aires_mer.json",
+   "data/sources/env/azote.json",
+   "data/sources/env/bio.json",
+   "data/sources/env/for_area.json",
+   "data/sources/env/gge_forest.json",
+   "data/sources/env/hri.json",
+   "data/sources/env/oiseaux_fr.json",
+   "data/sources/env/oiseaux_ue.json",
+   "data/sources/env/pertes.json",
+   "data/sources/env/pm_deaths.json",
+   "data/sources/env/taxes.json",
+   "data/sources/gov_10a_exp_pays_pib.json"
+  ],
+  "ecrits": [
+   "data/environnement.json"
+  ]
+ },
+ "build_exterieur.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/histoire.json",
+   "data/sources/gov_p51g_b9.json",
+   "data/sources/prosperite/imf.json",
+   "data/sources/prosperite/imf_jumeaux.json",
+   "data/sources/tipsii10.json"
+  ],
+  "ecrits": [
+   "data/exterieur.json"
+  ]
+ },
+ "build_histoire.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/finances.json",
+   "data/sources/histoire/bdm_histoire.xml",
+   "data/sources/histoire/ert_bil_eur_a.json",
+   "data/sources/histoire/jst_macrohistory.xlsx",
+   "data/sources/histoire/prc_hicp_aind_fr.json",
+   "data/sources/histoire/prc_hicp_aind_us.json"
+  ],
+  "ecrits": [
+   "data/histoire.json"
+  ]
+ },
+ "build_innovation.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/innov/rd_e_gerdtot.json",
+   "data/sources/innov/sdg_09_40.json"
+  ],
+  "ecrits": [
+   "data/innovation.json"
+  ]
+ },
+ "build_limites.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/limites/owid_co2_monde.csv",
+   "data/sources/limites/owid_energy_monde.csv",
+   "data/sources/limites/wb_AG.PRD.FOOD.XD.json",
+   "data/sources/limites/wb_NV.IND.TOTL.KD.json",
+   "data/sources/limites/wb_NV.SRV.TOTL.KD.json",
+   "data/sources/limites/wb_SP.DYN.CBRT.IN.json",
+   "data/sources/limites/wb_SP.DYN.CDRT.IN.json",
+   "data/sources/limites/wb_SP.DYN.LE00.IN.json",
+   "data/sources/limites/wb_SP.POP.TOTL.json",
+   "data/sources/limites/world3.json"
+  ],
+  "ecrits": [
+   "data/limites.json"
+  ]
+ },
+ "build_logement.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/logement/bdm_logement.xml",
+   "data/sources/logement/ilc_di03.json",
+   "data/sources/logement/ilc_lvho07a.json",
+   "data/sources/logement/ilc_mded01.json",
+   "data/sources/logement/lfst_hh.json",
+   "data/sources/logement/nasa_rdb.json",
+   "data/sources/logement/prc_hicp_aind.json",
+   "data/sources/logement/prc_hpi_a.json",
+   "data/sources/logement/sts_copi_a.json"
+  ],
+  "ecrits": [
+   "data/logement.json"
+  ]
+ },
+ "build_matieres.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/matieres/cei_srm030.json",
+   "data/sources/matieres/env_ac_mfa.json",
+   "data/sources/matieres/env_ac_rme.json",
+   "data/sources/matieres/env_ac_sd.json"
+  ],
+  "ecrits": [
+   "data/matieres/AT.json",
+   "data/matieres/BE.json",
+   "data/matieres/BG.json",
+   "data/matieres/CH.json",
+   "data/matieres/CY.json",
+   "data/matieres/CZ.json",
+   "data/matieres/DE.json",
+   "data/matieres/DK.json",
+   "data/matieres/EE.json",
+   "data/matieres/EL.json",
+   "data/matieres/ES.json",
+   "data/matieres/FI.json",
+   "data/matieres/FR.json",
+   "data/matieres/HR.json",
+   "data/matieres/HU.json",
+   "data/matieres/IE.json",
+   "data/matieres/IS.json",
+   "data/matieres/IT.json",
+   "data/matieres/LT.json",
+   "data/matieres/LU.json",
+   "data/matieres/LV.json",
+   "data/matieres/MT.json",
+   "data/matieres/NL.json",
+   "data/matieres/NO.json",
+   "data/matieres/PL.json",
+   "data/matieres/PT.json",
+   "data/matieres/RO.json",
+   "data/matieres/SE.json",
+   "data/matieres/SI.json",
+   "data/matieres/SK.json",
+   "data/matieres/index.json"
+  ]
+ },
+ "build_monnaie.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/histoire/bdm_histoire.xml",
+   "data/sources/histoire/jst_macrohistory.xlsx",
+   "data/sources/irt_lt_mcby_a_fr.json",
+   "data/sources/monnaie/ecb_agregats.csv",
+   "data/sources/monnaie/ecb_target2.csv",
+   "data/sources/monnaie/ecb_taux.csv",
+   "data/sources/monnaie/pib_zone_euro.json"
+  ],
+  "ecrits": [
+   "data/monnaie.json"
+  ]
+ },
+ "build_niveau_vie.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/argent_prive.json",
+   "data/logement.json",
+   "data/sources/friggit_paris_1200_2012.xls",
+   "data/sources/histoire/bdm_menages.xml",
+   "data/sources/histoire/jst_macrohistory.xlsx",
+   "data/sources/insee_pouvoir_achat.html",
+   "data/sources/insee_preengagees.html",
+   "data/sources/insee_prix_paris.xml",
+   "data/sources/insee_smic_horaire.xml",
+   "data/sources/irt_lt_mcby_a_fr.json",
+   "data/sources/nama_10_pc_p41.json",
+   "data/sources/prc_ppp_ind_aic.json",
+   "data/sources/tec00113.json"
+  ],
+  "ecrits": [
+   "data/niveau_vie.json"
+  ]
+ },
+ "build_patrimoine_hist.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/gov_10a_exp_pays_pib.json",
+   "data/sources/patrimoine_hist/ilc_scp03.json",
+   "data/sources/patrimoine_hist/tour_occ_ninat.json",
+   "data/themes/index.json"
+  ],
+  "ecrits": [
+   "data/patrimoine_hist.json"
+  ]
+ },
+ "build_prelevements.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/bop_iip_fr.json",
+   "data/sources/gov_10a_main_pays_te.json",
+   "data/sources/gov_10a_taxag_pays.json"
+  ],
+  "ecrits": [
+   "data/prelevements_pays.json"
+  ]
+ },
+ "build_prosperite.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/prosperite/bm_pauvrete.json",
+   "data/sources/prosperite/imf.json",
+   "data/sources/prosperite/institutions.json",
+   "data/sources/prosperite/owid_co2.csv",
+   "data/sources/prosperite/owid_energie.csv",
+   "data/sources/prosperite/pnud_2023.json"
+  ],
+  "ecrits": [
+   "data/prosperite.json"
+  ]
+ },
+ "build_rendements.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/agri/fao_engrais_fr.csv",
+   "data/sources/agri/fao_pesticides_fr.csv",
+   "data/sources/agri/fao_rendements.csv",
+   "data/sources/themes/fao_fbs.csv"
+  ],
+  "ecrits": [
+   "data/rendements.json"
+  ]
+ },
+ "build_repartition.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/finances.json",
+   "data/sources/gov_10a_main.json",
+   "data/sources/nama_10_gdp.json",
+   "data/sources/nasa_revenus.json"
+  ],
+  "ecrits": [
+   "data/repartition.json"
+  ]
+ },
+ "build_retraites.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/finances.json",
+   "data/sources/cor_RA2026_P3.xlsx",
+   "data/sources/ret_dep.json",
+   "data/sources/ret_dependance.json",
+   "data/sources/ret_emp.json",
+   "data/sources/ret_esp.json",
+   "data/sources/ret_niv.json",
+   "data/sources/ret_rempl.json",
+   "data/sources/retraites/ip1928.xlsx",
+   "data/themes/FR.json"
+  ],
+  "ecrits": [
+   "data/retraites.json"
+  ]
+ },
+ "build_societe.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/capital/ilc_pw01.json",
+   "data/sources/capital/ilc_pw02.json",
+   "data/sources/capital/ilc_pw03.json",
+   "data/sources/capital/ilc_pw04.json",
+   "data/sources/capital/ilc_pw06.json",
+   "data/sources/capital/ilc_pw07.json",
+   "data/sources/capital/ilc_pw10.json",
+   "data/sources/capital/ilc_scp03.json",
+   "data/sources/capital/ilc_scp04.json",
+   "data/sources/capital/ilc_scp07.json",
+   "data/sources/capital/ilc_scp08.json",
+   "data/sources/capital/ilc_scp09.json",
+   "data/sources/capital/ilc_scp10.json",
+   "data/sources/capital/ilc_scp19.json",
+   "data/sources/capital/ilc_scp20.json",
+   "data/sources/capital/ilc_scp27.json",
+   "data/sources/societe/avia_paoc.json",
+   "data/sources/societe/demo_mlexpec.json",
+   "data/sources/societe/edat_lfse_03.json",
+   "data/sources/societe/edat_lfse_20.json",
+   "data/sources/societe/educ_outc_pisa.json",
+   "data/sources/societe/educ_uoe_enra01.json",
+   "data/sources/societe/educ_uoe_fine06.json",
+   "data/sources/societe/educ_uoe_fini04.json",
+   "data/sources/societe/educ_uoe_perp04.json",
+   "data/sources/societe/env_wasgen.json",
+   "data/sources/societe/env_wasmun.json",
+   "data/sources/societe/env_wastrt.json",
+   "data/sources/societe/hlth_cd_aro.json",
+   "data/sources/societe/hlth_sha11_hchf.json",
+   "data/sources/societe/hlth_sha11_hf.json",
+   "data/sources/societe/ilc_di01.json",
+   "data/sources/societe/ilc_di11.json",
+   "data/sources/societe/ilc_di11b.json",
+   "data/sources/societe/ilc_di12.json",
+   "data/sources/societe/ilc_di12b.json",
+   "data/sources/societe/ilc_li02.json",
+   "data/sources/societe/ilc_li10.json",
+   "data/sources/societe/ilc_lvho02.json",
+   "data/sources/societe/ilc_lvho03.json",
+   "data/sources/societe/ilc_lvho05a.json",
+   "data/sources/societe/ilc_lvho07a.json",
+   "data/sources/societe/ilc_lvho50a.json",
+   "data/sources/societe/ilc_mdsd11.json",
+   "data/sources/societe/lfsa_egais.json",
+   "data/sources/societe/lfsa_esgaed.json",
+   "data/sources/societe/lfsa_pganws.json",
+   "data/sources/societe/lfsi_emp_a.json",
+   "data/sources/societe/prc_hicp_aind.json",
+   "data/sources/societe/prc_hpi_a.json",
+   "data/sources/societe/rail_pa_total.json",
+   "data/sources/societe/road_go_ta_tott.json",
+   "data/sources/societe/road_pa_mov.json",
+   "data/sources/societe/sdg_04_10.json",
+   "data/sources/societe/tran_hv_frmod.json",
+   "data/sources/societe/tran_hv_psmod.json",
+   "data/sources/societe/trng_lfse_01.json",
+   "data/sources/societe/une_rt_a.json",
+   "data/themes/index.json"
+  ],
+  "ecrits": [
+   "data/societe/AT.json",
+   "data/societe/BE.json",
+   "data/societe/BG.json",
+   "data/societe/CH.json",
+   "data/societe/CY.json",
+   "data/societe/CZ.json",
+   "data/societe/DE.json",
+   "data/societe/DK.json",
+   "data/societe/EE.json",
+   "data/societe/EL.json",
+   "data/societe/ES.json",
+   "data/societe/FI.json",
+   "data/societe/FR.json",
+   "data/societe/HR.json",
+   "data/societe/HU.json",
+   "data/societe/IE.json",
+   "data/societe/IS.json",
+   "data/societe/IT.json",
+   "data/societe/LT.json",
+   "data/societe/LU.json",
+   "data/societe/LV.json",
+   "data/societe/MT.json",
+   "data/societe/NL.json",
+   "data/societe/NO.json",
+   "data/societe/PL.json",
+   "data/societe/PT.json",
+   "data/societe/RO.json",
+   "data/societe/SE.json",
+   "data/societe/SI.json",
+   "data/societe/SK.json",
+   "data/societe/index.json"
+  ]
+ },
+ "build_sociologie.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/retraites/ip1928.xlsx",
+   "data/sources/sociologie/legislatives2024_t1_circonscriptions.csv",
+   "data/sources/sociologie/legislatives2024_t1_departements.csv",
+   "data/sources/sociologie/legislatives2024_t2_circonscriptions.csv",
+   "data/sources/sociologie/wpid_gauche_droite.csv"
+  ],
+  "ecrits": [
+   "data/sociologie.json"
+  ]
+ },
+ "build_territoire.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/regions/demo_r_pjan.json",
+   "data/sources/regions/eco2mix_regions.json",
+   "data/sources/regions/nama_10r_2gdp.json",
+   "data/sources/regions/nama_10r_2hhinc.json",
+   "data/sources/regions/regions.geojson"
+  ],
+  "ecrits": [
+   "data/territoire.json"
+  ]
+ },
+ "build_themes.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/themes/comext_historique.json",
+   "data/sources/themes/comext_partenaires.json",
+   "data/sources/themes/comext_produits.json",
+   "data/sources/themes/crim_hom_vrel.json",
+   "data/sources/themes/crim_just_age.json",
+   "data/sources/themes/crim_just_ctz.json",
+   "data/sources/themes/crim_just_job.json",
+   "data/sources/themes/crim_off_cat.json",
+   "data/sources/themes/crim_pris_age.json",
+   "data/sources/themes/crim_pris_cap.json",
+   "data/sources/themes/crim_pris_ctz.json",
+   "data/sources/themes/demo_gind.json",
+   "data/sources/themes/demo_pjan.json",
+   "data/sources/themes/env_air_gge.json",
+   "data/sources/themes/env_wat_abs.json",
+   "data/sources/themes/fao_fbs.csv",
+   "data/sources/themes/lan_lcv_ovw.json",
+   "data/sources/themes/lan_use_ovw.json",
+   "data/sources/themes/lfsa_eppga.json",
+   "data/sources/themes/lfsa_eppgai.json",
+   "data/sources/themes/lfsa_ewhan2.json",
+   "data/sources/themes/migr_emi1ctz.json",
+   "data/sources/themes/migr_imm1ctz.json",
+   "data/sources/themes/migr_pop1ctz.json",
+   "data/sources/themes/migr_pop3ctb.json",
+   "data/sources/themes/nama_10_a10_e.json",
+   "data/sources/themes/proj_23np.json",
+   "data/sources/themes/tus_00age.json"
+  ],
+  "ecrits": [
+   "data/themes/AT.json",
+   "data/themes/BE.json",
+   "data/themes/BG.json",
+   "data/themes/CH.json",
+   "data/themes/CY.json",
+   "data/themes/CZ.json",
+   "data/themes/DE.json",
+   "data/themes/DK.json",
+   "data/themes/EE.json",
+   "data/themes/EL.json",
+   "data/themes/ES.json",
+   "data/themes/FI.json",
+   "data/themes/FR.json",
+   "data/themes/HR.json",
+   "data/themes/HU.json",
+   "data/themes/IE.json",
+   "data/themes/IS.json",
+   "data/themes/IT.json",
+   "data/themes/LT.json",
+   "data/themes/LU.json",
+   "data/themes/LV.json",
+   "data/themes/MT.json",
+   "data/themes/NL.json",
+   "data/themes/NO.json",
+   "data/themes/PL.json",
+   "data/themes/PT.json",
+   "data/themes/RO.json",
+   "data/themes/SE.json",
+   "data/themes/SI.json",
+   "data/themes/SK.json",
+   "data/themes/commerce_FR.json",
+   "data/themes/index.json"
+  ]
+ },
+ "build_travail_vie.py": {
+  "date": "2026-11-20",
+  "lus": [
+   "data/sources/lfsi_dwl_a.json",
+   "data/themes/index.json"
+  ],
+  "ecrits": [
+   "data/travail_vie.json"
+  ]
+ }
+}

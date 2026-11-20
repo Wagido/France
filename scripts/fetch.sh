@@ -1,11 +1,56 @@
 #!/usr/bin/env bash
 # Télécharge les données brutes (Eurostat + INSEE) dans data/sources/.
 # Usage : bash scripts/fetch.sh   (depuis le dossier finances/)
-set -euo pipefail
+#
+# Tolérance aux pannes : chaque source est téléchargée dans un fichier temporaire, vérifiée, puis seulement
+# alors mise à la place de l'ancienne. Si une source échoue (adresse déplacée, serveur en maintenance,
+# série renommée), l'ancien fichier, déjà enregistré dans le dépôt, est conservé et on passe à la suivante.
+# Les échecs sont listés à la fin, et le script se termine alors en erreur (code 2) : c'est l'étape finale
+# du workflow qui fait échouer le job, après les calculs et l'enregistrement des données qui ont réussi.
+# La date du dernier téléchargement réussi de chaque fichier est tenue dans data/sources/_dates.json.
+set -uo pipefail
 SCRIPTS="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPTS/../data/sources"
 E="https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
-get() { echo "→ $1"; curl -fsSL --retry 3 -A "Mozilla/5.0" "$2" -o "$1"; }
+ECHECS_FICHIER="${ECHECS_FICHIER:-$(pwd)/_echecs.txt}"
+: > "$ECHECS_FICHIER"
+REUSSIS="$(mktemp)"
+AUJOURDHUI="$(date -u +%Y-%m-%d)"
+echec() { echo "  ✗ ÉCHEC : $1 — $2"; printf '%s\t%s\n' "$1" "$2" >> "$ECHECS_FICHIER"; }
+ok() { printf '%s\n' "$1" >> "$REUSSIS"; }
+# filtre DEST commande... : produit DEST à partir d'un téléchargement ; en cas d'échec, l'ancien DEST est restauré
+filtre() {
+  local dest="$1"; shift
+  if "$@"; then ok "$dest"
+  else echec "$dest" "filtre en échec (ancien fichier conservé)"; git checkout -- "$dest" 2>/dev/null || true
+  fi
+}
+# vérifie qu'un téléchargement ressemble bien à des données (et pas à une page d'erreur)
+valide() {
+  local dest="$1" f="$2"
+  [ -s "$f" ] || { echo "fichier vide"; return 1; }
+  case "$dest" in
+    *.json) python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); sys.exit(1 if isinstance(d,dict) and "error" in d and not ("value" in d or "data" in d) else 0)' "$f" 2>/dev/null || { echo "JSON invalide ou message d'erreur"; return 1; } ;;
+    *.csv) head -c 200 "$f" | grep -qi '<html\|<!doctype' && { echo "page HTML au lieu d'un CSV"; return 1; } ;;
+  esac
+  return 0
+}
+get() {
+  local dest="$1" url="$2" tmp msg nom
+  case "$dest" in /*) nom="$url" ;; *) nom="$dest" ;; esac   # fichier temporaire : on nomme la source par son adresse
+  echo "→ $nom"
+  tmp="$(mktemp)"
+  if ! curl -fsSL --retry 3 --retry-delay 10 --max-time 600 -A "Mozilla/5.0" "$url" -o "$tmp"; then
+    rm -f "$tmp"; echec "$nom" "téléchargement impossible (ancien fichier conservé)"; return 1
+  fi
+  if ! msg="$(valide "$dest" "$tmp")"; then rm -f "$tmp"; echec "$nom" "$msg (ancien fichier conservé)"; return 1; fi
+  mkdir -p "$(dirname "$dest")"; mv -f "$tmp" "$dest"
+  case "$dest" in /*) ;; *) printf '%s\n' "$dest" >> "$REUSSIS" ;; esac   # les fichiers temporaires ne sont pas datés
+  return 0
+}
+# tout autre traitement qui échoue (filtrage, conversion) est aussi listé, sans arrêter le script
+trap 'case "$BASH_COMMAND" in get\ *|return\ *) ;; *) echec "ligne $LINENO" "commande en échec : ${BASH_COMMAND:0:120}" ;; esac' ERR
+set -o errtrace
 
 # PIB : demande, revenus, valeur ajoutée par branche et par secteur, population
 get nama_10_gdp.json    "$E/nama_10_gdp?geo=FR&unit=CP_MEUR&sinceTimePeriod=1995"
@@ -41,8 +86,9 @@ for i in SP.POP.TOTL SP.DYN.CBRT.IN SP.DYN.CDRT.IN SP.DYN.LE00.IN NV.IND.TOTL.KD
   get "limites/wb_$i.json" "https://api.worldbank.org/v2/country/WLD/indicator/$i?format=json&per_page=200"
 done
 for f in co2 energy; do
-  get "limites/owid_$f.csv" "https://raw.githubusercontent.com/owid/$f-data/master/owid-$f-data.csv"
-  python3 -c "import csv,sys; r=csv.DictReader(open(sys.argv[1])); w=csv.DictWriter(open(sys.argv[2],'w',newline=''),fieldnames=r.fieldnames); w.writeheader(); [w.writerow(x) for x in r if x['country']=='World']" "limites/owid_$f.csv" "limites/owid_${f}_monde.csv" && rm -f "limites/owid_$f.csv"
+  get "limites/owid_$f.csv" "https://raw.githubusercontent.com/owid/$f-data/master/owid-$f-data.csv" && \
+  filtre "limites/owid_${f}_monde.csv" python3 -c "import csv,sys; r=csv.DictReader(open(sys.argv[1])); w=csv.DictWriter(open(sys.argv[2],'w',newline=''),fieldnames=r.fieldnames); w.writeheader(); [w.writerow(x) for x in r if x['country']=='World']" "limites/owid_$f.csv" "limites/owid_${f}_monde.csv"
+  rm -f "limites/owid_$f.csv"
 done
 # Sociologie électorale : rapports Ipsos (PDF converti en texte ; les valeurs sont retranscrites dans scripts/build_sociologie.py)
 mkdir -p sociologie
@@ -55,8 +101,9 @@ get sociologie/legislatives2024_t2_circonscriptions.csv "$DG-du-2nd-tour/2024071
 FB="https://bulks-faostat.fao.org/production"
 for z in "Production_Crops_Livestock_E_Europe:fao_rendements:rendements" "Inputs_FertilizersNutrient_E_Europe:fao_engrais_fr:france" "Inputs_Pesticides_Use_E_All_Data:fao_pesticides_fr:france"; do
   IFS=: read -r f out mode <<< "$z"; TMPZ=$(mktemp)
-  get "$TMPZ" "$FB/$f.zip"
-  python3 "$SCRIPTS/filter_fao_agri.py" "$TMPZ" "agri/$out.csv" "$mode" && rm -f "$TMPZ"
+  get "$TMPZ" "$FB/$f.zip" && \
+  filtre "agri/$out.csv" python3 "$SCRIPTS/filter_fao_agri.py" "$TMPZ" "agri/$out.csv" "$mode"
+  rm -f "$TMPZ"
 done
 mkdir -p env
 get env/oiseaux_fr.json "https://api.insee.fr/melodi/data/DS_NAT_SDG?INDICATOR_SDG=15.i6a&INDICATOR_SDG=15.i6b&maxResult=1000"
@@ -126,8 +173,9 @@ get energie/nrg_bal_c.json "$E/nrg_bal_c?unit=GWH&sinceTimePeriod=2015$GEO$NB$SI
 SIL=$(for s in C0000X0350-0370 P1000 S2000 O4000XBIO G3000 N900H RA100 RA200 RA300 RA410 RA420 RA600 BIOE W6100_6220; do printf "&siec=%s" "$s"; done)
 get energie/nrg_bal_c_long.json "$E/nrg_bal_c?unit=GWH&nrg_bal=GAE&sinceTimePeriod=1990$GEO$SIL"
 TMP=$(mktemp)
-get "$TMP" "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
-python3 "$SCRIPTS/filter_owid.py" "$TMP" energie/owid_europe.csv && rm -f "$TMP"
+get "$TMP" "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv" && \
+filtre energie/owid_europe.csv python3 "$SCRIPTS/filter_owid.py" "$TMP" energie/owid_europe.csv
+rm -f "$TMP"
 # Matières : comptes de flux de matières (Eurostat), en milliers de tonnes
 mkdir -p matieres
 MAT=$(for m in TOTAL MF1 MF11 MF12 MF13 MF14 MF15 MF16 MF2 MF21 MF22 MF221 MF227 MF228 MF23 MF3 MF31 MF32 MF34 MF35 MF36 MF37 MF38 MF3B MF4 MF41 MF42 MF43 MF44 MF45 MF5 MF6; do printf "&material=%s" "$m"; done)
@@ -247,8 +295,8 @@ get eco2/sts_inpr_a.json   "$E/sts_inpr_a?indic_bt=PRD&s_adj=CA&unit=I21&sinceTi
 get eco2/htec_emp_nat2.json "$E/htec_emp_nat2?sex=T&unit=PC_EMP&sinceTimePeriod=2008$GEO&nace_r2=HTC&nace_r2=C_HTC&nace_r2=C_HTC_M&nace_r2=KIS"
 get eco2/isoc_eb_ai.json   "$E/isoc_eb_ai?unit=PC_ENT&size_emp=GE10&indic_is=E_AI_TANY$GEO"
 TMPX=$(mktemp)
-get "$TMPX" "https://bdm.insee.fr/series/sdmx/data/TCRED-TRAVAIL-EMPLOI-EFF-FP-RATIO?detail=dataonly"
-python3 - "$TMPX" eco2/insee_fonction_publique.json <<'PY'
+get "$TMPX" "https://bdm.insee.fr/series/sdmx/data/TCRED-TRAVAIL-EMPLOI-EFF-FP-RATIO?detail=dataonly" && \
+filtre eco2/insee_fonction_publique.json python3 - "$TMPX" eco2/insee_fonction_publique.json <<'PY'
 import json, re, sys
 s = open(sys.argv[1], encoding="utf-8").read()
 out = {}
@@ -300,8 +348,9 @@ get themes/comext_historique.json "$C?reporter=FR&freq=A&sinceTimePeriod=2002&fl
 
 # Alimentation : bilans alimentaires FAOSTAT (Europe), filtrés
 TMPZ=$(mktemp)
-get "$TMPZ" "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_Europe.zip"
-python3 "$SCRIPTS/filter_fao.py" "$TMPZ" themes/fao_fbs.csv && rm -f "$TMPZ"
+get "$TMPZ" "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_Europe.zip" && \
+filtre themes/fao_fbs.csv python3 "$SCRIPTS/filter_fao.py" "$TMPZ" themes/fao_fbs.csv
+rm -f "$TMPZ"
 # Vit-on mieux qu'avant ? (pouvoir d'achat, dépenses pré-engagées, SMIC, comparaisons en PPA)
 get prc_ppp_ind_aic.json "$E/prc_ppp_ind?na_item=VI_PPS_EU27_2020_HAB&ppp_cat=A01&ppp_cat=GDP"
 get nama_10_pc_p41.json "$E/nama_10_pc?na_item=P41&unit=CLV10_EUR_HAB&unit=CLV20_EUR_HAB"
@@ -327,4 +376,21 @@ mkdir -p energie
 get energie/comext_2716.json "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-045409?reporter=FR&partner=WORLD&product=2716&flow=1&flow=2&indicators=VALUE_IN_EUROS&indicators=QUANTITY_IN_100KG&freq=A"
 get energie/nrg_cb_e_echanges.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?geo=FR&siec=E7000&nrg_bal=IMP&nrg_bal=EXP&unit=GWH"
 get energie/nrg_pc_204.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_204?geo=FR&geo=DE&geo=EU27_2020&geo=ES&geo=IT&nrg_cons=KWH2500-4999&tax=I_TAX&tax=X_TAX&currency=EUR&unit=KWH&sinceTimePeriod=2015-S1"
-echo "OK"
+trap - ERR
+# dates des derniers téléchargements réussis (les fichiers en échec gardent leur ancienne date)
+python3 - "$REUSSIS" "$AUJOURDHUI" <<'PY'
+import json, os, sys
+dates = json.load(open("_dates.json")) if os.path.exists("_dates.json") else {}
+for l in open(sys.argv[1]):
+    if l.strip():
+        dates["data/sources/" + l.strip()] = sys.argv[2]
+json.dump(dict(sorted(dates.items())), open("_dates.json", "w"), ensure_ascii=False, indent=1)
+PY
+rm -f "$REUSSIS"
+N=$(grep -c . "$ECHECS_FICHIER" || true)
+if [ "$N" -gt 0 ]; then
+  echo; echo "=== $N échec(s) de téléchargement ; les anciens fichiers ont été conservés ==="
+  cat "$ECHECS_FICHIER"
+  exit 2
+fi
+echo "OK : toutes les sources ont été mises à jour."

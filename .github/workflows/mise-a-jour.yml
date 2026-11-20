@@ -25,43 +25,26 @@ jobs:
           python-version: "3.12"
       - name: Dépendances
         run: pip install openpyxl==3.1.5 xlrd==2.0.1
+      # Tolérance aux pannes : une source ou un calcul qui échoue garde son ancien fichier (déjà dans le dépôt),
+      # le reste continue ; les échecs sont listés à la fin et font échouer le job seulement à ce moment-là.
       - name: Téléchargement des sources
+        env:
+          ECHECS_FICHIER: ${{ runner.temp }}/echecs.txt
         run: |
-          bash scripts/fetch.sh
-          python3 scripts/fetch_regions.py
+          : > "$ECHECS_FICHIER"
+          bash scripts/fetch.sh || true
+          if python3 scripts/fetch_regions.py; then
+            python3 scripts/maj.py marquer data/sources/regions/eco2mix_regions.json
+          else
+            printf 'data/sources/regions/eco2mix_regions.json\tfetch_regions.py (ODRÉ) en échec\n' >> "$ECHECS_FICHIER"
+            git checkout -- data/sources/regions/eco2mix_regions.json || true
+          fi
       - name: Calculs
+        env:
+          ECHECS_FICHIER: ${{ runner.temp }}/echecs.txt
         run: |
-          python3 scripts/build.py
-          python3 scripts/build_energie.py
-          python3 scripts/build_matieres.py
-          python3 scripts/build_territoire.py
-          python3 scripts/build_themes.py
-          python3 scripts/build_societe.py
-          python3 scripts/build_eco2.py
-          python3 scripts/build_empreinte.py
-          python3 scripts/build_chomage.py
-          python3 scripts/build_histoire.py
-          python3 scripts/build_argent_prive.py
-          python3 scripts/build_repartition.py
-          python3 scripts/build_prelevements.py
-          python3 scripts/build_travail_vie.py
-          python3 scripts/build_niveau_vie.py
-          python3 scripts/build_prosperite.py
-          python3 scripts/build_exterieur.py
-          python3 scripts/build_desindustrialisation.py
-          python3 scripts/build_retraites.py
-          python3 scripts/build_competences.py
-          python3 scripts/build_couper.py
-          python3 scripts/build_logement.py
-          python3 scripts/build_environnement.py
-          python3 scripts/build_agriculture.py
-          python3 scripts/build_rendements.py
-          python3 scripts/build_monnaie.py
-          python3 scripts/build_echanges.py
-          python3 scripts/build_limites.py
-          python3 scripts/build_sociologie.py
-          python3 scripts/build_patrimoine_hist.py
-          python3 scripts/build_innovation.py
+          python3 scripts/run_builds.py
+          python3 scripts/maj.py || printf 'data/maj.json\tdatation des rubriques en échec\n' >> "$ECHECS_FICHIER"
       - name: Enregistrement si les données ont changé
         run: |
           git config user.name "mise-a-jour-auto"
@@ -73,3 +56,20 @@ jobs:
             git commit -m "Mise à jour automatique des données ($(date -u +%Y-%m-%d))"
             git push
           fi
+      - name: Bilan des échecs
+        if: always()
+        env:
+          ECHECS_FICHIER: ${{ runner.temp }}/echecs.txt
+        run: |
+          if [ -s "$ECHECS_FICHIER" ]; then
+            {
+              echo "## $(wc -l < "$ECHECS_FICHIER") élément(s) non mis à jour (anciennes données conservées)"
+              echo
+              echo "| Fichier | Cause |"
+              echo "|---|---|"
+              sed 's/|/\\|/g; s/\t/ | /; s/^/| /; s/$/ |/' "$ECHECS_FICHIER"
+            } >> "$GITHUB_STEP_SUMMARY"
+            cat "$ECHECS_FICHIER"
+            exit 1
+          fi
+          echo "Toutes les sources et tous les calculs ont réussi." >> "$GITHUB_STEP_SUMMARY"
