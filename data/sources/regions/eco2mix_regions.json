@@ -1567,16 +1567,16 @@
 },
 "93": {
 "nom": "Provence-Alpes-Côte d'Azur",
-"n": 17520,
-"consommation": 40.0,
+"n": 1500,
+"consommation": 4.544,
 "nucleaire": 0.0,
-"thermique": 8.927,
-"hydraulique": 5.755,
-"solaire": 2.593,
-"bioenergies": 1.068,
+"thermique": 0.804,
+"hydraulique": 0.621,
+"solaire": 0.145,
+"bioenergies": 0.065,
 "eolien_terrestre": 0.0,
 "eolien_offshore": 0.0,
-"ech_physiques": 21.531
+"ech_physiques": 2.895
 }
 },
 "2023": {

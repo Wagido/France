@@ -7,11 +7,12 @@
 Principe :
 - data/sources/_dates.json : date du dernier téléchargement réussi de chaque fichier source (écrit par fetch.sh) ;
 - data/sources/_builds.json : pour chaque calcul, les sources lues et les fichiers produits (écrit par run_builds.py) ;
+- seules les sources téléchargées automatiquement comptent (les fichiers déposés à la main sont ignorés) ;
 - un fichier produit est daté de sa source la PLUS ANCIENNE : si une source a échoué ce mois-ci, la rubrique
   garde la date de la dernière fois où tout a été rafraîchi ;
 - une rubrique (section de index.html) est datée par les fichiers de données que chargent les scripts qui l'affichent.
 """
-import datetime, json, os, re, subprocess, sys
+import datetime, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "data", "sources")
@@ -23,12 +24,6 @@ def charger(p, defaut):
         return json.load(open(p, encoding="utf-8"))
     except (OSError, ValueError):
         return defaut
-
-
-def date_git(rel):
-    """Repli : date du dernier commit qui a modifié le fichier (amorçage)."""
-    r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel], cwd=ROOT, capture_output=True, text=True)
-    return r.stdout.strip() or None
 
 
 def marquer(fichiers):
@@ -56,13 +51,11 @@ def sections_et_ids():
 def main():
     dates = charger(DATES, {})
     builds = charger(os.path.join(SRC, "_builds.json"), {})
-    cache = {}
 
     def dsrc(rel):
-        if rel not in dates:
-            cache.setdefault(rel, date_git(rel))
-            return cache[rel]
-        return dates[rel]
+        # seules les sources téléchargées automatiquement (présentes dans _dates.json) datent une rubrique ;
+        # les fichiers déposés à la main (rapports, référentiels fixes) ne sont jamais « en retard »
+        return dates.get(rel)
 
     # 1. date de chaque fichier produit = plus ancienne de ses sources
     produit = {}
