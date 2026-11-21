@@ -379,6 +379,17 @@ mkdir -p energie
 get energie/comext_2716.json "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-045409?reporter=FR&partner=WORLD&product=2716&flow=1&flow=2&indicators=VALUE_IN_EUROS&indicators=QUANTITY_IN_100KG&freq=A"
 get energie/nrg_cb_e_echanges.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_cb_e?geo=FR&siec=E7000&nrg_bal=IMP&nrg_bal=EXP&unit=GWH"
 get energie/nrg_pc_204.json "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_pc_204?geo=FR&geo=DE&geo=EU27_2020&geo=ES&geo=IT&nrg_cons=KWH2500-4999&tax=I_TAX&tax=X_TAX&currency=EUR&unit=KWH&sinceTimePeriod=2015-S1"
+# Générations (onglet Retraites, « Les retraités vivent-ils mieux que les actifs ? »)
+mkdir -p generations
+get generations/hbs_exp_t135.json "$E/hbs_exp_t135?geo=FR"
+get generations/hbs_car_t314.json "$E/hbs_car_t314?geo=FR"
+get generations/hbs_str_t225.json "$E/hbs_str_t225?geo=FR&coicop=CP042"
+get generations/ilc_di03.json "$E/ilc_di03?geo=FR&sex=T&unit=EUR&statinfo=MED_EI&statinfo=MEAN_EI&age=TOTAL&age=Y_LT18&age=Y18-24&age=Y25-49&age=Y50-64&age=Y_GE65"
+get generations/ilc_pns2.json "$E/ilc_pns2?geo=FR&sex=T"
+get generations/cofog.json "$E/gov_10a_exp?geo=FR&unit=PC_GDP&sector=S13&na_item=TE&cofog99=GF1002&cofog99=GF07&cofog99=GF09&cofog99=TOTAL"
+get generations/invest.json "$E/gov_10a_main?geo=FR&unit=PC_GDP&sector=S13&na_item=P51G"
+get generations/prelevements.json "$E/gov_10a_taxag?geo=FR&unit=PC_GDP&sector=S13_S212&na_item=D2_D5_D91_D61_M_D995"
+get generations/demo.json "$E/demo_pjanind?geo=FR&indic_de=PC_Y65_MAX&indic_de=PC_Y60_MAX"
 trap - ERR
 # dates des derniers téléchargements réussis (les fichiers en échec gardent leur ancienne date)
 python3 - "$REUSSIS" "$AUJOURDHUI" <<'PY'
