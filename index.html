@@ -594,6 +594,55 @@
     <li><b>Ce que proposent certains économistes</b> : le Conseil d'analyse économique (Focus n° 121, 2025) suggère de présenter à part la charge des pensions passées, pour que le budget de chaque ministère reflète ce qui sert vraiment à son activité, et de distinguer ce qui relève de cotisations « normales » de ce qui est une subvention d'équilibre financée par l'impôt.</li>
   </ul>
   <p class="muted" style="font-size:.78rem;margin:4px 0 0">Sources : <a href="https://retraitesdeletat.gouv.fr/statistiques/cas.html" target="_blank" rel="noopener">Service des retraites de l'État</a> ; Sénat, rapports sur la mission Enseignement scolaire (PLF 2025) ; Conseil d'analyse économique, <a href="https://cae-eco.fr/static/pdf/Focus_121_pension_250919.pdf" target="_blank" rel="noopener">Focus n° 121</a> ; Conseil d'orientation des retraites ; F. Geerolf, <a href="https://fgeerolf.com/cas-pensions-insee.html" target="_blank" rel="noopener">CAS Pensions : l'Insee et la convention budgétaire</a>.</p></div>
+  <h3 class="ag-part" id="rt-gen">Les retraités vivent-ils mieux que les actifs ?</h3>
+  <p class="lead">Deux graphiques du <i>Financial Times</i> (John Burn-Murdoch) ont beaucoup circulé : « les retraités ont désormais un niveau de vie supérieur à celui des actifs » et « les recettes vont aux plus âgés, pas aux infrastructures ». Nous les avons refaits pour la France avec les données publiques, en changeant une hypothèse à la fois, pour voir ce qui tient et ce qui dépend de la façon de compter.</p>
+
+  <h3>1. Ce que les ménages dépensent, selon l'âge</h3>
+  <p class="muted" style="margin:0 0 6px">Dépense de consommation selon l'âge de la personne de référence du ménage, indice 100 = ensemble des ménages. Choisissez la façon de compter :</p>
+  <div class="seg" id="gen-mode" role="radiogroup" aria-label="Façon de compter" style="flex-wrap:wrap;margin-bottom:6px"></div>
+  <p class="muted" id="gen-conso-mode" style="font-size:.85rem;margin:4px 0 8px"></p>
+  <div id="gen-conso" class="chart"></div><div class="legend-row" id="gen-conso-legend"></div>
+  <div id="gen-tab" style="margin-top:10px"></div>
+  <div class="callout small" id="gen-conso-txt"></div>
+
+  <h3>2. Le revenu, selon l'âge</h3>
+  <p class="muted" style="margin:0 0 6px">Revenu disponible médian par unité de consommation, selon l'âge de la personne, en % du revenu médian de l'ensemble de la population</p>
+  <div id="gen-revenu" class="chart"></div><div class="legend-row" id="gen-revenu-legend"></div>
+  <div class="callout small" id="gen-revenu-txt"></div>
+  <div class="callout small" id="gen-pat-txt"></div>
+
+  <h3>3. Où va l'argent public : écart depuis 1995, en points de PIB</h3>
+  <div id="gen-fin" class="chart"></div><div class="legend-row" id="gen-fin-legend"></div>
+  <h3>Dépense vieillesse réelle, et ce qu'elle serait avec la seule démographie</h3>
+  <div id="gen-demo" class="chart"></div><div class="legend-row" id="gen-demo-legend"></div>
+  <div class="callout small" id="gen-fin-txt"></div>
+
+  <div class="callout small" id="gen-bilan">
+    <p style="margin-top:0"><b>En résumé.</b> Le constat du FT tient pour la France : les retraités, qui vivaient nettement moins bien que les actifs il y a trente ans, vivent aujourd'hui à peu près aussi bien qu'eux, et la dépense publique supplémentaire est allée surtout à la vieillesse et à la santé. Mais trois nuances changent la lecture :</p>
+    <ul>
+      <li>le « dépassement » des actifs vient du logement possédé (loyers fictifs), pas des pensions : sans lui, les plus âgés restent un peu sous la moyenne ;</li>
+      <li>leur avantage relatif de revenu a culminé au milieu des années 2010 et recule depuis ;</li>
+      <li>la hausse de la dépense vieillesse est démographique : par personne âgée, et rapportée à la richesse produite par habitant, elle a baissé.</li>
+    </ul>
+    <p style="margin-bottom:0">Le vrai déséquilibre entre générations est patrimonial : les plus âgés possèdent beaucoup plus, et la hausse des prix du logement a creusé l'écart. La question politique demeure : à niveau de pension relatif inchangé, chaque actif finance une part croissante de retraites, parce qu'il y a de plus en plus de retraités par actif.</p>
+  </div>
+
+  <details class="callout small" id="gen-methode">
+    <summary><b>Méthode détaillée : d'où viennent les chiffres et comment ils sont calculés</b></summary>
+    <p><b>1. Consommation par âge.</b> Source : Eurostat, enquêtes sur le budget des ménages (tableaux <code>hbs_exp_t135</code>, <code>hbs_car_t314</code>, <code>hbs_str_t225</code>), alimentées pour la France par l'enquête Budget de famille de l'INSEE. Les ménages sont classés selon l'âge de leur « personne de référence » (en général celle qui a le revenu le plus élevé) : un couple de 62 et 58 ans peut donc être compté dans les « 60 ans ou plus », et un jeune adulte vivant chez ses parents est compté dans le ménage de ses parents. La consommation inclut les loyers fictifs mais exclut les impôts, les cotisations, l'épargne et les remboursements d'emprunts.</p>
+    <ul>
+      <li><b>Par ménage</b> : dépense moyenne par ménage du groupe ÷ dépense moyenne de l'ensemble des ménages × 100.</li>
+      <li><b>Par personne</b> : même calcul, après division de chaque dépense par le nombre moyen de personnes du ménage (tableau <code>hbs_car_t314</code>, ligne « personnes »). Pour l'ensemble, dépense moyenne ÷ taille moyenne des ménages.</li>
+      <li><b>Par équivalent adulte</b> : valeur publiée par Eurostat (unité <code>PPS_AE</code>). Chaque ménage compte 1 pour le premier adulte, 0,5 par autre personne de 14 ans ou plus, 0,3 par enfant de moins de 14 ans (échelle OCDE modifiée, la même que celle de l'INSEE pour le niveau de vie). C'est cette mesure qui reproduit le graphique du FT pour la France, point par point.</li>
+      <li><b>Sans loyers fictifs</b> : on retire de chaque groupe la part du poste COICOP 04.2 « loyers fictifs » dans sa dépense (en ‰, tableau <code>hbs_str_t225</code>). Pour l'ensemble des ménages, cette part est la moyenne des groupes pondérée par leur nombre de ménages et leur dépense (tableau <code>hbs_car_t314</code>, ligne « % des ménages »). Indice = dépense par équivalent adulte du groupe × (1 − part de loyers fictifs du groupe) ÷ [même calcul pour l'ensemble] × 100.</li>
+    </ul>
+    <p>Le <b>loyer fictif</b> est le loyer qu'un propriétaire paierait s'il louait le logement qu'il occupe. La comptabilité nationale l'ajoute à sa consommation (et à son revenu) pour que la richesse d'un pays ne change pas selon que les gens louent ou possèdent. C'est légitime : ne pas payer de loyer est un vrai avantage. Mais ce n'est pas de l'argent disponible, et ce loyer monte avec les prix de l'immobilier sans que le propriétaire ait rien de plus en poche. En 1988, les loyers fictifs n'étaient pas relevés : la courbe « par équivalent adulte » commence donc en 1994, et le point 1988 de la courbe « sans loyers fictifs » est directement la valeur publiée. Les enquêtes sont espacées de 5 à 6 ans. Pour la France, Eurostat publie des vagues 2015 et 2020 qui donnent exactement les mêmes écarts entre âges : il s'agit de la même enquête (la plus récente, Budget de famille 2017), simplement convertie à d'autres prix ; nous n'en gardons qu'une.</p>
+    <p><b>2. Revenu par âge.</b> Source : Eurostat, tableau <code>ilc_di03</code> (enquête européenne sur les revenus et les conditions de vie, SRCV en France). Revenu disponible du ménage (salaires, pensions, revenus du patrimoine, prestations, moins impôts directs), divisé par le nombre d'unités de consommation (même échelle que ci-dessus), attribué à chaque personne du ménage ; on prend la médiane de chaque tranche d'âge, rapportée à la médiane de toute la population. Ici l'âge est celui de chaque personne, et non celui du chef de ménage. Les loyers fictifs ne sont pas comptés. Le revenu d'une année d'enquête porte sur l'année précédente. Avant 2004, les chiffres viennent d'un autre panel européen (ECHP), peu comparable : la courbe est interrompue entre les deux.</p>
+    <p><b>3. Finances publiques.</b> Source : Eurostat, comptes des administrations publiques (ensemble des administrations, État, collectivités et Sécurité sociale). « Vieillesse » = fonction COFOG 10.2 (pensions de vieillesse de tous les régimes, minimum vieillesse, aides à la dépendance et à l'hébergement des personnes âgées ; les pensions de réversion sont classées à part, en 10.3, et ne sont pas incluses). « Santé » = fonction 07, pour tous les âges. « Impôts et cotisations » = prélèvements obligatoires (impôts et cotisations sociales effectives, tableau <code>gov_10a_taxag</code>). « Investissement public » = formation brute de capital fixe des administrations (P.51G). Tous en % du PIB ; on trace l'écart avec la première année disponible, 1995.</p>
+    <p><b>Dépense « à démographie seule ».</b> On calcule la dépense vieillesse par personne de 65 ans ou plus, en % du PIB par habitant : dépense vieillesse (% du PIB) ÷ part des 65 ans ou plus dans la population (Eurostat, <code>demo_pjanind</code>) × 100. On garde la valeur de 1995 et on la multiplie, chaque année, par la part réelle des 65 ans ou plus. La différence entre cette courbe et la dépense réelle mesure l'effet des règles (réformes, indexation, âge de départ, montant des nouvelles pensions). Limite : les pensions commencent avant 65 ans. Avec la part des 60 ans ou plus, le résultat va dans le même sens (la dépense par personne âgée, rapportée au PIB par habitant, baisse d'environ 13 % au lieu de 16 %).</p>
+    <p><b>Ce que nous n'avons pas pu reproduire.</b> Le FT part d'environ 1990, ajoute à la vieillesse les dépenses de santé des 65 ans ou plus (une estimation à partir de profils de dépense par âge) et utilise la base des dépenses sociales de l'OCDE. Les ordres de grandeur diffèrent donc ; le sens des évolutions est le même. Patrimoine : INSEE, enquête Histoire de vie et Patrimoine 2020-2021 (patrimoine brut médian par âge de la personne de référence).</p>
+  </details>
+
   <h3 class="ag-part">Les chiffres</h3>
   <h3>La France comparée à ses voisins</h3>
   <div class="table-scroll" id="rt-table"></div>
@@ -8407,6 +8456,7 @@ for snr_db in (10, 15, 20):
 <script src="marche.js?v=20261118d"></script>
 <script src="tableau.js?v=20261118d"></script>
 <script src="sources.js?v=20261118d"></script>
+<script src="generations.js?v=20261121a"></script>
 <script src="maj.js?v=20261120a"></script>
 <script src="nav.js?v=20261118d"></script>
 </body>

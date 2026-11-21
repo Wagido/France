@@ -617,3 +617,6 @@ table.cmp-t.ro-t { min-width: 0; width: 100%; }
 .mx-step { counter-increment: mxs; }
 .maj-date { font-size: .78rem; color: var(--muted, #6b7280); margin: -.3rem 0 .8rem; }
 .maj-date.vieux { color: #b45309; }
+#gen-methode summary { cursor: pointer; }
+#gen-methode[open] summary { margin-bottom: 8px; }
+#gen-methode code { font-size: .8em; }

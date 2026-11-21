@@ -1,6 +1,6 @@
 {
  "build.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/gov_10a_exp.json",
    "data/sources/gov_10a_exp_d1.json",
@@ -62,7 +62,7 @@
   ]
  },
  "build_agriculture.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/agri/bio.json",
    "data/sources/agri/cult_pays.json",
@@ -74,7 +74,7 @@
   ]
  },
  "build_argent_prive.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/empreinte/FR.json",
    "data/sources/energie/owid_europe.csv",
@@ -89,7 +89,7 @@
   ]
  },
  "build_chomage.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/chomage/bdm_chomage.xml",
    "data/sources/chomage/lfsi_sla_a.json",
@@ -100,7 +100,7 @@
   ]
  },
  "build_competences.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/gov_exp_soussecteurs.json"
   ],
@@ -109,7 +109,7 @@
   ]
  },
  "build_couper.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/finances.json",
    "data/sources/gov_10a_exp_pays_pib.json"
@@ -119,7 +119,7 @@
   ]
  },
  "build_desindustrialisation.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/indus_emp.json",
    "data/sources/indus_va.json"
@@ -129,7 +129,7 @@
   ]
  },
  "build_echanges.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/energie/comext_2716.json",
    "data/sources/energie/nrg_cb_e_echanges.json",
@@ -140,7 +140,7 @@
   ]
  },
  "build_eco2.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/societe/FR.json",
    "data/sources/eco2/demo_pjanbroad.json",
@@ -204,7 +204,7 @@
   ]
  },
  "build_empreinte.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/empreinte/env_ac_ainah_r2.json",
    "data/sources/empreinte/ghgfp_AT.json",
@@ -304,7 +304,7 @@
   ]
  },
  "build_energie.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/energie/nrg_bal_c.json",
    "data/sources/energie/nrg_bal_c_long.json",
@@ -344,7 +344,7 @@
   ]
  },
  "build_environnement.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/env/aires.json",
    "data/sources/env/aires_mer.json",
@@ -365,7 +365,7 @@
   ]
  },
  "build_exterieur.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/histoire.json",
    "data/sources/gov_p51g_b9.json",
@@ -377,8 +377,25 @@
    "data/exterieur.json"
   ]
  },
+ "build_generations.py": {
+  "date": "2026-11-21",
+  "lus": [
+   "data/sources/generations/cofog.json",
+   "data/sources/generations/demo.json",
+   "data/sources/generations/hbs_car_t314.json",
+   "data/sources/generations/hbs_exp_t135.json",
+   "data/sources/generations/hbs_str_t225.json",
+   "data/sources/generations/ilc_di03.json",
+   "data/sources/generations/ilc_pns2.json",
+   "data/sources/generations/invest.json",
+   "data/sources/generations/prelevements.json"
+  ],
+  "ecrits": [
+   "data/generations.json"
+  ]
+ },
  "build_histoire.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/finances.json",
    "data/sources/histoire/bdm_histoire.xml",
@@ -392,7 +409,7 @@
   ]
  },
  "build_innovation.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/innov/rd_e_gerdtot.json",
    "data/sources/innov/sdg_09_40.json"
@@ -402,7 +419,7 @@
   ]
  },
  "build_limites.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/limites/owid_co2_monde.csv",
    "data/sources/limites/owid_energy_monde.csv",
@@ -420,7 +437,7 @@
   ]
  },
  "build_logement.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/logement/bdm_logement.xml",
    "data/sources/logement/ilc_di03.json",
@@ -437,7 +454,7 @@
   ]
  },
  "build_matieres.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/matieres/cei_srm030.json",
    "data/sources/matieres/env_ac_mfa.json",
@@ -479,7 +496,7 @@
   ]
  },
  "build_monnaie.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/histoire/bdm_histoire.xml",
    "data/sources/histoire/jst_macrohistory.xlsx",
@@ -494,7 +511,7 @@
   ]
  },
  "build_niveau_vie.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/argent_prive.json",
    "data/logement.json",
@@ -515,7 +532,7 @@
   ]
  },
  "build_patrimoine_hist.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/gov_10a_exp_pays_pib.json",
    "data/sources/patrimoine_hist/ilc_scp03.json",
@@ -527,7 +544,7 @@
   ]
  },
  "build_prelevements.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/bop_iip_fr.json",
    "data/sources/gov_10a_main_pays_te.json",
@@ -538,7 +555,7 @@
   ]
  },
  "build_prosperite.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/prosperite/bm_pauvrete.json",
    "data/sources/prosperite/imf.json",
@@ -552,7 +569,7 @@
   ]
  },
  "build_rendements.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/agri/fao_engrais_fr.csv",
    "data/sources/agri/fao_pesticides_fr.csv",
@@ -564,7 +581,7 @@
   ]
  },
  "build_repartition.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/finances.json",
    "data/sources/gov_10a_main.json",
@@ -576,7 +593,7 @@
   ]
  },
  "build_retraites.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/finances.json",
    "data/sources/cor_RA2026_P3.xlsx",
@@ -594,7 +611,7 @@
   ]
  },
  "build_societe.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/capital/ilc_pw01.json",
    "data/sources/capital/ilc_pw02.json",
@@ -691,7 +708,7 @@
   ]
  },
  "build_sociologie.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/retraites/ip1928.xlsx",
    "data/sources/sociologie/legislatives2024_t1_circonscriptions.csv",
@@ -704,7 +721,7 @@
   ]
  },
  "build_territoire.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/regions/demo_r_pjan.json",
    "data/sources/regions/eco2mix_regions.json",
@@ -717,7 +734,7 @@
   ]
  },
  "build_themes.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/themes/comext_historique.json",
    "data/sources/themes/comext_partenaires.json",
@@ -784,7 +801,7 @@
   ]
  },
  "build_travail_vie.py": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "lus": [
    "data/sources/lfsi_dwl_a.json",
    "data/themes/index.json"
