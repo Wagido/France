@@ -390,6 +390,13 @@ get generations/cofog.json "$E/gov_10a_exp?geo=FR&unit=PC_GDP&sector=S13&na_item
 get generations/invest.json "$E/gov_10a_main?geo=FR&unit=PC_GDP&sector=S13&na_item=P51G"
 get generations/prelevements.json "$E/gov_10a_taxag?geo=FR&unit=PC_GDP&sector=S13_S212&na_item=D2_D5_D91_D61_M_D995"
 get generations/demo.json "$E/demo_pjanind?geo=FR&indic_de=PC_Y65_MAX&indic_de=PC_Y60_MAX"
+# Monnaie, 6.3-6.4 : moteurs de la demande et climats économiques
+mkdir -p climats
+get climats/contributions.json "$E/nama_10_gdp?geo=FR&unit=CON_PPCH_PRE&na_item=B1GQ&na_item=P31_S14_S15&na_item=P3_S13&na_item=P51G&na_item=P52_P53&na_item=P6&na_item=P7"
+get climats/volumes.json "$E/nama_10_gdp?geo=FR&unit=CLV_PCH_PRE&na_item=B1GQ&na_item=P31_S14_S15&na_item=P3_S13&na_item=P51G&na_item=P6&na_item=P7&sinceTimePeriod=1995"
+get climats/fbcf_pays.json "$E/nama_10_gdp?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&unit=PC_GDP&na_item=P51G&sinceTimePeriod=1995"
+get climats/epargne_pays.json "$E/nasa_10_ki?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&na_item=SRG_S14_S15&sinceTimePeriod=1999"
+get climats/rd_pays.json "$E/rd_e_gerdtot?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&sectperf=TOTAL&unit=PC_GDP&sinceTimePeriod=1995"
 trap - ERR
 # dates des derniers téléchargements réussis (les fichiers en échec gardent leur ancienne date)
 python3 - "$REUSSIS" "$AUJOURDHUI" <<'PY'

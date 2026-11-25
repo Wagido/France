@@ -620,3 +620,12 @@ table.cmp-t.ro-t { min-width: 0; width: 100%; }
 #gen-methode summary { cursor: pointer; }
 #gen-methode[open] summary { margin-bottom: 8px; }
 #gen-methode code { font-size: .8em; }
+.q4 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0 16px; }
+.q4-c { border-radius: 12px; padding: 12px 14px; font-size: .88rem; line-height: 1.5; border: 1px solid var(--line); }
+.q4-c h4 { margin: 0 0 6px; font-size: 1rem; } .q4-c h4 small { font-weight: 500; color: var(--muted); }
+.q4-c p { margin: 0 0 6px; }
+.q4-ri { background: color-mix(in srgb, #dc2626 9%, var(--surface)); } .q4-ri h4 { color: #b91c1c; }
+.q4-ci { background: color-mix(in srgb, #16a34a 9%, var(--surface)); } .q4-ci h4 { color: #15803d; }
+.q4-rd { background: color-mix(in srgb, #ca8a04 11%, var(--surface)); } .q4-rd h4 { color: #a16207; }
+.q4-cd { background: color-mix(in srgb, #2563eb 9%, var(--surface)); } .q4-cd h4 { color: #1d4ed8; }
+@media (max-width: 720px) { .q4 { grid-template-columns: 1fr; } }
