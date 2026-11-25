@@ -29,11 +29,11 @@ async function init() {
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
-function draw() { if (!C || !$("#mo-contrib")) return; contrib(); moteurs(); pays(); quadrants(); }
+function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); }
 
 /* ---------- 6.3 contributions empilées ---------- */
-function contrib() {
-  const el = $("#mo-contrib"), data = C.contributions.filter(d => d.annee >= 1996);
+function contrib(p) {
+  const el = $(`#${p}-contrib`), data = C.contributions.filter(d => d.annee >= 1996);
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 12, r: 10, b: 26, l: 40 };
   const x = d3.scaleBand(data.map(d => d.annee), [m.l, w - m.r]).padding(.18);
   const pos = d => MOT.reduce((s, k) => s + Math.max(0, d[k.k] || 0), 0), neg = d => MOT.reduce((s, k) => s + Math.min(0, d[k.k] || 0), 0);
@@ -58,20 +58,20 @@ function contrib() {
       window.TH.showTip?.(`<b>${d.annee}</b> : PIB ${sg(d.pib)} %` + MOT.map(k => `<br><span style="color:${k.c}">■</span> ${k.l} : ${sg(d[k.k])} pt`).join(""), ev); })
     .on("pointerleave", () => window.TH.hideTip?.());
   el.replaceChildren(svg.node());
-  window.TH.legend("#mo-contrib-legend", [...MOT.map(k => [k.l, k.c]), ["Croissance du PIB (point)", "var(--ink)", true]]);
+  window.TH.legend(`#${p}-contrib-legend`, [...MOT.map(k => [k.l, k.c]), ["Croissance du PIB (point)", "var(--ink)", true]]);
 }
 
 function moy(rows, k, a, b) { const r = rows.filter(d => d.annee >= a && d.annee <= b && d[k] != null); return r.length ? r.reduce((s, d) => s + d[k], 0) / r.length : null; }
-function moteurs() {
+function moteurs(p) {
   const V = C.volumes, K = C.contributions, der = V.at(-1).annee;
   const L = [["pib", "PIB"], ["conso", "Consommation des ménages"], ["public", "Dépense publique (services)"], ["invest", "Investissement"], ["export", "Exportations"], ["import", "Importations"]];
-  $("#mo-moteurs").innerHTML = `<div class="table-scroll"><table class="cmp-t"><thead><tr><th>Volume, croissance moyenne par an</th><th>2015-2019</th><th>${der - 2}-${der}</th><th>${der}</th></tr></thead><tbody>
+  $(`#${p}-moteurs`).innerHTML = `<div class="table-scroll"><table class="cmp-t"><thead><tr><th>Volume, croissance moyenne par an</th><th>2015-2019</th><th>${der - 2}-${der}</th><th>${der}</th></tr></thead><tbody>
     ${L.map(([k, l]) => { const a = moy(V, k, 2015, 2019), b = moy(V, k, der - 2, der), c = V.at(-1)[k]; return `<tr><td>${l}</td><td class="num">${sg(a)} %</td><td class="num" style="${b < a - .5 ? "color:#dc2626;font-weight:600" : ""}">${sg(b)} %</td><td class="num">${sg(c)} %</td></tr>`; }).join("")}
     </tbody></table></div>`;
   const ca = moy(V, "conso", 2015, 2019), cb = moy(V, "conso", der - 2, der), pa = moy(V, "public", 2015, 2019), pb = moy(V, "public", der - 2, der), ia = moy(V, "invest", 2015, 2019), ib = moy(V, "invest", der - 2, der);
   const ep = C.epargne.FR, e19 = ep.find(d => d.annee === 2019)?.v, eN = ep.at(-1);
   const k3 = K.filter(d => d.annee >= der - 2), sc = k => k3.reduce((s, d) => s + (d[k] || 0), 0);
-  $("#mo-moteurs-txt").innerHTML = `<p style="margin-top:0"><b>En France aujourd'hui, ce n'est pas la consommation qui tient.</b> Sur ${der - 2}-${der}, la consommation des ménages ne progresse que de ${sg(cb)} % par an, contre ${sg(ca)} % avant le Covid. Les revenus ont pourtant suivi : les ménages épargnent davantage. Leur taux d'épargne est passé de ${f1(e19)} % du revenu en 2019 à ${f1(eN.v)} % en ${eN.annee}, un niveau jamais vu hors Covid (inquiétude sur l'avenir, déficits, retraites, prix de l'énergie, épargne des ménages aisés). C'est le moteur qui a le plus calé par rapport à son rythme habituel.</p>
+  $(`#${p}-moteurs-txt`).innerHTML = `<p style="margin-top:0"><b>En France aujourd'hui, ce n'est pas la consommation qui tient.</b> Sur ${der - 2}-${der}, la consommation des ménages ne progresse que de ${sg(cb)} % par an, contre ${sg(ca)} % avant le Covid. Les revenus ont pourtant suivi : les ménages épargnent davantage. Leur taux d'épargne est passé de ${f1(e19)} % du revenu en 2019 à ${f1(eN.v)} % en ${eN.annee}, un niveau jamais vu hors Covid (inquiétude sur l'avenir, déficits, retraites, prix de l'énergie, épargne des ménages aisés). C'est le moteur qui a le plus calé par rapport à son rythme habituel.</p>
     <ul>
       <li><b>La dépense publique tient</b> : ${sg(pb)} % par an (${sg(pa)} % avant 2020). C'est elle qui soutient le plus la croissance, mais elle est financée à crédit (déficit d'environ 5 % du PIB).</li>
       <li><b>L'investissement recule ou stagne</b> : ${sg(ib)} % par an, contre ${sg(ia)} % avant 2020. La hausse des taux de 2022-2023 a cassé la construction de logements, et les entreprises attendent avant d'investir (incertitude politique et fiscale).</li>
@@ -80,13 +80,13 @@ function moteurs() {
     <p style="margin-bottom:0"><b>Le bilan est donc l'inverse de l'idée reçue</b> : la consommation est le moteur qui a le plus calé, la dépense publique tient, l'investissement stagne et le commerce extérieur a aidé, faute d'importations. La croissance de ${V.at(-1).annee} (${sg(V.at(-1).pib)} %) repose sur peu de chose.</p>`;
 }
 
-function pays() {
+function pays(p) {
   const { lineChart, legend } = window.TH;
   const rows = k => { const m = {}; PAYS.forEach(p => (C[k][p.k] || []).forEach(d => { (m[d.annee] ||= { annee: d.annee })[p.k] = d.v; })); return Object.values(m).sort((a, b) => a.annee - b.annee); };
-  lineChart($("#mo-fbcf"), rows("fbcf"), PAYS, { nozero: true, h: 220, vfmt: v => f1(v) + " %", yfmt: v => v + " %", xticks: 5 });
-  lineChart($("#mo-epargne"), rows("epargne"), PAYS, { nozero: true, h: 220, vfmt: v => f1(v) + " %", yfmt: v => v + " %", xticks: 5 });
-  lineChart($("#mo-rd"), rows("rd"), PAYS, { nozero: true, h: 220, vfmt: v => f1(v) + " %", yfmt: v => v + " %", xticks: 5 });
-  legend("#mo-pays-legend", PAYS.map(p => [p.l, p.c, !!p.dash]));
+  lineChart($(`#${p}-fbcf`), rows("fbcf"), PAYS, { nozero: true, h: 220, vfmt: v => f1(v) + " %", yfmt: v => v + " %", xticks: 5 });
+  lineChart($(`#${p}-epargne`), rows("epargne"), PAYS, { nozero: true, h: 220, vfmt: v => f1(v) + " %", yfmt: v => v + " %", xticks: 5 });
+  lineChart($(`#${p}-rd`), rows("rd"), PAYS, { nozero: true, h: 220, vfmt: v => f1(v) + " %", yfmt: v => v + " %", xticks: 5 });
+  legend(`#${p}-pays-legend`, PAYS.map(p => [p.l, p.c, !!p.dash]));
 }
 
 /* ---------- 6.4 les quatre climats ---------- */

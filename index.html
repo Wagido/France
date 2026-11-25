@@ -152,6 +152,38 @@
     <h2>Le PIB et ce qu'il contient vraiment <span class="geo-tag"></span></h2>
     <label class="ctl">Année <select id="pib-year"></select></label>
   </div>
+  <h3 id="pib-moteurs-titre" class="ag-part" style="margin-top:4px">Les quatre moteurs de la demande : qui fait la croissance en France aujourd'hui ?</h3>
+  <p>À court terme, la production suit la demande : une entreprise ne produit que ce qu'elle pense vendre. Toute la dépense d'un pays se range dans quatre cases, et leur somme est le PIB : <b>PIB = consommation + investissement + dépense publique + (exportations − importations)</b>. C'est une identité comptable, vraie par construction ; elle ne dit pas ce qui cause quoi, mais elle permet de voir quel moteur tire et lequel cale.</p>
+  <div class="in-need">
+    <div><b>① La consommation des ménages</b><span>Environ 53 % du PIB : alimentation, logement, transport, loisirs. Elle dépend du revenu, mais aussi de la confiance : un ménage inquiet épargne. Les retraites et les allocations, qui ne sont pas des achats de l'État, apparaissent ici, quand les ménages les dépensent.</span></div>
+    <div><b>② L'investissement</b><span>Environ 22 % du PIB. Attention au sens du mot : en économie, investir, c'est acheter des machines, des bâtiments, des logiciels, construire des logements ou des routes (la « formation brute de capital fixe »). Acheter des actions d'autres entreprises n'en fait pas partie : c'est un simple échange de titres, sauf quand l'argent sert à construire une usine.</span></div>
+    <div><b>③ La dépense publique</b><span>Environ 24 % du PIB : les services publics, évalués à leur coût (salaires des enseignants, des soignants, fournitures). L'investissement public (routes, écoles) est compté avec l'investissement, et les prestations (retraites, allocations) passent par la consommation des ménages.</span></div>
+    <div><b>④ Le commerce extérieur</b><span>Les exportations ajoutent à la demande, les importations en retirent, puisqu'une partie de ce que l'on achète est produite ailleurs. En France, les deux pèsent chacune environ un tiers du PIB : seul le solde, faible, compte pour la croissance.</span></div>
+  </div>
+  <h3>Ce que chaque moteur a apporté à la croissance chaque année, en points de PIB</h3>
+  <div id="pib-contrib" class="chart"></div><div class="legend-row" id="pib-contrib-legend"></div>
+  <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : la hauteur de chaque morceau de barre est la part de la croissance due à ce moteur ; le point est la croissance du PIB, somme des morceaux. En 2009 et 2020, presque tous les moteurs plongent ensemble.</p>
+  <div id="pib-moteurs"></div>
+  <div class="callout small" id="pib-moteurs-txt"></div>
+  <h3>À long terme, c'est l'offre qui compte : investissement, épargne et recherche</h3>
+  <div class="grid3">
+    <div><p class="muted" style="margin:0"><b>Investissement</b>, en % du PIB</p><div id="pib-fbcf" class="chart"></div></div>
+    <div><p class="muted" style="margin:0"><b>Épargne des ménages</b>, en % de leur revenu</p><div id="pib-epargne" class="chart"></div></div>
+    <div><p class="muted" style="margin:0"><b>Recherche et développement</b>, en % du PIB</p><div id="pib-rd" class="chart"></div></div>
+  </div>
+  <div class="legend-row" id="pib-pays-legend"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>À court terme, la demande ; à long terme, l'offre.</b> La demande décide de l'utilisation des capacités existantes : si elle manque, usines et salariés restent inemployés. Mais sur dix ou vingt ans, ce que l'on peut produire dépend de trois choses : combien de personnes travaillent, combien d'heures, et ce que chacune produit par heure (la productivité). La productivité vient des machines, des compétences, de l'organisation et des techniques. Relancer la demande sans capacités pour y répondre ne donne que de l'inflation ou des importations.</li>
+      <li><b>L'investissement est bien la clé du long terme</b>, parce qu'il est le seul moteur qui augmente aussi les capacités : une machine achetée aujourd'hui est de la demande cette année, puis de la production pendant vingt ans. C'est aussi par lui que les nouvelles techniques entrent dans les entreprises.</li>
+      <li><b>Mais la France n'investit pas moins que ses voisins</b> : environ 22 % du PIB, plus que l'Allemagne. La différence est dans le contenu. Une grande part va au bâtiment et au logement ; la recherche et développement plafonne à 2,2 % du PIB depuis trente ans, contre plus de 3 % en Allemagne ; et l'investissement industriel a suivi la désindustrialisation (voir l'onglet Industrie et innovation). Investir plus ne suffit pas : il faut investir là où la productivité augmente.</li>
+      <li><b>Le paradoxe de l'épargne</b> : chaque ménage qui épargne plus est prudent ; quand tous le font en même temps, la demande baisse, les entreprises vendent moins, embauchent moins, et les revenus finissent par baisser. L'épargne n'est utile à la croissance que si elle finance de l'investissement. Le niveau record de l'épargne française est donc à la fois une réserve et un frein.</li>
+    </ul>
+  </div>
+
+  <p class="muted" style="font-size:.84rem">Cette partie figure aussi dans l'onglet <a href="#monnaie" data-to="mo-6-3">Monnaie et croissance</a> (6.3), suivie des quatre climats de l'économie : croissance, récession, inflation, déflation (6.4).</p>
+
+  <h3 class="ag-part">Ce que contient le PIB</h3>
   <div class="kpis" id="pib-kpis"></div>
   <div id="pib-body">
 
@@ -8682,7 +8714,7 @@ for snr_db in (10, 15, 20):
 <script src="tableau.js?v=20261118d"></script>
 <script src="sources.js?v=20261118d"></script>
 <script src="generations.js?v=20261121a"></script>
-<script src="climats.js?v=20261125a"></script>
+<script src="climats.js?v=20261126a"></script>
 <script src="france2050.js?v=20261125a"></script>
 <script src="maj.js?v=20261120a"></script>
 <script src="nav.js?v=20261118d"></script>
