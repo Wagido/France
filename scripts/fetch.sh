@@ -397,6 +397,13 @@ get climats/volumes.json "$E/nama_10_gdp?geo=FR&unit=CLV_PCH_PRE&na_item=B1GQ&na
 get climats/fbcf_pays.json "$E/nama_10_gdp?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&unit=PC_GDP&na_item=P51G&sinceTimePeriod=1995"
 get climats/epargne_pays.json "$E/nasa_10_ki?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&na_item=SRG_S14_S15&sinceTimePeriod=1999"
 get climats/rd_pays.json "$E/rd_e_gerdtot?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&sectperf=TOTAL&unit=PC_GDP&sinceTimePeriod=1995"
+# France 2050 (article de prospective)
+mkdir -p france2050
+get france2050/projections.json "$E/proj_23np?geo=FR&sex=T&unit=PER&age=TOTAL&age=Y_GE65&age=Y_GE80&age=Y_LT15&age=Y15-64&age=Y20-64"
+get france2050/demographie.json "$E/demo_gind?geo=FR&indic_de=LBIRTH&indic_de=DEATH&indic_de=CNMIGRAT&indic_de=JAN&sinceTimePeriod=1960"
+get france2050/population_age.json "$E/demo_pjanind?geo=FR&indic_de=PC_Y65_MAX&indic_de=PC_Y80_MAX&indic_de=PC_Y0_14&sinceTimePeriod=1960"
+get france2050/migration_departements.json "$E/demo_r_gind3?indic_de=CNMIGRATRT&indic_de=JAN&sinceTimePeriod=2016&geoLevel=nuts3&lang=fr"
+get france2050/energie_finale.json "$E/nrg_bal_c?geo=FR&nrg_bal=FC_E&unit=KTOE&siec=TOTAL&siec=O4000XBIO&siec=G3000&siec=C0000X0350-0370&siec=E7000&siec=H8000&siec=RA000&siec=W6100_6220&sinceTimePeriod=1990"
 trap - ERR
 # dates des derniers téléchargements réussis (les fichiers en échec gardent leur ancienne date)
 python3 - "$REUSSIS" "$AUJOURDHUI" <<'PY'

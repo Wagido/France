@@ -104,6 +104,7 @@
       <a href="#monnaie">Monnaie et croissance</a>
       <a href="#limites">Limites physiques à la croissance</a>
       <a href="#climat-physique">Énergie et climat : la physique</a>
+      <a href="#france2050">La France en 2050</a>
     </nav>
     <nav class="tabs" data-group="societe" aria-label="Société" hidden>
       <a href="#demographie">Démographie</a>
@@ -1447,6 +1448,141 @@
   <p class="muted" style="font-size:.78rem">Sources : INSEE, comptes nationaux annuels (PIB en valeur et en volume) ; Eurostat, taux d'intérêt à long terme (irt_lt_mcby_a, complété avant 1970 par la Macrohistory Database) ; Jordà, Schularick et Taylor, Macrohistory Database (crédits bancaires au secteur privé, monnaie au sens large, dette publique, jusqu'en 2020) ; BCE, statistiques monétaires (agrégats M1, M2, M3 de la zone euro) et Eurostat (PIB de la zone euro) ; Banque d'Angleterre, <i>Quarterly Bulletin</i> 2014 T1 ; T. Jackson et P. Victor, <i>Ecological Economics</i>, 2015 ; J. Benes et M. Kumhof, document de travail du FMI 12/202, 2012. Les deux simulateurs sont des calculs simplifiés à but pédagogique.</p>
 </section>
 
+<section id="france2050" class="panel">
+  <div class="panel-head">
+    <h2>La France en 2050 : ce qui est déjà écrit, ce qui reste à décider <span class="geo-fixed">France</span></h2>
+  </div>
+  <p class="lead">Vingt-cinq ans, c'est demain : la plupart des Français de 2050 sont déjà nés, la moitié des logements de 2050 sont déjà construits, et le réchauffement des vingt-cinq prochaines années est déjà en grande partie engagé par les gaz émis. On peut donc dessiner une partie du paysage avec assez de certitude, à partir des projections officielles (Eurostat, INSEE, Météo-France, RTE, COR) et des travaux du Shift Project. Le reste dépend de choix encore ouverts.</p>
+  <div class="kpis" id="f50-kpis"></div>
+  <nav class="li-toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+    <li><a href="#france2050" data-to="f50-p1">Ce qui est presque certain, probable ou ouvert</a></li>
+    <li><a href="#france2050" data-to="f50-p2">La population : moins de naissances, plus d'âgés</a></li>
+    <li><a href="#france2050" data-to="f50-p3">Les territoires : vers l'ouest et le sud, là où le climat se durcit</a></li>
+    <li><a href="#france2050" data-to="f50-p4">Le climat : vivre à +2,7 °C</a></li>
+    <li><a href="#france2050" data-to="f50-p5">L'énergie : sortir du pétrole et du gaz</a></li>
+    <li><a href="#france2050" data-to="f50-p6">L'économie : moins d'actifs, plus de dettes, quelle croissance ?</a></li>
+    <li><a href="#france2050" data-to="f50-p7">Trois France possibles</a></li>
+    <li><a href="#france2050" data-to="f50-p8">Comment se préparer</a></li>
+  </ol></nav>
+
+  <h3 id="f50-p1" class="ag-part">1. Ce qui est presque certain, probable ou ouvert</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t">
+    <thead><tr><th>Presque certain</th><th>Probable</th><th>Ouvert</th></tr></thead>
+    <tbody><tr>
+      <td><ul>
+        <li>Une population âgée : plus d'un quart des habitants auront 65 ans ou plus.</li>
+        <li>Un réchauffement d'environ +2,7 °C en France par rapport à l'ère préindustrielle, quoi que fasse le monde d'ici là.</li>
+        <li>Des étés à canicules répétées, des sécheresses plus fréquentes, une mer plus haute.</li>
+        <li>Un parc nucléaire actuel à renouveler ou à prolonger : la plupart des réacteurs auront entre 50 et 70 ans.</li>
+        <li>Une dette publique élevée, héritée d'aujourd'hui.</li>
+      </ul></td>
+      <td><ul>
+        <li>Une population qui plafonne, puis baisse sans immigration.</li>
+        <li>Des voitures et des chauffages majoritairement électriques.</li>
+        <li>Un déplacement de la population vers l'ouest et le sud, qui pourrait ralentir si les risques climatiques y deviennent trop lourds.</li>
+        <li>Une croissance économique faible, de l'ordre de 1 % par an.</li>
+        <li>Des tensions sur l'eau l'été, et des assurances plus chères.</li>
+      </ul></td>
+      <td><ul>
+        <li>Le niveau du réchauffement après 2050, qui dépend des émissions mondiales de maintenant.</li>
+        <li>Le prix et la disponibilité du pétrole et du gaz.</li>
+        <li>Les effets de l'intelligence artificielle sur l'emploi et la productivité.</li>
+        <li>L'immigration, qui dépend de choix politiques.</li>
+        <li>La place de l'industrie, et la façon dont l'Europe tiendra entre les États-Unis et la Chine.</li>
+      </ul></td>
+    </tr></tbody></table></div>
+
+  <h3 id="f50-p2" class="ag-part">2. La population : moins de naissances, plus d'âgés</h3>
+  <h3>Population de la France, observée et projetée selon plusieurs hypothèses (millions)</h3>
+  <div id="f50-pop" class="chart"></div><div class="legend-row" id="f50-pop-legend"></div>
+  <h3>Naissances, décès et solde migratoire chaque année (milliers)</h3>
+  <div id="f50-nd" class="chart"></div><div class="legend-row" id="f50-nd-legend"></div>
+  <p id="f50-nd-txt"></p>
+  <h3>Le vieillissement : part des 65 ans et plus, et nombre de 65 ans et plus pour 100 personnes d'âge actif</h3>
+  <div id="f50-age" class="chart"></div><div class="legend-row" id="f50-age-legend"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Le vieillissement est écrit.</b> Les générations nombreuses de l'après-guerre (nées de 1946 à 1974) auront entre 76 et 104 ans en 2050. Le nombre de personnes de 80 ans ou plus va presque doubler. Ce n'est pas une hypothèse : ces personnes sont déjà là, et l'espérance de vie progresse lentement.</li>
+      <li><b>La fécondité est le grand inconnu.</b> Les projections d'Eurostat (2023) supposent qu'elle remonte. Or les naissances continuent de baisser : si elle reste au niveau actuel, la trajectoire réelle sera plus proche de la courbe « fécondité plus faible » que de la courbe centrale.</li>
+      <li><b>L'immigration fait la différence de taille.</b> Entre l'hypothèse « sans immigration » et l'hypothèse « immigration plus forte », l'écart atteint environ 5 millions d'habitants en 2050. Sans elle, la population baisserait dès maintenant.</li>
+      <li><b>Ce que cela change</b> : chaque personne d'âge actif financera davantage de retraites et de soins (voir l'onglet Retraites) ; les besoins d'aides à domicile, d'infirmiers et de places en établissement vont fortement augmenter ; les écoles se videront dans certains territoires ; et le marché du logement changera, avec des logements de grande taille occupés par des personnes seules.</li>
+    </ul>
+  </div>
+
+  <h3 id="f50-p3" class="ag-part">3. Les territoires : vers l'ouest et le sud, là où le climat se durcit</h3>
+  <h3>Solde migratoire par département, 2016-2022 (arrivées moins départs, pour 1 000 habitants et par an)</h3>
+  <div id="f50-map" class="chart" style="display:flex;justify-content:center"></div>
+  <div id="f50-map-legend" style="text-align:center;margin:4px 0 8px"></div>
+  <p class="muted" style="font-size:.85rem" id="f50-map-txt"></p>
+  <div class="callout small">
+    <ul>
+      <li><b>Le grand mouvement</b> : la France se vide par le nord-est (de la Champagne aux Ardennes et à la Lorraine) et par Paris, et se remplit par la façade atlantique, l'Occitanie, la Provence et la Corse. Le géographe Arnaud Brennetot l'a cartographié en détail à l'échelle des bassins de vie (2026) : les gains se concentrent sur le littoral, de la Bretagne au Pays basque, et sur le pourtour méditerranéen, les pertes sur une grande moitié nord-est. Les départs de Paris sont en partie compensés par les naissances, et sont pour beaucoup des familles qui s'installent en périphérie ou des retraités qui partent.</li>
+      <li><b>Le paradoxe</b> : on part vers le soleil et la mer, qui sont aussi les territoires où le climat se durcira le plus. Sécheresses et conflits sur l'eau en Occitanie et en Provence, feux de forêt (les Landes et la Gironde en 2022), canicules, recul du trait de côte et submersions (Xynthia en Vendée et en Charente-Maritime en 2010). Les départements qui gagnent le plus d'habitants sont souvent ceux où le prix du risque augmentera le plus.</li>
+      <li><b>Ce qui pourrait changer la carte</b> : le prix de l'assurance et des logements exposés, le manque d'eau pour de nouveaux habitants, la chaleur l'été. Les régions « oubliées » du nord-est et du centre, plus fraîches, mieux pourvues en eau et moins chères, pourraient redevenir attractives. Rien n'indique encore ce renversement dans les chiffres.</li>
+    </ul>
+  </div>
+
+  <h3 id="f50-p4" class="ag-part">4. Le climat : vivre à +2,7 °C</h3>
+  <h3>Température moyenne en France, écart à l'ère préindustrielle (1850-1900)</h3>
+  <div id="f50-temp" class="chart"></div><div class="legend-row" id="f50-temp-legend"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>La référence officielle</b> : depuis janvier 2026, un décret fixe la « trajectoire de réchauffement de référence pour l'adaptation » (TRACC) : la France doit se préparer à +2 °C en 2030, +2,7 °C en 2050 et +4 °C en 2100 par rapport à l'ère préindustrielle. Elle correspond à un réchauffement mondial de +3 °C en 2100, la trajectoire des politiques actuelles. La France se réchauffe plus vite que la moyenne du globe, parce que les terres se réchauffent plus vite que les océans.</li>
+      <li><b>Ce que cela veut dire</b> : les étés comme 2003 ou 2022, exceptionnels aujourd'hui, deviendront courants vers 2050. Plus de nuits tropicales en ville, des canicules plus longues et plus précoces (la canicule de 2003 avait causé environ 15 000 décès). Moins de neige en montagne : les stations de moyenne altitude ne pourront plus compter sur l'hiver.</li>
+      <li><b>L'eau</b> : la pluie annuelle change peu, mais l'été, plus chaud, évapore davantage. Les débits des rivières en été baisseront dans la plupart des bassins (étude Explore2, 2024), les nappes se rechargeront moins, et les conflits d'usage entre agriculture, villes, industrie et centrales électriques augmenteront.</li>
+      <li><b>Les maisons</b> : plus de 10 millions de maisons individuelles sont construites sur des argiles qui gonflent quand il pleut et se rétractent quand il fait sec. À chaque sécheresse, des murs se fissurent. C'est déjà le premier coût des catastrophes naturelles pour les assureurs.</li>
+      <li><b>L'agriculture</b> : les vendanges ont déjà avancé de deux à trois semaines depuis les années 1980 ; le blé souffre des coups de chaleur au printemps ; certaines cultures remontent vers le nord, l'irrigation devient un enjeu majeur.</li>
+      <li><b>Les assurances</b> : la profession estime que le coût des sinistres climatiques pourrait presque doubler entre 2020 et 2050, par rapport aux trente années précédentes. Certains logements très exposés deviendront difficiles à assurer, donc à vendre (voir les onglets Climat, Eau et Catastrophes).</li>
+    </ul>
+  </div>
+
+  <h3 id="f50-p5" class="ag-part">5. L'énergie : sortir du pétrole et du gaz</h3>
+  <h3>Consommation finale d'énergie en France, et le chemin fixé pour 2050 (millions de tonnes équivalent pétrole)</h3>
+  <div id="f50-ener" class="chart"></div><div class="legend-row" id="f50-ener-legend"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Le point de départ</b> : près de 60 % de l'énergie consommée en France vient encore du pétrole et du gaz, presque entièrement importés. L'objectif légal est la neutralité carbone en 2050, et une consommation d'énergie divisée par deux par rapport à 2012. Depuis 2012, la consommation n'a baissé que d'environ 12 % : un quart du chemin a été fait, et presque tout reste à faire pour les fossiles.</li>
+      <li><b>L'électricité remplace le reste</b> : un moteur électrique consomme environ trois fois moins d'énergie qu'un moteur thermique, une pompe à chaleur trois fois moins qu'une chaudière. RTE estime qu'il faudra entre 555 et 750 TWh d'électricité en 2050, contre environ 450 aujourd'hui (onglet Limites physiques, partie énergie). La France a décidé de construire six nouveaux réacteurs (EPR2), dont les premiers ne fonctionneront pas avant la fin des années 2030, et d'accélérer le solaire et l'éolien.</li>
+      <li><b>Le pétrole, risque principal</b> : le Shift Project anticipe une baisse de la production des principaux fournisseurs de l'Europe au cours de la décennie 2030. Si la transition est trop lente, la France risque de subir une baisse du pétrole disponible, par les prix ou les pénuries, au lieu de l'organiser.</li>
+      <li><b>En 2050, concrètement</b> : des voitures en grande majorité électriques (la vente de voitures neuves thermiques doit cesser dans l'Union européenne en 2035, une date en cours de réexamen), des logements chauffés par pompes à chaleur, réseaux de chaleur et bois, une industrie qui utilise de l'électricité et de l'hydrogène produit sans carbone. Le Shift Project insiste sur la « sobriété » : moins de kilomètres en voiture, des logements plus petits ou mieux partagés, moins d'avion.</li>
+    </ul>
+  </div>
+
+  <h3 id="f50-p6" class="ag-part">6. L'économie : moins d'actifs, plus de dettes, quelle croissance ?</h3>
+  <div class="callout small">
+    <ul>
+      <li><b>Moins de personnes en âge de travailler.</b> Selon le scénario central d'Eurostat, les 20-64 ans passeraient d'environ 37,7 millions aujourd'hui à 36,4 millions en 2050. La croissance ne peut plus venir du nombre de travailleurs : seulement de la productivité, ou d'un travail plus long (âge de départ, emploi des seniors et des femmes, immigration).</li>
+      <li><b>Une productivité faible.</b> Elle progresse d'environ 1 % par an depuis 2000, moins depuis 2019. Le Conseil d'orientation des retraites (COR) retient des hypothèses de 0,7 % à 1,3 % par an pour l'avenir. Avec 1 % par an, on produirait en 2050 environ 28 % de plus par heure travaillée qu'aujourd'hui. Le revenu par habitant progresserait un peu moins, puisqu'il y aura moins d'actifs par habitant, et une partie serait absorbée par le coût du vieillissement et de l'adaptation au climat.</li>
+      <li><b>La dette</b> : autour de 115 % du PIB aujourd'hui, avec un déficit proche de 5 %. Avec des taux d'intérêt redevenus positifs et une croissance faible, elle ne baissera plus d'elle-même (la règle « r contre g », onglet Monnaie, partie 6.1). Les marges de l'État pour financer à la fois les retraites, la santé, la défense, la transition énergétique et l'adaptation seront étroites.</li>
+      <li><b>Les besoins d'investissement</b> : rénovation des logements, réseaux électriques, réacteurs, transports, adaptation des villes à la chaleur, gestion de l'eau. Les estimations publiques (rapport Pisani-Ferry et Mahfouz, 2023) évaluent l'effort supplémentaire pour le climat à environ 2 points de PIB par an d'ici 2030. C'est de la demande et de l'emploi, mais il faut le financer.</li>
+      <li><b>Les emplois de 2050</b> : beaucoup de métiers manqueront de bras, ceux qu'on ne délocalise pas et qu'on automatise mal (soins et accompagnement des personnes âgées, bâtiment et rénovation, électricité, maintenance, agriculture). L'intelligence artificielle transformera surtout les métiers de bureau ; personne ne sait encore si elle augmentera fortement la productivité ou si elle remplacera surtout des emplois.</li>
+    </ul>
+  </div>
+
+  <h3 id="f50-p7" class="ag-part">7. Trois France possibles</h3>
+  <div class="table-scroll"><table class="cmp-t ro-t">
+    <thead><tr><th></th><th>Le fil de l'eau</th><th>La transition organisée</th><th>Les chocs subis</th></tr></thead>
+    <tbody>
+      <tr><td><b>Résumé</b></td><td>On continue lentement, on s'adapte après coup</td><td>On anticipe : électrification rapide, adaptation planifiée, sobriété choisie</td><td>Chocs pétroliers, crises financières ou politiques ; on s'adapte dans l'urgence</td></tr>
+      <tr><td><b>Énergie</b></td><td>Encore 30 à 40 % de fossiles en 2050</td><td>Neutralité carbone atteinte ou presque</td><td>Pétrole rare et cher, baisse de la consommation forcée</td></tr>
+      <tr><td><b>Économie</b></td><td>Croissance d'environ 1 %, dette qui monte</td><td>Fort investissement dans les années 2025-2040, puis gains de productivité et factures plus basses</td><td>Récessions répétées, inflation, perte de pouvoir d'achat</td></tr>
+      <tr><td><b>Territoires</b></td><td>Poursuite de la ruée vers le littoral et le sud, coûts de réparation croissants</td><td>Recomposition préparée : on construit moins en zones exposées, on rénove l'existant</td><td>Abandon de zones devenues inassurables, retour vers les villes moyennes</td></tr>
+      <tr><td><b>Société</b></td><td>Tensions entre générations et territoires</td><td>Efforts partagés et expliqués</td><td>Fortes inégalités face aux chocs, tensions politiques</td></tr>
+    </tbody></table></div>
+  <p class="muted" style="font-size:.85rem">Ces scénarios sont des récits pour réfléchir, pas des prévisions. La réalité mélangera probablement les trois.</p>
+
+  <h3 id="f50-p8" class="ag-part">8. Comment se préparer</h3>
+  <div class="in-need">
+    <div><b>① Où habiter</b><span>Avant d'acheter ou de faire construire, consulter Géorisques (inondation, argiles, littoral, feux), les projections climatiques de sa commune (Climadiag Commune de Météo-France, DRIAS) et la disponibilité de l'eau. Un logement en zone exposée peut perdre de sa valeur, coûter plus cher à assurer, voire ne plus l'être.</span></div>
+    <div><b>② Le logement</b><span>Isoler, et penser au confort d'été autant qu'à l'hiver : volets, protections solaires, ventilation, végétation. Remplacer une chaudière au fioul ou au gaz par une pompe à chaleur ou un réseau de chaleur au moment opportun. Un logement mal classé (DPE F ou G) perdra de la valeur et ne pourra plus être loué.</span></div>
+    <div><b>③ Se déplacer et consommer</b><span>Moins dépendre de la voiture et du pétrole : choisir un lieu de vie proche des services et des transports, passer à l'électrique au renouvellement du véhicule. Chaque litre de pétrole évité réduit l'exposition aux chocs de prix.</span></div>
+    <div><b>④ L'argent</b><span>Les retraites par répartition seront sous pression (moins d'actifs par retraité) : épargner tôt et régulièrement, diversifier ses placements et ne pas tout miser sur l'immobilier d'une seule zone. Éviter les dettes à taux variable. La grille des quatre climats économiques (onglet Monnaie, 6.4) aide à ne pas dépendre d'un seul scénario.</span></div>
+    <div><b>⑤ Les compétences</b><span>Les métiers de l'énergie, de la rénovation, de l'électricité, de l'eau, de la santé et du soin aux personnes âgées manqueront de bras pendant des décennies. Savoir réparer, entretenir, produire localement deviendra plus précieux. Se former tout au long de la vie, notamment aux outils d'intelligence artificielle.</span></div>
+    <div><b>⑥ La santé et la chaleur</b><span>Apprendre à vivre avec la chaleur : rafraîchir sans climatiser à outrance, adapter les horaires de travail et de sport, veiller sur les personnes âgées isolées l'été.</span></div>
+    <div><b>⑦ Le collectif</b><span>Beaucoup de choses se décident à l'échelle de la commune et de l'intercommunalité : plans d'urbanisme, gestion de l'eau, îlots de fraîcheur, réseaux de chaleur, transports. S'y intéresser est l'un des leviers les plus efficaces.</span></div>
+  </div>
+  <p class="muted" style="font-size:.8rem">Sources : Eurostat (projections de population EUROPOP2023 ; naissances, décès et migrations ; solde migratoire par département, taux annuel moyen 2016-2022, migrations internes et internationales ensemble ; bilans énergétiques) ; Berkeley Earth (températures de la France) ; ministère de la Transition écologique, <a href="https://www.ecologie.gouv.fr/dossiers/france-sadapte/rechauffement-trajectoire-reference" target="_blank" rel="noopener">trajectoire de réchauffement de référence (TRACC)</a> et dossier de presse de janvier 2026 ; RTE, Futurs énergétiques 2050 ; Shift Project, Plan de transformation de l'économie française (2022) et Plan robuste (2026) ; COR, rapports annuels ; J. Pisani-Ferry et S. Mahfouz, Les incidences économiques de l'action pour le climat (2023) ; F. Brennetot, carte du solde migratoire des bassins de vie 2016-2022 (2026, données INSEE). Les contours des départements ne comprennent pas l'outre-mer.</p>
+</section>
 <section id="limites" class="panel">
   <div class="panel-head">
     <h2>Les limites physiques à la croissance : le modèle de 1972, les ressources, la sobriété <span class="geo-fixed">Monde</span></h2>
@@ -8544,6 +8680,7 @@ for snr_db in (10, 15, 20):
 <script src="sources.js?v=20261118d"></script>
 <script src="generations.js?v=20261121a"></script>
 <script src="climats.js?v=20261125a"></script>
+<script src="france2050.js?v=20261125a"></script>
 <script src="maj.js?v=20261120a"></script>
 <script src="nav.js?v=20261118d"></script>
 </body>

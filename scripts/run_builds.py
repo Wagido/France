@@ -17,7 +17,7 @@ BUILDS = ["build.py", "build_energie.py", "build_matieres.py", "build_territoire
           "build_repartition.py", "build_prelevements.py", "build_travail_vie.py", "build_niveau_vie.py", "build_prosperite.py",
           "build_exterieur.py", "build_desindustrialisation.py", "build_retraites.py", "build_competences.py", "build_couper.py",
           "build_logement.py", "build_environnement.py", "build_agriculture.py", "build_rendements.py", "build_monnaie.py",
-          "build_echanges.py", "build_limites.py", "build_sociologie.py", "build_patrimoine_hist.py", "build_innovation.py", "build_generations.py", "build_climats.py"]
+          "build_echanges.py", "build_limites.py", "build_sociologie.py", "build_patrimoine_hist.py", "build_innovation.py", "build_generations.py", "build_climats.py", "build_france2050.py"]
 
 # Enveloppe exécutée dans le sous-processus : intercepte open() pour noter les lectures et écritures.
 TRACE = r'''
