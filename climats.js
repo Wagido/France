@@ -1,4 +1,4 @@
-/* Monnaie, 6.3 les moteurs de la demande, 6.4 les quatre climats (data/climats.json, data/histoire.json) */
+/* Monnaie, 7.1 les moteurs de la demande, 7.3 les quatre climats, 7.4 Kondratiev (data/climats.json, data/histoire.json) */
 (() => {
 "use strict";
 let C = null, H = null, mode = "mixte";
@@ -31,7 +31,7 @@ async function init() {
 }
 function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
 
-/* ---------- 6.3 contributions empilées ---------- */
+/* ---------- 7.1 contributions empilées ---------- */
 function contrib(p) {
   const el = $(`#${p}-contrib`), data = C.contributions.filter(d => d.annee >= 1996);
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 12, r: 10, b: 26, l: 40 };
@@ -89,7 +89,7 @@ function pays(p) {
   legend(`#${p}-pays-legend`, PAYS.map(p => [p.l, p.c, !!p.dash]));
 }
 
-/* ---------- 6.4 les quatre climats ---------- */
+/* ---------- 7.3 les quatre climats ---------- */
 function classer() {
   const L = H.longue.filter(d => d.annee >= 1940 && d.croissance != null && d.inflation != null), by = {};
   L.forEach(d => by[d.annee] = d);
@@ -143,7 +143,7 @@ function quadrants() {
     return `<tr><td>${l} (${a}-${Math.min(b, Y.at(-1).annee)})</td>${Object.keys(Q).map(k => `<td class="num">${r.filter(d => d.q === k).length} an${r.filter(d => d.q === k).length > 1 ? "s" : ""}</td>`).join("")}</tr>`; }).join("")}</tbody></table></div>`;
 }
 
-/* ---------- 6.5 Kondratiev : taux longs et inflation depuis 1870, phases longues ---------- */
+/* ---------- 7.4 Kondratiev : taux longs et inflation depuis 1870, phases longues ---------- */
 const KPH = [[1873, 1896, "B"], [1896, 1920, "A"], [1920, 1946, "B"], [1946, 1981, "A"], [1981, 2020, "B"], [2020, 2026, "?"]];
 const KP = [{ k: "fr", l: "France", c: "#2563eb" }, { k: "uk", l: "Royaume-Uni", c: "#dc2626" }, { k: "us", l: "États-Unis", c: "#111827" }];
 function kondra(sel, pre, fmt) {
