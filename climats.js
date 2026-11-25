@@ -29,7 +29,7 @@ async function init() {
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
-function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); }
+function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
 
 /* ---------- 6.3 contributions empilées ---------- */
 function contrib(p) {
@@ -141,6 +141,35 @@ function quadrants() {
   $("#mo-q-compte").innerHTML = `<div class="table-scroll"><table class="cmp-t"><thead><tr><th>Période</th>${Object.values(Q).map(q => `<th style="color:${q.c}">${q.l}</th>`).join("")}</tr></thead><tbody>${per.map(([a, b, l]) => {
     const r = Y.filter(d => d.annee >= a && d.annee <= b); if (!r.length) return "";
     return `<tr><td>${l} (${a}-${Math.min(b, Y.at(-1).annee)})</td>${Object.keys(Q).map(k => `<td class="num">${r.filter(d => d.q === k).length} an${r.filter(d => d.q === k).length > 1 ? "s" : ""}</td>`).join("")}</tr>`; }).join("")}</tbody></table></div>`;
+}
+
+/* ---------- 6.5 Kondratiev : taux longs et inflation depuis 1870, phases longues ---------- */
+const KPH = [[1873, 1896, "B"], [1896, 1920, "A"], [1920, 1946, "B"], [1946, 1981, "A"], [1981, 2020, "B"], [2020, 2026, "?"]];
+const KP = [{ k: "fr", l: "France", c: "#2563eb" }, { k: "uk", l: "Royaume-Uni", c: "#dc2626" }, { k: "us", l: "États-Unis", c: "#111827" }];
+function kondra(sel, pre, fmt) {
+  const el = $(sel), data = C.kondratiev, w = Math.max(320, el.clientWidth), h = 280, m = { t: 22, r: 12, b: 26, l: 44 };
+  const x = d3.scaleLinear([1870, data.at(-1).annee], [m.l, w - m.r]);
+  const vals = data.flatMap(d => KP.map(p => d[pre + "_" + p.k])).filter(v => v != null);
+  const y = d3.scaleLinear([Math.min(-2, d3.min(vals)), Math.min(20, d3.max(vals))], [h - m.b, m.t]).nice().clamp(true);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  KPH.forEach(([a, b, t]) => {
+    svg.append("rect").attr("x", x(a)).attr("width", Math.max(0, x(Math.min(b, data.at(-1).annee)) - x(a))).attr("y", m.t).attr("height", h - m.t - m.b)
+      .attr("fill", t === "A" ? "#16a34a" : t === "B" ? "#2563eb" : "#9ca3af").attr("opacity", .08);
+    svg.append("text").attr("x", (x(a) + x(Math.min(b, data.at(-1).annee))) / 2).attr("y", 14).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", "var(--muted)")
+      .text(t === "A" ? "hausse" : t === "B" ? "baisse" : "?");
+  });
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  KP.forEach(p => svg.append("path").attr("fill", "none").attr("stroke", p.c).attr("stroke-width", p.k === "fr" ? 2.2 : 1.5).attr("opacity", p.k === "fr" ? 1 : .75)
+    .attr("d", d3.line().defined(d => d[pre + "_" + p.k] != null).x(d => x(d.annee)).y(d => y(d[pre + "_" + p.k]))(data)));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(w < 600 ? 6 : 12).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
+  const bis = d3.bisector(d => d.annee).center;
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = data[bis(data, x.invert(d3.pointer(ev)[0]))]; if (!d) return;
+      window.TH.showTip(`<b>${d.annee}</b>` + KP.filter(p => d[pre + "_" + p.k] != null).map(p => `<br><span style="color:${p.c}">■</span> ${p.l} : ${fmt(d[pre + "_" + p.k])}`).join(""), ev); })
+    .on("pointerleave", () => window.TH.hideTip());
+  el.replaceChildren(svg.node());
+  window.TH.legend(sel + "-legend", [...KP.map(p => [p.l, p.c]), ["Phase de hausse des prix et des taux", "rgba(22,163,74,.35)"], ["Phase de baisse", "rgba(37,99,235,.35)"]]);
 }
 
 init();
