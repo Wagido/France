@@ -7,6 +7,11 @@ dans la page à partir de data/histoire.json (INSEE).
 """
 import json, os
 
+try:
+    import openpyxl
+except ImportError:
+    openpyxl = None
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(ROOT, "data", "sources", "climats")
 
@@ -32,6 +37,48 @@ def par(nom, cle):
     return r
 
 
+def kondratiev():
+    """Taux d'intérêt à long terme et inflation depuis 1870 (Jordà-Schularick-Taylor), prolongés pour la France
+    par Eurostat (taux à 10 ans) ; inflation lissée sur 10 ans."""
+    if openpyxl is None:
+        return None
+    wb = openpyxl.load_workbook(os.path.join(ROOT, "data", "sources", "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
+    rows = wb[wb.sheetnames[0]].iter_rows(values_only=True); h = next(rows)
+    I = {k: h.index(k) for k in ("year", "iso", "ltrate", "cpi")}
+    taux, cpi = {}, {}
+    for r in rows:
+        iso = r[I["iso"]]
+        if iso in ("FRA", "GBR", "USA"):
+            y = r[I["year"]]
+            if r[I["ltrate"]] is not None:
+                taux.setdefault(iso, {})[y] = r[I["ltrate"]]
+            if r[I["cpi"]]:
+                cpi.setdefault(iso, {})[y] = r[I["cpi"]]
+    # France après 2017-2020 : taux long Eurostat
+    d = json.load(open(os.path.join(ROOT, "data", "sources", "irt_lt_mcby_a_fr.json"), encoding="utf-8"))
+    inv = {i: y for y, i in d["dimension"]["time"]["category"]["index"].items()}
+    for k, v in d["value"].items():
+        y = int(inv[int(k)])
+        if y not in taux["FRA"]:
+            taux["FRA"][y] = v
+    infl = {}
+    for iso, c in cpi.items():
+        for y in c:
+            if y - 1 in c:
+                infl.setdefault(iso, {})[y] = 100 * (c[y] / c[y - 1] - 1)
+    out = []
+    for y in range(1870, max(taux["FRA"]) + 1):
+        r = {"annee": y}
+        for iso, k in (("FRA", "fr"), ("GBR", "uk"), ("USA", "us")):
+            v = taux.get(iso, {}).get(y)
+            r["t_" + k] = round(v, 2) if v is not None else None
+            w = [infl.get(iso, {}).get(a) for a in range(y - 9, y + 1)]
+            w = [x for x in w if x is not None]
+            r["i_" + k] = round(sum(w) / len(w), 2) if len(w) >= 8 else None
+        out.append(r)
+    return out
+
+
 def main():
     C = par("contributions.json", "na_item")
     V = par("volumes.json", "na_item")
@@ -41,7 +88,7 @@ def main():
     vol = [{"annee": a, "pib": V["B1GQ"].get(a), "conso": V["P31_S14_S15"].get(a), "public": V["P3_S13"].get(a),
             "invest": V["P51G"].get(a), "export": V["P6"].get(a), "import": V["P7"].get(a)} for a in sorted(V["B1GQ"])]
     pays = lambda nom: {g: [{"annee": a, "v": v} for a, v in sorted(s.items())] for g, s in par(nom, "geo").items()}
-    out = {"contributions": contrib, "volumes": vol, "fbcf": pays("fbcf_pays.json"), "epargne": pays("epargne_pays.json"), "rd": pays("rd_pays.json")}
+    out = {"kondratiev": kondratiev(), "contributions": contrib, "volumes": vol, "fbcf": pays("fbcf_pays.json"), "epargne": pays("epargne_pays.json"), "rd": pays("rd_pays.json")}
     json.dump(out, open(os.path.join(ROOT, "data", "climats.json"), "w"), ensure_ascii=False, separators=(",", ":"))
     d = contrib[-1]
     print(f"climats.json : contributions {ans[0]}-{ans[-1]} (dernière : PIB {d['pib']}, conso {d['conso']}, public {d['public']}, invest {d['invest']}, commerce {d['commerce']})")
