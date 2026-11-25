@@ -93,12 +93,12 @@ function initPib() {
 }
 
 function drawPib() {
-  const body = $("#pib-body");
+  const bodies = [$("#pib-body"), $("#pib-body2")].filter(Boolean);
   if (!Object.keys(C().pib).length) {
     $("#pib-kpis").innerHTML = `<p class="empty">Eurostat ne publie pas la valeur ajoutée par secteur pour ${esc(C().nom)} : la décomposition du PIB n'est pas disponible.</p>`;
-    body.hidden = true; return;
+    bodies.forEach(b => b.hidden = true); return;
   }
-  body.hidden = false;
+  bodies.forEach(b => b.hidden = false);
   const y = $("#pib-year").value, P = C().pib[y], prev = C().pib[String(+y - 1)];
   const parHab = P.pib * 1e9 / P.population;
   kpis($("#pib-kpis"), [
