@@ -152,7 +152,14 @@
     <h2>Le PIB et ce qu'il contient vraiment <span class="geo-tag"></span></h2>
     <label class="ctl">Année <select id="pib-year"></select></label>
   </div>
-  <h3 id="pib-moteurs-titre" class="ag-part" style="margin-top:4px">Les quatre moteurs de la demande : qui fait la croissance en France aujourd'hui ?</h3>
+  <p class="lead">Le PIB mesure ce qu'un pays produit en un an. Cet onglet montre ce qui le fait croître, ce qu'il vaut et qui le produit, ce qu'il contient vraiment (et ce qu'il laisse de côté), puis son évolution sur la durée. Les parties 2 et 3 suivent le pays et l'année choisis en haut ; les parties 1 et 4 portent sur la France.</p>
+  <nav class="li-toc" aria-label="Sommaire"><b>Sommaire</b><ol>
+    <li><a href="#pib" data-to="pib-p2">Qui fait la croissance ? Les quatre moteurs de la demande</a></li>
+    <li><a href="#pib" data-to="pib-p1">Ce que produit le pays : trois façons de mesurer le PIB</a></li>
+    <li><a href="#pib" data-to="pib-p3">Ce que le PIB contient vraiment, et ce qu'il laisse de côté</a></li>
+    <li><a href="#pib" data-to="pib-p4">Le PIB dans la durée : dépenses publiques, énergie, émissions</a></li>
+  </ol></nav>
+  <h3 id="pib-p2" class="ag-part">1. Qui fait la croissance ? Les quatre moteurs de la demande <span class="geo-fixed">France</span></h3>
   <p>À court terme, la production suit la demande : une entreprise ne produit que ce qu'elle pense vendre. Toute la dépense d'un pays se range dans quatre cases, et leur somme est le PIB : <b>PIB = consommation + investissement + dépense publique + (exportations − importations)</b>. C'est une identité comptable, vraie par construction ; elle ne dit pas ce qui cause quoi, mais elle permet de voir quel moteur tire et lequel cale.</p>
   <div class="in-need">
     <div><b>① La consommation des ménages</b><span>Environ 53 % du PIB : alimentation, logement, transport, loisirs. Elle dépend du revenu, mais aussi de la confiance : un ménage inquiet épargne. Les retraites et les allocations, qui ne sont pas des achats de l'État, apparaissent ici, quand les ménages les dépensent.</span></div>
@@ -183,10 +190,24 @@
 
   <p class="muted" style="font-size:.84rem">Cette partie figure aussi dans l'onglet <a href="#monnaie" data-to="mo-6-3">Monnaie et croissance</a> (6.3), suivie des quatre climats de l'économie : croissance, récession, inflation, déflation (6.4).</p>
 
-  <h3 class="ag-part">Ce que contient le PIB</h3>
+
+  <h3 id="pib-p1" class="ag-part">2. Ce que produit le pays : trois façons de mesurer le PIB</h3>
   <div class="kpis" id="pib-kpis"></div>
   <div id="pib-body">
+  <h3>Les trois façons de mesurer le même PIB</h3>
+  <div class="grid3">
+    <div><h4>Qui produit ?</h4><div id="pib-production" class="chart"></div></div>
+    <div><h4>Qui dépense ?</h4><div id="pib-demande" class="chart"></div></div>
+    <div><h4>Qui touche les revenus ?</h4><div id="pib-revenus" class="chart"></div></div>
+  </div>
 
+  <h3>Valeur ajoutée par activité</h3>
+  <div id="pib-branches" class="chart"></div>
+
+  </div>
+
+  <h3 id="pib-p3" class="ag-part">3. Ce que le PIB contient vraiment, et ce qu'il laisse de côté</h3>
+  <div id="pib-body2">
   <h3>Ce qui, dans le PIB, correspond à des ventes à des clients</h3>
   <p class="lead">Le PIB additionne des choses de nature très différente. Une partie correspond à des biens et services vendus à un prix à des clients qui les ont choisis. Une autre est comptée par <em>convention</em> : services publics évalués à ce qu'ils coûtent, loyers fictifs des propriétaires, impôts inclus dans les prix, remplacement du matériel usé. Cette cascade retire ces conventions une à une.</p>
   <div id="cascade" class="chart"></div>
@@ -212,17 +233,9 @@
   <p class="lead">Même la valeur ajoutée « vendue » contient des ventes dont le client final est l'État ou la Sécurité sociale. Ces montants sont des dépenses (pas de la valeur ajoutée), on les montre donc à côté, sans les soustraire.</p>
   <div id="achats" class="chart"></div>
 
-  <h3>Les trois façons de mesurer le même PIB</h3>
-  <div class="grid3">
-    <div><h4>Qui produit ?</h4><div id="pib-production" class="chart"></div></div>
-    <div><h4>Qui dépense ?</h4><div id="pib-demande" class="chart"></div></div>
-    <div><h4>Qui touche les revenus ?</h4><div id="pib-revenus" class="chart"></div></div>
   </div>
 
-  <h3>Valeur ajoutée par activité</h3>
-  <div id="pib-branches" class="chart"></div>
-
-  </div>
+  <h3 id="pib-p4" class="ag-part">4. Le PIB dans la durée : dépenses publiques, énergie, émissions</h3>
   <h3>Dépenses, recettes publiques et dette depuis 1995</h3>
   <div id="pib-histo" class="chart"></div>
 
@@ -8646,7 +8659,7 @@ for snr_db in (10, 15, 20):
 <script src="lib/d3.min.js"></script>
 <script src="lib/d3-sankey.min.js"></script>
 <script src="kpi.js?v=20261118d"></script>
-<script src="app.js?v=20261119c"></script>
+<script src="app.js?v=20261126a"></script>
 <script src="energie.js?v=20261118d"></script>
 <script src="matieres.js?v=20261118d"></script>
 <script src="territoire.js?v=20261118d"></script>
