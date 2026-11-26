@@ -29,7 +29,7 @@ async function init() {
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
-function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-actu")) actualite(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
+function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-actu")) actualite(); if ($("#mo-test") && MO?.rendements) testGrille(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
 
 /* ---------- 7.1 contributions empilées ---------- */
 function contrib(p) {
@@ -229,6 +229,36 @@ function actualite() {
     m3 ? [sg(m3.m3_croiss) + " %", `zone euro, sur l'année ${m3.annee}`, "Masse monétaire M3"] : null
   ].filter(Boolean));
   $("#mo-actu-txt").innerHTML = `<p style="margin:0"><b>Au sens de la grille (7.3)</b> : sur un an, la croissance (${sg(T.ga)} %) est ${T.ga >= tg ? "au-dessus" : "au-dessous"} de sa tendance des dix dernières années (${f1(tg)} %), et l'inflation (${f1(I.v)} %) ${I.v >= tp ? "au-dessus" : "au-dessous"} de la sienne (${f1(tp)} %) : la France est en <b style="color:${Q[q].c}">${Q[q].l.toLowerCase()}</b> (${Q[q].d})${qg && qg !== q ? `. Selon la grille d'origine de Gave, qui compare à l'année précédente, ce serait une ${Q[qg].l.toLowerCase()}` : qg ? `, et la grille d'origine de Gave, qui compare à l'année précédente, dit la même chose` : ""}. ${q === "RI" ? "C'est la configuration la plus inconfortable pour une banque centrale : monter les taux aggraverait le ralentissement, les baisser risquerait d'entretenir l'inflation (voir la carte « récession inflationniste »)." : q === "RD" ? "C'est la configuration où les banques centrales baissent leurs taux et où les obligations protègent le mieux." : ""}</p><p class="muted" style="margin:6px 0 0;font-size:.8rem">Mis à jour chaque mois : Eurostat (comptes trimestriels, indice des prix harmonisé), BCE, INSEE. Une lecture d'un seul trimestre est fragile : les chiffres sont souvent révisés.</p>`;
+}
+
+/* ---------- 9.4 : la grille de Gave marche-t-elle ? Rendements réels français par climat ---------- */
+function testGrille() {
+  const L = {}; H.longue.forEach(r => L[r.annee] = r);
+  const R = {}; MO.rendements.forEach(r => R[r.annee] = r);
+  const clim = a => {
+    const g10 = [], p10 = []; for (let k = 1; k <= 10; k++) { const r = L[a - k]; if (r) { if (r.croissance != null) g10.push(r.croissance); if (r.inflation != null) p10.push(r.inflation); } }
+    const d = L[a]; if (!d || d.croissance == null || d.inflation == null || g10.length < 8) return null;
+    return (d.croissance >= d3.median(g10) ? "C" : "R") + (d.inflation >= d3.median(p10) ? "I" : "D");
+  };
+  const ans = Object.keys(R).map(Number).filter(a => a >= 1950 && clim(a));
+  const A = [["actions", "Actions"], ["obligations", "Obligations d'État"], ["logement", "Logement"], ["monetaire", "Placements monétaires"]];
+  const moy = (yrs, k) => { const v = yrs.map(a => R[a]?.[k]).filter(x => x != null); return v.length ? d3.mean(v) : null; };
+  const cell = v => v == null ? "–" : `<span style="color:${v < 0 ? "#dc2626" : "inherit"}">${sg(v)} %</span>`;
+  const ordre = ["CD", "CI", "RI", "RD"];
+  const by = q => ans.filter(a => clim(a) === q), next = q => ans.filter(a => clim(a) === q && R[a + 1]).map(a => a + 1);
+  const pers = ans.filter(a => clim(a - 1) && clim(a) === clim(a - 1)).length, nPers = ans.filter(a => clim(a - 1)).length;
+  const tab = (f, titre) => `<div class="table-scroll"><table class="cmp-t"><thead><tr><th>${titre}</th><th>Années</th>${A.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${ordre.map(q => { const y = f(q); return `<tr><td style="color:${Q[q].c}"><b>${Q[q].l}</b></td><td class="num">${y.length}</td>${A.map(([k]) => `<td class="num">${cell(moy(y, k))}</td>`).join("")}</tr>`; }).join("")}</tbody></table></div>`;
+  const rd = by("RD"), ri = by("RI"), nri = next("RI");
+  $("#mo-test").innerHTML = `<p style="margin-top:0"><b>La grille de Gave marche-t-elle ? Le test sur la France, ${ans[0]}-${ans.at(-1)}</b></p>
+    <p>Rendement réel moyen (après inflation) de chaque placement, selon le climat de l'année (chaque grandeur comparée à sa tendance des dix années précédentes, comme en 7.3).</p>
+    ${tab(by, "Climat de l'année")}
+    <ul>
+      <li><b>Ce qui confirme la grille</b> : les obligations gagnent le plus quand l'inflation ralentit (${sg(moy(rd, "obligations"))} % en récession déflationniste) et perdent quand elle accélère ; la récession inflationniste est le pire climat pour les actions (${sg(moy(ri, "actions"))} %) et pour l'épargne de court terme. Le logement résiste partout, la grande exception française de la période.</li>
+      <li><b>Ce qui la contredit</b> : les actions font leur meilleur score en « récession déflationniste » (${sg(moy(rd, "actions"))} %), là où la théorie prévoit des pertes. Cette case mêle quelques vraies crises (2008, 2020) et surtout la longue désinflation des années 1980-1990, pendant laquelle les taux baissaient et la Bourse montait : la grille met dans le même sac une dépression et un âge d'or boursier (voir l'encadré « Attention aux mots », 7.3).</li>
+      <li><b>Le vrai problème, c'est de prévoir</b> : une année sur deux seulement reste dans le même climat que l'année d'avant (${pers} sur ${nPers}), et on ne connaît le climat qu'avec retard. Le tableau ci-dessous donne les rendements de l'année <i>suivante</i>, ceux qu'aurait obtenus quelqu'un qui investit selon le climat qu'il vient d'observer. Le signal s'effondre : après une récession inflationniste, les actions rapportent ${sg(moy(nri, "actions"))} % l'année suivante, parce que les marchés rebondissent avant que l'économie ne change de case. Seules les obligations gardent un peu de signal.</li>
+    </ul>
+    ${tab(next, "Climat de l'année précédente")}
+    <p style="margin-bottom:0"><b>Conclusion</b> : une bonne grille pour comprendre ce qui se passe, et un argument solide pour diversifier, en ayant un placement qui tient dans chaque climat ; pas une machine à prévoir pour changer de placement au bon moment. Ce n'est pas un conseil de placement. Données : rendements réels des actions, obligations d'État, logement (loyers compris) et placements monétaires en France, Jordà, Schularick et Taylor, <i>Macrohistory Database</i> (jusqu'en 2020) ; croissance et inflation, INSEE et Eurostat.</p>`;
 }
 
 init();
