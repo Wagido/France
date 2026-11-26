@@ -636,3 +636,5 @@ abbr.glo { text-decoration: underline dotted; text-underline-offset: 3px; cursor
 .glo-dl { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 4px 14px; margin: 8px 0 0; }
 .glo-dl dt { font-weight: 600; } .glo-dl dd { margin: 0; }
 @media (max-width: 640px) { .glo-dl { grid-template-columns: 1fr; } .glo-dl dd { margin-bottom: 6px; } }
+.install-btn { font: inherit; font-size: .8rem; font-weight: 600; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; cursor: pointer; margin-left: auto; margin-right: 8px; white-space: nowrap; }
+.install-btn:hover { border-color: var(--muted); }
