@@ -29,7 +29,7 @@ async function init() {
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
-function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
+function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
 
 /* ---------- 7.1 contributions empilées ---------- */
 function contrib(p) {
@@ -171,6 +171,42 @@ function kondra(sel, pre, fmt) {
     .on("pointerleave", () => window.TH.hideTip());
   el.replaceChildren(svg.node());
   window.TH.legend(sel + "-legend", [...KP.map(p => [p.l, p.c]), ["Phase de hausse des prix et des taux", "rgba(22,163,74,.35)"], ["Phase de baisse", "rgba(37,99,235,.35)"]]);
+}
+
+/* ---------- 7.4 Les saisons longues, calculées comme la grille de 7.3 sur des moyennes de 10 ans ---------- */
+function ksaisons() {
+  const L = {}; H.longue.forEach(r => L[r.annee] = r);
+  const ma = (k, a, n = 10) => { const v = []; for (let y = a - n + 1; y <= a; y++) if (L[y] && L[y][k] != null) v.push(L[y][k]); return v.length >= n - 2 ? d3.mean(v) : null; };
+  const Y = [];
+  for (let a = 1915; a <= d3.max(H.longue, r => r.annee); a++) {
+    const g = ma("croissance", a), p = ma("inflation", a), p5 = ma("inflation", a - 5);
+    const gp = d3.range(a - 20, a).map(y => ma("croissance", y)).filter(v => v != null);
+    if (g == null || p == null || p5 == null || !gp.length) continue;
+    const gt = d3.median(gp);
+    Y.push({ annee: a, g, p, gt, p5, q: (g >= gt ? "C" : "R") + (p >= p5 ? "I" : "D") });
+  }
+  const el = $("#mo-k-saisons"), W = Math.max(320, el.clientWidth), Hh = 320, m = { t: 22, r: 14, b: 28, l: 44 };
+  const x = d3.scaleLinear([Y[0].annee - .5, Y.at(-1).annee + .5], [m.l, W - m.r]), y = d3.scaleLinear([-6, 20], [Hh - m.b, m.t]).clamp(true);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${W} ${Hh}`);
+  svg.append("g").selectAll("rect").data(Y).join("rect").attr("x", d => x(d.annee - .5)).attr("width", Math.max(1, x(1) - x(0))).attr("y", m.t).attr("height", Hh - m.t - m.b).attr("fill", d => Q[d.q].c).attr("opacity", .16);
+  KPH.filter(([a]) => a >= Y[0].annee - 10).forEach(([a, b, t]) => {
+    const xa = x(Math.max(a, Y[0].annee)), xb = x(Math.min(b, Y.at(-1).annee));
+    svg.append("line").attr("x1", xa).attr("x2", xa).attr("y1", m.t - 6).attr("y2", Hh - m.b).attr("stroke", "var(--muted)").attr("stroke-dasharray", "2 4").attr("opacity", .6);
+    svg.append("text").attr("x", (xa + xb) / 2).attr("y", 13).attr("text-anchor", "middle").attr("font-size", 10.5).attr("fill", "var(--muted)").text(t === "A" ? "phase de hausse" : t === "B" ? "phase de baisse" : "?");
+  });
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(7)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+  svg.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--ink)").attr("stroke-width", .8);
+  const Ln = (k, c, wd, dash) => svg.append("path").attr("fill", "none").attr("stroke", c).attr("stroke-width", wd).attr("stroke-dasharray", dash || null).attr("d", d3.line().x(d => x(d.annee)).y(d => y(d[k]))(Y));
+  Ln("gt", "#6b7280", 1.4, "5 3"); Ln("g", "var(--ink)", 2.2); Ln("p", "#dc2626", 2.2);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${Hh - m.b})`).call(d3.axisBottom(x).ticks(W < 600 ? 6 : 12).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(7).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
+  const bis = d3.bisector(d => d.annee).center;
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", Hh - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = Y[bis(Y, x.invert(d3.pointer(ev)[0]))]; if (!d) return;
+      window.TH.showTip(`<b>${d.annee}</b> : <span style="color:${Q[d.q].c}">■</span> ${Q[d.q].l}<br>Croissance moyenne sur 10 ans : ${sg(d.g)} % (tendance ${f1(d.gt)} %)<br>Inflation moyenne sur 10 ans : ${f1(d.p)} % (${f1(d.p5)} % cinq ans plus tôt)`, ev); })
+    .on("pointerleave", () => window.TH.hideTip());
+  el.replaceChildren(svg.node());
+  window.TH.legend("#mo-k-saisons-legend", [["Croissance réelle, moyenne sur 10 ans", "var(--ink)", true], ["Sa tendance (médiane des 20 années précédentes)", "#6b7280", true], ["Inflation, moyenne sur 10 ans", "#dc2626", true], ...Object.values(Q).map(q => [q.l + " (fond)", q.c])]);
 }
 
 init();

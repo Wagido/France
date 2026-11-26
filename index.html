@@ -1403,6 +1403,7 @@
     </tbody></table></div>
   <div class="callout small">
     <ul>
+      <li><b>D'autres l'ont fait avant</b> : cette lecture en quatre régimes (croissance qui accélère ou ralentit, inflation qui accélère ou ralentit) est un classique de la gestion d'actifs. La plus connue est l'« horloge de l'investissement » de Merrill Lynch (2004), qui fait tourner l'économie dans le sens des aiguilles d'une montre : reprise, surchauffe, stagflation, récession, et montre ce qui a rapporté dans chaque phase. Le fonds Bridgewater de Ray Dalio a bâti dès 1996 son portefeuille « All Weather » sur les mêmes quatre cases, et des gestionnaires comme Man Group ont reclassé un siècle de données américaines par régime pour étudier les placements en période d'inflation. Les seuils et les lissages changent d'une étude à l'autre, comme ici.</li>
       <li><b>La difficulté, c'est le diagnostic.</b> On ne sait dans quel climat on est qu'avec retard, et le passage d'une case à l'autre est rarement annoncé. En 2021, la BCE jugeait l'inflation « transitoire » ; elle a dû monter ses taux de 4,5 points en quatorze mois (juillet 2022 - septembre 2023).</li>
       <li><b>La zone euro complique tout.</b> La BCE fixe un seul taux pour vingt pays qui ne sont pas toujours dans le même climat : en 2006, l'Espagne était en surchauffe et l'Allemagne au ralenti. La France ne peut plus dévaluer, et son seul outil propre est le budget, déjà très sollicité.</li>
       <li><b>Le portefeuille permanent</b> (25 % actions, 25 % obligations longues, 25 % or, 25 % liquidités, rééquilibré chaque année) rapporte moins que les actions seules dans les bonnes années, mais il a beaucoup moins chuté lors des crises, parce qu'au moins un quart gagne dans chaque climat. Le classique « 60 % actions, 40 % obligations » repose, lui, sur l'idée que les obligations montent quand les actions baissent : c'est vrai dans la récession déflationniste, faux dans la stagflation. En 2022, les deux ont chuté ensemble. Ce n'est pas un conseil de placement, seulement la logique de la grille.</li>
@@ -1426,6 +1427,15 @@
       <tr><td>4</td><td>Pétrole, automobile de masse, pétrochimie, électronique</td><td>1946-1981 (Trente Glorieuses, puis inflation des années 1970)</td><td>1981-2020 (désinflation, taux en baisse continue)</td></tr>
       <tr><td>5</td><td>Informatique, internet ; puis intelligence artificielle, énergies bas carbone ?</td><td>depuis 2020 ? (retour de l'inflation et des taux)</td><td>?</td></tr>
     </tbody></table></div>
+  <h3>Les saisons longues calculées : la méthode de 7.3, sur des moyennes de dix ans</h3>
+  <p class="muted" style="margin:0 0 6px;font-size:.86rem">Même principe que le graphique des climats (7.3), mais en lissant pour effacer les cycles courts : la croissance et l'inflation sont des moyennes sur dix ans ; la croissance est comparée à sa tendance (médiane des vingt années précédentes), l'inflation à son niveau cinq ans plus tôt (accélère ou ralentit). Les pointillés verticaux marquent les phases de Kondratiev retenues par la littérature. France, depuis 1915 (les moyennes demandent dix ans de données).</p>
+  <div id="mo-k-saisons" class="chart"></div><div class="legend-row" id="mo-k-saisons-legend"></div>
+  <div class="callout small">
+    <ul>
+      <li><b>Ce que le calcul retrouve</b> : la Première Guerre mondiale et la Seconde en récession inflationniste ; les années 1930 en récession déflationniste (l'« hiver ») ; l'après-guerre en croissance inflationniste puis, de 1953 à 1965, en croissance désinflationniste (le « printemps ») ; les chocs pétroliers de 1974 à 1985 en récession inflationniste (la fin de l'« été ») ; puis une très longue désinflation de 1986 à 2002, avec une croissance plus faible qu'avant (l'« automne », qui sort ici en récession déflationniste parce que la croissance reste sous celle des Trente Glorieuses) ; les années 2013-2021 en récession déflationniste (l'« hiver » des taux zéro) ; et depuis 2022, le retour de l'inflation.</li>
+      <li><b>Ce qu'il faut en penser</b> : sans rien imposer, le calcul retombe sur des phases proches de celles des tenants de Kondratiev, ce qui montre que les vagues longues décrivent bien quelque chose dans les données. Mais le résultat dépend des choix de lissage (dix ans, vingt ans, cinq ans), et deux guerres mondiales y pèsent beaucoup : c'est une description du passé, pas une horloge qui prédirait la suite.</li>
+    </ul>
+  </div>
   <h3>Les « saisons » de Kondratiev et les quatre climats de Gave</h3>
   <p>Les financiers décrivent souvent la vague longue comme une suite de quatre saisons. Chacune correspond, en tendance de fond, à l'un des climats de la grille de Gave :</p>
   <div class="q4">
@@ -8946,7 +8956,7 @@ for snr_db in (10, 15, 20):
 <script src="tableau.js?v=20261118d"></script>
 <script src="sources.js?v=20261118d"></script>
 <script src="generations.js?v=20261121a"></script>
-<script src="climats.js?v=20261126c"></script>
+<script src="climats.js?v=20261126d"></script>
 <script src="france2050.js?v=20261125a"></script>
 <script src="maj.js?v=20261120a"></script>
 <script src="nav.js?v=20261118d"></script>
