@@ -10,6 +10,7 @@ async function init() {
   try { const M = await fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()); X.target = M.target; X.target_mois = M.target_mois; } catch (e) {}
   try { draw(); } catch (e) { console.error("exterieur", e); }
   try { drawJumeaux(); } catch (e) { console.error("exterieur jumeaux", e); }
+  try { trajet(); } catch (e) { console.error("exterieur trajet", e); }
 }
 function draw() {
   const { lineChart, legend } = window.TH, f1 = v => v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -54,6 +55,7 @@ function draw() {
       <li><b>Second effet, cumulatif : la France doit davantage au reste du monde.</b> Dans tous les cas sauf l'achat de produits français, le déficit se traduit par une dette envers l'étranger : soit une créance des banques centrales (le solde TARGET de la Banque de France${X.target ? `, ${Math.round(X.target.at(-1).fr)} milliards d'euros en ${X.target_mois ? new Date(X.target_mois + "-15").toLocaleDateString("fr-FR", { month: "long", year: "numeric" }) : X.target.at(-1).annee}, contre ${sg2(X.target.at(-1).de)} milliards pour la Bundesbank` : ""}), soit des obligations et des dépôts détenus par des étrangers, soit des actions, des immeubles et des entreprises passés à des propriétaires étrangers. C'est le sens de « le pays paie son déficit en empruntant ou en vendant des actifs ». Et chaque année, les intérêts, dividendes et loyers de ces placements partent à leur tour à l'étranger.</li>
       <li><b>Le boulanger, lui, ne vend pas sa boulangerie</b> : personne en particulier n'est forcé de vendre. Le second effet passe par la Banque de France et par des milliers d'opérations volontaires : un fonds allemand achète les obligations que l'État français vient d'émettre pour financer son déficit, un groupe étranger rachète une PME, un assureur néerlandais achète un immeuble de bureaux à Paris. Ce sont souvent des Français qui vendent, de leur plein gré, au meilleur prix. Le boulanger subit le premier effet : il a perdu des clients.</li>
     </ol>
+    <div id="ext-trajet" class="ext-trajet"></div>
     <p style="margin:0 0 8px"><b>Pourquoi ces soldes TARGET comptent</b> : tant que la zone euro tient, ils restent une écriture entre banques centrales, sans date de remboursement, rémunérée au taux de la BCE et dont les intérêts sont mis en commun entre banques centrales. Mais ils montent fortement quand l'argent fuit un pays : de 2010 à 2012, les Grecs, les Espagnols et les Italiens ont transféré leurs dépôts vers des banques allemandes, par peur d'une sortie de l'euro ; les banques de ces pays ont perdu leurs dépôts, et ce sont les banques centrales, par TARGET, qui ont comblé le trou. C'est là qu'on voit qu'un euro grec n'était pas tout à fait un euro allemand. Si un pays quittait l'euro, la question de qui supporte ces créances se poserait.</p>
     <p style="margin:0 0 8px"><b>En résumé</b> : un déficit commercial a deux conséquences. <b>Tout de suite</b>, l'argent dépensé fait travailler l'étranger plutôt que la France (moins d'activité et d'emplois). <b>À la longue</b>, la France doit davantage au reste du monde : d'abord automatiquement, par les banques centrales (TARGET), puis, quand les détenteurs étrangers replacent leurs euros en France, sous forme d'obligations, d'actions, d'immeubles et d'entreprises.</p>
     <p style="margin-bottom:2px"><b>3. De l'autre, la dette publique, qui vient de l'État : utile si elle finance de l'investissement, nocive si elle paie les dépenses courantes</b></p>
@@ -65,6 +67,51 @@ function draw() {
     </ul>
     <p class="muted" style="font-size:.8rem;margin-bottom:0">Nuances : la position extérieure bouge aussi avec le prix des actions détenues par les étrangers ; les États-Unis vivent en déficit depuis quarante ans sans crise, grâce au dollar, monnaie mondiale, un privilège que la France n'a pas.</p>`;
 }
+
+/* Simulateur : le trajet des 30 000 euros d'une Volkswagen, compte par compte */
+function trajet() {
+  const el = $("#ext-trajet"); if (!el) return;
+  const E = {
+    0: { t: "Avant l'achat", d: "Rien n'a encore bougé.", v: {} },
+    1: { t: "1. Le paiement", d: "Le compte de l'acheteur baisse, celui de Volkswagen monte. Les deux banques se règlent en monnaie de banque centrale : les réserves passent de la Banque de France à la Bundesbank, et le solde TARGET enregistre la dette de la Banque de France envers l'Eurosystème.",
+      v: { ach: -30000, vw: 30000, resF: -30000, resA: 30000, tF: -30000, tA: 30000, actA: 30000 } },
+    garde: { t: "2. Les euros restent en Allemagne", d: "Volkswagen paie ses ouvriers et ses fournisseurs, qui gardent ou dépensent l'argent en Allemagne. Les dépôts passent de compte allemand en compte allemand : les réserves restent à la Bundesbank, le solde TARGET reste ouvert. La France doit 30 000 euros au reste de la zone, par l'intermédiaire de sa banque centrale.",
+      v: { ach: -30000, vw: 0, autresA: 30000, resF: -30000, resA: 30000, tF: -30000, tA: 30000, actA: 30000 } },
+    achat: { t: "2. Un Allemand achète du vin français", d: "L'argent revient : le compte du vigneron français monte, les réserves repartent vers la Banque de France, le solde TARGET se referme. La France a acheté une voiture et vendu du vin : les échanges sont équilibrés, personne ne doit rien à personne, et l'activité est partagée entre les deux pays.",
+      v: { ach: -30000, vw: 0, autresF: 30000, resF: 0, resA: 0, tF: 0, tA: 0, actA: 30000, actF: 30000 } },
+    place: { t: "2. Un fonds allemand achète une obligation de l'État français", d: "Les euros reviennent en France, mais en échange d'une obligation : les réserves repartent vers la Banque de France et le solde TARGET se referme, mais un Allemand détient désormais une créance de 30 000 euros sur l'État français, qui lui versera des intérêts chaque année. La dette a seulement changé de forme : d'une dette entre banques centrales, elle est devenue une dette envers un investisseur privé.",
+      v: { ach: -30000, vw: 0, autresF: 30000, resF: 0, resA: 0, tF: 0, tA: 0, oat: 30000, actA: 30000 } }
+  };
+  const L = [
+    ["Côté France", null],
+    ["ach", "Compte de l'acheteur (banque française)"], ["autresF", "Comptes d'autres Français (vigneron, Trésor public)"], ["resF", "Réserves des banques françaises à la Banque de France"], ["tF", "Solde TARGET de la Banque de France"],
+    ["Côté Allemagne", null],
+    ["vw", "Compte de Volkswagen (banque allemande)"], ["autresA", "Comptes des salariés et fournisseurs allemands"], ["resA", "Réserves des banques allemandes à la Bundesbank"], ["tA", "Solde TARGET de la Bundesbank"],
+    ["Bilan", null],
+    ["oat", "Dette de l'État français détenue en Allemagne (obligations)"], ["actF", "Production et salaires payés en France"], ["actA", "Production et salaires payés en Allemagne"]
+  ];
+  let cur = 0;
+  const fmt = (v, k) => v ? `<b style="color:${v < 0 || k === "oat" ? "#dc2626" : "#16a34a"}">${v > 0 ? "+" : "−"}${Math.abs(v).toLocaleString("fr-FR")} €</b>` : `<span class="muted">0</span>`;
+  const render = () => {
+    const e = E[cur], v = e.v;
+    const dette = -(v.tF || 0) + (v.oat || 0);
+    el.innerHTML = `<p style="margin:0 0 6px"><b>À vous de jouer : le trajet des 30 000 euros, compte par compte</b></p>
+      <div class="ext-btns">
+        <button type="button" data-k="0" aria-pressed="${cur === 0}">Avant</button>
+        <button type="button" data-k="1" aria-pressed="${cur === 1}">1. Le paiement</button>
+        <span class="muted" style="font-size:.82rem;align-self:center">puis, que font les Allemands de ces euros ?</span>
+        <button type="button" data-k="garde" aria-pressed="${cur === "garde"}">Ils les gardent en Allemagne</button>
+        <button type="button" data-k="achat" aria-pressed="${cur === "achat"}">Ils achètent du vin français</button>
+        <button type="button" data-k="place" aria-pressed="${cur === "place"}">Ils achètent une obligation française</button>
+      </div>
+      <p style="margin:6px 0 8px"><b>${e.t}</b> : ${e.d}</p>
+      <div class="table-scroll"><table class="cmp-t ext-tr">${L.map(([k, l]) => l == null ? `<tr><th colspan="2" style="text-align:left">${k}</th></tr>` : `<tr><td>${l}</td><td class="num">${fmt(v[k], k)}</td></tr>`).join("")}</table></div>
+      <p style="margin:8px 0 0"><b>Ce que la France doit au reste du monde à cause de cet achat</b> : ${dette ? `<b style="color:#dc2626">${dette.toLocaleString("fr-FR")} €</b>, ${v.oat ? "sous forme d'une obligation détenue par un investisseur allemand" : "sous forme du solde TARGET de la Banque de France"}` : "<b>rien</b>"}. ${cur === 0 ? "" : v.actF ? "L'activité est partagée entre les deux pays." : "La production et les salaires de cette voiture sont allés à l'Allemagne."}</p>`;
+    el.querySelectorAll("button[data-k]").forEach(b => b.onclick = () => { const k = b.dataset.k; cur = (k === "0" || k === "1") ? +k : k; render(); });
+  };
+  render();
+}
+
 function drawJumeaux() {
   const el = $("#ext-jum"); if (!el || !X.jumeaux) return;
   const J = X.jumeaux, f1 = v => (v > 0 ? "+" : "") + String(v).replace(".", ",");
