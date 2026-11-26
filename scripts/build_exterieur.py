@@ -81,6 +81,27 @@ for c in JN:
              "peen": round(pe / 1e9 / pib * 100, 1) if pe is not None and pib else None, "peen_md": round(pe / 1e9) if pe is not None else None}
         rows.append(r)
     autres["series"][c] = rows
-json.dump({"autres": autres, "secteurs": secteurs, "jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
+# soutenabilité de la dette : dette publique en % du PIB sur longue période (JST jusqu'en 2020, FMI ensuite),
+# dette de quelques pays depuis 2000 (FMI), taux apparent de la dette française contre croissance du PIB en valeur (Eurostat)
+import openpyxl  # noqa: E402
+_wb = openpyxl.load_workbook(os.path.join(R, "data", "sources", "histoire", "jst_macrohistory.xlsx"), read_only=True, data_only=True)
+_rows = _wb.active.iter_rows(values_only=True); _h = list(next(_rows)); _I = {k: _h.index(k) for k in ("year", "iso", "debtgdp")}
+DH = {}
+for r in _rows:
+    if r[_I["iso"]] in ("GBR", "USA", "JPN", "FRA", "ITA") and r[_I["debtgdp"]] is not None:
+        DH.setdefault(int(r[_I["year"]]), {})[r[_I["iso"]]] = round(100 * r[_I["debtgdp"]], 1)
+DI = json.load(open(os.path.join(R, "data", "sources", "prosperite", "imf_dette.json")))
+DI = DI.get("values", DI)["GGXWDG_NGDP"]
+for y in range(max(DH) + 1, an_fmi + 1):
+    DH[y] = {c: DI[c][str(y)] for c in ("GBR", "USA", "JPN", "FRA", "ITA") if DI.get(c, {}).get(str(y)) is not None}
+dette_hist = [{"annee": y, **DH[y]} for y in sorted(DH) if y >= 1870]
+dette_pays = [{"annee": y, **{c: DI.get(c, {}).get(str(y)) for c in ("SGP", "JPN", "CHN", "IND", "FRA", "ITA", "GRC")}} for y in range(2000, an_fmi + 1)]
+_int = lire("gov_10a_main.json", {"na_item": "D41PAY", "sector": "S13"}, os.path.join(R, "data", "sources"))["FR"]
+_gd = lire("gov_10dd_edpt1.json", {"unit": "MIO_EUR"}, os.path.join(R, "data", "sources"))["FR"]
+rg = []
+for y in sorted(_int):
+    if y - 1 in _gd and y in PIB and y - 1 in PIB:
+        rg.append({"annee": y, "r": round(100 * _int[y] / _gd[y - 1], 2), "g": round(100 * (PIB[y] / PIB[y - 1] - 1), 2), "dette_md": round(_gd[y] / 1000)})
+json.dump({"dette_hist": dette_hist, "dette_pays": dette_pays, "rg": rg, "autres": autres, "secteurs": secteurs, "jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
           open(os.path.join(R, "data", "exterieur.json"), "w"), ensure_ascii=False, indent=1)
 print("cumul FR depuis 2005 :", cumul, "| PEEN FR", [(r["annee"], r["FR"]) for r in position if r["annee"] % 5 == 0 or r["annee"] >= 2024])

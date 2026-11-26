@@ -396,6 +396,7 @@ mkdir -p climats
 # position extérieure nette en dollars (FMI, base IIP)
 P15="FRA/DEU/ITA/ESP/NLD/SWE/CHE/NOR/GBR/USA/JPN/KOR/CHN/BRA/IND"
 get prosperite/imf_jumeaux.json "https://www.imf.org/external/datamapper/api/v1/BCA_NGDPD/GGXCNL_NGDP/$P15"
+get prosperite/imf_dette.json "https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP/SGP/CHN/JPN/IND/FRA/ITA/GRC/USA/GBR"
 get prosperite/imf_ngdpd.json "https://www.imf.org/external/datamapper/api/v1/NGDPD/$P15"
 get prosperite/imf_iip.json "https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.STA/IIP/+/${P15//\//+}.NETAL_P.NIIP.USD.A?dimensionAtObservation=TIME_PERIOD"
 get pib_courant_fr.json "$E/nama_10_gdp?geo=FR&unit=CP_MEUR&na_item=B1GQ&sinceTimePeriod=1975"
