@@ -6,10 +6,10 @@ const $ = s => document.querySelector(s);
 const f1 = v => v == null ? "–" : v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const sg = v => v == null ? "–" : (v > 0 ? "+" : v < 0 ? "−" : "") + f1(Math.abs(v));
 const Q = {
-  CI: { l: "Croissance inflationniste", c: "#16a34a" },
-  RI: { l: "Récession inflationniste", c: "#dc2626" },
-  RD: { l: "Récession déflationniste", c: "#ca8a04" },
-  CD: { l: "Croissance déflationniste", c: "#2563eb" }
+  CI: { l: "Croissance inflationniste", d: "activité au-dessus de sa tendance, inflation qui accélère", c: "#16a34a" },
+  RI: { l: "Récession inflationniste", d: "activité au-dessous de sa tendance, inflation qui accélère", c: "#dc2626" },
+  RD: { l: "Récession déflationniste", d: "activité au-dessous de sa tendance, inflation qui ralentit", c: "#ca8a04" },
+  CD: { l: "Croissance déflationniste", d: "activité au-dessus de sa tendance, inflation qui ralentit", c: "#2563eb" }
 };
 const MOT = [{ k: "conso", l: "Consommation des ménages", c: "#0ea5e9" }, { k: "public", l: "Dépense publique (services publics)", c: "#7c3aed" },
   { k: "invest", l: "Investissement (entreprises, logement, État)", c: "#f59e0b" }, { k: "commerce", l: "Commerce extérieur (exportations − importations)", c: "#16a34a" },
@@ -132,11 +132,11 @@ function quadrants() {
   const bis = d3.bisector(d => d.annee).center;
   svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b).attr("fill", "transparent")
     .on("pointermove", ev => { const d = Y[bis(Y, x.invert(d3.pointer(ev)[0]))]; if (!d) return;
-      window.TH.showTip(`<b>${d.annee}</b> : <span style="color:${Q[d.q].c}">■</span> ${Q[d.q].l}<br>Croissance ${sg(d.croissance)} % (tendance ${f1(d.tr)} %)<br>Inflation ${f1(d.inflation)} %${d.pi0 != null ? ` (l'année d'avant ${f1(d.pi0)} %)` : ` (tendance ${f1(d.tp)} %)`}`, ev); })
+      window.TH.showTip(`<b>${d.annee}</b> : <span style="color:${Q[d.q].c}">■</span> ${Q[d.q].l}<br><i>${Q[d.q].d}</i><br>Croissance ${sg(d.croissance)} % (tendance ${f1(d.tr)} %)<br>Inflation ${f1(d.inflation)} %${d.pi0 != null ? ` (l'année d'avant ${f1(d.pi0)} %)` : ` (tendance ${f1(d.tp)} %)`}`, ev); })
     .on("pointerleave", () => window.TH.hideTip());
   el.replaceChildren(svg.node());
   window.TH.legend("#mo-q-legend", [["Croissance réelle du PIB", "var(--ink)", true], ["Tendance de la croissance (médiane des 10 années précédentes)", "#6b7280", true], ["Inflation", "#dc2626", true],
-    ...(mode === "mixte" ? [["Tendance de l'inflation (médiane des 10 années précédentes)", "#f87171", true]] : []), ...Object.values(Q).map(q => [q.l + " (fond)", q.c])]);
+    ...(mode === "mixte" ? [["Tendance de l'inflation (médiane des 10 années précédentes)", "#f87171", true]] : []), ...Object.values(Q).map(q => [q.l + " : " + q.d, q.c])]);
   // décompte par période
   const per = [[1950, 1973, "Trente Glorieuses"], [1974, 1985, "Chocs pétroliers"], [1986, 2007, "Grande modération"], [2008, 2019, "Crises et taux zéro"], [2020, 2100, "Depuis 2020"]];
   $("#mo-q-compte").innerHTML = `<div class="table-scroll"><table class="cmp-t"><thead><tr><th>Période</th>${Object.values(Q).map(q => `<th style="color:${q.c}">${q.l}</th>`).join("")}</tr></thead><tbody>${per.map(([a, b, l]) => {
@@ -203,10 +203,10 @@ function ksaisons() {
   const bis = d3.bisector(d => d.annee).center;
   svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", Hh - m.t - m.b).attr("fill", "transparent")
     .on("pointermove", ev => { const d = Y[bis(Y, x.invert(d3.pointer(ev)[0]))]; if (!d) return;
-      window.TH.showTip(`<b>${d.annee}</b> : <span style="color:${Q[d.q].c}">■</span> ${Q[d.q].l}<br>Croissance moyenne sur 10 ans : ${sg(d.g)} % (tendance ${f1(d.gt)} %)<br>Inflation moyenne sur 10 ans : ${f1(d.p)} % (${f1(d.p5)} % cinq ans plus tôt)`, ev); })
+      window.TH.showTip(`<b>${d.annee}</b> : <span style="color:${Q[d.q].c}">■</span> ${Q[d.q].l}<br><i>${Q[d.q].d}</i><br>Croissance moyenne sur 10 ans : ${sg(d.g)} % (tendance ${f1(d.gt)} %)<br>Inflation moyenne sur 10 ans : ${f1(d.p)} % (${f1(d.p5)} % cinq ans plus tôt)`, ev); })
     .on("pointerleave", () => window.TH.hideTip());
   el.replaceChildren(svg.node());
-  window.TH.legend("#mo-k-saisons-legend", [["Croissance réelle, moyenne sur 10 ans", "var(--ink)", true], ["Sa tendance (médiane des 20 années précédentes)", "#6b7280", true], ["Inflation, moyenne sur 10 ans", "#dc2626", true], ...Object.values(Q).map(q => [q.l + " (fond)", q.c])]);
+  window.TH.legend("#mo-k-saisons-legend", [["Croissance réelle, moyenne sur 10 ans", "var(--ink)", true], ["Sa tendance (médiane des 20 années précédentes)", "#6b7280", true], ["Inflation, moyenne sur 10 ans", "#dc2626", true], ...Object.values(Q).map(q => [q.l + " : " + q.d, q.c])]);
 }
 
 init();
