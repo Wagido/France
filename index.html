@@ -153,28 +153,45 @@
     <h2>Le PIB et ce qu'il contient vraiment <span class="geo-tag"></span></h2>
     <label class="ctl">Année <select id="pib-year"></select></label>
   </div>
-  <p class="lead">Le PIB mesure ce qu'un pays produit en un an. Cet onglet montre ce qui le fait croître, ce qu'il vaut et qui le produit, ce qu'il contient vraiment (et ce qu'il laisse de côté), puis son évolution sur la durée. Les parties 2 et 3 suivent le pays et l'année choisis en haut ; les parties 1 et 4 portent sur la France.</p>
+  <p class="lead">Le PIB mesure ce qu'un pays produit en un an. Pour comprendre ce qui le fait croître, il faut distinguer deux horizons. <b>À court terme</b>, sur un ou deux ans, la production suit la <b>demande</b> : les entreprises produisent ce qu'elles pensent vendre (partie 1). <b>À long terme</b>, sur dix ou vingt ans, c'est l'<b>offre</b> qui compte : ce que le pays est capable de produire, grâce au travail, à l'<b>investissement</b> et aux techniques (partie 2). On regarde ensuite comment le PIB se mesure (partie 3), ce qu'il contient vraiment (partie 4), puis son évolution sur la durée (partie 5). Les parties 3 et 4 suivent le pays et l'année choisis en haut ; les autres portent sur la France.</p>
   <nav class="li-toc" aria-label="Sommaire"><b>Sommaire</b><ol>
-    <li><a href="#pib" data-to="pib-p2">Qui fait la croissance ? Les quatre moteurs de la demande</a></li>
+    <li><a href="#pib" data-to="pib-p2">À court terme, la demande : le PIB vu par la dépense (les quatre moteurs)</a></li>
+    <li><a href="#pib" data-to="pib-p5">À long terme, l'offre : investissement, épargne, recherche</a></li>
     <li><a href="#pib" data-to="pib-p1">Ce que produit le pays : trois façons de mesurer le PIB</a></li>
     <li><a href="#pib" data-to="pib-p3">Ce que le PIB contient vraiment, et ce qu'il laisse de côté</a></li>
     <li><a href="#pib" data-to="pib-p4">Le PIB dans la durée : dépenses publiques, énergie, émissions</a></li>
   </ol></nav>
-  <h3 id="pib-p2" class="ag-part">1. Qui fait la croissance ? Les quatre moteurs de la demande <span class="geo-fixed">France</span></h3>
-  <p>À court terme, la production suit la demande : une entreprise ne produit que ce qu'elle pense vendre. Toute la dépense d'un pays se range dans quatre cases, et leur somme est le PIB : <b>PIB = consommation + investissement + dépense publique + (exportations − importations)</b>. C'est une identité comptable, vraie par construction ; elle ne dit pas ce qui cause quoi, mais elle permet de voir quel moteur tire et lequel cale.</p>
+  <h3 id="pib-p2" class="ag-part">1. À court terme, la demande : le PIB vu par la dépense <span class="geo-fixed">France</span></h3>
+  <p>Sur un an ou deux, les capacités de production (usines, machines, salariés formés) changent peu : ce qui fait varier la production, c'est la demande. Une entreprise ne produit que ce qu'elle pense vendre. Toute la dépense d'un pays se range dans quatre cases, et leur somme est le PIB : <b>PIB = consommation + investissement + dépense publique + (exportations − importations)</b>. C'est une identité comptable, vraie par construction ; elle ne dit pas ce qui cause quoi, mais elle permet de voir quel moteur tire et lequel cale.</p>
   <div class="in-need">
     <div><b>① La consommation des ménages</b><span>Environ 53 % du PIB : alimentation, logement, transport, loisirs. Elle dépend du revenu, mais aussi de la confiance : un ménage inquiet épargne. Les retraites et les allocations, qui ne sont pas des achats de l'État, apparaissent ici, quand les ménages les dépensent.</span></div>
     <div><b>② L'investissement</b><span>Environ 22 % du PIB. Attention au sens du mot : en économie, investir, c'est acheter des machines, des bâtiments, des logiciels, construire des logements ou des routes (la « formation brute de capital fixe »). Acheter des actions d'autres entreprises n'en fait pas partie : c'est un simple échange de titres, sauf quand l'argent sert à construire une usine.</span></div>
     <div><b>③ La dépense publique</b><span>Environ 24 % du PIB : les services publics, évalués à leur coût (salaires des enseignants, des soignants, fournitures). L'investissement public (routes, écoles) est compté avec l'investissement, et les prestations (retraites, allocations) passent par la consommation des ménages.</span></div>
     <div><b>④ Le commerce extérieur</b><span>Les exportations ajoutent à la demande, les importations en retirent, puisqu'une partie de ce que l'on achète est produite ailleurs. En France, les deux pèsent chacune environ un tiers du PIB : seul le solde, faible, compte pour la croissance.</span></div>
   </div>
-  <h3 id="pib-contrib-t">Ce que chaque moteur a apporté à la croissance chaque année, en points de PIB</h3>
+  <h3 id="pib-contrib-t">Le PIB vu par la dépense : ce que chaque moteur a apporté à la croissance chaque année, en points de PIB</h3>
   <div class="seg" id="pib-contrib-mode" role="radiogroup" aria-label="Affichage" style="margin-bottom:6px"><button type="button" data-m="contrib" aria-pressed="true">Apport à la croissance (points de PIB)</button><button type="button" data-m="valeur" aria-pressed="false">Poids de chaque moteur (milliards d'euros)</button></div>
   <div id="pib-contrib" class="chart"></div><div class="legend-row" id="pib-contrib-legend"></div>
   <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : la hauteur de chaque morceau de barre est la part de la croissance due à ce moteur ; le point est la croissance du PIB, somme des morceaux. En 2009 et 2020, presque tous les moteurs plongent ensemble.</p>
   <div id="pib-moteurs"></div>
   <div class="callout small" id="pib-moteurs-txt"></div>
-  <h3>À long terme, c'est l'offre qui compte : investissement, épargne et recherche</h3>
+  <div class="callout small" id="pib-lien-cascade">
+    <p style="margin-top:0"><b>Le lien avec la cascade de la partie 4.</b> Les deux graphiques découpent le même PIB selon deux questions différentes. Celui-ci répond à « <b>qui achète ?</b> » : <b>c'est le PIB vu par la dépense</b>. La <a href="#pib" data-to="pib-p3">cascade de la partie 4</a> répond à « <b>qu'est-ce qui a vraiment été vendu à des clients ?</b> » : <b>c'est le PIB vu par la production</b>. Elle part du même PIB et retire une à une les parts comptées par convention. Chaque marche retirée dans la cascade se cache dans une ou plusieurs barres d'ici.</p>
+    <div class="table-scroll"><table class="cmp-t ro-t">
+      <thead><tr><th>Marche retirée dans la cascade</th><th>Où elle se trouve dans les moteurs</th></tr></thead>
+      <tbody>
+        <tr><td>① Impôts nets sur les produits (TVA, taxes sur l'énergie…)</td><td>Dans le prix de toutes les barres, surtout la <b>consommation</b> : la TVA payée par les ménages est comptée dans ce qu'ils dépensent.</td></tr>
+        <tr><td>② Services publics comptés à leur coût</td><td>Dans la barre <b>dépense publique</b> : ce sont les salaires et l'usure des écoles, hôpitaux et administrations. Le reste de la barre est ce que l'État achète ou rembourse pour nous (fournitures, médicaments, consultations).</td></tr>
+        <tr><td>③ Associations comptées à leur coût</td><td>Dans la barre <b>consommation</b> : les comptes nationaux rangent les associations avec les ménages.</td></tr>
+        <tr><td>④ Loyers que les propriétaires « se versent »</td><td>Dans la barre <b>consommation</b> aussi : on compte un loyer fictif pour chaque propriétaire qui habite son logement.</td></tr>
+        <tr><td>⑤ Usure du capital des entreprises</td><td>Dans la barre <b>investissement</b> : une grosse partie de l'investissement sert seulement à remplacer ce qui s'use ; seul le reste agrandit vraiment les capacités (c'est le lien avec la partie 2).</td></tr>
+        <tr><td>⑥ Ce qui reste : la valeur ajoutée nette vendue à des clients</td><td>La part des barres qui correspond à de vrais achats de biens et services vendus par des entreprises : consommation hors taxes, loyers fictifs et associations, investissement neuf, exportations moins importations.</td></tr>
+      </tbody></table></div>
+    <p class="muted" style="font-size:.8rem;margin-bottom:0">Les montants ne tombent pas pile dans une seule barre (par exemple, l'usure des bâtiments publics et des logements des ménages n'est pas dans la marche ⑤) : le tableau donne la correspondance principale, pas un calcul exact.</p>
+  </div>
+
+  <h3 id="pib-p5" class="ag-part">2. À long terme, l'offre : ce que le pays est capable de produire <span class="geo-fixed">France et voisins</span></h3>
+  <p>Sur dix ou vingt ans, la demande ne suffit plus : on ne peut pas vendre durablement plus que ce qu'on sait produire. Ce que le pays peut produire dépend de trois choses : combien de personnes travaillent, combien d'heures, et ce que chacune produit par heure (la productivité). Et la productivité dépend surtout de l'<b>investissement</b> (machines, bâtiments, logiciels), des compétences et de la recherche. Parmi les quatre moteurs de la partie 1, l'investissement est le seul qui joue sur les deux horizons : de la demande cette année, des capacités de production pendant vingt ans.</p>
   <div class="grid3">
     <div><p class="muted" style="margin:0"><b>Investissement</b>, en % du PIB</p><div id="pib-fbcf" class="chart"></div></div>
     <div><p class="muted" style="margin:0"><b>Épargne des ménages</b>, en % de leur revenu</p><div id="pib-epargne" class="chart"></div></div>
@@ -189,11 +206,12 @@
       <li><b>Le paradoxe de l'épargne</b> : chaque ménage qui épargne plus est prudent ; quand tous le font en même temps, la demande baisse, les entreprises vendent moins, embauchent moins, et les revenus finissent par baisser. L'épargne n'est utile à la croissance que si elle finance de l'investissement. Le niveau record de l'épargne française est donc à la fois une réserve et un frein.</li>
     </ul>
   </div>
+  <p class="muted" style="font-size:.84rem">Les parties 1 et 2 figurent aussi dans l'onglet <a href="#monnaie" data-to="mo-6-3">Monnaie et croissance</a> (7.1), suivies des quatre climats de l'économie : croissance, récession, inflation, déflation (7.3).</p>
 
-  <p class="muted" style="font-size:.84rem">Cette partie figure aussi dans l'onglet <a href="#monnaie" data-to="mo-6-3">Monnaie et croissance</a> (7.1), suivie des quatre climats de l'économie : croissance, récession, inflation, déflation (7.3).</p>
 
-
-  <h3 id="pib-p1" class="ag-part">2. Ce que produit le pays : trois façons de mesurer le PIB</h3>
+  <h3 id="pib-p1" class="ag-part">3. Ce que produit le pays : trois façons de mesurer le PIB</h3>
+  <p>Le même PIB peut se mesurer de trois façons, qui donnent le même total : par ce que les entreprises et administrations <b>produisent</b> (la valeur ajoutée), par ce que les acheteurs <b>dépensent</b> (les quatre moteurs de la partie 1), par les <b>revenus</b> versés (salaires, profits, impôts). La cascade de la partie 4 part de la production.</p>
+  <div class="callout small a-retenir"><p style="margin:0"><b>Dépense = demande, production = offre ?</b> Presque. Le PIB vu par la dépense regarde le côté de la <b>demande</b> (qui achète), le PIB vu par la production regarde le côté de l'<b>offre</b> (qui produit). Mais une fois l'année finie, les deux donnent <b>exactement le même chiffre</b> : tout ce qui a été produit a été acheté par quelqu'un (les invendus comptent comme une hausse des stocks, achetée par l'entreprise elle-même). Ce n'est donc pas la mesure qui distingue court terme et long terme. L'<b>offre</b> au sens de la partie 2 est autre chose : ce que le pays <i>pourrait</i> produire avec ses travailleurs, ses machines et ses techniques (le « PIB potentiel »). À court terme, la demande décide de la part de ces capacités qui est utilisée ; à long terme, c'est la taille des capacités qui fixe le plafond.</p></div>
   <div class="kpis" id="pib-kpis"></div>
   <div id="pib-body">
   <h3>Les trois façons de mesurer le même PIB</h3>
@@ -208,12 +226,13 @@
 
   </div>
 
-  <h3 id="pib-p3" class="ag-part">3. Ce que le PIB contient vraiment, et ce qu'il laisse de côté</h3>
+  <h3 id="pib-p3" class="ag-part">4. Ce que le PIB contient vraiment, et ce qu'il laisse de côté</h3>
   <div id="pib-body2">
-  <h3>Ce qui, dans le PIB, correspond à des ventes à des clients</h3>
-  <p class="lead">Le PIB additionne des choses de nature très différente. Une partie correspond à des biens et services vendus à un prix à des clients qui les ont choisis. Une autre est comptée par <em>convention</em> : services publics évalués à ce qu'ils coûtent, loyers fictifs des propriétaires, impôts inclus dans les prix, remplacement du matériel usé. Cette cascade retire ces conventions une à une.</p>
+  <h3>Le PIB vu par la production : ce qui correspond vraiment à des ventes à des clients</h3>
+  <p class="lead">Ici, <b>le PIB vu par la production</b> : on part de ce que les entreprises et administrations produisent, et non plus de qui achète (le PIB vu par la dépense, partie 1). Le PIB additionne des choses de nature très différente. Une partie correspond à des biens et services vendus à un prix à des clients qui les ont choisis. Une autre est comptée par <em>convention</em> : services publics évalués à ce qu'ils coûtent, loyers fictifs des propriétaires, impôts inclus dans les prix, remplacement du matériel usé. Cette cascade retire ces conventions une à une.</p>
   <div id="cascade" class="chart"></div>
   <ol class="notes" id="cascade-notes"></ol>
+  <p class="muted" style="font-size:.84rem">Où retrouver chaque marche dans les quatre moteurs de la demande : voir le <a href="#pib" data-to="pib-lien-cascade">tableau de correspondance de la partie 1</a>.</p>
   <div class="callout">
     <p><strong>Ce que la cascade ne dit pas.</strong> Retirer une ligne ne veut pas dire qu'elle est « inutile » : un enseignant ou une infirmière produisent quelque chose de réel, mais la comptabilité ne peut pas le mesurer autrement que par leur salaire. À l'inverse, une activité marchande peut être sans valeur (être payé 100 € pour creuser un trou puis le reboucher fait 100 € de PIB). Aucune statistique ne sait trier l'utile de l'inutile : elle sait seulement distinguer ce qui passe par un prix librement payé de ce qui est compté par convention.</p>
   </div>
@@ -237,7 +256,7 @@
 
   </div>
 
-  <h3 id="pib-p4" class="ag-part">4. Le PIB dans la durée : dépenses publiques, énergie, émissions</h3>
+  <h3 id="pib-p4" class="ag-part">5. Le PIB dans la durée : dépenses publiques, énergie, émissions</h3>
   <h3>Dépenses, recettes publiques et dette depuis 1995</h3>
   <div id="pib-histo" class="chart"></div>
 
@@ -1354,7 +1373,7 @@
     <div><b>③ La dépense publique</b><span>Environ 24 % du PIB : les services publics, évalués à leur coût (salaires des enseignants, des soignants, fournitures). L'investissement public (routes, écoles) est compté avec l'investissement, et les prestations (retraites, allocations) passent par la consommation des ménages.</span></div>
     <div><b>④ Le commerce extérieur</b><span>Les exportations ajoutent à la demande, les importations en retirent, puisqu'une partie de ce que l'on achète est produite ailleurs. En France, les deux pèsent chacune environ un tiers du PIB : seul le solde, faible, compte pour la croissance.</span></div>
   </div>
-  <h3 id="mo-contrib-t">Ce que chaque moteur a apporté à la croissance chaque année, en points de PIB</h3>
+  <h3 id="mo-contrib-t">Le PIB vu par la dépense : ce que chaque moteur a apporté à la croissance chaque année, en points de PIB</h3>
   <div class="seg" id="mo-contrib-mode" role="radiogroup" aria-label="Affichage" style="margin-bottom:6px"><button type="button" data-m="contrib" aria-pressed="true">Apport à la croissance (points de PIB)</button><button type="button" data-m="valeur" aria-pressed="false">Poids de chaque moteur (milliards d'euros)</button></div>
   <div id="mo-contrib" class="chart"></div><div class="legend-row" id="mo-contrib-legend"></div>
   <p class="muted" style="font-size:.84rem"><b>Comment lire</b> : la hauteur de chaque morceau de barre est la part de la croissance due à ce moteur ; le point est la croissance du PIB, somme des morceaux. En 2009 et 2020, presque tous les moteurs plongent ensemble.</p>
@@ -9085,7 +9104,7 @@ for snr_db in (10, 15, 20):
 <script src="tableau.js?v=20261118d"></script>
 <script src="sources.js?v=20261118d"></script>
 <script src="generations.js?v=20261121a"></script>
-<script src="climats.js?v=20261127n"></script>
+<script src="climats.js?v=20261127o"></script>
 <script src="glossaire.js?v=20261126a"></script>
 <script src="install.js?v=20261127a"></script>
 <script src="france2050.js?v=20261125a"></script>

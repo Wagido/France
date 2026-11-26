@@ -37,7 +37,7 @@ const NIV = [{ k: "conso", l: "Consommation des ménages", c: "#0ea5e9" }, { k: 
   { k: "export", l: "Exportations", c: "#16a34a" }, { k: "import", l: "Importations (en moins)", c: "#86efac" }];
 function niveaux(p) {
   const el = $(`#${p}-contrib`), data = C.niveaux, n0 = v => Math.round(v).toLocaleString("fr-FR");
-  $(`#${p}-contrib-t`).textContent = "Le poids de chaque moteur chaque année, en milliards d'euros courants : la somme des barres (exportations moins importations) donne le PIB";
+  $(`#${p}-contrib-t`).textContent = "Le PIB vu par la dépense : le poids de chaque moteur chaque année, en milliards d'euros courants (la somme des barres, importations déduites, donne le PIB)";
   const w = Math.max(320, el.clientWidth), h = 340, m = { t: 12, r: 10, b: 26, l: 52 };
   const x = d3.scaleBand(data.map(d => d.annee), [m.l, w - m.r]).padding(.18);
   const pos = d => NIV.reduce((s, k) => s + Math.max(0, d[k.k] || 0), 0), neg = d => NIV.reduce((s, k) => s + Math.min(0, d[k.k] || 0), 0);
@@ -61,7 +61,7 @@ function niveaux(p) {
 }
 function contrib(p, mode) {
   if (mode === "valeur" && C.niveaux) return niveaux(p);
-  const t = $(`#${p}-contrib-t`); if (t) t.textContent = "Ce que chaque moteur a apporté à la croissance chaque année, en points de PIB";
+  const t = $(`#${p}-contrib-t`); if (t) t.textContent = "Le PIB vu par la dépense : ce que chaque moteur a apporté à la croissance chaque année, en points de PIB";
   const el = $(`#${p}-contrib`), data = C.contributions.filter(d => d.annee >= 1996);
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 12, r: 10, b: 26, l: 40 };
   const x = d3.scaleBand(data.map(d => d.annee), [m.l, w - m.r]).padding(.18);
