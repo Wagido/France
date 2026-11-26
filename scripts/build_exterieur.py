@@ -40,6 +40,7 @@ JN = {"FRA": "France", "DEU": "Allemagne", "ITA": "Italie", "ESP": "Espagne", "N
       "NOR": "Norvège", "GBR": "Royaume-Uni", "USA": "États-Unis", "JPN": "Japon", "KOR": "Corée du Sud", "CHN": "Chine",
       "BRA": "Brésil", "IND": "Inde"}
 J = json.load(open(os.path.join(R, "data", "sources", "prosperite", "imf_jumeaux.json")))
+J = J.get("values", J)  # format brut de l'API datamapper : {"values": {indicateur: {pays: {année: valeur}}}}
 jumeaux = {"annee": an_fmi, "pays": [{"code": c, "nom": n, "ext": J["BCA_NGDPD"][c].get(str(an_fmi)), "pub": J["GGXCNL_NGDP"][c].get(str(an_fmi)),
            "ext_pos_10": sum(1 for y in range(an_fmi - 10, an_fmi) if (J["BCA_NGDPD"][c].get(str(y)) or 0) > 0),
            "pub_neg_10": sum(1 for y in range(an_fmi - 10, an_fmi) if (J["GGXCNL_NGDP"][c].get(str(y)) or 0) < 0)} for c, n in JN.items()]}
@@ -55,6 +56,29 @@ for y in range(1980, an_fmi + 1):
         if y in PIB:
             r.update({"pib_md": round(PIB[y] / 1000, 1), "ext_md": round(e * PIB[y] / 1e5, 1), "pub_md": round(g * PIB[y] / 1e5, 1), "prive_md": round((e - g) * PIB[y] / 1e5, 1)})
         secteurs.append(r)
-json.dump({"secteurs": secteurs, "jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
+# les mêmes soldes pour 15 pays, et leur position extérieure nette (patrimoine face à l'étranger), FMI
+def _iip(path):
+    d = json.load(open(path))["data"]; st = d["structures"][0]
+    cs = [v["id"] for v in st["dimensions"]["series"][0]["values"]]; tv = [v["value"] for v in st["dimensions"]["observation"][0]["values"]]
+    out = {}
+    for k, s_ in d["dataSets"][0]["series"].items():
+        out[cs[int(k.split(":")[0])]] = {int(tv[int(i)]): float(o[0]) for i, o in s_["observations"].items() if o[0] is not None}
+    return out
+IIP = _iip(os.path.join(R, "data", "sources", "prosperite", "imf_iip.json"))
+NG = json.load(open(os.path.join(R, "data", "sources", "prosperite", "imf_ngdpd.json")))
+NG = NG.get("values", NG)["NGDPD"]
+autres = {"pays": [[c, n] for c, n in JN.items()], "series": {}}
+for c in JN:
+    rows = []
+    for y in range(1980, an_fmi + 1):
+        e = J["BCA_NGDPD"].get(c, {}).get(str(y)); g = J["GGXCNL_NGDP"].get(c, {}).get(str(y)); pib = NG.get(c, {}).get(str(y))
+        pe = IIP.get(c, {}).get(y)
+        if e is None and pe is None: continue
+        r = {"annee": y, "ext": round(e, 1) if e is not None else None, "pub": round(g, 1) if g is not None else None,
+             "prive": round(e - g, 1) if e is not None and g is not None else None, "pib": round(pib) if pib else None,
+             "peen": round(pe / 1e9 / pib * 100, 1) if pe is not None and pib else None, "peen_md": round(pe / 1e9) if pe is not None else None}
+        rows.append(r)
+    autres["series"][c] = rows
+json.dump({"autres": autres, "secteurs": secteurs, "jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
           open(os.path.join(R, "data", "exterieur.json"), "w"), ensure_ascii=False, indent=1)
 print("cumul FR depuis 2005 :", cumul, "| PEEN FR", [(r["annee"], r["FR"]) for r in position if r["annee"] % 5 == 0 or r["annee"] >= 2024])
