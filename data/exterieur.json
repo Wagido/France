@@ -1,4 +1,6157 @@
 {
+ "autres": {
+  "pays": [
+   [
+    "FRA",
+    "France"
+   ],
+   [
+    "DEU",
+    "Allemagne"
+   ],
+   [
+    "ITA",
+    "Italie"
+   ],
+   [
+    "ESP",
+    "Espagne"
+   ],
+   [
+    "NLD",
+    "Pays-Bas"
+   ],
+   [
+    "SWE",
+    "Suède"
+   ],
+   [
+    "CHE",
+    "Suisse"
+   ],
+   [
+    "NOR",
+    "Norvège"
+   ],
+   [
+    "GBR",
+    "Royaume-Uni"
+   ],
+   [
+    "USA",
+    "États-Unis"
+   ],
+   [
+    "JPN",
+    "Japon"
+   ],
+   [
+    "KOR",
+    "Corée du Sud"
+   ],
+   [
+    "CHN",
+    "Chine"
+   ],
+   [
+    "BRA",
+    "Brésil"
+   ],
+   [
+    "IND",
+    "Inde"
+   ]
+  ],
+  "series": {
+   "FRA": [
+    {
+     "annee": 1980,
+     "ext": -0.6,
+     "pub": 0.8,
+     "prive": -1.4,
+     "pib": 695,
+     "peen": 13.1,
+     "peen_md": 91
+    },
+    {
+     "annee": 1981,
+     "ext": -0.8,
+     "pub": -1.2,
+     "prive": 0.4,
+     "pib": 613,
+     "peen": 9.8,
+     "peen_md": 60
+    },
+    {
+     "annee": 1982,
+     "ext": -2.1,
+     "pub": -1.7,
+     "prive": -0.4,
+     "pib": 581,
+     "peen": 6.2,
+     "peen_md": 36
+    },
+    {
+     "annee": 1983,
+     "ext": -0.8,
+     "pub": -2.6,
+     "prive": 1.8,
+     "pib": 556,
+     "peen": 4.4,
+     "peen_md": 25
+    },
+    {
+     "annee": 1984,
+     "ext": -0.1,
+     "pub": -2.8,
+     "prive": 2.7,
+     "pib": 527,
+     "peen": 4.3,
+     "peen_md": 23
+    },
+    {
+     "annee": 1985,
+     "ext": -0.1,
+     "pub": -3,
+     "prive": 2.9,
+     "pib": 552,
+     "peen": 6.6,
+     "peen_md": 37
+    },
+    {
+     "annee": 1986,
+     "ext": 0.3,
+     "pub": -3.2,
+     "prive": 3.5,
+     "pib": 766,
+     "peen": 6.5,
+     "peen_md": 50
+    },
+    {
+     "annee": 1987,
+     "ext": -0.5,
+     "pub": -2,
+     "prive": 1.5,
+     "pib": 927,
+     "peen": 11.7,
+     "peen_md": 109
+    },
+    {
+     "annee": 1988,
+     "ext": -0.5,
+     "pub": -2.6,
+     "prive": 2.1,
+     "pib": 1013,
+     "peen": 9.2,
+     "peen_md": 93
+    },
+    {
+     "annee": 1989,
+     "ext": -0.5,
+     "pub": -1.8,
+     "prive": 1.3,
+     "pib": 1018,
+     "peen": 2.5,
+     "peen_md": 26
+    },
+    {
+     "annee": 1990,
+     "ext": -0.8,
+     "pub": -2.5,
+     "prive": 1.7,
+     "pib": 1261,
+     "peen": -1.7,
+     "peen_md": -22
+    },
+    {
+     "annee": 1991,
+     "ext": -0.5,
+     "pub": -2.9,
+     "prive": 2.4,
+     "pib": 1263,
+     "peen": -4.7,
+     "peen_md": -59
+    },
+    {
+     "annee": 1992,
+     "ext": 0.3,
+     "pub": -4.6,
+     "prive": 4.9,
+     "pib": 1393,
+     "peen": -3.5,
+     "peen_md": -49
+    },
+    {
+     "annee": 1993,
+     "ext": 0.7,
+     "pub": -6.4,
+     "prive": 7.1,
+     "pib": 1316,
+     "peen": -4.9,
+     "peen_md": -65
+    },
+    {
+     "annee": 1994,
+     "ext": 0.6,
+     "pub": -5.5,
+     "prive": 6.1,
+     "pib": 1388,
+     "peen": -1.8,
+     "peen_md": -25
+    },
+    {
+     "annee": 1995,
+     "ext": 0.5,
+     "pub": -5.1,
+     "prive": 5.6,
+     "pib": 1596,
+     "peen": -2.2,
+     "peen_md": -35
+    },
+    {
+     "annee": 1996,
+     "ext": 1.2,
+     "pub": -3.9,
+     "prive": 5.1,
+     "pib": 1599,
+     "peen": 2.7,
+     "peen_md": 44
+    },
+    {
+     "annee": 1997,
+     "ext": 3.2,
+     "pub": -3.7,
+     "prive": 6.9,
+     "pib": 1451,
+     "peen": 10.7,
+     "peen_md": 155
+    },
+    {
+     "annee": 1998,
+     "ext": 3.1,
+     "pub": -2.4,
+     "prive": 5.5,
+     "pib": 1499,
+     "peen": 8.9,
+     "peen_md": 133
+    },
+    {
+     "annee": 1999,
+     "ext": 3.9,
+     "pub": -1.5,
+     "prive": 5.4,
+     "pib": 1488,
+     "peen": 0.8,
+     "peen_md": 13
+    },
+    {
+     "annee": 2000,
+     "ext": 1.1,
+     "pub": -1.3,
+     "prive": 2.4,
+     "pib": 1362,
+     "peen": 2.2,
+     "peen_md": 30
+    },
+    {
+     "annee": 2001,
+     "ext": 1.6,
+     "pub": -1.4,
+     "prive": 3.0,
+     "pib": 1370,
+     "peen": 7.9,
+     "peen_md": 109
+    },
+    {
+     "annee": 2002,
+     "ext": 1.2,
+     "pub": -3.2,
+     "prive": 4.4,
+     "pib": 1491,
+     "peen": 7.7,
+     "peen_md": 115
+    },
+    {
+     "annee": 2003,
+     "ext": 0.8,
+     "pub": -4.1,
+     "prive": 4.9,
+     "pib": 1835,
+     "peen": -3.1,
+     "peen_md": -57
+    },
+    {
+     "annee": 2004,
+     "ext": 0.5,
+     "pub": -3.6,
+     "prive": 4.1,
+     "pib": 2109,
+     "peen": -3.4,
+     "peen_md": -72
+    },
+    {
+     "annee": 2005,
+     "ext": 0.1,
+     "pub": -3.5,
+     "prive": 3.6,
+     "pib": 2193,
+     "peen": -1.6,
+     "peen_md": -34
+    },
+    {
+     "annee": 2006,
+     "ext": 0.3,
+     "pub": -2.7,
+     "prive": 3.0,
+     "pib": 2318,
+     "peen": -4.6,
+     "peen_md": -108
+    },
+    {
+     "annee": 2007,
+     "ext": -0.1,
+     "pub": -3,
+     "prive": 2.9,
+     "pib": 2656,
+     "peen": -9.1,
+     "peen_md": -241
+    },
+    {
+     "annee": 2008,
+     "ext": -0.7,
+     "pub": -3.5,
+     "prive": 2.8,
+     "pib": 2926,
+     "peen": -12.6,
+     "peen_md": -368
+    },
+    {
+     "annee": 2009,
+     "ext": -0.6,
+     "pub": -7.4,
+     "prive": 6.8,
+     "pib": 2697,
+     "peen": -14.6,
+     "peen_md": -395
+    },
+    {
+     "annee": 2010,
+     "ext": -0.6,
+     "pub": -7.2,
+     "prive": 6.6,
+     "pib": 2648,
+     "peen": -8.6,
+     "peen_md": -227
+    },
+    {
+     "annee": 2011,
+     "ext": -0.9,
+     "pub": -5.3,
+     "prive": 4.4,
+     "pib": 2870,
+     "peen": -7.0,
+     "peen_md": -201
+    },
+    {
+     "annee": 2012,
+     "ext": -2.1,
+     "pub": -5.2,
+     "prive": 3.1,
+     "pib": 2685,
+     "peen": -13.2,
+     "peen_md": -353
+    },
+    {
+     "annee": 2013,
+     "ext": -0.6,
+     "pub": -4.9,
+     "prive": 4.3,
+     "pib": 2816,
+     "peen": -20.2,
+     "peen_md": -568
+    },
+    {
+     "annee": 2014,
+     "ext": -0.9,
+     "pub": -4.6,
+     "prive": 3.7,
+     "pib": 2862,
+     "peen": -17.0,
+     "peen_md": -488
+    },
+    {
+     "annee": 2015,
+     "ext": -0.3,
+     "pub": -3.9,
+     "prive": 3.6,
+     "pib": 2443,
+     "peen": -18.3,
+     "peen_md": -447
+    },
+    {
+     "annee": 2016,
+     "ext": -0.5,
+     "pub": -3.8,
+     "prive": 3.3,
+     "pib": 2470,
+     "peen": -18.1,
+     "peen_md": -448
+    },
+    {
+     "annee": 2017,
+     "ext": -0.5,
+     "pub": -3.4,
+     "prive": 2.9,
+     "pib": 2588,
+     "peen": -27.2,
+     "peen_md": -703
+    },
+    {
+     "annee": 2018,
+     "ext": -0.7,
+     "pub": -2.3,
+     "prive": 1.6,
+     "pib": 2783,
+     "peen": -22.6,
+     "peen_md": -629
+    },
+    {
+     "annee": 2019,
+     "ext": 0.6,
+     "pub": -2.4,
+     "prive": 3.0,
+     "pib": 2723,
+     "peen": -28.3,
+     "peen_md": -771
+    },
+    {
+     "annee": 2020,
+     "ext": -2.1,
+     "pub": -8.9,
+     "prive": 6.8,
+     "pib": 2646,
+     "peen": -34.7,
+     "peen_md": -919
+    },
+    {
+     "annee": 2021,
+     "ext": 0.3,
+     "pub": -6.6,
+     "prive": 6.9,
+     "pib": 2968,
+     "peen": -32.1,
+     "peen_md": -953
+    },
+    {
+     "annee": 2022,
+     "ext": -1.4,
+     "pub": -4.7,
+     "prive": 3.3,
+     "pib": 2797,
+     "peen": -27.8,
+     "peen_md": -777
+    },
+    {
+     "annee": 2023,
+     "ext": -0.9,
+     "pub": -5.4,
+     "prive": 4.5,
+     "pib": 3065,
+     "peen": -32.7,
+     "peen_md": -1004
+    },
+    {
+     "annee": 2024,
+     "ext": -0.3,
+     "pub": -5.8,
+     "prive": 5.5,
+     "pib": 3178,
+     "peen": -23.0,
+     "peen_md": -731
+    },
+    {
+     "annee": 2025,
+     "ext": -0.4,
+     "pub": -5.1,
+     "prive": 4.7,
+     "pib": 3383,
+     "peen": -30.8,
+     "peen_md": -1040
+    }
+   ],
+   "DEU": [
+    {
+     "annee": 1980,
+     "ext": -1.8,
+     "pub": null,
+     "prive": null,
+     "pib": 857,
+     "peen": 3.9,
+     "peen_md": 33
+    },
+    {
+     "annee": 1981,
+     "ext": -0.7,
+     "pub": null,
+     "prive": null,
+     "pib": 721,
+     "peen": 4.0,
+     "peen_md": 29
+    },
+    {
+     "annee": 1982,
+     "ext": 0.9,
+     "pub": null,
+     "prive": null,
+     "pib": 696,
+     "peen": 4.4,
+     "peen_md": 30
+    },
+    {
+     "annee": 1983,
+     "ext": 0.7,
+     "pub": null,
+     "prive": null,
+     "pib": 694,
+     "peen": 4.7,
+     "peen_md": 33
+    },
+    {
+     "annee": 1984,
+     "ext": 1.4,
+     "pub": null,
+     "prive": null,
+     "pib": 654,
+     "peen": 6.4,
+     "peen_md": 42
+    },
+    {
+     "annee": 1985,
+     "ext": 2.7,
+     "pub": null,
+     "prive": null,
+     "pib": 663,
+     "peen": 8.0,
+     "peen_md": 53
+    },
+    {
+     "annee": 1986,
+     "ext": 4,
+     "pub": null,
+     "prive": null,
+     "pib": 948,
+     "peen": 10.2,
+     "peen_md": 96
+    },
+    {
+     "annee": 1987,
+     "ext": 3.7,
+     "pub": null,
+     "prive": null,
+     "pib": 1179,
+     "peen": 14.3,
+     "peen_md": 168
+    },
+    {
+     "annee": 1988,
+     "ext": 4.3,
+     "pub": null,
+     "prive": null,
+     "pib": 1271,
+     "peen": 16.4,
+     "peen_md": 209
+    },
+    {
+     "annee": 1989,
+     "ext": 4.7,
+     "pub": null,
+     "prive": null,
+     "pib": 1262,
+     "peen": 21.3,
+     "peen_md": 269
+    },
+    {
+     "annee": 1990,
+     "ext": 3.1,
+     "pub": null,
+     "prive": null,
+     "pib": 1604,
+     "peen": 20.9,
+     "peen_md": 336
+    },
+    {
+     "annee": 1991,
+     "ext": -1.5,
+     "pub": -3.2,
+     "prive": 1.7,
+     "pib": 1882,
+     "peen": 16.6,
+     "peen_md": 312
+    },
+    {
+     "annee": 1992,
+     "ext": -1.3,
+     "pub": -2.6,
+     "prive": 1.3,
+     "pib": 2146,
+     "peen": 12.3,
+     "peen_md": 263
+    },
+    {
+     "annee": 1993,
+     "ext": -1,
+     "pub": -3.1,
+     "prive": 2.1,
+     "pib": 2080,
+     "peen": 9.9,
+     "peen_md": 205
+    },
+    {
+     "annee": 1994,
+     "ext": -1.6,
+     "pub": -2.5,
+     "prive": 0.9,
+     "pib": 2220,
+     "peen": 8.8,
+     "peen_md": 195
+    },
+    {
+     "annee": 1995,
+     "ext": -1.3,
+     "pub": -9.4,
+     "prive": 8.1,
+     "pib": 2595,
+     "peen": 5.0,
+     "peen_md": 129
+    },
+    {
+     "annee": 1996,
+     "ext": -0.8,
+     "pub": -3.6,
+     "prive": 2.8,
+     "pib": 2507,
+     "peen": 3.6,
+     "peen_md": 90
+    },
+    {
+     "annee": 1997,
+     "ext": -0.6,
+     "pub": -3,
+     "prive": 2.4,
+     "pib": 2222,
+     "peen": 3.9,
+     "peen_md": 86
+    },
+    {
+     "annee": 1998,
+     "ext": -0.8,
+     "pub": -2.6,
+     "prive": 1.8,
+     "pib": 2251,
+     "peen": 0.4,
+     "peen_md": 9
+    },
+    {
+     "annee": 1999,
+     "ext": -1.4,
+     "pub": -1.9,
+     "prive": 0.5,
+     "pib": 2216,
+     "peen": 2.9,
+     "peen_md": 64
+    },
+    {
+     "annee": 2000,
+     "ext": -1.8,
+     "pub": -1.7,
+     "prive": -0.1,
+     "pib": 1968,
+     "peen": 1.6,
+     "peen_md": 32
+    },
+    {
+     "annee": 2001,
+     "ext": -0.5,
+     "pub": -3.1,
+     "prive": 2.6,
+     "pib": 1966,
+     "peen": 6.4,
+     "peen_md": 125
+    },
+    {
+     "annee": 2002,
+     "ext": 1.7,
+     "pub": -4.1,
+     "prive": 5.8,
+     "pib": 2101,
+     "peen": -0.0,
+     "peen_md": 0
+    },
+    {
+     "annee": 2003,
+     "ext": 1.2,
+     "pub": -3.8,
+     "prive": 5.0,
+     "pib": 2534,
+     "peen": 0.8,
+     "peen_md": 21
+    },
+    {
+     "annee": 2004,
+     "ext": 4.3,
+     "pub": -3.4,
+     "prive": 7.7,
+     "pib": 2851,
+     "peen": 4.9,
+     "peen_md": 139
+    },
+    {
+     "annee": 2005,
+     "ext": 4.4,
+     "pub": -3.4,
+     "prive": 7.8,
+     "pib": 2895,
+     "peen": 12.3,
+     "peen_md": 357
+    },
+    {
+     "annee": 2006,
+     "ext": 5.5,
+     "pub": -1.8,
+     "prive": 7.3,
+     "pib": 3046,
+     "peen": 13.9,
+     "peen_md": 424
+    },
+    {
+     "annee": 2007,
+     "ext": 6.5,
+     "pub": 0.2,
+     "prive": 6.3,
+     "pib": 3484,
+     "peen": 12.3,
+     "peen_md": 429
+    },
+    {
+     "annee": 2008,
+     "ext": 5.4,
+     "pub": -0.3,
+     "prive": 5.7,
+     "pib": 3808,
+     "peen": 15.6,
+     "peen_md": 594
+    },
+    {
+     "annee": 2009,
+     "ext": 5.6,
+     "pub": -3.2,
+     "prive": 8.8,
+     "pib": 3475,
+     "peen": 22.0,
+     "peen_md": 764
+    },
+    {
+     "annee": 2010,
+     "ext": 5.6,
+     "pub": -4.4,
+     "prive": 10.0,
+     "pib": 3470,
+     "peen": 20.8,
+     "peen_md": 721
+    },
+    {
+     "annee": 2011,
+     "ext": 6.1,
+     "pub": -0.8,
+     "prive": 6.9,
+     "pib": 3823,
+     "peen": 17.0,
+     "peen_md": 648
+    },
+    {
+     "annee": 2012,
+     "ext": 7,
+     "pub": -0.1,
+     "prive": 7.1,
+     "pib": 3601,
+     "peen": 22.6,
+     "peen_md": 813
+    },
+    {
+     "annee": 2013,
+     "ext": 6.5,
+     "pub": 0.1,
+     "prive": 6.4,
+     "pib": 3811,
+     "peen": 25.2,
+     "peen_md": 961
+    },
+    {
+     "annee": 2014,
+     "ext": 7.2,
+     "pub": 0.7,
+     "prive": 6.5,
+     "pib": 3971,
+     "peen": 26.0,
+     "peen_md": 1034
+    },
+    {
+     "annee": 2015,
+     "ext": 8.1,
+     "pub": 0.9,
+     "prive": 7.2,
+     "pib": 3433,
+     "peen": 33.2,
+     "peen_md": 1141
+    },
+    {
+     "annee": 2016,
+     "ext": 8.9,
+     "pub": 1.1,
+     "prive": 7.8,
+     "pib": 3547,
+     "peen": 36.7,
+     "peen_md": 1301
+    },
+    {
+     "annee": 2017,
+     "ext": 8,
+     "pub": 1.3,
+     "prive": 6.7,
+     "pib": 3778,
+     "peen": 46.8,
+     "peen_md": 1767
+    },
+    {
+     "annee": 2018,
+     "ext": 8.4,
+     "pub": 1.9,
+     "prive": 6.5,
+     "pib": 4077,
+     "peen": 50.7,
+     "peen_md": 2069
+    },
+    {
+     "annee": 2019,
+     "ext": 7.8,
+     "pub": 1.3,
+     "prive": 6.5,
+     "pib": 3983,
+     "peen": 58.5,
+     "peen_md": 2331
+    },
+    {
+     "annee": 2020,
+     "ext": 6.3,
+     "pub": -4.3,
+     "prive": 10.6,
+     "pib": 3969,
+     "peen": 68.8,
+     "peen_md": 2729
+    },
+    {
+     "annee": 2021,
+     "ext": 6.9,
+     "pub": -3.2,
+     "prive": 10.1,
+     "pib": 4395,
+     "peen": 66.4,
+     "peen_md": 2916
+    },
+    {
+     "annee": 2022,
+     "ext": 4.1,
+     "pub": -1.9,
+     "prive": 6.0,
+     "pib": 4227,
+     "peen": 70.5,
+     "peen_md": 2981
+    },
+    {
+     "annee": 2023,
+     "ext": 5.5,
+     "pub": -2.2,
+     "prive": 7.7,
+     "pib": 4602,
+     "peen": 69.9,
+     "peen_md": 3218
+    },
+    {
+     "annee": 2024,
+     "ext": 5.8,
+     "pub": -2.7,
+     "prive": 8.5,
+     "pib": 4747,
+     "peen": 75.5,
+     "peen_md": 3584
+    },
+    {
+     "annee": 2025,
+     "ext": 4.5,
+     "pub": -2.9,
+     "prive": 7.4,
+     "pib": 5116,
+     "peen": 84.1,
+     "peen_md": 4302
+    }
+   ],
+   "ITA": [
+    {
+     "annee": 1980,
+     "ext": -3.5,
+     "pub": null,
+     "prive": null,
+     "pib": 480,
+     "peen": 7.7,
+     "peen_md": 37
+    },
+    {
+     "annee": 1981,
+     "ext": -3.5,
+     "pub": null,
+     "prive": null,
+     "pib": 435,
+     "peen": 3.7,
+     "peen_md": 16
+    },
+    {
+     "annee": 1982,
+     "ext": -2.4,
+     "pub": null,
+     "prive": null,
+     "pib": 430,
+     "peen": 0.7,
+     "peen_md": 3
+    },
+    {
+     "annee": 1983,
+     "ext": 0.3,
+     "pub": null,
+     "prive": null,
+     "pib": 446,
+     "peen": 2.1,
+     "peen_md": 9
+    },
+    {
+     "annee": 1984,
+     "ext": -0.9,
+     "pub": null,
+     "prive": null,
+     "pib": 441,
+     "peen": 1.3,
+     "peen_md": 6
+    },
+    {
+     "annee": 1985,
+     "ext": -1.2,
+     "pub": null,
+     "prive": null,
+     "pib": 455,
+     "peen": -1.7,
+     "peen_md": -8
+    },
+    {
+     "annee": 1986,
+     "ext": 0.4,
+     "pub": null,
+     "prive": null,
+     "pib": 645,
+     "peen": -1.5,
+     "peen_md": -9
+    },
+    {
+     "annee": 1987,
+     "ext": -0.4,
+     "pub": null,
+     "prive": null,
+     "pib": 810,
+     "peen": -1.1,
+     "peen_md": -9
+    },
+    {
+     "annee": 1988,
+     "ext": -0.9,
+     "pub": -10.6,
+     "prive": 9.7,
+     "pib": 897,
+     "peen": -2.2,
+     "peen_md": -19
+    },
+    {
+     "annee": 1989,
+     "ext": -1.6,
+     "pub": -10.9,
+     "prive": 9.3,
+     "pib": 933,
+     "peen": -4.9,
+     "peen_md": -46
+    },
+    {
+     "annee": 1990,
+     "ext": -1.9,
+     "pub": -11.1,
+     "prive": 9.2,
+     "pib": 1164,
+     "peen": -7.3,
+     "peen_md": -85
+    },
+    {
+     "annee": 1991,
+     "ext": -2.4,
+     "pub": -11.1,
+     "prive": 8.7,
+     "pib": 1230,
+     "peen": -8.6,
+     "peen_md": -106
+    },
+    {
+     "annee": 1992,
+     "ext": -2.6,
+     "pub": -10.1,
+     "prive": 7.5,
+     "pib": 1305,
+     "peen": -8.5,
+     "peen_md": -111
+    },
+    {
+     "annee": 1993,
+     "ext": 1.1,
+     "pub": -9.8,
+     "prive": 10.9,
+     "pib": 1049,
+     "peen": -8.0,
+     "peen_md": -84
+    },
+    {
+     "annee": 1994,
+     "ext": 1.2,
+     "pub": -8.8,
+     "prive": 10.0,
+     "pib": 1082,
+     "peen": -6.6,
+     "peen_md": -71
+    },
+    {
+     "annee": 1995,
+     "ext": 2.1,
+     "pub": -7.2,
+     "prive": 9.3,
+     "pib": 1178,
+     "peen": -4.4,
+     "peen_md": -52
+    },
+    {
+     "annee": 1996,
+     "ext": 2.9,
+     "pub": -6.6,
+     "prive": 9.5,
+     "pib": 1315,
+     "peen": -2.6,
+     "peen_md": -34
+    },
+    {
+     "annee": 1997,
+     "ext": 2.6,
+     "pub": -3,
+     "prive": 5.6,
+     "pib": 1246,
+     "peen": -9.1,
+     "peen_md": -114
+    },
+    {
+     "annee": 1998,
+     "ext": 1.7,
+     "pub": -3,
+     "prive": 4.7,
+     "pib": 1274,
+     "peen": -14.4,
+     "peen_md": -183
+    },
+    {
+     "annee": 1999,
+     "ext": 0.8,
+     "pub": -1.8,
+     "prive": 2.6,
+     "pib": 1256,
+     "peen": -4.3,
+     "peen_md": -54
+    },
+    {
+     "annee": 2000,
+     "ext": -0.3,
+     "pub": -2.4,
+     "prive": 2.1,
+     "pib": 1150,
+     "peen": -6.4,
+     "peen_md": -74
+    },
+    {
+     "annee": 2001,
+     "ext": 0.2,
+     "pub": -3.2,
+     "prive": 3.4,
+     "pib": 1172,
+     "peen": -4.8,
+     "peen_md": -56
+    },
+    {
+     "annee": 2002,
+     "ext": -0.5,
+     "pub": -2.9,
+     "prive": 2.4,
+     "pib": 1281,
+     "peen": -12.2,
+     "peen_md": -157
+    },
+    {
+     "annee": 2003,
+     "ext": -0.8,
+     "pub": -3.2,
+     "prive": 2.4,
+     "pib": 1583,
+     "peen": -13.3,
+     "peen_md": -211
+    },
+    {
+     "annee": 2004,
+     "ext": -0.5,
+     "pub": -3.5,
+     "prive": 3.0,
+     "pib": 1812,
+     "peen": -16.4,
+     "peen_md": -297
+    },
+    {
+     "annee": 2005,
+     "ext": -0.9,
+     "pub": -4.1,
+     "prive": 3.2,
+     "pib": 1866,
+     "peen": -14.5,
+     "peen_md": -271
+    },
+    {
+     "annee": 2006,
+     "ext": -1.5,
+     "pub": -3.6,
+     "prive": 2.1,
+     "pib": 1959,
+     "peen": -20.9,
+     "peen_md": -410
+    },
+    {
+     "annee": 2007,
+     "ext": -1.4,
+     "pub": -1.3,
+     "prive": -0.1,
+     "pib": 2223,
+     "peen": -22.6,
+     "peen_md": -502
+    },
+    {
+     "annee": 2008,
+     "ext": -2.7,
+     "pub": -2.6,
+     "prive": -0.1,
+     "pib": 2417,
+     "peen": -20.4,
+     "peen_md": -493
+    },
+    {
+     "annee": 2009,
+     "ext": -1.8,
+     "pub": -5.1,
+     "prive": 3.3,
+     "pib": 2207,
+     "peen": -22.9,
+     "peen_md": -507
+    },
+    {
+     "annee": 2010,
+     "ext": -3.2,
+     "pub": -4.2,
+     "prive": 1.0,
+     "pib": 2147,
+     "peen": -20.2,
+     "peen_md": -433
+    },
+    {
+     "annee": 2011,
+     "ext": -2.7,
+     "pub": -3.5,
+     "prive": 0.8,
+     "pib": 2307,
+     "peen": -16.8,
+     "peen_md": -388
+    },
+    {
+     "annee": 2012,
+     "ext": -0.2,
+     "pub": -3,
+     "prive": 2.8,
+     "pib": 2099,
+     "peen": -23.5,
+     "peen_md": -493
+    },
+    {
+     "annee": 2013,
+     "ext": 1,
+     "pub": -2.9,
+     "prive": 3.9,
+     "pib": 2153,
+     "peen": -24.3,
+     "peen_md": -522
+    },
+    {
+     "annee": 2014,
+     "ext": 1.8,
+     "pub": -2.8,
+     "prive": 4.6,
+     "pib": 2174,
+     "peen": -19.1,
+     "peen_md": -415
+    },
+    {
+     "annee": 2015,
+     "ext": 1.2,
+     "pub": -2.5,
+     "prive": 3.7,
+     "pib": 1846,
+     "peen": -19.0,
+     "peen_md": -351
+    },
+    {
+     "annee": 2016,
+     "ext": 2.5,
+     "pub": -2.4,
+     "prive": 4.9,
+     "pib": 1887,
+     "peen": -11.5,
+     "peen_md": -217
+    },
+    {
+     "annee": 2017,
+     "ext": 2.4,
+     "pub": -2.5,
+     "prive": 4.9,
+     "pib": 1970,
+     "peen": -9.5,
+     "peen_md": -186
+    },
+    {
+     "annee": 2018,
+     "ext": 2.5,
+     "pub": -2.2,
+     "prive": 4.7,
+     "pib": 2100,
+     "peen": -6.4,
+     "peen_md": -135
+    },
+    {
+     "annee": 2019,
+     "ext": 3.2,
+     "pub": -1.5,
+     "prive": 4.7,
+     "pib": 2020,
+     "peen": -3.3,
+     "peen_md": -66
+    },
+    {
+     "annee": 2020,
+     "ext": 3.8,
+     "pub": -9.4,
+     "prive": 13.2,
+     "pib": 1906,
+     "peen": -0.4,
+     "peen_md": -7
+    },
+    {
+     "annee": 2021,
+     "ext": 2,
+     "pub": -8.9,
+     "prive": 10.9,
+     "pib": 2181,
+     "peen": 7.5,
+     "peen_md": 164
+    },
+    {
+     "annee": 2022,
+     "ext": -1.8,
+     "pub": -8.1,
+     "prive": 6.3,
+     "pib": 2106,
+     "peen": 5.2,
+     "peen_md": 109
+    },
+    {
+     "annee": 2023,
+     "ext": 0.2,
+     "pub": -7.1,
+     "prive": 7.3,
+     "pib": 2318,
+     "peen": 8.2,
+     "peen_md": 190
+    },
+    {
+     "annee": 2024,
+     "ext": 1.1,
+     "pub": -3.4,
+     "prive": 4.5,
+     "pib": 2383,
+     "peen": 14.0,
+     "peen_md": 333
+    },
+    {
+     "annee": 2025,
+     "ext": 1.1,
+     "pub": -3.1,
+     "prive": 4.2,
+     "pib": 2550,
+     "peen": 15.1,
+     "peen_md": 385
+    }
+   ],
+   "ESP": [
+    {
+     "annee": 1980,
+     "ext": -2.3,
+     "pub": -2,
+     "prive": -0.3,
+     "pib": 231,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": -2.5,
+     "pub": -2.4,
+     "prive": -0.1,
+     "pib": 205,
+     "peen": -8.3,
+     "peen_md": -17
+    },
+    {
+     "annee": 1982,
+     "ext": -2.4,
+     "pub": -5.5,
+     "prive": 3.1,
+     "pib": 198,
+     "peen": -10.4,
+     "peen_md": -21
+    },
+    {
+     "annee": 1983,
+     "ext": -1.4,
+     "pub": -4.7,
+     "prive": 3.3,
+     "pib": 173,
+     "peen": -11.8,
+     "peen_md": -20
+    },
+    {
+     "annee": 1984,
+     "ext": 1.2,
+     "pub": -5.4,
+     "prive": 6.6,
+     "pib": 173,
+     "peen": -9.8,
+     "peen_md": -17
+    },
+    {
+     "annee": 1985,
+     "ext": 1.1,
+     "pub": -6.8,
+     "prive": 7.9,
+     "pib": 182,
+     "peen": -8.9,
+     "peen_md": -16
+    },
+    {
+     "annee": 1986,
+     "ext": 1.5,
+     "pub": -5.9,
+     "prive": 7.4,
+     "pib": 252,
+     "peen": -6.2,
+     "peen_md": -16
+    },
+    {
+     "annee": 1987,
+     "ext": 0,
+     "pub": -3.3,
+     "prive": 3.3,
+     "pib": 319,
+     "peen": -5.4,
+     "peen_md": -17
+    },
+    {
+     "annee": 1988,
+     "ext": -1,
+     "pub": -3.4,
+     "prive": 2.4,
+     "pib": 375,
+     "peen": -6.3,
+     "peen_md": -24
+    },
+    {
+     "annee": 1989,
+     "ext": -2.8,
+     "pub": -3,
+     "prive": 0.2,
+     "pib": 413,
+     "peen": -8.8,
+     "peen_md": -36
+    },
+    {
+     "annee": 1990,
+     "ext": -3.4,
+     "pub": -3.9,
+     "prive": 0.5,
+     "pib": 536,
+     "peen": -11.5,
+     "peen_md": -62
+    },
+    {
+     "annee": 1991,
+     "ext": -3.5,
+     "pub": -4.6,
+     "prive": 1.1,
+     "pib": 577,
+     "peen": -14.7,
+     "peen_md": -85
+    },
+    {
+     "annee": 1992,
+     "ext": -3.4,
+     "pub": -4.3,
+     "prive": 0.9,
+     "pib": 631,
+     "peen": -14.7,
+     "peen_md": -93
+    },
+    {
+     "annee": 1993,
+     "ext": -2,
+     "pub": -6.9,
+     "prive": 4.9,
+     "pib": 530,
+     "peen": -17.4,
+     "peen_md": -92
+    },
+    {
+     "annee": 1994,
+     "ext": -2.1,
+     "pub": -6.3,
+     "prive": 4.2,
+     "pib": 532,
+     "peen": -18.9,
+     "peen_md": -100
+    },
+    {
+     "annee": 1995,
+     "ext": -1.2,
+     "pub": -6.8,
+     "prive": 5.6,
+     "pib": 615,
+     "peen": -18.7,
+     "peen_md": -115
+    },
+    {
+     "annee": 1996,
+     "ext": -0.8,
+     "pub": -5.9,
+     "prive": 5.1,
+     "pib": 642,
+     "peen": -17.2,
+     "peen_md": -110
+    },
+    {
+     "annee": 1997,
+     "ext": -0.7,
+     "pub": -3.9,
+     "prive": 3.2,
+     "pib": 590,
+     "peen": -16.8,
+     "peen_md": -99
+    },
+    {
+     "annee": 1998,
+     "ext": -1.6,
+     "pub": -2.6,
+     "prive": 1.0,
+     "pib": 620,
+     "peen": -21.0,
+     "peen_md": -130
+    },
+    {
+     "annee": 1999,
+     "ext": -3.2,
+     "pub": -1.2,
+     "prive": -2.0,
+     "pib": 635,
+     "peen": -32.8,
+     "peen_md": -208
+    },
+    {
+     "annee": 2000,
+     "ext": -4.2,
+     "pub": -1.2,
+     "prive": -3.0,
+     "pib": 598,
+     "peen": -35.2,
+     "peen_md": -210
+    },
+    {
+     "annee": 2001,
+     "ext": -4.3,
+     "pub": -0.5,
+     "prive": -3.8,
+     "pib": 628,
+     "peen": -37.9,
+     "peen_md": -238
+    },
+    {
+     "annee": 2002,
+     "ext": -3.7,
+     "pub": -0.3,
+     "prive": -3.4,
+     "pib": 708,
+     "peen": -50.7,
+     "peen_md": -359
+    },
+    {
+     "annee": 2003,
+     "ext": -3.8,
+     "pub": -0.4,
+     "prive": -3.4,
+     "pib": 908,
+     "peen": -56.5,
+     "peen_md": -513
+    },
+    {
+     "annee": 2004,
+     "ext": -5.4,
+     "pub": -0.1,
+     "prive": -5.3,
+     "pib": 1069,
+     "peen": -65.2,
+     "peen_md": -697
+    },
+    {
+     "annee": 2005,
+     "ext": -7.2,
+     "pub": 1.2,
+     "prive": -8.4,
+     "pib": 1155,
+     "peen": -60.4,
+     "peen_md": -698
+    },
+    {
+     "annee": 2006,
+     "ext": -8.8,
+     "pub": 2.1,
+     "prive": -10.9,
+     "pib": 1262,
+     "peen": -76.5,
+     "peen_md": -966
+    },
+    {
+     "annee": 2007,
+     "ext": -9.4,
+     "pub": 1.9,
+     "prive": -11.3,
+     "pib": 1477,
+     "peen": -91.3,
+     "peen_md": -1349
+    },
+    {
+     "annee": 2008,
+     "ext": -8.8,
+     "pub": -4.6,
+     "prive": -4.2,
+     "pib": 1636,
+     "peen": -80.5,
+     "peen_md": -1317
+    },
+    {
+     "annee": 2009,
+     "ext": -4,
+     "pub": -11.2,
+     "prive": 7.2,
+     "pib": 1495,
+     "peen": -100.5,
+     "peen_md": -1503
+    },
+    {
+     "annee": 2010,
+     "ext": -3.6,
+     "pub": -9.5,
+     "prive": 5.9,
+     "pib": 1429,
+     "peen": -91.2,
+     "peen_md": -1303
+    },
+    {
+     "annee": 2011,
+     "ext": -2.6,
+     "pub": -9.7,
+     "prive": 7.1,
+     "pib": 1487,
+     "peen": -86.7,
+     "peen_md": -1290
+    },
+    {
+     "annee": 2012,
+     "ext": 0.2,
+     "pub": -11.5,
+     "prive": 11.7,
+     "pib": 1332,
+     "peen": -90.8,
+     "peen_md": -1209
+    },
+    {
+     "annee": 2013,
+     "ext": 2.1,
+     "pub": -7.5,
+     "prive": 9.6,
+     "pib": 1362,
+     "peen": -95.9,
+     "peen_md": -1307
+    },
+    {
+     "annee": 2014,
+     "ext": 1.8,
+     "pub": -6.1,
+     "prive": 7.9,
+     "pib": 1381,
+     "peen": -87.0,
+     "peen_md": -1201
+    },
+    {
+     "annee": 2015,
+     "ext": 2,
+     "pub": -5.3,
+     "prive": 7.3,
+     "pib": 1206,
+     "peen": -86.1,
+     "peen_md": -1038
+    },
+    {
+     "annee": 2016,
+     "ext": 3.1,
+     "pub": -4.3,
+     "prive": 7.4,
+     "pib": 1243,
+     "peen": -80.3,
+     "peen_md": -998
+    },
+    {
+     "annee": 2017,
+     "ext": 2.8,
+     "pub": -3.1,
+     "prive": 5.9,
+     "pib": 1321,
+     "peen": -89.6,
+     "peen_md": -1184
+    },
+    {
+     "annee": 2018,
+     "ext": 1.9,
+     "pub": -2.6,
+     "prive": 4.5,
+     "pib": 1432,
+     "peen": -75.6,
+     "peen_md": -1082
+    },
+    {
+     "annee": 2019,
+     "ext": 2.1,
+     "pub": -3,
+     "prive": 5.1,
+     "pib": 1404,
+     "peen": -72.2,
+     "peen_md": -1014
+    },
+    {
+     "annee": 2020,
+     "ext": 0.8,
+     "pub": -10,
+     "prive": 10.8,
+     "pib": 1289,
+     "peen": -90.0,
+     "peen_md": -1160
+    },
+    {
+     "annee": 2021,
+     "ext": 0.8,
+     "pub": -6.7,
+     "prive": 7.5,
+     "pib": 1462,
+     "peen": -66.4,
+     "peen_md": -971
+    },
+    {
+     "annee": 2022,
+     "ext": 0.4,
+     "pub": -4.6,
+     "prive": 5.0,
+     "pib": 1450,
+     "peen": -56.9,
+     "peen_md": -825
+    },
+    {
+     "annee": 2023,
+     "ext": 2.7,
+     "pub": -3.3,
+     "prive": 6.0,
+     "pib": 1618,
+     "peen": -50.6,
+     "peen_md": -819
+    },
+    {
+     "annee": 2024,
+     "ext": 3.3,
+     "pub": -3.2,
+     "prive": 6.5,
+     "pib": 1730,
+     "peen": -38.3,
+     "peen_md": -663
+    },
+    {
+     "annee": 2025,
+     "ext": 3.2,
+     "pub": -2.4,
+     "prive": 5.6,
+     "pib": 1909,
+     "peen": -44.4,
+     "peen_md": -847
+    }
+   ],
+   "NLD": [
+    {
+     "annee": 1980,
+     "ext": -0.4,
+     "pub": -4.2,
+     "prive": 3.8,
+     "pib": 194,
+     "peen": 15.9,
+     "peen_md": 31
+    },
+    {
+     "annee": 1981,
+     "ext": 2.4,
+     "pub": -5.2,
+     "prive": 7.6,
+     "pib": 163,
+     "peen": 17.2,
+     "peen_md": 28
+    },
+    {
+     "annee": 1982,
+     "ext": 3.2,
+     "pub": -5.8,
+     "prive": 9.0,
+     "pib": 158,
+     "peen": 15.1,
+     "peen_md": 24
+    },
+    {
+     "annee": 1983,
+     "ext": 3.3,
+     "pub": -5.6,
+     "prive": 8.9,
+     "pib": 153,
+     "peen": 21.8,
+     "peen_md": 33
+    },
+    {
+     "annee": 1984,
+     "ext": 4.5,
+     "pub": -6.3,
+     "prive": 10.8,
+     "pib": 143,
+     "peen": 27.1,
+     "peen_md": 39
+    },
+    {
+     "annee": 1985,
+     "ext": 2.9,
+     "pub": -4.3,
+     "prive": 7.2,
+     "pib": 145,
+     "peen": 28.9,
+     "peen_md": 42
+    },
+    {
+     "annee": 1986,
+     "ext": 2.1,
+     "pub": -4.2,
+     "prive": 6.3,
+     "pib": 202,
+     "peen": 23.5,
+     "peen_md": 48
+    },
+    {
+     "annee": 1987,
+     "ext": 1.7,
+     "pub": -5.3,
+     "prive": 7.0,
+     "pib": 247,
+     "peen": 23.8,
+     "peen_md": 59
+    },
+    {
+     "annee": 1988,
+     "ext": 2.7,
+     "pub": -4.4,
+     "prive": 7.1,
+     "pib": 265,
+     "peen": 22.8,
+     "peen_md": 60
+    },
+    {
+     "annee": 1989,
+     "ext": 3.8,
+     "pub": -5.1,
+     "prive": 8.9,
+     "pib": 261,
+     "peen": 22.9,
+     "peen_md": 60
+    },
+    {
+     "annee": 1990,
+     "ext": 2.5,
+     "pub": -4.1,
+     "prive": 6.6,
+     "pib": 322,
+     "peen": 21.8,
+     "peen_md": 70
+    },
+    {
+     "annee": 1991,
+     "ext": 2.3,
+     "pub": -2.1,
+     "prive": 4.4,
+     "pib": 332,
+     "peen": 21.3,
+     "peen_md": 71
+    },
+    {
+     "annee": 1992,
+     "ext": 1.9,
+     "pub": -3.1,
+     "prive": 5.0,
+     "pib": 367,
+     "peen": 16.1,
+     "peen_md": 59
+    },
+    {
+     "annee": 1993,
+     "ext": 3.7,
+     "pub": -3.1,
+     "prive": 6.8,
+     "pib": 356,
+     "peen": 17.7,
+     "peen_md": 63
+    },
+    {
+     "annee": 1994,
+     "ext": 4.5,
+     "pub": -3.5,
+     "prive": 8.0,
+     "pib": 383,
+     "peen": -6.8,
+     "peen_md": -26
+    },
+    {
+     "annee": 1995,
+     "ext": 5.7,
+     "pub": -8.7,
+     "prive": 14.4,
+     "pib": 453,
+     "peen": 14.3,
+     "peen_md": 65
+    },
+    {
+     "annee": 1996,
+     "ext": 4.8,
+     "pub": -1.9,
+     "prive": 6.7,
+     "pib": 452,
+     "peen": 8.4,
+     "peen_md": 38
+    },
+    {
+     "annee": 1997,
+     "ext": 6,
+     "pub": -1.6,
+     "prive": 7.6,
+     "pib": 418,
+     "peen": 6.2,
+     "peen_md": 26
+    },
+    {
+     "annee": 1998,
+     "ext": 3,
+     "pub": -1.3,
+     "prive": 4.3,
+     "pib": 439,
+     "peen": -3.5,
+     "peen_md": -15
+    },
+    {
+     "annee": 1999,
+     "ext": 3.5,
+     "pub": 0.3,
+     "prive": 3.2,
+     "pib": 448,
+     "peen": -7.1,
+     "peen_md": -32
+    },
+    {
+     "annee": 2000,
+     "ext": 1.7,
+     "pub": 1.1,
+     "prive": 0.6,
+     "pib": 418,
+     "peen": -14.2,
+     "peen_md": -59
+    },
+    {
+     "annee": 2001,
+     "ext": 2.3,
+     "pub": -0.5,
+     "prive": 2.8,
+     "pib": 433,
+     "peen": -12.2,
+     "peen_md": -53
+    },
+    {
+     "annee": 2002,
+     "ext": 2.3,
+     "pub": -2.2,
+     "prive": 4.5,
+     "pib": 475,
+     "peen": -24.9,
+     "peen_md": -118
+    },
+    {
+     "annee": 2003,
+     "ext": 5.1,
+     "pub": -3.2,
+     "prive": 8.3,
+     "pib": 582,
+     "peen": -5.6,
+     "peen_md": -32
+    },
+    {
+     "annee": 2004,
+     "ext": 7.6,
+     "pub": -1.8,
+     "prive": 9.4,
+     "pib": 661,
+     "peen": -0.5,
+     "peen_md": -4
+    },
+    {
+     "annee": 2005,
+     "ext": 6.6,
+     "pub": -0.5,
+     "prive": 7.1,
+     "pib": 689,
+     "peen": -5.0,
+     "peen_md": -34
+    },
+    {
+     "annee": 2006,
+     "ext": 8.1,
+     "pub": 0,
+     "prive": 8.1,
+     "pib": 738,
+     "peen": -2.3,
+     "peen_md": -17
+    },
+    {
+     "annee": 2007,
+     "ext": 5.3,
+     "pub": -0.2,
+     "prive": 5.5,
+     "pib": 854,
+     "peen": -16.1,
+     "peen_md": -138
+    },
+    {
+     "annee": 2008,
+     "ext": 3.9,
+     "pub": -0.1,
+     "prive": 4.0,
+     "pib": 958,
+     "peen": -14.0,
+     "peen_md": -134
+    },
+    {
+     "annee": 2009,
+     "ext": 3.4,
+     "pub": -5.1,
+     "prive": 8.5,
+     "pib": 878,
+     "peen": -25.8,
+     "peen_md": -227
+    },
+    {
+     "annee": 2010,
+     "ext": 6.5,
+     "pub": -5.3,
+     "prive": 11.8,
+     "pib": 853,
+     "peen": -19.3,
+     "peen_md": -164
+    },
+    {
+     "annee": 2011,
+     "ext": 7.1,
+     "pub": -4.4,
+     "prive": 11.5,
+     "pib": 913,
+     "peen": -10.7,
+     "peen_md": -97
+    },
+    {
+     "annee": 2012,
+     "ext": 7.6,
+     "pub": -3.8,
+     "prive": 11.4,
+     "pib": 846,
+     "peen": 3.5,
+     "peen_md": 30
+    },
+    {
+     "annee": 2013,
+     "ext": 8.1,
+     "pub": -2.9,
+     "prive": 11.0,
+     "pib": 884,
+     "peen": -1.7,
+     "peen_md": -15
+    },
+    {
+     "annee": 2014,
+     "ext": 8.6,
+     "pub": -2.2,
+     "prive": 10.8,
+     "pib": 902,
+     "peen": 22.1,
+     "peen_md": 199
+    },
+    {
+     "annee": 2015,
+     "ext": 4.9,
+     "pub": -1.8,
+     "prive": 6.7,
+     "pib": 776,
+     "peen": 26.9,
+     "peen_md": 209
+    },
+    {
+     "annee": 2016,
+     "ext": 7.2,
+     "pub": 0.2,
+     "prive": 7.0,
+     "pib": 797,
+     "peen": 37.6,
+     "peen_md": 300
+    },
+    {
+     "annee": 2017,
+     "ext": 8.1,
+     "pub": 1.4,
+     "prive": 6.7,
+     "pib": 848,
+     "peen": 42.0,
+     "peen_md": 356
+    },
+    {
+     "annee": 2018,
+     "ext": 8.9,
+     "pub": 1.5,
+     "prive": 7.4,
+     "pib": 930,
+     "peen": 49.0,
+     "peen_md": 455
+    },
+    {
+     "annee": 2019,
+     "ext": 6.9,
+     "pub": 1.9,
+     "prive": 5.0,
+     "pib": 929,
+     "peen": 68.3,
+     "peen_md": 635
+    },
+    {
+     "annee": 2020,
+     "ext": 5.7,
+     "pub": -3.7,
+     "prive": 9.4,
+     "pib": 932,
+     "peen": 94.9,
+     "peen_md": 884
+    },
+    {
+     "annee": 2021,
+     "ext": 10.4,
+     "pub": -2.3,
+     "prive": 12.7,
+     "pib": 1055,
+     "peen": 69.2,
+     "peen_md": 730
+    },
+    {
+     "annee": 2022,
+     "ext": 7,
+     "pub": 0,
+     "prive": 7,
+     "pib": 1047,
+     "peen": 56.4,
+     "peen_md": 590
+    },
+    {
+     "annee": 2023,
+     "ext": 9.7,
+     "pub": -0.3,
+     "prive": 10.0,
+     "pib": 1136,
+     "peen": 55.1,
+     "peen_md": 625
+    },
+    {
+     "annee": 2024,
+     "ext": 7.8,
+     "pub": -0.7,
+     "prive": 8.5,
+     "pib": 1207,
+     "peen": 62.4,
+     "peen_md": 754
+    },
+    {
+     "annee": 2025,
+     "ext": 7.6,
+     "pub": -1.6,
+     "prive": 9.2,
+     "pib": 1322,
+     "peen": 49.6,
+     "peen_md": 656
+    }
+   ],
+   "SWE": [
+    {
+     "annee": 1980,
+     "ext": -3.1,
+     "pub": -5.4,
+     "prive": 2.3,
+     "pib": 140,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": -2.2,
+     "pub": -4.3,
+     "prive": 2.1,
+     "pib": 128,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1982,
+     "ext": -3,
+     "pub": -6.2,
+     "prive": 3.2,
+     "pib": 113,
+     "peen": -16.9,
+     "peen_md": -19
+    },
+    {
+     "annee": 1983,
+     "ext": -0.7,
+     "pub": -4.7,
+     "prive": 4.0,
+     "pib": 104,
+     "peen": -19.3,
+     "peen_md": -20
+    },
+    {
+     "annee": 1984,
+     "ext": 0.7,
+     "pub": -2.7,
+     "prive": 3.4,
+     "pib": 108,
+     "peen": -17.4,
+     "peen_md": -19
+    },
+    {
+     "annee": 1985,
+     "ext": -1,
+     "pub": -3.3,
+     "prive": 2.3,
+     "pib": 113,
+     "peen": -18.6,
+     "peen_md": -21
+    },
+    {
+     "annee": 1986,
+     "ext": 0.6,
+     "pub": 0,
+     "prive": 0.6,
+     "pib": 149,
+     "peen": -16.5,
+     "peen_md": -25
+    },
+    {
+     "annee": 1987,
+     "ext": 0.2,
+     "pub": 3.6,
+     "prive": -3.4,
+     "pib": 182,
+     "peen": -15.3,
+     "peen_md": -28
+    },
+    {
+     "annee": 1988,
+     "ext": -0.2,
+     "pub": 3.6,
+     "prive": -3.8,
+     "pib": 206,
+     "peen": -16.5,
+     "peen_md": -34
+    },
+    {
+     "annee": 1989,
+     "ext": -1.4,
+     "pub": 3.6,
+     "prive": -5.0,
+     "pib": 217,
+     "peen": -18.8,
+     "peen_md": -41
+    },
+    {
+     "annee": 1990,
+     "ext": -2.4,
+     "pub": 3.7,
+     "prive": -6.1,
+     "pib": 259,
+     "peen": -23.6,
+     "peen_md": -61
+    },
+    {
+     "annee": 1991,
+     "ext": -1.7,
+     "pub": 0.3,
+     "prive": -2.0,
+     "pib": 272,
+     "peen": -25.1,
+     "peen_md": -68
+    },
+    {
+     "annee": 1992,
+     "ext": -2.7,
+     "pub": -8.5,
+     "prive": 5.8,
+     "pib": 282,
+     "peen": -21.2,
+     "peen_md": -60
+    },
+    {
+     "annee": 1993,
+     "ext": -1.3,
+     "pub": -10.9,
+     "prive": 9.6,
+     "pib": 213,
+     "peen": -37.9,
+     "peen_md": -81
+    },
+    {
+     "annee": 1994,
+     "ext": 1,
+     "pub": -8.8,
+     "prive": 9.8,
+     "pib": 229,
+     "peen": -41.8,
+     "peen_md": -96
+    },
+    {
+     "annee": 1995,
+     "ext": 3.1,
+     "pub": -7,
+     "prive": 10.1,
+     "pib": 267,
+     "peen": -36.3,
+     "peen_md": -97
+    },
+    {
+     "annee": 1996,
+     "ext": 3.3,
+     "pub": -3.1,
+     "prive": 6.4,
+     "pib": 292,
+     "peen": -35.7,
+     "peen_md": -104
+    },
+    {
+     "annee": 1997,
+     "ext": 3.8,
+     "pub": -1.6,
+     "prive": 5.4,
+     "pib": 268,
+     "peen": -36.4,
+     "peen_md": -98
+    },
+    {
+     "annee": 1998,
+     "ext": 3.5,
+     "pub": 0.8,
+     "prive": 2.7,
+     "pib": 271,
+     "peen": -34.9,
+     "peen_md": -95
+    },
+    {
+     "annee": 1999,
+     "ext": 3.8,
+     "pub": 0.6,
+     "prive": 3.2,
+     "pib": 274,
+     "peen": -31.3,
+     "peen_md": -86
+    },
+    {
+     "annee": 2000,
+     "ext": 3.8,
+     "pub": 3.1,
+     "prive": 0.7,
+     "pib": 263,
+     "peen": -31.5,
+     "peen_md": -83
+    },
+    {
+     "annee": 2001,
+     "ext": 4.6,
+     "pub": 1.4,
+     "prive": 3.2,
+     "pib": 242,
+     "peen": -22.2,
+     "peen_md": -54
+    },
+    {
+     "annee": 2002,
+     "ext": 4.4,
+     "pub": -1.5,
+     "prive": 5.9,
+     "pib": 267,
+     "peen": -22.8,
+     "peen_md": -61
+    },
+    {
+     "annee": 2003,
+     "ext": 5.8,
+     "pub": -1.2,
+     "prive": 7.0,
+     "pib": 334,
+     "peen": -19.4,
+     "peen_md": -65
+    },
+    {
+     "annee": 2004,
+     "ext": 5.9,
+     "pub": 0.2,
+     "prive": 5.7,
+     "pib": 385,
+     "peen": -23.9,
+     "peen_md": -92
+    },
+    {
+     "annee": 2005,
+     "ext": 6,
+     "pub": 2.1,
+     "prive": 3.9,
+     "pib": 392,
+     "peen": -16.2,
+     "peen_md": -63
+    },
+    {
+     "annee": 2006,
+     "ext": 8.1,
+     "pub": 2.2,
+     "prive": 5.9,
+     "pib": 423,
+     "peen": -10.5,
+     "peen_md": -44
+    },
+    {
+     "annee": 2007,
+     "ext": 8.1,
+     "pub": 3.4,
+     "prive": 4.7,
+     "pib": 490,
+     "peen": 1.2,
+     "peen_md": 6
+    },
+    {
+     "annee": 2008,
+     "ext": 7.8,
+     "pub": 1.9,
+     "prive": 5.9,
+     "pib": 515,
+     "peen": -6.7,
+     "peen_md": -34
+    },
+    {
+     "annee": 2009,
+     "ext": 5.9,
+     "pub": -0.9,
+     "prive": 6.8,
+     "pib": 434,
+     "peen": -7.7,
+     "peen_md": -33
+    },
+    {
+     "annee": 2010,
+     "ext": 5.9,
+     "pub": -0.1,
+     "prive": 6.0,
+     "pib": 493,
+     "peen": -5.9,
+     "peen_md": -29
+    },
+    {
+     "annee": 2011,
+     "ext": 5.5,
+     "pub": -0.4,
+     "prive": 5.9,
+     "pib": 571,
+     "peen": -7.9,
+     "peen_md": -45
+    },
+    {
+     "annee": 2012,
+     "ext": 5.5,
+     "pub": -1.2,
+     "prive": 6.7,
+     "pib": 550,
+     "peen": -16.2,
+     "peen_md": -89
+    },
+    {
+     "annee": 2013,
+     "ext": 4.7,
+     "pub": -1.6,
+     "prive": 6.3,
+     "pib": 584,
+     "peen": -16.2,
+     "peen_md": -94
+    },
+    {
+     "annee": 2014,
+     "ext": 3.5,
+     "pub": -1.8,
+     "prive": 5.3,
+     "pib": 578,
+     "peen": -3.0,
+     "peen_md": -18
+    },
+    {
+     "annee": 2015,
+     "ext": 2.7,
+     "pub": -0.3,
+     "prive": 3.0,
+     "pib": 502,
+     "peen": -5.0,
+     "peen_md": -25
+    },
+    {
+     "annee": 2016,
+     "ext": 2,
+     "pub": 0.9,
+     "prive": 1.1,
+     "pib": 513,
+     "peen": -1.5,
+     "peen_md": -8
+    },
+    {
+     "annee": 2017,
+     "ext": 2.2,
+     "pub": 1.3,
+     "prive": 0.9,
+     "pib": 535,
+     "peen": -0.8,
+     "peen_md": -4
+    },
+    {
+     "annee": 2018,
+     "ext": 2.1,
+     "pub": 0.7,
+     "prive": 1.4,
+     "pib": 550,
+     "peen": 8.0,
+     "peen_md": 44
+    },
+    {
+     "annee": 2019,
+     "ext": 5.2,
+     "pub": 0.4,
+     "prive": 4.8,
+     "pib": 531,
+     "peen": 14.3,
+     "peen_md": 76
+    },
+    {
+     "annee": 2020,
+     "ext": 5.7,
+     "pub": -3.2,
+     "prive": 8.9,
+     "pib": 544,
+     "peen": 11.4,
+     "peen_md": 62
+    },
+    {
+     "annee": 2021,
+     "ext": 6.2,
+     "pub": -0.1,
+     "prive": 6.3,
+     "pib": 632,
+     "peen": 22.1,
+     "peen_md": 140
+    },
+    {
+     "annee": 2022,
+     "ext": 4,
+     "pub": 1,
+     "prive": 3,
+     "pib": 575,
+     "peen": 37.4,
+     "peen_md": 215
+    },
+    {
+     "annee": 2023,
+     "ext": 6.2,
+     "pub": -0.6,
+     "prive": 6.8,
+     "pib": 579,
+     "peen": 42.9,
+     "peen_md": 248
+    },
+    {
+     "annee": 2024,
+     "ext": 7.4,
+     "pub": -1.5,
+     "prive": 8.9,
+     "pib": 610,
+     "peen": 64.0,
+     "peen_md": 390
+    },
+    {
+     "annee": 2025,
+     "ext": 6.7,
+     "pub": -1.3,
+     "prive": 8.0,
+     "pib": 677,
+     "peen": 63.7,
+     "peen_md": 431
+    }
+   ],
+   "CHE": [
+    {
+     "annee": 1980,
+     "ext": -0.5,
+     "pub": null,
+     "prive": null,
+     "pib": 124,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": 2.3,
+     "pub": null,
+     "prive": null,
+     "pib": 114,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1982,
+     "ext": 3.3,
+     "pub": null,
+     "prive": null,
+     "pib": 117,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1983,
+     "ext": 0.2,
+     "pub": -0.6,
+     "prive": 0.8,
+     "pib": 116,
+     "peen": 60.0,
+     "peen_md": 70
+    },
+    {
+     "annee": 1984,
+     "ext": 4.9,
+     "pub": -0.2,
+     "prive": 5.1,
+     "pib": 111,
+     "peen": 74.2,
+     "peen_md": 82
+    },
+    {
+     "annee": 1985,
+     "ext": 4.8,
+     "pub": 0,
+     "prive": 4.8,
+     "pib": 113,
+     "peen": 89.1,
+     "peen_md": 100
+    },
+    {
+     "annee": 1986,
+     "ext": 2.3,
+     "pub": 1.1,
+     "prive": 1.2,
+     "pib": 162,
+     "peen": 73.0,
+     "peen_md": 118
+    },
+    {
+     "annee": 1987,
+     "ext": 2.7,
+     "pub": 1.1,
+     "prive": 1.6,
+     "pib": 202,
+     "peen": 85.1,
+     "peen_md": 172
+    },
+    {
+     "annee": 1988,
+     "ext": 3.6,
+     "pub": 0.9,
+     "prive": 2.7,
+     "pib": 219,
+     "peen": 78.6,
+     "peen_md": 172
+    },
+    {
+     "annee": 1989,
+     "ext": 3.4,
+     "pub": 0.7,
+     "prive": 2.7,
+     "pib": 211,
+     "peen": 80.4,
+     "peen_md": 170
+    },
+    {
+     "annee": 1990,
+     "ext": 2.7,
+     "pub": -0.1,
+     "prive": 2.8,
+     "pib": 270,
+     "peen": 72.5,
+     "peen_md": 196
+    },
+    {
+     "annee": 1991,
+     "ext": 4,
+     "pub": -1.8,
+     "prive": 5.8,
+     "pib": 273,
+     "peen": 77.9,
+     "peen_md": 213
+    },
+    {
+     "annee": 1992,
+     "ext": 4.5,
+     "pub": -2.9,
+     "prive": 7.4,
+     "pib": 284,
+     "peen": 74.7,
+     "peen_md": 212
+    },
+    {
+     "annee": 1993,
+     "ext": 6.2,
+     "pub": -3.1,
+     "prive": 9.3,
+     "pib": 276,
+     "peen": 78.8,
+     "peen_md": 218
+    },
+    {
+     "annee": 1994,
+     "ext": 5.4,
+     "pub": -2.5,
+     "prive": 7.9,
+     "pib": 306,
+     "peen": 79.6,
+     "peen_md": 243
+    },
+    {
+     "annee": 1995,
+     "ext": 5,
+     "pub": -1.8,
+     "prive": 6.8,
+     "pib": 358,
+     "peen": 74.8,
+     "peen_md": 268
+    },
+    {
+     "annee": 1996,
+     "ext": 5.4,
+     "pub": -2,
+     "prive": 7.4,
+     "pib": 345,
+     "peen": 88.0,
+     "peen_md": 304
+    },
+    {
+     "annee": 1997,
+     "ext": 8.5,
+     "pub": -2.3,
+     "prive": 10.8,
+     "pib": 299,
+     "peen": 92.2,
+     "peen_md": 276
+    },
+    {
+     "annee": 1998,
+     "ext": 7.7,
+     "pub": -1.3,
+     "prive": 9.0,
+     "pib": 307,
+     "peen": 105.6,
+     "peen_md": 324
+    },
+    {
+     "annee": 1999,
+     "ext": 8.8,
+     "pub": -1.6,
+     "prive": 10.4,
+     "pib": 302,
+     "peen": 110.7,
+     "peen_md": 334
+    },
+    {
+     "annee": 2000,
+     "ext": 11.2,
+     "pub": 0.3,
+     "prive": 10.9,
+     "pib": 282,
+     "peen": 109.2,
+     "peen_md": 308
+    },
+    {
+     "annee": 2001,
+     "ext": 7.1,
+     "pub": 0.2,
+     "prive": 6.9,
+     "pib": 290,
+     "peen": 120.5,
+     "peen_md": 350
+    },
+    {
+     "annee": 2002,
+     "ext": 7.2,
+     "pub": -1.7,
+     "prive": 8.9,
+     "pib": 314,
+     "peen": 131.4,
+     "peen_md": 413
+    },
+    {
+     "annee": 2003,
+     "ext": 11.1,
+     "pub": -1.4,
+     "prive": 12.5,
+     "pib": 367,
+     "peen": 122.3,
+     "peen_md": 448
+    },
+    {
+     "annee": 2004,
+     "ext": 12.4,
+     "pub": -1.4,
+     "prive": 13.8,
+     "pib": 409,
+     "peen": 120.8,
+     "peen_md": 494
+    },
+    {
+     "annee": 2005,
+     "ext": 11.2,
+     "pub": -0.6,
+     "prive": 11.8,
+     "pib": 424,
+     "peen": 108.0,
+     "peen_md": 458
+    },
+    {
+     "annee": 2006,
+     "ext": 12.6,
+     "pub": 0.8,
+     "prive": 11.8,
+     "pib": 448,
+     "peen": 109.1,
+     "peen_md": 489
+    },
+    {
+     "annee": 2007,
+     "ext": 8.7,
+     "pub": 1.3,
+     "prive": 7.4,
+     "pib": 499,
+     "peen": 131.6,
+     "peen_md": 657
+    },
+    {
+     "annee": 2008,
+     "ext": 1.6,
+     "pub": 1.8,
+     "prive": -0.2,
+     "pib": 575,
+     "peen": 106.3,
+     "peen_md": 611
+    },
+    {
+     "annee": 2009,
+     "ext": 6,
+     "pub": 0.6,
+     "prive": 5.4,
+     "pib": 563,
+     "peen": 118.2,
+     "peen_md": 666
+    },
+    {
+     "annee": 2010,
+     "ext": 13.5,
+     "pub": 0.3,
+     "prive": 13.2,
+     "pib": 610,
+     "peen": 122.1,
+     "peen_md": 744
+    },
+    {
+     "annee": 2011,
+     "ext": 6.8,
+     "pub": 0.9,
+     "prive": 5.9,
+     "pib": 727,
+     "peen": 109.1,
+     "peen_md": 793
+    },
+    {
+     "annee": 2012,
+     "ext": 9.3,
+     "pub": 0.2,
+     "prive": 9.1,
+     "pib": 698,
+     "peen": 106.4,
+     "peen_md": 742
+    },
+    {
+     "annee": 2013,
+     "ext": 10.1,
+     "pub": -0.5,
+     "prive": 10.6,
+     "pib": 719,
+     "peen": 86.6,
+     "peen_md": 623
+    },
+    {
+     "annee": 2014,
+     "ext": 7.4,
+     "pub": -0.2,
+     "prive": 7.6,
+     "pib": 741,
+     "peen": 69.2,
+     "peen_md": 513
+    },
+    {
+     "annee": 2015,
+     "ext": 9,
+     "pub": 0.5,
+     "prive": 8.5,
+     "pib": 706,
+     "peen": 69.8,
+     "peen_md": 493
+    },
+    {
+     "annee": 2016,
+     "ext": 7.1,
+     "pub": 0.3,
+     "prive": 6.8,
+     "pib": 698,
+     "peen": 87.2,
+     "peen_md": 609
+    },
+    {
+     "annee": 2017,
+     "ext": 5.2,
+     "pub": 0.9,
+     "prive": 4.3,
+     "pib": 707,
+     "peen": 98.7,
+     "peen_md": 698
+    },
+    {
+     "annee": 2018,
+     "ext": 6,
+     "pub": 1.2,
+     "prive": 4.8,
+     "pib": 741,
+     "peen": 108.7,
+     "peen_md": 805
+    },
+    {
+     "annee": 2019,
+     "ext": 4,
+     "pub": 1.1,
+     "prive": 2.9,
+     "pib": 737,
+     "peen": 91.3,
+     "peen_md": 672
+    },
+    {
+     "annee": 2020,
+     "ext": 0.6,
+     "pub": -2.6,
+     "prive": 3.2,
+     "pib": 756,
+     "peen": 118.0,
+     "peen_md": 892
+    },
+    {
+     "annee": 2021,
+     "ext": 7.4,
+     "pub": -1.1,
+     "prive": 8.5,
+     "pib": 840,
+     "peen": 102.4,
+     "peen_md": 861
+    },
+    {
+     "annee": 2022,
+     "ext": 9,
+     "pub": 1.2,
+     "prive": 7.8,
+     "pib": 858,
+     "peen": 91.3,
+     "peen_md": 784
+    },
+    {
+     "annee": 2023,
+     "ext": 5.8,
+     "pub": 0.3,
+     "prive": 5.5,
+     "pib": 932,
+     "peen": 104.4,
+     "peen_md": 973
+    },
+    {
+     "annee": 2024,
+     "ext": 9.3,
+     "pub": 0.3,
+     "prive": 9.0,
+     "pib": 978,
+     "peen": 116.8,
+     "peen_md": 1142
+    },
+    {
+     "annee": 2025,
+     "ext": 5.6,
+     "pub": 0.2,
+     "prive": 5.4,
+     "pib": 1061,
+     "peen": 113.6,
+     "peen_md": 1205
+    }
+   ],
+   "NOR": [
+    {
+     "annee": 1980,
+     "ext": 1.7,
+     "pub": 5.2,
+     "prive": -3.5,
+     "pib": 64,
+     "peen": -28.1,
+     "peen_md": -18
+    },
+    {
+     "annee": 1981,
+     "ext": 3,
+     "pub": 4.6,
+     "prive": -1.6,
+     "pib": 63,
+     "peen": -23.8,
+     "peen_md": -15
+    },
+    {
+     "annee": 1982,
+     "ext": 0.5,
+     "pub": 3.7,
+     "prive": -3.2,
+     "pib": 62,
+     "peen": -22.2,
+     "peen_md": -14
+    },
+    {
+     "annee": 1983,
+     "ext": 3.6,
+     "pub": 5.8,
+     "prive": -2.2,
+     "pib": 61,
+     "peen": -19.1,
+     "peen_md": -12
+    },
+    {
+     "annee": 1984,
+     "ext": 4.9,
+     "pub": 6.7,
+     "prive": -1.8,
+     "pib": 62,
+     "peen": -13.6,
+     "peen_md": -8
+    },
+    {
+     "annee": 1985,
+     "ext": 4.3,
+     "pub": 9.5,
+     "prive": -5.2,
+     "pib": 65,
+     "peen": -9.9,
+     "peen_md": -6
+    },
+    {
+     "annee": 1986,
+     "ext": -6.4,
+     "pub": 5.5,
+     "prive": -11.9,
+     "pib": 78,
+     "peen": -14.5,
+     "peen_md": -11
+    },
+    {
+     "annee": 1987,
+     "ext": -5.1,
+     "pub": 4.2,
+     "prive": -9.3,
+     "pib": 94,
+     "peen": -16.9,
+     "peen_md": -16
+    },
+    {
+     "annee": 1988,
+     "ext": -4.4,
+     "pub": 2.4,
+     "prive": -6.8,
+     "pib": 101,
+     "peen": -18.7,
+     "peen_md": -19
+    },
+    {
+     "annee": 1989,
+     "ext": -0.6,
+     "pub": 1.6,
+     "prive": -2.2,
+     "pib": 102,
+     "peen": -20.1,
+     "peen_md": -21
+    },
+    {
+     "annee": 1990,
+     "ext": 1.9,
+     "pub": 2,
+     "prive": -0.1,
+     "pib": 119,
+     "peen": -14.8,
+     "peen_md": -18
+    },
+    {
+     "annee": 1991,
+     "ext": 3.1,
+     "pub": -0.1,
+     "prive": 3.2,
+     "pib": 121,
+     "peen": -11.1,
+     "peen_md": -13
+    },
+    {
+     "annee": 1992,
+     "ext": 3,
+     "pub": -2.1,
+     "prive": 5.1,
+     "pib": 130,
+     "peen": -7.7,
+     "peen_md": -10
+    },
+    {
+     "annee": 1993,
+     "ext": 2.4,
+     "pub": -1.7,
+     "prive": 4.1,
+     "pib": 120,
+     "peen": -9.2,
+     "peen_md": -11
+    },
+    {
+     "annee": 1994,
+     "ext": 2.5,
+     "pub": 0,
+     "prive": 2.5,
+     "pib": 126,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1995,
+     "ext": 3,
+     "pub": 3,
+     "prive": 0,
+     "pib": 151,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1996,
+     "ext": 6.3,
+     "pub": 6,
+     "prive": 0.3,
+     "pib": 162,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1997,
+     "ext": 5.8,
+     "pub": 7.4,
+     "prive": -1.6,
+     "pib": 160,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1998,
+     "ext": -0.6,
+     "pub": 3.1,
+     "prive": -3.7,
+     "pib": 153,
+     "peen": 8.9,
+     "peen_md": 14
+    },
+    {
+     "annee": 1999,
+     "ext": 5.2,
+     "pub": 5.8,
+     "prive": -0.6,
+     "pib": 161,
+     "peen": 12.1,
+     "peen_md": 20
+    },
+    {
+     "annee": 2000,
+     "ext": 14.5,
+     "pub": 15.1,
+     "prive": -0.6,
+     "pib": 171,
+     "peen": 20.2,
+     "peen_md": 34
+    },
+    {
+     "annee": 2001,
+     "ext": 15.6,
+     "pub": 13.2,
+     "prive": 2.4,
+     "pib": 174,
+     "peen": 29.0,
+     "peen_md": 50
+    },
+    {
+     "annee": 2002,
+     "ext": 12.3,
+     "pub": 9.1,
+     "prive": 3.2,
+     "pib": 195,
+     "peen": 33.3,
+     "peen_md": 65
+    },
+    {
+     "annee": 2003,
+     "ext": 12,
+     "pub": 7.2,
+     "prive": 4.8,
+     "pib": 229,
+     "peen": 43.8,
+     "peen_md": 100
+    },
+    {
+     "annee": 2004,
+     "ext": 12.4,
+     "pub": 10.8,
+     "prive": 1.6,
+     "pib": 266,
+     "peen": 47.2,
+     "peen_md": 125
+    },
+    {
+     "annee": 2005,
+     "ext": 16.2,
+     "pub": 14.7,
+     "prive": 1.5,
+     "pib": 311,
+     "peen": 53.3,
+     "peen_md": 166
+    },
+    {
+     "annee": 2006,
+     "ext": 16.3,
+     "pub": 17.7,
+     "prive": -1.4,
+     "pib": 350,
+     "peen": 58.2,
+     "peen_md": 204
+    },
+    {
+     "annee": 2007,
+     "ext": 12.3,
+     "pub": 16.8,
+     "prive": -4.5,
+     "pib": 408,
+     "peen": 55.5,
+     "peen_md": 226
+    },
+    {
+     "annee": 2008,
+     "ext": 15.9,
+     "pub": 18.3,
+     "prive": -2.4,
+     "pib": 472,
+     "peen": 46.4,
+     "peen_md": 219
+    },
+    {
+     "annee": 2009,
+     "ext": 11.1,
+     "pub": 10,
+     "prive": 1.1,
+     "pib": 396,
+     "peen": 82.4,
+     "peen_md": 326
+    },
+    {
+     "annee": 2010,
+     "ext": 11.4,
+     "pub": 10.6,
+     "prive": 0.8,
+     "pib": 440,
+     "peen": 87.9,
+     "peen_md": 387
+    },
+    {
+     "annee": 2011,
+     "ext": 13,
+     "pub": 13,
+     "prive": 0,
+     "pib": 513,
+     "peen": 83.7,
+     "peen_md": 429
+    },
+    {
+     "annee": 2012,
+     "ext": 13.7,
+     "pub": 13.4,
+     "prive": 0.3,
+     "pib": 525,
+     "peen": 95.5,
+     "peen_md": 501
+    },
+    {
+     "annee": 2013,
+     "ext": 11.3,
+     "pub": 10.3,
+     "prive": 1.0,
+     "pib": 540,
+     "peen": 119.9,
+     "peen_md": 648
+    },
+    {
+     "annee": 2014,
+     "ext": 11.7,
+     "pub": 8.3,
+     "prive": 3.4,
+     "pib": 516,
+     "peen": 139.2,
+     "peen_md": 718
+    },
+    {
+     "annee": 2015,
+     "ext": 9.2,
+     "pub": 5.8,
+     "prive": 3.4,
+     "pib": 401,
+     "peen": 176.0,
+     "peen_md": 705
+    },
+    {
+     "annee": 2016,
+     "ext": 5.3,
+     "pub": 3.9,
+     "prive": 1.4,
+     "pib": 383,
+     "peen": 194.2,
+     "peen_md": 744
+    },
+    {
+     "annee": 2017,
+     "ext": 5.4,
+     "pub": 4.8,
+     "prive": 0.6,
+     "pib": 416,
+     "peen": 214.0,
+     "peen_md": 890
+    },
+    {
+     "annee": 2018,
+     "ext": 8.6,
+     "pub": 7.6,
+     "prive": 1.0,
+     "pib": 455,
+     "peen": 178.4,
+     "peen_md": 811
+    },
+    {
+     "annee": 2019,
+     "ext": 3.6,
+     "pub": 6.3,
+     "prive": -2.7,
+     "pib": 424,
+     "peen": 234.9,
+     "peen_md": 996
+    },
+    {
+     "annee": 2020,
+     "ext": 1.8,
+     "pub": -2.5,
+     "prive": 4.3,
+     "pib": 382,
+     "peen": 297.7,
+     "peen_md": 1138
+    },
+    {
+     "annee": 2021,
+     "ext": 14.4,
+     "pub": 9.9,
+     "prive": 4.5,
+     "pib": 522,
+     "peen": 253.5,
+     "peen_md": 1322
+    },
+    {
+     "annee": 2022,
+     "ext": 27.8,
+     "pub": 24.7,
+     "prive": 3.1,
+     "pib": 617,
+     "peen": 188.2,
+     "peen_md": 1162
+    },
+    {
+     "annee": 2023,
+     "ext": 17.1,
+     "pub": 15.9,
+     "prive": 1.2,
+     "pib": 502,
+     "peen": 296.0,
+     "peen_md": 1487
+    },
+    {
+     "annee": 2024,
+     "ext": 15,
+     "pub": 12.9,
+     "prive": 2.1,
+     "pib": 501,
+     "peen": 343.9,
+     "peen_md": 1723
+    },
+    {
+     "annee": 2025,
+     "ext": 14.2,
+     "pub": 10.6,
+     "prive": 3.6,
+     "pib": 530,
+     "peen": 393.3,
+     "peen_md": 2085
+    }
+   ],
+   "GBR": [
+    {
+     "annee": 1980,
+     "ext": 0.7,
+     "pub": -2.8,
+     "prive": 3.5,
+     "pib": 602,
+     "peen": 7.2,
+     "peen_md": 43
+    },
+    {
+     "annee": 1981,
+     "ext": 1.7,
+     "pub": -3.8,
+     "prive": 5.5,
+     "pib": 587,
+     "peen": 10.6,
+     "peen_md": 62
+    },
+    {
+     "annee": 1982,
+     "ext": 0.7,
+     "pub": -2.3,
+     "prive": 3.0,
+     "pib": 558,
+     "peen": 12.6,
+     "peen_md": 70
+    },
+    {
+     "annee": 1983,
+     "ext": 0.4,
+     "pub": -2.9,
+     "prive": 3.3,
+     "pib": 532,
+     "peen": 15.2,
+     "peen_md": 81
+    },
+    {
+     "annee": 1984,
+     "ext": -0.3,
+     "pub": -3.2,
+     "prive": 2.9,
+     "pib": 504,
+     "peen": 18.0,
+     "peen_md": 91
+    },
+    {
+     "annee": 1985,
+     "ext": -0.1,
+     "pub": -2.5,
+     "prive": 2.4,
+     "pib": 536,
+     "peen": 19.1,
+     "peen_md": 102
+    },
+    {
+     "annee": 1986,
+     "ext": -0.7,
+     "pub": -2.3,
+     "prive": 1.6,
+     "pib": 654,
+     "peen": 22.5,
+     "peen_md": 147
+    },
+    {
+     "annee": 1987,
+     "ext": -1.3,
+     "pub": -1.7,
+     "prive": 0.4,
+     "pib": 813,
+     "peen": 11.6,
+     "peen_md": 94
+    },
+    {
+     "annee": 1988,
+     "ext": -3.3,
+     "pub": 0.2,
+     "prive": -3.5,
+     "pib": 989,
+     "peen": 9.0,
+     "peen_md": 89
+    },
+    {
+     "annee": 1989,
+     "ext": -3.8,
+     "pub": 0.5,
+     "prive": -4.3,
+     "pib": 1007,
+     "peen": 8.3,
+     "peen_md": 84
+    },
+    {
+     "annee": 1990,
+     "ext": -2.8,
+     "pub": -1.5,
+     "prive": -1.3,
+     "pib": 1196,
+     "peen": -2.0,
+     "peen_md": -24
+    },
+    {
+     "annee": 1991,
+     "ext": -1.1,
+     "pub": -2.8,
+     "prive": 1.7,
+     "pib": 1247,
+     "peen": -0.4,
+     "peen_md": -5
+    },
+    {
+     "annee": 1992,
+     "ext": -1.3,
+     "pub": -5.4,
+     "prive": 4.1,
+     "pib": 1288,
+     "peen": 1.5,
+     "peen_md": 19
+    },
+    {
+     "annee": 1993,
+     "ext": -1.1,
+     "pub": -6.6,
+     "prive": 5.5,
+     "pib": 1154,
+     "peen": 4.0,
+     "peen_md": 46
+    },
+    {
+     "annee": 1994,
+     "ext": -0.2,
+     "pub": -5.7,
+     "prive": 5.5,
+     "pib": 1241,
+     "peen": 3.1,
+     "peen_md": 38
+    },
+    {
+     "annee": 1995,
+     "ext": -0.4,
+     "pub": -5,
+     "prive": 4.6,
+     "pib": 1344,
+     "peen": -1.5,
+     "peen_md": -20
+    },
+    {
+     "annee": 1996,
+     "ext": -0.3,
+     "pub": -3.6,
+     "prive": 3.3,
+     "pib": 1421,
+     "peen": -6.6,
+     "peen_md": -94
+    },
+    {
+     "annee": 1997,
+     "ext": -0.2,
+     "pub": -2,
+     "prive": 1.8,
+     "pib": 1563,
+     "peen": -5.8,
+     "peen_md": -91
+    },
+    {
+     "annee": 1998,
+     "ext": -0.3,
+     "pub": -0.2,
+     "prive": -0.1,
+     "pib": 1654,
+     "peen": -11.7,
+     "peen_md": -194
+    },
+    {
+     "annee": 1999,
+     "ext": -2.2,
+     "pub": 0.8,
+     "prive": -3.0,
+     "pib": 1687,
+     "peen": -15.0,
+     "peen_md": -253
+    },
+    {
+     "annee": 2000,
+     "ext": -1.9,
+     "pub": 1.4,
+     "prive": -3.3,
+     "pib": 1668,
+     "peen": -7.5,
+     "peen_md": -126
+    },
+    {
+     "annee": 2001,
+     "ext": -1.8,
+     "pub": 0.3,
+     "prive": -2.1,
+     "pib": 1650,
+     "peen": -7.3,
+     "peen_md": -121
+    },
+    {
+     "annee": 2002,
+     "ext": -2,
+     "pub": -2,
+     "prive": 0,
+     "pib": 1786,
+     "peen": 0.1,
+     "peen_md": 1
+    },
+    {
+     "annee": 2003,
+     "ext": -1.8,
+     "pub": -3.2,
+     "prive": 1.4,
+     "pib": 2055,
+     "peen": -1.4,
+     "peen_md": -29
+    },
+    {
+     "annee": 2004,
+     "ext": -2.3,
+     "pub": -3.2,
+     "prive": 0.9,
+     "pib": 2421,
+     "peen": -8.8,
+     "peen_md": -214
+    },
+    {
+     "annee": 2005,
+     "ext": -2,
+     "pub": -3.1,
+     "prive": 1.1,
+     "pib": 2544,
+     "peen": -7.9,
+     "peen_md": -201
+    },
+    {
+     "annee": 2006,
+     "ext": -3.1,
+     "pub": -2.7,
+     "prive": -0.4,
+     "pib": 2713,
+     "peen": -12.1,
+     "peen_md": -327
+    },
+    {
+     "annee": 2007,
+     "ext": -3.6,
+     "pub": -2.6,
+     "prive": -1.0,
+     "pib": 3095,
+     "peen": -12.6,
+     "peen_md": -389
+    },
+    {
+     "annee": 2008,
+     "ext": -3.7,
+     "pub": -5.1,
+     "prive": 1.4,
+     "pib": 2968,
+     "peen": 5.5,
+     "peen_md": 162
+    },
+    {
+     "annee": 2009,
+     "ext": -2.8,
+     "pub": -10,
+     "prive": 7.2,
+     "pib": 2434,
+     "peen": -16.8,
+     "peen_md": -409
+    },
+    {
+     "annee": 2010,
+     "ext": -2.5,
+     "pub": -9.3,
+     "prive": 6.8,
+     "pib": 2498,
+     "peen": -7.8,
+     "peen_md": -194
+    },
+    {
+     "annee": 2011,
+     "ext": -1.4,
+     "pub": -7.4,
+     "prive": 6.0,
+     "pib": 2678,
+     "peen": -8.5,
+     "peen_md": -226
+    },
+    {
+     "annee": 2012,
+     "ext": -2.8,
+     "pub": -8,
+     "prive": 5.2,
+     "pib": 2723,
+     "peen": -25.2,
+     "peen_md": -686
+    },
+    {
+     "annee": 2013,
+     "ext": -4.3,
+     "pub": -5.3,
+     "prive": 1.0,
+     "pib": 2804,
+     "peen": -15.7,
+     "peen_md": -439
+    },
+    {
+     "annee": 2014,
+     "ext": -4.6,
+     "pub": -5.5,
+     "prive": 0.9,
+     "pib": 3090,
+     "peen": -17.8,
+     "peen_md": -551
+    },
+    {
+     "annee": 2015,
+     "ext": -4.7,
+     "pub": -4.5,
+     "prive": -0.2,
+     "pib": 2948,
+     "peen": -15.1,
+     "peen_md": -445
+    },
+    {
+     "annee": 2016,
+     "ext": -5.1,
+     "pub": -3.3,
+     "prive": -1.8,
+     "pib": 2718,
+     "peen": 8.0,
+     "peen_md": 218
+    },
+    {
+     "annee": 2017,
+     "ext": -3.3,
+     "pub": -2.5,
+     "prive": -0.8,
+     "pib": 2708,
+     "peen": -2.5,
+     "peen_md": -67
+    },
+    {
+     "annee": 2018,
+     "ext": -3.5,
+     "pub": -2.2,
+     "prive": -1.3,
+     "pib": 2909,
+     "peen": -1.3,
+     "peen_md": -38
+    },
+    {
+     "annee": 2019,
+     "ext": -2.3,
+     "pub": -2.4,
+     "prive": 0.1,
+     "pib": 2891,
+     "peen": -9.4,
+     "peen_md": -272
+    },
+    {
+     "annee": 2020,
+     "ext": -2.8,
+     "pub": -12.9,
+     "prive": 10.1,
+     "pib": 2735,
+     "peen": -7.6,
+     "peen_md": -207
+    },
+    {
+     "annee": 2021,
+     "ext": -0.8,
+     "pub": -7.5,
+     "prive": 6.7,
+     "pib": 3209,
+     "peen": -12.2,
+     "peen_md": -393
+    },
+    {
+     "annee": 2022,
+     "ext": -2,
+     "pub": -4.6,
+     "prive": 2.6,
+     "pib": 3205,
+     "peen": -0.8,
+     "peen_md": -27
+    },
+    {
+     "annee": 2023,
+     "ext": -2.5,
+     "pub": -6,
+     "prive": 3.5,
+     "pib": 3440,
+     "peen": -10.6,
+     "peen_md": -365
+    },
+    {
+     "annee": 2024,
+     "ext": -2.9,
+     "pub": -6,
+     "prive": 3.1,
+     "pib": 3714,
+     "peen": -1.4,
+     "peen_md": -51
+    },
+    {
+     "annee": 2025,
+     "ext": -3,
+     "pub": -5.3,
+     "prive": 2.3,
+     "pib": 4012,
+     "peen": -2.0,
+     "peen_md": -82
+    }
+   ],
+   "USA": [
+    {
+     "annee": 1980,
+     "ext": 0.1,
+     "pub": null,
+     "prive": null,
+     "pib": 2857,
+     "peen": 10.4,
+     "peen_md": 297
+    },
+    {
+     "annee": 1981,
+     "ext": 0.2,
+     "pub": null,
+     "prive": null,
+     "pib": 3207,
+     "peen": 7.1,
+     "peen_md": 227
+    },
+    {
+     "annee": 1982,
+     "ext": -0.2,
+     "pub": null,
+     "prive": null,
+     "pib": 3344,
+     "peen": 7.1,
+     "peen_md": 238
+    },
+    {
+     "annee": 1983,
+     "ext": -1.1,
+     "pub": null,
+     "prive": null,
+     "pib": 3634,
+     "peen": 7.2,
+     "peen_md": 261
+    },
+    {
+     "annee": 1984,
+     "ext": -2.3,
+     "pub": null,
+     "prive": null,
+     "pib": 4038,
+     "peen": 3.5,
+     "peen_md": 140
+    },
+    {
+     "annee": 1985,
+     "ext": -2.7,
+     "pub": null,
+     "prive": null,
+     "pib": 4339,
+     "peen": 2.4,
+     "peen_md": 104
+    },
+    {
+     "annee": 1986,
+     "ext": -3.2,
+     "pub": null,
+     "prive": null,
+     "pib": 4580,
+     "peen": 2.4,
+     "peen_md": 109
+    },
+    {
+     "annee": 1987,
+     "ext": -3.3,
+     "pub": null,
+     "prive": null,
+     "pib": 4855,
+     "peen": 1.2,
+     "peen_md": 60
+    },
+    {
+     "annee": 1988,
+     "ext": -2.3,
+     "pub": null,
+     "prive": null,
+     "pib": 5236,
+     "peen": 0.4,
+     "peen_md": 21
+    },
+    {
+     "annee": 1989,
+     "ext": -1.8,
+     "pub": null,
+     "prive": null,
+     "pib": 5642,
+     "peen": -0.6,
+     "peen_md": -34
+    },
+    {
+     "annee": 1990,
+     "ext": -1.3,
+     "pub": null,
+     "prive": null,
+     "pib": 5963,
+     "peen": -2.5,
+     "peen_md": -150
+    },
+    {
+     "annee": 1991,
+     "ext": 0,
+     "pub": null,
+     "prive": null,
+     "pib": 6158,
+     "peen": -4.0,
+     "peen_md": -243
+    },
+    {
+     "annee": 1992,
+     "ext": -0.8,
+     "pub": null,
+     "prive": null,
+     "pib": 6520,
+     "peen": -6.6,
+     "peen_md": -432
+    },
+    {
+     "annee": 1993,
+     "ext": -1.2,
+     "pub": null,
+     "prive": null,
+     "pib": 6859,
+     "peen": -1.8,
+     "peen_md": -122
+    },
+    {
+     "annee": 1994,
+     "ext": -1.7,
+     "pub": null,
+     "prive": null,
+     "pib": 7287,
+     "peen": -1.5,
+     "peen_md": -110
+    },
+    {
+     "annee": 1995,
+     "ext": -1.5,
+     "pub": null,
+     "prive": null,
+     "pib": 7640,
+     "peen": -3.6,
+     "peen_md": -278
+    },
+    {
+     "annee": 1996,
+     "ext": -1.5,
+     "pub": null,
+     "prive": null,
+     "pib": 8073,
+     "peen": -4.1,
+     "peen_md": -328
+    },
+    {
+     "annee": 1997,
+     "ext": -1.6,
+     "pub": null,
+     "prive": null,
+     "pib": 8578,
+     "peen": -9.2,
+     "peen_md": -788
+    },
+    {
+     "annee": 1998,
+     "ext": -2.4,
+     "pub": null,
+     "prive": null,
+     "pib": 9063,
+     "peen": -11.4,
+     "peen_md": -1034
+    },
+    {
+     "annee": 1999,
+     "ext": -2.9,
+     "pub": null,
+     "prive": null,
+     "pib": 9631,
+     "peen": -10.4,
+     "peen_md": -1002
+    },
+    {
+     "annee": 2000,
+     "ext": -3.8,
+     "pub": null,
+     "prive": null,
+     "pib": 10251,
+     "peen": -15.0,
+     "peen_md": -1536
+    },
+    {
+     "annee": 2001,
+     "ext": -3.6,
+     "pub": -0.5,
+     "prive": -3.1,
+     "pib": 10582,
+     "peen": -21.7,
+     "peen_md": -2294
+    },
+    {
+     "annee": 2002,
+     "ext": -4.1,
+     "pub": -3.8,
+     "prive": -0.3,
+     "pib": 10929,
+     "peen": -22.1,
+     "peen_md": -2410
+    },
+    {
+     "annee": 2003,
+     "ext": -4.5,
+     "pub": -4.8,
+     "prive": 0.3,
+     "pib": 11456,
+     "peen": -20.0,
+     "peen_md": -2292
+    },
+    {
+     "annee": 2004,
+     "ext": -5.1,
+     "pub": -4.2,
+     "prive": -0.9,
+     "pib": 12217,
+     "peen": -19.3,
+     "peen_md": -2363
+    },
+    {
+     "annee": 2005,
+     "ext": -5.6,
+     "pub": -3.1,
+     "prive": -2.5,
+     "pib": 13039,
+     "peen": -14.2,
+     "peen_md": -1858
+    },
+    {
+     "annee": 2006,
+     "ext": -5.8,
+     "pub": -2,
+     "prive": -3.8,
+     "pib": 13816,
+     "peen": -13.1,
+     "peen_md": -1808
+    },
+    {
+     "annee": 2007,
+     "ext": -5,
+     "pub": -2.9,
+     "prive": -2.1,
+     "pib": 14474,
+     "peen": -8.8,
+     "peen_md": -1279
+    },
+    {
+     "annee": 2008,
+     "ext": -4.6,
+     "pub": -6.6,
+     "prive": 2.0,
+     "pib": 14770,
+     "peen": -27.0,
+     "peen_md": -3995
+    },
+    {
+     "annee": 2009,
+     "ext": -2.5,
+     "pub": -13.2,
+     "prive": 10.7,
+     "pib": 14478,
+     "peen": -18.1,
+     "peen_md": -2627
+    },
+    {
+     "annee": 2010,
+     "ext": -2.7,
+     "pub": -11,
+     "prive": 8.3,
+     "pib": 15049,
+     "peen": -16.7,
+     "peen_md": -2511
+    },
+    {
+     "annee": 2011,
+     "ext": -2.8,
+     "pub": -9.7,
+     "prive": 6.9,
+     "pib": 15600,
+     "peen": -28.6,
+     "peen_md": -4455
+    },
+    {
+     "annee": 2012,
+     "ext": -2.4,
+     "pub": -8.1,
+     "prive": 5.7,
+     "pib": 16254,
+     "peen": -28.1,
+     "peen_md": -4570
+    },
+    {
+     "annee": 2013,
+     "ext": -1.9,
+     "pub": -4.6,
+     "prive": 2.7,
+     "pib": 16881,
+     "peen": -32.2,
+     "peen_md": -5444
+    },
+    {
+     "annee": 2014,
+     "ext": -2,
+     "pub": -4,
+     "prive": 2,
+     "pib": 17608,
+     "peen": -39.9,
+     "peen_md": -7021
+    },
+    {
+     "annee": 2015,
+     "ext": -2.1,
+     "pub": -3.5,
+     "prive": 1.4,
+     "pib": 18295,
+     "peen": -41.5,
+     "peen_md": -7590
+    },
+    {
+     "annee": 2016,
+     "ext": -2,
+     "pub": -4.4,
+     "prive": 2.4,
+     "pib": 18805,
+     "peen": -43.9,
+     "peen_md": -8258
+    },
+    {
+     "annee": 2017,
+     "ext": -1.8,
+     "pub": -4.8,
+     "prive": 3.0,
+     "pib": 19612,
+     "peen": -39.9,
+     "peen_md": -7831
+    },
+    {
+     "annee": 2018,
+     "ext": -2,
+     "pub": -5.3,
+     "prive": 3.3,
+     "pib": 20657,
+     "peen": -47.4,
+     "peen_md": -9796
+    },
+    {
+     "annee": 2019,
+     "ext": -1.9,
+     "pub": -5.8,
+     "prive": 3.9,
+     "pib": 21540,
+     "peen": -54.2,
+     "peen_md": -11666
+    },
+    {
+     "annee": 2020,
+     "ext": -2.8,
+     "pub": -14.1,
+     "prive": 11.3,
+     "pib": 21375,
+     "peen": -55.6,
+     "peen_md": -11894
+    },
+    {
+     "annee": 2021,
+     "ext": -3.6,
+     "pub": -11.5,
+     "prive": 7.9,
+     "pib": 23746,
+     "peen": -64.7,
+     "peen_md": -15358
+    },
+    {
+     "annee": 2022,
+     "ext": -3.7,
+     "pub": -3.7,
+     "prive": 0.0,
+     "pib": 26060,
+     "peen": -54.6,
+     "peen_md": -14227
+    },
+    {
+     "annee": 2023,
+     "ext": -3.3,
+     "pub": -7.9,
+     "prive": 4.6,
+     "pib": 27826,
+     "peen": -61.5,
+     "peen_md": -17124
+    },
+    {
+     "annee": 2024,
+     "ext": -4.1,
+     "pub": -7.8,
+     "prive": 3.7,
+     "pib": 29381,
+     "peen": -75.3,
+     "peen_md": -22128
+    },
+    {
+     "annee": 2025,
+     "ext": -3.8,
+     "pub": -7.1,
+     "prive": 3.3,
+     "pib": 30861,
+     "peen": -70.9,
+     "peen_md": -21874
+    }
+   ],
+   "JPN": [
+    {
+     "annee": 1980,
+     "ext": -0.9,
+     "pub": -4.3,
+     "prive": 3.4,
+     "pib": 1155,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": 0.4,
+     "pub": -3.8,
+     "prive": 4.2,
+     "pib": 1274,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1982,
+     "ext": 0.6,
+     "pub": -3.7,
+     "prive": 4.3,
+     "pib": 1185,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1983,
+     "ext": 1.6,
+     "pub": -3.9,
+     "prive": 5.5,
+     "pib": 1300,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1984,
+     "ext": 2.5,
+     "pub": -2.6,
+     "prive": 5.1,
+     "pib": 1377,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1985,
+     "ext": 3.4,
+     "pub": -1.3,
+     "prive": 4.7,
+     "pib": 1460,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1986,
+     "ext": 3.9,
+     "pub": -1.3,
+     "prive": 5.2,
+     "pib": 2169,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1987,
+     "ext": 3.2,
+     "pub": -0.4,
+     "prive": 3.6,
+     "pib": 2640,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1988,
+     "ext": 2.5,
+     "pub": 0.5,
+     "prive": 2.0,
+     "pib": 3197,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1989,
+     "ext": 2,
+     "pub": 1.2,
+     "prive": 0.8,
+     "pib": 3181,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1990,
+     "ext": 1.4,
+     "pub": 1.9,
+     "prive": -0.5,
+     "pib": 3259,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1991,
+     "ext": 1.8,
+     "pub": 1.6,
+     "prive": 0.2,
+     "pib": 3731,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1992,
+     "ext": 2.8,
+     "pub": 0.6,
+     "prive": 2.2,
+     "pib": 4072,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1993,
+     "ext": 2.8,
+     "pub": -2.3,
+     "prive": 5.1,
+     "pib": 4641,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1994,
+     "ext": 2.6,
+     "pub": -3.7,
+     "prive": 6.3,
+     "pib": 5104,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1995,
+     "ext": 2,
+     "pub": -4.2,
+     "prive": 6.2,
+     "pib": 5640,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1996,
+     "ext": 1.4,
+     "pub": -4.8,
+     "prive": 6.2,
+     "pib": 5021,
+     "peen": 17.7,
+     "peen_md": 891
+    },
+    {
+     "annee": 1997,
+     "ext": 2.1,
+     "pub": -3.4,
+     "prive": 5.5,
+     "pib": 4580,
+     "peen": 20.9,
+     "peen_md": 959
+    },
+    {
+     "annee": 1998,
+     "ext": 2.8,
+     "pub": -9.9,
+     "prive": 12.7,
+     "pib": 4150,
+     "peen": 27.8,
+     "peen_md": 1153
+    },
+    {
+     "annee": 1999,
+     "ext": 2.4,
+     "pub": -6.7,
+     "prive": 9.1,
+     "pib": 4689,
+     "peen": 17.7,
+     "peen_md": 829
+    },
+    {
+     "annee": 2000,
+     "ext": 2.6,
+     "pub": -7.2,
+     "prive": 9.8,
+     "pib": 5042,
+     "peen": 23.0,
+     "peen_md": 1158
+    },
+    {
+     "annee": 2001,
+     "ext": 1.9,
+     "pub": -6.1,
+     "prive": 8.0,
+     "pib": 4439,
+     "peen": 30.6,
+     "peen_md": 1360
+    },
+    {
+     "annee": 2002,
+     "ext": 2.6,
+     "pub": -7.2,
+     "prive": 9.8,
+     "pib": 4246,
+     "peen": 34.4,
+     "peen_md": 1462
+    },
+    {
+     "annee": 2003,
+     "ext": 3,
+     "pub": -7.3,
+     "prive": 10.3,
+     "pib": 4573,
+     "peen": 35.3,
+     "peen_md": 1614
+    },
+    {
+     "annee": 2004,
+     "ext": 3.7,
+     "pub": -5.3,
+     "prive": 9.0,
+     "pib": 4942,
+     "peen": 36.1,
+     "peen_md": 1784
+    },
+    {
+     "annee": 2005,
+     "ext": 3.5,
+     "pub": -4.4,
+     "prive": 7.9,
+     "pib": 4876,
+     "peen": 31.4,
+     "peen_md": 1532
+    },
+    {
+     "annee": 2006,
+     "ext": 3.8,
+     "pub": -3,
+     "prive": 6.8,
+     "pib": 4648,
+     "peen": 38.9,
+     "peen_md": 1808
+    },
+    {
+     "annee": 2007,
+     "ext": 4.6,
+     "pub": -2.9,
+     "prive": 7.5,
+     "pib": 4625,
+     "peen": 47.5,
+     "peen_md": 2195
+    },
+    {
+     "annee": 2008,
+     "ext": 2.8,
+     "pub": -4.1,
+     "prive": 6.9,
+     "pib": 5160,
+     "peen": 48.2,
+     "peen_md": 2489
+    },
+    {
+     "annee": 2009,
+     "ext": 2.7,
+     "pub": -9.6,
+     "prive": 12.3,
+     "pib": 5337,
+     "peen": 54.6,
+     "peen_md": 2914
+    },
+    {
+     "annee": 2010,
+     "ext": 3.8,
+     "pub": -9.1,
+     "prive": 12.9,
+     "pib": 5812,
+     "peen": 54.1,
+     "peen_md": 3142
+    },
+    {
+     "annee": 2011,
+     "ext": 2.1,
+     "pub": -9,
+     "prive": 11.1,
+     "pib": 6279,
+     "peen": 54.5,
+     "peen_md": 3419
+    },
+    {
+     "annee": 2012,
+     "ext": 0.9,
+     "pub": -8.2,
+     "prive": 9.1,
+     "pib": 6334,
+     "peen": 54.6,
+     "peen_md": 3458
+    },
+    {
+     "annee": 2013,
+     "ext": 0.9,
+     "pub": -7.6,
+     "prive": 8.5,
+     "pib": 5272,
+     "peen": 58.7,
+     "peen_md": 3093
+    },
+    {
+     "annee": 2014,
+     "ext": 0.7,
+     "pub": -5.6,
+     "prive": 6.3,
+     "pib": 4986,
+     "peen": 58.4,
+     "peen_md": 2910
+    },
+    {
+     "annee": 2015,
+     "ext": 3,
+     "pub": -3.6,
+     "prive": 6.6,
+     "pib": 4534,
+     "peen": 59.9,
+     "peen_md": 2715
+    },
+    {
+     "annee": 2016,
+     "ext": 3.9,
+     "pub": -3.6,
+     "prive": 7.5,
+     "pib": 5110,
+     "peen": 56.3,
+     "peen_md": 2879
+    },
+    {
+     "annee": 2017,
+     "ext": 4,
+     "pub": -3,
+     "prive": 7,
+     "pib": 5038,
+     "peen": 57.9,
+     "peen_md": 2917
+    },
+    {
+     "annee": 2018,
+     "ext": 3.4,
+     "pub": -2.4,
+     "prive": 5.8,
+     "pib": 5154,
+     "peen": 59.8,
+     "peen_md": 3081
+    },
+    {
+     "annee": 2019,
+     "ext": 3.4,
+     "pub": -3,
+     "prive": 6.4,
+     "pib": 5246,
+     "peen": 62.4,
+     "peen_md": 3272
+    },
+    {
+     "annee": 2020,
+     "ext": 2.9,
+     "pub": -9,
+     "prive": 11.9,
+     "pib": 5189,
+     "peen": 66.9,
+     "peen_md": 3474
+    },
+    {
+     "annee": 2021,
+     "ext": 3.8,
+     "pub": -6.3,
+     "prive": 10.1,
+     "pib": 5227,
+     "peen": 70.0,
+     "peen_md": 3659
+    },
+    {
+     "annee": 2022,
+     "ext": 2,
+     "pub": -4.2,
+     "prive": 6.2,
+     "pib": 4445,
+     "peen": 71.2,
+     "peen_md": 3166
+    },
+    {
+     "annee": 2023,
+     "ext": 3.6,
+     "pub": -2.4,
+     "prive": 6.0,
+     "pib": 4389,
+     "peen": 75.8,
+     "peen_md": 3327
+    },
+    {
+     "annee": 2024,
+     "ext": 4.6,
+     "pub": -1.7,
+     "prive": 6.3,
+     "pib": 4208,
+     "peen": 81.6,
+     "peen_md": 3435
+    },
+    {
+     "annee": 2025,
+     "ext": 4.9,
+     "pub": -0.7,
+     "prive": 5.6,
+     "pib": 4453,
+     "peen": 80.7,
+     "peen_md": 3594
+    }
+   ],
+   "KOR": [
+    {
+     "annee": 1980,
+     "ext": -10.4,
+     "pub": null,
+     "prive": null,
+     "pib": 67,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": -8.7,
+     "pub": null,
+     "prive": null,
+     "pib": 74,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1982,
+     "ext": -7,
+     "pub": null,
+     "prive": null,
+     "pib": 80,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1983,
+     "ext": -4,
+     "pub": null,
+     "prive": null,
+     "pib": 90,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1984,
+     "ext": -1.9,
+     "pub": null,
+     "prive": null,
+     "pib": 100,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1985,
+     "ext": -2.1,
+     "pub": null,
+     "prive": null,
+     "pib": 104,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1986,
+     "ext": 2.2,
+     "pub": null,
+     "prive": null,
+     "pib": 120,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1987,
+     "ext": 5.7,
+     "pub": null,
+     "prive": null,
+     "pib": 152,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1988,
+     "ext": 6.2,
+     "pub": null,
+     "prive": null,
+     "pib": 205,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1989,
+     "ext": 1.5,
+     "pub": null,
+     "prive": null,
+     "pib": 254,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1990,
+     "ext": -1,
+     "pub": null,
+     "prive": null,
+     "pib": 292,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1991,
+     "ext": -2.4,
+     "pub": null,
+     "prive": null,
+     "pib": 341,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1992,
+     "ext": -0.8,
+     "pub": null,
+     "prive": null,
+     "pib": 367,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1993,
+     "ext": 0.4,
+     "pub": null,
+     "prive": null,
+     "pib": 406,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1994,
+     "ext": -1,
+     "pub": null,
+     "prive": null,
+     "pib": 479,
+     "peen": -7.8,
+     "peen_md": -37
+    },
+    {
+     "annee": 1995,
+     "ext": -1.7,
+     "pub": null,
+     "prive": null,
+     "pib": 586,
+     "peen": -7.9,
+     "peen_md": -46
+    },
+    {
+     "annee": 1996,
+     "ext": -3.9,
+     "pub": null,
+     "prive": null,
+     "pib": 631,
+     "peen": -10.1,
+     "peen_md": -64
+    },
+    {
+     "annee": 1997,
+     "ext": -1.8,
+     "pub": null,
+     "prive": null,
+     "pib": 590,
+     "peen": -10.9,
+     "peen_md": -64
+    },
+    {
+     "annee": 1998,
+     "ext": 10.1,
+     "pub": null,
+     "prive": null,
+     "pib": 397,
+     "peen": -13.1,
+     "peen_md": -52
+    },
+    {
+     "annee": 1999,
+     "ext": 4.2,
+     "pub": null,
+     "prive": null,
+     "pib": 515,
+     "peen": -16.6,
+     "peen_md": -86
+    },
+    {
+     "annee": 2000,
+     "ext": 1.7,
+     "pub": null,
+     "prive": null,
+     "pib": 598,
+     "peen": -6.1,
+     "peen_md": -36
+    },
+    {
+     "annee": 2001,
+     "ext": 0.4,
+     "pub": null,
+     "prive": null,
+     "pib": 568,
+     "peen": -10.2,
+     "peen_md": -58
+    },
+    {
+     "annee": 2002,
+     "ext": 0.6,
+     "pub": null,
+     "prive": null,
+     "pib": 650,
+     "peen": -9.4,
+     "peen_md": -61
+    },
+    {
+     "annee": 2003,
+     "ext": 1.6,
+     "pub": null,
+     "prive": null,
+     "pib": 728,
+     "peen": -8.7,
+     "peen_md": -63
+    },
+    {
+     "annee": 2004,
+     "ext": 3.6,
+     "pub": null,
+     "prive": null,
+     "pib": 823,
+     "peen": -7.3,
+     "peen_md": -60
+    },
+    {
+     "annee": 2005,
+     "ext": 1.3,
+     "pub": null,
+     "prive": null,
+     "pib": 972,
+     "peen": -14.8,
+     "peen_md": -144
+    },
+    {
+     "annee": 2006,
+     "ext": 0.2,
+     "pub": null,
+     "prive": null,
+     "pib": 1095,
+     "peen": -14.3,
+     "peen_md": -157
+    },
+    {
+     "annee": 2007,
+     "ext": 0.9,
+     "pub": null,
+     "prive": null,
+     "pib": 1221,
+     "peen": -15.5,
+     "peen_md": -189
+    },
+    {
+     "annee": 2008,
+     "ext": 0.2,
+     "pub": null,
+     "prive": null,
+     "pib": 1093,
+     "peen": -6.4,
+     "peen_md": -70
+    },
+    {
+     "annee": 2009,
+     "ext": 3.4,
+     "pub": null,
+     "prive": null,
+     "pib": 983,
+     "peen": -10.2,
+     "peen_md": -101
+    },
+    {
+     "annee": 2010,
+     "ext": 2.3,
+     "pub": null,
+     "prive": null,
+     "pib": 1193,
+     "peen": -11.1,
+     "peen_md": -133
+    },
+    {
+     "annee": 2011,
+     "ext": 1.3,
+     "pub": null,
+     "prive": null,
+     "pib": 1307,
+     "peen": -6.3,
+     "peen_md": -82
+    },
+    {
+     "annee": 2012,
+     "ext": 3.7,
+     "pub": 1.1,
+     "prive": 2.6,
+     "pib": 1335,
+     "peen": -7.3,
+     "peen_md": -98
+    },
+    {
+     "annee": 2013,
+     "ext": 5.4,
+     "pub": 1.3,
+     "prive": 4.1,
+     "pib": 1435,
+     "peen": -2.8,
+     "peen_md": -40
+    },
+    {
+     "annee": 2014,
+     "ext": 5.3,
+     "pub": 1.3,
+     "prive": 4.0,
+     "pib": 1556,
+     "peen": 5.2,
+     "peen_md": 81
+    },
+    {
+     "annee": 2015,
+     "ext": 6.8,
+     "pub": 1.1,
+     "prive": 5.7,
+     "pib": 1539,
+     "peen": 13.3,
+     "peen_md": 204
+    },
+    {
+     "annee": 2016,
+     "ext": 6.2,
+     "pub": 2.3,
+     "prive": 3.9,
+     "pib": 1579,
+     "peen": 17.8,
+     "peen_md": 281
+    },
+    {
+     "annee": 2017,
+     "ext": 4.4,
+     "pub": 2.5,
+     "prive": 1.9,
+     "pib": 1710,
+     "peen": 15.3,
+     "peen_md": 262
+    },
+    {
+     "annee": 2018,
+     "ext": 4.2,
+     "pub": 2.9,
+     "prive": 1.3,
+     "pib": 1824,
+     "peen": 23.9,
+     "peen_md": 436
+    },
+    {
+     "annee": 2019,
+     "ext": 3.4,
+     "pub": 0.8,
+     "prive": 2.6,
+     "pib": 1751,
+     "peen": 29.6,
+     "peen_md": 518
+    },
+    {
+     "annee": 2020,
+     "ext": 4.4,
+     "pub": -2.5,
+     "prive": 6.9,
+     "pib": 1744,
+     "peen": 27.9,
+     "peen_md": 487
+    },
+    {
+     "annee": 2021,
+     "ext": 4.3,
+     "pub": -0.3,
+     "prive": 4.6,
+     "pib": 1944,
+     "peen": 35.3,
+     "peen_md": 685
+    },
+    {
+     "annee": 2022,
+     "ext": 1.3,
+     "pub": 0,
+     "prive": 1.3,
+     "pib": 1803,
+     "peen": 44.4,
+     "peen_md": 801
+    },
+    {
+     "annee": 2023,
+     "ext": 1.8,
+     "pub": -1.2,
+     "prive": 3.0,
+     "pib": 1844,
+     "peen": 43.7,
+     "peen_md": 805
+    },
+    {
+     "annee": 2024,
+     "ext": 5.3,
+     "pub": -2.6,
+     "prive": 7.9,
+     "pib": 1881,
+     "peen": 57.8,
+     "peen_md": 1086
+    },
+    {
+     "annee": 2025,
+     "ext": 6.5,
+     "pub": -2.3,
+     "prive": 8.8,
+     "pib": 1882,
+     "peen": 47.1,
+     "peen_md": 886
+    }
+   ],
+   "CHN": [
+    {
+     "annee": 1997,
+     "ext": 3.8,
+     "pub": -0.7,
+     "prive": 4.5,
+     "pib": 968,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1998,
+     "ext": 3,
+     "pub": -1.1,
+     "prive": 4.1,
+     "pib": 1037,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1999,
+     "ext": 1.9,
+     "pub": -2.3,
+     "prive": 4.2,
+     "pib": 1104,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2000,
+     "ext": 1.7,
+     "pub": -2.8,
+     "prive": 4.5,
+     "pib": 1224,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2001,
+     "ext": 1.3,
+     "pub": -2.6,
+     "prive": 3.9,
+     "pib": 1355,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2002,
+     "ext": 2.4,
+     "pub": -2.8,
+     "prive": 5.2,
+     "pib": 1490,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2003,
+     "ext": 2.6,
+     "pub": -2.4,
+     "prive": 5.0,
+     "pib": 1684,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2004,
+     "ext": 3.5,
+     "pub": -1.5,
+     "prive": 5.0,
+     "pib": 1984,
+     "peen": 12.1,
+     "peen_md": 241
+    },
+    {
+     "annee": 2005,
+     "ext": 5.7,
+     "pub": -1.4,
+     "prive": 7.1,
+     "pib": 2318,
+     "peen": 15.4,
+     "peen_md": 357
+    },
+    {
+     "annee": 2006,
+     "ext": 8.3,
+     "pub": -1.1,
+     "prive": 9.4,
+     "pib": 2792,
+     "peen": 18.6,
+     "peen_md": 519
+    },
+    {
+     "annee": 2007,
+     "ext": 9.8,
+     "pub": 0.1,
+     "prive": 9.7,
+     "pib": 3606,
+     "peen": 26.4,
+     "peen_md": 952
+    },
+    {
+     "annee": 2008,
+     "ext": 9,
+     "pub": 0,
+     "prive": 9,
+     "pib": 4670,
+     "peen": 29.8,
+     "peen_md": 1393
+    },
+    {
+     "annee": 2009,
+     "ext": 4.7,
+     "pub": -1.7,
+     "prive": 6.4,
+     "pib": 5190,
+     "peen": 25.1,
+     "peen_md": 1304
+    },
+    {
+     "annee": 2010,
+     "ext": 3.8,
+     "pub": -0.4,
+     "prive": 4.2,
+     "pib": 6193,
+     "peen": 23.9,
+     "peen_md": 1478
+    },
+    {
+     "annee": 2011,
+     "ext": 1.8,
+     "pub": -0.1,
+     "prive": 1.9,
+     "pib": 7675,
+     "peen": 20.0,
+     "peen_md": 1535
+    },
+    {
+     "annee": 2012,
+     "ext": 2.5,
+     "pub": -0.3,
+     "prive": 2.8,
+     "pib": 8673,
+     "peen": 19.3,
+     "peen_md": 1678
+    },
+    {
+     "annee": 2013,
+     "ext": 1.5,
+     "pub": -0.8,
+     "prive": 2.3,
+     "pib": 9747,
+     "peen": 18.7,
+     "peen_md": 1818
+    },
+    {
+     "annee": 2014,
+     "ext": 2.2,
+     "pub": -0.7,
+     "prive": 2.9,
+     "pib": 10676,
+     "peen": 15.1,
+     "peen_md": 1610
+    },
+    {
+     "annee": 2015,
+     "ext": 2.6,
+     "pub": -2.5,
+     "prive": 5.1,
+     "pib": 11279,
+     "peen": 15.1,
+     "peen_md": 1699
+    },
+    {
+     "annee": 2016,
+     "ext": 1.7,
+     "pub": -3.3,
+     "prive": 5.0,
+     "pib": 11460,
+     "peen": 17.3,
+     "peen_md": 1985
+    },
+    {
+     "annee": 2017,
+     "ext": 1.5,
+     "pub": -3.3,
+     "prive": 4.8,
+     "pib": 12550,
+     "peen": 16.5,
+     "peen_md": 2065
+    },
+    {
+     "annee": 2018,
+     "ext": 0.2,
+     "pub": -4.2,
+     "prive": 4.4,
+     "pib": 14145,
+     "peen": 14.9,
+     "peen_md": 2108
+    },
+    {
+     "annee": 2019,
+     "ext": 0.6,
+     "pub": -6,
+     "prive": 6.6,
+     "pib": 14581,
+     "peen": 15.8,
+     "peen_md": 2300
+    },
+    {
+     "annee": 2020,
+     "ext": 1.5,
+     "pub": -9.6,
+     "prive": 11.1,
+     "pib": 15003,
+     "peen": 15.2,
+     "peen_md": 2287
+    },
+    {
+     "annee": 2021,
+     "ext": 1.6,
+     "pub": -5.9,
+     "prive": 7.5,
+     "pib": 18195,
+     "peen": 12.0,
+     "peen_md": 2186
+    },
+    {
+     "annee": 2022,
+     "ext": 2.2,
+     "pub": -7.3,
+     "prive": 9.5,
+     "pib": 18347,
+     "peen": 13.2,
+     "peen_md": 2422
+    },
+    {
+     "annee": 2023,
+     "ext": 1.4,
+     "pub": -6.7,
+     "prive": 8.1,
+     "pib": 18367,
+     "peen": 15.5,
+     "peen_md": 2851
+    },
+    {
+     "annee": 2024,
+     "ext": 2.4,
+     "pub": -7.2,
+     "prive": 9.6,
+     "pib": 18929,
+     "peen": 16.8,
+     "peen_md": 3178
+    },
+    {
+     "annee": 2025,
+     "ext": 3.7,
+     "pub": -7.9,
+     "prive": 11.6,
+     "pib": 19626,
+     "peen": 20.7,
+     "peen_md": 4071
+    }
+   ],
+   "BRA": [
+    {
+     "annee": 1980,
+     "ext": -8.8,
+     "pub": null,
+     "prive": null,
+     "pib": 146,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": -7,
+     "pub": null,
+     "prive": null,
+     "pib": 168,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1982,
+     "ext": -9.1,
+     "pub": null,
+     "prive": null,
+     "pib": 179,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1983,
+     "ext": -4.8,
+     "pub": null,
+     "prive": null,
+     "pib": 144,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1984,
+     "ext": 0,
+     "pub": null,
+     "prive": null,
+     "pib": 143,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1985,
+     "ext": -0.1,
+     "pub": null,
+     "prive": null,
+     "pib": 227,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1986,
+     "ext": -2.1,
+     "pub": null,
+     "prive": null,
+     "pib": 263,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1987,
+     "ext": -0.5,
+     "pub": null,
+     "prive": null,
+     "pib": 287,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1988,
+     "ext": 1.3,
+     "pub": null,
+     "prive": null,
+     "pib": 320,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1989,
+     "ext": 0.2,
+     "pub": null,
+     "prive": null,
+     "pib": 439,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1990,
+     "ext": -0.8,
+     "pub": null,
+     "prive": null,
+     "pib": 455,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1991,
+     "ext": -0.4,
+     "pub": null,
+     "prive": null,
+     "pib": 399,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1992,
+     "ext": 1.6,
+     "pub": null,
+     "prive": null,
+     "pib": 382,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1993,
+     "ext": -0.1,
+     "pub": null,
+     "prive": null,
+     "pib": 429,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1994,
+     "ext": -0.3,
+     "pub": null,
+     "prive": null,
+     "pib": 547,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1995,
+     "ext": -2.4,
+     "pub": null,
+     "prive": null,
+     "pib": 771,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1996,
+     "ext": -2.8,
+     "pub": null,
+     "prive": null,
+     "pib": 851,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1997,
+     "ext": -3.6,
+     "pub": null,
+     "prive": null,
+     "pib": 884,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1998,
+     "ext": -4,
+     "pub": null,
+     "prive": null,
+     "pib": 864,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1999,
+     "ext": -4.5,
+     "pub": null,
+     "prive": null,
+     "pib": 600,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2000,
+     "ext": -4,
+     "pub": null,
+     "prive": null,
+     "pib": 655,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 2001,
+     "ext": -4.4,
+     "pub": -3.5,
+     "prive": -0.9,
+     "pib": 560,
+     "peen": -46.8,
+     "peen_md": -262
+    },
+    {
+     "annee": 2002,
+     "ext": -1.8,
+     "pub": -4.1,
+     "prive": 2.3,
+     "pib": 510,
+     "peen": -44.5,
+     "peen_md": -227
+    },
+    {
+     "annee": 2003,
+     "ext": 0.4,
+     "pub": -5.4,
+     "prive": 5.8,
+     "pib": 558,
+     "peen": -47.9,
+     "peen_md": -267
+    },
+    {
+     "annee": 2004,
+     "ext": 1.3,
+     "pub": -3,
+     "prive": 4.3,
+     "pib": 669,
+     "peen": -42.1,
+     "peen_md": -281
+    },
+    {
+     "annee": 2005,
+     "ext": 1.3,
+     "pub": -3.4,
+     "prive": 4.7,
+     "pib": 892,
+     "peen": -33.6,
+     "peen_md": -299
+    },
+    {
+     "annee": 2006,
+     "ext": 1,
+     "pub": -4.9,
+     "prive": 5.9,
+     "pib": 1108,
+     "peen": -31.6,
+     "peen_md": -350
+    },
+    {
+     "annee": 2007,
+     "ext": -0.2,
+     "pub": -2.7,
+     "prive": 2.5,
+     "pib": 1397,
+     "peen": -35.5,
+     "peen_md": -495
+    },
+    {
+     "annee": 2008,
+     "ext": -2.1,
+     "pub": -2.4,
+     "prive": 0.3,
+     "pib": 1696,
+     "peen": -14.3,
+     "peen_md": -243
+    },
+    {
+     "annee": 2009,
+     "ext": -1.8,
+     "pub": -4.2,
+     "prive": 2.4,
+     "pib": 1669,
+     "peen": -33.5,
+     "peen_md": -559
+    },
+    {
+     "annee": 2010,
+     "ext": -3.9,
+     "pub": -3.6,
+     "prive": -0.3,
+     "pib": 2209,
+     "peen": -41.0,
+     "peen_md": -906
+    },
+    {
+     "annee": 2011,
+     "ext": -3.2,
+     "pub": -2.7,
+     "prive": -0.5,
+     "pib": 2614,
+     "peen": -31.4,
+     "peen_md": -820
+    },
+    {
+     "annee": 2012,
+     "ext": -3.8,
+     "pub": -2.4,
+     "prive": -1.4,
+     "pib": 2464,
+     "peen": -32.3,
+     "peen_md": -795
+    },
+    {
+     "annee": 2013,
+     "ext": -3.6,
+     "pub": -3.4,
+     "prive": -0.2,
+     "pib": 2472,
+     "peen": -29.3,
+     "peen_md": -724
+    },
+    {
+     "annee": 2014,
+     "ext": -4.5,
+     "pub": -6.3,
+     "prive": 1.8,
+     "pib": 2456,
+     "peen": -28.7,
+     "peen_md": -706
+    },
+    {
+     "annee": 2015,
+     "ext": -3.5,
+     "pub": -9.3,
+     "prive": 5.8,
+     "pib": 1800,
+     "peen": -20.8,
+     "peen_md": -375
+    },
+    {
+     "annee": 2016,
+     "ext": -1.7,
+     "pub": -8,
+     "prive": 6.3,
+     "pib": 1797,
+     "peen": -31.5,
+     "peen_md": -567
+    },
+    {
+     "annee": 2017,
+     "ext": -1.2,
+     "pub": -8,
+     "prive": 6.8,
+     "pib": 2064,
+     "peen": -31.3,
+     "peen_md": -645
+    },
+    {
+     "annee": 2018,
+     "ext": -2.8,
+     "pub": -7,
+     "prive": 4.2,
+     "pib": 1917,
+     "peen": -31.1,
+     "peen_md": -595
+    },
+    {
+     "annee": 2019,
+     "ext": -3.4,
+     "pub": -4.9,
+     "prive": 1.5,
+     "pib": 1873,
+     "peen": -41.9,
+     "peen_md": -786
+    },
+    {
+     "annee": 2020,
+     "ext": -1.6,
+     "pub": -11.6,
+     "prive": 10.0,
+     "pib": 1476,
+     "peen": -37.5,
+     "peen_md": -554
+    },
+    {
+     "annee": 2021,
+     "ext": -2.4,
+     "pub": -2.6,
+     "prive": 0.2,
+     "pib": 1671,
+     "peen": -36.0,
+     "peen_md": -601
+    },
+    {
+     "annee": 2022,
+     "ext": -2.1,
+     "pub": -4,
+     "prive": 1.9,
+     "pib": 1952,
+     "peen": -42.2,
+     "peen_md": -823
+    },
+    {
+     "annee": 2023,
+     "ext": -1.2,
+     "pub": -7.7,
+     "prive": 6.5,
+     "pib": 2191,
+     "peen": -50.2,
+     "peen_md": -1101
+    },
+    {
+     "annee": 2024,
+     "ext": -3,
+     "pub": -6.3,
+     "prive": 3.3,
+     "pib": 2186,
+     "peen": -38.2,
+     "peen_md": -835
+    },
+    {
+     "annee": 2025,
+     "ext": -2.9,
+     "pub": -7.4,
+     "prive": 4.5,
+     "pib": 2280,
+     "peen": -50.7,
+     "peen_md": -1156
+    }
+   ],
+   "IND": [
+    {
+     "annee": 1980,
+     "ext": -1.5,
+     "pub": null,
+     "prive": null,
+     "pib": 186,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1981,
+     "ext": -1.6,
+     "pub": null,
+     "prive": null,
+     "pib": 193,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1982,
+     "ext": -1.7,
+     "pub": null,
+     "prive": null,
+     "pib": 200,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1983,
+     "ext": -1.5,
+     "pub": null,
+     "prive": null,
+     "pib": 218,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1984,
+     "ext": -1.1,
+     "pub": null,
+     "prive": null,
+     "pib": 212,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1985,
+     "ext": -2.1,
+     "pub": null,
+     "prive": null,
+     "pib": 234,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1986,
+     "ext": -1.8,
+     "pub": null,
+     "prive": null,
+     "pib": 248,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1987,
+     "ext": -1.7,
+     "pub": null,
+     "prive": null,
+     "pib": 279,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1988,
+     "ext": -2.4,
+     "pub": -6.6,
+     "prive": 4.2,
+     "pib": 294,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1989,
+     "ext": -2,
+     "pub": -7.2,
+     "prive": 5.2,
+     "pib": 296,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1990,
+     "ext": -3,
+     "pub": -7.6,
+     "prive": 4.6,
+     "pib": 321,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1991,
+     "ext": -0.4,
+     "pub": -7.4,
+     "prive": 7.0,
+     "pib": 270,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1992,
+     "ext": -1.7,
+     "pub": -7.9,
+     "prive": 6.2,
+     "pib": 288,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1993,
+     "ext": -0.4,
+     "pub": -8.6,
+     "prive": 8.2,
+     "pib": 279,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1994,
+     "ext": -1,
+     "pub": -8,
+     "prive": 7,
+     "pib": 327,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1995,
+     "ext": -1.6,
+     "pub": -6.8,
+     "prive": 5.2,
+     "pib": 360,
+     "peen": null,
+     "peen_md": null
+    },
+    {
+     "annee": 1996,
+     "ext": -1.1,
+     "pub": -6.7,
+     "prive": 5.6,
+     "pib": 393,
+     "peen": -20.6,
+     "peen_md": -81
+    },
+    {
+     "annee": 1997,
+     "ext": -1.3,
+     "pub": -8.3,
+     "prive": 7.0,
+     "pib": 416,
+     "peen": -19.5,
+     "peen_md": -81
+    },
+    {
+     "annee": 1998,
+     "ext": -1,
+     "pub": -9.7,
+     "prive": 8.7,
+     "pib": 421,
+     "peen": -18.7,
+     "peen_md": -79
+    },
+    {
+     "annee": 1999,
+     "ext": -1,
+     "pub": -8.7,
+     "prive": 7.7,
+     "pib": 459,
+     "peen": -16.8,
+     "peen_md": -77
+    },
+    {
+     "annee": 2000,
+     "ext": -0.6,
+     "pub": -8.4,
+     "prive": 7.8,
+     "pib": 468,
+     "peen": -16.2,
+     "peen_md": -76
+    },
+    {
+     "annee": 2001,
+     "ext": 0.7,
+     "pub": -11,
+     "prive": 11.7,
+     "pib": 485,
+     "peen": -14.4,
+     "peen_md": -70
+    },
+    {
+     "annee": 2002,
+     "ext": 1.2,
+     "pub": -11.1,
+     "prive": 12.3,
+     "pib": 515,
+     "peen": -11.6,
+     "peen_md": -60
+    },
+    {
+     "annee": 2003,
+     "ext": 2.3,
+     "pub": -11.4,
+     "prive": 13.7,
+     "pib": 608,
+     "peen": -7.6,
+     "peen_md": -46
+    },
+    {
+     "annee": 2004,
+     "ext": -0.3,
+     "pub": -9.2,
+     "prive": 8.9,
+     "pib": 709,
+     "peen": -6.1,
+     "peen_md": -43
+    },
+    {
+     "annee": 2005,
+     "ext": -1.2,
+     "pub": -6.6,
+     "prive": 5.4,
+     "pib": 820,
+     "peen": -7.2,
+     "peen_md": -59
+    },
+    {
+     "annee": 2006,
+     "ext": -1,
+     "pub": -5.1,
+     "prive": 4.1,
+     "pib": 940,
+     "peen": -6.3,
+     "peen_md": -60
+    },
+    {
+     "annee": 2007,
+     "ext": -1.3,
+     "pub": -3.7,
+     "prive": 2.4,
+     "pib": 1217,
+     "peen": -6.1,
+     "peen_md": -75
+    },
+    {
+     "annee": 2008,
+     "ext": -2.3,
+     "pub": -8.1,
+     "prive": 5.8,
+     "pib": 1199,
+     "peen": -7.3,
+     "peen_md": -87
+    },
+    {
+     "annee": 2009,
+     "ext": -2.9,
+     "pub": -9.3,
+     "prive": 6.4,
+     "pib": 1342,
+     "peen": -9.4,
+     "peen_md": -126
+    },
+    {
+     "annee": 2010,
+     "ext": -2.9,
+     "pub": -8.5,
+     "prive": 5.6,
+     "pib": 1676,
+     "peen": -12.3,
+     "peen_md": -206
+    },
+    {
+     "annee": 2011,
+     "ext": -4.3,
+     "pub": -8,
+     "prive": 3.7,
+     "pib": 1823,
+     "peen": -12.2,
+     "peen_md": -222
+    },
+    {
+     "annee": 2012,
+     "ext": -4.8,
+     "pub": -7.3,
+     "prive": 2.5,
+     "pib": 1823,
+     "peen": -16.3,
+     "peen_md": -297
+    },
+    {
+     "annee": 2013,
+     "ext": -1.7,
+     "pub": -6.8,
+     "prive": 5.1,
+     "pib": 1848,
+     "peen": -17.3,
+     "peen_md": -319
+    },
+    {
+     "annee": 2014,
+     "ext": -1.3,
+     "pub": -6.9,
+     "prive": 5.6,
+     "pib": 2024,
+     "peen": -17.7,
+     "peen_md": -358
+    },
+    {
+     "annee": 2015,
+     "ext": -1.1,
+     "pub": -7.3,
+     "prive": 6.2,
+     "pib": 2083,
+     "peen": -17.5,
+     "peen_md": -364
+    },
+    {
+     "annee": 2016,
+     "ext": -0.6,
+     "pub": -7.2,
+     "prive": 6.6,
+     "pib": 2267,
+     "peen": -16.0,
+     "peen_md": -363
+    },
+    {
+     "annee": 2017,
+     "ext": -1.9,
+     "pub": -6.3,
+     "prive": 4.4,
+     "pib": 2613,
+     "peen": -16.1,
+     "peen_md": -422
+    },
+    {
+     "annee": 2018,
+     "ext": -2.2,
+     "pub": -6.4,
+     "prive": 4.2,
+     "pib": 2657,
+     "peen": -16.1,
+     "peen_md": -429
+    },
+    {
+     "annee": 2019,
+     "ext": -0.9,
+     "pub": -7.8,
+     "prive": 6.9,
+     "pib": 2781,
+     "peen": -15.3,
+     "peen_md": -425
+    },
+    {
+     "annee": 2020,
+     "ext": 0.9,
+     "pub": -13.1,
+     "prive": 14.0,
+     "pib": 2617,
+     "peen": -13.2,
+     "peen_md": -347
+    },
+    {
+     "annee": 2021,
+     "ext": -1.3,
+     "pub": -9.7,
+     "prive": 8.4,
+     "pib": 3091,
+     "peen": -11.5,
+     "peen_md": -354
+    },
+    {
+     "annee": 2022,
+     "ext": -2.1,
+     "pub": -9.2,
+     "prive": 7.1,
+     "pib": 3257,
+     "peen": -11.5,
+     "peen_md": -376
+    },
+    {
+     "annee": 2023,
+     "ext": -0.7,
+     "pub": -8.3,
+     "prive": 7.6,
+     "pib": 3512,
+     "peen": -10.5,
+     "peen_md": -370
+    },
+    {
+     "annee": 2024,
+     "ext": -0.6,
+     "pub": -7.9,
+     "prive": 7.3,
+     "pib": 3760,
+     "peen": -9.8,
+     "peen_md": -367
+    },
+    {
+     "annee": 2025,
+     "ext": -0.7,
+     "pub": -7.4,
+     "prive": 6.7,
+     "pib": 3909,
+     "peen": -6.8,
+     "peen_md": -267
+    }
+   ]
+  }
+ },
  "secteurs": [
   {
    "annee": 1980,
