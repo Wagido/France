@@ -23,7 +23,7 @@ async function init() {
   } catch (e) { return; }
   const seg = $("#mo-q-mode");
   if (seg) {
-    seg.innerHTML = [["mixte", "Croissance comparée à sa tendance, inflation comparée à 2 %"], ["tendance", "Grille de Gave : les deux accélèrent ou ralentissent"]].map(([k, l]) => `<button type="button" data-m="${k}" aria-pressed="${k === mode}">${l}</button>`).join("");
+    seg.innerHTML = [["mixte", "Chacune comparée à sa tendance des 10 années précédentes"], ["tendance", "Grille de Gave : comparées à l'année précédente"]].map(([k, l]) => `<button type="button" data-m="${k}" aria-pressed="${k === mode}">${l}</button>`).join("");
     seg.onclick = ev => { const b = ev.target.closest("button"); if (!b) return; mode = b.dataset.m; seg.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); quadrants(); };
   }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
@@ -103,39 +103,40 @@ function classer() {
       out.push({ ...d, q: c + i, tr, pi0: prev.inflation });
     } else {
       const g10 = []; for (let k = 1; k <= 10; k++) if (by[d.annee - k]) g10.push(by[d.annee - k].croissance);
-      const tr = d3.median(g10); c = d.croissance >= tr ? "C" : "R"; i = d.inflation >= 2 ? "I" : "D";
-      out.push({ ...d, q: c + i, tr });
+      const p10 = []; for (let k = 1; k <= 10; k++) if (by[d.annee - k]) p10.push(by[d.annee - k].inflation);
+      const tr = d3.median(g10), tp = d3.median(p10); c = d.croissance >= tr ? "C" : "R"; i = d.inflation >= tp ? "I" : "D";
+      out.push({ ...d, q: c + i, tr, tp });
     }
   });
   return out;
 }
 function quadrants() {
   const Y = classer(), el = $("#mo-q-strip");
-  // frise
-  const w = Math.max(320, el.clientWidth), cw = (w - 20) / Y.length, h = 58;
-  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
-  svg.selectAll("rect").data(Y).join("rect").attr("x", (d, i) => 10 + i * cw).attr("y", 4).attr("width", Math.max(1, cw - 1)).attr("height", 30).attr("fill", d => Q[d.q].c).attr("rx", 1.5)
-    .on("pointermove", (ev, d) => window.TH.showTip?.(`<b>${d.annee}</b> : ${Q[d.q].l}<br>Croissance ${sg(d.croissance)} %${d.tr != null ? ` (tendance ${f1(d.tr)} %)` : ""}<br>Inflation ${f1(d.inflation)} %${d.pi0 != null ? ` (l'année d'avant ${f1(d.pi0)} %)` : " (seuil 2 %)"}`, ev))
-    .on("pointerleave", () => window.TH.hideTip?.());
-  svg.selectAll("text").data(Y.filter(d => d.annee % 10 === 0)).join("text").attr("x", d => 10 + Y.indexOf(d) * cw).attr("y", 50).attr("font-size", 11).attr("fill", "var(--muted)").text(d => d.annee);
+  // années en abscisse ; croissance, tendance et inflation en ordonnée ; fond coloré selon le climat de chaque année
+  const W = Math.max(320, el.clientWidth), H = 380, m = { t: 14, r: 14, b: 28, l: 44 };
+  const a0 = Y[0].annee, a1 = Y.at(-1).annee;
+  const x = d3.scaleLinear([a0 - .5, a1 + .5], [m.l, W - m.r]), y = d3.scaleLinear([-8, 15], [H - m.b, m.t]).clamp(true);
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${W} ${H}`);
+  svg.append("g").selectAll("rect").data(Y).join("rect").attr("x", d => x(d.annee - .5)).attr("width", Math.max(1, x(1) - x(0))).attr("y", m.t).attr("height", H - m.t - m.b)
+    .attr("fill", d => Q[d.q].c).attr("opacity", .16);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(8)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+  svg.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--ink)").attr("stroke-width", .8);
+  const L = (k, c, wd, dash) => svg.append("path").attr("fill", "none").attr("stroke", c).attr("stroke-width", wd).attr("stroke-dasharray", dash || null)
+    .attr("d", d3.line().defined(d => d[k] != null).x(d => x(d.annee)).y(d => y(d[k]))(Y));
+  L("tr", "#6b7280", 1.4, "5 3");
+  if (mode === "mixte") L("tp", "#f87171", 1.4, "5 3");
+  L("croissance", "var(--ink)", 2.2);
+  L("inflation", "#dc2626", 2.2);
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(W < 600 ? 6 : 15).tickFormat(d3.format("d")));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(8).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
+  const bis = d3.bisector(d => d.annee).center;
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const d = Y[bis(Y, x.invert(d3.pointer(ev)[0]))]; if (!d) return;
+      window.TH.showTip(`<b>${d.annee}</b> : <span style="color:${Q[d.q].c}">■</span> ${Q[d.q].l}<br>Croissance ${sg(d.croissance)} % (tendance ${f1(d.tr)} %)<br>Inflation ${f1(d.inflation)} %${d.pi0 != null ? ` (l'année d'avant ${f1(d.pi0)} %)` : ` (tendance ${f1(d.tp)} %)`}`, ev); })
+    .on("pointerleave", () => window.TH.hideTip());
   el.replaceChildren(svg.node());
-  window.TH.legend("#mo-q-legend", Object.values(Q).map(q => [q.l, q.c]));
-  // nuage croissance × inflation
-  const e2 = $("#mo-q-scatter"), W = Math.max(320, e2.clientWidth), Hh = 380, m = { t: 14, r: 16, b: 34, l: 44 };
-  const x = d3.scaleLinear([-8, 9], [m.l, W - m.r]), y = d3.scaleLinear([-2, 15], [Hh - m.b, m.t]);
-  const s2 = d3.create("svg").attr("viewBox", `0 0 ${W} ${Hh}`);
-  s2.append("g").attr("class", "grid").selectAll("line").data(y.ticks(8)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
-  if (mode === "mixte") s2.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(2)).attr("y2", y(2)).attr("stroke", "var(--ink)").attr("stroke-dasharray", "4 3");
-  const pts = Y.filter(d => d.croissance >= -8 && d.croissance <= 9 && d.inflation <= 15);
-  s2.append("g").selectAll("circle").data(pts).join("circle").attr("cx", d => x(d.croissance)).attr("cy", d => y(d.inflation)).attr("r", 4.5).attr("fill", d => Q[d.q].c).attr("opacity", .85)
-    .on("pointermove", (ev, d) => window.TH.showTip?.(`<b>${d.annee}</b> : ${Q[d.q].l}<br>Croissance ${sg(d.croissance)} %, inflation ${f1(d.inflation)} %`, ev)).on("pointerleave", () => window.TH.hideTip?.());
-  const marque = [1950, 1962, 1974, 1975, 1980, 1993, 2009, 2016, 2020, 2021, 2022, 2025];
-  s2.append("g").selectAll("text").data(pts.filter(d => marque.includes(d.annee))).join("text").attr("x", d => x(d.croissance) + 6).attr("y", d => y(d.inflation) - 5).attr("font-size", 11).attr("fill", "var(--ink)").text(d => d.annee);
-  s2.append("g").attr("class", "axis").attr("transform", `translate(0,${Hh - m.b})`).call(d3.axisBottom(x).ticks(8).tickFormat(v => v + " %"));
-  s2.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(8).tickFormat(v => v + " %")).call(g => g.select(".domain").remove());
-  s2.append("text").attr("x", W - m.r).attr("y", Hh - 4).attr("text-anchor", "end").attr("font-size", 11).attr("fill", "var(--muted)").text("Croissance réelle du PIB →");
-  s2.append("text").attr("x", m.l + 4).attr("y", m.t + 10).attr("font-size", 11).attr("fill", "var(--muted)").text("↑ Inflation (prix à la consommation)");
-  e2.replaceChildren(s2.node());
+  window.TH.legend("#mo-q-legend", [["Croissance réelle du PIB", "var(--ink)", true], ["Tendance de la croissance (médiane des 10 années précédentes)", "#6b7280", true], ["Inflation", "#dc2626", true],
+    ...(mode === "mixte" ? [["Tendance de l'inflation (médiane des 10 années précédentes)", "#f87171", true]] : []), ...Object.values(Q).map(q => [q.l + " (fond)", q.c])]);
   // décompte par période
   const per = [[1950, 1973, "Trente Glorieuses"], [1974, 1985, "Chocs pétroliers"], [1986, 2007, "Grande modération"], [2008, 2019, "Crises et taux zéro"], [2020, 2100, "Depuis 2020"]];
   $("#mo-q-compte").innerHTML = `<div class="table-scroll"><table class="cmp-t"><thead><tr><th>Période</th>${Object.values(Q).map(q => `<th style="color:${q.c}">${q.l}</th>`).join("")}</tr></thead><tbody>${per.map(([a, b, l]) => {
