@@ -53,6 +53,8 @@ for y in range(1980, an_fmi + 1):
     e = imf.get("FRA", {}).get(str(y)); g = J["GGXCNL_NGDP"].get("FRA", {}).get(str(y))
     if e is not None and g is not None:
         r = {"annee": y, "ext": round(e, 1), "pub": round(g, 1), "prive": round(e - g, 1)}
+        dg = json.load(open(os.path.join(R, "data", "sources", "prosperite", "imf.json")))["GGXWDG_NGDP"]["FRA"].get(str(y)) if y in PIB else None
+        if dg is not None: r["dette_md"] = round(dg * PIB[y] / 1e5)
         if y in PIB:
             r.update({"pib_md": round(PIB[y] / 1000, 1), "ext_md": round(e * PIB[y] / 1e5, 1), "pub_md": round(g * PIB[y] / 1e5, 1), "prive_md": round((e - g) * PIB[y] / 1e5, 1)})
         secteurs.append(r)
