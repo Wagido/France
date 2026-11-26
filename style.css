@@ -629,3 +629,10 @@ table.cmp-t.ro-t { min-width: 0; width: 100%; }
 .q4-rd { background: color-mix(in srgb, #ca8a04 11%, var(--surface)); } .q4-rd h4 { color: #a16207; }
 .q4-cd { background: color-mix(in srgb, #2563eb 9%, var(--surface)); } .q4-cd h4 { color: #1d4ed8; }
 @media (max-width: 720px) { .q4 { grid-template-columns: 1fr; } }
+.a-retenir { border-left: 3px solid var(--accent, #2563eb); padding: 6px 12px; margin: 4px 0 12px; background: color-mix(in srgb, var(--accent, #2563eb) 6%, transparent); border-radius: 0 8px 8px 0; font-size: .93rem; }
+#mo-essentiel summary { cursor: pointer; }
+#mo-essentiel li { margin: 3px 0; }
+abbr.glo { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; }
+.glo-dl { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 4px 14px; margin: 8px 0 0; }
+.glo-dl dt { font-weight: 600; } .glo-dl dd { margin: 0; }
+@media (max-width: 640px) { .glo-dl { grid-template-columns: 1fr; } .glo-dl dd { margin-bottom: 6px; } }

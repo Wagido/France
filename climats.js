@@ -1,7 +1,7 @@
 /* Monnaie, 7.1 les moteurs de la demande, 7.3 les quatre climats, 7.4 Kondratiev (data/climats.json, data/histoire.json) */
 (() => {
 "use strict";
-let C = null, H = null, mode = "mixte";
+let C = null, H = null, MO = null, mode = "mixte";
 const $ = s => document.querySelector(s);
 const f1 = v => v == null ? "–" : v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const sg = v => v == null ? "–" : (v > 0 ? "+" : v < 0 ? "−" : "") + f1(Math.abs(v));
@@ -19,7 +19,7 @@ const PAYS = [{ k: "FR", l: "France", c: "#2563eb" }, { k: "DE", l: "Allemagne",
 async function init() {
   if (!window.TH || !window.d3) { setTimeout(init, 100); return; }
   try {
-    [C, H] = await Promise.all([fetch("data/climats.json", { cache: "no-cache" }).then(r => r.json()), fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json())]);
+    [C, H, MO] = await Promise.all([fetch("data/climats.json", { cache: "no-cache" }).then(r => r.json()), fetch("data/histoire.json", { cache: "no-cache" }).then(r => r.json()), fetch("data/monnaie.json", { cache: "no-cache" }).then(r => r.json()).catch(() => null)]);
   } catch (e) { return; }
   const seg = $("#mo-q-mode");
   if (seg) {
@@ -29,7 +29,7 @@ async function init() {
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
-function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
+function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-actu")) actualite(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
 
 /* ---------- 7.1 contributions empilées ---------- */
 function contrib(p) {
@@ -207,6 +207,28 @@ function ksaisons() {
     .on("pointerleave", () => window.TH.hideTip());
   el.replaceChildren(svg.node());
   window.TH.legend("#mo-k-saisons-legend", [["Croissance réelle, moyenne sur 10 ans", "var(--ink)", true], ["Sa tendance (médiane des 20 années précédentes)", "#6b7280", true], ["Inflation, moyenne sur 10 ans", "#dc2626", true], ...Object.values(Q).map(q => [q.l + " : " + q.d, q.c])]);
+}
+
+/* ---------- 7 : où en est la France aujourd'hui ? ---------- */
+function actualite() {
+  const A = C.actualite; if (!A || !A.trimestres.length || !A.inflation.length) return;
+  const T = A.trimestres.at(-1), I = A.inflation.at(-1), I12 = A.inflation.find(r => r.m === `${+I.m.slice(0, 4) - 1}${I.m.slice(4)}`);
+  const an = +T.t.slice(0, 4), L = H.longue;
+  const g10 = L.filter(r => r.annee >= an - 10 && r.annee < an && r.croissance != null).map(r => r.croissance);
+  const p10 = L.filter(r => r.annee >= an - 10 && r.annee < an && r.inflation != null).map(r => r.inflation);
+  const tg = d3.median(g10), tp = d3.median(p10);
+  const q = (T.ga >= tg ? "C" : "R") + (I.v >= tp ? "I" : "D");
+  const qg = I12 ? (T.ga >= tg ? "C" : "R") + (I.v >= I12.v ? "I" : "D") : null;
+  const tri = t => `${t.slice(5).replace("Q", "")}<sup>e</sup> trimestre ${t.slice(0, 4)}`.replace(">1<sup>e</sup>", ">1<sup>er</sup>").replace("1<sup>e</sup>", "1<sup>er</sup>");
+  const mois = m => new Date(m + "-15").toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
+  const dep = MO?.taux_bce?.depot?.at(-1), m3 = MO?.agregats?.at(-1);
+  window.TH.kpis("#mo-actu-kpis", [
+    [sg(T.qq) + " %", `au ${tri(T.t)}, par rapport au trimestre précédent (sur un an : ${sg(T.ga)} %)`, "Croissance du PIB"],
+    [f1(I.v) + " %", `sur un an, en ${mois(I.m)}${I12 ? ` (${f1(I12.v)} % un an plus tôt)` : ""}`, "Inflation"],
+    dep ? [f1(dep[1]) + " %", `depuis le ${new Date(dep[0]).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}`, "Taux de dépôt de la BCE"] : null,
+    m3 ? [sg(m3.m3_croiss) + " %", `zone euro, sur l'année ${m3.annee}`, "Masse monétaire M3"] : null
+  ].filter(Boolean));
+  $("#mo-actu-txt").innerHTML = `<p style="margin:0"><b>Au sens de la grille (7.3)</b> : sur un an, la croissance (${sg(T.ga)} %) est ${T.ga >= tg ? "au-dessus" : "au-dessous"} de sa tendance des dix dernières années (${f1(tg)} %), et l'inflation (${f1(I.v)} %) ${I.v >= tp ? "au-dessus" : "au-dessous"} de la sienne (${f1(tp)} %) : la France est en <b style="color:${Q[q].c}">${Q[q].l.toLowerCase()}</b> (${Q[q].d})${qg && qg !== q ? `. Selon la grille d'origine de Gave, qui compare à l'année précédente, ce serait une ${Q[qg].l.toLowerCase()}` : qg ? `, et la grille d'origine de Gave, qui compare à l'année précédente, dit la même chose` : ""}. ${q === "RI" ? "C'est la configuration la plus inconfortable pour une banque centrale : monter les taux aggraverait le ralentissement, les baisser risquerait d'entretenir l'inflation (voir la carte « récession inflationniste »)." : q === "RD" ? "C'est la configuration où les banques centrales baissent leurs taux et où les obligations protègent le mieux." : ""}</p><p class="muted" style="margin:6px 0 0;font-size:.8rem">Mis à jour chaque mois : Eurostat (comptes trimestriels, indice des prix harmonisé), BCE, INSEE. Une lecture d'un seul trimestre est fragile : les chiffres sont souvent révisés.</p>`;
 }
 
 init();

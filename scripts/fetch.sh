@@ -397,6 +397,8 @@ get climats/volumes.json "$E/nama_10_gdp?geo=FR&unit=CLV_PCH_PRE&na_item=B1GQ&na
 get climats/fbcf_pays.json "$E/nama_10_gdp?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&unit=PC_GDP&na_item=P51G&sinceTimePeriod=1995"
 get climats/epargne_pays.json "$E/nasa_10_ki?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&na_item=SRG_S14_S15&sinceTimePeriod=1999"
 get climats/rd_pays.json "$E/rd_e_gerdtot?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&sectperf=TOTAL&unit=PC_GDP&sinceTimePeriod=1995"
+get climats/pib_trimestriel.json "$E/namq_10_gdp?geo=FR&unit=CLV_PCH_SM&unit=CLV_PCH_PRE&s_adj=SCA&na_item=B1GQ&sinceTimePeriod=2023-Q1"
+get climats/inflation_mensuelle.json "$E/prc_hicp_minr?geo=FR&coicop18=TOTAL&unit=RCH_A&sinceTimePeriod=2024-01"
 # France 2050 (article de prospective)
 mkdir -p france2050
 get france2050/projections.json "$E/proj_23np?geo=FR&sex=T&unit=PER&age=TOTAL&age=Y_GE65&age=Y_GE80&age=Y_LT15&age=Y15-64&age=Y20-64"

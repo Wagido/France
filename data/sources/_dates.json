@@ -29,6 +29,8 @@
  "data/sources/climats/contributions.json": "2026-11-25",
  "data/sources/climats/epargne_pays.json": "2026-11-25",
  "data/sources/climats/fbcf_pays.json": "2026-11-25",
+ "data/sources/climats/inflation_mensuelle.json": "2026-11-26",
+ "data/sources/climats/pib_trimestriel.json": "2026-11-26",
  "data/sources/climats/rd_pays.json": "2026-11-25",
  "data/sources/climats/volumes.json": "2026-11-25",
  "data/sources/eco2/demo_pjanbroad.json": "2026-11-20",
