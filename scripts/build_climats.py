@@ -94,7 +94,14 @@ def main():
             T.setdefault(c["time"], {})["ga" if c["unit"] == "CLV_PCH_SM" else "qq"] = v
     M = {c["time"]: v for c, v in table("inflation_mensuelle.json") if v is not None}
     actu = {"trimestres": [{"t": t, **T[t]} for t in sorted(T)], "inflation": [{"m": m, "v": M[m]} for m in sorted(M)]}
-    out = {"kondratiev": kondratiev(), "actualite": actu, "contributions": contrib, "volumes": vol, "fbcf": pays("fbcf_pays.json"), "epargne": pays("epargne_pays.json"), "rd": pays("rd_pays.json")}
+    # les mêmes moteurs en valeur (milliards d'euros courants) : PIB = conso + dépense publique + investissement + stocks + exportations − importations
+    import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from build_environnement import lire
+    N = {it: lire("nama_10_gdp.json", {"unit": "CP_MEUR", "na_item": it}, os.path.join(ROOT, "data", "sources"))["FR"] for it in ("B1GQ", "P31_S14_S15", "P3_S13", "P51G", "P52_P53", "P6", "P7")}
+    niveaux = [{"annee": a, "pib": round(N["B1GQ"][a] / 1000, 1), "conso": round(N["P31_S14_S15"][a] / 1000, 1), "public": round(N["P3_S13"][a] / 1000, 1),
+                "invest": round(N["P51G"][a] / 1000, 1), "stocks": round(N["P52_P53"][a] / 1000, 1), "export": round(N["P6"][a] / 1000, 1), "import": round(-N["P7"][a] / 1000, 1)}
+               for a in sorted(N["B1GQ"]) if all(a in N[k] for k in N)]
+    out = {"niveaux": niveaux, "kondratiev": kondratiev(), "actualite": actu, "contributions": contrib, "volumes": vol, "fbcf": pays("fbcf_pays.json"), "epargne": pays("epargne_pays.json"), "rd": pays("rd_pays.json")}
     json.dump(out, open(os.path.join(ROOT, "data", "climats.json"), "w"), ensure_ascii=False, separators=(",", ":"))
     d = contrib[-1]
     print(f"climats.json : contributions {ans[0]}-{ans[-1]} (dernière : PIB {d['pib']}, conso {d['conso']}, public {d['public']}, invest {d['invest']}, commerce {d['commerce']})")
