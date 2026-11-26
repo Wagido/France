@@ -643,3 +643,6 @@ abbr.glo { text-decoration: underline dotted; text-underline-offset: 3px; cursor
 .ext-btns button { font: inherit; font-size: .82rem; border: 1px solid var(--line); background: var(--soft); color: var(--ink); border-radius: 8px; padding: 5px 10px; cursor: pointer; }
 .ext-btns button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
 .ext-tr td, .ext-tr th { padding: 4px 8px; font-size: .86rem; }
+.enc-t { margin: 0 0 4px; font-size: 1.05rem; }
+.enc-som { font-size: .82rem; margin: 0 0 10px; }
+.enc-h { margin: 18px 0 6px; font-size: .98rem; padding-top: 10px; border-top: 1px solid var(--line); }
