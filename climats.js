@@ -29,10 +29,39 @@ async function init() {
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw();
 }
-function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-actu")) actualite(); if ($("#mo-test") && MO?.rendements) testGrille(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
+function draw() { if (!C) return; ["mo", "pib"].forEach(p => { if ($(`#${p}-contrib`)) { contrib(p); const sm = $(`#${p}-contrib-mode`); if (sm) sm.onclick = ev => { const b = ev.target.closest("button"); if (!b) return; sm.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); contrib(p, b.dataset.m); }; moteurs(p); pays(p); } }); if ($("#mo-q-strip")) quadrants(); if ($("#mo-actu")) actualite(); if ($("#mo-test") && MO?.rendements) testGrille(); if ($("#mo-k-saisons")) ksaisons(); if ($("#mo-k-taux") && C.kondratiev) { kondra("#mo-k-taux", "t", v => f1(v) + " %"); kondra("#mo-k-infl", "i", v => f1(v) + " %"); } }
 
 /* ---------- 7.1 contributions empilées ---------- */
-function contrib(p) {
+const NIV = [{ k: "conso", l: "Consommation des ménages", c: "#0ea5e9" }, { k: "public", l: "Dépense publique (services publics)", c: "#7c3aed" },
+  { k: "invest", l: "Investissement (entreprises, logement, État)", c: "#f59e0b" }, { k: "stocks", l: "Variation des stocks", c: "#9ca3af" },
+  { k: "export", l: "Exportations", c: "#16a34a" }, { k: "import", l: "Importations (en moins)", c: "#86efac" }];
+function niveaux(p) {
+  const el = $(`#${p}-contrib`), data = C.niveaux, n0 = v => Math.round(v).toLocaleString("fr-FR");
+  $(`#${p}-contrib-t`).textContent = "Le poids de chaque moteur chaque année, en milliards d'euros courants : la somme des barres (exportations moins importations) donne le PIB";
+  const w = Math.max(320, el.clientWidth), h = 340, m = { t: 12, r: 10, b: 26, l: 52 };
+  const x = d3.scaleBand(data.map(d => d.annee), [m.l, w - m.r]).padding(.18);
+  const pos = d => NIV.reduce((s, k) => s + Math.max(0, d[k.k] || 0), 0), neg = d => NIV.reduce((s, k) => s + Math.min(0, d[k.k] || 0), 0);
+  const y = d3.scaleLinear([d3.min(data, neg), d3.max(data, pos)], [h - m.b, m.t]).nice();
+  const svg = d3.create("svg").attr("viewBox", `0 0 ${w} ${h}`);
+  svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(6)).join("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y).attr("y2", y);
+  data.forEach(d => { let p = 0, n = 0;
+    NIV.forEach(k => { const v = d[k.k] || 0; if (!v) return; const y0 = v > 0 ? p : n, y1 = y0 + v; if (v > 0) p = y1; else n = y1;
+      svg.append("rect").attr("x", x(d.annee)).attr("width", x.bandwidth()).attr("y", y(Math.max(y0, y1))).attr("height", Math.abs(y(y0) - y(y1))).attr("fill", k.c); }); });
+  svg.append("line").attr("x1", m.l).attr("x2", w - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--ink)").attr("stroke-width", .8);
+  svg.append("g").selectAll("circle").data(data).join("circle").attr("cx", d => x(d.annee) + x.bandwidth() / 2).attr("cy", d => y(d.pib)).attr("r", 3.6).attr("fill", "var(--surface)").attr("stroke", "var(--ink)").attr("stroke-width", 1.6);
+  const step = w < 600 ? 5 : 2;
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0,${h - m.b})`).call(d3.axisBottom(x).tickValues(data.map(d => d.annee).filter(a => a % step === 0)).tickSizeOuter(0));
+  svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v => n0(v))).call(g => g.select(".domain").remove());
+  svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", w - m.l - m.r).attr("height", h - m.t - m.b).attr("fill", "transparent")
+    .on("pointermove", ev => { const i = Math.floor((d3.pointer(ev)[0] - m.l) / x.step()), d = data[Math.max(0, Math.min(data.length - 1, i))];
+      window.TH.showTip?.(`<b>${d.annee}</b> : PIB ${n0(d.pib)} Md€` + NIV.map(k => `<br><span style="color:${k.c}">■</span> ${k.l} : ${n0(d[k.k])} Md€ (${f1(100 * d[k.k] / d.pib)} %)`).join("") + `<br>Solde extérieur : ${sg(d.export + d.import)} Md€`, ev); })
+    .on("pointerleave", () => window.TH.hideTip?.());
+  el.replaceChildren(svg.node());
+  window.TH.legend(`#${p}-contrib-legend`, [...NIV.map(k => [k.l, k.c]), ["PIB (point) = somme des barres", "var(--ink)", true]]);
+}
+function contrib(p, mode) {
+  if (mode === "valeur" && C.niveaux) return niveaux(p);
+  const t = $(`#${p}-contrib-t`); if (t) t.textContent = "Ce que chaque moteur a apporté à la croissance chaque année, en points de PIB";
   const el = $(`#${p}-contrib`), data = C.contributions.filter(d => d.annee >= 1996);
   const w = Math.max(320, el.clientWidth), h = 320, m = { t: 12, r: 10, b: 26, l: 40 };
   const x = d3.scaleBand(data.map(d => d.annee), [m.l, w - m.r]).padding(.18);
