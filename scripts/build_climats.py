@@ -88,7 +88,13 @@ def main():
     vol = [{"annee": a, "pib": V["B1GQ"].get(a), "conso": V["P31_S14_S15"].get(a), "public": V["P3_S13"].get(a),
             "invest": V["P51G"].get(a), "export": V["P6"].get(a), "import": V["P7"].get(a)} for a in sorted(V["B1GQ"])]
     pays = lambda nom: {g: [{"annee": a, "v": v} for a, v in sorted(s.items())] for g, s in par(nom, "geo").items()}
-    out = {"kondratiev": kondratiev(), "contributions": contrib, "volumes": vol, "fbcf": pays("fbcf_pays.json"), "epargne": pays("epargne_pays.json"), "rd": pays("rd_pays.json")}
+    T = {}
+    for c, v in table("pib_trimestriel.json"):
+        if v is not None:
+            T.setdefault(c["time"], {})["ga" if c["unit"] == "CLV_PCH_SM" else "qq"] = v
+    M = {c["time"]: v for c, v in table("inflation_mensuelle.json") if v is not None}
+    actu = {"trimestres": [{"t": t, **T[t]} for t in sorted(T)], "inflation": [{"m": m, "v": M[m]} for m in sorted(M)]}
+    out = {"kondratiev": kondratiev(), "actualite": actu, "contributions": contrib, "volumes": vol, "fbcf": pays("fbcf_pays.json"), "epargne": pays("epargne_pays.json"), "rd": pays("rd_pays.json")}
     json.dump(out, open(os.path.join(ROOT, "data", "climats.json"), "w"), ensure_ascii=False, separators=(",", ":"))
     d = contrib[-1]
     print(f"climats.json : contributions {ans[0]}-{ans[-1]} (dernière : PIB {d['pib']}, conso {d['conso']}, public {d['public']}, invest {d['invest']}, commerce {d['commerce']})")
