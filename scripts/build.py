@@ -197,21 +197,21 @@ def build_pib():
             ],
             # --- lecture « ce qui est vendu à des clients » (cascade)
             "cascade": [
-                {"id": "pib", "label": "PIB", "v": md(total), "type": "total"},
-                {"id": "impots_produits", "label": "Impôts nets sur les produits", "v": md(-taxes_net_products),
-                 "note": "La TVA et les accises gonflent le prix payé sans rien ajouter à ce qui est produit : le PIB « aux prix du marché » les inclut."},
-                {"id": "apu", "label": "Services publics comptés à leur coût", "v": md(-va["S13"]),
-                 "note": "Les services non vendus (école, police, hôpital public…) n'ont pas de prix : on les compte pour ce qu'ils coûtent (salaires + usure du capital). Utiles ou non, ils pèsent ce qu'on y dépense."},
-                {"id": "isblsm", "label": "Associations comptées à leur coût", "v": md(-va["S15"]),
-                 "note": "Même convention que pour les administrations."},
-                {"id": "loyers_imputes", "label": "Loyers que les propriétaires « se versent »", "v": md(-rents),
-                 "note": "Un propriétaire occupant est censé se louer son logement : ce loyer fictif est ajouté au PIB sans aucune transaction. (Montant brut : il inclut les frais d'entretien, il surestime donc un peu la valeur ajoutée correspondante.)"
+                {"id": "pib", "label": "PIB (aux prix payés par les acheteurs)", "v": md(total), "type": "total"},
+                {"id": "impots_produits", "label": "Impôts dans les prix (TVA, taxes sur l'énergie…), moins les subventions", "v": md(-taxes_net_products),
+                 "note": "Famille A, ce qui est dans le prix sans être produit. Le PIB additionne les prix payés par les acheteurs, TVA comprise : quand la TVA augmente, le PIB en euros augmente alors que rien de plus n'est produit. Les statisticiens retirent ces impôts pour obtenir la « valeur ajoutée aux prix de base », celle qu'on utilise pour comparer la productivité des branches et des pays."},
+                {"id": "apu", "label": "Services publics, comptés à leur coût", "v": md(-va["S13"]),
+                 "note": "Famille B, une vraie production, mais sans prix. L'école, la police, l'hôpital public produisent quelque chose de réel, mais ne le vendent pas : faute de prix, on les compte pour ce qu'ils coûtent (salaires et usure des bâtiments). Conséquence : augmenter les salaires des fonctionnaires augmente le PIB, même si le service rendu est identique ; un service public plus efficace, qui fait autant avec moins, fait baisser le PIB."},
+                {"id": "isblsm", "label": "Associations, comptées à leur coût", "v": md(-va["S15"]),
+                 "note": "Famille B aussi : même convention que pour les services publics (salariés des associations, des syndicats, des Églises, des fondations)."},
+                {"id": "loyers_imputes", "label": "Loyers fictifs des propriétaires qui habitent leur logement", "v": md(-rents),
+                 "note": "Famille B encore : le logement rend un service réel, mais le propriétaire ne se paie rien. On estime donc le loyer qu'il paierait pour un logement comparable. Sans cette convention, un pays de propriétaires paraîtrait plus pauvre qu'un pays de locataires logés exactement pareil, et le PIB baisserait chaque fois qu'un locataire achète. Le loyer fictif suit les loyers du marché, pas les prix de vente : la flambée des prix de l'immobilier ne le gonfle pas directement, mais la hausse des loyers, oui (voir l'encadré « Comparer des PIB peut tromper »). Montant brut : il inclut l'entretien et l'usure des logements."
                          + (" Montant prolongé à partir de la dernière année publiée." if rents_est else "")
                          + (" Non publié par Eurostat pour ce pays : laissé à zéro." if rents_est is None else "")},
-                {"id": "amortissement", "label": "Usure du capital des entreprises", "v": md(-(ccf["S11"] + ccf["S12"])),
-                 "note": "Une partie de la production sert seulement à remplacer les machines et bâtiments usés : ce n'est pas un enrichissement net. (L'usure des logements des ménages est déjà comprise dans les loyers imputés ; celle des entrepreneurs individuels n'est pas retirée ici.)"},
-                {"id": "reste", "label": "Valeur ajoutée nette vendue à des clients", "type": "total",
-                 "note": "Ce qui reste : la production des entreprises et indépendants, vendue à un prix, nette de l'usure du capital. Elle inclut encore des ventes payées par de l'argent public (voir ci-dessous)."},
+                {"id": "amortissement", "label": "Usure des machines et bâtiments des entreprises", "v": md(-(ccf["S11"] + ccf["S12"])),
+                 "note": "Famille C, une production qui ne fait que remplacer. Une partie de ce que produisent les entreprises sert seulement à remplacer ce qui s'use (machines, camions, logiciels, bâtiments) : le pays ne s'enrichit pas, il entretient. Le PIB est « brut » parce qu'il ne retire pas cette usure. (L'usure des logements est déjà dans les loyers fictifs ; celle des entrepreneurs individuels n'est pas retirée ici.)"},
+                {"id": "reste", "label": "Ce qui reste : production nette vendue à des clients", "type": "total",
+                 "note": "La production des entreprises et des indépendants, vendue à un prix à des clients qui l'ont choisie, une fois retirée l'usure du capital. C'est la part du PIB la plus proche de l'idée intuitive de « richesse produite et vendue ». Elle comprend encore des ventes payées par de l'argent public (médicaments remboursés, commandes de l'État : voir plus bas)."},
             ],
             "achats_publics": [
                 {"id": "d632", "label": "Soins et médicaments remboursés (achetés au privé)", "v": md(d632)},

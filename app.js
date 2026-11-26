@@ -126,6 +126,15 @@ function drawPib() {
     </div>`).join("")}</div>`;
   $("#cascade-notes").innerHTML = rows.map((r, i) => r.note ? `<li value="${i}"><b>${esc(r.label)}.</b> ${esc(r.note)}</li>` : "").join("");
 
+  // --- comparer des PIB : poids des conventions par pays
+  const ct = $("#pib-comparer-t");
+  if (ct && CMP?.comparaison) {
+    const keep = ["FR", "DE", "IT", "ES", "NL", "SE", "FI", "PL", "HU", "IE"], p1 = v => v == null ? "–" : v.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " %";
+    const R = keep.map(k => CMP.comparaison.find(c => c.code === k)).filter(c => c?.pib?.cascade);
+    ct.innerHTML = `<table class="cmp-t"><thead><tr><th>Pays</th><th>Impôts dans les prix</th><th>Services publics au coût</th><th>Loyers fictifs</th><th>Production nette vendue</th></tr></thead><tbody>${R.map(c => { const P = c.pib, k = P.cascade, q = v => 100 * Math.abs(v || 0) / P.pib;
+      return `<tr${c.code === "FR" ? ' style="font-weight:600"' : ""}><td>${esc(c.nom)} <small class="muted">${P.annee}</small></td><td class="num">${p1(q(k.impots_produits))}</td><td class="num">${p1(q(k.apu))}</td><td class="num">${p1(q(k.loyers_imputes))}</td><td class="num">${p1(q(k.reste))}</td></tr>`; }).join("")}</tbody></table>`;
+  }
+
   // --- achats publics
   const ach = P.achats_publics, tot = d3.sum(ach, d => d.v);
   barList($("#achats"), ach, P.pib, { max: P.pib * 0.1 });
