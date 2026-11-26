@@ -392,6 +392,7 @@ get generations/prelevements.json "$E/gov_10a_taxag?geo=FR&unit=PC_GDP&sector=S1
 get generations/demo.json "$E/demo_pjanind?geo=FR&indic_de=PC_Y65_MAX&indic_de=PC_Y60_MAX"
 # Monnaie, 6.3-6.4 : moteurs de la demande et climats économiques
 mkdir -p climats
+get pib_courant_fr.json "$E/nama_10_gdp?geo=FR&unit=CP_MEUR&na_item=B1GQ&sinceTimePeriod=1975"
 get climats/contributions.json "$E/nama_10_gdp?geo=FR&unit=CON_PPCH_PRE&na_item=B1GQ&na_item=P31_S14_S15&na_item=P3_S13&na_item=P51G&na_item=P52_P53&na_item=P6&na_item=P7"
 get climats/volumes.json "$E/nama_10_gdp?geo=FR&unit=CLV_PCH_PRE&na_item=B1GQ&na_item=P31_S14_S15&na_item=P3_S13&na_item=P51G&na_item=P6&na_item=P7&sinceTimePeriod=1995"
 get climats/fbcf_pays.json "$E/nama_10_gdp?geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&unit=PC_GDP&na_item=P51G&sinceTimePeriod=1995"

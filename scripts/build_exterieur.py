@@ -43,6 +43,18 @@ J = json.load(open(os.path.join(R, "data", "sources", "prosperite", "imf_jumeaux
 jumeaux = {"annee": an_fmi, "pays": [{"code": c, "nom": n, "ext": J["BCA_NGDPD"][c].get(str(an_fmi)), "pub": J["GGXCNL_NGDP"][c].get(str(an_fmi)),
            "ext_pos_10": sum(1 for y in range(an_fmi - 10, an_fmi) if (J["BCA_NGDPD"][c].get(str(y)) or 0) > 0),
            "pub_neg_10": sum(1 for y in range(an_fmi - 10, an_fmi) if (J["GGXCNL_NGDP"][c].get(str(y)) or 0) < 0)} for c, n in JN.items()]}
-json.dump({"jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
+# solde extérieur = solde du secteur privé + solde public (France, depuis 1980, FMI)
+_pib = json.load(open(os.path.join(R, "data", "sources", "pib_courant_fr.json")))
+_inv = {i: t for t, i in _pib["dimension"]["time"]["category"]["index"].items()}
+PIB = {int(_inv[int(k)]): v for k, v in _pib["value"].items()}
+secteurs = []
+for y in range(1980, an_fmi + 1):
+    e = imf.get("FRA", {}).get(str(y)); g = J["GGXCNL_NGDP"].get("FRA", {}).get(str(y))
+    if e is not None and g is not None:
+        r = {"annee": y, "ext": round(e, 1), "pub": round(g, 1), "prive": round(e - g, 1)}
+        if y in PIB:
+            r.update({"pib_md": round(PIB[y] / 1000, 1), "ext_md": round(e * PIB[y] / 1e5, 1), "pub_md": round(g * PIB[y] / 1e5, 1), "prive_md": round((e - g) * PIB[y] / 1e5, 1)})
+        secteurs.append(r)
+json.dump({"secteurs": secteurs, "jumeaux": jumeaux, "commercial": commercial, "public": public, "pays": [[g2, n] for g2, _, n in PAYS], "courant": courant, "position": position, "cumul_fr_2005": cumul},
           open(os.path.join(R, "data", "exterieur.json"), "w"), ensure_ascii=False, indent=1)
 print("cumul FR depuis 2005 :", cumul, "| PEEN FR", [(r["annee"], r["FR"]) for r in position if r["annee"] % 5 == 0 or r["annee"] >= 2024])
